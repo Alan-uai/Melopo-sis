@@ -160,6 +160,7 @@ export default function Home() {
   }
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
+    if (!suggestionToAccept) return;
     const newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     setText(newText);
     
@@ -167,7 +168,7 @@ export default function Home() {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
         );
-        setActiveGrammarSuggestion(null);
+        setActiveGrammarSuggestion(null); // Close popover
         if (suggestionMode === 'gradual') {
             const currentLine = newText.split('\n').find(line => line.includes(suggestionToAccept.correctedText)) ?? '';
             fetchToneSuggestions(currentLine, tone);
@@ -180,11 +181,12 @@ export default function Home() {
   };
 
   const handleDismiss = (suggestionToDismiss: Suggestion) => {
+    if (!suggestionToDismiss) return;
     if (suggestionToDismiss.type === 'grammar') {
         setGrammarSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
         );
-        setActiveGrammarSuggestion(null);
+        setActiveGrammarSuggestion(null); // Close popover
     } else {
         setToneSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
@@ -195,38 +197,20 @@ export default function Home() {
   const checkActiveSuggestion = useCallback(() => {
     const cursorPosition = editorRef.current?.getCursorPosition();
     if (cursorPosition === null || !grammarSuggestions.length) {
-      setActiveGrammarSuggestion(null);
-      return;
+        if (activeGrammarSuggestion) setActiveGrammarSuggestion(null);
+        return;
     }
-  
-    // Find the word at the current cursor position
-    const wordRegex = /[\wÀ-ú']+/g;
-    let match;
-    let currentWord = null;
-    let currentWordIndex = -1;
-  
-    // This is not the most efficient way, but it's reliable for moderate text sizes.
-    // It finds the word based on cursor position by iterating through words.
-    while ((match = wordRegex.exec(text)) !== null) {
-      if (cursorPosition >= match.index && cursorPosition <= match.index + match[0].length) {
-        currentWord = match[0];
-        currentWordIndex = match.index;
-        break;
-      }
-    }
-  
-    if (currentWord) {
-      const activeSuggestion = grammarSuggestions.find(suggestion => {
-        // Check if the original text of the suggestion is present at the word's position
-        const suggestionStartIndex = text.indexOf(suggestion.originalText, currentWordIndex);
-        return suggestionStartIndex === currentWordIndex;
-      });
-      setActiveGrammarSuggestion(activeSuggestion || null);
-    } else {
-      setActiveGrammarSuggestion(null);
-    }
-  
-  }, [text, grammarSuggestions]);
+
+    const activeSuggestion = grammarSuggestions.find(suggestion => {
+        const startIndex = text.indexOf(suggestion.originalText);
+        if (startIndex === -1) return false;
+        const endIndex = startIndex + suggestion.originalText.length;
+        return cursorPosition >= startIndex && cursorPosition <= endIndex;
+    });
+
+    setActiveGrammarSuggestion(activeSuggestion || null);
+  }, [text, grammarSuggestions, activeGrammarSuggestion]);
+
 
   useEffect(() => {
     // A small debounce to avoid checking on every single key press instantly
@@ -236,7 +220,7 @@ export default function Home() {
   
   
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8" onClick={checkActiveSuggestion}>
+    <div className="container mx-auto max-w-7xl px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <Editor
           ref={editorRef}
@@ -264,3 +248,4 @@ export default function Home() {
     </div>
   );
 }
+    

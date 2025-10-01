@@ -63,7 +63,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
-
+  const editorWrapperRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -88,51 +88,40 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       highlightsRef.current.scrollLeft = textareaRef.current.scrollLeft;
     }
   };
-
+  
   const editorContent = useMemo(() => {
-    let content: (string | React.ReactNode)[] = [text];
-    
-    if (grammarSuggestions.length > 0) {
-        const suggestionMap = new Map<string, Suggestion>();
-        // Use a Set to handle duplicate originalText values, ensuring unique regex parts
-        const uniqueOriginals = new Set<string>();
-        grammarSuggestions.forEach(s => {
-          if (s && s.originalText) {
-            const trimmedOriginal = s.originalText.trim();
-            if(trimmedOriginal){
-              suggestionMap.set(trimmedOriginal, s);
-              uniqueOriginals.add(trimmedOriginal);
-            }
-          }
-        });
-        
-        const originals = Array.from(uniqueOriginals);
-        if (originals.length > 0) {
-            // Important: sort by length descending to match longer phrases first
-            originals.sort((a, b) => b.length - a.length);
-            const regex = new RegExp(`(${originals.map(o => o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
-            const parts = text.split(regex);
-            
-            content = parts.map((part, index) => {
-                const suggestion = suggestionMap.get(part.trim());
-                if (suggestion) {
-                    const isSuggestionActive = activeGrammarSuggestion?.originalText === suggestion.originalText;
-                    const PopoverOrSpan = isSuggestionActive ? PopoverAnchor : 'span';
-                    return (
-                        <PopoverOrSpan
-                          key={`${index}-${part}`} 
-                          className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2"
-                        >
-                            {part}
-                        </PopoverOrSpan>
-                    );
-                }
-                return part;
-            });
+    if (!grammarSuggestions.length) return text;
+
+    let lastIndex = 0;
+    const parts: (string | React.ReactNode)[] = [];
+    const sortedSuggestions = [...grammarSuggestions].sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
+
+    sortedSuggestions.forEach((suggestion, i) => {
+        const startIndex = text.indexOf(suggestion.originalText);
+        if (startIndex === -1) return;
+
+        // Add text before the suggestion
+        if (startIndex > lastIndex) {
+            parts.push(text.substring(lastIndex, startIndex));
         }
+
+        const isSuggestionActive = activeGrammarSuggestion?.originalText === suggestion.originalText;
+        const AnchorComponent = isSuggestionActive ? PopoverAnchor : 'span';
+        
+        parts.push(
+            <AnchorComponent key={`suggestion-${i}`} className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2">
+                {suggestion.originalText}
+            </AnchorComponent>
+        );
+
+        lastIndex = startIndex + suggestion.originalText.length;
+    });
+
+    if (lastIndex < text.length) {
+        parts.push(text.substring(lastIndex));
     }
 
-    return content.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
+    return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
 }, [text, grammarSuggestions, activeGrammarSuggestion]);
 
 
@@ -190,17 +179,16 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </RadioGroup>
           </div>
         </div>
-
-        <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => !isOpen && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
-            <div className="relative grid">
+        
+        <Popover open={!!activeGrammarSuggestion}>
+           <div className="relative grid" ref={editorWrapperRef}>
                 <Textarea
                     ref={textareaRef}
                     value={text}
                     onChange={(e) => onTextChange(e.target.value)}
                     onScroll={handleScroll}
                     onSelect={onCursorChange}
-                    onClick={onCursorChange}
-                    onKeyUp={onCursorChange}
+                    onKeyDown={onCursorChange}
                     placeholder="Escreva seu poema aqui..."
                     className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
                     aria-label="Editor de Poesia"
@@ -212,17 +200,17 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                     aria-hidden="true"
                 >
                     {editorContent}
-                    {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+                     {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
                     &nbsp;
                 </div>
             </div>
-          {activeGrammarSuggestion && (
-              <SuggestionPopover
-                suggestion={activeGrammarSuggestion}
-                onAccept={() => onAccept(activeGrammarSuggestion)}
-                onDismiss={() => onDismiss(activeGrammarSuggestion)}
-              />
-          )}
+            {activeGrammarSuggestion && (
+               <SuggestionPopover
+                  suggestion={activeGrammarSuggestion}
+                  onAccept={() => onAccept(activeGrammarSuggestion)}
+                  onDismiss={() => onDismiss(activeGrammarSuggestion)}
+                />
+            )}
         </Popover>
 
         {suggestionMode === "final" && (
@@ -239,3 +227,4 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+    
