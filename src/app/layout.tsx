@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'Verso Correto',
+  title: 'Melopoësis',
   description: 'Seu assistente de poesia para o português brasileiro.',
 };
 
