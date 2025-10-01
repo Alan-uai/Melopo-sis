@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, X, BookText, Lightbulb } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -8,32 +8,41 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import type { GenerateContextualSuggestionsOutput } from "@/ai/flows/generate-contextual-suggestions";
+import type { Suggestion } from "@/app/page";
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
-
-type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
+import { Badge } from "./ui/badge";
 
 interface SuggestionCardProps {
   suggestion: Suggestion;
-  index: number;
   onAccept: () => void;
   onDismiss: () => void;
 }
 
 export function SuggestionCard({
   suggestion,
-  index,
   onAccept,
   onDismiss,
 }: SuggestionCardProps) {
+  const isGrammar = suggestion.type === 'grammar';
+  const triggerText = isGrammar ? "Correção para:" : "Sugestão para:";
+  const Icon = isGrammar ? BookText : Lightbulb;
+
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem
-        value={`item-${index}`}
+        value={`item-${suggestion.originalText}`}
         className="rounded-lg border-none bg-secondary/30"
       >
         <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
-          <span>Sugestão para: <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
+          <div className="flex w-full items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+               <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+               <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
+            </div>
+            <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap">
+              {isGrammar ? "Gramática" : "Tom"}
+            </Badge>
+          </div>
         </AccordionTrigger>
         <AccordionContent className="p-4 pt-2">
           <div className="space-y-4">

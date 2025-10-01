@@ -1,6 +1,6 @@
 "use client";
 
-import type { GenerateContextualSuggestionsOutput } from "@/ai/flows/generate-contextual-suggestions";
+import type { Suggestion } from "@/app/page";
 import {
   Card,
   CardContent,
@@ -10,13 +10,11 @@ import {
 import { SuggestionCard } from "./suggestion-card";
 import { Skeleton } from "./ui/skeleton";
 
-type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
-
 interface SuggestionListProps {
   suggestions: Suggestion[];
   isLoading: boolean;
   onAccept: (suggestion: Suggestion) => void;
-  onDismiss: (index: number) => void;
+  onDismiss: (suggestion: Suggestion) => void;
 }
 
 export function SuggestionList({
@@ -49,11 +47,10 @@ export function SuggestionList({
             <div className="space-y-2">
               {suggestions.map((suggestion, index) => (
                 <SuggestionCard
-                  key={index}
+                  key={`${index}-${suggestion.originalText}`}
                   suggestion={suggestion}
-                  index={index}
                   onAccept={() => onAccept(suggestion)}
-                  onDismiss={() => onDismiss(index)}
+                  onDismiss={() => onDismiss(suggestion)}
                 />
               ))}
             </div>

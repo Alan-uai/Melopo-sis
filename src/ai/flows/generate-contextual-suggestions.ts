@@ -23,6 +23,7 @@ const GenerateContextualSuggestionsOutputSchema = z.object({
       originalText: z.string().describe('The original snippet of text from the poem.'),
       correctedText: z.string().describe('The corrected text suggestion.'),
       explanation: z.string().describe('The explanation for the suggestion based on the chosen tone and ABNT rules.'),
+      type: z.enum(['tone', 'grammar']).describe('The type of suggestion: "tone" for stylistic improvements or "grammar" for corrections.'),
     })
   ).describe('An array of contextual suggestions for the poetry text.'),
 });
@@ -38,14 +39,16 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateContextualSuggestionsOutputSchema},
   prompt: `You are an AI assistant specializing in Brazilian Portuguese poetry. Your goal is to provide context-aware suggestions to enhance a poem based on a chosen tone and ABNT grammatical rules.
 
-You will analyze the user's poem and identify phrases or words that could be improved to better fit the selected tone: '{{tone}}'.
+You will analyze the user's poem and provide two types of suggestions:
+1.  **Grammar/Spelling Corrections:** Identify any grammatical errors or misspellings according to ABNT rules. For these, set the suggestion type to 'grammar'. The explanation should clarify the grammatical rule.
+2.  **Tone Enhancements:** Identify phrases or words that could be improved to better fit the selected tone: '{{tone}}'. For these, set the suggestion type to 'tone'. The explanation should describe how the change enhances the tone.
 
 For each suggestion, you must:
-1. Identify a specific snippet ('originalText') from the poem that could be improved.
-2. Provide an alternative, 'correctedText', using synonyms or different phrasing that aligns better with the '{{tone}}' tone.
-3. Provide a clear 'explanation' for why the suggestion enhances the poem's desired tone.
-4. Also, check for any grammatical errors according to ABNT rules and suggest corrections.
-5. Be mindful of maintaining the artistry and poetic intent. Only suggest changes that genuinely enhance the poem. If the poem is already perfect for the tone, return an empty array of suggestions.
+- Identify a specific snippet ('originalText').
+- Provide an alternative ('correctedText').
+- Provide a clear 'explanation'.
+- Set the 'type' field correctly ('grammar' or 'tone').
+- Be mindful of maintaining the artistry. Only suggest changes that genuinely enhance the poem. If no suggestions are needed, return an empty array.
 
 Poem Text:
 {{text}}

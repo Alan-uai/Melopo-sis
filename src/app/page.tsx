@@ -7,7 +7,7 @@ import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-su
 import type { GenerateContextualSuggestionsOutput } from "@/ai/flows/generate-contextual-suggestions";
 import { useToast } from "@/hooks/use-toast";
 
-type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
+export type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
 
 export default function Home() {
   const [text, setText] = useState<string>("");
@@ -56,9 +56,9 @@ export default function Home() {
     setText(currentText => currentText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
   };
 
-  const handleDismiss = (indexToDismiss: number) => {
+  const handleDismiss = (suggestionToDismiss: Suggestion) => {
     setSuggestions((currentSuggestions) =>
-      currentSuggestions.filter((_, index) => index !== indexToDismiss)
+      currentSuggestions.filter((s) => s !== suggestionToDismiss)
     );
   };
 
