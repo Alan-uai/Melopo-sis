@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect, useState } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
@@ -113,31 +113,27 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             const regex = new RegExp(`(${originals.map(o => o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
             const parts = text.split(regex);
             
-            let i = 0;
             content = parts.map((part, index) => {
                 const suggestion = suggestionMap.get(part.trim());
                 if (suggestion) {
-                    const partStartIndex = i;
-                    i += part.length;
+                    const isSuggestionActive = activeGrammarSuggestion?.originalText === suggestion.originalText;
+                    const PopoverOrSpan = isSuggestionActive ? PopoverAnchor : 'span';
                     return (
-                        <span 
+                        <PopoverOrSpan
                           key={`${index}-${part}`} 
-                          data-suggestion-id={suggestion.originalText} 
-                          data-start-index={partStartIndex}
                           className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2"
                         >
                             {part}
-                        </span>
+                        </PopoverOrSpan>
                     );
                 }
-                i += part.length;
                 return part;
             });
         }
     }
 
     return content.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, grammarSuggestions]);
+}, [text, grammarSuggestions, activeGrammarSuggestion]);
 
 
   return (
@@ -195,39 +191,36 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => !isOpen && onDismiss(activeGrammarSuggestion!)}>
-           <PopoverAnchor asChild>
-                <div className="relative grid">
-                    <div
-                        ref={highlightsRef}
-                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-input bg-input p-4 text-base leading-relaxed z-0"
-                        style={{ wordWrap: 'break-word' }}
-                        aria-hidden="true"
-                    >
-                        {editorContent}
-                        {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
-                        &nbsp;
-                    </div>
-                    <Textarea
-                        ref={textareaRef}
-                        value={text}
-                        onChange={(e) => onTextChange(e.target.value)}
-                        onScroll={handleScroll}
-                        onSelect={onCursorChange}
-                        onClick={onCursorChange}
-                        onKeyUp={onCursorChange}
-                        placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
-                        aria-label="Editor de Poesia"
-                    />
+        <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => !isOpen && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
+            <div className="relative grid">
+                <div
+                    ref={highlightsRef}
+                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-input bg-transparent p-4 text-base leading-relaxed pointer-events-none"
+                    style={{ wordWrap: 'break-word' }}
+                    aria-hidden="true"
+                >
+                    {editorContent}
+                    {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+                    &nbsp;
                 </div>
-            </PopoverAnchor>
+                <Textarea
+                    ref={textareaRef}
+                    value={text}
+                    onChange={(e) => onTextChange(e.target.value)}
+                    onScroll={handleScroll}
+                    onSelect={onCursorChange}
+                    onClick={onCursorChange}
+                    onKeyUp={onCursorChange}
+                    placeholder="Escreva seu poema aqui..."
+                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                    aria-label="Editor de Poesia"
+                />
+            </div>
           {activeGrammarSuggestion && (
               <SuggestionPopover
                 suggestion={activeGrammarSuggestion}
                 onAccept={() => onAccept(activeGrammarSuggestion)}
                 onDismiss={() => onDismiss(activeGrammarSuggestion)}
-                // We pass children to render it as a floating popover, not wrapping an element
               >
                 <></>
               </SuggestionPopover>
@@ -248,3 +241,5 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+
+    

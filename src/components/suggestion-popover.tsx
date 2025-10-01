@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { Suggestion } from "@/app/page";
 import { Separator } from "./ui/separator";
+import React from 'react';
 
 interface SuggestionPopoverProps {
   suggestion: Suggestion;
@@ -57,7 +58,7 @@ export function SuggestionPopover({
   );
 
   // If children are provided, it's a triggered Popover
-  if (React.Children.count(children) > 0) {
+  if (React.Children.count(children) > 0 && React.isValidElement(children)) {
     return (
       <Popover>
         <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
@@ -77,3 +78,5 @@ export function SuggestionPopover({
       </PopoverContent>
   )
 }
+
+    
