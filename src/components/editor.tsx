@@ -9,14 +9,32 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "./ui/label";
 
 interface EditorProps {
   text: string;
   onTextChange: (newText: string) => void;
   isLoading: boolean;
+  tone: string;
+  onToneChange: (newTone: string) => void;
 }
 
-export function Editor({ text, onTextChange, isLoading }: EditorProps) {
+export function Editor({
+  text,
+  onTextChange,
+  isLoading,
+  tone,
+  onToneChange,
+}: EditorProps) {
+  const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
+
   return (
     <Card className="w-full shadow-lg">
       <CardHeader>
@@ -36,7 +54,22 @@ export function Editor({ text, onTextChange, isLoading }: EditorProps) {
           normas da ABNT.
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="tone-select">Tom do Poema</Label>
+          <Select value={tone} onValueChange={onToneChange}>
+            <SelectTrigger id="tone-select" className="w-[180px]">
+              <SelectValue placeholder="Selecione um tom" />
+            </SelectTrigger>
+            <SelectContent>
+              {tones.map((t) => (
+                <SelectItem key={t} value={t}>
+                  {t}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
         <Textarea
           value={text}
           onChange={(e) => onTextChange(e.target.value)}

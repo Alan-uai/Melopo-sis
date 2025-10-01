@@ -32,8 +32,8 @@ export function SuggestionCard({
         value={`item-${index}`}
         className="rounded-lg border-none bg-secondary/30"
       >
-        <AccordionTrigger className="rounded-lg px-4 text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
-          Sugestão de correção #{index + 1}
+        <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
+          <span>Sugestão para: <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
         </AccordionTrigger>
         <AccordionContent className="p-4 pt-2">
           <div className="space-y-4">
@@ -42,7 +42,7 @@ export function SuggestionCard({
             </p>
             <Card className="bg-background/80">
               <CardHeader>
-                <CardDescription>Texto corrigido:</CardDescription>
+                <CardDescription>Texto sugerido:</CardDescription>
               </CardHeader>
               <CardContent>
                 <blockquote className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic">

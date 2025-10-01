@@ -11,19 +11,20 @@ type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
 
 export default function Home() {
   const [text, setText] = useState<string>("");
+  const [tone, setTone] = useState<string>("Melancólico");
   const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
   const handleGenerateSuggestions = useCallback(
-    async (currentText: string) => {
+    async (currentText: string, currentTone: string) => {
       if (!currentText.trim()) {
         setSuggestions([]);
         return;
       }
       setIsLoading(true);
       try {
-        const result = await generateContextualSuggestions({ text: currentText });
+        const result = await generateContextualSuggestions({ text: currentText, tone: currentTone });
         setSuggestions(result.suggestions);
       } catch (error) {
         console.error("Error generating suggestions:", error);
@@ -43,16 +44,16 @@ export default function Home() {
 
   useEffect(() => {
     const handler = setTimeout(() => {
-      handleGenerateSuggestions(text);
+      handleGenerateSuggestions(text, tone);
     }, 1500); // Debounce time
 
     return () => {
       clearTimeout(handler);
     };
-  }, [text, handleGenerateSuggestions]);
+  }, [text, tone, handleGenerateSuggestions]);
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
-    setText(suggestionToAccept.correctedText);
+    setText(currentText => currentText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
   };
 
   const handleDismiss = (indexToDismiss: number) => {
@@ -64,7 +65,13 @@ export default function Home() {
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-        <Editor text={text} onTextChange={setText} isLoading={isLoading} />
+        <Editor
+          text={text}
+          onTextChange={setText}
+          isLoading={isLoading}
+          tone={tone}
+          onToneChange={setTone}
+        />
         <SuggestionList
           suggestions={suggestions}
           isLoading={isLoading}
