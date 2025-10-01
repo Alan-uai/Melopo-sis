@@ -1,6 +1,6 @@
 "use client";
 
-import { Feather, LoaderCircle, Wand2 } from "lucide-react";
+import { Feather, Lightbulb, LoaderCircle, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -95,8 +95,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           }
         });
         
-        // This regex will split the text by any of the suggestion texts, keeping the delimiters
-        const originals = Array.from(suggestionMap.keys());
+        const originals = Array.from(suggestionMap.keys()).filter(Boolean);
         if (originals.length > 0) {
             const regex = new RegExp(`(${originals.map(o => o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
             const parts = text.split(regex);
@@ -105,18 +104,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 const suggestion = suggestionMap.get(part.trim());
                 if (suggestion) {
                     return (
-                        <SuggestionPopover
-                            key={`${index}-${suggestion.originalText}`}
-                            suggestion={suggestion}
-                            onAccept={() => onAccept(suggestion)}
-                            onDismiss={() => onDismiss(suggestion)}
-                        >
-                            <span
-                                className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                        <span key={`${index}-${suggestion.originalText}`} className="relative inline-block">
+                             <SuggestionPopover
+                                suggestion={suggestion}
+                                onAccept={() => onAccept(suggestion)}
+                                onDismiss={() => onDismiss(suggestion)}
                             >
+                                <button className="absolute -top-5 left-1/2 -translate-x-1/2 z-10 p-1 rounded-full bg-amber-300/50 hover:bg-amber-300">
+                                    <Lightbulb className="h-4 w-4 text-amber-500" />
+                                </button>
+                            </SuggestionPopover>
+                            <span className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2">
                                 {part}
                             </span>
-                        </SuggestionPopover>
+                        </span>
                     );
                 }
                 return part;
@@ -183,15 +184,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div 
-          className="relative grid"
-          onClick={() => textareaRef.current?.focus()}
-        >
+        <div className="relative grid">
           <div
             ref={highlightsRef}
-            className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-input p-4 text-base leading-relaxed"
+            className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-input p-4 text-base leading-relaxed z-10"
             style={{ wordWrap: 'break-word' }}
             aria-hidden="true"
+            onClick={() => textareaRef.current?.focus()}
           >
               {editorContent}
               {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
