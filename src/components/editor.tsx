@@ -62,8 +62,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const highlightsRef = useRef<HTMLDivElement>(null);
-  const editorWrapperRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -82,22 +80,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }));
 
-  const handleScroll = () => {
-    if (textareaRef.current && highlightsRef.current) {
-      highlightsRef.current.scrollTop = textareaRef.current.scrollTop;
-      highlightsRef.current.scrollLeft = textareaRef.current.scrollLeft;
-    }
-  };
-  
   const editorContent = useMemo(() => {
     if (!grammarSuggestions.length) return text;
 
     let lastIndex = 0;
     const parts: (string | React.ReactNode)[] = [];
     const sortedSuggestions = [...grammarSuggestions].sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
+    
+    // Create a new array to avoid modifying the sorted one
+    const uniqueSuggestions = sortedSuggestions.filter((suggestion, index, self) => 
+        index === self.findIndex((s) => s.originalText === suggestion.originalText)
+    );
 
-    sortedSuggestions.forEach((suggestion, i) => {
-        const startIndex = text.indexOf(suggestion.originalText);
+    uniqueSuggestions.forEach((suggestion, i) => {
+        const startIndex = text.indexOf(suggestion.originalText, lastIndex);
         if (startIndex === -1) return;
 
         // Add text before the suggestion
@@ -181,21 +177,19 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         </div>
         
         <Popover open={!!activeGrammarSuggestion}>
-           <div className="relative grid" ref={editorWrapperRef}>
+           <div className="relative">
                 <Textarea
                     ref={textareaRef}
                     value={text}
                     onChange={(e) => onTextChange(e.target.value)}
-                    onScroll={handleScroll}
                     onSelect={onCursorChange}
                     onKeyDown={onCursorChange}
                     placeholder="Escreva seu poema aqui..."
-                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20 text-transparent"
                     aria-label="Editor de Poesia"
                 />
                 <div
-                    ref={highlightsRef}
-                    className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed"
+                    className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed"
                     style={{ wordWrap: 'break-word' }}
                     aria-hidden="true"
                 >
