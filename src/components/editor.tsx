@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
@@ -17,6 +16,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Label } from "./ui/label";
+import { SuggestionPopover } from "./suggestion-popover";
+import type { Suggestion } from "@/app/page";
+import React, { useMemo } from "react";
 
 interface EditorProps {
   text: string;
@@ -24,6 +26,9 @@ interface EditorProps {
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
+  grammarSuggestions: Suggestion[];
+  onAccept: (suggestion: Suggestion) => void;
+  onDismiss: (suggestion: Suggestion) => void;
 }
 
 export function Editor({
@@ -32,8 +37,43 @@ export function Editor({
   isLoading,
   tone,
   onToneChange,
+  grammarSuggestions,
+  onAccept,
+  onDismiss,
 }: EditorProps) {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
+
+  const editorContent = useMemo(() => {
+    if (grammarSuggestions.length === 0) {
+      return text;
+    }
+
+    // Create a regex to find all suggestion phrases
+    const suggestionPhrases = grammarSuggestions.map(s => s.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
+    const regex = new RegExp(`(${suggestionPhrases})`, 'g');
+    const parts = text.split(regex);
+    
+    let suggestionIndex = 0;
+
+    return parts.map((part, index) => {
+      const suggestion = grammarSuggestions.find(s => s.originalText === part);
+      if (suggestion) {
+        return (
+          <SuggestionPopover
+            key={`${index}-${suggestion.originalText}`}
+            suggestion={suggestion}
+            onAccept={() => onAccept(suggestion)}
+            onDismiss={() => onDismiss(suggestion)}
+          >
+            <span className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
+              {part}
+            </span>
+          </SuggestionPopover>
+        );
+      }
+      return <React.Fragment key={index}>{part}</React.Fragment>;
+    });
+  }, [text, grammarSuggestions, onAccept, onDismiss]);
 
   return (
     <Card className="w-full shadow-lg">
@@ -70,13 +110,23 @@ export function Editor({
             </SelectContent>
           </Select>
         </div>
-        <Textarea
-          value={text}
-          onChange={(e) => onTextChange(e.target.value)}
-          placeholder="Escreva seu poema aqui..."
-          className="min-h-[50vh] w-full rounded-md border-input bg-input p-4 text-base focus-visible:ring-2"
-          aria-label="Editor de Poesia"
-        />
+
+        <div className="relative">
+          <div
+            className="min-h-[50vh] w-full rounded-md border border-input bg-input p-4 text-base whitespace-pre-wrap focus:outline-none focus:ring-2 focus:ring-ring"
+            aria-label="Editor de Poesia"
+            style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
+            >
+              {editorContent}
+          </div>
+          <textarea
+            value={text}
+            onChange={(e) => onTextChange(e.target.value)}
+            placeholder="Escreva seu poema aqui..."
+            className="absolute inset-0 z-[-1] min-h-[50vh] w-full rounded-md border-input bg-transparent p-4 text-base opacity-0"
+            aria-hidden="true"
+          />
+        </div>
       </CardContent>
     </Card>
   );

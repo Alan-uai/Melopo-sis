@@ -4,6 +4,7 @@ import type { Suggestion } from "@/app/page";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -26,7 +27,10 @@ export function SuggestionList({
   return (
     <Card className="w-full shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-3xl">Sugestões</CardTitle>
+        <CardTitle className="font-headline text-3xl">Sugestões de Tom</CardTitle>
+         <CardDescription>
+          Sugestões para aprimorar o tom e estilo do seu poema.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Editor } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
@@ -53,7 +53,15 @@ export default function Home() {
   }, [text, tone, handleGenerateSuggestions]);
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
-    setText(currentText => currentText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
+    setText(currentText => {
+      // Use a regex to replace only the first occurrence to avoid unintended replacements
+      const regex = new RegExp(suggestionToAccept.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
+      return currentText.replace(regex, suggestionToAccept.correctedText);
+    });
+    // After accepting, remove the suggestion
+    setSuggestions((currentSuggestions) =>
+      currentSuggestions.filter((s) => s !== suggestionToAccept)
+    );
   };
 
   const handleDismiss = (suggestionToDismiss: Suggestion) => {
@@ -61,6 +69,12 @@ export default function Home() {
       currentSuggestions.filter((s) => s !== suggestionToDismiss)
     );
   };
+
+  const { grammarSuggestions, toneSuggestions } = useMemo(() => {
+    const grammarSuggestions = suggestions.filter((s) => s.type === "grammar");
+    const toneSuggestions = suggestions.filter((s) => s.type === "tone");
+    return { grammarSuggestions, toneSuggestions };
+  }, [suggestions]);
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
@@ -71,9 +85,12 @@ export default function Home() {
           isLoading={isLoading}
           tone={tone}
           onToneChange={setTone}
+          grammarSuggestions={grammarSuggestions}
+          onAccept={handleAccept}
+          onDismiss={handleDismiss}
         />
         <SuggestionList
-          suggestions={suggestions}
+          suggestions={toneSuggestions}
           isLoading={isLoading}
           onAccept={handleAccept}
           onDismiss={handleDismiss}
