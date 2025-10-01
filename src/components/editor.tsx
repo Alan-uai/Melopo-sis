@@ -39,6 +39,7 @@ interface EditorProps {
 
 export interface EditorRef {
   getCursorPosition: () => number | null;
+  getCurrentLine: (text: string, cursorPosition: number | null) => string;
 }
 
 export const Editor = forwardRef<EditorRef, EditorProps>(({
@@ -60,6 +61,17 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
       return textareaRef.current?.selectionStart ?? null;
+    },
+    getCurrentLine: (text: string, cursorPosition: number | null) => {
+      if (cursorPosition === null) return "";
+      const textUpToCursor = text.substring(0, cursorPosition);
+      const lastNewlineIndex = textUpToCursor.lastIndexOf('\n');
+      const lineStart = lastNewlineIndex === -1 ? 0 : lastNewlineIndex + 1;
+      
+      const nextNewlineIndex = text.indexOf('\n', cursorPosition);
+      const lineEnd = nextNewlineIndex === -1 ? text.length : nextNewlineIndex;
+
+      return text.substring(lineStart, lineEnd);
     }
   }));
 
@@ -75,34 +87,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       }
     });
   
-    const suggestionPhrases = grammarSuggestions
-      .map(s => s?.originalText)
-      .filter(Boolean)
-      .sort((a, b) => b.length - a.length)
-      .map(phrase => phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
-      .join('|');
-      
-  
-    if (!suggestionPhrases) {
-      return text.split('\n').map((line, i) => <div key={i}>{line || <>&nbsp;</>}</div>);
-    }
-  
-    const regex = new RegExp(`(${suggestionPhrases})`, 'g');
-  
     return text.split('\n').map((line, lineIndex) => {
       if (!line) return <div key={lineIndex}>&nbsp;</div>;
-  
-      const parts: (string | React.ReactNode)[] = [line];
+      
+      let parts: (string | React.ReactNode)[] = [line];
   
       suggestionMap.forEach((suggestion, originalText) => {
-        const tempParts: (string | React.ReactNode)[] = [];
-        parts.forEach(part => {
-          if (typeof part === 'string' && part.includes(originalText)) {
+        const newParts: (string | React.ReactNode)[] = [];
+        parts.forEach((part) => {
+          if (typeof part === 'string') {
             const splitBySuggestion = part.split(originalText);
-            for (let i = 0; i < splitBySuggestion.length; i++) {
-              tempParts.push(splitBySuggestion[i]);
+            splitBySuggestion.forEach((textSegment, i) => {
+              newParts.push(textSegment);
               if (i < splitBySuggestion.length - 1) {
-                tempParts.push(
+                newParts.push(
                   <SuggestionPopover
                     key={`${lineIndex}-${originalText}-${i}`}
                     suggestion={suggestion}
@@ -118,12 +116,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                   </SuggestionPopover>
                 );
               }
-            }
+            });
           } else {
-            tempParts.push(part);
+            newParts.push(part);
           }
         });
-        parts.splice(0, parts.length, ...tempParts);
+        parts = newParts;
       });
   
       return (
@@ -174,7 +172,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </Select>
           </div>
           <div className="space-y-2">
-            <Label>Modo de Sugestão</Label>
+            <Label>Modo de Sugestão de Tom</Label>
             <RadioGroup
               value={suggestionMode}
               onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
@@ -26,71 +26,80 @@ export default function Home() {
   const [tone, setTone] = useState<string>("Melancólico");
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isGrammarLoading, setIsGrammarLoading] = useState<boolean>(false);
+  const [isToneLoading, setIsToneLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("gradual");
   const { toast } = useToast();
   const editorRef = useRef<EditorRef>(null);
 
-  const generateGrammarSuggestions = useCallback(async (currentText: string) => {
+  const generateSuggestions = useCallback(async (
+    currentText: string, 
+    currentTone: string, 
+    suggestionType: 'grammar' | 'tone' | 'all'
+  ) => {
     if (!currentText.trim()) {
-      setGrammarSuggestions([]);
-      return;
+      return { suggestions: [] };
     }
-    setIsLoading(true);
+  
     try {
-      const result = await generateContextualSuggestions({ text: currentText, tone: "", suggestionType: "grammar" });
-      setGrammarSuggestions(result.suggestions);
+      const result = await generateContextualSuggestions({ 
+        text: currentText, 
+        tone: currentTone, 
+        suggestionType 
+      });
+      return result;
     } catch (error) {
-      console.error("Error generating grammar suggestions:", error);
+      console.error(`Error generating ${suggestionType} suggestions:`, error);
       toast({
-        title: "Erro ao Gerar Sugestões Gramaticais",
+        title: `Erro ao Gerar Sugestões (${suggestionType})`,
         description:
           "Houve um problema ao se comunicar com a IA. Por favor, tente novamente mais tarde.",
         variant: "destructive",
       });
-      setGrammarSuggestions([]);
-    } finally {
-      setIsLoading(false);
+      return { suggestions: [] };
     }
   }, [toast]);
-  
-  const generateToneSuggestions = useCallback(async (currentText: string, currentTone: string) => {
-      if (!currentText.trim() || !currentTone) {
-        setToneSuggestions([]);
-        return;
-      }
-      setIsLoading(true);
-      try {
-        const result = await generateContextualSuggestions({ text: currentText, tone: currentTone, suggestionType: "tone" });
-        setToneSuggestions(result.suggestions);
-      } catch (error) {
-        console.error("Error generating tone suggestions:", error);
-        toast({
-          title: "Erro ao Gerar Sugestões de Tom",
-          description:
-            "Houve um problema ao se comunicar com a IA. Por favor, tente novamente mais tarde.",
-          variant: "destructive",
-        });
-        setToneSuggestions([]);
-      } finally {
-        setIsLoading(false);
-      }
-  }, [toast]);
 
-  const debouncedGenerateGrammarSuggestions = useCallback(debounce(generateGrammarSuggestions, 1500), [generateGrammarSuggestions]);
+  const fetchGrammarSuggestions = useCallback(async (currentText: string) => {
+    if (!currentText.trim()) {
+      setGrammarSuggestions([]);
+      return;
+    }
+    setIsGrammarLoading(true);
+    const result = await generateSuggestions(currentText, tone, "grammar");
+    setGrammarSuggestions(result.suggestions);
+    setIsGrammarLoading(false);
+  }, [generateSuggestions, tone]);
+
+  const fetchToneSuggestions = useCallback(async (currentText: string, currentTone: string) => {
+    if (!currentText.trim() || !currentTone) {
+      setToneSuggestions([]);
+      return;
+    }
+    setIsToneLoading(true);
+    const result = await generateSuggestions(currentText, currentTone, "tone");
+    setToneSuggestions(result.suggestions);
+    setIsToneLoading(false);
+  }, [generateSuggestions]);
+
+  const debouncedFetchGrammarSuggestions = useCallback(debounce(fetchGrammarSuggestions, 1500), [fetchGrammarSuggestions]);
+  const debouncedFetchToneSuggestions = useCallback(debounce(fetchToneSuggestions, 2000), [fetchToneSuggestions]);
+
 
   const handleTextChange = (newText: string) => {
     setText(newText);
+    const cursorPosition = editorRef.current?.getCursorPosition();
+    const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
+    
+    // Grammar suggestions are always on, line by line
+    debouncedFetchGrammarSuggestions(currentLine);
+
     if (suggestionMode === "gradual") {
-      const cursorPosition = editorRef.current?.getCursorPosition();
-      if (cursorPosition !== null && cursorPosition !== undefined) {
-        const lines = newText.substring(0, cursorPosition).split('\n');
-        const currentLine = lines[lines.length - 1];
-        debouncedGenerateGrammarSuggestions(currentLine);
-      }
+      // Gradual tone suggestions, line by line
+      debouncedFetchToneSuggestions(currentLine, tone);
     } else {
-        if (grammarSuggestions.length > 0) setGrammarSuggestions([]);
-        if (toneSuggestions.length > 0) setToneSuggestions([]);
+      // In final mode, clear tone suggestions on text change
+      if (toneSuggestions.length > 0) setToneSuggestions([]);
     }
   };
 
@@ -100,12 +109,14 @@ export default function Home() {
     setToneSuggestions([]);
   };
 
-  const handleFinalSuggestion = () => {
-    generateToneSuggestions(text, tone);
+  const handleGenerateFinalToneSuggestions = () => {
+    // Final tone suggestions are for the whole poem
+    fetchToneSuggestions(text, tone);
   };
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
+    // Clear suggestions when tone changes
     setGrammarSuggestions([]);
     setToneSuggestions([]);
   }
@@ -136,6 +147,8 @@ export default function Home() {
         );
     }
   };
+  
+  const isLoading = isGrammarLoading || isToneLoading;
 
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
@@ -152,11 +165,11 @@ export default function Home() {
           onDismiss={handleDismiss}
           suggestionMode={suggestionMode}
           onSuggestionModeChange={handleSuggestionModeChange}
-          onFinalSuggestion={handleFinalSuggestion}
+          onFinalSuggestion={handleGenerateFinalToneSuggestions}
         />
         <SuggestionList
           suggestions={toneSuggestions}
-          isLoading={isLoading}
+          isLoading={isToneLoading}
           onAccept={handleAccept}
           onDismiss={handleDismiss}
         />

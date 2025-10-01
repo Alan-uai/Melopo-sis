@@ -38,42 +38,42 @@ const prompt = ai.definePrompt({
   name: 'generateContextualSuggestionsPrompt',
   input: {schema: GenerateContextualSuggestionsInputSchema},
   output: {schema: GenerateContextualSuggestionsOutputSchema},
-  prompt: `You are an AI assistant specializing in Brazilian Portuguese poetry. Your goal is to provide context-aware suggestions.
+  prompt: `Você é um assistente de IA especialista em poesia em português do Brasil e nas normas da ABNT. Seu objetivo é fornecer sugestões contextuais para aprimorar um poema.
 
-You will receive a 'suggestionType' parameter. Your response MUST be tailored to this type.
+Você receberá um parâmetro 'suggestionType'. Sua resposta DEVE ser estritamente focada nesse tipo.
 
-- If 'suggestionType' is 'grammar':
-  - Focus exclusively on identifying grammatical errors or misspellings according to ABNT rules.
-  - For each error, create a suggestion with 'type: "grammar"'.
-  - The 'explanation' should clarify the grammatical rule.
-  - DO NOT provide stylistic or tone-based suggestions.
+- Se 'suggestionType' for 'grammar':
+  - Foque EXCLUSIVAMENTE em identificar erros gramaticais ou de ortografia.
+  - Para cada erro, crie uma sugestão com 'type: "grammar"'.
+  - A 'explanation' deve esclarecer a regra gramatical de forma concisa.
+  - NÃO forneça sugestões de estilo ou tom.
 
 - If 'suggestionType' is 'tone':
-  - Focus exclusively on identifying phrases or words that could be improved to better fit the selected tone: '{{tone}}'.
-  - For each improvement, create a suggestion with 'type: "tone"'.
-  - The 'explanation' should describe how the change enhances the specified tone.
-  - DO NOT provide grammatical corrections unless they are integral to the tone change.
+  - Foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
+  - Para cada melhoria, crie uma sugestão com 'type: "tone"'.
+  - A 'explanation' deve descrever como a alteração realça o tom especificado.
+  - NÃO forneça correções gramaticais.
 
-- If 'suggestionType' is 'all':
-  - Provide both grammar and tone suggestions as applicable.
+- Se 'suggestionType' for 'all':
+  - Forneça sugestões de 'grammar' e 'tone', conforme aplicável.
 
-For each suggestion, you must:
-- Identify a specific snippet ('originalText').
-- Provide an alternative ('correctedText').
-- Provide a clear 'explanation'.
-- Set the 'type' field correctly ('grammar' or 'tone').
-- Be mindful of maintaining the artistry. Only suggest changes that genuinely enhance the poem. If no suggestions are needed, return an empty array.
+Para cada sugestão, você deve:
+- Identificar um trecho específico ('originalText').
+- Fornecer uma alternativa ('correctedText').
+- Fornecer uma 'explanation' clara.
+- Definir o campo 'type' corretamente ('grammar' ou 'tone').
+- Manter a arte da poesia. Sugira apenas alterações que realmente aprimorem o poema. Se não houver sugestões, retorne um array vazio.
 
-Poem Text:
-{{text}}
+Poema ou linha a ser analisado:
+"{{text}}"
 
 {{#if tone}}
-Desired Tone: {{tone}}
+Tom Desejado: {{tone}}
 {{/if}}
 
-Requested Suggestion Type: {{suggestionType}}
+Tipo de Sugestão Solicitada: {{suggestionType}}
 
-Output the suggestions in JSON format.
+Sempre retorne a saída no formato JSON.
   `,
 });
 
