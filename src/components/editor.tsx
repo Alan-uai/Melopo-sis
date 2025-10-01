@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion } from "@/app/page";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Textarea } from "./ui/textarea";
 
 interface EditorProps {
@@ -43,22 +43,27 @@ export function Editor({
   onDismiss,
 }: EditorProps) {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
+  const [openPopover, setOpenPopover] = useState<string | null>(null);
 
   const editorContent = useMemo(() => {
-    if (!text && grammarSuggestions.length === 0) {
-      // Add a non-breaking space to prevent collapsing when empty
-      return <>&nbsp;</>;
-    }
     if (grammarSuggestions.length === 0) {
-      return <>{text}</>;
+      return text || <>&nbsp;</>;
     }
 
+    // Create a robust regex from suggestion originalTexts
+    const suggestionMap = new Map<string, Suggestion>();
+    grammarSuggestions.forEach(s => suggestionMap.set(s.originalText, s));
+    
     const suggestionPhrases = grammarSuggestions.map(s => s.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
+    if (!suggestionPhrases) {
+        return text || <>&nbsp;</>;
+    }
+
     const regex = new RegExp(`(${suggestionPhrases})`, 'g');
     const parts = text.split(regex).filter(Boolean); // filter out empty strings
 
     return parts.map((part, index) => {
-      const suggestion = grammarSuggestions.find(s => s.originalText === part);
+      const suggestion = suggestionMap.get(part);
       if (suggestion) {
         return (
           <SuggestionPopover
@@ -122,7 +127,7 @@ export function Editor({
             aria-label="Editor de Poesia"
           />
           <div
-            className="min-h-[50vh] w-full rounded-md border border-input bg-input p-4 text-base whitespace-pre-wrap"
+            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap"
             aria-hidden="true"
             style={{ wordWrap: 'break-word' }}
             >
