@@ -19,6 +19,7 @@ import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion } from "@/app/page";
 import React, { useMemo } from "react";
+import { Textarea } from "./ui/textarea";
 
 interface EditorProps {
   text: string;
@@ -45,17 +46,15 @@ export function Editor({
 
   const editorContent = useMemo(() => {
     if (grammarSuggestions.length === 0) {
-      return text;
+      // Add a space to prevent collapsing when empty
+      return <>{text || ' '}</>;
     }
 
-    // Create a regex to find all suggestion phrases
     const suggestionPhrases = grammarSuggestions.map(s => s.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
     const regex = new RegExp(`(${suggestionPhrases})`, 'g');
     const parts = text.split(regex);
-    
-    let suggestionIndex = 0;
 
-    return parts.map((part, index) => {
+    const content = parts.map((part, index) => {
       const suggestion = grammarSuggestions.find(s => s.originalText === part);
       if (suggestion) {
         return (
@@ -73,6 +72,9 @@ export function Editor({
       }
       return <React.Fragment key={index}>{part}</React.Fragment>;
     });
+    
+    // Add a space to prevent collapsing when empty
+    return <>{content.length > 0 ? content : ' '}</>
   }, [text, grammarSuggestions, onAccept, onDismiss]);
 
   return (
@@ -113,18 +115,18 @@ export function Editor({
 
         <div className="relative">
           <div
-            className="min-h-[50vh] w-full rounded-md border border-input bg-input p-4 text-base whitespace-pre-wrap focus:outline-none focus:ring-2 focus:ring-ring"
-            aria-label="Editor de Poesia"
+            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap pointer-events-none"
+            aria-hidden="true"
             style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
             >
               {editorContent}
           </div>
-          <textarea
+          <Textarea
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
             placeholder="Escreva seu poema aqui..."
-            className="absolute inset-0 z-[-1] min-h-[50vh] w-full rounded-md border-input bg-transparent p-4 text-base opacity-0"
-            aria-hidden="true"
+            className="absolute inset-0 min-h-[50vh] w-full rounded-md border-input bg-transparent p-4 text-base text-transparent caret-foreground selection:bg-primary/20 selection:text-transparent"
+            aria-label="Editor de Poesia"
           />
         </div>
       </CardContent>
