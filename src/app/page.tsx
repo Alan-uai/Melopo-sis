@@ -67,7 +67,22 @@ export default function Home() {
     }
     setIsGrammarLoading(true);
     const result = await generateSuggestions(currentText, tone, "grammar");
-    setGrammarSuggestions(result.suggestions);
+    
+    // When checking the whole text, we want to replace suggestions, not append.
+    // When checking line-by-line, we want to merge them intelligently.
+    const isSingleLine = !currentText.includes('\n');
+    
+    setGrammarSuggestions(prevSuggestions => {
+      if (isSingleLine) {
+        // Filter out old suggestions for the same line to avoid duplicates
+        const otherLinesSuggestions = prevSuggestions.filter(s => !currentText.includes(s.originalText));
+        return [...otherLinesSuggestions, ...result.suggestions];
+      } else {
+        // It's a full-text check, so replace all previous suggestions
+        return result.suggestions;
+      }
+    });
+
     setIsGrammarLoading(false);
   }, [generateSuggestions, tone]);
 
@@ -87,53 +102,74 @@ export default function Home() {
 
 
   const handleTextChange = (newText: string) => {
+    const oldText = text;
     setText(newText);
-    const cursorPosition = editorRef.current?.getCursorPosition();
-    const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
     
-    // Grammar suggestions are always on, line by line, and independent
-    debouncedFetchGrammarSuggestions(currentLine);
+    const isPaste = (newText.length - oldText.length) > 1 && newText.startsWith(oldText);
+
+    if (isPaste || newText.split('\n').length !== oldText.split('\n').length) {
+      // If it's a paste or lines are added/removed, check the whole text for grammar
+      debouncedFetchGrammarSuggestions(newText);
+    } else {
+      // Otherwise, just check the current line for grammar
+      const cursorPosition = editorRef.current?.getCursorPosition();
+      const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
+      debouncedFetchGrammarSuggestions(currentLine);
+    }
 
     if (suggestionMode === "gradual") {
-      // Gradual tone suggestions, line by line
+      const cursorPosition = editorRef.current?.getCursorPosition();
+      const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
       debouncedFetchToneSuggestions(currentLine, tone);
     } else {
-      // In final mode, clear tone suggestions on text change
       if (toneSuggestions.length > 0) setToneSuggestions([]);
     }
   };
 
   const handleSuggestionModeChange = (mode: SuggestionMode) => {
     setSuggestionMode(mode);
-    // Clear all suggestions when mode changes to avoid confusion
     setGrammarSuggestions([]);
     setToneSuggestions([]);
   };
 
   const handleGenerateFinalToneSuggestions = () => {
-    // Final tone suggestions are for the whole poem
     fetchToneSuggestions(text, tone);
   };
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    // Clear all suggestions when tone changes
     setGrammarSuggestions([]);
     setToneSuggestions([]);
   }
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
-    // When a suggestion is accepted, the text is updated.
-    // The change in text will trigger handleTextChange, which will then
-    // re-evaluate the line for both grammar and tone if in gradual mode.
-    const newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
+    let newText = text;
+    
+    // Ensure we replace only the specific instance of the text
+    const textLines = text.split('\n');
+    const suggestionLine = textLines.find(line => line.includes(suggestionToAccept.originalText));
+
+    if (suggestionLine) {
+        const newTextForLine = suggestionLine.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
+        newText = text.replace(suggestionLine, newTextForLine);
+    } else {
+        // Fallback for safety, though less precise
+        newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
+    }
+
     setText(newText);
     
-    // Immediately remove the accepted suggestion from the UI for a faster feel.
+    // Immediately remove the accepted suggestion from the UI.
     if (suggestionToAccept.type === 'grammar') {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
         );
+        // After accepting a grammar suggestion, re-evaluate the now-modified line for tone if in gradual mode.
+        if (suggestionMode === 'gradual') {
+            const cursorPosition = editorRef.current?.getCursorPosition();
+            const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
+            fetchToneSuggestions(currentLine, tone);
+        }
     } else {
         setToneSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
@@ -160,7 +196,7 @@ export default function Home() {
           ref={editorRef}
           text={text}
           onTextChange={handleTextChange}
-          isLoading={isToneLoading} // The main loading indicator is now only for tone suggestions
+          isLoading={isToneLoading || isGrammarLoading}
           tone={tone}
           onToneChange={handleToneChange}
           grammarSuggestions={grammarSuggestions}
