@@ -193,16 +193,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
         <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => !isOpen && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
             <div className="relative grid">
-                <div
-                    ref={highlightsRef}
-                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-input bg-transparent p-4 text-base leading-relaxed pointer-events-none"
-                    style={{ wordWrap: 'break-word' }}
-                    aria-hidden="true"
-                >
-                    {editorContent}
-                    {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
-                    &nbsp;
-                </div>
                 <Textarea
                     ref={textareaRef}
                     value={text}
@@ -215,15 +205,23 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                     className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
                     aria-label="Editor de Poesia"
                 />
+                <div
+                    ref={highlightsRef}
+                    className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed"
+                    style={{ wordWrap: 'break-word' }}
+                    aria-hidden="true"
+                >
+                    {editorContent}
+                    {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+                    &nbsp;
+                </div>
             </div>
           {activeGrammarSuggestion && (
               <SuggestionPopover
                 suggestion={activeGrammarSuggestion}
                 onAccept={() => onAccept(activeGrammarSuggestion)}
                 onDismiss={() => onDismiss(activeGrammarSuggestion)}
-              >
-                <></>
-              </SuggestionPopover>
+              />
           )}
         </Popover>
 
@@ -241,5 +239,3 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
-
-    
