@@ -91,7 +91,7 @@ export default function Home() {
     const cursorPosition = editorRef.current?.getCursorPosition();
     const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
     
-    // Grammar suggestions are always on, line by line
+    // Grammar suggestions are always on, line by line, and independent
     debouncedFetchGrammarSuggestions(currentLine);
 
     if (suggestionMode === "gradual") {
@@ -105,6 +105,7 @@ export default function Home() {
 
   const handleSuggestionModeChange = (mode: SuggestionMode) => {
     setSuggestionMode(mode);
+    // Clear all suggestions when mode changes to avoid confusion
     setGrammarSuggestions([]);
     setToneSuggestions([]);
   };
@@ -116,15 +117,19 @@ export default function Home() {
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    // Clear suggestions when tone changes
+    // Clear all suggestions when tone changes
     setGrammarSuggestions([]);
     setToneSuggestions([]);
   }
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
+    // When a suggestion is accepted, the text is updated.
+    // The change in text will trigger handleTextChange, which will then
+    // re-evaluate the line for both grammar and tone if in gradual mode.
     const newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     setText(newText);
     
+    // Immediately remove the accepted suggestion from the UI for a faster feel.
     if (suggestionToAccept.type === 'grammar') {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
@@ -148,8 +153,6 @@ export default function Home() {
     }
   };
   
-  const isLoading = isGrammarLoading || isToneLoading;
-
   return (
     <div className="container mx-auto max-w-7xl px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -157,7 +160,7 @@ export default function Home() {
           ref={editorRef}
           text={text}
           onTextChange={handleTextChange}
-          isLoading={isLoading}
+          isLoading={isToneLoading} // The main loading indicator is now only for tone suggestions
           tone={tone}
           onToneChange={handleToneChange}
           grammarSuggestions={grammarSuggestions}
