@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
@@ -57,6 +57,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const highlightsRef = useRef<HTMLDivElement>(null);
+
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -75,67 +77,55 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }));
 
-  const editorContent = useMemo(() => {
-    if (grammarSuggestions.length === 0) {
-      return text.split('\n').map((line, i) => <div key={i}>{line || <>&nbsp;</>}</div>);
+  const handleScroll = () => {
+    if (textareaRef.current && highlightsRef.current) {
+      highlightsRef.current.scrollTop = textareaRef.current.scrollTop;
+      highlightsRef.current.scrollLeft = textareaRef.current.scrollLeft;
     }
-  
-    const suggestionMap = new Map<string, Suggestion>();
-    grammarSuggestions.forEach(s => {
-      if (s && s.originalText) {
-        suggestionMap.set(s.originalText, s);
-      }
-    });
-  
-    return text.split('\n').map((line, lineIndex) => {
-      if (!line) return <div key={lineIndex}>&nbsp;</div>;
-      
-      let parts: (string | React.ReactNode)[] = [line];
-  
-      suggestionMap.forEach((suggestion, originalText) => {
-        const newParts: (string | React.ReactNode)[] = [];
-        parts.forEach((part) => {
-          if (typeof part === 'string') {
-            if (part.includes(originalText)) {
-                const splitBySuggestion = part.split(originalText);
-                splitBySuggestion.forEach((textSegment, i) => {
-                  newParts.push(textSegment);
-                  if (i < splitBySuggestion.length - 1) {
-                    newParts.push(
-                      <SuggestionPopover
-                        key={`${lineIndex}-${originalText}-${i}`}
-                        suggestion={suggestion}
-                        onAccept={() => onAccept(suggestion)}
-                        onDismiss={() => onDismiss(suggestion)}
-                      >
-                        <span
-                          className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-                        >
-                          {originalText}
-                        </span>
-                      </SuggestionPopover>
-                    );
-                  }
-                });
-            } else {
-                newParts.push(part);
-            }
-          } else {
-            newParts.push(part);
+  };
+
+  const editorContent = useMemo(() => {
+    let content: (string | React.ReactNode)[] = [text];
+    
+    if (grammarSuggestions.length > 0) {
+        const suggestionMap = new Map<string, Suggestion>();
+        grammarSuggestions.forEach(s => {
+          if (s && s.originalText) {
+            suggestionMap.set(s.originalText.trim(), s);
           }
         });
-        parts = newParts;
-      });
-  
-      return (
-        <div key={lineIndex}>
-          {parts.map((part, partIndex) => (
-            <React.Fragment key={partIndex}>{part}</React.Fragment>
-          ))}
-        </div>
-      );
-    });
-  }, [text, grammarSuggestions, onAccept, onDismiss]);
+        
+        // This regex will split the text by any of the suggestion texts, keeping the delimiters
+        const originals = Array.from(suggestionMap.keys());
+        if (originals.length > 0) {
+            const regex = new RegExp(`(${originals.map(o => o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+            const parts = text.split(regex);
+            
+            content = parts.map((part, index) => {
+                const suggestion = suggestionMap.get(part.trim());
+                if (suggestion) {
+                    return (
+                        <SuggestionPopover
+                            key={`${index}-${suggestion.originalText}`}
+                            suggestion={suggestion}
+                            onAccept={() => onAccept(suggestion)}
+                            onDismiss={() => onDismiss(suggestion)}
+                        >
+                            <span
+                                className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                            >
+                                {part}
+                            </span>
+                        </SuggestionPopover>
+                    );
+                }
+                return part;
+            });
+        }
+    }
+
+    return content.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
+}, [text, grammarSuggestions, onAccept, onDismiss]);
 
 
   return (
@@ -193,29 +183,35 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="relative">
+        <div 
+          className="relative grid"
+          onClick={() => textareaRef.current?.focus()}
+        >
+          <div
+            ref={highlightsRef}
+            className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-input p-4 text-base leading-relaxed"
+            style={{ wordWrap: 'break-word' }}
+            aria-hidden="true"
+          >
+              {editorContent}
+              {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+              &nbsp;
+          </div>
           <Textarea
             ref={textareaRef}
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
+            onScroll={handleScroll}
             placeholder="Escreva seu poema aqui..."
-            className="absolute inset-0 z-10 min-h-[50vh] w-full resize-none rounded-md border-input bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
+            className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
             aria-label="Editor de Poesia"
           />
-          <div
-            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap leading-relaxed"
-            aria-hidden="true"
-            style={{ wordWrap: 'break-word' }}
-            onClick={() => textareaRef.current?.focus()}
-            >
-              {editorContent}
-          </div>
         </div>
         {suggestionMode === "final" && (
           <div className="flex justify-end">
             <Button onClick={onFinalSuggestion} disabled={isLoading}>
               <Wand2 className="mr-2 h-4 w-4" />
-              {isLoading ? "Gerando..." : "Gerar Sugestões"}
+              {isLoading ? "Gerando..." : "Gerar Sugestões de Tom"}
             </Button>
           </div>
         )}

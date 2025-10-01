@@ -25,7 +25,7 @@ export function SuggestionPopover({
 }: SuggestionPopoverProps) {
   return (
     <Popover>
-      <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
+      <PopoverTrigger asChild>
         {children}
       </PopoverTrigger>
       <PopoverContent className="w-80" align="start" onOpenAutoFocus={(e) => e.preventDefault()}>
