@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X, BookText } from "lucide-react";
+import { Check, X } from "lucide-react";
 import {
   Popover,
   PopoverContent,
@@ -25,8 +25,10 @@ export function SuggestionPopover({
 }: SuggestionPopoverProps) {
   return (
     <Popover>
-      <PopoverTrigger asChild>{children}</PopoverTrigger>
-      <PopoverContent className="w-80" align="start">
+      <PopoverTrigger asChild onClick={(e) => e.stopPropagation()}>
+        {children}
+      </PopoverTrigger>
+      <PopoverContent className="w-80" align="start" onOpenAutoFocus={(e) => e.preventDefault()}>
         <div className="space-y-3">
           <div className="space-y-1">
             <p className="text-sm font-medium">Correção Gramatical</p>

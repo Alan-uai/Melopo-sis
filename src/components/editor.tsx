@@ -1,6 +1,6 @@
 "use client";
 
-import { Feather, LoaderCircle } from "lucide-react";
+import { Feather, LoaderCircle, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -17,9 +17,11 @@ import {
 } from "@/components/ui/select";
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
-import type { Suggestion } from "@/app/page";
+import type { Suggestion, SuggestionMode } from "@/app/page";
 import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
 import { Textarea } from "./ui/textarea";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { Button } from "./ui/button";
 
 interface EditorProps {
   text: string;
@@ -30,6 +32,9 @@ interface EditorProps {
   grammarSuggestions: Suggestion[];
   onAccept: (suggestion: Suggestion) => void;
   onDismiss: (suggestion: Suggestion) => void;
+  suggestionMode: SuggestionMode;
+  onSuggestionModeChange: (mode: SuggestionMode) => void;
+  onFinalSuggestion: () => void;
 }
 
 export interface EditorRef {
@@ -45,6 +50,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   grammarSuggestions,
   onAccept,
   onDismiss,
+  suggestionMode,
+  onSuggestionModeChange,
+  onFinalSuggestion
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -57,51 +65,60 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   const editorContent = useMemo(() => {
     if (grammarSuggestions.length === 0) {
-      return text || <>&nbsp;</>;
+      return text.split('\n').map((line, i) => <div key={i}>{line || <>&nbsp;</>}</div>);
     }
-
+  
     const suggestionMap = new Map<string, Suggestion>();
     grammarSuggestions.forEach(s => {
       if (s && s.originalText) {
         suggestionMap.set(s.originalText, s);
       }
     });
-
+  
     const suggestionPhrases = grammarSuggestions
       .map(s => s?.originalText)
       .filter(Boolean)
       .map(phrase => phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
       .join('|');
-
+  
     if (!suggestionPhrases) {
-      return text || <>&nbsp;</>;
+      return text.split('\n').map((line, i) => <div key={i}>{line || <>&nbsp;</>}</div>);
     }
-
+  
     const regex = new RegExp(`(${suggestionPhrases})`, 'g');
-    const parts = text.split(regex).filter(Boolean);
-
-    return parts.map((part, index) => {
-      const suggestion = suggestionMap.get(part);
-      if (suggestion) {
-        return (
-          <SuggestionPopover
-            key={`${index}-${suggestion.originalText}`}
-            suggestion={suggestion}
-            onAccept={() => onAccept(suggestion)}
-            onDismiss={() => onDismiss(suggestion)}
-          >
-            <span
-              onClick={(e) => e.stopPropagation()}
-              className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-            >
-              {part}
-            </span>
-          </SuggestionPopover>
-        );
-      }
-      return <React.Fragment key={index}>{part}</React.Fragment>;
+  
+    return text.split('\n').map((line, lineIndex) => {
+      if (!line) return <div key={lineIndex}>&nbsp;</div>;
+      const parts = line.split(regex).filter(Boolean);
+  
+      return (
+        <div key={lineIndex}>
+          {parts.map((part, partIndex) => {
+            const suggestion = suggestionMap.get(part);
+            if (suggestion) {
+              return (
+                <SuggestionPopover
+                  key={`${partIndex}-${suggestion.originalText}`}
+                  suggestion={suggestion}
+                  onAccept={() => onAccept(suggestion)}
+                  onDismiss={() => onDismiss(suggestion)}
+                >
+                  <span
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                  >
+                    {part}
+                  </span>
+                </SuggestionPopover>
+              );
+            }
+            return <React.Fragment key={partIndex}>{part}</React.Fragment>;
+          })}
+        </div>
+      );
     });
   }, [text, grammarSuggestions, onAccept, onDismiss]);
+
 
   return (
     <Card className="w-full shadow-lg">
@@ -123,20 +140,39 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="tone-select">Tom do Poema</Label>
-          <Select value={tone} onValueChange={onToneChange}>
-            <SelectTrigger id="tone-select" className="w-[180px]">
-              <SelectValue placeholder="Selecione um tom" />
-            </SelectTrigger>
-            <SelectContent>
-              {tones.map((t) => (
-                <SelectItem key={t} value={t}>
-                  {t}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+        <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-2">
+            <Label htmlFor="tone-select">Tom do Poema</Label>
+            <Select value={tone} onValueChange={onToneChange}>
+              <SelectTrigger id="tone-select" className="w-full">
+                <SelectValue placeholder="Selecione um tom" />
+              </SelectTrigger>
+              <SelectContent>
+                {tones.map((t) => (
+                  <SelectItem key={t} value={t}>
+                    {t}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="space-y-2">
+            <Label>Modo de Sugestão</Label>
+            <RadioGroup
+              value={suggestionMode}
+              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+              className="flex items-center space-x-4 pt-2"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="gradual" id="gradual" />
+                <Label htmlFor="gradual" className="font-normal">Gradual</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="final" id="final" />
+                <Label htmlFor="final" className="font-normal">Final</Label>
+              </div>
+            </RadioGroup>
+          </div>
         </div>
 
         <div className="relative">
@@ -145,17 +181,26 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
             placeholder="Escreva seu poema aqui..."
-            className="absolute inset-0 z-10 min-h-[50vh] w-full resize-none rounded-md border-input bg-transparent p-4 text-base text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
+            className="absolute inset-0 z-10 min-h-[50vh] w-full resize-none rounded-md border-input bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
             aria-label="Editor de Poesia"
           />
           <div
-            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap"
+            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap leading-relaxed"
             aria-hidden="true"
             style={{ wordWrap: 'break-word' }}
+            onClick={() => textareaRef.current?.focus()}
             >
               {editorContent}
           </div>
         </div>
+        {suggestionMode === "final" && (
+          <div className="flex justify-end">
+            <Button onClick={onFinalSuggestion} disabled={isLoading}>
+              <Wand2 className="mr-2 h-4 w-4" />
+              {isLoading ? "Gerando..." : "Gerar Sugestões"}
+            </Button>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
