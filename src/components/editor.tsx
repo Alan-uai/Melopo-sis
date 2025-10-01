@@ -78,8 +78,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     const suggestionPhrases = grammarSuggestions
       .map(s => s?.originalText)
       .filter(Boolean)
+      .sort((a, b) => b.length - a.length)
       .map(phrase => phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
       .join('|');
+      
   
     if (!suggestionPhrases) {
       return text.split('\n').map((line, i) => <div key={i}>{line || <>&nbsp;</>}</div>);
@@ -89,31 +91,46 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   
     return text.split('\n').map((line, lineIndex) => {
       if (!line) return <div key={lineIndex}>&nbsp;</div>;
-      const parts = line.split(regex).filter(Boolean);
+  
+      const parts: (string | React.ReactNode)[] = [line];
+  
+      suggestionMap.forEach((suggestion, originalText) => {
+        const tempParts: (string | React.ReactNode)[] = [];
+        parts.forEach(part => {
+          if (typeof part === 'string' && part.includes(originalText)) {
+            const splitBySuggestion = part.split(originalText);
+            for (let i = 0; i < splitBySuggestion.length; i++) {
+              tempParts.push(splitBySuggestion[i]);
+              if (i < splitBySuggestion.length - 1) {
+                tempParts.push(
+                  <SuggestionPopover
+                    key={`${lineIndex}-${originalText}-${i}`}
+                    suggestion={suggestion}
+                    onAccept={() => onAccept(suggestion)}
+                    onDismiss={() => onDismiss(suggestion)}
+                  >
+                    <span
+                      onClick={(e) => e.stopPropagation()}
+                      className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                    >
+                      {originalText}
+                    </span>
+                  </SuggestionPopover>
+                );
+              }
+            }
+          } else {
+            tempParts.push(part);
+          }
+        });
+        parts.splice(0, parts.length, ...tempParts);
+      });
   
       return (
         <div key={lineIndex}>
-          {parts.map((part, partIndex) => {
-            const suggestion = suggestionMap.get(part);
-            if (suggestion) {
-              return (
-                <SuggestionPopover
-                  key={`${partIndex}-${suggestion.originalText}`}
-                  suggestion={suggestion}
-                  onAccept={() => onAccept(suggestion)}
-                  onDismiss={() => onDismiss(suggestion)}
-                >
-                  <span
-                    onClick={(e) => e.stopPropagation()}
-                    className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-                  >
-                    {part}
-                  </span>
-                </SuggestionPopover>
-              );
-            }
-            return <React.Fragment key={partIndex}>{part}</React.Fragment>;
-          })}
+          {parts.map((part, partIndex) => (
+            <React.Fragment key={partIndex}>{part}</React.Fragment>
+          ))}
         </div>
       );
     });
