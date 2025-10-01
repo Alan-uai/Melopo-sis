@@ -14,6 +14,7 @@ import {z} from 'genkit';
 const GenerateContextualSuggestionsInputSchema = z.object({
   text: z.string().describe('The poetry text to provide suggestions for.'),
   tone: z.string().describe('The desired tone for the poem (e.g., Melancholic, Romantic).'),
+  suggestionType: z.enum(['grammar', 'tone', 'all']).describe('The type of suggestions to generate.'),
 });
 export type GenerateContextualSuggestionsInput = z.infer<typeof GenerateContextualSuggestionsInputSchema>;
 
@@ -37,11 +38,24 @@ const prompt = ai.definePrompt({
   name: 'generateContextualSuggestionsPrompt',
   input: {schema: GenerateContextualSuggestionsInputSchema},
   output: {schema: GenerateContextualSuggestionsOutputSchema},
-  prompt: `You are an AI assistant specializing in Brazilian Portuguese poetry. Your goal is to provide context-aware suggestions to enhance a poem based on a chosen tone and ABNT grammatical rules.
+  prompt: `You are an AI assistant specializing in Brazilian Portuguese poetry. Your goal is to provide context-aware suggestions.
 
-You will analyze the user's poem and provide two types of suggestions:
-1.  **Grammar/Spelling Corrections:** Identify any grammatical errors or misspellings according to ABNT rules. For these, set the suggestion type to 'grammar'. The explanation should clarify the grammatical rule.
-2.  **Tone Enhancements:** Identify phrases or words that could be improved to better fit the selected tone: '{{tone}}'. For these, set the suggestion type to 'tone'. The explanation should describe how the change enhances the tone.
+You will receive a 'suggestionType' parameter. Your response MUST be tailored to this type.
+
+- If 'suggestionType' is 'grammar':
+  - Focus exclusively on identifying grammatical errors or misspellings according to ABNT rules.
+  - For each error, create a suggestion with 'type: "grammar"'.
+  - The 'explanation' should clarify the grammatical rule.
+  - DO NOT provide stylistic or tone-based suggestions.
+
+- If 'suggestionType' is 'tone':
+  - Focus exclusively on identifying phrases or words that could be improved to better fit the selected tone: '{{tone}}'.
+  - For each improvement, create a suggestion with 'type: "tone"'.
+  - The 'explanation' should describe how the change enhances the specified tone.
+  - DO NOT provide grammatical corrections unless they are integral to the tone change.
+
+- If 'suggestionType' is 'all':
+  - Provide both grammar and tone suggestions as applicable.
 
 For each suggestion, you must:
 - Identify a specific snippet ('originalText').
@@ -53,7 +67,11 @@ For each suggestion, you must:
 Poem Text:
 {{text}}
 
+{{#if tone}}
 Desired Tone: {{tone}}
+{{/if}}
+
+Requested Suggestion Type: {{suggestionType}}
 
 Output the suggestions in JSON format.
   `,
@@ -66,7 +84,7 @@ const generateContextualSuggestionsFlow = ai.defineFlow(
     outputSchema: GenerateContextualSuggestionsOutputSchema,
   },
   async input => {
-    if (!input.text.trim() || !input.tone) {
+    if (!input.text.trim()) {
       return { suggestions: [] };
     }
     const {output} = await prompt(input);
