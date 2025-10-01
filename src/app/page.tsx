@@ -53,14 +53,19 @@ export default function Home() {
   }, [text, tone, handleGenerateSuggestions]);
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
-    setText(currentText => {
-      // Use a regex to replace only the first occurrence to avoid unintended replacements
-      const regex = new RegExp(suggestionToAccept.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-      return currentText.replace(regex, suggestionToAccept.correctedText);
-    });
-    // After accepting, remove the suggestion
+    // A simple string replacement is not robust enough.
+    // Let's replace only the first occurrence to be safer.
+    setText((currentText) =>
+      currentText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText)
+    );
+    // After accepting, we need to remove the suggestion that was just used
+    // and any other suggestions that might have been invalidated by the text change.
+    // A simple approach is to refetch, but that can be slow.
+    // For now, let's just remove the accepted one.
     setSuggestions((currentSuggestions) =>
-      currentSuggestions.filter((s) => s !== suggestionToAccept)
+      currentSuggestions.filter(
+        (s) => s.originalText !== suggestionToAccept.originalText
+      )
     );
   };
 

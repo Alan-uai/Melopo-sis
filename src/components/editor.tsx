@@ -45,16 +45,19 @@ export function Editor({
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
 
   const editorContent = useMemo(() => {
+    if (!text && grammarSuggestions.length === 0) {
+      // Add a non-breaking space to prevent collapsing when empty
+      return <>&nbsp;</>;
+    }
     if (grammarSuggestions.length === 0) {
-      // Add a space to prevent collapsing when empty
-      return <>{text || ' '}</>;
+      return <>{text}</>;
     }
 
     const suggestionPhrases = grammarSuggestions.map(s => s.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
     const regex = new RegExp(`(${suggestionPhrases})`, 'g');
-    const parts = text.split(regex);
+    const parts = text.split(regex).filter(Boolean); // filter out empty strings
 
-    const content = parts.map((part, index) => {
+    return parts.map((part, index) => {
       const suggestion = grammarSuggestions.find(s => s.originalText === part);
       if (suggestion) {
         return (
@@ -72,9 +75,6 @@ export function Editor({
       }
       return <React.Fragment key={index}>{part}</React.Fragment>;
     });
-    
-    // Add a space to prevent collapsing when empty
-    return <>{content.length > 0 ? content : ' '}</>
   }, [text, grammarSuggestions, onAccept, onDismiss]);
 
   return (
@@ -114,20 +114,20 @@ export function Editor({
         </div>
 
         <div className="relative">
-          <div
-            className="min-h-[50vh] w-full rounded-md border border-transparent bg-input p-4 text-base whitespace-pre-wrap pointer-events-none"
-            aria-hidden="true"
-            style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}
-            >
-              {editorContent}
-          </div>
           <Textarea
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
             placeholder="Escreva seu poema aqui..."
-            className="absolute inset-0 min-h-[50vh] w-full rounded-md border-input bg-transparent p-4 text-base text-transparent caret-foreground selection:bg-primary/20 selection:text-transparent"
+            className="absolute inset-0 z-10 min-h-[50vh] w-full resize-none rounded-md border-input bg-transparent p-4 text-base text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
             aria-label="Editor de Poesia"
           />
+          <div
+            className="min-h-[50vh] w-full rounded-md border border-input bg-input p-4 text-base whitespace-pre-wrap"
+            aria-hidden="true"
+            style={{ wordWrap: 'break-word' }}
+            >
+              {editorContent}
+          </div>
         </div>
       </CardContent>
     </Card>
