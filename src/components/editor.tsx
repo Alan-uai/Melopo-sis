@@ -1,6 +1,6 @@
 "use client";
 
-import { Feather, Lightbulb, LoaderCircle, Wand2 } from "lucide-react";
+import { Feather, LoaderCircle, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -18,18 +18,21 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect, useState } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
+import { Popover, PopoverContent, PopoverTrigger, PopoverAnchor } from "@/components/ui/popover";
 
 interface EditorProps {
   text: string;
   onTextChange: (newText: string) => void;
+  onCursorChange: () => void;
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
   grammarSuggestions: Suggestion[];
+  activeGrammarSuggestion: Suggestion | null;
   onAccept: (suggestion: Suggestion) => void;
   onDismiss: (suggestion: Suggestion) => void;
   suggestionMode: SuggestionMode;
@@ -45,10 +48,12 @@ export interface EditorRef {
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
+  onCursorChange,
   isLoading,
   tone,
   onToneChange,
   grammarSuggestions,
+  activeGrammarSuggestion,
   onAccept,
   onDismiss,
   suggestionMode,
@@ -89,44 +94,50 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     
     if (grammarSuggestions.length > 0) {
         const suggestionMap = new Map<string, Suggestion>();
+        // Use a Set to handle duplicate originalText values, ensuring unique regex parts
+        const uniqueOriginals = new Set<string>();
         grammarSuggestions.forEach(s => {
           if (s && s.originalText) {
-            suggestionMap.set(s.originalText.trim(), s);
+            const trimmedOriginal = s.originalText.trim();
+            if(trimmedOriginal){
+              suggestionMap.set(trimmedOriginal, s);
+              uniqueOriginals.add(trimmedOriginal);
+            }
           }
         });
         
-        const originals = Array.from(suggestionMap.keys()).filter(Boolean);
+        const originals = Array.from(uniqueOriginals);
         if (originals.length > 0) {
+            // Important: sort by length descending to match longer phrases first
+            originals.sort((a, b) => b.length - a.length);
             const regex = new RegExp(`(${originals.map(o => o.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
             const parts = text.split(regex);
             
+            let i = 0;
             content = parts.map((part, index) => {
                 const suggestion = suggestionMap.get(part.trim());
                 if (suggestion) {
+                    const partStartIndex = i;
+                    i += part.length;
                     return (
-                        <span key={`${index}-${suggestion.originalText}`} className="relative inline-block">
-                             <SuggestionPopover
-                                suggestion={suggestion}
-                                onAccept={() => onAccept(suggestion)}
-                                onDismiss={() => onDismiss(suggestion)}
-                            >
-                                <button className="absolute -top-5 left-1/2 -translate-x-1/2 z-10 p-1 rounded-full bg-amber-300/50 hover:bg-amber-300">
-                                    <Lightbulb className="h-4 w-4 text-amber-500" />
-                                </button>
-                            </SuggestionPopover>
-                            <span className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2">
-                                {part}
-                            </span>
+                        <span 
+                          key={`${index}-${part}`} 
+                          data-suggestion-id={suggestion.originalText} 
+                          data-start-index={partStartIndex}
+                          className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2"
+                        >
+                            {part}
                         </span>
                     );
                 }
+                i += part.length;
                 return part;
             });
         }
     }
 
     return content.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, grammarSuggestions, onAccept, onDismiss]);
+}, [text, grammarSuggestions]);
 
 
   return (
@@ -184,28 +195,45 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="relative grid">
-          <div
-            ref={highlightsRef}
-            className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-input p-4 text-base leading-relaxed z-10"
-            style={{ wordWrap: 'break-word' }}
-            aria-hidden="true"
-            onClick={() => textareaRef.current?.focus()}
-          >
-              {editorContent}
-              {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
-              &nbsp;
-          </div>
-          <Textarea
-            ref={textareaRef}
-            value={text}
-            onChange={(e) => onTextChange(e.target.value)}
-            onScroll={handleScroll}
-            placeholder="Escreva seu poema aqui..."
-            className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
-            aria-label="Editor de Poesia"
-          />
-        </div>
+        <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => !isOpen && onDismiss(activeGrammarSuggestion!)}>
+           <PopoverAnchor asChild>
+                <div className="relative grid">
+                    <div
+                        ref={highlightsRef}
+                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-input bg-input p-4 text-base leading-relaxed z-0"
+                        style={{ wordWrap: 'break-word' }}
+                        aria-hidden="true"
+                    >
+                        {editorContent}
+                        {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+                        &nbsp;
+                    </div>
+                    <Textarea
+                        ref={textareaRef}
+                        value={text}
+                        onChange={(e) => onTextChange(e.target.value)}
+                        onScroll={handleScroll}
+                        onSelect={onCursorChange}
+                        onClick={onCursorChange}
+                        onKeyUp={onCursorChange}
+                        placeholder="Escreva seu poema aqui..."
+                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 selection:text-foreground"
+                        aria-label="Editor de Poesia"
+                    />
+                </div>
+            </PopoverAnchor>
+          {activeGrammarSuggestion && (
+              <SuggestionPopover
+                suggestion={activeGrammarSuggestion}
+                onAccept={() => onAccept(activeGrammarSuggestion)}
+                onDismiss={() => onDismiss(activeGrammarSuggestion)}
+                // We pass children to render it as a floating popover, not wrapping an element
+              >
+                <></>
+              </SuggestionPopover>
+          )}
+        </Popover>
+
         {suggestionMode === "final" && (
           <div className="flex justify-end">
             <Button onClick={onFinalSuggestion} disabled={isLoading}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
@@ -29,6 +29,7 @@ export default function Home() {
   const [isGrammarLoading, setIsGrammarLoading] = useState<boolean>(false);
   const [isToneLoading, setIsToneLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("gradual");
+  const [activeGrammarSuggestion, setActiveGrammarSuggestion] = useState<Suggestion | null>(null);
   const { toast } = useToast();
   const editorRef = useRef<EditorRef>(null);
 
@@ -69,20 +70,20 @@ export default function Home() {
     const result = await generateSuggestions(currentText, tone, "grammar");
     
     // When checking the whole text, we want to replace suggestions, not append.
-    const isPaste = currentText.split('\n').length > 1;
+    const isFullTextCheck = currentText === text;
     
     setGrammarSuggestions(prevSuggestions => {
-      if (!isPaste) {
+      if (!isFullTextCheck) {
          // This logic attempts to merge line-by-line suggestions with existing ones.
         const otherLinesSuggestions = prevSuggestions.filter(s => !currentText.includes(s.originalText));
         return [...otherLinesSuggestions, ...result.suggestions];
       } else {
-        // It's a full-text check (paste), so replace all previous suggestions
+        // It's a full-text check (paste or initial load), so replace all previous suggestions
         return result.suggestions;
       }
     });
 
-  }, [generateSuggestions, tone]);
+  }, [generateSuggestions, tone, text]);
 
   const fetchToneSuggestions = useCallback(async (currentText: string, currentTone: string) => {
     if (!currentText.trim() || !currentTone) {
@@ -130,6 +131,7 @@ export default function Home() {
     setSuggestionMode(mode);
     setGrammarSuggestions([]);
     setToneSuggestions([]);
+    setActiveGrammarSuggestion(null);
     // Immediately fetch suggestions if switching to 'final' with existing text
     if (mode === 'final' && text.trim()) {
       fetchGrammarSuggestions(text);
@@ -145,6 +147,7 @@ export default function Home() {
     // Invalidate old suggestions
     setGrammarSuggestions([]);
     setToneSuggestions([]);
+    setActiveGrammarSuggestion(null);
     // Re-evaluate text with new tone/rules
     if (text.trim()) {
       fetchGrammarSuggestions(text);
@@ -164,6 +167,7 @@ export default function Home() {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
         );
+        setActiveGrammarSuggestion(null);
         if (suggestionMode === 'gradual') {
             const currentLine = newText.split('\n').find(line => line.includes(suggestionToAccept.correctedText)) ?? '';
             fetchToneSuggestions(currentLine, tone);
@@ -180,24 +184,70 @@ export default function Home() {
         setGrammarSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
         );
+        setActiveGrammarSuggestion(null);
     } else {
         setToneSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
         );
     }
   };
+
+  const checkActiveSuggestion = useCallback(() => {
+    const cursorPosition = editorRef.current?.getCursorPosition();
+    if (cursorPosition === null || !grammarSuggestions.length) {
+      setActiveGrammarSuggestion(null);
+      return;
+    }
+  
+    // Find the word at the current cursor position
+    const wordRegex = /[\wÀ-ú']+/g;
+    let match;
+    let currentWord = null;
+    let currentWordIndex = -1;
+  
+    // This is not the most efficient way, but it's reliable for moderate text sizes.
+    // It finds the word based on cursor position by iterating through words.
+    while ((match = wordRegex.exec(text)) !== null) {
+      if (cursorPosition >= match.index && cursorPosition <= match.index + match[0].length) {
+        currentWord = match[0];
+        currentWordIndex = match.index;
+        break;
+      }
+    }
+  
+    if (currentWord) {
+      const activeSuggestion = grammarSuggestions.find(suggestion => {
+        // Check if the original text of the suggestion is present at the word's position
+        const suggestionStartIndex = text.indexOf(suggestion.originalText, currentWordIndex);
+        return suggestionStartIndex === currentWordIndex;
+      });
+      setActiveGrammarSuggestion(activeSuggestion || null);
+    } else {
+      setActiveGrammarSuggestion(null);
+    }
+  
+  }, [text, grammarSuggestions]);
+
+  useEffect(() => {
+    // A small debounce to avoid checking on every single key press instantly
+    const handler = setTimeout(checkActiveSuggestion, 100);
+    return () => clearTimeout(handler);
+  }, [text, checkActiveSuggestion]);
+  
   
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8">
+    <div className="container mx-auto max-w-7xl px-4 py-8" onClick={checkActiveSuggestion}>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
         <Editor
           ref={editorRef}
           text={text}
           onTextChange={handleTextChange}
+          onCursorChange={checkActiveSuggestion}
           isLoading={isToneLoading} // Only show global loader for tone suggestions
           tone={tone}
           onToneChange={handleToneChange}
           grammarSuggestions={grammarSuggestions}
+          activeGrammarSuggestion={activeGrammarSuggestion}
           onAccept={handleAccept}
           onDismiss={handleDismiss}
           suggestionMode={suggestionMode}
