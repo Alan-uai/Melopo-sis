@@ -96,27 +96,30 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         const newParts: (string | React.ReactNode)[] = [];
         parts.forEach((part) => {
           if (typeof part === 'string') {
-            const splitBySuggestion = part.split(originalText);
-            splitBySuggestion.forEach((textSegment, i) => {
-              newParts.push(textSegment);
-              if (i < splitBySuggestion.length - 1) {
-                newParts.push(
-                  <SuggestionPopover
-                    key={`${lineIndex}-${originalText}-${i}`}
-                    suggestion={suggestion}
-                    onAccept={() => onAccept(suggestion)}
-                    onDismiss={() => onDismiss(suggestion)}
-                  >
-                    <span
-                      onClick={(e) => e.stopPropagation()}
-                      className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-                    >
-                      {originalText}
-                    </span>
-                  </SuggestionPopover>
-                );
-              }
-            });
+            if (part.includes(originalText)) {
+                const splitBySuggestion = part.split(originalText);
+                splitBySuggestion.forEach((textSegment, i) => {
+                  newParts.push(textSegment);
+                  if (i < splitBySuggestion.length - 1) {
+                    newParts.push(
+                      <SuggestionPopover
+                        key={`${lineIndex}-${originalText}-${i}`}
+                        suggestion={suggestion}
+                        onAccept={() => onAccept(suggestion)}
+                        onDismiss={() => onDismiss(suggestion)}
+                      >
+                        <span
+                          className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                        >
+                          {originalText}
+                        </span>
+                      </SuggestionPopover>
+                    );
+                  }
+                });
+            } else {
+                newParts.push(part);
+            }
           } else {
             newParts.push(part);
           }
