@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion } from "@/app/page";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
 import { Textarea } from "./ui/textarea";
 
 interface EditorProps {
@@ -32,7 +32,11 @@ interface EditorProps {
   onDismiss: (suggestion: Suggestion) => void;
 }
 
-export function Editor({
+export interface EditorRef {
+  getCursorPosition: () => number | null;
+}
+
+export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
   isLoading,
@@ -41,26 +45,40 @@ export function Editor({
   grammarSuggestions,
   onAccept,
   onDismiss,
-}: EditorProps) {
+}, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
-  const [openPopover, setOpenPopover] = useState<string | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useImperativeHandle(ref, () => ({
+    getCursorPosition: () => {
+      return textareaRef.current?.selectionStart ?? null;
+    }
+  }));
 
   const editorContent = useMemo(() => {
     if (grammarSuggestions.length === 0) {
       return text || <>&nbsp;</>;
     }
 
-    // Create a robust regex from suggestion originalTexts
     const suggestionMap = new Map<string, Suggestion>();
-    grammarSuggestions.forEach(s => suggestionMap.set(s.originalText, s));
-    
-    const suggestionPhrases = grammarSuggestions.map(s => s.originalText.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')).join('|');
+    grammarSuggestions.forEach(s => {
+      if (s && s.originalText) {
+        suggestionMap.set(s.originalText, s);
+      }
+    });
+
+    const suggestionPhrases = grammarSuggestions
+      .map(s => s?.originalText)
+      .filter(Boolean)
+      .map(phrase => phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'))
+      .join('|');
+
     if (!suggestionPhrases) {
-        return text || <>&nbsp;</>;
+      return text || <>&nbsp;</>;
     }
 
     const regex = new RegExp(`(${suggestionPhrases})`, 'g');
-    const parts = text.split(regex).filter(Boolean); // filter out empty strings
+    const parts = text.split(regex).filter(Boolean);
 
     return parts.map((part, index) => {
       const suggestion = suggestionMap.get(part);
@@ -72,7 +90,10 @@ export function Editor({
             onAccept={() => onAccept(suggestion)}
             onDismiss={() => onDismiss(suggestion)}
           >
-            <span className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
+            <span
+              onClick={(e) => e.stopPropagation()}
+              className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+            >
               {part}
             </span>
           </SuggestionPopover>
@@ -120,6 +141,7 @@ export function Editor({
 
         <div className="relative">
           <Textarea
+            ref={textareaRef}
             value={text}
             onChange={(e) => onTextChange(e.target.value)}
             placeholder="Escreva seu poema aqui..."
@@ -137,4 +159,6 @@ export function Editor({
       </CardContent>
     </Card>
   );
-}
+});
+
+Editor.displayName = 'Editor';
