@@ -21,7 +21,7 @@ export function SuggestionPopover({
 }: SuggestionPopoverProps) {
 
   return (
-     <PopoverContent className="w-80" align="center" side="bottom" onOpenAutoFocus={(e) => e.preventDefault()}>
+     <PopoverContent className="w-80" align="start" side="bottom" onOpenAutoFocus={(e) => e.preventDefault()}>
         <div className="space-y-3">
           <div className="space-y-1">
             <p className="text-sm font-medium">Correção Gramatical</p>

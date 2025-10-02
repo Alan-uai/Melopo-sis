@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect, useState } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
@@ -38,6 +38,7 @@ interface EditorProps {
   suggestionMode: SuggestionMode;
   onSuggestionModeChange: (mode: SuggestionMode) => void;
   onFinalSuggestion: () => void;
+  onSuggestionClick: (suggestion: Suggestion) => void;
 }
 
 export interface EditorRef {
@@ -58,10 +59,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onDismiss,
   suggestionMode,
   onSuggestionModeChange,
-  onFinalSuggestion
+  onFinalSuggestion,
+  onSuggestionClick
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const highlightsRef = useRef<HTMLDivElement>(null);
+  const [textareaScroll, setTextareaScroll] = useState({ top: 0, left: 0 });
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -79,6 +83,15 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       return text.substring(lineStart, lineEnd);
     }
   }));
+
+  const handleScroll = () => {
+    if (textareaRef.current && highlightsRef.current) {
+        const { scrollTop, scrollLeft } = textareaRef.current;
+        highlightsRef.current.scrollTop = scrollTop;
+        highlightsRef.current.scrollLeft = scrollLeft;
+        setTextareaScroll({ top: scrollTop, left: scrollLeft });
+    }
+  };
 
   const editorContent = useMemo(() => {
     if (!grammarSuggestions.length) return text;
@@ -105,9 +118,23 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         const AnchorComponent = isSuggestionActive ? PopoverAnchor : 'span';
         
         parts.push(
-            <AnchorComponent key={`suggestion-${i}`} className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2">
-                {suggestion.originalText}
-            </AnchorComponent>
+          <Popover open={isSuggestionActive} onOpenChange={(open) => !open && onDismiss(activeGrammarSuggestion!)} key={`popover-${i}`}>
+            <PopoverTrigger asChild>
+                <span 
+                  className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                  onClick={() => onSuggestionClick(suggestion)}
+                >
+                    {suggestion.originalText}
+                </span>
+            </PopoverTrigger>
+            {isSuggestionActive && (
+              <SuggestionPopover
+                suggestion={activeGrammarSuggestion}
+                onAccept={() => onAccept(activeGrammarSuggestion)}
+                onDismiss={() => onDismiss(activeGrammarSuggestion)}
+              />
+            )}
+          </Popover>
         );
 
         lastIndex = startIndex + suggestion.originalText.length;
@@ -118,7 +145,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, grammarSuggestions, activeGrammarSuggestion]);
+}, [text, grammarSuggestions, activeGrammarSuggestion, onDismiss, onAccept, onSuggestionClick]);
 
 
   return (
@@ -176,36 +203,29 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
         
-        <Popover open={!!activeGrammarSuggestion} onOpenChange={(open) => !open && onDismiss(activeGrammarSuggestion!)}>
-           <div className="relative">
-                <Textarea
-                    ref={textareaRef}
-                    value={text}
-                    onChange={(e) => onTextChange(e.target.value)}
-                    onSelect={onCursorChange}
-                    onKeyDown={onCursorChange}
-                    placeholder="Escreva seu poema aqui..."
-                    className="min-h-[50vh] w-full resize-none bg-background p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
-                    aria-label="Editor de Poesia"
-                />
-                <div
-                    className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed text-transparent"
-                    style={{ wordWrap: 'break-word' }}
-                    aria-hidden="true"
-                >
-                    {editorContent}
-                     {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
-                    &nbsp;
-                </div>
-            </div>
-            {activeGrammarSuggestion && (
-               <SuggestionPopover
-                  suggestion={activeGrammarSuggestion}
-                  onAccept={() => onAccept(activeGrammarSuggestion)}
-                  onDismiss={() => onDismiss(activeGrammarSuggestion)}
-                />
-            )}
-        </Popover>
+        <div className="relative">
+             <Textarea
+                 ref={textareaRef}
+                 value={text}
+                 onChange={(e) => onTextChange(e.target.value)}
+                 onScroll={handleScroll}
+                 onSelect={onCursorChange}
+                 onKeyDown={onCursorChange}
+                 placeholder="Escreva seu poema aqui..."
+                 className="min-h-[50vh] w-full resize-none bg-background p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20 text-transparent"
+                 aria-label="Editor de Poesia"
+             />
+             <div
+                 ref={highlightsRef}
+                 className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed text-foreground"
+                 style={{ wordWrap: 'break-word' }}
+                 aria-hidden="true"
+             >
+                 {editorContent}
+                  {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
+                 &nbsp;
+             </div>
+         </div>
 
         {suggestionMode === "final" && (
           <div className="flex justify-end">

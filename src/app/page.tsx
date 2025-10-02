@@ -41,7 +41,6 @@ export default function Home() {
     }
   
     try {
-      // Always ask for all suggestions and filter them later
       const result = await generateContextualSuggestions({ 
         text: currentText, 
         tone: currentTone, 
@@ -72,17 +71,22 @@ export default function Home() {
 
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
     const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
-
-    // This logic attempts to merge line-by-line suggestions with existing ones.
+    
+    // Logic to merge line-by-line suggestions with existing ones.
     setGrammarSuggestions(prevSuggestions => {
       const isFullTextCheck = currentText === text;
-      if (!isFullTextCheck) {
-        const otherLinesSuggestions = prevSuggestions.filter(s => !currentText.includes(s.originalText));
-        return [...otherLinesSuggestions, ...newGrammarSuggestions];
-      } else {
-        return newGrammarSuggestions;
+      // If checking the full text, replace all suggestions.
+      if (isFullTextCheck) {
+          return newGrammarSuggestions;
       }
+      
+      // If checking a single line, keep suggestions from other lines.
+      const otherLinesSuggestions = prevSuggestions.filter(s => !currentText.includes(s.originalText));
+      const uniqueNewSuggestions = newGrammarSuggestions.filter(ns => !otherLinesSuggestions.some(os => os.originalText === ns.originalText));
+      
+      return [...otherLinesSuggestions, ...uniqueNewSuggestions];
     });
+
 
     setToneSuggestions(newToneSuggestions);
 
@@ -192,7 +196,16 @@ export default function Home() {
         return cursorPosition >= startIndex && cursorPosition <= endIndex;
     });
 
-    setActiveGrammarSuggestion(activeSuggestion || null);
+    if (activeSuggestion) {
+      // Prevent re-setting the same suggestion to avoid re-renders
+      if (activeGrammarSuggestion?.originalText !== activeSuggestion.originalText) {
+        setActiveGrammarSuggestion(activeSuggestion);
+      }
+    } else {
+      if (activeGrammarSuggestion) {
+        setActiveGrammarSuggestion(null);
+      }
+    }
   }, [text, grammarSuggestions, activeGrammarSuggestion]);
 
 
@@ -221,6 +234,7 @@ export default function Home() {
           suggestionMode={suggestionMode}
           onSuggestionModeChange={handleSuggestionModeChange}
           onFinalSuggestion={handleGenerateFinalToneSuggestions}
+          onSuggestionClick={setActiveGrammarSuggestion}
         />
         <SuggestionList
           suggestions={toneSuggestions}
