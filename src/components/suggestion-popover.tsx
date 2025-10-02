@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X } from "lucide-react";
+import { Check, X, RefreshCw } from "lucide-react";
 import {
   PopoverContent,
 } from "@/components/ui/popover";
@@ -12,12 +12,14 @@ interface SuggestionPopoverProps {
   suggestion: Suggestion;
   onAccept: () => void;
   onDismiss: () => void;
+  onResuggest: () => void;
 }
 
 export function SuggestionPopover({
   suggestion,
   onAccept,
   onDismiss,
+  onResuggest,
 }: SuggestionPopoverProps) {
 
   return (
@@ -37,6 +39,10 @@ export function SuggestionPopover({
             </blockquote>
           </div>
           <div className="flex justify-end gap-2 pt-2">
+             <Button variant="outline" size="icon" className="h-7 w-7" onClick={onResuggest}>
+                <RefreshCw className="h-4 w-4" />
+                <span className="sr-only">Resugerir</span>
+              </Button>
             <Button variant="ghost" size="icon" className="h-7 w-7" onClick={onDismiss}>
               <X className="h-4 w-4" />
               <span className="sr-only">Dispensar</span>

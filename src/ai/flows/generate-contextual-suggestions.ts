@@ -16,6 +16,7 @@ const GenerateContextualSuggestionsInputSchema = z.object({
   tone: z.string().describe('The desired tone for the poem (e.g., Melancholic, Romantic).'),
   suggestionType: z.enum(['grammar', 'tone', 'all']).describe('The type of suggestions to generate.'),
   excludedPhrases: z.array(z.string()).optional().describe('A list of phrases or words to avoid in the new suggestions.'),
+  textStructure: z.enum(['poesia', 'poema']).describe('The structure of the text (Poesia or Poema) to follow ABNT rules for.'),
 });
 export type GenerateContextualSuggestionsInput = z.infer<typeof GenerateContextualSuggestionsInputSchema>;
 
@@ -39,38 +40,38 @@ const prompt = ai.definePrompt({
   name: 'generateContextualSuggestionsPrompt',
   input: {schema: GenerateContextualSuggestionsInputSchema},
   output: {schema: GenerateContextualSuggestionsOutputSchema},
-  prompt: `Você é um assistente de IA especialista em poesia em português do Brasil e nas normas da ABNT. Seu objetivo é fornecer sugestões contextuais para aprimorar um poema.
+  prompt: `Você é um assistente de IA especialista em literatura brasileira e nas normas da ABNT. Sua tarefa é analisar um texto e fornecer sugestões para aprimorá-lo, considerando a estrutura de um(a) '{{textStructure}}'.
 
-A sua prioridade MÁXIMA é a gramática.
-1. PRIMEIRO, verifique se há erros gramaticais ou de ortografia no texto.
-   - Se encontrar erros, forneça APENAS sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone' se houver erros gramaticais.
-2. SE E SOMENTE SE não houver nenhum erro gramatical, você pode então prosseguir para analisar o tom.
+A sua prioridade MÁXIMA é a gramática e a estrutura.
+1. PRIMEIRO, verifique se há erros gramaticais, de ortografia, ou de estrutura (espaçamento, pontuação, estrofes) de acordo com as normas da ABNT para um(a) '{{textStructure}}'.
+   - Se encontrar erros, forneça APENAS sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone' se houver erros.
+2. SE E SOMENTE SE não houver nenhum erro gramatical ou estrutural, você pode então prosseguir para analisar o tom.
 
 - Se 'suggestionType' for 'grammar':
-  - Foque EXCLUSIVAMENTE em identificar erros gramaticais ou de ortografia.
+  - Foque EXCLUSIVAMENTE em identificar erros gramaticais, de ortografia ou estrutura.
   - Para cada erro, crie uma sugestão com 'type: "grammar"'.
-  - A 'explanation' deve esclarecer a regra gramatical de forma concisa.
+  - A 'explanation' deve esclarecer a regra da ABNT ou gramatical de forma concisa.
 
 - If 'suggestionType' is 'tone':
-  - ASSUMINDO que não há erros gramaticais, foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
+  - ASSUMINDO que não há erros, foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
   - Para cada melhoria, crie uma sugestão com 'type: "tone"'.
   - A 'explanation' deve descrever como a alteração realça o tom especificado.
 
 - Se 'suggestionType' for 'all':
-  - Siga a regra de prioridade: Verifique a gramática primeiro. Se houver erros, retorne apenas sugestões de 'grammar'. Se não houver erros de gramática, retorne apenas sugestões de 'tone'.
+  - Siga a regra de prioridade: Verifique a gramática e estrutura primeiro. Se houver erros, retorne apenas sugestões de 'grammar'. Se não houver erros, retorne apenas sugestões de 'tone'.
 
 Para cada sugestão, você deve:
 - Identificar um trecho específico ('originalText').
 - Fornecer uma alternativa ('correctedText').
 - Fornecer uma 'explanation' clara.
 - Definir o campo 'type' corretamente ('grammar' ou 'tone').
-- Manter a arte da poesia. Sugira apenas alterações que realmente aprimorem o poema. Se não houver sugestões, retorne um array vazio.
+- Manter a arte da escrita. Sugira apenas alterações que realmente aprimorem o texto. Se não houver sugestões, retorne um array vazio.
 
 {{#if excludedPhrases}}
 - IMPORTANTE: Ao gerar a sugestão para 'originalText', evite usar as seguintes palavras ou frases: {{#each excludedPhrases}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}. Encontre alternativas criativas.
 {{/if}}
 
-Poema ou linha a ser analisado:
+Texto a ser analisado (estrutura de '{{textStructure}}'):
 "{{text}}"
 
 {{#if tone}}

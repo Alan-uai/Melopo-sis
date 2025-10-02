@@ -17,12 +17,12 @@ import {
 } from "@/components/ui/select";
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
-import type { Suggestion, SuggestionMode } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useEffect, useState } from "react";
+import type { Suggestion, SuggestionMode, TextStructure } from "@/app/page";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverTrigger, PopoverAnchor } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverAnchor, PopoverTrigger } from "@/components/ui/popover";
 
 interface EditorProps {
   text: string;
@@ -31,10 +31,13 @@ interface EditorProps {
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
+  textStructure: TextStructure;
+  onTextStructureChange: (newStructure: TextStructure) => void;
   grammarSuggestions: Suggestion[];
   activeGrammarSuggestion: Suggestion | null;
   onAccept: (suggestion: Suggestion) => void;
   onDismiss: (suggestion: Suggestion) => void;
+  onResuggest: (suggestion: Suggestion) => void;
   suggestionMode: SuggestionMode;
   onSuggestionModeChange: (mode: SuggestionMode) => void;
   onFinalSuggestion: () => void;
@@ -53,19 +56,24 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   isLoading,
   tone,
   onToneChange,
+  textStructure,
+  onTextStructureChange,
   grammarSuggestions,
   activeGrammarSuggestion,
   onAccept,
   onDismiss,
+  onResuggest,
   suggestionMode,
   onSuggestionModeChange,
   onFinalSuggestion,
   onSuggestionClick
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
+  const structures: { value: TextStructure, label: string }[] = [
+    { value: 'poema', label: 'Poema' },
+    { value: 'poesia', label: 'Poesia' },
+  ];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const highlightsRef = useRef<HTMLDivElement>(null);
-  const [textareaScroll, setTextareaScroll] = useState({ top: 0, left: 0 });
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -84,15 +92,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }));
 
-  const handleScroll = () => {
-    if (textareaRef.current && highlightsRef.current) {
-        const { scrollTop, scrollLeft } = textareaRef.current;
-        highlightsRef.current.scrollTop = scrollTop;
-        highlightsRef.current.scrollLeft = scrollLeft;
-        setTextareaScroll({ top: scrollTop, left: scrollLeft });
-    }
-  };
-
   const editorContent = useMemo(() => {
     if (!grammarSuggestions.length) return text;
 
@@ -100,7 +99,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     const parts: (string | React.ReactNode)[] = [];
     const sortedSuggestions = [...grammarSuggestions].sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
     
-    // Create a new array to avoid modifying the sorted one
     const uniqueSuggestions = sortedSuggestions.filter((suggestion, index, self) => 
         index === self.findIndex((s) => s.originalText === suggestion.originalText)
     );
@@ -109,43 +107,33 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         const startIndex = text.indexOf(suggestion.originalText, lastIndex);
         if (startIndex === -1) return;
 
-        // Add text before the suggestion
         if (startIndex > lastIndex) {
-            parts.push(text.substring(lastIndex, startIndex));
+            parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
         }
 
         const isSuggestionActive = activeGrammarSuggestion?.originalText === suggestion.originalText;
         const AnchorComponent = isSuggestionActive ? PopoverAnchor : 'span';
         
         parts.push(
-          <Popover open={isSuggestionActive} onOpenChange={(open) => !open && onDismiss(activeGrammarSuggestion!)} key={`popover-${i}`}>
-            <PopoverTrigger asChild>
+            <AnchorComponent key={`anchor-${i}`} className="relative">
                 <span 
                   className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
                   onClick={() => onSuggestionClick(suggestion)}
                 >
                     {suggestion.originalText}
                 </span>
-            </PopoverTrigger>
-            {isSuggestionActive && (
-              <SuggestionPopover
-                suggestion={activeGrammarSuggestion}
-                onAccept={() => onAccept(activeGrammarSuggestion)}
-                onDismiss={() => onDismiss(activeGrammarSuggestion)}
-              />
-            )}
-          </Popover>
+            </AnchorComponent>
         );
 
         lastIndex = startIndex + suggestion.originalText.length;
     });
 
     if (lastIndex < text.length) {
-        parts.push(text.substring(lastIndex));
+        parts.push(text.substring(lastIndex).replace(/\n/g, '\n\u200B'));
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, grammarSuggestions, activeGrammarSuggestion, onDismiss, onAccept, onSuggestionClick]);
+}, [text, grammarSuggestions, activeGrammarSuggestion, onSuggestionClick]);
 
 
   return (
@@ -169,6 +157,21 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
+           <div className="space-y-2">
+            <Label htmlFor="structure-select">Estrutura do Texto</Label>
+            <Select value={textStructure} onValueChange={(v) => onTextStructureChange(v as TextStructure)}>
+              <SelectTrigger id="structure-select" className="w-full">
+                <SelectValue placeholder="Selecione uma estrutura" />
+              </SelectTrigger>
+              <SelectContent>
+                {structures.map((s) => (
+                  <SelectItem key={s.value} value={s.value}>
+                    {s.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <div className="space-y-2">
             <Label htmlFor="tone-select">Tom do Poema</Label>
             <Select value={tone} onValueChange={onToneChange}>
@@ -184,47 +187,60 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               </SelectContent>
             </Select>
           </div>
-          <div className="space-y-2">
-            <Label>Modo de Sugestão de Tom</Label>
-            <RadioGroup
-              value={suggestionMode}
-              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-              className="flex items-center space-x-4 pt-2"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="gradual" id="gradual" />
-                <Label htmlFor="gradual" className="font-normal">Gradual</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="final" id="final" />
-                <Label htmlFor="final" className="font-normal">Final</Label>
-              </div>
-            </RadioGroup>
-          </div>
         </div>
+         <div className="grid gap-4">
+            <div className="space-y-2">
+              <Label>Modo de Sugestão de Tom</Label>
+              <RadioGroup
+                value={suggestionMode}
+                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+                className="flex items-center space-x-4 pt-2"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="gradual" id="gradual" />
+                  <Label htmlFor="gradual" className="font-normal">Gradual</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="final" id="final" />
+                  <Label htmlFor="final" className="font-normal">Final</Label>
+                </div>
+              </RadioGroup>
+            </div>
+          </div>
         
         <div className="relative">
-             <Textarea
-                 ref={textareaRef}
-                 value={text}
-                 onChange={(e) => onTextChange(e.target.value)}
-                 onScroll={handleScroll}
-                 onSelect={onCursorChange}
-                 onKeyDown={onCursorChange}
-                 placeholder="Escreva seu poema aqui..."
-                 className="min-h-[50vh] w-full resize-none bg-background p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20 text-transparent"
-                 aria-label="Editor de Poesia"
-             />
-             <div
-                 ref={highlightsRef}
-                 className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed text-foreground"
-                 style={{ wordWrap: 'break-word' }}
-                 aria-hidden="true"
-             >
-                 {editorContent}
-                  {/* Add a non-breaking space to ensure the div has the same height as the textarea */}
-                 &nbsp;
-             </div>
+            <Popover open={!!activeGrammarSuggestion} onOpenChange={(open) => !open && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
+                <div className="relative">
+                    <Textarea
+                        ref={textareaRef}
+                        value={text}
+                        onChange={(e) => onTextChange(e.target.value)}
+                        onSelect={onCursorChange}
+                        onKeyDown={onCursorChange}
+                        onClick={onCursorChange}
+                        placeholder="Escreva seu poema aqui..."
+                        className="min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                        style={{ WebkitTextFillColor: 'transparent' }}
+                        aria-label="Editor de Poesia"
+                    />
+                    <div
+                        className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 text-base leading-relaxed text-foreground"
+                         aria-hidden="true"
+                    >
+                        {editorContent}
+                        &nbsp;
+                    </div>
+                </div>
+
+                {activeGrammarSuggestion && (
+                  <SuggestionPopover
+                    suggestion={activeGrammarSuggestion}
+                    onAccept={() => onAccept(activeGrammarSuggestion)}
+                    onDismiss={() => onDismiss(activeGrammarSuggestion)}
+                    onResuggest={() => onResuggest(activeGrammarSuggestion)}
+                  />
+                )}
+            </Popover>
          </div>
 
         {suggestionMode === "final" && (
