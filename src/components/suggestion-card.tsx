@@ -34,7 +34,7 @@ export function SuggestionCard({
   const triggerText = isGrammar ? "Correção para:" : "Sugestão para:";
   const Icon = isGrammar ? BookText : Lightbulb;
 
-  const correctedTextParts = suggestion.correctedText.split(/(\s+)/);
+  const correctedTextParts = suggestion.correctedText.split(/(\s+|[,.;:!?])/g).filter(Boolean);
 
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -44,9 +44,9 @@ export function SuggestionCard({
       >
         <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
           <div className="flex w-full items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 overflow-hidden">
                <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-               <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
+               <span className="truncate">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
             </div>
             <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap">
               {isGrammar ? "Gramática" : "Tom"}
@@ -71,7 +71,9 @@ export function SuggestionCard({
                 <blockquote className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic">
                   <TooltipProvider>
                     {correctedTextParts.map((part, index) => {
-                       if (part.trim() === '') return <span key={index}>{part}</span>;
+                       const isWord = part.match(/\w/);
+                       if (!isWord) return <span key={index}>{part}</span>;
+                       
                        const isExcluded = excludedPhrases.includes(part);
                        return (
                         <Tooltip key={index}>
@@ -119,3 +121,5 @@ export function SuggestionCard({
     </Accordion>
   );
 }
+
+    

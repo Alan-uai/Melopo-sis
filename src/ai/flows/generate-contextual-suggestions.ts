@@ -21,15 +21,15 @@ const GenerateContextualSuggestionsInputSchema = z.object({
 });
 export type GenerateContextualSuggestionsInput = z.infer<typeof GenerateContextualSuggestionsInputSchema>;
 
+const SuggestionSchema = z.object({
+  originalText: z.string().describe('The original snippet of text from the poem.'),
+  correctedText: z.string().describe('The corrected text suggestion.'),
+  explanation: z.string().describe('The explanation for the suggestion based on the chosen tone and ABNT rules.'),
+  type: z.enum(['tone', 'grammar']).describe('The type of suggestion: "tone" for stylistic improvements or "grammar" for corrections.'),
+});
+
 const GenerateContextualSuggestionsOutputSchema = z.object({
-  suggestions: z.array(
-    z.object({
-      originalText: z.string().describe('The original snippet of text from the poem.'),
-      correctedText: z.string().describe('The corrected text suggestion.'),
-      explanation: z.string().describe('The explanation for the suggestion based on the chosen tone and ABNT rules.'),
-      type: z.enum(['tone', 'grammar']).describe('The type of suggestion: "tone" for stylistic improvements or "grammar" for corrections.'),
-    })
-  ).describe('An array of contextual suggestions for the poetry text.'),
+  suggestions: z.array(SuggestionSchema).describe('An array of contextual suggestions for the poetry text.'),
 });
 export type GenerateContextualSuggestionsOutput = z.infer<typeof GenerateContextualSuggestionsOutputSchema>;
 
@@ -57,8 +57,8 @@ A sua prioridade MÁXIMA é a gramática e a estrutura.
   - Para cada erro, crie uma sugestão com 'type: "grammar"'.
   - A 'explanation' deve esclarecer a regra da ABNT ou gramatical de forma concisa.
 
-- If 'suggestionType' is 'tone':
-  - ASSUMINDO que não há erros, foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
+- Se 'suggestionType' for 'tone':
+  - ASSUMINDO que não há erros, foque EXCLUSIVaMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
   - Para cada melhoria, crie uma sugestão com 'type: "tone"'.
   - A 'explanation' deve descrever como a alteração realça o tom especificado.
 
@@ -73,7 +73,7 @@ Para cada sugestão, você deve:
 - Manter a arte da escrita. Sugira apenas alterações que realmente aprimorem o texto. Se não houver sugestões, retorne um array vazio.
 
 {{#if excludedPhrases}}
-- IMPORTANTE: Ao gerar a sugestão para 'originalText', evite usar as seguintes palavras ou frases: {{#each excludedPhrases}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}. Encontre alternativas criativas.
+- IMPORTANTE: Ao gerar a sugestão para 'correctedText', evite usar as seguintes palavras ou frases: {{#each excludedPhrases}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}. Encontre alternativas criativas.
 {{/if}}
 
 Texto a ser analisado (estrutura de '{{textStructure}}'):
@@ -104,3 +104,5 @@ const generateContextualSuggestionsFlow = ai.defineFlow(
     return output || { suggestions: [] };
   }
 );
+
+    

@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode, TextStructure } from "@/app/page";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
@@ -79,6 +79,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     { value: 'poesia', label: 'Poesia' },
   ];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const highlightsRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
     getCursorPosition: () => {
@@ -97,32 +98,33 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }));
 
-  const editorContent = useMemo(() => {
-    if (!grammarSuggestions.length) return text.replace(/\n/g, '\n\u200B');
+  const syncScroll = useCallback(() => {
+    if (textareaRef.current && highlightsRef.current) {
+      highlightsRef.current.scrollTop = textareaRef.current.scrollTop;
+      highlightsRef.current.scrollLeft = textareaRef.current.scrollLeft;
+    }
+  }, []);
 
+  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    onTextChange(e.target.value);
+    syncScroll();
+  };
+
+  const editorContent = useMemo(() => {
     let lastIndex = 0;
     const parts: (string | React.ReactNode)[] = [];
-    
-    // Create a new array and sort it to avoid mutating the original prop
-    const sortedSuggestions = [...grammarSuggestions].sort((a, b) => {
-        const indexA = text.indexOf(a.originalText);
-        const indexB = text.indexOf(b.originalText);
-        // If a suggestion is not found, move it to the end
-        if (indexA === -1) return 1;
-        if (indexB === -1) return -1;
-        return indexA - indexB;
-    });
 
-    const uniqueSuggestions = sortedSuggestions.filter((suggestion, index, self) => 
-        // Keep only the first occurrence of each originalText
-        index === self.findIndex((s) => s.originalText === suggestion.originalText)
+    const uniqueSuggestions = grammarSuggestions.filter((suggestion, index, self) => 
+      index === self.findIndex((s) => s.originalText === suggestion.originalText)
     );
+    
+    uniqueSuggestions.sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
 
     uniqueSuggestions.forEach((suggestion, i) => {
         const startIndex = text.indexOf(suggestion.originalText, lastIndex);
         if (startIndex === -1) return;
 
-        // Add the text part before the suggestion
+        // Add text part before the suggestion
         if (startIndex > lastIndex) {
             parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
         }
@@ -144,9 +146,14 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         lastIndex = startIndex + suggestion.originalText.length;
     });
 
-    // Add the remaining text part after the last suggestion
+    // Add remaining text
     if (lastIndex < text.length) {
         parts.push(text.substring(lastIndex).replace(/\n/g, '\n\u200B'));
+    }
+
+    // When there's no text, we need a zero-width space to maintain height
+    if (text === "") {
+      return '\u200B';
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
@@ -234,25 +241,26 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         
         <div className="relative">
             <Popover open={!!activeGrammarSuggestion} onOpenChange={(open) => !open && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
-                <div className="relative">
+                <div className="relative grid">
                     <Textarea
                         ref={textareaRef}
                         value={text}
-                        onChange={(e) => onTextChange(e.target.value)}
+                        onChange={handleTextareaChange}
+                        onScroll={syncScroll}
                         onSelect={onCursorChange}
                         onKeyDown={onCursorChange}
                         onClick={onCursorChange}
                         placeholder="Escreva seu poema aqui..."
-                        className="min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
                         style={{ WebkitTextFillColor: 'transparent' }}
                         aria-label="Editor de Poesia"
                     />
                     <div
-                        className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground"
-                         aria-hidden="true"
+                        ref={highlightsRef}
+                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 font-body text-base leading-relaxed text-foreground"
+                        aria-hidden="true"
                     >
                         {editorContent}
-                        &nbsp;
                     </div>
                 </div>
 
@@ -271,7 +279,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <div className="flex justify-end">
             <Button onClick={onFinalSuggestion} disabled={isLoading}>
               <Wand2 className="mr-2 h-4 w-4" />
-              {isLoading ? "Gerando..." : "Gerar Sugestões de Tom"}
+              {isLoading ? "Gerando..." : "Gerar Sugestões"}
             </Button>
           </div>
         )}
@@ -281,3 +289,5 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+
+    
