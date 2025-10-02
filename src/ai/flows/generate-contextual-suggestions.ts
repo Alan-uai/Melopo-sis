@@ -45,9 +45,9 @@ const prompt = ai.definePrompt({
 
 Sua prioridade MÁXIMA é a gramática e a estrutura. Rima NÃO é um erro gramatical ou estrutural.
 
-1.  PRIMEIRO, verifique se há erros gramaticais, de ortografia, ou de estrutura (espaçamento, pontuação, estrofes) de acordo com as normas da ABNT para um(a) '{{textStructure}}'.
-    - Se encontrar erros, forneça APENAS sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone'. As sugestões de gramática NUNCA devem mencionar rima.
-2.  SE E SOMENTE SE não houver nenhum erro gramatical ou estrutural, você pode então prosseguir para analisar o tom.
+1.  **PRIMEIRO, FAÇA UMA VARREDURA COMPLETA DO TEXTO.** Analise o texto por inteiro em busca de TODOS os erros gramaticais, de ortografia, ou de estrutura (espaçamento, pontuação, estrofes) de acordo com as normas da ABNT para um(a) '{{textStructure}}'.
+    - Se encontrar erros, forneça uma lista com TODAS as sugestões do tipo 'grammar' que encontrar. NÃO forneça sugestões de 'tone' neste caso. As sugestões de gramática NUNCA devem mencionar rima.
+2.  **SE E SOMENTE SE não houver nenhum erro gramatical ou estrutural no texto inteiro,** você pode então prosseguir para analisar o tom.
 
 - Se 'suggestionType' for 'grammar':
   - Foque EXCLUSIVAMENTE em identificar erros gramaticais, de ortografia ou estrutura.
@@ -63,7 +63,7 @@ Sua prioridade MÁXIMA é a gramática e a estrutura. Rima NÃO é um erro grama
   - A 'explanation' deve descrever como a alteração realça o tom especificado (e a rima, se aplicável).
 
 - Se 'suggestionType' for 'all':
-  - Siga a regra de prioridade: Verifique a gramática e estrutura primeiro. Se houver erros, retorne apenas sugestões de 'grammar'. Se não houver erros, retorne apenas sugestões de 'tone'.
+  - Siga a regra de prioridade: Verifique a gramática e estrutura primeiro. Se houver erros, retorne uma lista com TODAS as sugestões de 'grammar'. Se não houver erros, retorne apenas sugestões de 'tone'.
 
 Para cada sugestão, você deve:
 - Identificar um trecho específico ('originalText').
@@ -104,5 +104,3 @@ const generateContextualSuggestionsFlow = ai.defineFlow(
     return output || { suggestions: [] };
   }
 );
-
-    

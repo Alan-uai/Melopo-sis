@@ -107,7 +107,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onTextChange(e.target.value);
-    syncScroll();
   };
 
   const editorContent = useMemo(() => {
@@ -221,7 +220,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 </div>
             </div>
             <div className="space-y-2">
-              <Label>Modo de Sugestão de Tom</Label>
+              <Label>Modo de Sugestão</Label>
               <RadioGroup
                 value={suggestionMode}
                 onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
@@ -251,8 +250,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         onKeyDown={onCursorChange}
                         onClick={onCursorChange}
                         placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
-                        style={{ WebkitTextFillColor: 'transparent' }}
+                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-background p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
                         aria-label="Editor de Poesia"
                     />
                     <div
@@ -289,5 +287,3 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
-
-    
