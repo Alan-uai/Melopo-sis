@@ -59,12 +59,19 @@ export default function Home() {
         excludedPhrases
       });
       return result;
-    } catch (error) {
+    } catch (error: any) {
       console.error(`Error generating suggestions:`, error);
+      
+      const errorMessage = error.message || "Houve um problema ao se comunicar com a IA.";
+      let errorDescription = "Por favor, tente novamente mais tarde.";
+
+      if (errorMessage.includes("503") || errorMessage.includes("model is overloaded")) {
+        errorDescription = "O modelo de IA está sobrecarregado no momento. Por favor, aguarde um pouco e tente novamente.";
+      }
+
       toast({
         title: `Erro ao Gerar Sugestões`,
-        description:
-          "Houve um problema ao se comunicar com a IA. Por favor, tente novamente mais tarde.",
+        description: errorDescription,
         variant: "destructive",
       });
       return { suggestions: [] };
@@ -85,16 +92,11 @@ export default function Home() {
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
     const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
     
-    // In gradual mode, we want to keep suggestions from other lines
     if (suggestionMode === "gradual") {
-        // Get existing suggestions that are NOT for the current line being analyzed
         const otherLinesSuggestions = grammarSuggestions.filter(s => !fetchText.includes(s.originalText));
-        
-        // Combine old suggestions from other lines with new suggestions for the current line
         const uniqueNewSuggestions = newGrammarSuggestions.filter(ns => !otherLinesSuggestions.some(os => os.originalText === ns.originalText));
         setGrammarSuggestions([...otherLinesSuggestions, ...uniqueNewSuggestions]);
         
-        // If the AI gives us grammar suggestions, we don't show tone ones.
         if (newGrammarSuggestions.length > 0) {
             setToneSuggestions([]);
         } else {
@@ -102,7 +104,6 @@ export default function Home() {
         }
     } else { // final mode
         setGrammarSuggestions(newGrammarSuggestions);
-        // If there are grammar suggestions for the full text, don't show tone suggestions
         if (newGrammarSuggestions.length > 0) {
             setToneSuggestions([]);
         } else {
@@ -137,15 +138,17 @@ export default function Home() {
     }
   };
   
-  // This is the trigger for Final Mode suggestions
   const handleGenerateFinalSuggestions = () => {
-    fetchAndSetSuggestions(text, tone, textStructure, rhyme);
+    if (suggestionMode === 'final' && text.trim()) {
+      fetchAndSetSuggestions(text, tone, textStructure, rhyme);
+    }
   };
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    if(suggestionMode === 'final' && text.trim()){
-       fetchAndSetSuggestions(text, newTone, textStructure, rhyme);
+    setToneSuggestions([]);
+    if (suggestionMode === 'final' && text.trim()) {
+      fetchAndSetSuggestions(text, newTone, textStructure, rhyme);
     }
   }
 
@@ -163,17 +166,21 @@ export default function Home() {
     }
   }
   
-  // Effect for Gradual mode based on cursor/text changes
   useEffect(() => {
     if (suggestionMode === 'gradual' && text.trim()) {
       const cursorPosition = editorRef.current?.getCursorPosition();
       const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
       debouncedFetchGradualSuggestions(currentLine, tone, textStructure, rhyme);
     }
-  // We only want this to run on text changes, not on every parameter change.
-  // The parameters are passed to the debounced function directly.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [text, suggestionMode]);
+
+  useEffect(() => {
+    if (suggestionMode === 'final' && text.trim()) {
+      fetchAndSetSuggestions(text, tone, textStructure, rhyme);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tone, textStructure, rhyme, suggestionMode, text]);
 
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
@@ -185,9 +192,8 @@ export default function Home() {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
         );
-        setActiveGrammarSuggestion(null); // Close popover
+        setActiveGrammarSuggestion(null);
         
-        // After accepting a grammar fix, re-check the line for tone suggestions
         if (suggestionMode === 'gradual') {
             const currentLine = newText.split('\n').find(line => line.includes(suggestionToAccept.correctedText)) ?? '';
             fetchAndSetSuggestions(currentLine, tone, textStructure, rhyme);
@@ -205,7 +211,7 @@ export default function Home() {
         setGrammarSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
         );
-        setActiveGrammarSuggestion(null); // Close popover
+        setActiveGrammarSuggestion(null);
     } else {
         setToneSuggestions((currentSuggestions) =>
           currentSuggestions.filter((s) => s.originalText !== suggestionToDismiss.originalText)
@@ -228,7 +234,6 @@ export default function Home() {
     });
 
     if (activeSuggestion) {
-      // Prevent re-setting the same suggestion to avoid re-renders
       if (activeGrammarSuggestion?.originalText !== activeSuggestion.originalText) {
         setActiveGrammarSuggestion(activeSuggestion);
       }
@@ -241,7 +246,6 @@ export default function Home() {
 
 
   useEffect(() => {
-    // A small debounce to avoid checking on every single key press instantly
     const handler = setTimeout(checkActiveSuggestion, 100);
     return () => clearTimeout(handler);
   }, [text, checkActiveSuggestion]);
@@ -268,12 +272,10 @@ export default function Home() {
             prev.map(s => s.originalText === originalText ? newSuggestion : s)
         );
         
-        // Also update the active suggestion if it's the one being resuggested
         if (activeGrammarSuggestion?.originalText === originalText) {
             setActiveGrammarSuggestion(newSuggestion);
         }
         
-        // Add the new corrected text to the exclusion list for the NEXT resuggestion
         setExcludedPhrasesMap(prev => ({
           ...prev,
           [originalText]: [...(prev[originalText] || []), newSuggestion.correctedText]
@@ -329,7 +331,7 @@ export default function Home() {
         />
         <SuggestionList
           suggestions={toneSuggestions}
-          isLoading={isLoading && grammarSuggestions.length === 0} // Only show skeleton if no grammar suggestions are present
+          isLoading={isLoading && grammarSuggestions.length === 0} 
           onAccept={handleAccept}
           onDismiss={handleDismiss}
           onResuggest={handleResuggest}
@@ -343,3 +345,4 @@ export default function Home() {
     
 
     
+
