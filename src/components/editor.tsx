@@ -22,7 +22,8 @@ import React, { useMemo, useRef, useImperativeHandle, forwardRef } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverAnchor, PopoverTrigger } from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverAnchor } from "@/components/ui/popover";
+import { Checkbox } from "./ui/checkbox";
 
 interface EditorProps {
   text: string;
@@ -33,6 +34,8 @@ interface EditorProps {
   onToneChange: (newTone: string) => void;
   textStructure: TextStructure;
   onTextStructureChange: (newStructure: TextStructure) => void;
+  rhyme: boolean;
+  onRhymeChange: (rhyme: boolean) => void;
   grammarSuggestions: Suggestion[];
   activeGrammarSuggestion: Suggestion | null;
   onAccept: (suggestion: Suggestion) => void;
@@ -58,6 +61,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onToneChange,
   textStructure,
   onTextStructureChange,
+  rhyme,
+  onRhymeChange,
   grammarSuggestions,
   activeGrammarSuggestion,
   onAccept,
@@ -93,13 +98,23 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   }));
 
   const editorContent = useMemo(() => {
-    if (!grammarSuggestions.length) return text;
+    if (!grammarSuggestions.length) return text.replace(/\n/g, '\n\u200B');
 
     let lastIndex = 0;
     const parts: (string | React.ReactNode)[] = [];
-    const sortedSuggestions = [...grammarSuggestions].sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
     
+    // Create a new array and sort it to avoid mutating the original prop
+    const sortedSuggestions = [...grammarSuggestions].sort((a, b) => {
+        const indexA = text.indexOf(a.originalText);
+        const indexB = text.indexOf(b.originalText);
+        // If a suggestion is not found, move it to the end
+        if (indexA === -1) return 1;
+        if (indexB === -1) return -1;
+        return indexA - indexB;
+    });
+
     const uniqueSuggestions = sortedSuggestions.filter((suggestion, index, self) => 
+        // Keep only the first occurrence of each originalText
         index === self.findIndex((s) => s.originalText === suggestion.originalText)
     );
 
@@ -107,6 +122,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         const startIndex = text.indexOf(suggestion.originalText, lastIndex);
         if (startIndex === -1) return;
 
+        // Add the text part before the suggestion
         if (startIndex > lastIndex) {
             parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
         }
@@ -120,7 +136,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                   className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
                   onClick={() => onSuggestionClick(suggestion)}
                 >
-                    {suggestion.originalText}
+                    {suggestion.originalText.replace(/\n/g, '\n\u200B')}
                 </span>
             </AnchorComponent>
         );
@@ -128,6 +144,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         lastIndex = startIndex + suggestion.originalText.length;
     });
 
+    // Add the remaining text part after the last suggestion
     if (lastIndex < text.length) {
         parts.push(text.substring(lastIndex).replace(/\n/g, '\n\u200B'));
     }
@@ -143,7 +160,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <div className="flex items-center gap-3">
             <Feather className="h-8 w-8 text-primary" />
             <CardTitle className="font-headline text-3xl">
-              Melopoësis
+              Verso Correto
             </CardTitle>
           </div>
           {isLoading && (
@@ -188,7 +205,14 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </Select>
           </div>
         </div>
-         <div className="grid gap-4">
+
+        <div className="space-y-4">
+            <div className="space-y-2">
+                <div className="flex items-center space-x-2">
+                    <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={onRhymeChange} />
+                    <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
+                </div>
+            </div>
             <div className="space-y-2">
               <Label>Modo de Sugestão de Tom</Label>
               <RadioGroup
@@ -219,12 +243,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         onKeyDown={onCursorChange}
                         onClick={onCursorChange}
                         placeholder="Escreva seu poema aqui..."
-                        className="min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                        className="min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
                         style={{ WebkitTextFillColor: 'transparent' }}
                         aria-label="Editor de Poesia"
                     />
                     <div
-                        className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 text-base leading-relaxed text-foreground"
+                        className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground"
                          aria-hidden="true"
                     >
                         {editorContent}

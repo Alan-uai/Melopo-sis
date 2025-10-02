@@ -27,6 +27,7 @@ export default function Home() {
   const [text, setText] = useState<string>("");
   const [tone, setTone] = useState<string>("Melancólico");
   const [textStructure, setTextStructure] = useState<TextStructure>("poema");
+  const [rhyme, setRhyme] = useState<boolean>(false);
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,6 +41,7 @@ export default function Home() {
     currentText: string, 
     currentTone: string,
     currentStructure: TextStructure,
+    currentRhyme: boolean,
     suggestionType: 'all' | 'grammar' | 'tone',
     excludedPhrases?: string[]
   ): Promise<GenerateContextualSuggestionsOutput> => {
@@ -52,6 +54,7 @@ export default function Home() {
         text: currentText, 
         tone: currentTone,
         textStructure: currentStructure,
+        rhyme: currentRhyme,
         suggestionType,
         excludedPhrases
       });
@@ -68,7 +71,7 @@ export default function Home() {
     }
   }, [toast]);
 
-  const fetchAllSuggestions = useCallback(async (currentText: string, currentTone: string, currentStructure: TextStructure) => {
+  const fetchAllSuggestions = useCallback(async (currentText: string, currentTone: string, currentStructure: TextStructure, currentRhyme: boolean) => {
     if (!currentText.trim()) {
         setGrammarSuggestions([]);
         setToneSuggestions([]);
@@ -77,7 +80,7 @@ export default function Home() {
 
     setIsLoading(true);
     // Request 'all' suggestions. The AI prompt will prioritize grammar.
-    const result = await generateSuggestions(currentText, currentTone, currentStructure, 'all');
+    const result = await generateSuggestions(currentText, currentTone, currentStructure, currentRhyme, 'all');
 
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
     const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
@@ -119,11 +122,11 @@ export default function Home() {
 
     if (suggestionMode === "gradual") {
       if (isPaste) {
-        debouncedFetchAllSuggestions(newText, tone, textStructure);
+        debouncedFetchAllSuggestions(newText, tone, textStructure, rhyme);
       } else {
         const cursorPosition = editorRef.current?.getCursorPosition();
         const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
-        debouncedFetchAllSuggestions(currentLine, tone, textStructure);
+        debouncedFetchAllSuggestions(currentLine, tone, textStructure, rhyme);
       }
     } else {
       if (toneSuggestions.length > 0) setToneSuggestions([]);
@@ -139,34 +142,38 @@ export default function Home() {
   };
   
   const handleGenerateFinalToneSuggestions = () => {
-    fetchAllSuggestions(text, tone, textStructure);
+    fetchAllSuggestions(text, tone, textStructure, rhyme);
   };
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    setToneSuggestions([]);
-    setActiveGrammarSuggestion(null);
+    setToneSuggestions([]); // Clear old suggestions
   }
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
     setGrammarSuggestions([]);
     setToneSuggestions([]);
-    setActiveGrammarSuggestion(null);
   }
 
-  // This effect will run when the tone or suggestion mode changes.
+  const handleRhymeChange = (newRhyme: boolean) => {
+    setRhyme(newRhyme);
+    setGrammarSuggestions([]);
+    setToneSuggestions([]);
+  }
+  
+  // This effect will run when the tone, structure, rhyme or suggestion mode changes.
   useEffect(() => {
     if (!text.trim()) return;
   
     if (suggestionMode === 'final') {
-      fetchAllSuggestions(text, tone, textStructure);
+      fetchAllSuggestions(text, tone, textStructure, rhyme);
     } else if (suggestionMode === 'gradual') {
       const cursorPosition = editorRef.current?.getCursorPosition();
       const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
-      fetchAllSuggestions(currentLine, tone, textStructure);
+      fetchAllSuggestions(currentLine, tone, textStructure, rhyme);
     }
-  }, [tone, textStructure, suggestionMode, text, fetchAllSuggestions]);
+  }, [tone, textStructure, rhyme, suggestionMode, text, fetchAllSuggestions]);
 
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
@@ -181,7 +188,7 @@ export default function Home() {
         setActiveGrammarSuggestion(null); // Close popover
         if (suggestionMode === 'gradual') {
             const currentLine = newText.split('\n').find(line => line.includes(suggestionToAccept.correctedText)) ?? '';
-            fetchAllSuggestions(currentLine, tone, textStructure);
+            fetchAllSuggestions(currentLine, tone, textStructure, rhyme);
         }
     } else {
         setToneSuggestions((currentSuggestions) =>
@@ -245,6 +252,7 @@ export default function Home() {
         suggestionToResuggest.originalText,
         tone,
         textStructure,
+        rhyme,
         suggestionToResuggest.type,
         [...excludedPhrases, suggestionToResuggest.correctedText]
     );
@@ -299,6 +307,8 @@ export default function Home() {
           onToneChange={handleToneChange}
           textStructure={textStructure}
           onTextStructureChange={handleTextStructureChange}
+          rhyme={rhyme}
+          onRhymeChange={handleRhymeChange}
           grammarSuggestions={grammarSuggestions}
           activeGrammarSuggestion={activeGrammarSuggestion}
           onAccept={handleAccept}
@@ -306,7 +316,7 @@ export default function Home() {
           onResuggest={handleResuggest}
           suggestionMode={suggestionMode}
           onSuggestionModeChange={handleSuggestionModeChange}
-  onFinalSuggestion={handleGenerateFinalToneSuggestions}
+          onFinalSuggestion={handleGenerateFinalToneSuggestions}
           onSuggestionClick={setActiveGrammarSuggestion}
         />
         <SuggestionList

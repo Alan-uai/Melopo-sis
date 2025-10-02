@@ -17,6 +17,7 @@ const GenerateContextualSuggestionsInputSchema = z.object({
   suggestionType: z.enum(['grammar', 'tone', 'all']).describe('The type of suggestions to generate.'),
   excludedPhrases: z.array(z.string()).optional().describe('A list of phrases or words to avoid in the new suggestions.'),
   textStructure: z.enum(['poesia', 'poema']).describe('The structure of the text (Poesia or Poema) to follow ABNT rules for.'),
+  rhyme: z.boolean().describe('Whether the suggestions should enforce rhymes.'),
 });
 export type GenerateContextualSuggestionsInput = z.infer<typeof GenerateContextualSuggestionsInputSchema>;
 
@@ -41,6 +42,10 @@ const prompt = ai.definePrompt({
   input: {schema: GenerateContextualSuggestionsInputSchema},
   output: {schema: GenerateContextualSuggestionsOutputSchema},
   prompt: `Você é um assistente de IA especialista em literatura brasileira e nas normas da ABNT. Sua tarefa é analisar um texto e fornecer sugestões para aprimorá-lo, considerando a estrutura de um(a) '{{textStructure}}'.
+
+{{#if rhyme}}
+- REQUISITO ADICIONAL: O texto DEVE rimar. Todas as suas sugestões, tanto de gramática quanto de tom, devem introduzir, manter ou aprimorar o esquema de rimas do texto.
+{{/if}}
 
 A sua prioridade MÁXIMA é a gramática e a estrutura.
 1. PRIMEIRO, verifique se há erros gramaticais, de ortografia, ou de estrutura (espaçamento, pontuação, estrofes) de acordo com as normas da ABNT para um(a) '{{textStructure}}'.
