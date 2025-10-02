@@ -176,7 +176,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
         
-        <Popover open={!!activeGrammarSuggestion}>
+        <Popover open={!!activeGrammarSuggestion} onOpenChange={(open) => !open && onDismiss(activeGrammarSuggestion!)}>
            <div className="relative">
                 <Textarea
                     ref={textareaRef}
@@ -185,11 +185,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                     onSelect={onCursorChange}
                     onKeyDown={onCursorChange}
                     placeholder="Escreva seu poema aqui..."
-                    className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20 text-transparent"
+                    className="min-h-[50vh] w-full resize-none bg-background p-4 text-base leading-relaxed caret-foreground selection:bg-primary/20"
                     aria-label="Editor de Poesia"
                 />
                 <div
-                    className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed"
+                    className="pointer-events-none absolute inset-0 min-h-[50vh] w-full resize-none whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 text-base leading-relaxed text-transparent"
                     style={{ wordWrap: 'break-word' }}
                     aria-hidden="true"
                 >
@@ -221,4 +221,3 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
-    
