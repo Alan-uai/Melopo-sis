@@ -250,12 +250,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         onKeyDown={onCursorChange}
                         onClick={onCursorChange}
                         placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-background p-4 font-body text-base leading-relaxed caret-foreground selection:bg-primary/20"
+                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20"
                         aria-label="Editor de Poesia"
                     />
                     <div
                         ref={highlightsRef}
-                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-transparent p-4 font-body text-base leading-relaxed text-foreground"
+                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-background p-4 font-body text-base leading-relaxed text-foreground"
                         aria-hidden="true"
                     >
                         {editorContent}
