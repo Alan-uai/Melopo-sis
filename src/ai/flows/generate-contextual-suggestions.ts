@@ -15,6 +15,7 @@ const GenerateContextualSuggestionsInputSchema = z.object({
   text: z.string().describe('The poetry text to provide suggestions for.'),
   tone: z.string().describe('The desired tone for the poem (e.g., Melancholic, Romantic).'),
   suggestionType: z.enum(['grammar', 'tone', 'all']).describe('The type of suggestions to generate.'),
+  excludedPhrases: z.array(z.string()).optional().describe('A list of phrases or words to avoid in the new suggestions.'),
 });
 export type GenerateContextualSuggestionsInput = z.infer<typeof GenerateContextualSuggestionsInputSchema>;
 
@@ -65,6 +66,10 @@ Para cada sugestão, você deve:
 - Definir o campo 'type' corretamente ('grammar' ou 'tone').
 - Manter a arte da poesia. Sugira apenas alterações que realmente aprimorem o poema. Se não houver sugestões, retorne um array vazio.
 
+{{#if excludedPhrases}}
+- IMPORTANTE: Ao gerar a sugestão para 'originalText', evite usar as seguintes palavras ou frases: {{#each excludedPhrases}}"{{this}}"{{#unless @last}}, {{/unless}}{{/each}}. Encontre alternativas criativas.
+{{/if}}
+
 Poema ou linha a ser analisado:
 "{{text}}"
 
@@ -89,6 +94,10 @@ const generateContextualSuggestionsFlow = ai.defineFlow(
       return { suggestions: [] };
     }
     const {output} = await prompt(input);
+    // Ensure the output always contains the original text to allow mapping.
+    if (output && output.suggestions.length > 0 && !output.suggestions[0].originalText) {
+      output.suggestions[0].originalText = input.text;
+    }
     return output!;
   }
 );

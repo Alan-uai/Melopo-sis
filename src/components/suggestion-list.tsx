@@ -16,6 +16,9 @@ interface SuggestionListProps {
   isLoading: boolean;
   onAccept: (suggestion: Suggestion) => void;
   onDismiss: (suggestion: Suggestion) => void;
+  onResuggest: (suggestion: Suggestion) => void;
+  onToggleExcludedPhrase: (originalText: string, phrase: string) => void;
+  excludedPhrasesMap: Record<string, string[]>;
 }
 
 export function SuggestionList({
@@ -23,6 +26,9 @@ export function SuggestionList({
   isLoading,
   onAccept,
   onDismiss,
+  onResuggest,
+  onToggleExcludedPhrase,
+  excludedPhrasesMap,
 }: SuggestionListProps) {
   return (
     <Card className="w-full shadow-lg">
@@ -55,6 +61,9 @@ export function SuggestionList({
                   suggestion={suggestion}
                   onAccept={() => onAccept(suggestion)}
                   onDismiss={() => onDismiss(suggestion)}
+                  onResuggest={() => onResuggest(suggestion)}
+                  onToggleExcludedPhrase={(phrase) => onToggleExcludedPhrase(suggestion.originalText, phrase)}
+                  excludedPhrases={excludedPhrasesMap[suggestion.originalText] || []}
                 />
               ))}
             </div>

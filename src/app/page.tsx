@@ -31,11 +31,13 @@ export default function Home() {
   const [activeGrammarSuggestion, setActiveGrammarSuggestion] = useState<Suggestion | null>(null);
   const { toast } = useToast();
   const editorRef = useRef<EditorRef>(null);
+  const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
   const generateSuggestions = useCallback(async (
     currentText: string, 
     currentTone: string,
-    suggestionType: 'all' | 'grammar' | 'tone'
+    suggestionType: 'all' | 'grammar' | 'tone',
+    excludedPhrases?: string[]
   ): Promise<GenerateContextualSuggestionsOutput> => {
     if (!currentText.trim()) {
       return { suggestions: [] };
@@ -45,7 +47,8 @@ export default function Home() {
       const result = await generateContextualSuggestions({ 
         text: currentText, 
         tone: currentTone, 
-        suggestionType
+        suggestionType,
+        excludedPhrases
       });
       return result;
     } catch (error) {
@@ -144,17 +147,16 @@ export default function Home() {
 
   // This effect will run when the tone or suggestion mode changes.
   useEffect(() => {
-    // If there's text and we are in "final" mode, fetch suggestions for the whole text.
-    if (text.trim() && suggestionMode === 'final') {
+    if (!text.trim()) return;
+  
+    if (suggestionMode === 'final') {
       fetchAllSuggestions(text, tone);
-    } 
-    // If in gradual mode, fetch for the current line
-    else if (text.trim() && suggestionMode === 'gradual') {
+    } else if (suggestionMode === 'gradual') {
       const cursorPosition = editorRef.current?.getCursorPosition();
       const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
       fetchAllSuggestions(currentLine, tone);
     }
-  }, [tone, suggestionMode]);
+  }, [tone, suggestionMode, text, fetchAllSuggestions]);
 
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
@@ -224,6 +226,49 @@ export default function Home() {
     const handler = setTimeout(checkActiveSuggestion, 100);
     return () => clearTimeout(handler);
   }, [text, checkActiveSuggestion]);
+
+  const handleResuggest = async (suggestionToResuggest: Suggestion) => {
+    setIsLoading(true);
+    const excludedPhrases = excludedPhrasesMap[suggestionToResuggest.originalText] || [];
+    
+    const result = await generateSuggestions(
+        suggestionToResuggest.originalText,
+        tone,
+        suggestionToResuggest.type,
+        excludedPhrases
+    );
+
+    if (result.suggestions.length > 0) {
+        const newSuggestion = result.suggestions[0];
+        if (suggestionToResuggest.type === 'grammar') {
+            setGrammarSuggestions(prev => 
+                prev.map(s => s.originalText === newSuggestion.originalText ? newSuggestion : s)
+            );
+        } else {
+            setToneSuggestions(prev => 
+                prev.map(s => s.originalText === newSuggestion.originalText ? newSuggestion : s)
+            );
+        }
+    } else {
+        toast({
+            title: "Nenhuma nova sugestão",
+            description: "A IA não conseguiu encontrar uma alternativa. Tente remover algumas palavras excluídas.",
+            variant: "default",
+        });
+    }
+
+    setIsLoading(false);
+  };
+  
+  const handleToggleExcludedPhrase = (originalText: string, phrase: string) => {
+    setExcludedPhrasesMap(prev => {
+        const currentExcluded = prev[originalText] || [];
+        const newExcluded = currentExcluded.includes(phrase)
+            ? currentExcluded.filter(p => p !== phrase)
+            : [...currentExcluded, phrase];
+        return { ...prev, [originalText]: newExcluded };
+    });
+  };
   
   
   return (
@@ -251,6 +296,9 @@ export default function Home() {
           isLoading={isLoading && grammarSuggestions.length === 0} // Only show skeleton if no grammar suggestions are present
           onAccept={handleAccept}
           onDismiss={handleDismiss}
+          onResuggest={handleResuggest}
+          onToggleExcludedPhrase={handleToggleExcludedPhrase}
+          excludedPhrasesMap={excludedPhrasesMap}
         />
       </div>
     </div>

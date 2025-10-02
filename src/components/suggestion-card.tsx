@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, X, BookText, Lightbulb } from "lucide-react";
+import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -11,21 +11,30 @@ import { Button } from "@/components/ui/button";
 import type { Suggestion } from "@/app/page";
 import { Card, CardContent, CardDescription, CardHeader } from "./ui/card";
 import { Badge } from "./ui/badge";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 interface SuggestionCardProps {
   suggestion: Suggestion;
   onAccept: () => void;
   onDismiss: () => void;
+  onResuggest: () => void;
+  onToggleExcludedPhrase: (phrase: string) => void;
+  excludedPhrases: string[];
 }
 
 export function SuggestionCard({
   suggestion,
   onAccept,
   onDismiss,
+  onResuggest,
+  onToggleExcludedPhrase,
+  excludedPhrases = [],
 }: SuggestionCardProps) {
   const isGrammar = suggestion.type === 'grammar';
   const triggerText = isGrammar ? "Correção para:" : "Sugestão para:";
   const Icon = isGrammar ? BookText : Lightbulb;
+
+  const correctedTextParts = suggestion.correctedText.split(/(\s+)/);
 
   return (
     <Accordion type="single" collapsible className="w-full">
@@ -51,11 +60,38 @@ export function SuggestionCard({
             </p>
             <Card className="bg-background/80">
               <CardHeader>
-                <CardDescription>Texto sugerido:</CardDescription>
+                <CardDescription>
+                  Texto sugerido:
+                  <span className="text-xs italic text-muted-foreground/80 ml-2">
+                    (clique em uma palavra para excluí-la da próxima sugestão)
+                  </span>
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 <blockquote className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic">
-                  {suggestion.correctedText}
+                  <TooltipProvider>
+                    {correctedTextParts.map((part, index) => {
+                       if (part.trim() === '') return <span key={index}>{part}</span>;
+                       const isExcluded = excludedPhrases.includes(part);
+                       return (
+                        <Tooltip key={index}>
+                          <TooltipTrigger asChild>
+                            <button 
+                                onClick={() => onToggleExcludedPhrase(part)}
+                                className={`rounded px-0.5 py-0 ${isExcluded ? 'line-through bg-destructive/20' : ''} transition-colors hover:bg-accent/20`}
+                            >
+                                {part}
+                            </button>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>
+                              {isExcluded ? "Incluir" : "Excluir"} esta palavra da próxima sugestão
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                       )
+                    })}
+                  </TooltipProvider>
                 </blockquote>
               </CardContent>
             </Card>
@@ -63,6 +99,10 @@ export function SuggestionCard({
               <Button variant="ghost" size="sm" onClick={onDismiss}>
                 <X className="mr-2 h-4 w-4" />
                 Dispensar
+              </Button>
+               <Button variant="outline" size="sm" onClick={onResuggest}>
+                <RefreshCw className="mr-2 h-4 w-4" />
+                Resugerir
               </Button>
               <Button
                 size="sm"
