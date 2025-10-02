@@ -35,6 +35,7 @@ export default function Home() {
   const generateSuggestions = useCallback(async (
     currentText: string, 
     currentTone: string,
+    suggestionType: 'all' | 'grammar' | 'tone'
   ): Promise<GenerateContextualSuggestionsOutput> => {
     if (!currentText.trim()) {
       return { suggestions: [] };
@@ -44,7 +45,7 @@ export default function Home() {
       const result = await generateContextualSuggestions({ 
         text: currentText, 
         tone: currentTone, 
-        suggestionType: 'all' 
+        suggestionType
       });
       return result;
     } catch (error) {
@@ -61,37 +62,42 @@ export default function Home() {
 
   const fetchAllSuggestions = useCallback(async (currentText: string, currentTone: string) => {
     if (!currentText.trim()) {
-      setGrammarSuggestions([]);
-      setToneSuggestions([]);
-      return;
+        setGrammarSuggestions([]);
+        setToneSuggestions([]);
+        return;
     }
 
     setIsLoading(true);
-    const result = await generateSuggestions(currentText, currentTone);
+    // Request 'all' suggestions. The AI prompt will prioritize grammar.
+    const result = await generateSuggestions(currentText, currentTone, 'all');
 
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
     const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
     
-    // Logic to merge line-by-line suggestions with existing ones.
-    setGrammarSuggestions(prevSuggestions => {
-      const isFullTextCheck = currentText === text;
-      // If checking the full text, replace all suggestions.
-      if (isFullTextCheck) {
-          return newGrammarSuggestions;
-      }
-      
-      // If checking a single line, keep suggestions from other lines.
-      const otherLinesSuggestions = prevSuggestions.filter(s => !currentText.includes(s.originalText));
-      const uniqueNewSuggestions = newGrammarSuggestions.filter(ns => !otherLinesSuggestions.some(os => os.originalText === ns.originalText));
-      
-      return [...otherLinesSuggestions, ...uniqueNewSuggestions];
-    });
+    if (suggestionMode === "gradual") {
+        const otherLinesSuggestions = grammarSuggestions.filter(s => !currentText.includes(s.originalText));
+        const uniqueNewSuggestions = newGrammarSuggestions.filter(ns => !otherLinesSuggestions.some(os => os.originalText === ns.originalText));
+        setGrammarSuggestions([...otherLinesSuggestions, ...uniqueNewSuggestions]);
+        
+        // If there are grammar suggestions for the current line, don't show tone suggestions
+        if (newGrammarSuggestions.length > 0) {
+            setToneSuggestions([]);
+        } else {
+            setToneSuggestions(newToneSuggestions);
+        }
+    } else { // final mode
+        setGrammarSuggestions(newGrammarSuggestions);
+         // If there are grammar suggestions for the full text, don't show tone suggestions
+        if (newGrammarSuggestions.length > 0) {
+            setToneSuggestions([]);
+        } else {
+            setToneSuggestions(newToneSuggestions);
+        }
+    }
 
-
-    setToneSuggestions(newToneSuggestions);
 
     setIsLoading(false);
-  }, [generateSuggestions, text]);
+  }, [generateSuggestions, suggestionMode, grammarSuggestions]);
 
 
   const debouncedFetchAllSuggestions = useCallback(debounce(fetchAllSuggestions, 2000), [fetchAllSuggestions]);
@@ -113,6 +119,7 @@ export default function Home() {
       }
     } else {
       if (toneSuggestions.length > 0) setToneSuggestions([]);
+      if (grammarSuggestions.length > 0) setGrammarSuggestions([]);
     }
   };
 
@@ -121,31 +128,34 @@ export default function Home() {
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setActiveGrammarSuggestion(null);
-    if (mode === 'final' && text.trim()) {
-      fetchAllSuggestions(text, tone);
-    }
   };
-
+  
   const handleGenerateFinalToneSuggestions = () => {
     fetchAllSuggestions(text, tone);
   };
   
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
+    // Clear all suggestions to force a re-fetch with the new tone.
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setActiveGrammarSuggestion(null);
-    
-    if (text.trim()) {
-      if (suggestionMode === 'gradual') {
-        const cursorPosition = editorRef.current?.getCursorPosition();
-        const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
-        fetchAllSuggestions(currentLine, newTone);
-      } else {
-        fetchAllSuggestions(text, newTone);
-      }
-    }
   }
+
+  // This effect will run when the tone or suggestion mode changes.
+  useEffect(() => {
+    // If there's text and we are in "final" mode, fetch suggestions for the whole text.
+    if (text.trim() && suggestionMode === 'final') {
+      fetchAllSuggestions(text, tone);
+    } 
+    // If in gradual mode, fetch for the current line
+    else if (text.trim() && suggestionMode === 'gradual') {
+      const cursorPosition = editorRef.current?.getCursorPosition();
+      const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
+      fetchAllSuggestions(currentLine, tone);
+    }
+  }, [tone, suggestionMode]);
+
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
@@ -224,7 +234,7 @@ export default function Home() {
           text={text}
           onTextChange={handleTextChange}
           onCursorChange={checkActiveSuggestion}
-          isLoading={isLoading} // Only show global loader for tone suggestions
+          isLoading={isLoading} 
           tone={tone}
           onToneChange={handleToneChange}
           grammarSuggestions={grammarSuggestions}
@@ -238,7 +248,7 @@ export default function Home() {
         />
         <SuggestionList
           suggestions={toneSuggestions}
-          isLoading={isLoading}
+          isLoading={isLoading && grammarSuggestions.length === 0} // Only show skeleton if no grammar suggestions are present
           onAccept={handleAccept}
           onDismiss={handleDismiss}
         />
