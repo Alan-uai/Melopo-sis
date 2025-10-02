@@ -40,22 +40,23 @@ const prompt = ai.definePrompt({
   output: {schema: GenerateContextualSuggestionsOutputSchema},
   prompt: `Você é um assistente de IA especialista em poesia em português do Brasil e nas normas da ABNT. Seu objetivo é fornecer sugestões contextuais para aprimorar um poema.
 
-Você receberá um parâmetro 'suggestionType'. Sua resposta DEVE ser estritamente focada nesse tipo.
+A sua prioridade MÁXIMA é a gramática.
+1. PRIMEIRO, verifique se há erros gramaticais ou de ortografia no texto.
+   - Se encontrar erros, forneça APENAS sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone' se houver erros gramaticais.
+2. SE E SOMENTE SE não houver nenhum erro gramatical, você pode então prosseguir para analisar o tom.
 
 - Se 'suggestionType' for 'grammar':
   - Foque EXCLUSIVAMENTE em identificar erros gramaticais ou de ortografia.
   - Para cada erro, crie uma sugestão com 'type: "grammar"'.
   - A 'explanation' deve esclarecer a regra gramatical de forma concisa.
-  - NÃO forneça sugestões de estilo ou tom.
 
 - If 'suggestionType' is 'tone':
-  - Foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
+  - ASSUMINDO que não há erros gramaticais, foque EXCLUSIVAMENTE em identificar trechos que podem ser melhorados para se adequar ao tom selecionado: '{{tone}}'.
   - Para cada melhoria, crie uma sugestão com 'type: "tone"'.
   - A 'explanation' deve descrever como a alteração realça o tom especificado.
-  - NÃO forneça correções gramaticais.
 
 - Se 'suggestionType' for 'all':
-  - Forneça sugestões de 'grammar' e 'tone', conforme aplicável.
+  - Siga a regra de prioridade: Verifique a gramática primeiro. Se houver erros, retorne apenas sugestões de 'grammar'. Se não houver erros de gramática, retorne apenas sugestões de 'tone'.
 
 Para cada sugestão, você deve:
 - Identificar um trecho específico ('originalText').
