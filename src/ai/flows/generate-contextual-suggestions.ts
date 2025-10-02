@@ -100,10 +100,7 @@ const generateContextualSuggestionsFlow = ai.defineFlow(
       return { suggestions: [] };
     }
     const {output} = await prompt(input);
-    // Ensure the output always contains the original text to allow mapping.
-    if (output && output.suggestions.length > 0 && !output.suggestions[0].originalText) {
-      output.suggestions[0].originalText = input.text;
-    }
-    return output!;
+
+    return output || { suggestions: [] };
   }
 );
