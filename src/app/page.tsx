@@ -49,6 +49,7 @@ export default function Home() {
       return { suggestions: [] };
     }
   
+    setIsLoading(true);
     try {
       const result = await generateContextualSuggestions({ 
         text: currentText, 
@@ -75,18 +76,18 @@ export default function Home() {
         variant: "destructive",
       });
       return { suggestions: [] };
+    } finally {
+      setIsLoading(false);
     }
   }, [toast]);
   
-  const fetchAndSetSuggestions = useCallback(async (fetchText: string, currentTone: string, currentStructure: TextStructure, currentRhyme: boolean) => {
+  const fetchAndSetGradualSuggestions = useCallback(async (fetchText: string, currentTone: string, currentStructure: TextStructure, currentRhyme: boolean) => {
     if (!fetchText.trim()) {
         setGrammarSuggestions([]);
         setToneSuggestions([]);
         return;
     }
 
-    setIsLoading(true);
-    // Request 'all' suggestions. The AI prompt will prioritize grammar.
     const result = await generateSuggestions(fetchText, currentTone, currentStructure, currentRhyme, 'all');
     
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
@@ -98,13 +99,10 @@ export default function Home() {
     } else {
         setToneSuggestions(newToneSuggestions);
     }
-
-    setIsLoading(false);
   }, [generateSuggestions]);
 
 
-  const debouncedFetchGradualSuggestions = useCallback(debounce((...args: Parameters<typeof fetchAndSetSuggestions>) => fetchAndSetSuggestions(...args), 1500), [fetchAndSetSuggestions]);
-
+  const debouncedFetchGradualSuggestions = useCallback(debounce((...args: Parameters<typeof fetchAndSetGradualSuggestions>) => fetchAndSetGradualSuggestions(...args), 1500), [fetchAndSetGradualSuggestions]);
 
   const handleTextChange = (newText: string) => {
     setText(newText);
@@ -121,40 +119,47 @@ export default function Home() {
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setActiveGrammarSuggestion(null);
-    if(mode === 'final' && text.trim()){
-      fetchAndSetSuggestions(text, tone, textStructure, rhyme)
+  };
+  
+  const handleGenerateFinalSuggestions = async () => {
+    if (suggestionMode !== 'final' || !text.trim() || isLoading) return;
+
+    // Determine what to fetch: grammar first, then tone.
+    const suggestionType = grammarSuggestions.length === 0 ? 'all' : 'grammar';
+
+    const result = await generateSuggestions(text, tone, textStructure, rhyme, suggestionType);
+    
+    const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
+    const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
+
+    setGrammarSuggestions(newGrammarSuggestions);
+    
+    if (newGrammarSuggestions.length > 0) {
+      setToneSuggestions([]); // Prioritize grammar
+    } else {
+      setToneSuggestions(newToneSuggestions);
     }
   };
   
-  const handleGenerateFinalSuggestions = () => {
-    if (suggestionMode === 'final' && text.trim()) {
-      fetchAndSetSuggestions(text, tone, textStructure, rhyme);
-    }
-  };
-  
+  const handleConfigChange = () => {
+    setGrammarSuggestions([]);
+    setToneSuggestions([]);
+    setActiveGrammarSuggestion(null);
+  }
+
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    setToneSuggestions([]);
-    if (suggestionMode === 'final' && text.trim() && grammarSuggestions.length === 0) {
-      fetchAndSetSuggestions(text, newTone, textStructure, rhyme);
-    }
+    handleConfigChange();
   }
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
-    setGrammarSuggestions([]);
-    setToneSuggestions([]);
-    if(suggestionMode === 'final' && text.trim()){
-      fetchAndSetSuggestions(text, tone, newStructure, rhyme);
-    }
+    handleConfigChange();
   }
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
-    setToneSuggestions([]);
-     if(suggestionMode === 'final' && text.trim()){
-      fetchAndSetSuggestions(text, tone, textStructure, newRhyme);
-    }
+    handleConfigChange();
   }
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
@@ -220,7 +225,6 @@ export default function Home() {
   }, [text, checkActiveSuggestion]);
 
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
-    setIsLoading(true);
     const originalText = suggestionToResuggest.originalText;
     const excludedPhrases = [...(excludedPhrasesMap[originalText] || []), suggestionToResuggest.correctedText];
     
@@ -258,8 +262,6 @@ export default function Home() {
             variant: "default",
         });
     }
-
-    setIsLoading(false);
   };
   
   const handleToggleExcludedPhrase = (originalText: string, phrase: string) => {
@@ -314,6 +316,7 @@ export default function Home() {
     
 
     
+
 
 
 
