@@ -37,7 +37,7 @@ export function SuggestionCard({
   const correctedTextParts = suggestion.correctedText.split(/(\s+|[,.;:!?])/g).filter(Boolean);
 
   return (
-    <Accordion type="single" collapsible className="w-full">
+    <Accordion type="single" collapsible className="w-full" defaultValue={`item-${suggestion.originalText}`}>
       <AccordionItem
         value={`item-${suggestion.originalText}`}
         className="rounded-lg border-none bg-secondary/30"
@@ -121,5 +121,3 @@ export function SuggestionCard({
     </Accordion>
   );
 }
-
-    

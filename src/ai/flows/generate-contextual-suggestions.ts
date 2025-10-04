@@ -17,12 +17,12 @@ export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
 }
 
-const suggestionPrompt = ai.definePrompt({
-  name: 'suggestionPrompt',
+const grammarPrompt = ai.definePrompt({
+  name: 'grammarPrompt',
   input: { schema: SuggestionInputSchema },
   output: { schema: SuggestionOutputSchema },
   prompt: `
-    Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar um texto poético e fornecer uma lista completa de correções gramaticais e estruturais.
+    Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar o texto poético fornecido e retornar uma lista COMPLETA de correções gramaticais e estruturais.
 
     O processo DEVE seguir as seguintes etapas, EM ORDEM ESTRITA, DENTRO DE UMA ÚNICA EXECUÇÃO:
 
@@ -46,12 +46,32 @@ const suggestionPrompt = ai.definePrompt({
     - Se NENHUM erro for encontrado em nenhuma das etapas, retorne um array de sugestões vazio.
 
     IMPORTANTE:
-    - NÃO forneça sugestões de 'tone' (tom ou estilo) NESTA ETAPA. A sua resposta DEVE conter apenas sugestões do tipo 'grammar'. A análise de tom só será solicitada em uma chamada futura, separadamente.
+    - FOCO EXCLUSIVO: Sua resposta DEVE conter apenas sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone' (tom ou estilo) NESTA ETAPA.
     - Retorne a lista completa de TODOS os erros encontrados. Não omita nenhum.
 
     Formato da Saída:
     - Retorne um objeto JSON com uma chave "suggestions", que é um array de objetos de sugestão.
   `,
+});
+
+const tonePrompt = ai.definePrompt({
+  name: 'tonePrompt',
+  input: { schema: SuggestionInputSchema },
+  output: { schema: SuggestionOutputSchema },
+  prompt: `
+    Você é um especialista em estilo e tom poético. O texto a seguir já foi corrigido gramaticalmente.
+    Sua tarefa é fornecer sugestões de 'tone' (tom e estilo) para torná-lo mais impactante, alinhado com o tom desejado de '{{tone}}'.
+
+    - O texto a ser analisado é:
+    \`\`\`
+    {{{text}}}
+    \`\`\`
+    - Para cada sugestão, identifique o trecho original, forneça uma alternativa e explique o motivo da mudança de estilo.
+    - Se nenhum aprimoramento de tom for necessário, retorne um array de sugestões vazio.
+
+    Formato da Saída:
+    - Retorne um objeto JSON com uma chave "suggestions", que é um array de objetos de sugestão do tipo 'tone'.
+  `
 });
 
 const suggestionFlow = ai.defineFlow(
@@ -61,30 +81,20 @@ const suggestionFlow = ai.defineFlow(
     outputSchema: SuggestionOutputSchema,
   },
   async (input) => {
-    // Adiciona um log para depuração
-    console.log('Iniciando o fluxo com a entrada:', input);
-
     if (!input.text.trim()) {
-      console.log('Texto de entrada vazio, retornando sem sugestões.');
       return { suggestions: [] };
     }
 
     try {
       if (input.suggestionType === 'tone') {
-         const { output: toneOutput } = await ai.generate({
-            prompt: `O seguinte texto já foi corrigido gramaticalmente. Agora, forneça apenas sugestões de 'tone' (tom e estilo) para torná-lo mais impactante, alinhado com o tom desejado de '{{tone}}'. Texto: \`\`\`{{text}}\`\`\``,
-            model: 'googleai/gemini-2.5-flash',
-            output: { schema: SuggestionOutputSchema },
-         });
-         return toneOutput || { suggestions: [] };
+        const { output } = await tonePrompt(input);
+        return output || { suggestions: [] };
+      } else {
+        const { output } = await grammarPrompt(input);
+        return output || { suggestions: [] };
       }
-
-      const { output } = await suggestionPrompt(input);
-      console.log('Saída da IA recebida:', output);
-      return output || { suggestions: [] };
     } catch (e: any) {
-      console.error('Erro ao chamar o prompt da IA:', e);
-      // Lança o erro para que a camada de chamada (no cliente) possa tratá-lo
+      console.error(`Erro ao processar o tipo de sugestão '${input.suggestionType}':`, e);
       throw new Error(`Falha ao comunicar com o modelo de IA: ${e.message}`);
     }
   }

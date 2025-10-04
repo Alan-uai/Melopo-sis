@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
@@ -18,7 +18,6 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
   
-  // State for sequential correction flow
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
 
@@ -27,25 +26,51 @@ export default function Home() {
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
   const generateSuggestions = useCallback(async (
-    currentText: string,
-    currentTone: string,
-    currentStructure: TextStructure,
-    currentRhyme: boolean,
-    suggestionType: 'grammar' | 'tone',
-    excludedPhrases?: string[]
+    suggestionType: 'grammar' | 'tone'
   ) => {
     setIsLoading(true);
     try {
       const input: SuggestionInput = {
-        text: currentText,
-        tone: currentTone,
-        structure: currentStructure,
-        rhyme: currentRhyme,
+        text: text,
+        tone: tone,
+        structure: textStructure,
+        rhyme: rhyme,
         suggestionType: suggestionType,
-        excludedPhrases: excludedPhrases || [],
+        excludedPhrases: [], // Excluded phrases handled client-side for resuggestions for now
       };
       const result = await generateContextualSuggestions(input);
-      return result;
+      
+      if (suggestionType === 'grammar') {
+        setGrammarSuggestions(result.suggestions);
+        if (result.suggestions.length > 0) {
+          setCurrentSuggestionIndex(0);
+          toast({
+            title: "Correções Gramaticais Encontradas",
+            description: `Encontramos ${result.suggestions.length} correções. Siga o guia para revisá-las.`,
+          });
+        } else {
+            // If no grammar mistakes, we can inform the user or directly fetch tone suggestions
+            toast({
+              title: "Nenhuma Correção Gramatical Necessária",
+              description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
+            });
+            return { grammarSuggestionsFound: false };
+        }
+      } else { // tone
+        setToneSuggestions(result.suggestions);
+        if (result.suggestions.length > 0) {
+          toast({
+            title: "Sugestões de Tom e Estilo",
+            description: `Encontramos ${result.suggestions.length} sugestões para aprimorar seu poema.`,
+          });
+        } else {
+          toast({
+            title: "Nenhuma Sugestão de Estilo Encontrada",
+            description: "Seu texto parece ótimo!",
+          });
+        }
+      }
+      return { grammarSuggestionsFound: result.suggestions.length > 0 };
     } catch (error: any) {
       console.error("Failed to generate suggestions:", error);
       toast({
@@ -55,45 +80,26 @@ export default function Home() {
           ? "O modelo de IA está sobrecarregado. Por favor, tente novamente em alguns instantes."
           : "Não foi possível obter sugestões da IA. Verifique sua conexão ou tente novamente mais tarde.",
       });
-      return { suggestions: [] };
+      return { grammarSuggestionsFound: false };
     } finally {
       setIsLoading(false);
     }
-  }, [toast]);
+  }, [text, tone, textStructure, rhyme, toast]);
   
-  const handleGenerateFinalSuggestions = async () => {
+  const handleGenerateSuggestions = async () => {
     if (!text.trim() || isLoading) return;
 
-    // Reset previous suggestions
+    // Reset all previous suggestions
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
     // First, always check for grammar mistakes
-    const grammarResult = await generateSuggestions(text, tone, textStructure, rhyme, 'grammar');
+    const { grammarSuggestionsFound } = await generateSuggestions('grammar');
     
-    if (grammarResult.suggestions.length > 0) {
-      setGrammarSuggestions(grammarResult.suggestions);
-      setCurrentSuggestionIndex(0); // Start sequential correction from the first suggestion
-      toast({
-        title: "Correções Gramaticais Encontradas",
-        description: `Encontramos ${grammarResult.suggestions.length} correções. Siga o guia para revisá-las.`,
-      });
-    } else {
-      // If no grammar mistakes, fetch tone suggestions
-      const toneResult = await generateSuggestions(text, tone, textStructure, rhyme, 'tone');
-      if (toneResult.suggestions.length > 0) {
-        setToneSuggestions(toneResult.suggestions);
-        toast({
-          title: "Sugestões de Tom e Estilo",
-          description: `Encontramos ${toneResult.suggestions.length} sugestões para aprimorar seu poema.`,
-        });
-      } else {
-        toast({
-          title: "Nenhuma Sugestão Encontrada",
-          description: "Seu texto parece ótimo! Nenhuma correção ou sugestão foi necessária.",
-        });
-      }
+    // If no grammar mistakes were found, fetch tone suggestions
+    if (!grammarSuggestionsFound) {
+      await generateSuggestions('tone');
     }
   };
   
@@ -132,10 +138,7 @@ export default function Home() {
     handleConfigChange();
   }
 
-  const applyCorrectionAndAdvance = (originalText: string, correctedText: string) => {
-    setText(currentText => currentText.replace(originalText, correctedText));
-
-    // Move to the next suggestion or finish
+  const advanceToNextSuggestion = () => {
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
       setCurrentSuggestionIndex(currentSuggestionIndex + 1);
     } else {
@@ -143,31 +146,22 @@ export default function Home() {
       setCurrentSuggestionIndex(null);
       setGrammarSuggestions([]); // Clear list
       toast({
-        title: "Correções Aplicadas!",
-        description: "Todas as sugestões gramaticais foram resolvidas. Clique em 'Gerar Sugestões' novamente para obter dicas de estilo.",
+        title: "Correções Gramaticais Concluídas!",
+        description: "Clique em 'Gerar Sugestões' novamente para obter dicas de estilo.",
       });
     }
   };
 
-  const dismissAndAdvance = () => {
-     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
-      setCurrentSuggestionIndex(currentSuggestionIndex + 1);
-    } else {
-      // Last suggestion handled
-      setCurrentSuggestionIndex(null);
-      setGrammarSuggestions([]); // Clear list
-      toast({
-        title: "Correções Ignoradas",
-        description: "Todas as sugestões gramaticais foram resolvidas. Clique em 'Gerar Sugestões' novamente para obter dicas de estilo.",
-      });
-    }
-  }
+  const applyCorrection = (originalText: string, correctedText: string) => {
+    setText(currentText => currentText.replace(originalText, correctedText));
+    advanceToNextSuggestion();
+  };
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
     
     if (suggestionToAccept.type === 'grammar') {
-      applyCorrectionAndAdvance(suggestionToAccept.originalText, suggestionToAccept.correctedText);
+      applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
       // Handle tone suggestion acceptance (replace and remove from list)
       setText(text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
@@ -178,7 +172,7 @@ export default function Home() {
   const handleDismiss = (suggestionToDismiss: Suggestion) => {
     if (!suggestionToDismiss) return;
     if (suggestionToDismiss.type === 'grammar') {
-      dismissAndAdvance();
+      advanceToNextSuggestion();
     } else {
       // Handle tone suggestion dismissal (just remove from list)
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToDismiss.originalText));
@@ -186,36 +180,45 @@ export default function Home() {
   };
   
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
-    // This logic might need adjustment for the new sequential flow,
-    // as re-suggesting breaks the sequence. For now, it replaces the current suggestion.
     const excludedPhrases = excludedPhrasesMap[suggestionToResuggest.originalText] || [];
 
-    const result = await generateSuggestions(
-      suggestionToResuggest.originalText,
-      tone,
-      textStructure,
-      rhyme,
-      suggestionToResuggest.type,
-      excludedPhrases
-    );
+    setIsLoading(true);
+    try {
+        const input: SuggestionInput = {
+            text: suggestionToResuggest.originalText,
+            tone: tone,
+            structure: textStructure,
+            rhyme: rhyme,
+            suggestionType: suggestionToResuggest.type,
+            excludedPhrases: excludedPhrases,
+        };
+        const result = await generateContextualSuggestions(input);
+        const newSuggestion = result.suggestions[0];
 
-    const newSuggestion = result.suggestions[0];
-
-    if (newSuggestion) {
-        if (suggestionToResuggest.type === 'grammar' && currentSuggestionIndex !== null) {
-            setGrammarSuggestions(current => {
-              const newSuggestions = [...current];
-              newSuggestions[currentSuggestionIndex] = newSuggestion;
-              return newSuggestions;
-            });
+        if (newSuggestion) {
+            if (suggestionToResuggest.type === 'grammar' && currentSuggestionIndex !== null) {
+                setGrammarSuggestions(current => {
+                  const newSuggestions = [...current];
+                  newSuggestions[currentSuggestionIndex] = newSuggestion;
+                  return newSuggestions;
+                });
+            } else {
+                setToneSuggestions(current => current.map(s => s.originalText === suggestionToResuggest.originalText ? newSuggestion : s));
+            }
         } else {
-            setToneSuggestions(current => current.map(s => s.originalText === suggestionToResuggest.originalText ? newSuggestion : s));
+            toast({
+                variant: "destructive",
+                title: "Não foi possível gerar uma nova sugestão.",
+            });
         }
-    } else {
+    } catch (error: any) {
         toast({
             variant: "destructive",
-            title: "Não foi possível gerar uma nova sugestão.",
+            title: "Erro ao Resugerir",
+            description: "Não foi possível obter uma nova sugestão.",
         });
+    } finally {
+        setIsLoading(false);
     }
   };
   
@@ -250,11 +253,11 @@ export default function Home() {
           onResuggest={handleResuggest}
           suggestionMode={suggestionMode}
           onSuggestionModeChange={handleSuggestionModeChange}
-          onFinalSuggestion={handleGenerateFinalSuggestions}
+          onFinalSuggestion={handleGenerateSuggestions}
         />
         <SuggestionList
           suggestions={toneSuggestions}
-          isLoading={isLoading && grammarSuggestions.length === 0} 
+          isLoading={isLoading && grammarSuggestions.length === 0 && toneSuggestions.length === 0}
           onAccept={handleAccept}
           onDismiss={handleDismiss}
           onResuggest={handleResuggest}
