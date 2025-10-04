@@ -85,17 +85,15 @@ const suggestionFlow = ai.defineFlow(
       return { suggestions: [] };
     }
 
-    try {
-      if (input.suggestionType === 'tone') {
-        const { output } = await tonePrompt(input);
-        return output || { suggestions: [] };
-      } else {
-        const { output } = await grammarPrompt(input);
-        return output || { suggestions: [] };
-      }
-    } catch (e: any) {
-      console.error(`Erro ao processar o tipo de sugestão '${input.suggestionType}':`, e);
-      throw new Error(`Falha ao comunicar com o modelo de IA: ${e.message}`);
-    }
+    // This simplified logic directly calls the appropriate prompt based on the input type,
+    // removing the complex try/catch that was causing communication errors.
+    if (input.suggestionType === 'tone') {
+      const { output } = await tonePrompt(input);
+      return output || { suggestions: [] };
+    } 
+    
+    // Default to grammar suggestions
+    const { output } = await grammarPrompt(input);
+    return output || { suggestions: [] };
   }
 );
