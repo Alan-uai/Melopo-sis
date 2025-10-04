@@ -142,6 +142,8 @@ export default function Home() {
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
+    setGrammarSuggestions([]);
+    setToneSuggestions([]);
     if(suggestionMode === 'final' && text.trim()){
       fetchAndSetSuggestions(text, tone, newStructure, rhyme);
     }
@@ -149,6 +151,7 @@ export default function Home() {
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
+    setToneSuggestions([]);
      if(suggestionMode === 'final' && text.trim()){
       fetchAndSetSuggestions(text, tone, textStructure, newRhyme);
     }
@@ -164,11 +167,6 @@ export default function Home() {
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
         );
         setActiveGrammarSuggestion(null);
-        
-        if (suggestionMode === 'gradual') {
-            const currentLine = newText.split('\n').find(line => line.includes(suggestionToAccept.correctedText)) ?? '';
-            fetchAndSetSuggestions(currentLine, tone, textStructure, rhyme);
-        }
     } else {
         setToneSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
@@ -316,5 +314,6 @@ export default function Home() {
     
 
     
+
 
 
