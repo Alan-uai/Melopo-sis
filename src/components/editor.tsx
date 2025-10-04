@@ -22,7 +22,7 @@ import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback } 
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
-import { Popover, PopoverContent, PopoverAnchor } from "@/components/ui/popover";
+import { Popover, PopoverAnchor } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
 
 interface EditorProps {
@@ -215,7 +215,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         <div className="space-y-4">
             <div className="space-y-2">
                 <div className="flex items-center space-x-2">
-                    <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={onRhymeChange} />
+                    <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
                     <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
                 </div>
             </div>

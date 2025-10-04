@@ -92,27 +92,15 @@ export default function Home() {
     const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
     const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
     
-    if (suggestionMode === "gradual") {
-        const otherLinesSuggestions = grammarSuggestions.filter(s => !fetchText.includes(s.originalText));
-        const uniqueNewSuggestions = newGrammarSuggestions.filter(ns => !otherLinesSuggestions.some(os => os.originalText === ns.originalText));
-        setGrammarSuggestions([...otherLinesSuggestions, ...uniqueNewSuggestions]);
-        
-        if (newGrammarSuggestions.length > 0) {
-            setToneSuggestions([]);
-        } else {
-            setToneSuggestions(newToneSuggestions);
-        }
-    } else { // final mode
-        setGrammarSuggestions(newGrammarSuggestions);
-        if (newGrammarSuggestions.length > 0) {
-            setToneSuggestions([]);
-        } else {
-            setToneSuggestions(newToneSuggestions);
-        }
+    setGrammarSuggestions(newGrammarSuggestions);
+    if (newGrammarSuggestions.length > 0) {
+        setToneSuggestions([]);
+    } else {
+        setToneSuggestions(newToneSuggestions);
     }
 
     setIsLoading(false);
-  }, [generateSuggestions, suggestionMode, grammarSuggestions]);
+  }, [generateSuggestions]);
 
 
   const debouncedFetchGradualSuggestions = useCallback(debounce((...args: Parameters<typeof fetchAndSetSuggestions>) => fetchAndSetSuggestions(...args), 1500), [fetchAndSetSuggestions]);
@@ -147,7 +135,7 @@ export default function Home() {
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
     setToneSuggestions([]);
-    if (suggestionMode === 'final' && text.trim()) {
+    if (suggestionMode === 'final' && text.trim() && grammarSuggestions.length === 0) {
       fetchAndSetSuggestions(text, newTone, textStructure, rhyme);
     }
   }
@@ -165,23 +153,6 @@ export default function Home() {
       fetchAndSetSuggestions(text, tone, textStructure, newRhyme);
     }
   }
-  
-  useEffect(() => {
-    if (suggestionMode === 'gradual' && text.trim()) {
-      const cursorPosition = editorRef.current?.getCursorPosition();
-      const currentLine = editorRef.current?.getCurrentLine(text, cursorPosition) ?? "";
-      debouncedFetchGradualSuggestions(currentLine, tone, textStructure, rhyme);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text, suggestionMode]);
-
-  useEffect(() => {
-    if (suggestionMode === 'final' && text.trim()) {
-      fetchAndSetSuggestions(text, tone, textStructure, rhyme);
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tone, textStructure, rhyme, suggestionMode, text]);
-
 
   const handleAccept = (suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
@@ -345,4 +316,5 @@ export default function Home() {
     
 
     
+
 
