@@ -30,13 +30,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  experimental: {
-    // This is to allow cross-origin requests in development.
-    // This is required for the app to work in a cloud-based development environment.
-    allowedDevOrigins: [
-      'https://*.cluster-fsmcisrvfbb5cr5mvra3hr3qyg.cloudworkstations.dev',
-    ],
-  },
+  // This is to allow cross-origin requests in development.
+  // This is required for the app to work in a cloud-based development environment.
+  allowedDevOrigins: [
+    'https://*.cluster-fsmcisrvfbb5cr5mvra3hr3qyg.cloudworkstations.dev',
+  ],
+  experimental: {},
 };
 
 export default nextConfig;
