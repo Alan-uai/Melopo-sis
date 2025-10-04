@@ -5,7 +5,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import type { Suggestion } from "@/app/page";
+import type { Suggestion } from "@/ai/types";
 import { Separator } from "./ui/separator";
 
 interface SuggestionPopoverProps {

@@ -1,6 +1,6 @@
 "use client";
 
-import type { Suggestion } from "@/app/page";
+import type { Suggestion } from "@/ai/types";
 import {
   Card,
   CardContent,

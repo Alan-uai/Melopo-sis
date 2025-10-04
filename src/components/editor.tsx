@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/select";
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
-import type { Suggestion, SuggestionMode, TextStructure } from "@/app/page";
+import type { Suggestion, SuggestionMode, TextStructure } from "@/ai/types";
 import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
@@ -213,11 +213,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         </div>
 
         <div className="space-y-4">
-            <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                    <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
-                    <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
-                </div>
+            <div className="flex items-center space-x-2">
+                <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
+                <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
             </div>
             <div className="space-y-2">
               <Label>Modo de Sugestão</Label>

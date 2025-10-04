@@ -5,17 +5,8 @@ import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
-
-export type Suggestion = {
-  originalText: string;
-  correctedText: string;
-  explanation: string;
-  type: 'grammar' | 'tone';
-};
-
-export type SuggestionMode = "gradual" | "final";
-export type TextStructure = "poesia" | "poema";
-
+import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
+import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 
 // Debounce function
 function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
@@ -42,15 +33,38 @@ export default function Home() {
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
   const generateSuggestions = useCallback(async (
-    currentText: string, 
+    currentText: string,
     currentTone: string,
     currentStructure: TextStructure,
     currentRhyme: boolean,
     suggestionType: 'all' | 'grammar' | 'tone',
     excludedPhrases?: string[]
-  ): Promise<{ suggestions: Suggestion[] }> => {
-    // AI flow is deleted, return empty suggestions.
-    return { suggestions: [] };
+  ) => {
+    setIsLoading(true);
+    try {
+      const input: SuggestionInput = {
+        text: currentText,
+        tone: currentTone,
+        structure: currentStructure,
+        rhyme: currentRhyme,
+        suggestionType: suggestionType,
+        excludedPhrases: excludedPhrases || [],
+      };
+      const result = await generateContextualSuggestions(input);
+      return result;
+    } catch (error: any) {
+      console.error("Failed to generate suggestions:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro ao Gerar Sugestões",
+        description: error.message.includes('503') 
+          ? "O modelo de IA está sobrecarregado. Por favor, tente novamente em alguns instantes."
+          : "Não foi possível obter sugestões da IA. Verifique sua conexão ou tente novamente mais tarde.",
+      });
+      return { suggestions: [] };
+    } finally {
+      setIsLoading(false);
+    }
   }, [toast]);
   
   const fetchAndSetGradualSuggestions = useCallback(async (fetchText: string, currentTone: string, currentStructure: TextStructure, currentRhyme: boolean) => {
@@ -95,8 +109,35 @@ export default function Home() {
   
   const handleGenerateFinalSuggestions = async () => {
     if (suggestionMode !== 'final' || !text.trim() || isLoading) return;
-
-    // AI flow is deleted.
+  
+    const result = await generateSuggestions(text, tone, textStructure, rhyme, 'all');
+    
+    const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
+    const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
+    
+    // Prioritize grammar suggestions. Only show tone suggestions if no grammar issues are found.
+    if (newGrammarSuggestions.length > 0) {
+      setGrammarSuggestions(newGrammarSuggestions);
+      setToneSuggestions([]);
+      toast({
+        title: "Correções Gramaticais Encontradas",
+        description: `Encontramos ${newGrammarSuggestions.length} correções para seu texto.`,
+      });
+    } else if (newToneSuggestions.length > 0) {
+      setGrammarSuggestions([]);
+      setToneSuggestions(newToneSuggestions);
+      toast({
+        title: "Sugestões de Tom e Estilo",
+        description: `Encontramos ${newToneSuggestions.length} sugestões para aprimorar seu poema.`,
+      });
+    } else {
+      setGrammarSuggestions([]);
+      setToneSuggestions([]);
+      toast({
+        title: "Nenhuma Sugestão Encontrada",
+        description: "Seu texto parece ótimo! Nenhuma correção ou sugestão foi necessária.",
+      });
+    }
   };
   
   const handleConfigChange = () => {
@@ -125,7 +166,7 @@ export default function Home() {
     const newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     setText(newText);
     
-    // Logic to remove suggestions after accepting is kept for now
+    // Remove the accepted suggestion from the list without re-fetching
     if (suggestionToAccept.type === 'grammar') {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
@@ -184,7 +225,32 @@ export default function Home() {
   }, [text, checkActiveSuggestion]);
 
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
-    // AI flow is deleted.
+    const excludedPhrases = excludedPhrasesMap[suggestionToResuggest.originalText] || [];
+
+    const result = await generateSuggestions(
+      suggestionToResuggest.originalText,
+      tone,
+      textStructure,
+      rhyme,
+      suggestionToResuggest.type,
+      excludedPhrases
+    );
+
+    const newSuggestion = result.suggestions[0];
+
+    if (newSuggestion) {
+        if (suggestionToResuggest.type === 'grammar') {
+            setGrammarSuggestions(current => current.map(s => s.originalText === suggestionToResuggest.originalText ? newSuggestion : s));
+            setActiveGrammarSuggestion(newSuggestion);
+        } else {
+            setToneSuggestions(current => current.map(s => s.originalText === suggestionToResuggest.originalText ? newSuggestion : s));
+        }
+    } else {
+        toast({
+            variant: "destructive",
+            title: "Não foi possível gerar uma nova sugestão.",
+        });
+    }
   };
   
   const handleToggleExcludedPhrase = (originalText: string, phrase: string) => {
