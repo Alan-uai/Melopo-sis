@@ -3,14 +3,18 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
-import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import type { GenerateContextualSuggestionsInput, GenerateContextualSuggestionsOutput } from "@/ai/flows/generate-contextual-suggestions";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 
-export type Suggestion = GenerateContextualSuggestionsOutput["suggestions"][0];
+export type Suggestion = {
+  originalText: string;
+  correctedText: string;
+  explanation: string;
+  type: 'grammar' | 'tone';
+};
+
 export type SuggestionMode = "gradual" | "final";
-export type TextStructure = GenerateContextualSuggestionsInput["textStructure"];
+export type TextStructure = "poesia" | "poema";
 
 
 // Debounce function
@@ -44,41 +48,9 @@ export default function Home() {
     currentRhyme: boolean,
     suggestionType: 'all' | 'grammar' | 'tone',
     excludedPhrases?: string[]
-  ): Promise<GenerateContextualSuggestionsOutput> => {
-    if (!currentText.trim()) {
-      return { suggestions: [] };
-    }
-  
-    setIsLoading(true);
-    try {
-      const result = await generateContextualSuggestions({ 
-        text: currentText, 
-        tone: currentTone,
-        textStructure: currentStructure,
-        rhyme: currentRhyme,
-        suggestionType,
-        excludedPhrases
-      });
-      return result;
-    } catch (error: any) {
-      console.error(`Error generating suggestions:`, error);
-      
-      const errorMessage = error.message || "Houve um problema ao se comunicar com a IA.";
-      let errorDescription = "Por favor, tente novamente mais tarde.";
-
-      if (errorMessage.includes("503") || errorMessage.includes("model is overloaded")) {
-        errorDescription = "O modelo de IA está sobrecarregado no momento. Por favor, aguarde um pouco e tente novamente.";
-      }
-
-      toast({
-        title: `Erro ao Gerar Sugestões`,
-        description: errorDescription,
-        variant: "destructive",
-      });
-      return { suggestions: [] };
-    } finally {
-      setIsLoading(false);
-    }
+  ): Promise<{ suggestions: Suggestion[] }> => {
+    // AI flow is deleted, return empty suggestions.
+    return { suggestions: [] };
   }, [toast]);
   
   const fetchAndSetGradualSuggestions = useCallback(async (fetchText: string, currentTone: string, currentStructure: TextStructure, currentRhyme: boolean) => {
@@ -110,7 +82,7 @@ export default function Home() {
     if (suggestionMode === "gradual") {
       const cursorPosition = editorRef.current?.getCursorPosition();
       const currentLine = editorRef.current?.getCurrentLine(newText, cursorPosition) ?? "";
-      debouncedFetchGradualSuggestions(currentLine, tone, textStructure, rhyme);
+      // debouncedFetchGradualSuggestions(currentLine, tone, textStructure, rhyme);
     }
   };
 
@@ -124,21 +96,7 @@ export default function Home() {
   const handleGenerateFinalSuggestions = async () => {
     if (suggestionMode !== 'final' || !text.trim() || isLoading) return;
 
-    // Determine what to fetch: grammar first, then tone.
-    const suggestionType = grammarSuggestions.length === 0 ? 'all' : 'grammar';
-
-    const result = await generateSuggestions(text, tone, textStructure, rhyme, suggestionType);
-    
-    const newGrammarSuggestions = result.suggestions.filter(s => s.type === 'grammar');
-    const newToneSuggestions = result.suggestions.filter(s => s.type === 'tone');
-
-    setGrammarSuggestions(newGrammarSuggestions);
-    
-    if (newGrammarSuggestions.length > 0) {
-      setToneSuggestions([]); // Prioritize grammar
-    } else {
-      setToneSuggestions(newToneSuggestions);
-    }
+    // AI flow is deleted.
   };
   
   const handleConfigChange = () => {
@@ -167,6 +125,7 @@ export default function Home() {
     const newText = text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     setText(newText);
     
+    // Logic to remove suggestions after accepting is kept for now
     if (suggestionToAccept.type === 'grammar') {
         setGrammarSuggestions((currentSuggestions) =>
             currentSuggestions.filter((s) => s.originalText !== suggestionToAccept.originalText)
@@ -225,43 +184,7 @@ export default function Home() {
   }, [text, checkActiveSuggestion]);
 
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
-    const originalText = suggestionToResuggest.originalText;
-    const excludedPhrases = [...(excludedPhrasesMap[originalText] || []), suggestionToResuggest.correctedText];
-    
-    const result = await generateSuggestions(
-        originalText,
-        tone,
-        textStructure,
-        rhyme,
-        suggestionToResuggest.type,
-        excludedPhrases
-    );
-
-    if (result.suggestions.length > 0) {
-        const newSuggestion = result.suggestions[0];
-        const updateFunction = suggestionToResuggest.type === 'grammar' ? setGrammarSuggestions : setToneSuggestions;
-
-        updateFunction(prev => 
-            prev.map(s => s.originalText === originalText ? newSuggestion : s)
-        );
-        
-        if (activeGrammarSuggestion?.originalText === originalText) {
-            setActiveGrammarSuggestion(newSuggestion);
-        }
-        
-        setExcludedPhrasesMap(prev => ({
-          ...prev,
-          [originalText]: [...(prev[originalText] || []), newSuggestion.correctedText]
-        }));
-
-
-    } else {
-        toast({
-            title: "Nenhuma nova sugestão",
-            description: "A IA não conseguiu encontrar uma alternativa. Tente remover algumas palavras excluídas.",
-            variant: "default",
-        });
-    }
+    // AI flow is deleted.
   };
   
   const handleToggleExcludedPhrase = (originalText: string, phrase: string) => {
@@ -313,10 +236,3 @@ export default function Home() {
     </div>
   );
 }
-    
-
-    
-
-
-
-
