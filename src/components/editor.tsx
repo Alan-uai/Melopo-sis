@@ -28,7 +28,6 @@ import { Checkbox } from "./ui/checkbox";
 interface EditorProps {
   text: string;
   onTextChange: (newText: string) => void;
-  onCursorChange: () => void;
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
@@ -44,7 +43,6 @@ interface EditorProps {
   suggestionMode: SuggestionMode;
   onSuggestionModeChange: (mode: SuggestionMode) => void;
   onFinalSuggestion: () => void;
-  onSuggestionClick: (suggestion: Suggestion) => void;
 }
 
 export interface EditorRef {
@@ -55,7 +53,6 @@ export interface EditorRef {
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
-  onCursorChange,
   isLoading,
   tone,
   onToneChange,
@@ -71,7 +68,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   suggestionMode,
   onSuggestionModeChange,
   onFinalSuggestion,
-  onSuggestionClick
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
@@ -113,50 +109,44 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     let lastIndex = 0;
     const parts: (string | React.ReactNode)[] = [];
 
-    const uniqueSuggestions = grammarSuggestions.filter((suggestion, index, self) => 
-      index === self.findIndex((s) => s.originalText === suggestion.originalText)
-    );
-    
-    uniqueSuggestions.sort((a, b) => text.indexOf(a.originalText) - text.indexOf(b.originalText));
+    // Only the active suggestion should be the popover anchor
+    const suggestionToHighlight = activeGrammarSuggestion;
 
-    uniqueSuggestions.forEach((suggestion, i) => {
-        const startIndex = text.indexOf(suggestion.originalText, lastIndex);
-        if (startIndex === -1) return;
+    if (suggestionToHighlight) {
+        const startIndex = text.indexOf(suggestionToHighlight.originalText, lastIndex);
+        if (startIndex !== -1) {
+            // Add text part before the suggestion
+            if (startIndex > lastIndex) {
+                parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
+            }
+            
+            // Add the active suggestion as a PopoverAnchor
+            parts.push(
+                <PopoverAnchor key={`anchor-active`} className="relative">
+                    <span 
+                      className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
+                    >
+                        {suggestionToHighlight.originalText.replace(/\n/g, '\n\u200B')}
+                    </span>
+                </PopoverAnchor>
+            );
 
-        // Add text part before the suggestion
-        if (startIndex > lastIndex) {
-            parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
+            lastIndex = startIndex + suggestionToHighlight.originalText.length;
         }
-
-        const isSuggestionActive = activeGrammarSuggestion?.originalText === suggestion.originalText;
-        const AnchorComponent = isSuggestionActive ? PopoverAnchor : 'span';
-        
-        parts.push(
-            <AnchorComponent key={`anchor-${i}`} className="relative">
-                <span 
-                  className="bg-destructive/20 underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-                  onClick={() => onSuggestionClick(suggestion)}
-                >
-                    {suggestion.originalText.replace(/\n/g, '\n\u200B')}
-                </span>
-            </AnchorComponent>
-        );
-
-        lastIndex = startIndex + suggestion.originalText.length;
-    });
+    }
 
     // Add remaining text
     if (lastIndex < text.length) {
         parts.push(text.substring(lastIndex).replace(/\n/g, '\n\u200B'));
     }
-
+    
     // When there's no text, we need a zero-width space to maintain height
     if (text === "") {
       return '\u200B';
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, grammarSuggestions, activeGrammarSuggestion, onSuggestionClick]);
+}, [text, activeGrammarSuggestion]);
 
 
   return (
@@ -225,8 +215,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 className="flex items-center space-x-4 pt-2"
               >
                 <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="gradual" id="gradual" />
-                  <Label htmlFor="gradual" className="font-normal">Gradual</Label>
+                  <RadioGroupItem value="gradual" id="gradual" disabled />
+                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual (desativado)</Label>
                 </div>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="final" id="final" />
@@ -244,16 +234,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         value={text}
                         onChange={handleTextareaChange}
                         onScroll={syncScroll}
-                        onSelect={onCursorChange}
-                        onKeyDown={onCursorChange}
-                        onClick={onCursorChange}
                         placeholder="Escreva seu poema aqui..."
                         className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20"
                         aria-label="Editor de Poesia"
                     />
                     <div
                         ref={highlightsRef}
-                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-transparent bg-background p-4 font-body text-base leading-relaxed text-foreground"
+                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground"
                         aria-hidden="true"
                     >
                         {editorContent}
@@ -273,9 +260,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
         {suggestionMode === "final" && (
           <div className="flex justify-end">
-            <Button onClick={onFinalSuggestion} disabled={isLoading}>
+            <Button onClick={onFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
               <Wand2 className="mr-2 h-4 w-4" />
-              {isLoading ? "Gerando..." : "Gerar Sugestões"}
+              {isLoading ? "Analisando..." : "Gerar Sugestões"}
             </Button>
           </div>
         )}
