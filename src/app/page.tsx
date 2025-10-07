@@ -378,10 +378,12 @@ export default function Home() {
           title: "Correções Gramaticais Concluídas!",
           description: "Buscando sugestões de estilo para o texto corrigido...",
       });
+      // Explicitly set loading state before fetching tone suggestions
+      setIsLoading(true);
       // Await the generation of tone suggestions
       await generateSuggestions('tone');
     }
-  }, [currentSuggestionIndex, grammarSuggestions.length, generateSuggestions, toast]);
+  }, [currentSuggestionIndex, grammarSuggestions, generateSuggestions, toast]);
   
 
   const applyCorrection = useCallback((originalText: string, correctedText: string) => {
@@ -590,3 +592,5 @@ export default function Home() {
     </SidebarProvider>
   );
 }
+
+    
