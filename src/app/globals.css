@@ -111,6 +111,18 @@
     }
   }
 
+  @keyframes border-color-pulse {
+    0% {
+      border-color: hsl(var(--anim-finish));
+    }
+    50% {
+      border-color: hsl(var(--background));
+    }
+    100% {
+      border-color: hsl(var(--anim-generate));
+    }
+  }
+
   .animate-border-beam {
     --border-size: 1px;
     --border-angle: 0deg;

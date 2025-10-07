@@ -60,6 +60,7 @@ export interface EditorRef {
 }
 
 type AnimationState = 'idle' | 'generating' | 'correcting' | 'finishing';
+type AnimationStage = 'beam' | 'pulse';
 
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
@@ -94,6 +95,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const highlightsRef = useRef<HTMLDivElement>(null);
   
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
+  const [animationStage, setAnimationStage] = useState<AnimationStage>('beam');
   const prevToneSuggestionsLength = useRef(toneSuggestions.length);
   const prevGrammarSuggestionsLength = useRef(grammarSuggestions.length);
 
@@ -114,6 +116,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       (animationState === 'generating' || animationState === 'correcting')
     ) {
       setAnimationState('finishing');
+      setAnimationStage('beam'); // Start with the beam
     } 
     // Finished everything, no suggestions found
     else if (!isLoading && grammarSuggestions.length === 0 && toneSuggestions.length === 0 && animationState !== 'idle') {
@@ -130,10 +133,18 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   useEffect(() => {
     if (animationState === 'finishing') {
-      const timer = setTimeout(() => {
+      const beamTimer = setTimeout(() => {
+        setAnimationStage('pulse');
+      }, 1500); // 1.5s for beam
+
+      const pulseTimer = setTimeout(() => {
         setAnimationState('idle');
-      }, 2500); // Duração da animação "finishing"
-      return () => clearTimeout(timer);
+      }, 2500); // 1.5s + 1s for pulse
+
+      return () => {
+        clearTimeout(beamTimer);
+        clearTimeout(pulseTimer);
+      };
     }
   }, [animationState]);
   
@@ -215,6 +226,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   }, [text, activeGrammarSuggestion]);
   
   const isAnimationActive = animationState !== 'idle';
+  const isFinishingBeam = animationState === 'finishing' && animationStage === 'beam';
+  const isFinishingPulse = animationState === 'finishing' && animationStage === 'pulse';
 
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
@@ -354,6 +367,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             (animationState === 'generating' || animationState === 'correcting') && "animate-border-pulse",
             animationState === 'generating' && "[--pulse-color:hsl(var(--anim-generate))]",
             animationState === 'correcting' && "[--pulse-color:hsl(var(--anim-correct))]",
+            isFinishingPulse && "animate-border-color-pulse"
           )}
         >
           <div className={cn(
@@ -366,7 +380,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 "animate-border-beam [--animation-duration:5s]",
                 animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] [animation-iteration-count:infinite]",
                 animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",
-                animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2.5s]"
+                isFinishingBeam && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:1.5s]"
             )}/>
           </div>
 
