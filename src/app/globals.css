@@ -82,3 +82,25 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  @keyframes beam-progress {
+    0% {
+      top: -10%;
+      opacity: 0;
+    }
+    10%, 90% {
+      opacity: 1;
+    }
+    100% {
+      top: 110%;
+      opacity: 0;
+    }
+  }
+  @keyframes border-pulse {
+    50% {
+      border-color: hsl(var(--primary) / 0.5);
+      box-shadow: 0 0 15px hsl(var(--primary) / 0.4);
+    }
+  }
+}

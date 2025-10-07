@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, Info, LoaderCircle, Save, Trash2, Wand2 } from "lucide-react";
+import { Copy, Feather, Info, Save, Trash2, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -18,7 +18,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode, TextStructure } from "@/ai/types";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback } from "react";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, useState, useEffect } from "react";
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
@@ -26,6 +26,7 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/compon
 import { Checkbox } from "./ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
+import { cn } from "@/lib/utils";
 
 interface EditorProps {
   text: string;
@@ -87,6 +88,40 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   ];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
+
+  const [animationState, setAnimationState] = useState<'idle' | 'scanning' | 'generating' | 'finishing'>('idle');
+  const beamRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isLoading) {
+      if (animationState === 'idle') {
+        // Start the fast scan
+        setAnimationState('scanning');
+        // After the fast scan, start the slow generation animation
+        setTimeout(() => {
+          setAnimationState('generating');
+        }, 1000); // Duration of the fast scan (0.5s top-to-bottom, 0.5s bottom-to-top)
+      }
+    } else {
+      // AI has finished
+      if (animationState === 'generating' || animationState === 'scanning') {
+        // Speed up the animation to finish
+        setAnimationState('finishing');
+      }
+      // if it's finishing, let it finish. Once animation ends, it will go to idle.
+    }
+  }, [isLoading, animationState]);
+
+  const handleAnimationEnd = () => {
+    if (animationState === 'finishing' || (!isLoading && animationState !== 'idle')) {
+      setAnimationState('idle');
+    } else if (animationState === 'generating' && isLoading) {
+      // If the slow beam finished but AI is still working, restart it
+      setAnimationState('idle');
+      // A small timeout to allow the animation to restart correctly
+      setTimeout(() => setAnimationState('generating'), 50);
+    }
+  };
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -159,13 +194,30 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
 
   return (
-    <Card className="w-full shadow-lg h-full flex flex-col">
+    <Card className={cn(
+      "w-full shadow-lg h-full flex flex-col relative overflow-hidden transition-all",
+       (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && "animate-border-pulse"
+      )}>
+       {(animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && (
+         <div
+           ref={beamRef}
+           onAnimationEnd={handleAnimationEnd}
+           className={cn(
+             "absolute left-0 w-full h-1/4 bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0 pointer-events-none z-10",
+             {
+               "animate-beam-progress animation-duration-1s animation-iteration-count-1 alternate": animationState === 'scanning',
+               "animate-beam-progress animation-duration-15s animation-iteration-count-1 linear": animationState === 'generating',
+               "animate-beam-progress animation-duration-fast animation-iteration-count-1 linear": animationState === 'finishing',
+             }
+           )}
+         />
+       )}
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
           <SidebarTrigger
+              className="p-0 h-8 w-8"
               variant="ghost"
-              className="md:hidden p-0 h-8 w-8"
             >
               <Feather className="text-primary scale-[2.5]" />
             </SidebarTrigger>
@@ -174,9 +226,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </CardTitle>
           </div>
           <div className="flex items-center gap-1">
-            {isLoading && (
-              <LoaderCircle className="h-6 w-6 animate-spin text-muted-foreground" />
-            )}
              <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
@@ -252,13 +301,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </Select>
           </div>
         </div>
-
-        <div className="flex items-center justify-between">
+        
+        <div className="flex items-end justify-between">
           <div className="flex items-center space-x-2">
             <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
-          
           <div className="flex items-center gap-4">
               <RadioGroup
                 value={suggestionMode}
@@ -276,9 +324,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               </RadioGroup>
               <Popover>
                 <PopoverTrigger asChild>
-                  <button>
-                    <Info className="h-4 w-4 text-muted-foreground" />
-                  </button>
+                    <button className="flex items-center justify-center h-4 w-4">
+                        <Info className="h-full w-full text-muted-foreground" />
+                    </button>
                 </PopoverTrigger>
                 <PopoverContent className="w-80">
                   <div className="grid gap-4">
@@ -346,12 +394,3 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
-
-    
-    
-
-    
-
-
-
-

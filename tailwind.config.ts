@@ -91,10 +91,23 @@ export default {
             height: '0',
           },
         },
+        'beam-progress': {
+          '0%': { top: '-10%', opacity: '0' },
+          '10%, 90%': { opacity: '1' },
+          '100%': { top: '110%', opacity: '0' },
+        },
+        'border-pulse': {
+          '50%': { 
+            borderColor: 'hsl(var(--primary) / 0.5)',
+            boxShadow: '0 0 15px hsl(var(--primary) / 0.4)'
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'beam-progress': 'beam-progress var(--animation-duration, 15s) linear var(--animation-iteration-count, infinite)',
+        'border-pulse': 'border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
     },
   },
