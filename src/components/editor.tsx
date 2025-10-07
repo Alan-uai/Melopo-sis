@@ -258,7 +258,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
                 <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
             </div>
-            <div className="space-y-2">
+            <div className="flex flex-col items-center">
               <Label>Modo de Sugestão</Label>
               <RadioGroup
                 value={suggestionMode}
@@ -332,4 +332,3 @@ Editor.displayName = 'Editor';
     
 
     
-
