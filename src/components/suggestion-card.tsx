@@ -43,12 +43,12 @@ export function SuggestionCard({
         className="rounded-lg border-none bg-secondary/30"
       >
         <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
-          <div className="flex w-full items-center justify-between gap-2">
-            <div className="flex items-center gap-2 overflow-hidden">
-               <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-               <span className="truncate">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
+          <div className="flex w-full items-start justify-between gap-2">
+            <div className="flex items-start gap-2 overflow-hidden">
+               <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
+               <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
             </div>
-            <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap">
+            <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap flex-shrink-0">
               {isGrammar ? "Gramática" : "Tom"}
             </Badge>
           </div>
