@@ -24,7 +24,7 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
+import { TooltipProvider } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
 import { cn } from "@/lib/utils";
 
@@ -200,6 +200,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
   }, [text, activeGrammarSuggestion]);
   
+  const isAnimationActive = animationState !== 'idle';
+
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
       <CardHeader>
@@ -214,39 +216,39 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
           <div className="flex items-center gap-1">
              <TooltipProvider>
-                <Tooltip>
-                    <TooltipTrigger asChild>
+                <Popover>
+                    <PopoverTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={onSavePoem} disabled={isLoading}>
                             <Save className="h-4 w-4" />
                             <span className="sr-only">Salvar Poema</span>
                         </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>{isPoemSaved ? 'Atualizar poema' : 'Salvar poema'}</p>
-                    </TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                    <TooltipTrigger asChild>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-2">
+                        <p className="text-sm">{isPoemSaved ? 'Atualizar poema' : 'Salvar poema'}</p>
+                    </PopoverContent>
+                </Popover>
+                <Popover>
+                    <PopoverTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={onCopy} disabled={!text}>
                             <Copy className="h-4 w-4" />
                             <span className="sr-only">Copiar Texto</span>
                         </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>Copiar texto</p>
-                    </TooltipContent>
-                </Tooltip>
-                <Tooltip>
-                    <TooltipTrigger asChild>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-2">
+                        <p className="text-sm">Copiar texto</p>
+                    </PopoverContent>
+                </Popover>
+                <Popover>
+                    <PopoverTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={onClear} disabled={!text}>
                             <Trash2 className="h-4 w-4" />
                             <span className="sr-only">Limpar Editor</span>
                         </Button>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        <p>Limpar editor</p>
-                    </TooltipContent>
-                </Tooltip>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-2">
+                        <p className="text-sm">Limpar editor</p>
+                    </PopoverContent>
+                </Popover>
             </TooltipProvider>
           </div>
         </div>
@@ -295,22 +297,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-2">
-                <RadioGroup
-                value={suggestionMode}
-                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-                className="flex items-center space-x-4"
-                >
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="gradual" id="gradual" disabled />
-                    <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="final" id="final" />
-                    <Label htmlFor="final" className="font-normal">Final</Label>
-                </div>
-                </RadioGroup>
-            </div>
+              <RadioGroup
+              value={suggestionMode}
+              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+              className="flex items-center space-x-4"
+              >
+              <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="gradual" id="gradual" disabled />
+                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="final" id="final" />
+                  <Label htmlFor="final" className="font-normal">Final</Label>
+              </div>
+              </RadioGroup>
             <Popover>
               <PopoverTrigger asChild>
                 <button className="flex items-center justify-center h-4 w-4">
@@ -336,21 +336,33 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         <div 
           data-animation-state={animationState}
           className={cn(
-            "relative flex-1 flex flex-col rounded-md border overflow-hidden",
-            "data-[animation-state=generating]:animate-border-pulse data-[animation-state=generating]:[--pulse-color:hsl(var(--anim-generate))]",
-            "data-[animation-state=correcting]:animate-border-pulse data-[animation-state=correcting]:[--pulse-color:hsl(var(--anim-correct))]",
-            "group"
+            "relative flex-1 flex flex-col rounded-md border overflow-hidden group",
+            isAnimationActive && "animate-border-pulse",
+            animationState === 'generating' && "[--pulse-color:hsl(var(--anim-generate))]",
+            animationState === 'correcting' && "[--pulse-color:hsl(var(--anim-correct))]",
+            animationState === 'finishing' && "[--pulse-color:hsl(var(--anim-finish))]"
           )}
         >
           <div className={cn(
-            "absolute inset-0 rounded-md pointer-events-none opacity-0",
-            // Generating Start
-            "group-data-[animation-state=generating]:opacity-100 group-data-[animation-state=generating]:animate-border-beam group-data-[animation-state=generating]:[--beam-color:hsl(var(--anim-generate))]",
-            // Correcting
-            "group-data-[animation-state=correcting]:opacity-100 group-data-[animation-state=correcting]:animate-border-beam group-data-[animation-state=correcting]:[--beam-color:hsl(var(--anim-correct))] group-data-[animation-state=correcting]:animation-duration-fast group-data-[animation-state=correcting]:animation-iteration-count-infinite",
-            // Finishing
-            "group-data-[animation-state=finishing]:opacity-100 group-data-[animation-state=finishing]:animate-border-beam group-data-[animation-state=finishing]:[--beam-color:hsl(var(--anim-finish))] group-data-[animation-state=finishing]:animation-duration-normal group-data-[animation-state=finishing]:animation-iteration-count-1"
-          )}/>
+            "absolute inset-0 rounded-md pointer-events-none transition-opacity duration-500",
+             isAnimationActive ? "opacity-100" : "opacity-0"
+          )}>
+            <div className={cn(
+              "absolute inset-0 rounded-md",
+              "animate-border-beam [--animation-duration:5s]",
+              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))]",
+              animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
+              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))]"
+            )}/>
+             <div className={cn(
+              "absolute inset-0 rounded-md",
+              "animate-border-beam [--animation-duration:5s] [animation-delay:0.2s]",
+              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))]",
+              animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
+              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))]"
+            )}/>
+          </div>
+
           <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
             if (!isOpen) {
               // Não avance ao clicar fora
