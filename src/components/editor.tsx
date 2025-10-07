@@ -97,39 +97,27 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
   const [animationStage, setAnimationStage] = useState<AnimationStage>('beam');
   const prevToneSuggestionsLength = useRef(toneSuggestions.length);
-  const prevGrammarSuggestionsLength = useRef(grammarSuggestions.length);
 
   useEffect(() => {
-    // Start generating
-    if (isLoading && animationState === 'idle') {
+    // This logic determines the primary animation state based on a clear hierarchy.
+    if (isLoading) {
+      // If we are loading, we are always in the 'generating' state. This is top priority.
       setAnimationState('generating');
-    } 
-    // Finished generating, now has grammar suggestions
-    else if (!isLoading && grammarSuggestions.length > 0 && prevGrammarSuggestionsLength.current === 0) {
+    } else if (grammarSuggestions.length > 0 && activeGrammarSuggestion) {
+      // If not loading, and there are active grammar suggestions, we are 'correcting'.
       setAnimationState('correcting');
-    }
-    // Finished grammar, now has tone suggestions
-    else if (
-      !isLoading &&
-      toneSuggestions.length > 0 &&
-      prevToneSuggestionsLength.current === 0 &&
-      (animationState === 'generating' || animationState === 'correcting')
-    ) {
+    } else if (toneSuggestions.length > 0 && prevToneSuggestionsLength.current === 0) {
+      // If no grammar suggestions, but tone suggestions just appeared, we are 'finishing'.
       setAnimationState('finishing');
-      setAnimationStage('beam'); // Start with the beam
-    } 
-    // Finished everything, no suggestions found
-    else if (!isLoading && grammarSuggestions.length === 0 && toneSuggestions.length === 0 && animationState !== 'idle') {
-      if (animationState === 'generating' || animationState === 'correcting') {
-          // If we were generating/correcting but found nothing, just stop
-          setAnimationState('idle');
-      }
+      setAnimationStage('beam');
+    } else if (grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
+      // If there are no suggestions of any kind, we are 'idle'.
+      setAnimationState('idle');
     }
-    
-    prevToneSuggestionsLength.current = toneSuggestions.length;
-    prevGrammarSuggestionsLength.current = grammarSuggestions.length;
 
-  }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions.length, animationState]);
+    prevToneSuggestionsLength.current = toneSuggestions.length;
+  }, [isLoading, grammarSuggestions, activeGrammarSuggestion, toneSuggestions]);
+
 
   useEffect(() => {
     if (animationState === 'finishing') {
@@ -434,5 +422,3 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
-
-    

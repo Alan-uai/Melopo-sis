@@ -364,28 +364,30 @@ export default function Home() {
   }
 
   const advanceToNextSuggestion = useCallback(async () => {
-    let nextIndex: number | null = null;
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
-      nextIndex = currentSuggestionIndex + 1;
-    }
-    setCurrentSuggestionIndex(nextIndex);
-  
-    // If we just finished the last grammar suggestion
-    if (nextIndex === null && grammarSuggestions.length > 0 && currentSuggestionIndex === grammarSuggestions.length - 1) {
+      setCurrentSuggestionIndex(currentSuggestionIndex + 1);
+    } else {
+      // Finished the last grammar suggestion
+      setCurrentSuggestionIndex(null);
       setGrammarSuggestions([]); 
-      
-      toast({
-          title: "Correções Gramaticais Concluídas!",
-          description: "Buscando sugestões de estilo para o texto corrigido...",
-      });
-      // Explicitly set loading state before fetching tone suggestions
-      setIsLoading(true);
-      // Await the generation of tone suggestions
-      await generateSuggestions('tone');
+  
+      if (grammarSuggestions.length > 0) {
+        toast({
+            title: "Correções Gramaticais Concluídas!",
+            description: "Buscando sugestões de estilo para o texto corrigido...",
+        });
+        // Explicitly set loading state before fetching tone suggestions
+        setIsLoading(true);
+        try {
+          await generateSuggestions('tone');
+        } finally {
+          setIsLoading(false);
+        }
+      }
     }
   }, [currentSuggestionIndex, grammarSuggestions, generateSuggestions, toast]);
   
-
+  
   const applyCorrection = useCallback((originalText: string, correctedText: string) => {
     setText(prevText => {
       const newText = prevText.replace(originalText, correctedText);
@@ -592,5 +594,3 @@ export default function Home() {
     </SidebarProvider>
   );
 }
-
-    
