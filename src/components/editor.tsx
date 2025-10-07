@@ -165,10 +165,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <div className="flex items-center gap-3">
           <SidebarTrigger
             variant="ghost"
-            size="h-15 w-15"
+            size="icon"
             className="md:hidden p-0"
           >
-            <Feather className="text-primary h-full w-full" />
+            <Feather className="text-primary h-8 w-8" />
           </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
               Melopoësis
@@ -328,3 +328,5 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+
+    
