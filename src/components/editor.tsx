@@ -132,7 +132,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     if (animationState === 'finishing') {
       const timer = setTimeout(() => {
         setAnimationState('idle');
-      }, 2000); // Duração da animação "finishing"
+      }, 2500); // Duração da animação "finishing"
       return () => clearTimeout(timer);
     }
   }, [animationState]);
@@ -366,7 +366,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 "animate-border-beam [--animation-duration:5s]",
                 animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] [animation-iteration-count:infinite]",
                 animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",
-                animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2s]"
+                animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2.5s]"
             )}/>
           </div>
 
