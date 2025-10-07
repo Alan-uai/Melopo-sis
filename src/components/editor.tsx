@@ -22,7 +22,7 @@ import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback } 
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
-import { Popover, PopoverAnchor } from "@/components/ui/popover";
+import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
@@ -258,36 +258,41 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
-
+          
           <div className="flex items-center gap-4">
-            <RadioGroup
-              value={suggestionMode}
-              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-              className="flex items-center space-x-4"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="gradual" id="gradual" disabled />
-                <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="final" id="final" />
-                <Label htmlFor="final" className="font-normal">Final</Label>
-              </div>
-            </RadioGroup>
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Info className="h-4 w-4 text-muted-foreground" />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="max-w-xs">
-                    <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
-                    <br />
-                    <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
-                  </p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+              <RadioGroup
+                value={suggestionMode}
+                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+                className="flex items-center space-x-4"
+              >
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="gradual" id="gradual" disabled />
+                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="final" id="final" />
+                  <Label htmlFor="final" className="font-normal">Final</Label>
+                </div>
+              </RadioGroup>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <button>
+                    <Info className="h-4 w-4 text-muted-foreground" />
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent className="w-80">
+                  <div className="grid gap-4">
+                    <div className="space-y-2">
+                      <h4 className="font-medium leading-none">Modo de Sugestão</h4>
+                      <p className="text-sm text-muted-foreground">
+                        <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
+                        <br />
+                        <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
+                      </p>
+                    </div>
+                  </div>
+                </PopoverContent>
+              </Popover>
           </div>
         </div>
         
@@ -346,6 +351,7 @@ Editor.displayName = 'Editor';
     
 
     
+
 
 
 
