@@ -109,8 +109,8 @@ export default {
         },
         'border-color-pulse': {
           '0%': { borderColor: 'hsl(var(--anim-finish))' },
-          '50%': { borderColor: 'hsl(var(--background))' },
-          '100%': { borderColor: 'hsl(var(--anim-generate))' },
+          '50%': { borderColor: 'hsl(60 95% 50%)' },
+          '100%': { borderColor: 'hsl(var(--anim-finish))' },
         },
       },
       animation: {

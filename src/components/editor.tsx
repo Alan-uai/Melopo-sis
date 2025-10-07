@@ -139,7 +139,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
       const pulseTimer = setTimeout(() => {
         setAnimationState('idle');
-      }, 1500); // 0.8s + 0.7s for pulse
+      }, 1500); // 0.8s + 0.7s = 1.5s total
 
       return () => {
         clearTimeout(beamTimer);
@@ -377,10 +377,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <div 
               className={cn(
                 "absolute inset-0 rounded-md",
-                "animate-border-beam [--animation-duration:5s]",
+                isFinishingBeam && "[--animation-duration:1.5s]",
+                (animationState === 'generating' || animationState === 'correcting' || isFinishingBeam) && "animate-border-beam",
                 animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] [animation-iteration-count:infinite]",
                 animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",
-                isFinishingBeam && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:1.5s]"
+                isFinishingBeam && "[--beam-color:hsl(var(--anim-finish))]"
             )}/>
           </div>
 
