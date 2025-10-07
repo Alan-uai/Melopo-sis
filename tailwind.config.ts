@@ -9,6 +9,9 @@ export default {
   ],
   theme: {
     extend: {
+      spacing: {
+        '15': '3.75rem',
+      },
       fontFamily: {
         body: ['var(--font-literata)', 'serif'],
         headline: ['var(--font-literata)', 'serif'],
