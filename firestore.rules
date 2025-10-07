@@ -1,0 +1,75 @@
+/**
+ * @fileOverview
+ * This ruleset enforces a strict user-ownership model for the Verso Correto application.
+ * All data is nested under `/users/{userId}`, ensuring that only the authenticated user can access their own data.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profiles, where {userId} matches the Firebase Auth UID.
+ * - /users/{userId}/poems/{poemId}: Stores poems created by a specific user.
+ *
+ * Key Security Decisions:
+ * - User data (profiles) are only accessible to the owning user.
+ * - Poems are only accessible to the user who created them.
+ * - Listing poems is only allowed for the owning user.
+ * - The `authorId` field in the Poem document is validated on creation to match the `userId` in the path,
+ *   and is immutable thereafter, enforcing relational integrity.
+ * - All write operations require a verified user identity (`request.auth != null`).
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to user profile documents.
+     * @path /users/{userId}
+     * @allow (create) - User with UID 'user_abc' can create their own profile with id 'user_abc'.
+     * @allow (get, update, delete) - User with UID 'user_abc' can read/write their own profile with id 'user_abc'.
+     * @deny (create, update, delete) - User with UID 'user_xyz' cannot create/write profile for user 'user_abc'.
+     * @deny (list) - Listing all users is not permitted.
+     * @principle Enforces document ownership. Only the user can create, read, update, or delete their own profile.
+     */
+    match /users/{userId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if false;
+      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.id == userId;
+      allow update: if isSignedIn() && isOwner(userId) && resource.data.id == request.resource.data.id;
+      allow delete: if isSignedIn() && isOwner(userId) && resource.data.id == userId;
+    }
+
+    /**
+     * @description Controls access to poem documents nested under a user's profile.
+     * @path /users/{userId}/poems/{poemId}
+     * @allow (create) - User 'user_abc' can create a poem under their profile with authorId 'user_abc'.
+     * @allow (get, list, update, delete) - User 'user_abc' can read/list/write poems under their profile.
+     * @deny (create, update, delete) - User 'user_xyz' cannot create/write poems under user 'user_abc''s profile.
+     * @principle Enforces document ownership for poems. Only the owning user can create, read, update, or delete their own poems.
+     */
+    match /users/{userId}/poems/{poemId} {
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      function isOwner(userId) {
+        return request.auth.uid == userId;
+      }
+
+      function isExistingOwner(userId) {
+        return isSignedIn() && isOwner(userId) && resource != null;
+      }
+
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow create: if isSignedIn() && isOwner(userId) && request.resource.data.authorId == userId;
+      allow update: if isExistingOwner(userId) && resource.data.authorId == request.resource.data.authorId;
+      allow delete: if isExistingOwner(userId);
+    }
+  }
+}
