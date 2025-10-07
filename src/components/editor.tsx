@@ -58,6 +58,8 @@ export interface EditorRef {
   getCurrentLine: (text: string, cursorPosition: number | null) => string;
 }
 
+type AnimationState = 'idle' | 'generating' | 'correcting' | 'finishing';
+
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
@@ -88,33 +90,40 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   ];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
-
-  const [animationState, setAnimationState] = useState<'idle' | 'scanning' | 'generating' | 'finishing'>('idle');
-  const beamRef = useRef<HTMLDivElement>(null);
+  
+  const [animationState, setAnimationState] = useState<AnimationState>('idle');
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    if (isLoading) {
-      if (animationState === 'idle') {
-        setAnimationState('scanning');
-        setTimeout(() => {
-          setAnimationState('generating');
-        }, 1000); 
-      }
-    } else {
-      if (animationState === 'generating' || animationState === 'scanning') {
-        setAnimationState('finishing');
-      }
+    // Start generating animation
+    if (isLoading && animationState === 'idle') {
+      setAnimationState('generating');
     }
-  }, [isLoading, animationState]);
+    
+    // Transition from generating to correcting
+    if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
+      setAnimationState('correcting');
+    }
 
-  const handleAnimationEnd = () => {
-    if (animationState === 'finishing' || (!isLoading && animationState !== 'idle')) {
-      setAnimationState('idle');
-    } else if (animationState === 'generating' && isLoading) {
-      setAnimationState('idle');
-      setTimeout(() => setAnimationState('generating'), 50);
+    // Transition from generating to finishing (no grammar errors found)
+    if (!isLoading && animationState === 'generating' && !activeGrammarSuggestion && grammarSuggestions.length === 0) {
+      setAnimationState('finishing');
+      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); // Duration of finishing animation
     }
-  };
+    
+    // Transition from correcting to idle (no more suggestions)
+    if (animationState === 'correcting' && !activeGrammarSuggestion) {
+      setAnimationState('finishing');
+      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); // Same finishing animation
+    }
+    
+    return () => {
+      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+    };
+  }, [isLoading, activeGrammarSuggestion, animationState, grammarSuggestions.length]);
+
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -145,7 +154,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onTextChange(e.target.value);
+    setAnimationState('idle'); // Reset animation on text change
   };
+  
+  const handleFinalSuggestion = () => {
+    setAnimationState('idle'); // Reset before starting
+    onFinalSuggestion();
+  }
 
   const editorContent = useMemo(() => {
     if (!activeGrammarSuggestion) {
@@ -184,18 +199,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
   }, [text, activeGrammarSuggestion]);
-
-  const showAnimations = (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && activeGrammarSuggestion === null;
-
+  
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-          <SidebarTrigger
-              className="p-0 h-8 w-8"
-              variant="ghost"
-            >
+            <SidebarTrigger className="p-0 h-8 w-8">
               <Feather className="scale-[2.5]" />
             </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
@@ -284,27 +294,28 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
-
-          <div className="flex items-center gap-4">
-            <RadioGroup
-              value={suggestionMode}
-              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-              className="flex items-center space-x-4"
-            >
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="gradual" id="gradual" disabled />
-                <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="final" id="final" />
-                <Label htmlFor="final" className="font-normal">Final</Label>
-              </div>
-            </RadioGroup>
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+                <RadioGroup
+                value={suggestionMode}
+                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+                className="flex items-center space-x-4"
+                >
+                <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="gradual" id="gradual" disabled />
+                    <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="final" id="final" />
+                    <Label htmlFor="final" className="font-normal">Final</Label>
+                </div>
+                </RadioGroup>
+            </div>
             <Popover>
               <PopoverTrigger asChild>
-                  <button className="flex items-center justify-center h-4 w-4">
-                      <Info className="h-full w-full text-muted-foreground" />
-                  </button>
+                <button className="flex items-center justify-center h-4 w-4">
+                    <Info className="h-full w-full text-muted-foreground" />
+                </button>
               </PopoverTrigger>
               <PopoverContent className="w-80">
                 <div className="grid gap-4">
@@ -322,62 +333,62 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
         
-        <div className={cn(
+        <div 
+          data-animation-state={animationState}
+          className={cn(
             "relative flex-1 flex flex-col rounded-md border overflow-hidden",
-            showAnimations && "animate-border-pulse"
-        )}>
-            {showAnimations && (
-              <div
-                ref={beamRef}
-                onAnimationEnd={handleAnimationEnd}
-                className={cn(
-                  "absolute left-0 w-full h-1/4 bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0 pointer-events-none z-10",
-                  {
-                    "animate-beam-progress animation-duration-1s animation-iteration-count-1 alternate": animationState === 'scanning',
-                    "animate-beam-progress animation-duration-15s animation-iteration-count-1 linear": animationState === 'generating',
-                    "animate-beam-progress animation-duration-fast animation-iteration-count-1 linear": animationState === 'finishing',
-                  }
-                )}
-              />
-            )}
-            <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
-              if (!isOpen) {
-                // Não avance ao clicar fora
-              }
-            }}>
-                <div className="relative grid flex-1">
-                    <Textarea
-                        ref={textareaRef}
-                        value={text}
-                        onChange={handleTextareaChange}
-                        onScroll={syncScroll}
-                        placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0"
-                        aria-label="Editor de Poesia"
-                    />
-                    <div
-                        ref={highlightsRef}
-                        className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
-                        aria-hidden="true"
-                    >
-                        {editorContent}
-                    </div>
-                </div>
-
-                {activeGrammarSuggestion && (
-                  <SuggestionPopover
-                    suggestion={activeGrammarSuggestion}
-                    onAccept={() => onAccept(activeGrammarSuggestion)}
-                    onDismiss={() => onDismiss(activeGrammarSuggestion)}
-                    onResuggest={() => onResuggest(activeGrammarSuggestion)}
+            "data-[animation-state=generating]:animate-border-pulse data-[animation-state=generating]:[--pulse-color:hsl(var(--anim-generate))]",
+            "data-[animation-state=correcting]:animate-border-pulse data-[animation-state=correcting]:[--pulse-color:hsl(var(--anim-correct))]",
+            "group"
+          )}
+        >
+          <div className={cn(
+            "absolute inset-0 rounded-md pointer-events-none opacity-0",
+            // Generating Start
+            "group-data-[animation-state=generating]:opacity-100 group-data-[animation-state=generating]:animate-border-beam group-data-[animation-state=generating]:[--beam-color:hsl(var(--anim-generate))]",
+            // Correcting
+            "group-data-[animation-state=correcting]:opacity-100 group-data-[animation-state=correcting]:animate-border-beam group-data-[animation-state=correcting]:[--beam-color:hsl(var(--anim-correct))] group-data-[animation-state=correcting]:animation-duration-fast group-data-[animation-state=correcting]:animation-iteration-count-infinite",
+            // Finishing
+            "group-data-[animation-state=finishing]:opacity-100 group-data-[animation-state=finishing]:animate-border-beam group-data-[animation-state=finishing]:[--beam-color:hsl(var(--anim-finish))] group-data-[animation-state=finishing]:animation-duration-normal group-data-[animation-state=finishing]:animation-iteration-count-1"
+          )}/>
+          <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
+            if (!isOpen) {
+              // Não avance ao clicar fora
+            }
+          }}>
+              <div className="relative grid flex-1">
+                  <Textarea
+                      ref={textareaRef}
+                      value={text}
+                      onChange={handleTextareaChange}
+                      onScroll={syncScroll}
+                      placeholder="Escreva seu poema aqui..."
+                      className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0"
+                      aria-label="Editor de Poesia"
                   />
-                )}
-            </Popover>
-         </div>
+                  <div
+                      ref={highlightsRef}
+                      className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
+                      aria-hidden="true"
+                  >
+                      {editorContent}
+                  </div>
+              </div>
+
+              {activeGrammarSuggestion && (
+                <SuggestionPopover
+                  suggestion={activeGrammarSuggestion}
+                  onAccept={() => onAccept(activeGrammarSuggestion)}
+                  onDismiss={() => onDismiss(activeGrammarSuggestion)}
+                  onResuggest={() => onResuggest(activeGrammarSuggestion)}
+                />
+              )}
+          </Popover>
+       </div>
 
         {suggestionMode === "final" && (
           <div className="flex justify-end pt-4">
-            <Button onClick={onFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
+            <Button onClick={handleFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
               <Wand2 className="mr-2 h-4 w-4" />
               {isLoading ? "Analisando..." : "Gerar Sugestões"}
             </Button>

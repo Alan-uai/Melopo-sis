@@ -75,7 +75,9 @@ export default {
         sm: 'calc(var(--radius) - 4px)',
       },
       animationDuration: {
-        'fast': '0.3s',
+        'fast': '1s',
+        'normal': '2s',
+        'slow': '15s',
       },
       keyframes: {
         'accordion-down': {
@@ -94,22 +96,22 @@ export default {
             height: '0',
           },
         },
-        'beam-progress': {
-          '0%': { top: '-10%', opacity: '0' },
-          '10%, 90%': { opacity: '1' },
-          '100%': { top: '110%', opacity: '0' },
-        },
         'border-pulse': {
           '50%': { 
-            borderColor: 'hsl(var(--primary) / 0.5)',
+            borderColor: 'var(--pulse-color, hsl(var(--primary)))',
+          },
+        },
+        'border-beam': {
+          to: { 
+            '--border-angle': '360deg',
           },
         },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'beam-progress': 'beam-progress var(--animation-duration, 15s) var(--animation-timing-function, linear) var(--animation-iteration-count, infinite) var(--animation-direction, normal)',
         'border-pulse': 'border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'border-beam': 'border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, 1) var(--animation-direction, normal)',
       },
     },
   },

@@ -37,6 +37,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --anim-generate: 140 80% 60%;
+    --anim-correct: 0 84% 60%;
+    --anim-finish: 45 93% 61%;
   }
   .dark {
     --background: 240 6% 10%;
@@ -71,6 +75,10 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --anim-generate: 140 70% 50%;
+    --anim-correct: 0 70% 50%;
+    --anim-finish: 35 80% 50%;
   }
 }
 
@@ -84,22 +92,36 @@
 }
 
 @layer utilities {
-  @keyframes beam-progress {
-    0% {
-      top: -10%;
-      opacity: 0;
-    }
-    10%, 90% {
-      opacity: 1;
-    }
-    100% {
-      top: 110%;
-      opacity: 0;
-    }
-  }
   @keyframes border-pulse {
     50% {
-      border-color: hsl(var(--primary) / 1);
+      border-color: var(--pulse-color, hsl(var(--primary)));
     }
+  }
+
+  @property --border-angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+
+  @keyframes border-beam {
+    to {
+      --border-angle: 360deg;
+    }
+  }
+
+  .animate-border-beam {
+    --border-size: 1px;
+    --border-angle: 0deg;
+    border-style: solid;
+    border-width: var(--border-size);
+    border-image: conic-gradient(
+        from var(--border-angle) at 50% 50%,
+        transparent 0%,
+        var(--beam-color, hsl(var(--primary))) 20%,
+        transparent 35%
+      )
+      1;
+    animation: border-beam var(--animation-duration, 5s) linear infinite;
   }
 }
