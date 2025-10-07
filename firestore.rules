@@ -1,75 +1,91 @@
 /**
- * @fileOverview
- * This ruleset enforces a strict user-ownership model for the Verso Correto application.
- * All data is nested under `/users/{userId}`, ensuring that only the authenticated user can access their own data.
+ * @file Firestore Security Rules for Verso Correto.
  *
- * Data Structure:
- * - /users/{userId}: Stores user profiles, where {userId} matches the Firebase Auth UID.
- * - /users/{userId}/poems/{poemId}: Stores poems created by a specific user.
- *
- * Key Security Decisions:
- * - User data (profiles) are only accessible to the owning user.
- * - Poems are only accessible to the user who created them.
- * - Listing poems is only allowed for the owning user.
- * - The `authorId` field in the Poem document is validated on creation to match the `userId` in the path,
- *   and is immutable thereafter, enforcing relational integrity.
- * - All write operations require a verified user identity (`request.auth != null`).
+ * @corePhilosophy This ruleset enforces a strict user-ownership model, where each user controls their profile and poems.
+ * @dataStructure User profiles are stored in `/users/{userId}`, and each user's poems are stored in a subcollection `/users/{userId}/poems/{poemId}`.
+ * @keySecurityDecisions
+ *   - Users can only access their own profile data.
+ *   - Users can only create, read, update, and delete poems they own.
+ *   - Data consistency between the path and the `authorId` field in the Poem document is enforced.
+ *   - List operations are only allowed for a user's own poems.
  */
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
     /**
-     * @description Controls access to user profile documents.
+     * @description Controls access to user profiles.
      * @path /users/{userId}
-     * @allow (create) - User with UID 'user_abc' can create their own profile with id 'user_abc'.
-     * @allow (get, update, delete) - User with UID 'user_abc' can read/write their own profile with id 'user_abc'.
-     * @deny (create, update, delete) - User with UID 'user_xyz' cannot create/write profile for user 'user_abc'.
-     * @deny (list) - Listing all users is not permitted.
-     * @principle Enforces document ownership. Only the user can create, read, update, or delete their own profile.
+     * @allow (get, create, update, delete, list) if the request is made by the user with the matching ID.
+     *   Example: A user with UID "user123" can read, update, and delete the document at /users/user123.
+     * @deny (get, create, update, delete, list) if the request is made by a different user.
+     *   Example: A user with UID "user456" cannot read or modify the document at /users/user123.
+     * @principle Enforces document ownership for all operations.
      */
     match /users/{userId} {
+      // Check if the user is signed in
       function isSignedIn() {
         return request.auth != null;
       }
 
+      // Helper function to check if the requesting user is the owner of the document
       function isOwner(userId) {
         return request.auth.uid == userId;
+      }
+
+      // Helper function to check if the requesting user is the existing owner of the document
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource.data != null;
       }
 
       allow get: if isSignedIn() && isOwner(userId);
-      allow list: if false;
+      allow list: if false; // User listing is not permitted
+
+      // Allow the user to create their own profile if the userId matches
       allow create: if isSignedIn() && isOwner(userId) && request.resource.data.id == userId;
-      allow update: if isSignedIn() && isOwner(userId) && resource.data.id == request.resource.data.id;
-      allow delete: if isSignedIn() && isOwner(userId) && resource.data.id == userId;
+
+      // Allow the user to update their own profile if the userId matches and the id field is immutable
+      allow update: if isSignedIn() && isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+
+      // Allow the user to delete their own profile if the userId matches
+      allow delete: if isSignedIn() && isExistingOwner(userId);
     }
 
     /**
-     * @description Controls access to poem documents nested under a user's profile.
+     * @description Controls access to poems created by a specific user.
      * @path /users/{userId}/poems/{poemId}
-     * @allow (create) - User 'user_abc' can create a poem under their profile with authorId 'user_abc'.
-     * @allow (get, list, update, delete) - User 'user_abc' can read/list/write poems under their profile.
-     * @deny (create, update, delete) - User 'user_xyz' cannot create/write poems under user 'user_abc''s profile.
-     * @principle Enforces document ownership for poems. Only the owning user can create, read, update, or delete their own poems.
+     * @allow (create, get, list, update, delete) if the request is made by the user who owns the poem.
+     *   Example: User "user123" can create, read, update, and delete poems under /users/user123/poems/{poemId}.
+     * @deny (create, get, list, update, delete) if the request is made by a different user.
+     *   Example: User "user456" cannot access poems under /users/user123/poems/{poemId}.
+     * @principle Enforces document ownership for all operations on poems.
      */
     match /users/{userId}/poems/{poemId} {
+       // Check if the user is signed in
       function isSignedIn() {
         return request.auth != null;
       }
 
+      // Helper function to check if the requesting user is the owner of the document
       function isOwner(userId) {
         return request.auth.uid == userId;
       }
 
+       // Helper function to check if the requesting user is the existing owner of the document
       function isExistingOwner(userId) {
-        return isSignedIn() && isOwner(userId) && resource != null;
+        return isOwner(userId) && resource.data != null;
       }
 
-      allow get: if isOwner(userId);
-      allow list: if isOwner(userId);
+      allow get: if isSignedIn() && isOwner(userId);
+      allow list: if isSignedIn() && isOwner(userId);
+
+      //On create, validate that the authorId matches the userId in the path
       allow create: if isSignedIn() && isOwner(userId) && request.resource.data.authorId == userId;
-      allow update: if isExistingOwner(userId) && resource.data.authorId == request.resource.data.authorId;
-      allow delete: if isExistingOwner(userId);
+      
+      //On update, ensure that the authorId cannot be changed
+      allow update: if isSignedIn() && isExistingOwner(userId) && request.resource.data.authorId == resource.data.authorId;
+
+      allow delete: if isSignedIn() && isExistingOwner(userId);
     }
   }
 }

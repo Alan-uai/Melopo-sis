@@ -1,124 +1,90 @@
 {
   "entities": {
     "Poem": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
       "title": "Poem",
       "type": "object",
-      "description": "Represents a poem created and saved by a user.",
+      "description": "Representa um poema criado e salvo por um usuário.",
       "properties": {
-        "id": {
-          "type": "string",
-          "description": "Unique identifier for the poem."
-        },
         "title": {
           "type": "string",
-          "description": "The title of the poem."
-        },
-        "authorId": {
-          "type": "string",
-          "description": "Reference to User who created the poem. (Relationship: User 1:N Poem)"
+          "description": "O título do poema."
         },
         "text": {
           "type": "string",
-          "description": "The complete text content of the poem."
+          "description": "O conteúdo de texto completo do poema."
+        },
+        "tone": {
+            "type": "string",
+            "description": "O tom do poema."
+        },
+        "structure": {
+            "type": "string",
+            "description": "A estrutura do texto, 'poema' ou 'poesia'."
+        },
+        "rhyme": {
+            "type": "boolean",
+            "description": "Indica se o texto deve ter rima."
+        },
+        "authorId": {
+          "type": "string",
+          "description": "ID do usuário que criou o poema."
         },
         "createdAt": {
           "type": "string",
-          "description": "Timestamp indicating when the poem was created.",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp de quando o poema foi criado."
         },
         "updatedAt": {
           "type": "string",
-          "description": "Timestamp indicating when the poem was last updated.",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp da última atualização do poema."
         }
       },
-      "required": [
-        "id",
-        "authorId",
-        "text",
-        "createdAt",
-        "updatedAt"
-      ]
+      "required": ["text", "authorId", "createdAt", "updatedAt"]
     },
-    "User": {
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "title": "User",
+    "UserProfile": {
+      "title": "User Profile",
       "type": "object",
-      "description": "Represents a user of the Verso Correto application.",
+      "description": "Representa o perfil de um usuário no aplicativo.",
       "properties": {
-        "id": {
+        "uid": {
           "type": "string",
-          "description": "Unique identifier for the user."
+          "description": "O ID de usuário exclusivo do Firebase Auth."
         },
         "email": {
           "type": "string",
-          "description": "The email address of the user.",
-          "format": "email"
+          "format": "email",
+          "description": "O endereço de e-mail do usuário."
         },
-        "username": {
+        "displayName": {
           "type": "string",
-          "description": "The username chosen by the user."
+          "description": "O nome de exibição do usuário."
+        },
+        "photoURL": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL da foto de perfil do usuário."
         },
         "createdAt": {
           "type": "string",
-          "description": "Timestamp indicating when the user account was created.",
-          "format": "date-time"
+          "format": "date-time",
+          "description": "Timestamp de quando o perfil do usuário foi criado."
         }
       },
-      "required": [
-        "id",
-        "email",
-        "username",
-        "createdAt"
-      ]
+      "required": ["uid", "email", "createdAt"]
     }
   },
   "auth": {
-    "providers": [
-      "password",
-      "anonymous"
-    ]
+    "providers": ["google.com"]
   },
   "firestore": {
-    "structure": [
-      {
-        "path": "/users/{userId}",
-        "definition": {
-          "entityName": "User",
-          "schema": {
-            "$ref": "#/backend/entities/User"
-          },
-          "description": "Stores user profiles. The `userId` parameter corresponds to the Firebase Auth UID.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user, matching their Firebase Auth UID."
-            }
-          ]
-        }
-      },
-      {
-        "path": "/users/{userId}/poems/{poemId}",
-        "definition": {
-          "entityName": "Poem",
-          "schema": {
-            "$ref": "#/backend/entities/Poem"
-          },
-          "description": "Stores poems created by a specific user.  The `authorId` field in the Poem document is used for clarity, mirroring the {userId} path parameter.",
-          "params": [
-            {
-              "name": "userId",
-              "description": "The unique identifier of the user who owns the poem."
-            },
-            {
-              "name": "poemId",
-              "description": "The unique identifier for the poem."
-            }
-          ]
-        }
-      }
-    ],
-    "reasoning": "The Firestore structure is designed to ensure Authorization Independence, support required QAPs (Queries are not Filters), and maintain data integrity for the Verso Correto application. Poems are stored as subcollections of users, which simplifies access control and ensures that each poem is owned by a specific user. This structure facilitates easy querying of a user's poems and avoids the need for complex security rules that rely on `get()` calls.\n\n*   **Authorization Independence:** Poems are stored as subcollections of users (`/users/{userId}/poems/{poemId}`), enabling direct access control based on the user ID (`request.auth.uid`). The `authorId` field in the `Poem` document is redundant in terms of authorization given the path, but it's kept for data clarity and potential future use cases (e.g., if poems were ever to be moved to a different location).\n*   **QAPs (Queries are not Filters):** The structure supports secure `list` operations.  Listing poems under a specific user path `/users/{userId}/poems` is straightforward and secure, as the rules can simply check if `request.auth.uid == userId`.\n*   **Data Integrity:** Timestamps (`createdAt`, `updatedAt`) are included to track poem creation and modification times. The `authorId` links back to the owning user, which can be verified on creation.\n"
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Armazena perfis de usuários. O {userId} corresponde ao UID do Firebase Auth."
+    },
+    "/users/{userId}/poems/{poemId}": {
+      "schema": { "$ref": "#/entities/Poem" },
+      "description": "Armazena poemas criados por um usuário específico."
+    }
   }
 }

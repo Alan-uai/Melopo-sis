@@ -47,9 +47,11 @@ interface EditorProps {
   onClear: () => void;
   onCopy: () => void;
   onSavePoem: () => void;
+  isPoemSaved: boolean;
 }
 
 export interface EditorRef {
+  focus: () => void;
   getCursorPosition: () => number | null;
   getCurrentLine: (text: string, cursorPosition: number | null) => string;
 }
@@ -74,7 +76,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onFinalSuggestion,
   onClear,
   onCopy,
-  onSavePoem
+  onSavePoem,
+  isPoemSaved,
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
@@ -85,6 +88,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const highlightsRef = useRef<HTMLDivElement>(null);
 
   useImperativeHandle(ref, () => ({
+    focus: () => {
+      textareaRef.current?.focus();
+    },
     getCursorPosition: () => {
       return textareaRef.current?.selectionStart ?? null;
     },
@@ -152,7 +158,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
 
   return (
-    <Card className="w-full shadow-lg">
+    <Card className="w-full shadow-lg h-full flex flex-col">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -168,13 +174,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
              <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onSavePoem}>
+                        <Button variant="ghost" size="icon" onClick={onSavePoem} disabled={isLoading}>
                             <Save className="h-4 w-4" />
                             <span className="sr-only">Salvar Poema</span>
                         </Button>
                     </TooltipTrigger>
                     <TooltipContent>
-                        <p>Salvar poema</p>
+                        <p>{isPoemSaved ? 'Atualizar poema' : 'Salvar poema'}</p>
                     </TooltipContent>
                 </Tooltip>
                 <Tooltip>
@@ -207,7 +213,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           normas da ABNT.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 flex-1 flex flex-col">
         <div className="grid grid-cols-2 gap-4">
            <div className="space-y-2">
             <Label htmlFor="structure-select">Estrutura do Texto</Label>
@@ -265,25 +271,25 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </div>
           </div>
         
-        <div className="relative">
+        <div className="relative flex-1 flex flex-col">
             <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
-              if (!isOpen && activeGrammarSuggestion) {
-                // This is where we prevent advancing on outside click.
+              if (!isOpen) {
+                // Não avance ao clicar fora
               }
             }}>
-                <div className="relative grid">
+                <div className="relative grid flex-1">
                     <Textarea
                         ref={textareaRef}
                         value={text}
                         onChange={handleTextareaChange}
                         onScroll={syncScroll}
                         placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 min-h-[50vh] w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20"
+                        className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full"
                         aria-label="Editor de Poesia"
                     />
                     <div
                         ref={highlightsRef}
-                        className="pointer-events-none col-start-1 row-start-1 min-h-[50vh] w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground"
+                        className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground h-full"
                         aria-hidden="true"
                     >
                         {editorContent}
@@ -302,7 +308,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
          </div>
 
         {suggestionMode === "final" && (
-          <div className="flex justify-end">
+          <div className="flex justify-end pt-4">
             <Button onClick={onFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
               <Wand2 className="mr-2 h-4 w-4" />
               {isLoading ? "Analisando..." : "Gerar Sugestões"}
