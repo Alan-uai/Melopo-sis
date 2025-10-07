@@ -394,12 +394,25 @@ export default function Home() {
   
   const handleAccept = useCallback((suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
-    
+  
     if (suggestionToAccept.type === 'grammar') {
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
-      setText(prevText => prevText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
-      setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToAccept.originalText));
+      // This is the corrected logic for tone suggestions.
+      // It ensures the text is updated first, and then removes the suggestion from the list
+      // in a single, atomic state update to prevent rendering conflicts.
+      setText(prevText => {
+        // Update the main text
+        const newText = prevText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
+        
+        // After updating the text, filter out the accepted suggestion from the tone list.
+        // This must happen *after* the text replacement.
+        setToneSuggestions(currentSuggestions =>
+          currentSuggestions.filter(s => s.originalText !== suggestionToAccept.originalText)
+        );
+        
+        return newText;
+      });
     }
   }, [applyCorrection]);
 
