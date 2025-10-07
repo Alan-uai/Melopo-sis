@@ -38,7 +38,7 @@ const grammarPrompt = ai.definePrompt({
     - Verifique se a estrutura geral está de acordo com as normas da ABNT para o tipo de texto especificado: '{{structure}}'.
     - Identifique TODOS os erros estruturais, como métrica irregular (se aplicável), estrofação inadequada ou quebra de ritmo.
 
-    ETAPA 3: COMPILAÇÃO DA LISTA DE ERROS.
+    ETapa 3: COMPILAÇÃO DA LISTA DE ERROS.
     - Compile TODOS os erros encontrados nas Etapas 1 e 2 em uma única lista de sugestões do tipo 'grammar'.
     - Para cada erro, forneça o trecho original, a sugestão de correção e uma explicação clara.
     - Se a opção 'rhyme' for verdadeira, certifique-se de que suas correções mantenham ou melhorem a rima.

@@ -28,7 +28,10 @@ export default function Home() {
   const generateSuggestions = useCallback(async (
     suggestionType: 'grammar' | 'tone'
   ) => {
-    setIsLoading(true);
+    // We only set loading to true when it's the initial call
+    if (suggestionType === 'grammar') {
+      setIsLoading(true);
+    }
     try {
       const input: SuggestionInput = {
         text: text,
@@ -54,7 +57,8 @@ export default function Home() {
               title: "Nenhuma Correção Gramatical Necessária",
               description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
             });
-            return { grammarSuggestionsFound: false };
+            // Automatically fetch tone suggestions
+            await generateSuggestions('tone');
         }
       } else { // tone
         setToneSuggestions(result.suggestions);
@@ -70,21 +74,20 @@ export default function Home() {
           });
         }
       }
-      return { grammarSuggestionsFound: result.suggestions.length > 0 };
     } catch (error: any) {
       console.error("Failed to generate suggestions:", error);
       toast({
         variant: "destructive",
         title: "Erro ao Gerar Sugestões",
-        description: error.message.includes('503') 
-          ? "O modelo de IA está sobrecarregado. Por favor, tente novamente em alguns instantes."
-          : "Não foi possível obter sugestões da IA. Verifique sua conexão ou tente novamente mais tarde.",
+        description: "Não foi possível obter sugestões da IA. Verifique sua conexão ou tente novamente mais tarde.",
       });
-      return { grammarSuggestionsFound: false };
     } finally {
-      setIsLoading(false);
+      // We only set loading to false when all calls are done
+      if (suggestionType === 'tone' || (suggestionType === 'grammar' && grammarSuggestions.length === 0)) {
+        setIsLoading(false);
+      }
     }
-  }, [text, tone, textStructure, rhyme, toast]);
+  }, [text, tone, textStructure, rhyme, toast, grammarSuggestions.length]);
   
   const handleGenerateSuggestions = async () => {
     if (!text.trim() || isLoading) return;
@@ -95,12 +98,7 @@ export default function Home() {
     setCurrentSuggestionIndex(null);
 
     // First, always check for grammar mistakes
-    const { grammarSuggestionsFound } = await generateSuggestions('grammar');
-    
-    // If no grammar mistakes were found, fetch tone suggestions
-    if (!grammarSuggestionsFound) {
-      await generateSuggestions('tone');
-    }
+    await generateSuggestions('grammar');
   };
   
   const resetSuggestions = () => {
@@ -138,22 +136,30 @@ export default function Home() {
     handleConfigChange();
   }
 
-  const advanceToNextSuggestion = () => {
+  const advanceToNextSuggestion = async () => {
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
       setCurrentSuggestionIndex(currentSuggestionIndex + 1);
     } else {
-      // Last suggestion handled
+      // Last grammar suggestion handled
       setCurrentSuggestionIndex(null);
       setGrammarSuggestions([]); // Clear list
-      toast({
-        title: "Correções Gramaticais Concluídas!",
-        description: "Clique em 'Gerar Sugestões' novamente para obter dicas de estilo.",
-      });
+      
+      // If there were grammar suggestions, now we can ask for tone suggestions
+      if (grammarSuggestions.length > 0) {
+        toast({
+            title: "Correções Gramaticais Concluídas!",
+            description: "Buscando sugestões de estilo para o texto corrigido...",
+        });
+        await generateSuggestions('tone');
+      }
     }
   };
 
   const applyCorrection = (originalText: string, correctedText: string) => {
-    setText(currentText => currentText.replace(originalText, correctedText));
+    const newText = text.replace(originalText, correctedText);
+    setText(newText);
+    // Use a callback with setText to ensure we have the latest state for the next step
+    // This is important because the 'text' variable in advanceToNextSuggestion might be stale
     advanceToNextSuggestion();
   };
 
@@ -257,7 +263,7 @@ export default function Home() {
         />
         <SuggestionList
           suggestions={toneSuggestions}
-          isLoading={isLoading && grammarSuggestions.length === 0 && toneSuggestions.length === 0}
+          isLoading={isLoading}
           onAccept={handleAccept}
           onDismiss={handleDismiss}
           onResuggest={handleResuggest}
