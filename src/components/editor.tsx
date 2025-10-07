@@ -227,7 +227,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         
         <div className="relative">
-            <Popover open={!!activeGrammarSuggestion} onOpenChange={(open) => !open && activeGrammarSuggestion && onDismiss(activeGrammarSuggestion)}>
+            <Popover open={!!activeGrammarSuggestion}>
                 <div className="relative grid">
                     <Textarea
                         ref={textareaRef}

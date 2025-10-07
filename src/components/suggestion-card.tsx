@@ -55,7 +55,7 @@ export function SuggestionCard({
         </AccordionTrigger>
         <AccordionContent className="p-4 pt-2">
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground whitespace-pre-wrap">
               {suggestion.explanation}
             </p>
             <Card className="bg-background/80">
