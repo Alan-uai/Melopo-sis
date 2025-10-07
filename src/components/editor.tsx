@@ -94,16 +94,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const highlightsRef = useRef<HTMLDivElement>(null);
   
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
-  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-
-  const prevToneSuggestionsLength = useRef(0);
+  const prevToneSuggestionsLength = useRef(toneSuggestions.length);
 
   useEffect(() => {
-    // Cleanup previous timeout if a new animation cycle starts
-    if (animationTimeoutRef.current) {
-      clearTimeout(animationTimeoutRef.current);
-    }
-
     if (isLoading && animationState === 'idle') {
       setAnimationState('generating');
     } else if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
@@ -115,9 +108,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       (animationState === 'generating' || animationState === 'correcting')
     ) {
       setAnimationState('finishing');
-      animationTimeoutRef.current = setTimeout(() => {
-        setAnimationState('idle');
-      }, 2000); // Duration of the finishing animation
     } else if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
       setAnimationState('idle');
     } else if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState !== 'idle' && animationState !== 'finishing') {
@@ -125,14 +115,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
     
     prevToneSuggestionsLength.current = toneSuggestions.length;
-    
-    return () => {
-      if (animationTimeoutRef.current) {
-        clearTimeout(animationTimeoutRef.current);
-      }
-    };
   }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions.length, animationState]);
 
+  const handleAnimationEnd = () => {
+    if (animationState === 'finishing') {
+      setAnimationState('idle');
+    }
+  };
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -163,7 +152,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onTextChange(e.target.value);
-    setAnimationState('idle'); // Reset animation on text change
+    if(animationState !== 'idle') {
+      setAnimationState('idle'); // Reset animation on text change
+    }
   };
   
   const handleFinalSuggestion = () => {
@@ -348,10 +339,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             "relative flex-1 flex flex-col rounded-md border overflow-hidden group",
             animationState === 'generating' && "animate-border-pulse [--pulse-color:hsl(var(--anim-generate))]",
             animationState === 'correcting' && "animate-border-pulse [--pulse-color:hsl(var(--anim-correct))]",
-            // finishing state does not pulse, it beams
           )}
         >
-          <div className={cn(
+          <div 
+            onAnimationEnd={handleAnimationEnd}
+            className={cn(
             "absolute inset-0 rounded-md pointer-events-none transition-opacity duration-500",
              isAnimationActive ? "opacity-100" : "opacity-0"
           )}>
