@@ -8,7 +8,7 @@ import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 
-const LOCAL_STORAGE_KEY = "melopoeisis_text";
+const LOCAL_STORAGE_KEY = "melopoeisis_data";
 
 export default function Home() {
   const [text, setText] = useState<string>("");
@@ -30,9 +30,13 @@ export default function Home() {
 
   useEffect(() => {
     try {
-      const savedText = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (savedText) {
-        setText(savedText);
+      const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
+      if (savedData) {
+        const { text, tone, textStructure, rhyme } = JSON.parse(savedData);
+        if (text) setText(text);
+        if (tone) setTone(tone);
+        if (textStructure) setTextStructure(textStructure);
+        if (rhyme !== undefined) setRhyme(rhyme);
       }
     } catch (error) {
       console.error("Failed to read from localStorage", error);
@@ -43,12 +47,13 @@ export default function Home() {
   useEffect(() => {
     if (isMounted) {
       try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, text);
+        const dataToSave = JSON.stringify({ text, tone, textStructure, rhyme });
+        localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Failed to write to localStorage", error);
       }
     }
-  }, [text, isMounted]);
+  }, [text, tone, textStructure, rhyme, isMounted]);
 
   const generateSuggestions = useCallback(async (
     suggestionType: 'grammar' | 'tone'
@@ -66,10 +71,7 @@ export default function Home() {
       };
       const result = await generateContextualSuggestions(input);
       
-      // Check if the text has changed while waiting for the AI
       if (text !== currentText) {
-        // The user has continued typing, so we don't show stale suggestions.
-        // We can optionally show a toast message here.
         toast({
           title: "Texto alterado",
           description: "Você continuou a escrever. As sugestões foram descartadas. Clique para gerar novamente quando estiver pronto.",
@@ -121,12 +123,10 @@ export default function Home() {
   const handleGenerateSuggestions = async () => {
     if (!text.trim() || isLoading) return;
 
-    // Reset all previous suggestions
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
-    // First, always check for grammar mistakes
     await generateSuggestions('grammar');
   };
   
@@ -147,6 +147,14 @@ export default function Home() {
     toast({
       title: "Editor Limpo",
       description: "O conteúdo do editor foi apagado.",
+    });
+  };
+  
+  const handleSavePoem = () => {
+    // TODO: Implement save poem functionality
+    toast({
+        title: "Funcionalidade em desenvolvimento",
+        description: "A capacidade de salvar poemas permanentemente será adicionada em breve.",
     });
   };
 
@@ -199,10 +207,8 @@ export default function Home() {
     setCurrentSuggestionIndex(nextIndex);
   
     if (nextIndex === null) {
-      // Last grammar suggestion handled
-      setGrammarSuggestions([]); // Clear list
+      setGrammarSuggestions([]); 
       
-      // If there were grammar suggestions, now we can ask for tone suggestions
       if (grammarSuggestions.length > 0) {
         toast({
             title: "Correções Gramaticais Concluídas!",
@@ -215,10 +221,7 @@ export default function Home() {
   
 
   const applyCorrection = (originalText: string, correctedText: string) => {
-    // We use a callback with setText to ensure we have the latest state for the next step
-    // This is important because the 'text' variable in advanceToNextSuggestion might be stale
     setText(prevText => {
-      // Use replace only once to avoid unintended replacements
       const newText = prevText.replace(originalText, correctedText);
       return newText;
     });
@@ -231,7 +234,6 @@ export default function Home() {
     if (suggestionToAccept.type === 'grammar') {
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
-      // Handle tone suggestion acceptance (replace and remove from list)
       setText(text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToAccept.originalText));
     }
@@ -242,7 +244,6 @@ export default function Home() {
     if (suggestionToDismiss.type === 'grammar') {
       advanceToNextSuggestion();
     } else {
-      // Handle tone suggestion dismissal (just remove from list)
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToDismiss.originalText));
     }
   };
@@ -301,8 +302,8 @@ export default function Home() {
   };
   
   return (
-    <div className="container mx-auto max-w-7xl px-4 py-8">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <div className="w-full min-h-screen p-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
         <Editor
           ref={editorRef}
           text={text}
@@ -324,6 +325,7 @@ export default function Home() {
           onFinalSuggestion={handleGenerateSuggestions}
           onClear={handleClear}
           onCopy={handleCopy}
+          onSavePoem={handleSavePoem}
         />
         <SuggestionList
           suggestions={toneSuggestions}

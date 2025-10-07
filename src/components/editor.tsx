@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, LoaderCircle, Trash2, Wand2 } from "lucide-react";
+import { Copy, Feather, LoaderCircle, Save, Trash2, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -46,6 +46,7 @@ interface EditorProps {
   onFinalSuggestion: () => void;
   onClear: () => void;
   onCopy: () => void;
+  onSavePoem: () => void;
 }
 
 export interface EditorRef {
@@ -72,7 +73,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onSuggestionModeChange,
   onFinalSuggestion,
   onClear,
-  onCopy
+  onCopy,
+  onSavePoem
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
@@ -120,16 +122,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     let lastIndex = 0;
     const { originalText } = activeGrammarSuggestion;
     
-    // Find the suggestion text, but only once.
     const startIndex = textToProcess.indexOf(originalText, lastIndex);
 
     if (startIndex !== -1) {
-        // Add the part of the text before the suggestion
         if (startIndex > lastIndex) {
             parts.push(textToProcess.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
         }
         
-        // Add the highlighted suggestion as a PopoverAnchor
         parts.push(
             <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
                 <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
@@ -140,12 +139,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         lastIndex = startIndex + originalText.length;
     }
 
-    // Add any remaining text after the suggestion
     if (lastIndex < textToProcess.length) {
         parts.push(textToProcess.substring(lastIndex).replace(/\n/g, '\n\u200B'));
     }
     
-    // If the text is empty, ensure the container has height
     if (textToProcess === "") {
         return '\u200B';
     }
@@ -164,11 +161,22 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               Verso Correto
             </CardTitle>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1">
             {isLoading && (
               <LoaderCircle className="h-6 w-6 animate-spin text-muted-foreground" />
             )}
              <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="icon" onClick={onSavePoem}>
+                            <Save className="h-4 w-4" />
+                            <span className="sr-only">Salvar Poema</span>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Salvar poema</p>
+                    </TooltipContent>
+                </Tooltip>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={onCopy} disabled={!text}>
@@ -261,7 +269,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
               if (!isOpen && activeGrammarSuggestion) {
                 // This is where we prevent advancing on outside click.
-                // We don't call `onDismiss` here anymore.
               }
             }}>
                 <div className="relative grid">
