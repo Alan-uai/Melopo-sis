@@ -1,0 +1,20 @@
+{
+  "name": "Melopoësis",
+  "short_name": "Melopoësis",
+  "description": "Seu assistente de poesia para o português brasileiro.",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#1f1d2b",
+  "background_color": "#1f1d2b",
+  "display": "standalone"
+}

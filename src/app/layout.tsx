@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     shortcut: '/icon.svg',
     apple: '/icon.svg',
   },
+  manifest: '/manifest.webmanifest',
 };
 
 export default function RootLayout({
