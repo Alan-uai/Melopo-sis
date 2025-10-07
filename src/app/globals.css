@@ -92,12 +92,6 @@
 }
 
 @layer utilities {
-  @keyframes border-pulse {
-    50% {
-      border-color: var(--pulse-color, hsl(var(--primary)));
-    }
-  }
-
   @property --border-angle {
     syntax: '<angle>';
     inherits: true;
@@ -107,6 +101,13 @@
   @keyframes border-beam {
     to {
       --border-angle: 360deg;
+    }
+  }
+
+  @keyframes border-pulse {
+    50% {
+      border-color: var(--pulse-color, hsl(var(--primary)));
+      opacity: 1;
     }
   }
 
@@ -122,6 +123,6 @@
         transparent 35%
       )
       1;
-    animation: border-beam var(--animation-duration, 5s) linear infinite;
+    animation: border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, infinite) var(--animation-direction, normal);
   }
 }

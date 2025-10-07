@@ -99,44 +99,39 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const prevToneSuggestionsLength = useRef(0);
 
   useEffect(() => {
-    // Start generating animation
+    // Cleanup previous timeout if a new animation cycle starts
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+
     if (isLoading && animationState === 'idle') {
       setAnimationState('generating');
-    }
-    
-    // Transition from generating to correcting when grammar suggestions appear
-    if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
+    } else if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
       setAnimationState('correcting');
-    }
-
-    // Transition to finishing when tone suggestions appear
-    if (!isLoading && toneSuggestions.length > 0 && prevToneSuggestionsLength.current === 0) {
+    } else if (
+      !isLoading &&
+      toneSuggestions.length > 0 &&
+      prevToneSuggestionsLength.current === 0 &&
+      (animationState === 'generating' || animationState === 'correcting')
+    ) {
       setAnimationState('finishing');
-      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
-      // Fast animation for finishing, e.g., 2 seconds
-      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); 
-    }
-    
-    // Transition from correcting to idle (no more grammar suggestions)
-    if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
-        // This case might need review depending on the flow. If tone suggestions are expected,
-        // this might prematurely set to idle.
+      animationTimeoutRef.current = setTimeout(() => {
         setAnimationState('idle');
-    }
-
-    // If all suggestions are cleared, return to idle
-    if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState !== 'idle') {
-        if (animationState === 'generating' || animationState === 'correcting') {
-           setAnimationState('idle');
-        }
+      }, 2000); // Duration of the finishing animation
+    } else if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
+      setAnimationState('idle');
+    } else if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState !== 'idle' && animationState !== 'finishing') {
+      setAnimationState('idle');
     }
     
     prevToneSuggestionsLength.current = toneSuggestions.length;
     
     return () => {
-      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current);
+      }
     };
-  }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions, animationState]);
+  }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions.length, animationState]);
 
 
   useImperativeHandle(ref, () => ({
@@ -351,10 +346,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           data-animation-state={animationState}
           className={cn(
             "relative flex-1 flex flex-col rounded-md border overflow-hidden group",
-            isAnimationActive && "animate-border-pulse",
-            animationState === 'generating' && "[--pulse-color:hsl(var(--anim-generate))]",
-            animationState === 'correcting' && "[--pulse-color:hsl(var(--anim-correct))]",
-            animationState === 'finishing' && "[--pulse-color:hsl(var(--anim-finish))]"
+            animationState === 'generating' && "animate-border-pulse [--pulse-color:hsl(var(--anim-generate))]",
+            animationState === 'correcting' && "animate-border-pulse [--pulse-color:hsl(var(--anim-correct))]",
+            // finishing state does not pulse, it beams
           )}
         >
           <div className={cn(
@@ -364,7 +358,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <div className={cn(
               "absolute inset-0 rounded-md",
               "animate-border-beam [--animation-duration:5s]",
-              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))]",
+              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] animation-iteration-count-infinite",
               animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
               animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2s]"
             )}/>

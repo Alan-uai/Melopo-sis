@@ -99,6 +99,7 @@ export default {
         'border-pulse': {
           '50%': { 
             borderColor: 'var(--pulse-color, hsl(var(--primary)))',
+            opacity: '1',
           },
         },
         'border-beam': {
