@@ -168,7 +168,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             size="icon"
             className="md:hidden h-8 w-8"
           >
-            <Feather className="text-primary scale-[3]" />
+            <Feather className="text-primary scale-[2.5]" />
           </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
               Melopoësis
