@@ -253,13 +253,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="flex items-end justify-between">
             <div className="flex items-center space-x-2">
                 <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
                 <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
             </div>
             <div className="flex flex-col items-center">
-              <Label>Modo de Sugestão</Label>
+              <Label className="text-center">Modo de Sugestão</Label>
               <RadioGroup
                 value={suggestionMode}
                 onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
@@ -332,3 +332,4 @@ Editor.displayName = 'Editor';
     
 
     
+
