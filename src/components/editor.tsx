@@ -165,8 +165,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <div className="flex items-center gap-3">
           <SidebarTrigger
             variant="ghost"
-            size="icon"
-            className="md:hidden h-8 w-8"
+            className="md:hidden h-8 w-8 p-0"
           >
             <Feather className="text-primary scale-[2.5]" />
           </SidebarTrigger>
@@ -254,7 +253,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="space-y-4">
+        <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
                 <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
                 <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
@@ -333,3 +332,4 @@ Editor.displayName = 'Editor';
     
 
     
+
