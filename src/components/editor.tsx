@@ -110,18 +110,21 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       setAnimationState('finishing');
     } else if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
       setAnimationState('idle');
-    } else if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState !== 'idle' && animationState !== 'finishing') {
+    } else if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState === 'generating') {
       setAnimationState('idle');
     }
     
     prevToneSuggestionsLength.current = toneSuggestions.length;
   }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions.length, animationState]);
 
-  const handleAnimationEnd = () => {
+  useEffect(() => {
     if (animationState === 'finishing') {
-      setAnimationState('idle');
+      const timer = setTimeout(() => {
+        setAnimationState('idle');
+      }, 1000); // Duração da animação "finishing"
+      return () => clearTimeout(timer);
     }
-  };
+  }, [animationState]);
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -337,12 +340,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           data-animation-state={animationState}
           className={cn(
             "relative flex-1 flex flex-col rounded-md border overflow-hidden group",
-            animationState === 'generating' && "animate-border-pulse [--pulse-color:hsl(var(--anim-generate))]",
-            animationState === 'correcting' && "animate-border-pulse [--pulse-color:hsl(var(--anim-correct))]",
+            (animationState === 'generating' || animationState === 'correcting') && "animate-border-pulse",
+            animationState === 'generating' && "[--pulse-color:hsl(var(--anim-generate))]",
+            animationState === 'correcting' && "[--pulse-color:hsl(var(--anim-correct))]",
           )}
         >
           <div 
-            onAnimationEnd={handleAnimationEnd}
             className={cn(
             "absolute inset-0 rounded-md pointer-events-none transition-opacity duration-500",
              isAnimationActive ? "opacity-100" : "opacity-0"
@@ -352,7 +355,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               "animate-border-beam [--animation-duration:5s]",
               animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] animation-iteration-count-infinite",
               animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
-              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2s]"
+              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:1s]"
             )}/>
           </div>
 
