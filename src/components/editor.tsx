@@ -185,6 +185,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
   }, [text, activeGrammarSuggestion]);
 
+  const showAnimations = (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && activeGrammarSuggestion === null;
 
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
@@ -323,9 +324,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         
         <div className={cn(
             "relative flex-1 flex flex-col rounded-md border overflow-hidden",
-            (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && "animate-border-pulse"
+            showAnimations && "animate-border-pulse"
         )}>
-            {(animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && (
+            {showAnimations && (
               <div
                 ref={beamRef}
                 onAnimationEnd={handleAnimationEnd}

@@ -99,7 +99,7 @@
   }
   @keyframes border-pulse {
     50% {
-      border-color: hsl(var(--primary) / 0.5);
+      border-color: hsl(var(--primary) / 1);
     }
   }
 }
