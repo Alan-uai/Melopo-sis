@@ -164,7 +164,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <div className="flex items-center gap-3">
             <Feather className="h-8 w-8 text-primary" />
             <CardTitle className="font-headline text-3xl">
-              Verso Correto
+              Melopoësis
             </CardTitle>
           </div>
           <div className="flex items-center gap-1">
@@ -321,3 +321,5 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+
+    
