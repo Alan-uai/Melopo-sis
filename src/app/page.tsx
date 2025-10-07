@@ -398,10 +398,10 @@ export default function Home() {
     if (suggestionToAccept.type === 'grammar') {
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
-      setText(text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
+      setText(prevText => prevText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToAccept.originalText));
     }
-  }, [applyCorrection, text]);
+  }, [applyCorrection]);
 
   const handleDismiss = useCallback((suggestionToDismiss: Suggestion) => {
     if (!suggestionToDismiss) return;
