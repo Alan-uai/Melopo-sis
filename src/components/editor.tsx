@@ -1,6 +1,6 @@
 "use client";
 
-import { Feather, LoaderCircle, Wand2 } from "lucide-react";
+import { Copy, Feather, LoaderCircle, Trash2, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -24,6 +24,7 @@ import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
 import { Popover, PopoverAnchor } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/tooltip";
 
 interface EditorProps {
   text: string;
@@ -43,6 +44,8 @@ interface EditorProps {
   suggestionMode: SuggestionMode;
   onSuggestionModeChange: (mode: SuggestionMode) => void;
   onFinalSuggestion: () => void;
+  onClear: () => void;
+  onCopy: () => void;
 }
 
 export interface EditorRef {
@@ -68,6 +71,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   suggestionMode,
   onSuggestionModeChange,
   onFinalSuggestion,
+  onClear,
+  onCopy
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
@@ -106,47 +111,47 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   };
 
   const editorContent = useMemo(() => {
-    let lastIndex = 0;
-    const parts: (string | React.ReactNode)[] = [];
-
-    // Only the active suggestion should be the popover anchor
-    const suggestionToHighlight = activeGrammarSuggestion;
-
-    if (suggestionToHighlight) {
-        const startIndex = text.indexOf(suggestionToHighlight.originalText, lastIndex);
-        if (startIndex !== -1) {
-            // Add text part before the suggestion
-            if (startIndex > lastIndex) {
-                parts.push(text.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
-            }
-            
-            // Add the active suggestion as a PopoverAnchor
-            parts.push(
-                <PopoverAnchor key={`anchor-active`} className="relative">
-                    <span 
-                      className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer"
-                    >
-                        {suggestionToHighlight.originalText.replace(/\n/g, '\n\u200B')}
-                    </span>
-                </PopoverAnchor>
-            );
-
-            lastIndex = startIndex + suggestionToHighlight.originalText.length;
-        }
+    if (!activeGrammarSuggestion) {
+      return text.replace(/\n/g, '\n\u200B') || '\u200B';
     }
 
-    // Add remaining text
-    if (lastIndex < text.length) {
-        parts.push(text.substring(lastIndex).replace(/\n/g, '\n\u200B'));
+    const parts: (string | React.ReactNode)[] = [];
+    const textToProcess = text;
+    let lastIndex = 0;
+    const { originalText } = activeGrammarSuggestion;
+    
+    // Find the suggestion text, but only once.
+    const startIndex = textToProcess.indexOf(originalText, lastIndex);
+
+    if (startIndex !== -1) {
+        // Add the part of the text before the suggestion
+        if (startIndex > lastIndex) {
+            parts.push(textToProcess.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
+        }
+        
+        // Add the highlighted suggestion as a PopoverAnchor
+        parts.push(
+            <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
+                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
+                    {originalText.replace(/\n/g, '\n\u200B')}
+                </span>
+            </PopoverAnchor>
+        );
+        lastIndex = startIndex + originalText.length;
+    }
+
+    // Add any remaining text after the suggestion
+    if (lastIndex < textToProcess.length) {
+        parts.push(textToProcess.substring(lastIndex).replace(/\n/g, '\n\u200B'));
     }
     
-    // When there's no text, we need a zero-width space to maintain height
-    if (text === "") {
-      return '\u200B';
+    // If the text is empty, ensure the container has height
+    if (textToProcess === "") {
+        return '\u200B';
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-}, [text, activeGrammarSuggestion]);
+  }, [text, activeGrammarSuggestion]);
 
 
   return (
@@ -159,9 +164,35 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               Verso Correto
             </CardTitle>
           </div>
-          {isLoading && (
-            <LoaderCircle className="h-6 w-6 animate-spin text-muted-foreground" />
-          )}
+          <div className="flex items-center gap-2">
+            {isLoading && (
+              <LoaderCircle className="h-6 w-6 animate-spin text-muted-foreground" />
+            )}
+             <TooltipProvider>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="icon" onClick={onCopy} disabled={!text}>
+                            <Copy className="h-4 w-4" />
+                            <span className="sr-only">Copiar Texto</span>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Copiar texto</p>
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="icon" onClick={onClear} disabled={!text}>
+                            <Trash2 className="h-4 w-4" />
+                            <span className="sr-only">Limpar Editor</span>
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        <p>Limpar editor</p>
+                    </TooltipContent>
+                </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
         <CardDescription className="pt-2">
           Seu assistente de poesia para o português brasileiro, compatível com as
@@ -227,7 +258,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         
         <div className="relative">
-            <Popover open={!!activeGrammarSuggestion}>
+            <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
+              if (!isOpen && activeGrammarSuggestion) {
+                // This is where we prevent advancing on outside click.
+                // We don't call `onDismiss` here anymore.
+              }
+            }}>
                 <div className="relative grid">
                     <Textarea
                         ref={textareaRef}
