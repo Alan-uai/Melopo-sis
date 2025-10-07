@@ -116,7 +116,7 @@
       border-color: hsl(var(--anim-finish));
     }
     50% {
-      border-color: hsl(var(--background));
+      border-color: hsl(60 95% 50%); /* Amarelo */
     }
     100% {
       border-color: hsl(var(--anim-finish));
