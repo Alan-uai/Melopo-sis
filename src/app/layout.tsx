@@ -2,10 +2,24 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { FirebaseClientProvider } from '@/firebase';
+import { Literata } from 'next/font/google';
+import { cn } from '@/lib/utils';
+
+const literata = Literata({
+  subsets: ['latin'],
+  variable: '--font-literata',
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+});
 
 export const metadata: Metadata = {
   title: 'Melopoësis',
   description: 'Seu assistente de poesia para o português brasileiro.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -15,15 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className="dark h-full">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,700;1,7..72,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="font-body antialiased h-full">
+      <body
+        className={cn(
+          'h-full font-body antialiased',
+          literata.variable
+        )}
+      >
         <FirebaseClientProvider>
           {children}
           <Toaster />
