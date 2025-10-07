@@ -176,6 +176,7 @@ export default function Home() {
           title: "Texto alterado",
           description: "Você continuou a escrever. As sugestões foram descartadas. Clique para gerar novamente quando estiver pronto.",
         });
+        setIsLoading(false); // Make sure to stop loading
         return; 
       }
 
@@ -193,6 +194,7 @@ export default function Home() {
               description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
             });
             await generateSuggestions('tone');
+            return; // Important to return here to not set isLoading to false twice
         }
       } else { // tone
         setToneSuggestions(result.suggestions);
@@ -361,36 +363,36 @@ export default function Home() {
     handleConfigChange();
   }
 
-  const advanceToNextSuggestion = async () => {
+  const advanceToNextSuggestion = useCallback(async () => {
     let nextIndex: number | null = null;
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
       nextIndex = currentSuggestionIndex + 1;
     }
     setCurrentSuggestionIndex(nextIndex);
   
-    if (nextIndex === null) {
+    // If we just finished the last grammar suggestion
+    if (nextIndex === null && grammarSuggestions.length > 0 && currentSuggestionIndex === grammarSuggestions.length - 1) {
       setGrammarSuggestions([]); 
       
-      if (grammarSuggestions.length > 0) {
-        toast({
-            title: "Correções Gramaticais Concluídas!",
-            description: "Buscando sugestões de estilo para o texto corrigido...",
-        });
-        await generateSuggestions('tone');
-      }
+      toast({
+          title: "Correções Gramaticais Concluídas!",
+          description: "Buscando sugestões de estilo para o texto corrigido...",
+      });
+      // Await the generation of tone suggestions
+      await generateSuggestions('tone');
     }
-  };
+  }, [currentSuggestionIndex, grammarSuggestions.length, generateSuggestions, toast]);
   
 
-  const applyCorrection = (originalText: string, correctedText: string) => {
+  const applyCorrection = useCallback((originalText: string, correctedText: string) => {
     setText(prevText => {
       const newText = prevText.replace(originalText, correctedText);
       return newText;
     });
     advanceToNextSuggestion();
-  };
+  }, [advanceToNextSuggestion]);
   
-  const handleAccept = (suggestionToAccept: Suggestion) => {
+  const handleAccept = useCallback((suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
     
     if (suggestionToAccept.type === 'grammar') {
@@ -399,16 +401,16 @@ export default function Home() {
       setText(text.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText));
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToAccept.originalText));
     }
-  };
+  }, [applyCorrection, text]);
 
-  const handleDismiss = (suggestionToDismiss: Suggestion) => {
+  const handleDismiss = useCallback((suggestionToDismiss: Suggestion) => {
     if (!suggestionToDismiss) return;
     if (suggestionToDismiss.type === 'grammar') {
       advanceToNextSuggestion();
     } else {
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToDismiss.originalText));
     }
-  };
+  }, [advanceToNextSuggestion]);
   
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
     const excludedPhrases = excludedPhrasesMap[suggestionToResuggest.originalText] || [];
@@ -558,6 +560,7 @@ export default function Home() {
               onCopy={handleCopy}
               onSavePoem={handleSavePoem}
               isPoemSaved={!!activePoem}
+              toneSuggestions={toneSuggestions}
             />
             <SuggestionList
               suggestions={toneSuggestions}

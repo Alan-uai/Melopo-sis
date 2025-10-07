@@ -50,6 +50,7 @@ interface EditorProps {
   onCopy: () => void;
   onSavePoem: () => void;
   isPoemSaved: boolean;
+  toneSuggestions: Suggestion[];
 }
 
 export interface EditorRef {
@@ -82,6 +83,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onCopy,
   onSavePoem,
   isPoemSaved,
+  toneSuggestions
 }, ref) => {
   const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
@@ -94,35 +96,47 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
   const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const prevToneSuggestionsLength = useRef(0);
+
   useEffect(() => {
     // Start generating animation
     if (isLoading && animationState === 'idle') {
       setAnimationState('generating');
     }
     
-    // Transition from generating to correcting
+    // Transition from generating to correcting when grammar suggestions appear
     if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
       setAnimationState('correcting');
     }
 
-    // Transition from generating to finishing (no grammar errors found)
-    if (!isLoading && animationState === 'generating' && !activeGrammarSuggestion && grammarSuggestions.length === 0) {
+    // Transition to finishing when tone suggestions appear
+    if (!isLoading && toneSuggestions.length > 0 && prevToneSuggestionsLength.current === 0) {
       setAnimationState('finishing');
       if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
-      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); // Duration of finishing animation
+      // Fast animation for finishing, e.g., 2 seconds
+      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); 
     }
     
-    // Transition from correcting to idle (no more suggestions)
-    if (animationState === 'correcting' && !activeGrammarSuggestion) {
-      setAnimationState('finishing');
-      if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
-      animationTimeoutRef.current = setTimeout(() => setAnimationState('idle'), 2000); // Same finishing animation
+    // Transition from correcting to idle (no more grammar suggestions)
+    if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
+        // This case might need review depending on the flow. If tone suggestions are expected,
+        // this might prematurely set to idle.
+        setAnimationState('idle');
     }
+
+    // If all suggestions are cleared, return to idle
+    if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState !== 'idle') {
+        if (animationState === 'generating' || animationState === 'correcting') {
+           setAnimationState('idle');
+        }
+    }
+    
+    prevToneSuggestionsLength.current = toneSuggestions.length;
     
     return () => {
       if(animationTimeoutRef.current) clearTimeout(animationTimeoutRef.current);
     };
-  }, [isLoading, activeGrammarSuggestion, animationState, grammarSuggestions.length]);
+  }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions, animationState]);
 
 
   useImperativeHandle(ref, () => ({
@@ -352,14 +366,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               "animate-border-beam [--animation-duration:5s]",
               animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))]",
               animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
-              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))]"
-            )}/>
-             <div className={cn(
-              "absolute inset-0 rounded-md",
-              "animate-border-beam [--animation-duration:5s] [animation-delay:0.2s]",
-              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))]",
-              animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
-              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))]"
+              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2s]"
             )}/>
           </div>
 
