@@ -135,11 +135,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     if (animationState === 'finishing') {
       const beamTimer = setTimeout(() => {
         setAnimationStage('pulse');
-      }, 1500); // 1.5s for beam
+      }, 800); // 0.8s for beam
 
       const pulseTimer = setTimeout(() => {
         setAnimationState('idle');
-      }, 2500); // 1.5s + 1s for pulse
+      }, 1500); // 0.8s + 0.7s for pulse
 
       return () => {
         clearTimeout(beamTimer);
@@ -433,3 +433,5 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 });
 
 Editor.displayName = 'Editor';
+
+    
