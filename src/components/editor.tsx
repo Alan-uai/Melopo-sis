@@ -377,7 +377,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <div 
               className={cn(
                 "absolute inset-0 rounded-md",
-                isFinishingBeam && "[--animation-duration:1.5s]",
+                isFinishingBeam && "[--animation-duration:0.8s]",
                 (animationState === 'generating' || animationState === 'correcting' || isFinishingBeam) && "animate-border-beam",
                 animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] [animation-iteration-count:infinite]",
                 animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",

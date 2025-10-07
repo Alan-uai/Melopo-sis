@@ -109,7 +109,7 @@ export default {
         },
         'border-color-pulse': {
           '0%': { borderColor: 'hsl(var(--anim-finish))' },
-          '50%': { borderColor: 'hsl(60 95% 50%)' },
+          '50%': { borderColor: 'hsl(60 95% 50%)' }, /* Amarelo */
           '100%': { borderColor: 'hsl(var(--anim-finish))' },
         },
       },
@@ -118,7 +118,7 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'border-pulse': 'border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'border-beam': 'border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, 1) var(--animation-direction, normal)',
-        'border-color-pulse': 'border-color-pulse 1s ease-in-out',
+        'border-color-pulse': 'border-color-pulse 0.7s ease-in-out',
       },
     },
   },
