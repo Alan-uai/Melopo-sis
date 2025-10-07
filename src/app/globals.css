@@ -119,7 +119,7 @@
       border-color: hsl(var(--background));
     }
     100% {
-      border-color: hsl(var(--anim-generate));
+      border-color: hsl(var(--anim-finish));
     }
   }
 
