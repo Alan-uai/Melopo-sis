@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, LoaderCircle, Save, Trash2, Wand2 } from "lucide-react";
+import { Copy, Feather, Info, LoaderCircle, Save, Trash2, Wand2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -164,11 +164,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
           <SidebarTrigger
-            variant="ghost"
-            className="md:hidden h-8 w-8 p-0"
-          >
-            <Feather className="text-primary scale-[2.5]" />
-          </SidebarTrigger>
+              variant="ghost"
+              className="md:hidden p-0 h-8 w-8"
+            >
+              <Feather className="text-primary scale-[2.5]" />
+            </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
               Melopoësis
             </CardTitle>
@@ -253,29 +253,43 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="flex items-end justify-between">
-            <div className="flex items-center space-x-2">
-                <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
-                <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
-            </div>
-            <div className="flex flex-col items-center">
-              <Label className="text-center">Modo de Sugestão</Label>
-              <RadioGroup
-                value={suggestionMode}
-                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-                className="flex items-center space-x-4 pt-2"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="gradual" id="gradual" disabled />
-                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual (desativado)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="final" id="final" />
-                  <Label htmlFor="final" className="font-normal">Final</Label>
-                </div>
-              </RadioGroup>
-            </div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
+            <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
+
+          <div className="flex items-center gap-4">
+            <RadioGroup
+              value={suggestionMode}
+              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+              className="flex items-center space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="gradual" id="gradual" disabled />
+                <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="final" id="final" />
+                <Label htmlFor="final" className="font-normal">Final</Label>
+              </div>
+            </RadioGroup>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="h-4 w-4 text-muted-foreground" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="max-w-xs">
+                    <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
+                    <br />
+                    <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+        </div>
         
         <div className="relative flex-1 flex flex-col">
             <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
@@ -332,4 +346,5 @@ Editor.displayName = 'Editor';
     
 
     
+
 
