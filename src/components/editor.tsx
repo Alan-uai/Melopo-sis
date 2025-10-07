@@ -95,20 +95,15 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   useEffect(() => {
     if (isLoading) {
       if (animationState === 'idle') {
-        // Start the fast scan
         setAnimationState('scanning');
-        // After the fast scan, start the slow generation animation
         setTimeout(() => {
           setAnimationState('generating');
-        }, 1000); // Duration of the fast scan (0.5s top-to-bottom, 0.5s bottom-to-top)
+        }, 1000); 
       }
     } else {
-      // AI has finished
       if (animationState === 'generating' || animationState === 'scanning') {
-        // Speed up the animation to finish
         setAnimationState('finishing');
       }
-      // if it's finishing, let it finish. Once animation ends, it will go to idle.
     }
   }, [isLoading, animationState]);
 
@@ -116,9 +111,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     if (animationState === 'finishing' || (!isLoading && animationState !== 'idle')) {
       setAnimationState('idle');
     } else if (animationState === 'generating' && isLoading) {
-      // If the slow beam finished but AI is still working, restart it
       setAnimationState('idle');
-      // A small timeout to allow the animation to restart correctly
       setTimeout(() => setAnimationState('generating'), 50);
     }
   };
@@ -194,24 +187,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
 
   return (
-    <Card className={cn(
-      "w-full shadow-lg h-full flex flex-col relative overflow-hidden transition-all",
-       (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && "animate-border-pulse"
-      )}>
-       {(animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && (
-         <div
-           ref={beamRef}
-           onAnimationEnd={handleAnimationEnd}
-           className={cn(
-             "absolute left-0 w-full h-1/4 bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0 pointer-events-none z-10",
-             {
-               "animate-beam-progress animation-duration-1s animation-iteration-count-1 alternate": animationState === 'scanning',
-               "animate-beam-progress animation-duration-15s animation-iteration-count-1 linear": animationState === 'generating',
-               "animate-beam-progress animation-duration-fast animation-iteration-count-1 linear": animationState === 'finishing',
-             }
-           )}
-         />
-       )}
+    <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -219,7 +195,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               className="p-0 h-8 w-8"
               variant="ghost"
             >
-              <Feather className="text-primary scale-[2.5]" />
+              <Feather className="scale-[2.5]" />
             </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
               Melopoësis
@@ -307,44 +283,62 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
           </div>
+
           <div className="flex items-center gap-4">
-              <RadioGroup
-                value={suggestionMode}
-                onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-                className="flex items-center space-x-4"
-              >
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="gradual" id="gradual" disabled />
-                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="final" id="final" />
-                  <Label htmlFor="final" className="font-normal">Final</Label>
-                </div>
-              </RadioGroup>
-              <Popover>
-                <PopoverTrigger asChild>
-                    <button className="flex items-center justify-center h-4 w-4">
-                        <Info className="h-full w-full text-muted-foreground" />
-                    </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-80">
-                  <div className="grid gap-4">
-                    <div className="space-y-2">
-                      <h4 className="font-medium leading-none">Modo de Sugestão</h4>
-                      <p className="text-sm text-muted-foreground">
-                        <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
-                        <br />
-                        <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
-                      </p>
-                    </div>
+            <RadioGroup
+              value={suggestionMode}
+              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
+              className="flex items-center space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="gradual" id="gradual" disabled />
+                <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="final" id="final" />
+                <Label htmlFor="final" className="font-normal">Final</Label>
+              </div>
+            </RadioGroup>
+            <Popover>
+              <PopoverTrigger asChild>
+                  <button className="flex items-center justify-center h-4 w-4">
+                      <Info className="h-full w-full text-muted-foreground" />
+                  </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-80">
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium leading-none">Modo de Sugestão</h4>
+                    <p className="text-sm text-muted-foreground">
+                      <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
+                      <br />
+                      <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
+                    </p>
                   </div>
-                </PopoverContent>
-              </Popover>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
         
-        <div className="relative flex-1 flex flex-col">
+        <div className={cn(
+            "relative flex-1 flex flex-col rounded-md border overflow-hidden",
+            (animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && "animate-border-pulse"
+        )}>
+            {(animationState === 'scanning' || animationState === 'generating' || animationState === 'finishing') && (
+              <div
+                ref={beamRef}
+                onAnimationEnd={handleAnimationEnd}
+                className={cn(
+                  "absolute left-0 w-full h-1/4 bg-gradient-to-b from-primary/0 via-primary/20 to-primary/0 pointer-events-none z-10",
+                  {
+                    "animate-beam-progress animation-duration-1s animation-iteration-count-1 alternate": animationState === 'scanning',
+                    "animate-beam-progress animation-duration-15s animation-iteration-count-1 linear": animationState === 'generating',
+                    "animate-beam-progress animation-duration-fast animation-iteration-count-1 linear": animationState === 'finishing',
+                  }
+                )}
+              />
+            )}
             <Popover open={!!activeGrammarSuggestion} onOpenChange={(isOpen) => {
               if (!isOpen) {
                 // Não avance ao clicar fora
@@ -357,12 +351,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         onChange={handleTextareaChange}
                         onScroll={syncScroll}
                         placeholder="Escreva seu poema aqui..."
-                        className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full"
+                        className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0"
                         aria-label="Editor de Poesia"
                     />
                     <div
                         ref={highlightsRef}
-                        className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md border border-input bg-background p-4 font-body text-base leading-relaxed text-foreground h-full"
+                        className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
                         aria-hidden="true"
                     >
                         {editorContent}
