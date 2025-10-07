@@ -276,7 +276,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </RadioGroup>
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                   <Info className="h-4 w-4 text-muted-foreground" />
                 </TooltipTrigger>
                 <TooltipContent>
@@ -346,5 +346,6 @@ Editor.displayName = 'Editor';
     
 
     
+
 
 
