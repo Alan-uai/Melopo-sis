@@ -166,9 +166,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           <SidebarTrigger
             variant="ghost"
             size="icon"
-            className="md:hidden h-8 w-8 p-0"
+            className="md:hidden h-8 w-8"
           >
-            <Feather className="text-primary h-full w-full" />
+            <Feather className="text-primary scale-150" />
           </SidebarTrigger>
             <CardTitle className="font-headline text-3xl">
               Melopoësis
