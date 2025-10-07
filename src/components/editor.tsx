@@ -95,37 +95,48 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
   const prevToneSuggestionsLength = useRef(toneSuggestions.length);
+  const prevGrammarSuggestionsLength = useRef(grammarSuggestions.length);
 
   useEffect(() => {
+    // Start generating
     if (isLoading && animationState === 'idle') {
       setAnimationState('generating');
-    } else if (!isLoading && animationState === 'generating' && activeGrammarSuggestion) {
+    } 
+    // Finished generating, now has grammar suggestions
+    else if (!isLoading && grammarSuggestions.length > 0 && prevGrammarSuggestionsLength.current === 0) {
       setAnimationState('correcting');
-    } else if (
+    }
+    // Finished grammar, now has tone suggestions
+    else if (
       !isLoading &&
       toneSuggestions.length > 0 &&
       prevToneSuggestionsLength.current === 0 &&
       (animationState === 'generating' || animationState === 'correcting')
     ) {
       setAnimationState('finishing');
-    } else if (animationState === 'correcting' && !activeGrammarSuggestion && grammarSuggestions.length === 0 && toneSuggestions.length === 0) {
-      setAnimationState('idle');
-    } else if (!isLoading && !activeGrammarSuggestion && toneSuggestions.length === 0 && animationState === 'generating') {
-      setAnimationState('idle');
+    } 
+    // Finished everything, no suggestions found
+    else if (!isLoading && grammarSuggestions.length === 0 && toneSuggestions.length === 0 && animationState !== 'idle') {
+      if (animationState === 'generating' || animationState === 'correcting') {
+          // If we were generating/correcting but found nothing, just stop
+          setAnimationState('idle');
+      }
     }
     
     prevToneSuggestionsLength.current = toneSuggestions.length;
+    prevGrammarSuggestionsLength.current = grammarSuggestions.length;
+
   }, [isLoading, activeGrammarSuggestion, grammarSuggestions.length, toneSuggestions.length, animationState]);
 
   useEffect(() => {
     if (animationState === 'finishing') {
       const timer = setTimeout(() => {
         setAnimationState('idle');
-      }, 1000); // Duração da animação "finishing"
+      }, 2000); // Duração da animação "finishing"
       return () => clearTimeout(timer);
     }
   }, [animationState]);
-
+  
   useImperativeHandle(ref, () => ({
     focus: () => {
       textareaRef.current?.focus();
@@ -294,7 +305,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
         
-        <div className="flex items-end justify-between">
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
             <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
@@ -345,17 +356,17 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             animationState === 'correcting' && "[--pulse-color:hsl(var(--anim-correct))]",
           )}
         >
-          <div 
-            className={cn(
+          <div className={cn(
             "absolute inset-0 rounded-md pointer-events-none transition-opacity duration-500",
              isAnimationActive ? "opacity-100" : "opacity-0"
           )}>
-            <div className={cn(
-              "absolute inset-0 rounded-md",
-              "animate-border-beam [--animation-duration:5s]",
-              animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] animation-iteration-count-infinite",
-              animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] animation-iteration-count-infinite",
-              animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:1s]"
+            <div 
+              className={cn(
+                "absolute inset-0 rounded-md",
+                "animate-border-beam [--animation-duration:5s]",
+                animationState === 'generating' && "[--beam-color:hsl(var(--anim-generate))] [animation-iteration-count:infinite]",
+                animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",
+                animationState === 'finishing' && "[--beam-color:hsl(var(--anim-finish))] [--animation-duration:2s]"
             )}/>
           </div>
 
