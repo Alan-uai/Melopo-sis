@@ -1,6 +1,8 @@
 # Cordel — Normas e Estrutura
 # Baseado na tradição da literatura de cordel brasileira (Leandro Gomes de Barros, Patativa do Assaré, Gonçalo Ferreira da Silva)
-# Fonte: ABLC (Academia Brasileira de Literatura de Cordel), Aderaldo Luciano, "O Cordel no Brasil"
+# Fontes verificadas: ABLC (Academia Brasileira de Literatura de Cordel)
+# Cordel na Educação (https://www.cordelnaeducacao.com.br) — rima consoante obrigatória
+# Aderaldo Luciano, "O Cordel no Brasil"
 # Data: 2026-05-15
 
 ================================================================================
@@ -71,11 +73,11 @@ Categoria: métrica
 RIMAS NO CORDEL
 ================================================================================
 
-## [COR-07] Rima consoante obrigatória
-Fonte: ABLC; Aderaldo Luciano
-Descrição: A literatura de cordel clássica exige rimas consoantes (perfeitas, com identidade de som a partir da vogal tônica). Rimas toantes (apenas vogais) são aceitas apenas em cordéis modernos ou como licença poética limitada.
-❌ Errado: "amor" rima com "cantor" (✓ consoante); "carinho" rima com "caminho" (✓ consoante); "sorte" rima com "morte" (✓ consoante); "gente" rima com "dente" (✓ consoante)
-✅ Correto: "O galo cantou no terreiro / Anunciando o dia inteiro" (rimas consoantes -eiro)
+## [COR-07] Rima consoante obrigatória — apenas rima consoante é aceita
+Fonte: ABLC; Cordel na Educação (cordelnaeducacao.com.br); Aderaldo Luciano
+Descrição: A literatura de cordel clássica exige APENAS rimas consoantes (perfeitas, com identidade total de sons a partir da vogal tônica — consoantes e vogais). Rimas toantes (apenas vogais) NÃO são aceitas em cordel. Esta é uma diferença fundamental entre cordel e outras formas poéticas (que podem usar rima toante).
+❌ Errado: "casa" rima com "fala" (toante — vogal a apenas); "gente" rima com "neste" (toante)
+✅ Correto: "amor" rima com "cantor" (consoante); "O galo cantou no terreiro / Anunciando o dia inteiro" (rimas consoantes -eiro)
 Severidade: alta
 Categoria: rima
 

@@ -35,28 +35,28 @@ Categoria: métrica
 TIPOS DE DECASSÍLABO
 ================================================================================
 
-## [DEC-04] Decassílabo heroico (camoniano) — acentos na 3ª, 6ª e 10ª
-Fonte: Said Ali; Castilho; Camões, "Os Lusíadas"
-Descrição: O decassílabo heroico tem acentos primários (obrigatórios) na 3ª, 6ª e 10ª sílabas poéticas. Acento secundário (facultativo) na 8ª sílaba. É o padrão de Camões em "Os Lusíadas" e do soneto clássico português.
-❌ Errado: "O meu co-ra-ção bri-lha co-mo o sol" (acento na 2ª e 8ª, sem acento forte na 3ª e 6ª)
-✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (3ª: ar-, 6ª: -rões, 10ª: -dos)
+## [DEC-04] Decassílabo heroico (camoniano) — acentos na 6ª e 10ª (obrigatórios)
+Fonte: Wikipédia, "Verso decassílabo"; Said Ali; Castilho; Infopédia
+Descrição: O decassílabo heroico tem acentos primários obrigatórios na 6ª e 10ª sílabas poéticas. Pode ter acentos secundários complementares (ex: na 3ª ou 4ª). É o padrão de Camões em "Os Lusíadas" e do soneto clássico português. A acentuação na 6ª sílaba permite realizar uma cesura na declamação.
+❌ Errado: versos sem acento forte na 6ª sílaba; acento tônico deslocado para a 7ª ou 5ª sílabas
+✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (6ª: -rões, 10ª: -dos; acento secundário na 3ª: ar-)
 Severidade: alta
 Categoria: métrica
 
-## [DEC-05] Decassílabo sáfico — acentos na 4ª, 7ª e 10ª
-Fonte: tradição clássica; Castilho; Bilac
-Descrição: O decassílabo sáfico (menos comum em português) tem acentos primários na 4ª, 7ª e 10ª sílabas. É mais usado em odes e poemas líricos que em épica. Exemplo clássico: "A luz mor-reu, a noi-te vem ca-in-do".
-❌ Errado: misturar acentos heroicos e sáficos no mesmo verso
-✅ Correto: "É a noi-te, eu sin-to-a den-tro de mim" (4ª: -te, 7ª: -tro, 10ª: mim)
+## [DEC-05] Decassílabo sáfico — acentos na 4ª, 8ª e 10ª
+Fonte: Wikipédia, "Verso decassílabo"; Said Ali; Castilho
+Descrição: O decassílabo sáfico tem acentos primários na 4ª, 8ª e 10ª sílabas poéticas. É mais usado em odes e poemas líricos que em épica. Pode ser combinado com heroicos no mesmo poema (alternância rítmica).
+❌ Errado: misturar acentos heroicos (6ª obrigatória) e sáficos (8ª obrigatória) no mesmo verso
+✅ Correto: "A luz mor-reu, a noi-te vem ca-in-do" (4ª: -reu, 8ª: -te, 10ª: -do)
 Severidade: alta
 Categoria: métrica
 
 ## [DEC-06] Decassílabo heroico vs. sáfico — diferença essencial
-Fonte: Said Ali; Castilho
+Fonte: Wikipédia, "Verso decassílabo"; Said Ali; Castilho
 Descrição: A diferença entre heroico e sáfico está na posição dos acentos fixos:
-  - Heroico: 3ª e 6ª sílabas acentuadas (ritmo: fraco-forte-fraco-forte)
-  - Sáfico: 4ª e 7ª sílabas acentuadas (ritmo: mais lento, com deslocamento)
-  Ambos têm acento obrigatório na 10ª sílaba.
+  - Heroico: acentos na 6ª e 10ª (ritmo: 6ª sílaba forte, cesura natural)
+  - Sáfico: acentos na 4ª, 8ª e 10ª (ritmo: mais cadenciado, com acentos mais distribuídos)
+  Ambos têm acento obrigatório na 10ª sílaba. A variante "martelo" do heroico acrescenta acento na 3ª.
 Severidade: alta
 Categoria: métrica
 
@@ -157,10 +157,22 @@ Severidade: alta
 Categoria: métrica
 
 ================================================================================
+VARIANTES DO DECASSÍLABO
+================================================================================
+
+## [DEC-16] Decassílabo martelo — acentos na 3ª, 6ª e 10ª
+Fonte: Wikipédia, "Verso decassílabo"
+Descrição: O decassílabo martelo é uma variante do heroico que acrescenta um acento obrigatório na 3ª sílaba (além dos acentos na 6ª e 10ª). Exemplo: "Mas Bra-sil é Bra-sil, é sem-pre as-sim" (3ª: -sil, 6ª: -sil, 10ª: sim).
+❌ Errado: usar padrão martelo (3ª-6ª-10ª) e chamar de heroico
+✅ Correto: identificar corretamente como martelo (3ª-6ª-10ª) ou heroico (6ª-10ª)
+Severidade: media
+Categoria: métrica
+
+================================================================================
 EXEMPLOS CLÁSSICOS
 ================================================================================
 
-## [DEC-16] Referências essenciais
+## [DEC-17] Referências essenciais
 Fonte: tradição literária portuguesa e brasileira
 Descrição: Autores fundamentais para o estudo do decassílabo: Luís de Camões ("Os Lusíadas" — épico decassílabo heroico), Olavo Bilac ("Via Láctea", "Profissão de Fé" — soneto decassílabo parnasiano), Augusto dos Anjos ("Eu" — decassílabo expressionista), Carlos Drummond de Andrade ("A Máquina do Mundo" — decassílabo moderno), Manuel Bandeira.
 Severidade: baixa

@@ -7,8 +7,8 @@ ESTRUTURA GERAL
 ================================================================================
 
 ## [SON-01] Número de versos — 14 versos obrigatórios
-Fonte: tradição literária (Petrarca, Camões, Bilac, Anjos)
-Descrição: O soneto é composto obrigatoriamente por 14 versos decassílabos, distribuídos em 2 quartetos (estrofe de 4 versos) e 2 tercetos (estrofe de 3 versos). Não se admitem variações no número de versos.
+Fonte: Wikipédia, "Soneto"; tradição literária (Petrarca, Camões, Bilac, Anjos)
+Descrição: O soneto é composto obrigatoriamente por 14 versos, geralmente decassílabos (10 sílabas) ou dodecassílabos/alexandrinos (12 sílabas), distribuídos em 2 quartetos (estrofe de 4 versos) e 2 tercetos (estrofe de 3 versos). Não se admitem variações no número de versos.
 ❌ Errado: soneto com 12 versos, soneto com 16 versos, estrofação irregular
 ✅ Correto: 2 quartetos + 2 tercetos = 14 versos
 Severidade: alta
@@ -42,27 +42,27 @@ Categoria: rima
 MÉTRICA — VERSO DECASSÍLABO
 ================================================================================
 
-## [SON-05] Verso decassílabo — 10 sílabas poéticas
-Fonte: tradição literária; Bilac, "Via Láctea"; Camões, "Os Lusíadas"
-Descrição: Cada verso do soneto clássico deve conter exatamente 10 sílabas poéticas (contadas até a última sílaba tônica). A contagem silábica poética difere da gramatical: fundem-se vogais átonas em hiato (elissão/sinalefa).
-❌ Errado: versos com 9 ou 11 sílabas poéticas (em soneto clássico)
+## [SON-05] Verso decassílabo — 10 sílabas poéticas (padrão clássico)
+Fonte: Wikipédia, "Soneto"; Bilac, "Via Láctea"; Camões, "Os Lusíadas"
+Descrição: No soneto clássico português, cada verso é geralmente decassílabo (10 sílabas poéticas, contadas até a última tônica). O soneto em alexandrinos (12 sílabas) também é usado desde o Parnasianismo. A contagem poética funde vogais átonas em hiato (sinalefa).
+❌ Errado: versos com 9 ou 11 sílabas poéticas em soneto decassílabo clássico
 ✅ Correto: "A-mor é / fo-go que / ar-de sem / se ver" (10 sílabas: A-mor-é-fo-go-que-ar-de-sem-se-ver)
 Severidade: alta
 Categoria: métrica
 
-## [SON-06] Decassílabo heroico — acentos na 3ª, 6ª e 10ª sílabas
-Fonte: tradição camoniana; Said Ali, "Versificação Portuguesa"
-Descrição: O decassílabo heroico (também chamado camoniano) tem acentos primários obrigatórios na 3ª, 6ª e 10ª sílabas poéticas. Os acentos na 6ª e 10ª são fixos; o da 3ª pode variar para a 4ª em algumas escolas.
-❌ Errado: "As estre-las bri-lha-vam no céu a-zul" (acento na 2ª, sem acento na 3ª)
-✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (3ª: ar-, 6ª: -rões, 10ª: -dos)
+## [SON-06] Decassílabo heroico — acentos na 6ª e 10ª sílabas (obrigatórios)
+Fonte: Wikipédia, "Verso decassílabo"; Said Ali, "Versificação Portuguesa"; Infopédia
+Descrição: O decassílabo heroico (camoniano) tem acentos primários obrigatórios na 6ª e 10ª sílabas poéticas. A acentuação na 6ª sílaba permite uma cesura natural na declamação. Pode haver acentos secundários complementares (ex: 3ª na variante martelo).
+❌ Errado: versos sem acento na 6ª sílaba (ex: acento na 5ª ou 7ª)
+✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (6ª: -rões, 10ª: -dos)
 Severidade: alta
 Categoria: métrica
 
-## [SON-07] Decassílabo sáfico — acentos na 4ª, 7ª e 10ª sílabas
-Fonte: tradição clássica; Sappho adaptada; Bilac
-Descrição: O decassílabo sáfico tem acentos primários na 4ª, 7ª e 10ª sílabas poéticas. É menos comum que o heroico na tradição portuguesa, mas é reconhecido como variante legítima.
-❌ Errado: misturar acentos heroicos e sáficos no mesmo verso
-✅ Correto: "A luz mor-reu, a noi-te vem ca-in-do" (4ª: -reu, 7ª: -te, 10ª: -do)
+## [SON-07] Decassílabo sáfico — acentos na 4ª, 8ª e 10ª sílabas
+Fonte: Wikipédia, "Verso decassílabo"; tradição clássica
+Descrição: O decassílabo sáfico tem acentos primários na 4ª, 8ª e 10ª sílabas poéticas. É menos comum que o heroico na tradição portuguesa, mas é reconhecido como variante legítima. Pode ser combinado com heroicos no mesmo poema.
+❌ Errado: misturar acentos heroicos (6ª) e sáficos (8ª) no mesmo verso
+✅ Correto: "A luz mor-reu, a noi-te vem ca-in-do" (4ª: -reu, 8ª: -te, 10ª: -do)
 Severidade: alta
 Categoria: métrica
 

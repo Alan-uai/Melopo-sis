@@ -1,6 +1,8 @@
 # Pontuação Poética — Normas e Convenções
 # Diretrizes para uso de pontuação em poesia, conforme ABNT e tradição literária
 # Baseado em: Cegalla, "Novíssima Gramática"; Candido, "O Estudo Analítico do Poema"; tradição modernista brasileira
+# Fontes verificadas: Goga Masuda, "Dez Mandamentos do Haicai" (pontuação mínima)
+# Kakinet (https://www.kakinet.com/caqui/dezmand.shtml)
 # Data: 2026-05-15
 
 ================================================================================

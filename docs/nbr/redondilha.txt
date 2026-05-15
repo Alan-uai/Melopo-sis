@@ -1,6 +1,7 @@
 # Redondilha — Normas e Estrutura
 # Baseado na tradição ibérica (Camões, Gil Vicente) e brasileira (Bilac, Drummond, Bandeira)
-# Fonte: Castilho, "Tratado de Metrificação"; Cegalla, "Novíssima Gramática"
+# Fontes verificadas: Castilho, "Tratado de Metrificação"; Cegalla, "Novíssima Gramática"
+# Toda Matéria (https://www.todamateria.com.br/metrificacao) — classificação dos versos
 # Data: 2026-05-15
 
 ================================================================================

@@ -1,5 +1,10 @@
 # Acordo Ortográfico da Língua Portuguesa (1990) — Compêndio de Regras
-# Baseado no texto oficial do Acordo Ortográfico, VOLP (ABL), e manuais de referência
+# Baseado no texto oficial do Acordo Ortográfico (Base I a XXI), VOLP (ABL), e manuais de referência
+# Fontes verificadas: Wikisource (https://pt.wikisource.org/wiki/Acordo_Ortográfico_da_Língua_Portuguesa_(1990))
+# CPLP (https://www.cplp.org/Files/Filer/cplp/Acordos/maisAcordos/AcordoOrtogrLinguaPortug.pdf)
+# Brasil Escola (https://brasilescola.uol.com.br/acordo-ortografico)
+# Toda Matéria (https://www.todamateria.com.br/novo-acordo-ortografico-da-lingua-portuguesa)
+# Portal da Língua Portuguesa (http://www.portaldalinguaportuguesa.org/?action=acordo&version=1990)
 # Data: 2026-05-15
 
 ================================================================================

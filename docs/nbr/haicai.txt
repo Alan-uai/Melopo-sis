@@ -1,5 +1,8 @@
 # Haicai — Normas e Estrutura
 # Baseado na tradição japonesa (Matsuo Bashō) e brasileira (Guilherme de Almeida, Paulo Leminski, Millôr Fernandes)
+# Fontes verificadas: Goga Masuda, "Os Dez Mandamentos do Haicai" (Grêmio Haicai Ipê, 1987)
+# Casa Guilherme de Almeida, "Oficina de Haikai" (https://www.casaguilhermedealmeida.org.br)
+# Kakinet (https://www.kakinet.com/caqui/dezmand.shtml)
 # Data: 2026-05-15
 
 ================================================================================
@@ -99,10 +102,10 @@ HAICAI BRASILEIRO — PARTICULARIDADES
 ================================================================================
 
 ## [HAI-11] Haicai à moda brasileira (Guilherme de Almeida)
-Fonte: Guilherme de Almeida, "Poesia de Haikai" (1957)
-Descrição: Guilherme de Almeida propôs o haicai "à moda brasileira", mantendo os 5-7-5 mas acrescentando rima: os versos 1 e 3 rimam entre si (esquema A-B-A). Esta forma é reconhecida e praticada no Brasil, embora não seja a única.
+Fonte: Guilherme de Almeida, "Poesia de Vária" (1947); Casa Guilherme de Almeida; Kakinet
+Descrição: Guilherme de Almeida propôs o haicai "à moda brasileira" em 1937, sistematizado no artigo "Os Meus Haicais". Mantém os 5-7-5 sílabas, mas acrescenta: (1) título; (2) rima entre 1º e 3º versos (esquema A-B-A); (3) rima interna no 2º verso entre a 2ª e 7ª sílabas. Esta forma é reconhecida como escola "guilhermina" do haicai brasileiro.
 ❌ Errado: forçar rima em haicais que não seguem a forma de Almeida
-✅ Correto: "Vento no jardim / desfolha o ipê dourado / só resta o fim" (A-B-A, 5-7-5)
+✅ Correto: "Vento no jardim / desfolha o ipê dourado / só resta o fim" (A-B-A, 5-7-5, com rima interna em "desfolha" e "dourado")
 Severidade: media
 Categoria: rima
 

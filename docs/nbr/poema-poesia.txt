@@ -1,7 +1,8 @@
 # Poema / Poesia — Normas Gerais e Estrutura Livre
 # Diretrizes para verso livre, verso branco, e licença poética
 # Baseado na tradição moderna e contemporânea brasileira
-# Fonte: Cegalla, "Novíssima Gramática"; Bandeira, "Itinerário de Pasárgada"; Candido, "O Estudo Analítico do Poema"
+# Fontes verificadas: Cegalla, "Novíssima Gramática"; Bandeira, "Itinerário de Pasárgada"
+# Candido, "O Estudo Analítico do Poema"; Toda Matéria (https://www.todamateria.com.br/metrificacao)
 # Data: 2026-05-15
 
 ================================================================================
