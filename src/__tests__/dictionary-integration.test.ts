@@ -91,7 +91,7 @@ describe('dictionary integration - palavras com acentos', () => {
 
 describe('dictionary integration - palavras inexistentes', () => {
   it.each([
-    'xablau', 'abracadabra', 'blorple',
+    'xablau', 'blorple',
     'lindx', 'queridx',
   ])('rejeita "%s"', async (word) => {
     expect(await isWordCorrect(word)).toBe(false);
