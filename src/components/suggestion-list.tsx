@@ -19,6 +19,7 @@ interface SuggestionListProps {
   onResuggest: (suggestion: Suggestion) => void;
   onToggleExcludedPhrase: (originalText: string, phrase: string) => void;
   excludedPhrasesMap: Record<string, string[]>;
+  onSwapAlternative?: (suggestion: Suggestion, alternativeIndex: number) => void;
 }
 
 export function SuggestionList({
@@ -29,6 +30,7 @@ export function SuggestionList({
   onResuggest,
   onToggleExcludedPhrase,
   excludedPhrasesMap,
+  onSwapAlternative,
 }: SuggestionListProps) {
   const hasGrammar = suggestions.some(s => s.type === 'grammar');
   const toneSuggestions = suggestions.filter(s => s.type === 'tone');
@@ -82,15 +84,16 @@ export function SuggestionList({
           {!isLoading && suggestions.length > 0 && (
             <div className="space-y-2">
               {suggestions.map((suggestion, index) => (
-                <SuggestionCard
-                  key={`${index}-${suggestion.originalText}`}
-                  suggestion={suggestion}
-                  onAccept={() => onAccept(suggestion)}
-                  onDismiss={() => onDismiss(suggestion)}
-                  onResuggest={() => onResuggest(suggestion)}
-                  onToggleExcludedPhrase={(phrase) => onToggleExcludedPhrase(suggestion.originalText, phrase)}
-                  excludedPhrases={excludedPhrasesMap[suggestion.originalText] || []}
-                />
+                  <SuggestionCard
+                    key={`${index}-${suggestion.originalText}`}
+                    suggestion={suggestion}
+                    onAccept={() => onAccept(suggestion)}
+                    onDismiss={() => onDismiss(suggestion)}
+                    onResuggest={() => onResuggest(suggestion)}
+                    onToggleExcludedPhrase={(phrase) => onToggleExcludedPhrase(suggestion.originalText, phrase)}
+                    excludedPhrases={excludedPhrasesMap[suggestion.originalText] || []}
+                    onSwapAlternative={onSwapAlternative}
+                  />
               ))}
             </div>
           )}

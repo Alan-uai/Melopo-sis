@@ -550,6 +550,22 @@ export default function Home() {
     });
   };
 
+  const handleSwapAlternative = useCallback((suggestionToSwap: Suggestion, alternativeIndex: number) => {
+    if (suggestionToSwap.type !== 'tone') return;
+    const alternatives = suggestionToSwap.alternatives;
+    if (!alternatives || alternativeIndex >= alternatives.length) return;
+
+    const oldCorrectedText = suggestionToSwap.correctedText;
+    const newCorrectedText = alternatives[alternativeIndex];
+
+    setToneSuggestions(current => current.map(s => {
+      if (s.originalText !== suggestionToSwap.originalText) return s;
+      const newAlternatives = [...(s.alternatives || [])];
+      newAlternatives[alternativeIndex] = oldCorrectedText;
+      return { ...s, correctedText: newCorrectedText, alternatives: newAlternatives };
+    }));
+  }, []);
+
   return (
     <SidebarProvider>
       <div className="flex h-full w-full">
@@ -694,6 +710,7 @@ export default function Home() {
               onResuggest={handleResuggest}
               onToggleExcludedPhrase={handleToggleExcludedPhrase}
               excludedPhrasesMap={excludedPhrasesMap}
+              onSwapAlternative={handleSwapAlternative}
             />
           </div>
         </main>

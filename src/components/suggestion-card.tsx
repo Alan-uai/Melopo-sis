@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
 import {
   Accordion,
@@ -20,6 +21,7 @@ interface SuggestionCardProps {
   onResuggest: () => void;
   onToggleExcludedPhrase: (phrase: string) => void;
   excludedPhrases: string[];
+  onSwapAlternative?: (suggestion: Suggestion, alternativeIndex: number) => void;
 }
 
 const severityVariant: Record<string, "destructive" | "secondary" | "default"> = {
@@ -35,10 +37,25 @@ export function SuggestionCard({
   onResuggest,
   onToggleExcludedPhrase,
   excludedPhrases = [],
+  onSwapAlternative,
 }: SuggestionCardProps) {
   const isGrammar = suggestion.type === 'grammar';
   const triggerText = isGrammar ? "Correção para:" : "Sugestão para:";
   const Icon = isGrammar ? BookText : Lightbulb;
+
+  const [swapVersion, setSwapVersion] = useState(0);
+  const lastCorrectedRef = useRef(suggestion.correctedText);
+
+  useEffect(() => {
+    if (lastCorrectedRef.current !== suggestion.correctedText) {
+      setSwapVersion(v => v + 1);
+      lastCorrectedRef.current = suggestion.correctedText;
+    }
+  }, [suggestion.correctedText]);
+
+  const handleSwapAlternative = useCallback((index: number) => {
+    onSwapAlternative?.(suggestion, index);
+  }, [onSwapAlternative, suggestion]);
 
   const correctedTextParts = suggestion.correctedText.split(/(\s+|[,.;:!?])/g).filter(Boolean);
 
@@ -86,7 +103,7 @@ export function SuggestionCard({
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <blockquote className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic">
+                <blockquote key={`corrected-${swapVersion}`} className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic animate-swap-flash">
                   <TooltipProvider>
                     {correctedTextParts.map((part, index) => {
                        const isWord = part.match(/\w/);
@@ -120,11 +137,22 @@ export function SuggestionCard({
                 <p className="text-xs text-muted-foreground">Alternativas:</p>
                 <ul className="text-xs space-y-0.5">
                   {suggestion.alternatives.map((alt, i) => (
-                    <li key={i} className="border-l-2 border-muted-foreground/20 pl-2 italic">
-                      {alt}
+                    <li key={`alt-${i}-${swapVersion}`}>
+                      <button
+                        type="button"
+                        onClick={() => handleSwapAlternative(i)}
+                        className="w-full text-left border-l-2 border-muted-foreground/20 pl-2 italic text-xs transition-all hover:border-accent hover:bg-accent/10 hover:scale-[1.01] rounded-sm py-0.5 animate-swap-flash"
+                      >
+                        {alt}
+                      </button>
                     </li>
                   ))}
                 </ul>
+                {!isGrammar && (
+                  <p className="text-[10px] text-muted-foreground/60 mt-1">
+                    Clique em uma alternativa para trocá-la com a sugestão atual
+                  </p>
+                )}
               </div>
             )}
             <div className="flex justify-end gap-2">
