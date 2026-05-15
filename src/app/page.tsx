@@ -6,7 +6,7 @@ import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import type { Suggestion, SuggestionInput, TextStructure } from "@/ai/types";
+import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { collection, serverTimestamp, doc } from "firebase/firestore";
@@ -14,9 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarItem, SidebarList, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
-import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2 } from "lucide-react";
-import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
+import { LogIn, LogOut, PlusCircle, LoaderCircle } from "lucide-react";
+import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking } from '@/firebase';
 
 const LOCAL_STORAGE_KEY = "melopoeisis_data_v2";
 
@@ -31,25 +30,28 @@ type Poem = {
   updatedAt: any;
 };
 
+const GRADUAL_DEBOUNCE_MS = 800;
+
 export default function Home() {
   const [activePoem, setActivePoem] = useState<Poem | null>(null);
   const [text, setText] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const [tone, setTone] = useState<string>("Melancólico");
   const [textStructure, setTextStructure] = useState<TextStructure>("poema");
   const [rhyme, setRhyme] = useState<boolean>(false);
-  const [poemToDelete, setPoemToDelete] = useState<Poem | null>(null);
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  
+  const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
+
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
 
   const { toast } = useToast();
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
+
+  const gradualTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -60,7 +62,7 @@ export default function Home() {
     [firestore, user]
   );
   const { data: poems, isLoading: isLoadingPoems } = useCollection<Poem>(poemsCollection);
-  
+
   const handleLogin = async () => {
     if (!auth) return;
     const provider = new GoogleAuthProvider();
@@ -110,11 +112,10 @@ export default function Home() {
       try {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
-          const { text, title, tone, textStructure, rhyme } = JSON.parse(savedData);
+          const { text, tone, textStructure, rhyme } = JSON.parse(savedData);
           if (text) setText(text);
-          if (title) setTitle(title);
           if (tone) setTone(tone);
-          if (textStructure) setTextStructure(textStructure);
+          if (textStructure) setTextStructure(textStructure as TextStructure);
           if (rhyme !== undefined) setRhyme(rhyme);
         }
       } catch (error) {
@@ -127,7 +128,7 @@ export default function Home() {
   useEffect(() => {
     if (isMounted && !activePoem) {
       try {
-        const dataToSave = JSON.stringify({ text, title, tone, textStructure, rhyme });
+        const dataToSave = JSON.stringify({ text, tone, textStructure, rhyme });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
@@ -138,7 +139,6 @@ export default function Home() {
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
     setText(poem.text);
-    setTitle(poem.title || "");
     setTone(poem.tone);
     setTextStructure(poem.structure);
     setRhyme(poem.rhyme);
@@ -152,7 +152,6 @@ export default function Home() {
   const handleNewPoem = () => {
     setActivePoem(null);
     setText("");
-    setTitle("");
     setTone("Melancólico");
     setTextStructure("poema");
     setRhyme(false);
@@ -175,18 +174,19 @@ export default function Home() {
         excludedPhrases: [],
       };
       const result = await generateContextualSuggestions(input);
-      
+
       if (text !== currentText) {
         toast({
           title: "Texto alterado",
           description: "Você continuou a escrever. As sugestões foram descartadas. Clique para gerar novamente quando estiver pronto.",
         });
-        setIsLoading(false); // Make sure to stop loading
-        return; 
+        setIsLoading(false);
+        return;
       }
 
       if (suggestionType === 'grammar') {
         setGrammarSuggestions(result.suggestions);
+        setToneSuggestions([]);
         if (result.suggestions.length > 0) {
           setCurrentSuggestionIndex(0);
           toast({
@@ -194,12 +194,14 @@ export default function Home() {
             description: `Encontramos ${result.suggestions.length} correções. Siga o guia para revisá-las.`,
           });
         } else {
-          toast({
-            title: "Nenhuma Correção Gramatical Necessária",
-            description: "Seu texto está gramaticalmente correto segundo as normas ABNT.",
-          });
+            toast({
+              title: "Nenhuma Correção Gramatical Necessária",
+              description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
+            });
+            await generateSuggestions('tone');
+            return;
         }
-      } else {
+      } else { // tone
         setToneSuggestions(result.suggestions);
         if (result.suggestions.length > 0) {
           toast({
@@ -224,34 +226,78 @@ export default function Home() {
         setIsLoading(false);
     }
   }, [text, tone, textStructure, rhyme, toast]);
-  
-  const handleCheckGrammar = async () => {
+
+  const handleGenerateSuggestions = async () => {
     if (!text.trim() || isLoading) return;
 
     setGrammarSuggestions([]);
+    setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
     await generateSuggestions('grammar');
   };
 
-  const handleSuggestTone = async () => {
-    if (!text.trim() || isLoading) return;
-
-    setToneSuggestions([]);
-
-    await generateSuggestions('tone');
-  };
-  
   const resetSuggestions = () => {
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
-  }
+  };
 
   const handleTextChange = (newText: string) => {
     setText(newText);
     resetSuggestions();
+
+    if (suggestionMode === 'gradual' && newText.trim().length > 3) {
+      if (gradualTimerRef.current) {
+        clearTimeout(gradualTimerRef.current);
+      }
+      gradualTimerRef.current = setTimeout(() => {
+        setIsLoading(true);
+        generateContextualSuggestions({
+          text: newText,
+          tone: tone,
+          structure: textStructure,
+          rhyme: rhyme,
+          suggestionType: 'grammar',
+          excludedPhrases: [],
+        }).then(result => {
+          setGrammarSuggestions(result.suggestions);
+          if (result.suggestions.length > 0) {
+            setCurrentSuggestionIndex(0);
+          }
+        }).catch(() => {}).finally(() => {
+          setIsLoading(false);
+        });
+      }, GRADUAL_DEBOUNCE_MS);
+    }
   };
+
+  const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
+
+  const handleAcceptAllLowSeverity = useCallback(() => {
+    const lowSeverity = grammarSuggestions.filter(s => s.severity === 'baixa');
+    let updatedText = text;
+    for (const s of lowSeverity) {
+      updatedText = updatedText.replace(s.originalText, s.correctedText);
+    }
+    setText(updatedText);
+    const remaining = grammarSuggestions.filter(s => s.severity !== 'baixa');
+    setGrammarSuggestions(remaining);
+    if (remaining.length === 0) {
+      setCurrentSuggestionIndex(null);
+    } else if (currentSuggestionIndex !== null) {
+      const remainingIndex = remaining.findIndex(s =>
+        grammarSuggestions.indexOf(s) === currentSuggestionIndex
+      );
+      setCurrentSuggestionIndex(remainingIndex >= 0 ? remainingIndex : 0);
+    }
+    toast({
+      title: "Correções Aplicadas",
+      description: `${lowSeverity.length} correções simples foram aplicadas automaticamente.`,
+    });
+  }, [grammarSuggestions, text, currentSuggestionIndex, toast]);
+
+  const resetSuggestionsFn = resetSuggestions;
 
   const handleClear = () => {
     handleNewPoem();
@@ -260,7 +306,7 @@ export default function Home() {
       description: "O conteúdo do editor foi apagado.",
     });
   };
-  
+
   const handleSavePoem = async () => {
     if (!user || !poemsCollection) {
       toast({
@@ -280,7 +326,10 @@ export default function Home() {
       return;
     }
 
-    const poemTitle = title.trim() || text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
+    let poemTitle = activePoem?.title;
+    if (!poemTitle) {
+      poemTitle = text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
+    }
 
     const poemData = {
       title: poemTitle,
@@ -291,11 +340,10 @@ export default function Home() {
       authorId: user.uid,
       updatedAt: serverTimestamp(),
     };
-    
+
     setIsLoading(true);
     try {
       if (activePoem) {
-        // Update existing poem
         if (!firestore) return;
         const poemRef = doc(firestore, `users/${user.uid}/poems`, activePoem.id);
         updateDocumentNonBlocking(poemRef, poemData);
@@ -304,7 +352,6 @@ export default function Home() {
           description: `"${poemTitle}" foi atualizado com sucesso.`,
         });
       } else {
-        // Create new poem
         const docRef = await addDocumentNonBlocking(poemsCollection, {
           ...poemData,
           createdAt: serverTimestamp(),
@@ -329,20 +376,6 @@ export default function Home() {
     }
   };
 
-  const handleDeletePoem = async () => {
-    if (!user || !firestore || !poemToDelete) return;
-    const poemRef = doc(firestore, `users/${user.uid}/poems`, poemToDelete.id);
-    deleteDocumentNonBlocking(poemRef);
-    if (activePoem?.id === poemToDelete.id) {
-      handleNewPoem();
-    }
-    setPoemToDelete(null);
-    toast({
-      title: "Poema Excluído",
-      description: `"${poemToDelete.title || 'Poema sem título'}" foi removido.`,
-    });
-  };
-
   const handleCopy = () => {
     if (!text) return;
     navigator.clipboard.writeText(text).then(() => {
@@ -360,24 +393,29 @@ export default function Home() {
     });
   };
 
+  const handleSuggestionModeChange = (mode: SuggestionMode) => {
+    setSuggestionMode(mode);
+    resetSuggestions();
+  };
+
   const handleConfigChange = () => {
     resetSuggestions();
-  }
+  };
 
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
     handleConfigChange();
-  }
+  };
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
     handleConfigChange();
-  }
+  };
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
     handleConfigChange();
-  }
+  };
 
   const advanceToNextSuggestion = useCallback(async () => {
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
@@ -389,13 +427,18 @@ export default function Home() {
       if (grammarSuggestions.length > 0) {
         toast({
             title: "Correções Gramaticais Concluídas!",
-            description: "Todas as correções foram revisadas.",
+            description: "Buscando sugestões de estilo para o texto corrigido...",
         });
+        setIsLoading(true);
+        try {
+          await generateSuggestions('tone');
+        } finally {
+          setIsLoading(false);
+        }
       }
     }
-  }, [currentSuggestionIndex, grammarSuggestions, toast]);
-  
-  
+  }, [currentSuggestionIndex, grammarSuggestions, generateSuggestions, toast]);
+
   const applyCorrection = useCallback((originalText: string, correctedText: string) => {
     setText(prevText => {
       const newText = prevText.replace(originalText, correctedText);
@@ -403,26 +446,20 @@ export default function Home() {
     });
     advanceToNextSuggestion();
   }, [advanceToNextSuggestion]);
-  
+
   const handleAccept = useCallback((suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
-  
+
     if (suggestionToAccept.type === 'grammar') {
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
-      // This is the corrected logic for tone suggestions.
-      // It ensures the text is updated first, and then removes the suggestion from the list
-      // in a single, atomic state update to prevent rendering conflicts.
       setText(prevText => {
-        // Update the main text
         const newText = prevText.replace(suggestionToAccept.originalText, suggestionToAccept.correctedText);
-        
-        // After updating the text, filter out the accepted suggestion from the tone list.
-        // This must happen *after* the text replacement.
+
         setToneSuggestions(currentSuggestions =>
           currentSuggestions.filter(s => s.originalText !== suggestionToAccept.originalText)
         );
-        
+
         return newText;
       });
     }
@@ -436,14 +473,16 @@ export default function Home() {
       setToneSuggestions(current => current.filter(s => s.originalText !== suggestionToDismiss.originalText));
     }
   }, [advanceToNextSuggestion]);
-  
+
   const handleResuggest = async (suggestionToResuggest: Suggestion) => {
     const excludedPhrases = excludedPhrasesMap[suggestionToResuggest.originalText] || [];
 
     setIsLoading(true);
     try {
         const input: SuggestionInput = {
-            text: suggestionToResuggest.originalText,
+            text: suggestionToResuggest.context
+              ? suggestionToResuggest.context
+              : suggestionToResuggest.originalText,
             tone: tone,
             structure: textStructure,
             rhyme: rhyme,
@@ -479,7 +518,7 @@ export default function Home() {
         setIsLoading(false);
     }
   };
-  
+
   const handleToggleExcludedPhrase = (originalText: string, phrase: string) => {
     setExcludedPhrasesMap(prev => {
         const currentExcluded = prev[originalText] || [];
@@ -489,7 +528,7 @@ export default function Home() {
         return { ...prev, [originalText]: newExcluded };
     });
   };
-  
+
   return (
     <SidebarProvider>
       <div className="flex h-full w-full">
@@ -506,23 +545,13 @@ export default function Home() {
               {isLoadingPoems && <p className="text-sm text-muted-foreground p-2">Carregando...</p>}
               {!isLoadingPoems && poems?.map(poem => (
                   <SidebarMenuItem key={poem.id}>
-                      <div className="group flex items-center w-full">
-                        <SidebarMenuButton
-                            className="flex-1 justify-start"
-                            onClick={() => loadPoem(poem)}
-                            isActive={activePoem?.id === poem.id}
-                        >
-                          {poem.title || "Poema sem título"}
-                        </SidebarMenuButton>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                          onClick={(e) => { e.stopPropagation(); setPoemToDelete(poem); }}
-                        >
-                          <Trash2 className="h-4 w-4" />
-                        </Button>
-                      </div>
+                      <SidebarMenuButton
+                          className="w-full justify-start"
+                          onClick={() => loadPoem(poem)}
+                          isActive={activePoem?.id === poem.id}
+                      >
+                        {poem.title || "Poema sem título"}
+                      </SidebarMenuButton>
                   </SidebarMenuItem>
               ))}
               {!isLoadingPoems && poems?.length === 0 && (
@@ -574,9 +603,7 @@ export default function Home() {
               ref={editorRef}
               text={text}
               onTextChange={handleTextChange}
-              title={title}
-              onTitleChange={setTitle}
-              isLoading={isLoading} 
+              isLoading={isLoading}
               tone={tone}
               onToneChange={handleToneChange}
               textStructure={textStructure}
@@ -588,16 +615,23 @@ export default function Home() {
               onAccept={handleAccept}
               onDismiss={handleDismiss}
               onResuggest={handleResuggest}
-              onCheckGrammar={handleCheckGrammar}
-              onSuggestTone={handleSuggestTone}
+              suggestionMode={suggestionMode}
+              onSuggestionModeChange={handleSuggestionModeChange}
+              onFinalSuggestion={handleGenerateSuggestions}
               onClear={handleClear}
               onCopy={handleCopy}
               onSavePoem={handleSavePoem}
               isPoemSaved={!!activePoem}
               toneSuggestions={toneSuggestions}
+              onAcceptAllLowSeverity={handleAcceptAllLowSeverity}
+              lowSeverityCount={lowSeverityCount}
             />
             <SuggestionList
-              suggestions={toneSuggestions}
+              suggestions={
+                grammarSuggestions.length > 0
+                  ? grammarSuggestions
+                  : toneSuggestions
+              }
               isLoading={isLoading}
               onAccept={handleAccept}
               onDismiss={handleDismiss}
@@ -608,20 +642,6 @@ export default function Home() {
           </div>
         </main>
       </div>
-      <AlertDialog open={!!poemToDelete} onOpenChange={(open) => { if (!open) setPoemToDelete(null); }}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Excluir Poema</AlertDialogTitle>
-            <AlertDialogDescription>
-              Tem certeza que deseja excluir "{poemToDelete?.title || 'Poema sem título'}"? Esta ação não pode ser desfeita.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancelar</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeletePoem}>Excluir</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </SidebarProvider>
   );
 }

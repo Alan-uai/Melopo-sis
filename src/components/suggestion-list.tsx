@@ -30,13 +30,39 @@ export function SuggestionList({
   onToggleExcludedPhrase,
   excludedPhrasesMap,
 }: SuggestionListProps) {
+  const hasGrammar = suggestions.some(s => s.type === 'grammar');
+  const toneSuggestions = suggestions.filter(s => s.type === 'tone');
+
+  const severityCount = suggestions.reduce((acc, s) => {
+    if (s.severity) acc[s.severity] = (acc[s.severity] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
   return (
     <Card className="w-full shadow-lg">
       <CardHeader>
-        <CardTitle className="font-headline text-3xl">Sugestões de Tom</CardTitle>
-         <CardDescription>
-          Sugestões para aprimorar o tom e estilo do seu poema.
+        <CardTitle className="font-headline text-3xl">
+          {hasGrammar ? "Sugestões de Correção" : "Sugestões de Tom"}
+        </CardTitle>
+        <CardDescription>
+          {hasGrammar
+            ? "Correções gramaticais e ortográficas encontradas."
+            : "Sugestões para aprimorar o tom e estilo do seu poema."
+          }
         </CardDescription>
+        {Object.keys(severityCount).length > 0 && (
+          <div className="flex gap-2 mt-1">
+            {severityCount.alta && (
+              <span className="text-xs text-destructive">⚠ {severityCount.alta} alta</span>
+            )}
+            {severityCount.media && (
+              <span className="text-xs text-yellow-600 dark:text-yellow-400">● {severityCount.media} média</span>
+            )}
+            {severityCount.baixa && (
+              <span className="text-xs text-blue-600 dark:text-blue-400">● {severityCount.baixa} baixa</span>
+            )}
+          </div>
+        )}
       </CardHeader>
       <CardContent>
         <div className="space-y-4">

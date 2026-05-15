@@ -22,6 +22,12 @@ interface SuggestionCardProps {
   excludedPhrases: string[];
 }
 
+const severityVariant: Record<string, "destructive" | "secondary" | "default"> = {
+  alta: 'destructive',
+  media: 'secondary',
+  baixa: 'default',
+};
+
 export function SuggestionCard({
   suggestion,
   onAccept,
@@ -48,9 +54,16 @@ export function SuggestionCard({
                <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
                <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
             </div>
-            <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap flex-shrink-0">
-              {isGrammar ? "Gramática" : "Tom"}
-            </Badge>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              {suggestion.severity && (
+                <Badge variant={severityVariant[suggestion.severity]} className="text-[10px] px-1.5 py-0">
+                  {suggestion.severity}
+                </Badge>
+              )}
+              <Badge variant={isGrammar ? "destructive" : "secondary"} className="whitespace-nowrap">
+                {isGrammar ? "Gramática" : "Tom"}
+              </Badge>
+            </div>
           </div>
         </AccordionTrigger>
         <AccordionContent className="p-4 pt-2">
@@ -58,6 +71,11 @@ export function SuggestionCard({
             <p className="text-sm text-muted-foreground whitespace-pre-wrap">
               {suggestion.explanation}
             </p>
+            {suggestion.context && (
+              <div className="text-xs text-muted-foreground italic border-l-2 border-muted-foreground/30 pl-2">
+                Contexto: "{suggestion.context}"
+              </div>
+            )}
             <Card className="bg-background/80">
               <CardHeader>
                 <CardDescription>
@@ -97,6 +115,18 @@ export function SuggestionCard({
                 </blockquote>
               </CardContent>
             </Card>
+            {suggestion.alternatives && suggestion.alternatives.length > 1 && (
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground">Alternativas:</p>
+                <ul className="text-xs space-y-0.5">
+                  {suggestion.alternatives.map((alt, i) => (
+                    <li key={i} className="border-l-2 border-muted-foreground/20 pl-2 italic">
+                      {alt}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             <div className="flex justify-end gap-2">
               <Button variant="ghost" size="sm" onClick={onDismiss}>
                 <X className="mr-2 h-4 w-4" />

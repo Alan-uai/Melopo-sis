@@ -11,7 +11,7 @@
 | `npm run genkit:dev` | Start Genkit flow dev server |
 | `npm run genkit:watch` | Genkit dev server with file watch |
 
-No test framework or test scripts exist.
+Tests via Vitest in `src/__tests__/`. Run with `npm test` or `npm run test:watch`.
 
 ## Architecture
 
@@ -37,9 +37,22 @@ No test framework or test scripts exist.
 ## Suggestion Flow
 
 1. User clicks "Gerar Sugestões" → calls `generateContextualSuggestions({ suggestionType: 'grammar' })`
-2. Grammar suggestions displayed one-by-one via `SuggestionPopover` inline in editor
-3. After last grammar suggestion dismissed/accepted → auto-triggers `suggestionType: 'tone'`
-4. Tone suggestions shown in `SuggestionList` side panel with accept/dismiss/resuggest per card
+2. **Local spell check runs first** — `checkSpelling()` catches basic typos instantly via `src/lib/spell-checker.ts` (dictionary-pt-br word list + Portuguese morphology rules). If found, returns `'grammar'` suggestions directly without LLM call.
+3. If no local errors → calls Genkit `grammarPrompt` (enhanced with few-shot examples, poetic license rules, ABNT confusions, severity levels)
+4. Grammar suggestions displayed one-by-one via `SuggestionPopover` inline in editor, and full list in sidebar
+5. "Aplicar N correções simples" button for batch-applying low-severity fixes
+6. After last grammar suggestion dismissed/accepted → auto-triggers `suggestionType: 'tone'`
+7. Tone suggestions shown in `SuggestionList` side panel with accept/dismiss/resuggest per card
+8. **Gradual mode** (when enabled): debounced (800ms) auto-check on text input changes
+
+## Local Utilities
+
+| Module | Purpose |
+|--------|---------|
+| `src/lib/spell-checker.ts` | Local orthographic checker with dictionary-pt-br (311k words) + Portuguese morphology (verb conj, plural, feminine) + accent rule engine |
+| `src/lib/poetic-forms.ts` | Structural validation for soneto, haicai, cordel, redondilha, decassílabo; syllable counter with poetic elision |
+| `src/lib/rhyme-detector.ts` | Algorithmic rhyme scheme analysis, rhyme error detection per stanza |
+| `src/lib/build-word-set.ts` | Lazy singleton loader for dictionary-pt-br word list |
 
 ## Database Structure (Firestore)
 

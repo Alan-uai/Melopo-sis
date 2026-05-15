@@ -1,125 +1,96 @@
 'use server';
 
 import { ai } from '@/ai/genkit';
-import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput } from '@/ai/types';
+import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
+import { checkText } from '@/lib/spell-checker';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
 }
-
-const ABNT_CATALOG = `
-## CATÁLOGO DE REFERÊNCIAS — NORMAS ABNT PARA TEXTOS LITERÁRIOS E POESIA
-
-### 1. ORTOGRAFIA E ACENTUAÇÃO (BASEADO NO ACORDO ORTOGRÁFICO DE 1990 E NBR 6029)
-- Acentuação de paroxítonas terminadas em ditongo crescente (ex: "poesia" não leva acento, "herói" leva)
-- Uso correto de crase (à, às, àquele, àquela)
-- Emprego do hífen conforme o novo acordo (ex: "autoestima", "antissocial", "bem-vindo")
-- Ditongos abertos "ei" e "oi" em paroxítonas não são mais acentuados (ex: "ideia", "heroico")
-- Uso de trema abolido (ex: "linguiça", "sequência")
-
-### 2. PONTUAÇÃO (NBR 6029 — APRESENTAÇÃO DE LIVROS E TEXTOS)
-- Vírgula: separa termos coordenados, isola aposto, separa orações adverbiais antepostas
-- Ponto e vírgula: separa itens de uma enumeração complexa
-- Dois-pontos: introduz citação, explicação ou enumeração
-- Reticências: indicam interrupção, hesitação ou supressão (sempre três pontos, sem espaço antes)
-- Travessão: indica fala direta ou destaque (com espaços quando usado para inserir)
-- Parênteses: para intercalações e indicações cênicas em poemas
-
-### 3. CONCORDÂNCIA E REGÊNCIA (NORMA CULTA)
-- Concordância verbal: verbo concorda com o núcleo do sujeito
-- Concordância nominal: adjetivo concorda em gênero e número com o substantivo
-- Regência verbal: uso correto de preposições (ex: "assistir a" no sentido de ver, "assistir" sem preposição no sentido de ajudar)
-- Colocação pronominal: próclise em contextos negativos e com advérbios, ênclise no início de período (exceto em poesia, onde a ênclise pode ser flexionada por licença poética, desde que justificável)
-
-### 4. MÉTRICA POÉTICA (ESTRUTURA VERSIFICADA)
-- Redondilha maior: 7 sílabas poéticas
-- Redondilha menor: 5 sílabas poéticas
-- Decassílabo: 10 sílabas poéticas (heróico: acento na 6ª e 10ª; sáfico: acento na 4ª, 8ª e 10ª)
-- Alexandrino: 12 sílabas poéticas (6+6)
-- Verso branco: sem rima, mas com métrica regular
-- Verso livre: sem métrica nem rima fixas
-- Verso solto: sem rima, inserido entre versos rimados
-
-### 5. ESQUEMAS DE RIMA
-- Emparelhada (AABB): versos consecutivos rimam entre si
-- Cruzada (ABAB): rimas alternadas
-- Interpolada (ABBA): primeiro rima com quarto, segundo com terceiro
-- Mista: combina diferentes esquemas
-- Rima rica: entre palavras de classes gramaticais diferentes
-- Rima pobre: entre palavras da mesma classe gramatical
-- Rima perfeita: correspondência total de sons a partir da vogal tônica
-- Rima imperfeita (consoante): apenas sons consonantais correspondem
-
-### 6. FORMAS ESTRÓFICAS (ESTRUTURA DO POEMA)
-- Dístico: 2 versos
-- Terceto: 3 versos
-- Quadra: 4 versos
-- Quintilha: 5 versos
-- Sextilha: 6 versos
-- Oitava: 8 versos
-- Décima: 10 versos
-- Soneto: 14 versos (2 quartetos + 2 tercetos), métrica decassílaba
-- Haicai: 3 versos (5-7-5 sílabas, mas em português adapta-se para temas naturais)
-
-### 7. CITAÇÕES EM TEXTOS LITERÁRIOS (NBR 10520)
-- Citação direta curta (até 3 linhas): entre aspas duplas, incorporada ao texto
-- Citação direta longa (mais de 3 linhas): em bloco recuado 4cm, sem aspas, fonte menor
-- Citação indireta: paráfrase, sem aspas, com menção ao autor
-- Epígrafes: em página ímpar, alinhadas à direita, com indicação do autor
-
-### 8. ESTRUTURAÇÃO DO TEXTO (NBR 6029)
-- Título centralizado, em caixa alta ou versal
-- Estrofes separadas por linha em branco
-- Versos quebrados indicados com recuo à direita
-- Poemas em prosa: parágrafos convencionais com elementos poéticos
-- Numeração de estrofes (opcional, em algarismos romanos)
-- Datas e locais de composição à direita ao final do poema
-`;
 
 const grammarPrompt = ai.definePrompt({
   name: 'grammarPrompt',
   input: { schema: SuggestionInputSchema },
   output: { schema: SuggestionOutputSchema },
   prompt: `
-    Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar o texto poético fornecido e retornar uma lista COMPLETA de correções.
+Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar o texto poético fornecido e retornar uma lista de correções gramaticais e estruturais.
 
-    Utilize o catálogo de referências ABNT abaixo como fonte de regras para todas as correções. Cada correção DEVE ser justificada com base em uma regra específica deste catálogo.
+REGRAS DE LICENÇA POÉTICA:
+- NÃO corrija inversões sintáticas intencionais (hipérbatos) como "As estrelas no céu brilhavam" → "No céu as estrelas brilhavam" é aceitável.
+- NÃO corrija arcaísmos poéticos (palavras antigas usadas para efeito estilístico) como "escuro" em vez de "escuridão", "lume" em vez de "luz".
+- NÃO corrija síncopes poéticas (supressão de fonemas) — a menos que seja erro óbvio.
+- NÃO corrija elisões propositais para manter métrica, como "d'água" em vez de "de água".
+- Preserve a linguagem poética e metafórica. Corrija apenas o que for inequivocamente errado.
 
-    ${ABNT_CATALOG}
+REGRAS DA ESTRUTURA "{{structure}}":
+- Se "poema" ou "poesia": estrutura livre, sem regras fixas de métrica ou estrofação.
+- Se "soneto": 14 versos, 2 quartetos + 2 tercetos, esquema ABBA ABBA CDC DCD, decassílabos.
+- Se "haicai": 3 versos (5-7-5 sílabas), tema da natureza/estação.
+- Se "cordel": sextilhas (6 versos), métrica 7 sílabas, rima ABCBDB.
+- Se "redondilha": versos de 5 ou 7 sílabas, estrofes de 4-8 versos.
+- Se "decassilabo": 10 sílabas poéticas, ênfase 3ª-6ª-10ª ou 4ª-7ª-10ª.
 
-    O processo DEVE seguir as seguintes etapas, EM ORDEM ESTRITA, DENTRO DE UMA ÚNICA EXECUÇÃO:
+O texto a ser analisado é:
+\`\`\`
+{{{text}}}
+\`\`\`
 
-    ETAPA 1: VERIFICAÇÃO ORTOGRÁFICA E DE PONTUAÇÃO (LINHA POR LINHA).
-    - Analise cada verso/linha do texto em busca de TODOS os erros de ortografia, acentuação, crase, hífen, pontuação, concordância e regência.
-    - Consulte as seções 1, 2 e 3 do catálogo ABNT.
-    - O texto a ser analisado é:
-    \`\`\`
-    {{{text}}}
-    \`\`\`
+ETAPA 1: VERIFICAÇÃO GRAMATICAL E DE PONTUAÇÃO (LINHA POR LINHA).
+- Analise o texto, linha por linha, em busca de TODOS os erros gramaticais e de pontuação.
+- Preste atenção especial a estas confusões comuns em português:
+  * "mas" (porém) vs "mais" (quantidade) — ERRADO: "Mais eu queria dizer" → CORRETO: "Mas eu queria dizer"
+  * "a" (preposição/artigo) vs "há" (haver, tempo passado) — ERRADO: "A muito tempo" → CORRETO: "Há muito tempo"
+  * "mau" (adjetivo, oposto de bom) vs "mal" (advérbio, oposto de bem) — ERRADO: "O mal caráter" → CORRETO: "O mau caráter"
+  * "porque" (resposta/explicação) vs "por que" (pergunta/razão) vs "porquê" (substantivo) vs "por quê" (final de frase)
+  * "onde" (lugar físico) vs "aonde" (movimento/direção)
+  * "senão" (caso contrário, defeito) vs "se não" (se + não, condicional)
+  * "acerca de" (sobre) vs "cerca de" (aproximadamente) vs "há cerca de" (tempo aproximado)
+  * "tampouco" (também não) vs "tão pouco" (tão + pouco)
+  * "ao invés de" (oposição) vs "em vez de" (substituição)
+  * Uso de crase: "à" (a + a), "àquela", "àquele", "àquelas"
+  * Acentuação correta de verbos com pronome: "chamarão-me" (errado) → "chamar-me-ão" (correto)
 
-    ETAPA 2: VERIFICAÇÃO DA ESTRUTURA POÉTICA E MÉTRICA (TEXTO COMPLETO).
-    - Analise a estrutura geral do poema com base nas seções 4, 5, 6, 7 e 8 do catálogo ABNT.
-    - Verifique a métrica (contagem de sílabas poéticas) se aplicável ao tipo de verso.
-    - Verifique o esquema de rimas e se ele é consistente ao longo do poema.
-    - Verifique a forma estrófica (quadra, soneto, etc.) e se está correta.
-    - Verifique a estrutura de citações e epígrafes, se houver.
-    - O tipo de estrutura selecionado é: '{{structure}}'.
-    - Se a opção 'rhyme' for verdadeira, a presença e consistência de rima é OBRIGATÓRIA.
+ETAPA 2: VERIFICAÇÃO ESTRUTURAL (TEXTO COMPLETO).
+- Após a verificação linha por linha, analise o texto como um todo.
+- Verifique se a estrutura geral está de acordo com as normas da ABNT e com as regras do tipo "{{structure}}".
+- Verifique métrica, estrofação, e esquema de rimas conforme as regras da estrutura escolhida.
 
-    ETAPA 3: COMPILAÇÃO DA LISTA DE CORREÇÕES.
-    - Compile TODOS os erros encontrados nas Etapas 1 e 2 em uma única lista de sugestões do tipo 'grammar'.
-    - Para cada erro, forneça: o trecho original, a correção sugerida, e uma explicação clara que mencione a regra ABNT ou norma específica utilizada.
-    - Ignore qualquer palavra ou frase listada em 'excludedPhrases'.
-    - Se NENHUM erro for encontrado, retorne um array de sugestões vazio.
+ETAPA 3: COMPILAÇÃO DA LISTA DE ERROS.
+- Compile TODOS os erros encontrados em uma única lista de sugestões do tipo 'grammar'.
+- Para cada erro, forneça:
+  * originalText: o trecho com erro
+  * correctedText: a correção
+  * explanation: explicação clara referenciando a regra (ex: "Erro de acentuação: 'poesia' não leva acento"; "Confusão entre 'mas' e 'mais': 'mas' é conjunção adversativa")
+  * context: o verso completo onde o erro aparece
+  * severity: 'alta' para erros graves (ortografia, concordância), 'media' para correções recomendadas (pontuação, crase), 'baixa' para sugestões opcionais (estilo, ênfase)
+  * alternatives: lista de alternativas de correção quando houver mais de uma opção válida
+- Se 'rhyme' for verdadeiro, certifique-se de que suas correções mantenham ou melhorem a rima.
+- Se houver palavras em excludedPhrases, ignore-as completamente.
+- Se NENHUM erro for encontrado, retorne array vazio.
 
-    IMPORTANTE:
-    - FOCO EXCLUSIVO EM GRAMÁTICA E ESTRUTURA: NÃO forneça sugestões de tom, estilo ou conteúdo criativo nesta etapa.
-    - Retorne a lista completa de TODOS os erros encontrados. Seja rigoroso e minucioso.
-    - Justifique cada correção com a referência à regra correspondente do catálogo ABNT.
-    - Para poemas, considere a licença poética apenas quando houver justificativa estilística clara; caso contrário, aponte o desvio como sugestão.
+EXEMPLOS DE RESPOSTA CORRETA:
+[
+  {
+    "originalText": "Mais eu queria",
+    "correctedText": "Mas eu queria",
+    "explanation": "Confusão entre 'mas' e 'mais'. 'Mas' é conjunção adversativa (porém). 'Mais' indica quantidade. Como há oposição de ideias, o correto é 'mas'.",
+    "severity": "alta",
+    "context": "Mais eu queria dizer o que sentia",
+    "alternatives": []
+  },
+  {
+    "originalText": "A muito tempo",
+    "correctedText": "Há muito tempo",
+    "explanation": "Confusão entre 'a' e 'há'. 'Há' (do verbo haver) é usado para indicar tempo decorrido. 'A' é preposição ou artigo.",
+    "severity": "alta",
+    "context": "A muito tempo que não chove",
+    "alternatives": []
+  }
+]
 
-    Formato da Saída:
-    - Retorne um objeto JSON com uma chave "suggestions", que é um array de objetos de sugestão do tipo 'grammar'.
+IMPORTANTE:
+- FOCO EXCLUSIVO: Sua resposta DEVE conter apenas sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone'.
+- Retorne a lista completa de TODOS os erros encontrados.
   `,
 });
 
@@ -128,18 +99,34 @@ const tonePrompt = ai.definePrompt({
   input: { schema: SuggestionInputSchema },
   output: { schema: SuggestionOutputSchema },
   prompt: `
-    Você é um especialista em estilo e tom poético. O texto a seguir já foi corrigido gramaticalmente.
-    Sua tarefa é fornecer sugestões de 'tone' (tom e estilo) para torná-lo mais impactante, alinhado com o tom desejado de '{{tone}}'.
+Você é um especialista em estilo e tom poético para o português do Brasil. O texto a seguir já foi corrigido gramaticalmente.
 
-    - O texto a ser analisado é:
-    \`\`\`
-    {{{text}}}
-    \`\`\`
-    - Para cada sugestão, identifique o trecho original, forneça uma alternativa e explique o motivo da mudança de estilo.
-    - Se nenhum aprimoramento de tom for necessário, retorne um array de sugestões vazio.
+Sua tarefa é fornecer sugestões de 'tone' (tom e estilo) para tornar o poema mais impactante, alinhado com o tom desejado: "{{tone}}".
 
-    Formato da Saída:
-    - Retorne um objeto JSON com uma chave "suggestions", que é um array de objetos de sugestão do tipo 'tone'.
+O texto a ser analisado é:
+\`\`\`
+{{{text}}}
+\`\`\`
+
+REGRAS:
+- Para cada sugestão, forneça o trecho original, uma alternativa estilística, e explique o motivo da mudança.
+- Forneça 2-3 alternativas quando possível (alternatives).
+- A justificativa deve ser estilística/literária, não gramatical.
+- Se nenhum aprimoramento de tom for necessário, retorne array vazio.
+- Mantenha a métrica e a rima se o poema as utilizar.
+- Considere o tipo de estrutura: "{{structure}}".
+
+EXEMPLO:
+{
+  "originalText": "A noite escura caiu",
+  "correctedText": "Despencou a noite overta sobre o vale",
+  "explanation": "Substituir 'caiu' por 'despencou' e 'escura' por 'oberta' (forma poética de 'aberta') intensifica a imagem visual e o tom melancólico. A inversão sintática ('Despencou a noite...') confere maior poeticidade.",
+  "severity": "baixa",
+  "alternatives": [
+    "A noite overta desabou silente",
+    "Caiu a noite, escura e overta"
+  ]
+}
   `
 });
 
@@ -152,6 +139,36 @@ const suggestionFlow = ai.defineFlow(
   async (input) => {
     if (!input.text.trim()) {
       return { suggestions: [] };
+    }
+
+    if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
+      const localResult = await checkText(input.text);
+      if (localResult.errors.length > 0) {
+        const localSuggestions: Suggestion[] = localResult.errors.map((err) => {
+          const lines = input.text.split('\n');
+          let charCount = 0;
+          let contextLine = '';
+          for (const line of lines) {
+            if (charCount + line.length >= err.position) {
+              contextLine = line;
+              break;
+            }
+            charCount += line.length + 1;
+          }
+          return {
+            originalText: err.word,
+            correctedText: err.suggestions[0] || err.word,
+            explanation: err.suggestions.length > 0
+              ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
+              : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`,
+            type: 'grammar' as const,
+            severity: 'alta' as const,
+            context: contextLine,
+            alternatives: err.suggestions,
+          };
+        });
+        return { suggestions: localSuggestions };
+      }
     }
 
     if (input.suggestionType === 'tone') {
