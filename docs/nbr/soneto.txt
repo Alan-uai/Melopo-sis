@@ -1,0 +1,137 @@
+# Soneto — Normas e Estrutura
+# Baseado na tradição petrarquiana, camoniana, e parnasiana brasileira
+# Data: 2026-05-15
+
+================================================================================
+ESTRUTURA GERAL
+================================================================================
+
+## [SON-01] Número de versos — 14 versos obrigatórios
+Fonte: tradição literária (Petrarca, Camões, Bilac, Anjos)
+Descrição: O soneto é composto obrigatoriamente por 14 versos decassílabos, distribuídos em 2 quartetos (estrofe de 4 versos) e 2 tercetos (estrofe de 3 versos). Não se admitem variações no número de versos.
+❌ Errado: soneto com 12 versos, soneto com 16 versos, estrofação irregular
+✅ Correto: 2 quartetos + 2 tercetos = 14 versos
+Severidade: alta
+Categoria: estrutura
+
+## [SON-02] Distribuição das estrofes — 4 + 4 + 3 + 3
+Fonte: tradição literária (Camões, Sonetos completos)
+Descrição: Os 14 versos devem ser agrupados em exatamente 4 estrofes: dois quartetos (estrofe I e II) seguidos de dois tercetos (estrofe III e IV). A separação visual entre estrofes é obrigatória.
+❌ Errado: 3 estrofes (ex: 4+6+4), 5 estrofes, bloco único sem separação
+✅ Correto: 4 estrofes na ordem 4-4-3-3, com espaçamento entre elas
+Severidade: alta
+Categoria: estrutura
+
+## [SON-03] Esquema de rimas clássico italiano — ABBA ABBA CDC DCD
+Fonte: tradição petrarquiana; Camões, "Amor é fogo que arde sem se ver"
+Descrição: No soneto italiano clássico, os quartetos seguem o esquema ABBA ABBA (rimas interpoladas). Os tercetos seguem variações como CDC DCD, CDE CDE, ou CDC CDC. As rimas dos quartetos são fixas e idênticas (ABBA = mesmas rimas A e B nos dois quartetos).
+❌ Errado: ABAB ABAB nos quartetos (é esquema inglês), ABCA ABCA, rimas diferentes entre 1º e 2º quartetos
+✅ Correto: ABBA ABBA CDC DCD, ABBA ABBA CDE CDE, ABBA ABBA CDC CDC
+Severidade: alta
+Categoria: rima
+
+## [SON-04] Esquema de rimas inglês/shakespeariano — ABAB CDCD EFEF GG
+Fonte: tradição inglesa (Shakespeare, Spenser); adaptado na poesia brasileira moderna
+Descrição: Variação alternativa onde os 12 primeiros versos organizam-se em 3 quartetos com rimas alternadas (ABAB CDCD EFEF), seguidos de um dístico final (GG). Esta forma é aceita na tradição brasileira como variação, mas a forma italiana é a canônica.
+❌ Errado: misturar esquemas italiano e inglês no mesmo soneto
+✅ Correto: ABAB CDCD EFEF GG (inglês); ABBA ABBA CDC DCD (italiano, preferencial)
+Severidade: media
+Categoria: rima
+
+================================================================================
+MÉTRICA — VERSO DECASSÍLABO
+================================================================================
+
+## [SON-05] Verso decassílabo — 10 sílabas poéticas
+Fonte: tradição literária; Bilac, "Via Láctea"; Camões, "Os Lusíadas"
+Descrição: Cada verso do soneto clássico deve conter exatamente 10 sílabas poéticas (contadas até a última sílaba tônica). A contagem silábica poética difere da gramatical: fundem-se vogais átonas em hiato (elissão/sinalefa).
+❌ Errado: versos com 9 ou 11 sílabas poéticas (em soneto clássico)
+✅ Correto: "A-mor é / fo-go que / ar-de sem / se ver" (10 sílabas: A-mor-é-fo-go-que-ar-de-sem-se-ver)
+Severidade: alta
+Categoria: métrica
+
+## [SON-06] Decassílabo heroico — acentos na 3ª, 6ª e 10ª sílabas
+Fonte: tradição camoniana; Said Ali, "Versificação Portuguesa"
+Descrição: O decassílabo heroico (também chamado camoniano) tem acentos primários obrigatórios na 3ª, 6ª e 10ª sílabas poéticas. Os acentos na 6ª e 10ª são fixos; o da 3ª pode variar para a 4ª em algumas escolas.
+❌ Errado: "As estre-las bri-lha-vam no céu a-zul" (acento na 2ª, sem acento na 3ª)
+✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (3ª: ar-, 6ª: -rões, 10ª: -dos)
+Severidade: alta
+Categoria: métrica
+
+## [SON-07] Decassílabo sáfico — acentos na 4ª, 7ª e 10ª sílabas
+Fonte: tradição clássica; Sappho adaptada; Bilac
+Descrição: O decassílabo sáfico tem acentos primários na 4ª, 7ª e 10ª sílabas poéticas. É menos comum que o heroico na tradição portuguesa, mas é reconhecido como variante legítima.
+❌ Errado: misturar acentos heroicos e sáficos no mesmo verso
+✅ Correto: "A luz mor-reu, a noi-te vem ca-in-do" (4ª: -reu, 7ª: -te, 10ª: -do)
+Severidade: alta
+Categoria: métrica
+
+## [SON-08] Cesura no decassílabo — pausa medial obrigatória
+Fonte: tradição clássica; Castilho, "Tratado de Metrificação"
+Descrição: O verso decassílabo clássico exige uma cesura (pausa) após a 5ª ou 6ª sílaba, dividindo o verso em dois hemistíquios. A cesura é marcada por pausa sintática ou rítmica.
+❌ Errado: verso decassílabo sem pausa interna perceptível, com cesura após a 3ª sílaba
+✅ Correto: "As armas e os barões // assinalados" (cesura após barões, 6ª sílaba)
+Severidade: media
+Categoria: métrica
+
+================================================================================
+RIMAS DOS TERCETOS
+================================================================================
+
+## [SON-09] Variações de rima nos tercetos
+Fonte: tradição literária; Manuais de versificação
+Descrição: Os tercetos admitem maior liberdade de esquemas que os quartetos. Os mais comuns são: CDC DCD (entrelaçado), CDE CDE (paralelo), CDC CDC (repetido), CCD EED (gradativo). A partir do Modernismo, variantes mais livres são aceitas, desde que haja coerência interna.
+❌ Errado: tercetos sem qualquer rima ou padrão reconhecível (em soneto clássico)
+✅ Correto: CDC DCD, CDE CDE, CDC CDC, CCD EED
+Severidade: media
+Categoria: rima
+
+## [SON-10] Rima rica vs. rima pobre
+Fonte: Manuais de versificação; Olavo Bilac
+Descrição: Na tradição parnasiana brasileira (Bilac, Raimundo Correia, Alberto de Oliveira), valorizam-se rimas ricas (entre palavras de classes gramaticais diferentes, ex: substantivo + verbo) e rimas raras (entre palavras incomuns). Rimas pobres (mesma classe gramatical) eram evitadas.
+❌ Errado: "amor" rima com "dor" (ambos substantivos — rima pobre, aceitável mas desvalorizada)
+✅ Correto: "amor" (subst.) rima com "tanto" (advérbio — rima rica)
+Severidade: baixa
+Categoria: rima
+
+================================================================================
+PONTUAÇÃO NO SONETO
+================================================================================
+
+## [SON-11] Ponto final no fim de cada estrofe
+Fonte: tradição literária; Cegalla, "Novíssima Gramática"
+Descrição: No soneto clássico, cada estrofe geralmente encerra com ponto final. O 1º quarteto fecha com ponto; o 2º quarteto também. Os tercetos podem ter ponto apenas no final do último verso, mas cada terceto idealmente forma uma unidade de sentido.
+❌ Errado: 1º quarteto terminando com vírgula, 2º quarteto sem pontuação final
+✅ Correto: Ponto final após o 4º verso, ponto final após o 8º verso
+Severidade: media
+Categoria: pontuação
+
+## [SON-12] Unidade de sentido por estrofe
+Fonte: tradição literária; Cegalla
+Descrição: Cada estrofe do soneto clássico deve constituir uma unidade sintática e semântica completa. O 1º quarteto apresenta o tema; o 2º quarteto desenvolve; o 1º terceto aprofunda ou contrapõe; o 2º terceto conclui (chave de ouro). Evitar encavalgamento (enjambement) excessivo entre estrofes.
+❌ Errado: frase que começa no 1º quarteto e termina no 1º terceto; sentido incompleto ao fim do 2º quarteto
+✅ Correto: cada estrofe com sentido autônomo e pontuação final
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+SONETO MODERNO / CONTEMPORÂNEO
+================================================================================
+
+## [SON-13] Liberdades do soneto moderno
+Fonte: Modernismo brasileiro; Drummond, "Soneto da Burrinha"; Vinícius de Moraes
+Descrição: A partir do Modernismo, admite-se: versos de métrica variada (não apenas decassílabos), rimas toantes ou ausentes, esquemas de rima livres, e até ausência de pontuação. Porém, a estrutura de 14 versos em 4 estrofes (4-4-3-3) permanece o identificador central do soneto.
+❌ Errado: chamar de soneto um poema com mais ou menos de 14 versos
+✅ Correto: 14 versos, 4 estrofes (4-4-3-3), com métrica e rima livres (soneto moderno)
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+EXEMPLOS CLÁSSICOS
+================================================================================
+
+## [SON-14] Referências brasileiras essenciais
+Fonte: tradição literária brasileira
+Descrição: Autores fundamentais para estudo do soneto em português: Luís de Camões (soneto italiano clássico), Olavo Bilac (soneto parnasiano), Augusto dos Anjos (soneto expressionista), Vinícius de Moraes (soneto moderno/lírico), Carlos Drummond de Andrade (soneto modernista/irônico).
+Severidade: baixa
+Categoria: referência

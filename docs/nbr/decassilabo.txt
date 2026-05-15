@@ -1,0 +1,167 @@
+# Decassílabo — Normas e Estrutura
+# Baseado na tradição clássica (Camões, Bilac, Anjos)
+# Fonte: Castilho, "Tratado de Metrificação"; Said Ali, "Versificação Portuguesa"; Cegalla
+# Data: 2026-05-15
+
+================================================================================
+DEFINIÇÃO E MÉTRICA
+================================================================================
+
+## [DEC-01] Verso de 10 sílabas poéticas
+Fonte: Castilho, "Tratado de Metrificação"
+Descrição: O decassílabo é o verso de 10 sílabas poéticas (contadas até a última sílaba tônica). É o verso nobre da língua portuguesa, usado no soneto, na épica (Os Lusíadas), e em odes clássicas. A contagem poética aplica elisão (sinalefa) entre vogais átonas.
+❌ Errado: versos com 9 ou 11 sílabas poéticas chamados de decassílabos
+✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (10 sílabas)
+Severidade: alta
+Categoria: métrica
+
+## [DEC-02] Elisão (sinalefa) na contagem decassílaba
+Fonte: Castilho; Said Ali
+Descrição: Na escansão do decassílabo, vogais átonas finais fundem-se com vogais iniciais da palavra seguinte. A elisão é obrigatória na contagem poética clássica. Exceção: vogais tônicas não elidem.
+❌ Errado: "De água e de ar" contado como "de-á-gu-e-de-ar" (5 sílabas) em vez de "deá-gu-e-de-ar" (4 sílabas com elisão)
+✅ Correto: "De(i) á-gua e de(i) ar" → 4 sílabas poéticas com elisão
+Severidade: alta
+Categoria: métrica
+
+## [DEC-03] Última sílaba tônica — palavra oxítona ou paroxítona
+Fonte: Said Ali
+Descrição: A 10ª sílaba poética é sempre a última tônica do verso. Se a última palavra for paroxítona, as sílabas pós-tônicas (uma ou duas) não são contadas. Se for oxítona, a última sílaba é a 10ª. Se for proparoxítona, o verso tem 9 sílabas e não é decassílabo.
+❌ Errado: verso terminado em "pássaro" (proparoxítona → 9 sílabas = encassílabo)
+✅ Correto: verso terminado em "cantou" (oxítona → 10ª sílaba = "cantou") ou "cantavam" (paroxítona → "can-ta-vam", 10ª = "ta")
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+TIPOS DE DECASSÍLABO
+================================================================================
+
+## [DEC-04] Decassílabo heroico (camoniano) — acentos na 3ª, 6ª e 10ª
+Fonte: Said Ali; Castilho; Camões, "Os Lusíadas"
+Descrição: O decassílabo heroico tem acentos primários (obrigatórios) na 3ª, 6ª e 10ª sílabas poéticas. Acento secundário (facultativo) na 8ª sílaba. É o padrão de Camões em "Os Lusíadas" e do soneto clássico português.
+❌ Errado: "O meu co-ra-ção bri-lha co-mo o sol" (acento na 2ª e 8ª, sem acento forte na 3ª e 6ª)
+✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (3ª: ar-, 6ª: -rões, 10ª: -dos)
+Severidade: alta
+Categoria: métrica
+
+## [DEC-05] Decassílabo sáfico — acentos na 4ª, 7ª e 10ª
+Fonte: tradição clássica; Castilho; Bilac
+Descrição: O decassílabo sáfico (menos comum em português) tem acentos primários na 4ª, 7ª e 10ª sílabas. É mais usado em odes e poemas líricos que em épica. Exemplo clássico: "A luz mor-reu, a noi-te vem ca-in-do".
+❌ Errado: misturar acentos heroicos e sáficos no mesmo verso
+✅ Correto: "É a noi-te, eu sin-to-a den-tro de mim" (4ª: -te, 7ª: -tro, 10ª: mim)
+Severidade: alta
+Categoria: métrica
+
+## [DEC-06] Decassílabo heroico vs. sáfico — diferença essencial
+Fonte: Said Ali; Castilho
+Descrição: A diferença entre heroico e sáfico está na posição dos acentos fixos:
+  - Heroico: 3ª e 6ª sílabas acentuadas (ritmo: fraco-forte-fraco-forte)
+  - Sáfico: 4ª e 7ª sílabas acentuadas (ritmo: mais lento, com deslocamento)
+  Ambos têm acento obrigatório na 10ª sílaba.
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+CESURA E HEMISTÍQUIOS
+================================================================================
+
+## [DEC-07] Cesura — pausa medial obrigatória
+Fonte: Castilho; Said Ali
+Descrição: O decassílabo clássico exige uma cesura (pausa rítmica) entre o 5º-6º ou 6º-7º sílabas, dividindo o verso em dois hemistíquios (de 4+6, 5+5, ou 6+4 sílabas). A cesura é marcada por uma pausa sintática ou rítmica na leitura.
+❌ Errado: decassílabo sem pausa perceptível alguma ("verso escorrido")
+✅ Correto: "As armas e os barões // assinalados" (cesura após barões — 5+5)
+Severidade: media
+Categoria: métrica
+
+## [DEC-08] Hemistíquios — divisão do verso
+Fonte: Castilho
+Descrição: Os dois hemistíquios do decassílabo podem ser:
+  - 4 + 6: "Buscando as águas // do Egeu profundo"
+  - 5 + 5: "As armas e os barões // assinalados"  
+  - 6 + 4: "Que da ocidental praia // Lusitana"
+  A cesura é mais natural nos cortes 4+6 e 5+5.
+❌ Errado: hemistíquios muito desiguais (2+8, 7+3)
+✅ Correto: 4+6, 5+5, 6+4
+Severidade: media
+Categoria: métrica
+
+================================================================================
+GÊNEROS E USOS
+================================================================================
+
+## [DEC-09] Verso épico — decassílabo heroico
+Fonte: Camões, "Os Lusíadas"
+Descrição: O decassílabo heroico é o verso da épica camoniana. Exige rigor métrico absoluto: todas as 10 sílabas contadas, acentos na 3ª-6ª-10ª, cesura regular. É o verso mais formal e exigente da língua portuguesa.
+❌ Errado: desvios métricos em poesia épica (exceto quando intencionais para efeito expressivo)
+✅ Correto: 10 sílabas, acentos heroicos, cesura obrigatória
+Severidade: alta
+Categoria: métrica
+
+## [DEC-10] Decassílabo na poesia moderna
+Fonte: Modernismo brasileiro; Drummond, "A Máquina do Mundo"; Bandeira
+Descrição: No Modernismo, o decassílabo foi retomado com liberdades: rimas podem ser toantes ou ausentes, cesura é flexível, e os acentos podem variar do padrão heroico/sáfico. Drummond em "A Máquina do Mundo" usa decassílabos brancos com grande liberdade rítmica.
+❌ Errado: (não se aplica — o Modernismo permite variações)
+✅ Correto: decassílabos brancos, sem rima, com acentos variáveis
+Severidade: baixa
+Categoria: métrica
+
+================================================================================
+RIMAS NO DECASSÍLABO
+================================================================================
+
+## [DEC-11] Rima consoante preferencial na forma clássica
+Fonte: Castilho; tradição parnasiana
+Descrição: Na poesia decassílaba clássica (soneto, épica), a rima deve ser consoante (perfeita). Rimas toantes (só vogais) são raras e geralmente consideradas licença poética. A rima rica (palavras de classes gramaticais diferentes) é valorizada.
+❌ Errado: "amor" rima com "calor" (consoante ✓); "ventura" rima com "ternura" (consoante ✓); "gente" rima com "sente" (consoante ✓)
+✅ Correto: consoante com correspondência de sons a partir da vogal tônica
+Severidade: media
+Categoria: rima
+
+## [DEC-12] Esquemas de rima — oitava camoniana (ABABABCC)
+Fonte: Camões, "Os Lusíadas"
+Descrição: A oitava camoniana (estrofe de 8 versos decassílabos) segue o esquema ABABABCC: seis primeiros versos com rimas alternadas (ABABAB), seguidos de um dístico final (CC). É a estrofe d'Os Lusíadas e do épico português.
+❌ Errado: oitava com esquema diferente do ABABABCC (em poesia épica clássica)
+✅ Correto: ABABABCC
+Severidade: alta
+Categoria: rima
+
+================================================================================
+PONTUAÇÃO NO DECASSÍLABO
+================================================================================
+
+## [DEC-13] Pontuação marcando a cesura
+Fonte: Castilho; Cegalla
+Descrição: No decassílabo clássico, a cesura pode ser marcada por vírgula, ponto-e-vírgula, ou pausa natural (sem pontuação). A pontuação deve coincidir com a cesura sempre que possível, para não conflitar com o ritmo.
+❌ Errado: vírgula no meio do primeiro hemistíquio, quebrando o ritmo
+✅ Correto: pausa de cesura coincidindo com pontuação: "As armas e os barões, // assinalados"
+Severidade: media
+Categoria: pontuação
+
+================================================================================
+ERROS MÉTRICOS COMUNS
+================================================================================
+
+## [DEC-14] Hiato indevido
+Fonte: Said Ali; Castilho
+Descrição: Na escansão clássica, duas vogais átonas em contato devem elidir (formar sinalefa). Deixar de elidir (criar hiato) quebra a métrica e é considerado erro no decassílabo clássico.
+❌ Errado: "De-a-zei-te-e-pão" (5 sílabas em hiato) em contexto que exige 4 sílabas
+✅ Correto: "De-a-zei-te_e pão" (4 sílabas com elisão: "azeite" + "e" = "azeite_e")
+Severidade: alta
+Categoria: métrica
+
+## [DEC-15] Palavra proparoxítona ao final do verso
+Fonte: Said Ali
+Descrição: O decassílabo clássico evita terminar com palavra proparoxítona, pois isso resulta em 9 sílabas poéticas (as duas pós-tônicas são descartadas e perde-se uma sílaba). Exceções são raras e consideradas licença poética.
+❌ Errado: "O sol bri-lha so-bre o pás-sa-ro" (9 sílabas — encassílabo, não decassílabo)
+✅ Correto: "O sol bri-lha so-bre o can-tor" (10 sílabas — oxítona final)
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+EXEMPLOS CLÁSSICOS
+================================================================================
+
+## [DEC-16] Referências essenciais
+Fonte: tradição literária portuguesa e brasileira
+Descrição: Autores fundamentais para o estudo do decassílabo: Luís de Camões ("Os Lusíadas" — épico decassílabo heroico), Olavo Bilac ("Via Láctea", "Profissão de Fé" — soneto decassílabo parnasiano), Augusto dos Anjos ("Eu" — decassílabo expressionista), Carlos Drummond de Andrade ("A Máquina do Mundo" — decassílabo moderno), Manuel Bandeira.
+Severidade: baixa
+Categoria: referência

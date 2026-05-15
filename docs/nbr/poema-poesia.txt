@@ -1,0 +1,175 @@
+# Poema / Poesia — Normas Gerais e Estrutura Livre
+# Diretrizes para verso livre, verso branco, e licença poética
+# Baseado na tradição moderna e contemporânea brasileira
+# Fonte: Cegalla, "Novíssima Gramática"; Bandeira, "Itinerário de Pasárgada"; Candido, "O Estudo Analítico do Poema"
+# Data: 2026-05-15
+
+================================================================================
+DEFINIÇÃO E DISTINÇÃO
+================================================================================
+
+## [POE-01] Poema vs. Poesia — distinção conceitual
+Fonte: Antonio Candido, "O Estudo Analítico do Poema"; Cegalla
+Descrição: Poema é a composição em versos (a obra concreta). Poesia é a essência lírica, o efeito estético que pode existir em prosa ou verso. No contexto do sistema, "poema" e "poesia" como estruturas significam forma livre: sem métrica fixa, sem esquema de rimas obrigatório, sem estrofação predeterminada.
+❌ Errado: exigir métrica, rima ou estrofação fixa em poema/poesia (estrutura livre)
+✅ Correto: versos livres, estrofação variável, rimas ocasionais ou ausentes
+Severidade: baixa
+Categoria: estrutura
+
+## [POE-02] Verso livre — sem métrica fixa
+Fonte: Bandeira, "Itinerário de Pasárgada"; Candido
+Descrição: O verso livre não obedece a contagem silábica predeterminada. Cada verso pode ter comprimento variável. É a forma dominante na poesia brasileira a partir do Modernismo (1922). Não se aplicam regras de escansão clássica.
+❌ Errado: escandir versos livres como se fossem metrificados; forçar contagem silábica
+✅ Correto: versos de comprimento variável, sem padrão métrico obrigatório
+Severidade: baixa
+Categoria: métrica
+
+## [POE-03] Verso branco — sem rima obrigatória
+Fonte: tradição moderna; Candido
+Descrição: O verso branco (ou solto) não possui rima, independentemente de ter ou não métrica fixa. Poemas em verso branco podem ser metrificados (ex: decassílabos brancos de Drummond) ou livres. A ausência de rima não é erro.
+❌ Errado: forçar rimas onde o poema optou pelo verso branco
+✅ Correto: versos sem rima, com ou sem métrica definida
+Severidade: baixa
+Categoria: rima
+
+================================================================================
+PONTUAÇÃO NO VERSO LIVRE
+================================================================================
+
+## [POE-04] Pontuação por escolha estilística
+Fonte: Candido; Bandeira
+Descrição: No verso livre, a pontuação é inteiramente uma escolha estilística do poeta. Pode ser abundante, mínima ou ausente. Não há regras fixas. A pontuação serve à respiração e ao ritmo do poema, não a regras gramaticais da prosa.
+❌ Errado: "corrigir" a pontuação de um poema moderno para adequá-la às regras da prosa
+✅ Correto: qualquer pontuação que sirva à intenção expressiva do poeta
+Severidade: alta (não corrigir pontuação)
+Categoria: pontuação
+
+## [POE-05] Ausência de pontuação — convenção moderna
+Fonte: Modernismo brasileiro; Drummond, Bandeira, João Cabral
+Descrição: A poesia moderna frequentemente abole totalmente a pontuação, usando apenas a quebra de verso e os espaços em branco como elementos rítmicos e sintáticos. A ausência de pontuação não é erro.
+❌ Errado: adicionar pontuação onde o poeta optou por não usá-la
+✅ Correto: poema sem qualquer pontuação, usando versos e estrofes como pausa
+Severidade: alta (não adicionar)
+Categoria: pontuação
+
+================================================================================
+MAIÚSCULAS NA POESIA
+================================================================================
+
+## [POE-06] Início de verso com maiúscula — convenção clássica
+Fonte: tradição literária; Cegalla
+Descrição: Na poesia clássica, todo verso inicia com letra maiúscula, independentemente de pontuação. Na poesia moderna, a minúscula no início do verso é uma escolha estilística válida.
+❌ Errado: corrigir maiúscula/minúscula em início de verso (é escolha estilística)
+✅ Correto: maiúscula (clássico) ou minúscula (moderno) — ambas aceitas
+Severidade: baixa
+Categoria: estilo
+
+================================================================================
+LICENÇA POÉTICA — O QUE NÃO CORRIGIR
+================================================================================
+
+## [POE-07] Hipérbato — inversão sintática
+Fonte: Cegalla; tradição literária
+Descrição: O hipérbato (inversão da ordem direta sujeito-verbo-objeto) é recurso poético legítimo. Ex: "As estrelas no céu brilhavam" em vez de "As estrelas brilhavam no céu". Não deve ser corrigido.
+❌ Errado: "Corrigir" para ordem direta: "As estrelas brilhavam no céu"
+✅ Correto: "As estrelas no céu brilhavam" (hipérbato preservado)
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+## [POE-08] Síncope — supressão de fonemas
+Fonte: Cegalla; tradição literária
+Descrição: A síncope é a supressão de fonemas no interior de palavras para efeito métrico ou estilístico. Ex: "corar" por "colorar", "esperma" por "esperança" (em contextos poéticos). Não deve ser corrigida.
+❌ Errado: "corrigir" para a forma completa
+✅ Correto: preservar a forma sincopada escolhida pelo poeta
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+## [POE-09] Arcaísmo — palavras antigas
+Fonte: tradição literária; Cegalla
+Descrição: Arcaísmos (palavras em desuso) são usados como recurso estilístico para evocar tempos passados ou criar efeito solene. Ex: "lume" (luz), "escuro" (escuridão), "fazer" (no sentido de "criar"), "assaz" (bastante). Não devem ser corrigidos.
+❌ Errado: substituir arcaísmo por termo moderno equivalente
+✅ Correto: preservar o arcaísmo como escolha estilística
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+## [POE-10] Elisão poética (elixir) — supressão de vogal final
+Fonte: Castilho; Cegalla
+Descrição: A elisão (ou elixir) poética é a supressão de uma vogal átona final antes de palavra começada por vogal, marcada por apóstrofo. Ex: "d'água", "d'alma", "m'alma", "n'alma". É recurso métrico e estilístico legítimo.
+❌ Errado: expandir para "de água", "de alma", "minha alma"
+✅ Correto: "d'água", "d'alma", "m'alma"
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+================================================================================
+CONCORDÂNCIA NA POESIA
+================================================================================
+
+## [POE-11] Silepse — concordância ideológica
+Fonte: Cegalla; tradição literária
+Descrição: A silepse (concordância pelo sentido, não pela forma) é recurso poético comum. Ex: "A multidão gritavam" (silepse de número — a multidão são muitas pessoas). "Vossa Excelência está cansado" (silepse de gênero). Não deve ser corrigida em contexto poético.
+❌ Errado: "corrigir" silepse para concordância gramatical padrão
+✅ Correto: "A multidão gritavam" (preservado como escolha estilística)
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+## [POE-12] Anacoluto — quebra de estrutura sintática
+Fonte: Cegalla; Candido
+Descrição: O anacoluto é a quebra da estrutura sintática esperada, deixando um termo "solto" na frase. Ex: "Eu, não sei se vou conseguir." É recurso expressivo da poesia moderna.
+❌ Errado: "corrigir" o anacoluto para estrutura sintática padrão
+✅ Correto: preservar o anacoluto como recurso expressivo
+Severidade: alta (não corrigir)
+Categoria: licença poética
+
+================================================================================
+ESTILO E IMAGÉTICA
+================================================================================
+
+## [POE-13] Metáfora e imagem poética
+Fonte: Candido, "O Estudo Analítico do Poema"
+Descrição: A metáfora (transferência de significado) é o recurso central da poesia. Não se deve "corrigir" metáforas para sentido literal. Avaliar apenas a coerência interna da imagem, não sua veracidade factual.
+❌ Errado: "corrigir" metáfora para expressão literal ("o céu está chorando" → "está chovendo")
+✅ Correto: "o céu está chorando" (metáfora preservada)
+Severidade: alta (não corrigir)
+Categoria: estilo
+
+## [POE-14] Repetição como recurso
+Fonte: Candido; tradição literária
+Descrição: A repetição (anáfora, epífora, paralelismo) é recurso poético fundamental, não erro de estilo. Palavras, versos ou estruturas repetidas intencionalmente criam ritmo e ênfase.
+❌ Errado: "corrigir" repetições como se fossem vícios de linguagem
+✅ Correto: "É claro que a vida / É clara e bela" (anáfora preservada)
+Severidade: alta (não corrigir)
+Categoria: estilo
+
+================================================================================
+ENJAMBEMENT (ENCAVALGAMENTO)
+================================================================================
+
+## [POE-15] Enjambement — quebra de verso no meio da frase
+Fonte: Candido; tradição poética
+Descrição: O enjambement ocorre quando uma frase ou oração ultrapassa o limite do verso, continuando no verso seguinte. É recurso expressivo que cria tensão e surpresa. Comum na poesia moderna e no soneto (encavalgamento entre tercetos).
+❌ Errado: "corrigir" o poema para que cada verso seja uma unidade sintática completa
+✅ Correto: "A noite desce / sobre a cidade / como um manto" (enjambement preservado)
+Severidade: alta (não corrigir)
+Categoria: estrutura
+
+================================================================================
+REGIONALISMOS E COLOQUIALISMOS
+================================================================================
+
+## [POE-16] Coloquialismo na poesia moderna
+Fonte: Modernismo brasileiro; Drummond, Bandeira, João Cabral
+Descrição: A poesia moderna incorpora expressões coloquiais e da fala cotidiana como recurso de aproximação com o leitor e de ruptura com o formalismo parnasiano. Não devem ser "corrigidos" para norma culta.
+❌ Errado: substituir "tá" por "está", "pra" por "para", "né" por "não é"
+✅ Correto: "tá", "pra", "né", "cê", "tô" — preservados quando intencionais
+Severidade: alta (não corrigir)
+Categoria: estilo
+
+================================================================================
+REFERÊNCIAS ESSENCIAIS
+================================================================================
+
+## [POE-17] Autores fundamentais do verso livre brasileiro
+Fonte: tradição modernista brasileira
+Descrição: Principais referências: Manuel Bandeira ("Libertinagem", "Estrela da Manhã"), Carlos Drummond de Andrade ("Alguma Poesia", "Sentimento do Mundo"), João Cabral de Melo Neto ("A Educação pela Pedra"), Cecília Meireles ("Viagem"), Mário de Andrade ("Pauliceia Desvairada"), Murilo Mendes, Jorge de Lima.
+Severidade: baixa
+Categoria: referência

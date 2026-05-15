@@ -1,0 +1,162 @@
+# Cordel — Normas e Estrutura
+# Baseado na tradição da literatura de cordel brasileira (Leandro Gomes de Barros, Patativa do Assaré, Gonçalo Ferreira da Silva)
+# Fonte: ABLC (Academia Brasileira de Literatura de Cordel), Aderaldo Luciano, "O Cordel no Brasil"
+# Data: 2026-05-15
+
+================================================================================
+ESTRUTURA GERAL
+================================================================================
+
+## [COR-01] Sextilha — estrofe de 6 versos (forma mais comum)
+Fonte: tradição do cordel nordestino; Aderaldo Luciano, "O Cordel no Brasil"
+Descrição: A sextilha é a forma estrófica mais comum do cordel brasileiro: estrofes de 6 versos com métrica de 7 sílabas poéticas (redondilha maior) e esquema de rimas ABCBDB (o 2º verso rima com o 4º e o 6º; o 1º, 3º e 5º são livres).
+❌ Errado: estrofes com número variável de versos, esquema de rima inconsistente
+✅ Correto: "O poeta nordestino (A)
+Num cordel vai declamar (B)
+A história do seu povo (C)
+Que aprendeu a lutar (B)
+Com a seca e a terra dura (D)
+Sem nunca se entregar (B)"
+Severidade: alta
+Categoria: estrutura
+
+## [COR-02] Quadra — estrofe de 4 versos (2ª forma mais comum)
+Fonte: tradição do cordel; Aderaldo Luciano
+Descrição: A quadra é a segunda forma mais comum: estrofes de 4 versos com métrica de 7 sílabas e esquema ABCB (2º e 4º versos rimam, 1º e 3º são livres). Usada em poemas narrativos mais curtos ou como variação entre sextilhas.
+❌ Errado: rimar 1º com 3º em vez de 2º com 4º
+✅ Correto: "No sertão a vida é dura (A)
+Mas o povo tem valor (B)
+Plantam sonhos na ternura (C)
+E colhem fé e suor (B)"
+Severidade: alta
+Categoria: estrutura
+
+## [COR-03] Décima — estrofe de 10 versos (3ª forma)
+Fonte: tradição ibérica; cordel brasileiro
+Descrição: A décima é uma estrofe de 10 versos com métrica de 7 sílabas e esquema ABBAACCDDC (estilo espanhol) ou variações. É usada em cordéis mais eruditos ou em desafios/pelejas.
+❌ Errado: usar esquema de rima próprio sem coerência interna
+✅ Correto: ABBAACCDDC (cada letra representa o som da rima)
+Severidade: media
+Categoria: estrutura
+
+## [COR-04] Martírio — galope à beira-mar (forma especializada)
+Fonte: tradição do cordel; Antônio de Mar Vila, "Martírio"
+Descrição: O galope à beira-mar (também chamado martírio) é uma forma de 6 versos com métrica de 10 sílabas e esquema de rimas AABCCB. Cada estrofe termina com o refrão "Na beira do mar" (ou variações). Usado em narrativas épicas de mar.
+❌ Errado: usar métrica de 7 sílabas e chamar de galope à beira-mar
+✅ Correto: versos decassílabos com refrão "Na beira do mar" ao final de cada estrofe
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+MÉTRICA DO CORDEL
+================================================================================
+
+## [COR-05] Redondilha maior — 7 sílabas poéticas
+Fonte: tradição do cordel; Câmara Cascudo
+Descrição: O cordel clássico usa versos de 7 sílabas poéticas (redondilha maior). A contagem é feita até a última sílaba tônica, com elisão de vogais átonas em hiato. Versos de 6 ou 8 sílabas são considerados falhas métricas no cordel tradicional.
+❌ Errado: "O poeta popu-lar can-ta a vi-da no ser-tão" (8 sílabas — erro de métrica)
+✅ Correto: "O po-e-ta po-pu-lar" (7 sílabas: O-poe-ta-po-pu-lar)
+Severidade: alta
+Categoria: métrica
+
+## [COR-06] Redondilha menor — 5 sílabas poéticas (variação)
+Fonte: tradição ibérica; cordel brasileiro
+Descrição: Embora a redondilha maior (7 sílabas) seja o padrão do cordel, a redondilha menor (5 sílabas) também aparece, especialmente em quadras e em cordéis infantis ou mais líricos.
+❌ Errado: misturar versos de 5 e 7 sílabas na mesma estrofe sem padrão definido
+✅ Correto: estrofe inteira em 5 sílabas, ou estrofe inteira em 7 sílabas
+Severidade: media
+Categoria: métrica
+
+================================================================================
+RIMAS NO CORDEL
+================================================================================
+
+## [COR-07] Rima consoante obrigatória
+Fonte: ABLC; Aderaldo Luciano
+Descrição: A literatura de cordel clássica exige rimas consoantes (perfeitas, com identidade de som a partir da vogal tônica). Rimas toantes (apenas vogais) são aceitas apenas em cordéis modernos ou como licença poética limitada.
+❌ Errado: "amor" rima com "cantor" (✓ consoante); "carinho" rima com "caminho" (✓ consoante); "sorte" rima com "morte" (✓ consoante); "gente" rima com "dente" (✓ consoante)
+✅ Correto: "O galo cantou no terreiro / Anunciando o dia inteiro" (rimas consoantes -eiro)
+Severidade: alta
+Categoria: rima
+
+## [COR-08] Esquema ABCBDB na sextilha
+Fonte: tradição do cordel; ABLC
+Descrição: Na sextilha, o 2º verso rima com o 4º e o 6º (B). Os versos 1, 3 e 5 (A, C, D) são livres e não rimam entre si. Este esquema é o mais característico e identificador do cordel brasileiro.
+❌ Errado: rimar 1º e 3º versos na sextilha (exceto em variações como a septilha)
+✅ Correto: A-B-C-B-D-B (apenas B rima)
+Severidade: alta
+Categoria: rima
+
+## [COR-09] Sete versos — septilha (variação)
+Fonte: tradição do cordel
+Descrição: A septilha é variação de 7 versos com esquema ABBAACB ou ABCBDDB. Menos comum que a sextilha, mas aparece em cordéis mais antigos e em desafios.
+❌ Errado: usar 7 versos sem esquema de rima definido
+✅ Correto: ABBAACB ou ABCBDDB
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+PONTUAÇÃO NO CORDEL
+================================================================================
+
+## [COR-10] Pontuação mínima — oralidade
+Fonte: tradição do cordel; Câmara Cascudo
+Descrição: O cordel é uma poesia de tradição oral. A pontuação deve ser mínima, refletindo a entonação natural da fala. Vírgulas indicam pausas curtas para respiração; pontos finais marcam o fim da estrofe. Evitar ponto-e-vírgula e travessões complexos.
+❌ Errado: "O poeta — que viveu no sertão — cantou; e o povo escutou." (pontuação excessiva, não-oral)
+✅ Correto: "O poeta no sertão cantou / E o povo escutou com fé" (pontuação natural)
+Severidade: baixa
+Categoria: pontuação
+
+## [COR-11] Título obrigatório com autor
+Fonte: ABLC; tradição do cordel
+Descrição: Diferente de outras formas poéticas, o cordel exige título e identificação do autor. Tradicionalmente, o título aparece em uma linha curta e impactante, seguido do nome do autor. A capa (xilogravura) é parte integral da obra.
+❌ Errado: cordel sem título ou sem autor identificado
+✅ Correto: "A Chegada de Lampião no Céu / de Leandro Gomes de Barros"
+Severidade: alta
+Categoria: estrutura
+
+## [COR-12] Refrão em cordéis musicados
+Fonte: tradição do cordel; repentistas
+Descrição: Em cordéis destinados à declamação musicada (acompanhados de viola), um refrão (estribilho) pode repetir-se a cada estrofe. O refrão deve manter a mesma métrica e rima da estrofe.
+❌ Errado: refrão com métrica diferente do restante da estrofe
+✅ Correto: refrão constante de 2 ou 4 versos, repetido ao fim de cada estrofe
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+LINGUAGEM E ESTILO
+================================================================================
+
+## [COR-13] Linguagem popular e regional
+Fonte: ABLC; Câmara Cascudo
+Descrição: O cordel utiliza linguagem popular, com vocabulário regional nordestino. É aceitável e esperado o uso de expressões como "muié" (mulher), "home" (homem), "trem" (coisa), "avexado" (apressado), "sortar" (soltar). A correção ortográfica formal não deve eliminar esses regionalismos.
+❌ Errado: corrigir regionalismos para a norma culta ("mulher" em vez de "muié" quando intencional)
+✅ Correto: "Muié valente do sertão / Não tem medo de tudim" (regionalismo preservado)
+Severidade: alta
+Categoria: estilo
+
+## [COR-14] Narrativa épica e moralizante
+Fonte: ABLC; tradição do cordel
+Descrição: O cordel tradicionalmente narra histórias épicas, cômicas, ou moralizantes em tom acessível. Os temas incluem: cangaço, seca, milagres, amor trágico, política, e sátira. A estrutura narrativa segue: apresentação, desenvolvimento, clímax e conclusão moral.
+❌ Errado: cordel puramente lírico e abstrato, sem narrativa
+✅ Correto: estrutura narrativa com começo, meio e fim
+Severidade: media
+Categoria: estilo
+
+## [COR-15] Redondilha maior obrigatória no cordel clássico
+Fonte: Aderaldo Luciano; ABLC
+Descrição: Exceto em formas especializadas (galope à beira-mar usa 10 sílabas), o cordel clássico exige redondilha maior (7 sílabas) em todas as estrofes. Este é o traço métrico mais identificador do cordel brasileiro.
+❌ Errado: alternar entre 5, 7 e 10 sílabas na mesma obra
+✅ Correto: métrica uniforme de 7 sílabas em todas as estrofes
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+EXEMPLOS CLÁSSICOS
+================================================================================
+
+## [COR-16] Referências brasileiras essenciais
+Fonte: ABLC; tradição literária brasileira
+Descrição: Autores fundamentais do cordel: Leandro Gomes de Barros (pai do cordel brasileiro), Patativa do Assaré (poeta popular cearense), Gonçalo Ferreira da Silva (fundador da ABLC), Aderaldo Luciano (pesquisador do cordel), João Martins de Athayde (editor e poeta).
+Severidade: baixa
+Categoria: referência

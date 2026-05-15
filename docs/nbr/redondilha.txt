@@ -1,0 +1,149 @@
+# Redondilha — Normas e Estrutura
+# Baseado na tradição ibérica (Camões, Gil Vicente) e brasileira (Bilac, Drummond, Bandeira)
+# Fonte: Castilho, "Tratado de Metrificação"; Cegalla, "Novíssima Gramática"
+# Data: 2026-05-15
+
+================================================================================
+ESTRUTURA GERAL
+================================================================================
+
+## [RED-01] Definição — verso de 5 ou 7 sílabas poéticas
+Fonte: Castilho, "Tratado de Metrificação"
+Descrição: A redondilha é um verso de medida nova (métrica curta), com 5 sílabas poéticas (redondilha menor) ou 7 sílabas poéticas (redondilha maior). É a métrica mais antiga e tradicional da poesia em português, anterior ao decassílabo.
+❌ Errado: verso de 6 sílabas chamado de redondilha; verso de 8 sílabas
+✅ Correto: 5 sílabas (menor) ou 7 sílabas (maior)
+Severidade: alta
+Categoria: métrica
+
+## [RED-02] Redondilha maior — 7 sílabas (forma mais comum)
+Fonte: Castilho; Cegalla
+Descrição: A redondilha maior (7 sílabas) é a mais difundida na tradição portuguesa e brasileira. Contam-se 7 sílabas poéticas até a última tônica: "Não pode haver amor gostoso / Sem qualquer dissabor" (7+7 sílabas).
+❌ Errado: "O amor é mui-to do-ce e gos-to-so" (8 sílabas — erro métrico)
+✅ Correto: "O a-mor é mui-to do-ce" (7 sílabas: O-a-mor-é-mui-to-do-ce)
+Severidade: alta
+Categoria: métrica
+
+## [RED-03] Redondilha menor — 5 sílabas
+Fonte: Castilho; Cegalla
+Descrição: A redondilha menor (5 sílabas) é usada em cantigas medievais, cantigas de roda, e em poemas líricos mais breves. Exemplo: "Senhora, porém / Se não for contente" (5+5 sílabas).
+❌ Errado: "A bo-la bri-lha no céu a gen-te vê" (muitas sílabas)
+✅ Correto: "A bo-la no céu" (5 sílabas: A-bo-la-no-céu)
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+ESTROFAÇÃO
+================================================================================
+
+## [RED-04] Quadras — estrofe de 4 versos (forma preferencial)
+Fonte: tradição ibérica; Camões, "Redondilhas"
+Descrição: A forma mais comum de composição em redondilhas é a quadra (estrofe de 4 versos), com esquemas de rima ABCB (alterno) ou ABAB (cruzado). As quadras podem formar poemas longos, como nas "Redondilhas" de Camões.
+❌ Errado: quadra sem qualquer esquema de rima (verso branco em redondilha é exceção)
+✅ Correto: "Descalça vai para a fonte (A)
+Leonor pela verdura (B)
+Vai formosa e não segura (B)
+Leva na cabeça a ponte (A)" — ABBA
+Severidade: alta
+Categoria: estrutura
+
+## [RED-05] Sextilhas e oitavas em redondilha
+Fonte: tradição ibérica; cordel brasileiro
+Descrição: Além de quadras, as redondilhas podem organizar-se em sextilhas (6 versos) ou oitavas (8 versos). Em oitavas, o esquema preferencial é ABABABCC (oitava camoniana adaptada).
+❌ Errado: estrofes com número primo ímpares (ex: 5, 7 versos) em redondilha clássica
+✅ Correto: 4, 6 ou 8 versos por estrofe
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+RIMAS NA REDONDILHA
+================================================================================
+
+## [RED-06] Esquemas de rima preferenciais
+Fonte: Castilho; Cegalla
+Descrição: Os esquemas de rima mais comuns em redondilhas são: ABCB (alterno), ABAB (cruzado), ABBA (interpolado), AABB (emparelhado). A rima pode ser consoante ou toante, mas a consoante é preferida na tradição clássica.
+❌ Errado: esquema ABCD ABCD (sem rima alguma, em redondilha clássica)
+✅ Correto: ABCB, ABAB, ABBA, AABB
+Severidade: media
+Categoria: rima
+
+## [RED-07] Rima toante aceita
+Fonte: tradição ibérica; Castilho
+Descrição: Diferente do soneto parnasiano, a redondilha da tradição ibérica aceita rimas toantes (apenas correspondência de vogais, sem identidade de consoantes), especialmente em poemas líricos e cantigas.
+❌ Errado: (não é erro, é característica aceita)
+✅ Correto: "vento" rima com "fervo" (toante — vogal e, o); "amor" rima com "dor" (consoante)
+Severidade: baixa
+Categoria: rima
+
+================================================================================
+MÉTRICA E CONTAGEM SILÁBICA
+================================================================================
+
+## [RED-08] Contagem poética — elisão obrigatória
+Fonte: Castilho, "Tratado de Metrificação"
+Descrição: Na contagem de sílabas poéticas da redondilha, aplicam-se as regras de elisão (sinalefa): vogal átona final + vogal inicial da palavra seguinte fundem-se em uma só sílaba. Ignoram-se as sílabas após a última tônica.
+❌ Errado: contar sílabas gramaticais em vez de poéticas
+✅ Correto: "De(i) água e de(i) ar" = "Dei-á-gua-e-dei-ar" → 5 sílabas poéticas (a elisão funde "de" + "água", "de" + "ar")
+Severidade: alta
+Categoria: métrica
+
+## [RED-09] Acento na 3ª e 7ª sílabas (redondilha maior)
+Fonte: Castilho; Said Ali
+Descrição: Na redondilha maior clássica, os acentos rítmicos principais recaem idealmente na 3ª e na 7ª (última) sílabas. Isto confere o ritmo característico de marcha ou cantiga.
+❌ Errado: versos sem acento rítmico perceptível; acentos deslocados para a 2ª e 6ª sílabas
+✅ Correto: "Não po-de ha-ver a-mor" (3ª: -de, 7ª: mor)
+Severidade: media
+Categoria: métrica
+
+## [RED-10] Acento na 2ª e 5ª sílabas (redondilha menor)
+Fonte: Castilho; Said Ali
+Descrição: Na redondilha menor (5 sílabas), os acentos rítmicos principais caem idealmente na 2ª e na 5ª sílabas.
+❌ Errado: verso sem padrão rítmico claro
+✅ Correto: "A bo-la no céu" (2ª: -la, 5ª: céu)
+Severidade: media
+Categoria: métrica
+
+================================================================================
+PONTUAÇÃO NA REDONDILHA
+================================================================================
+
+## [RED-11] Pontuação ao fim de cada estrofe
+Fonte: tradição literária; Cegalla
+Descrição: Na poesia em redondilhas, cada estrofe deve encerrar com ponto final (ou ponto de exclamação/interrogação). As redondilhas frequentemente formam frases completas dentro de cada estrofe ou par de versos.
+❌ Errado: vírgula ao final da estrofe, sugerindo continuidade para a estrofe seguinte
+✅ Correto: ponto final ao fim de cada quadra ou sextilha
+Severidade: media
+Categoria: pontuação
+
+================================================================================
+ESTILO E CONTEÚDO
+================================================================================
+
+## [RED-12] Tom lírico e singelo
+Fonte: tradição ibérica; Camões, "Redondilhas"
+Descrição: A redondilha é tradicionalmente associada a temas líricos, amorosos e singelos. Seu ritmo curto e cadenciado presta-se a cantigas, poemas de amor, sátiras leves e reflexões cotidianas. Evitar temas épicos ou heróicos (preferência pelo decassílabo).
+❌ Errado: grandes narrativas épicas em redondilhas (métrica inadequada)
+✅ Correto: poemas líricos, amorosos, satíricos, filosóficos breves
+Severidade: baixa
+Categoria: estilo
+
+================================================================================
+REDONDILHA NA POESIA BRASILEIRA
+================================================================================
+
+## [RED-13] Redondilha no Modernismo brasileiro
+Fonte: Modernismo brasileiro; Drummond, "No Meio do Caminho"; Bandeira, "Vou-me Embora pra Pasárgada"
+Descrição: No Modernismo, a redondilha foi retomada como forma de resgate da tradição lírica, mas com maior liberdade métrica (rimas ocasionais, versos brancos, quebra de estrofe). Drummond e Bandeira são expoentes do uso moderno da redondilha.
+❌ Errado: (não se aplica — o Modernismo admite liberdades)
+✅ Correto: versos de 7 sílabas com rimas livres ou ausentes, estrofação variável
+Severidade: baixa
+Categoria: estilo
+
+================================================================================
+EXEMPLOS CLÁSSICOS
+================================================================================
+
+## [RED-14] Referências essenciais
+Fonte: tradição literária portuguesa e brasileira
+Descrição: Autores fundamentais para o estudo da redondilha: Luís de Camões ("Descalça vai para a fonte", "Endechas a Bárbora Escrava"), Gil Vicente (teatro em redondilhas), Carlos Drummond de Andrade ("No Meio do Caminho"), Manuel Bandeira ("Vou-me Embora pra Pasárgada"), Vinícius de Moraes (letras de canção em redondilha).
+Severidade: baixa
+Categoria: referência

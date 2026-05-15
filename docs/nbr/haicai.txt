@@ -1,0 +1,125 @@
+# Haicai — Normas e Estrutura
+# Baseado na tradição japonesa (Matsuo Bashō) e brasileira (Guilherme de Almeida, Paulo Leminski, Millôr Fernandes)
+# Data: 2026-05-15
+
+================================================================================
+ESTRUTURA GERAL
+================================================================================
+
+## [HAI-01] Número de versos — 3 versos obrigatórios
+Fonte: tradição japonesa; Bashō, "O Caminho Estreito para o Norte Profundo"
+Descrição: O haicai (ou haiku) é composto por exatamente 3 versos. Não se admitem variações no número de versos. Cada verso deve funcionar como unidade autônoma.
+❌ Errado: haicai com 2 ou 4 versos
+✅ Correto: 3 versos curtos
+Severidade: alta
+Categoria: estrutura
+
+## [HAI-02] Métrica 5-7-5 — sílabas poéticas
+Fonte: tradição japonesa; Bashō; Brasil, Guilherme de Almeida, "Poesia de Haikai"
+Descrição: Tradicionalmente, o haicai segue a métrica de 5 sílabas no 1º verso, 7 sílabas no 2º verso, e 5 sílabas no 3º verso. No entanto, no haicai brasileiro moderno (Leminski, Millôr), essa métrica é frequentemente flexibilizada ou abandonada.
+❌ Errado: (no haicai clássico) verso 1 com 4 ou 6 sílabas, verso 2 com 6 ou 8 sílabas
+✅ Correto: 5-7-5 sílabas poéticas; no haicai moderno, métrica livre é aceita
+Severidade: alta (clássico) / baixa (moderno)
+Categoria: métrica
+
+## [HAI-03] Kigo — palavra de estação/sazão
+Fonte: tradição japonesa; Bashō; Brasil, "Teoria do Haicai"
+Descrição: O haicai clássico deve conter um kigo (palavra que remete a uma estação do ano), como "flores" (primavera), "neve" (inverno), "colheita" (outono), "calor" (verão). No Brasil, o kigo é frequentemente adaptado ao clima tropical (ex: "garoa" = outono/inverno paulista, "sol escaldante" = verão).
+❌ Errado: poema sem referência sazonal alguma (no haicai clássico)
+✅ Correto: "Flores de ipê / cobrem o chão da praça / outono chega" (kigo: outono / flores de ipê)
+Severidade: media (clássico) / baixa (moderno)
+Categoria: estrutura
+
+## [HAI-04] Kireji — palavra de corte/pausa
+Fonte: tradição japonesa; Matsuo Bashō
+Descrição: O kireji ("palavra de corte") é um elemento que marca uma pausa ou interrupção, geralmente no final do 1º ou 2º verso. Em português, não há equivalentes diretos dos kireji japoneses, mas pode-se usar travessão, exclamação, dois-pontos ou pausa sintática para produzir efeito similar.
+❌ Errado: haicai sem qualquer pausa ou cesura entre os versos
+✅ Correto: usar pontuação de corte (— ! :) ou cesura sintática para marcar pausa
+Severidade: baixa
+Categoria: pontuação
+
+================================================================================
+ESTILO E CONTEÚDO
+================================================================================
+
+## [HAI-05] Conteúdo — momento presente e natureza
+Fonte: tradição japonesa; Bashō, "O Caminho Estreito"
+Descrição: O haicai clássico descreve um momento presente, concreto, observado na natureza, sem abstrações ou opiniões pessoais. Deve ser impessoal e objetivo, capturando uma percepção sensorial imediata (visão, audição, tato, olfato). Evitar metáforas elaboradas e sentimentalismo.
+❌ Errado: "Meu coração triste chora por teu amor" (subjetivismo, abstração, sentimentalismo)
+✅ Correto: "Folha seca cai / o vento a leva sozinha / fim de tarde" (imagem concreta, natureza, momento)
+Severidade: alta (clássico) / baixa (moderno)
+Categoria: estilo
+
+## [HAI-06] Justaposição de duas imagens
+Fonte: tradição japonesa; "Haikai: Uma Poética do Instante"
+Descrição: O haicai clássico justapõe duas imagens independentes (separadas pelo kireji), criando um contraste ou associação. Uma imagem é geralmente mais ampla/generalizante (fundo) e a outra mais específica/detalhada (primeiro plano). A justaposição gera um insight (satori) no leitor.
+❌ Errado: "O sol se põe lento no mar azul e as ondas quebram na areia" (uma única cena contínua, linear)
+✅ Correto: "Lua de inverno / no lago gelado / um pássaro bebe" (duas imagens — céu/lago e pássaro — justapostas)
+Severidade: media
+Categoria: estilo
+
+## [HAI-07] Tom sugestivo, não descritivo
+Fonte: Bashō; "The Haiku Handbook"
+Descrição: O haicai deve sugerir, não descrever exaustivamente. A brevidade do haicai exige que cada palavra carregue significado máximo. Evitar adjetivos desnecessários e explicações. O leitor completa o significado.
+❌ Errado: "O belo e majestoso monte Fuji coberto de linda neve branca brilhava" (excesso de adjetivos e descrição)
+✅ Correto: "Monte Fuji / neve no topo / silêncio" (sugestivo, minimalista)
+Severidade: media
+Categoria: estilo
+
+## [HAI-08] Verbo no presente do indicativo
+Fonte: tradição japonesa; Brasil, "Teoria do Haicai"
+Descrição: O haicai clássico utiliza o tempo presente, pois descreve uma observação momentânea e imediata. O passado distante ou o futuro comprometem a sensação de instantaneidade.
+❌ Errado: "Folhas caíram ontem / o vento levou todas / estava frio" (passado)
+✅ Correto: "Folhas caem / o vento as leva / frio" (presente)
+Severidade: media
+Categoria: concordância
+
+================================================================================
+PONTUAÇÃO NO HAICAI
+================================================================================
+
+## [HAI-09] Pontuação mínima ou ausente
+Fonte: tradição brasileira; Leminski, Millôr
+Descrição: O haicai moderno no Brasil frequentemente dispensa pontuação. Quando usada, deve ser mínima e funcional: travessão ou dois-pontos para marcar o kireji (corte), exclamação para surpresa. Evitar vírgulas desnecessárias e ponto final.
+❌ Errado: "A folha caiu, no chão, e o vento, soprou." (pontuação excessiva e artificial)
+✅ Correto: "Folha seca — / o vento a leva / fim de tarde"
+Severidade: baixa
+Categoria: pontuação
+
+## [HAI-10] Letra minúscula — convenção moderna
+Fonte: tradição brasileira moderna; Leminski, "Todas as Poesias"
+Descrição: No haicai brasileiro moderno, é convenção usar letra minúscula no início de cada verso e no início do poema, salvo para nomes próprios. Isso reforça a ideia de continuidade e humildade perante a natureza.
+❌ Errado: "A Folha Caiu / O Vento Soprou" (maiúsculas desnecessárias)
+✅ Correto: "folha cai / vento sopra / silêncio"
+Severidade: baixa
+Categoria: estilo
+
+================================================================================
+HAICAI BRASILEIRO — PARTICULARIDADES
+================================================================================
+
+## [HAI-11] Haicai à moda brasileira (Guilherme de Almeida)
+Fonte: Guilherme de Almeida, "Poesia de Haikai" (1957)
+Descrição: Guilherme de Almeida propôs o haicai "à moda brasileira", mantendo os 5-7-5 mas acrescentando rima: os versos 1 e 3 rimam entre si (esquema A-B-A). Esta forma é reconhecida e praticada no Brasil, embora não seja a única.
+❌ Errado: forçar rima em haicais que não seguem a forma de Almeida
+✅ Correto: "Vento no jardim / desfolha o ipê dourado / só resta o fim" (A-B-A, 5-7-5)
+Severidade: media
+Categoria: rima
+
+## [HAI-12] Título — não obrigatório
+Fonte: tradição brasileira
+Descrição: No haicai, o título não é obrigatório e frequentemente é omitido. O poema deve bastar-se por si mesmo, sendo um instantâneo poético completo em três versos. Quando há título, geralmente é uma palavra ou expressão curta.
+❌ Errado: títulos longos e descritivos que competem com o poema
+✅ Correto: sem título, ou título mínimo (ex: "Inverno", "Garoa")
+Severidade: baixa
+Categoria: estrutura
+
+================================================================================
+EXEMPLOS CLÁSSICOS
+================================================================================
+
+## [HAI-13] Referências brasileiras essenciais
+Fonte: tradição literária brasileira
+Descrição: Autores fundamentais para o estudo do haicai no Brasil: Guilherme de Almeida (haicai com rima, 5-7-5), Paulo Leminski (haicai moderno, métrica livre, jogo de palavras), Millôr Fernandes (haicai humorístico/crítico), Alice Ruiz S. (haicai contemporâneo, temática urbana), Afrânio Peixoto (haicai clássico brasileiro).
+Severidade: baixa
+Categoria: referência
