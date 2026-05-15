@@ -1,0 +1,411 @@
+# Acordo Ortográfico da Língua Portuguesa (1990) — Compêndio de Regras
+# Baseado no texto oficial do Acordo Ortográfico, VOLP (ABL), e manuais de referência
+# Data: 2026-05-15
+
+================================================================================
+ACENTUAÇÃO DAS OXÍTONAS
+================================================================================
+
+## [OXI-01] Oxítonas terminadas em -a(s), -e(s), -o(s) — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 1º-a; Wikisource
+Descrição: Palavras oxítonas com mais de uma sílaba terminadas nas vogais tónicas abertas grafadas -a, -e, -o, seguidas ou não de -s, recebem acento agudo.
+❌ Errado: cajá (caja), chulé (chule), mocotó (mocoto)
+✅ Correto: cajá, chulé, mocotó, está, sofás, você, bonés, avó, após
+Severidade: alta
+Categoria: ortografia
+
+## [OXI-02] Oxítonas terminadas em -e(s), -o(s) — acento circunflexo (vogal fechada)
+Fonte: Acordo Ortográfico 1990, Base IX, 2º-a; Wikisource
+Descrição: Palavras oxítonas terminadas nas vogais tónicas fechadas grafadas -e ou -o, seguidas ou não de -s, recebem acento circunflexo.
+❌ Errado: voce, portugues, avo, robos
+✅ Correto: você, português, avô, robô, cortês, dê, lê, pôs
+Severidade: alta
+Categoria: ortografia
+
+## [OXI-03] Oxítonas terminadas em -em, -ens — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 1º-c; Wikisource
+Descrição: Oxítonas com mais de uma sílaba terminadas no ditongo nasal -em ou -ens recebem acento agudo. Excetuam-se as formas da 3ª pessoa do plural dos compostos de ter e vir (retêm, sustêm, advêm, provêm).
+❌ Errado: tambem, armazens, refem
+✅ Correto: também, armazéns, refém, parabéns, harém, porém, detém
+Severidade: alta
+Categoria: ortografia
+
+## [OXI-04] Oxítonas com ditongos abertos -éi, -éu, -ói
+Fonte: Acordo Ortográfico 1990, Base IX, 1º-d; Wikisource
+Descrição: Oxítonas com ditongos abertos -éi, -éu, -ói (seguidos ou não de -s) recebem acento agudo.
+❌ Errado: aneis, ceu, heroi, papeis
+✅ Correto: anéis, céu, herói, papéis, chapéu, ilhéu, sóis, corrói
+Severidade: alta
+Categoria: ortografia
+
+## [OXI-05] Verbos oxítonos com pronomes clíticos -lo(s)/-la(s) — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 1º-b; Wikisource
+Descrição: Formas verbais oxítonas conjugadas com pronomes clíticos -lo(s)/-la(s) que perdem -r, -s, -z final e ficam terminadas em -a tónico recebem acento agudo.
+❌ Errado: adoralo, falo, trala
+✅ Correto: adorá-lo, fá-lo, trá-la
+Severidade: media
+Categoria: ortografia
+
+================================================================================
+ACENTUAÇÃO DAS PAROXÍTONAS
+================================================================================
+
+## [PAR-01] Paroxítonas terminadas em -l, -n, -r, -x, -ps — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 2º-a; Brasil Escola
+Descrição: Paroxítonas com vogal tónica aberta terminadas em -l, -n, -r, -x, -ps recebem acento agudo.
+❌ Errado: amavel, carater, torax, biceps
+✅ Correto: amável, caráter, tórax, bíceps, dócil, fóssil, líquen, cadáver, ímpar, córtex
+Severidade: alta
+Categoria: ortografia
+
+## [PAR-02] Paroxítonas terminadas em -l, -n, -r, -x, -ps — acento circunflexo (vogal fechada)
+Fonte: Acordo Ortográfico 1990, Base IX, 2º-b; Wikisource
+Descrição: Paroxítonas com vogal tónica fechada terminadas em -l, -n, -r, -x, -ps recebem acento circunflexo.
+❌ Errado: consu, cancer, textil
+✅ Correto: cônsul, câncer, têxtil, plâncton, pênsil, bômbax
+Severidade: media
+Categoria: ortografia
+
+## [PAR-03] Paroxítonas terminadas em -i(s), -u(s) — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 2º-a; Toda Matéria
+Descrição: Paroxítonas terminadas em -i(s), -u(s) recebem acento agudo.
+❌ Errado: juri, bonus, lapis, tenis
+✅ Correto: júri, bônus, lápis, tênis, táxi, vírus, biquíni, Vênus
+Severidade: alta
+Categoria: ortografia
+
+## [PAR-04] Paroxítonas terminadas em -ã(s), -ão(s) — acento agudo ou circunflexo
+Fonte: Acordo Ortográfico 1990, Base IX, 2º-a; Brasil Escola
+Descrição: Paroxítonas terminadas em -ã(s), -ão(s) recebem acento.
+❌ Errado: orfa, orgao, irma, solaos
+✅ Correto: órfã, órgão, ímã, sótãos, bênção, órfãs
+Severidade: alta
+Categoria: ortografia
+
+## [PAR-05] Paroxítonas terminadas em -um, -uns — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 2º; tradição gramatical
+Descrição: Paroxítonas terminadas em -um, -uns recebem acento agudo.
+❌ Errado: album, quilate (sem acento, mas álbum sim)
+✅ Correto: álbum, álbuns, fórum, fóruns, quórum
+Severidade: alta
+Categoria: ortografia
+
+## [PAR-06] Paroxítonas com ditongo crescente — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 2º; Mundo Educação
+Descrição: Paroxítonas terminadas em ditongo crescente (sequência de semivogal + vogal, como -ia, -ie, -io, -ua, -ue, -uo) recebem acento agudo na vogal tónica. Exemplos: água, vário, série, pátio, tênue, vácuo. Inclui palavras terminadas em -ea, -eo, -ia, -ie, -io, -oa, -ua, -ue, -uo quando a penúltima sílaba é a tónica e a terminação forma ditongo crescente.
+❌ Errado: presidio, colegio, patria, serie
+✅ Correto: presídio, colégio, pátria, série, água, vário, tênue, vácuo, calvície, superfície
+Severidade: alta
+Categoria: ortografia
+
+## [PAR-07] Paroxítonas com vogais dobradas -oo, -ee — sem acento
+Fonte: Acordo Ortográfico 1990, Base IX, 3º; Brasil Escola
+Descrição: Palavras paroxítonas com vogais dobradas -oo, -ee perdem o acento circunflexo que antes possuíam.
+❌ Errado: vôo, enjôo, crêem, lêem, dêem, vêem
+✅ Correto: voo, enjoo, creem, leem, deem, veem
+Severidade: alta
+Categoria: ortografia
+
+================================================================================
+ACENTUAÇÃO DOS MONOSSÍLABOS TÔNICOS
+================================================================================
+
+## [MON-01] Monossílabos tônicos terminados em -a(s), -e(s), -o(s)
+Fonte: Acordo Ortográfico 1990, Base VIII; Brasil Escola
+Descrição: Monossílabos tônicos (palavras de uma só sílaba com autonomia fonética) terminados em -a(s), -e(s), -o(s) recebem acento agudo ou circunflexo conforme o timbre.
+❌ Errado: ja, pe, po, la, ma
+✅ Correto: já, pé, pó, lá, má, chá, gás, fé, mês, só, nó, pôs, dê, lê
+Severidade: alta
+Categoria: ortografia
+
+## [MON-02] Monossílabos tônicos com ditongos abertos -éi(s), -éu(s), -ói(s)
+Fonte: Acordo Ortográfico 1990, Base VIII; IFPR
+Descrição: Monossílabos tônicos com ditongos abertos -éi(s), -éu(s), -ói(s) recebem acento agudo.
+❌ Errado: rei, ceu, doi, veu
+✅ Correto: réis, céu, dói, véu, sóis
+Severidade: alta
+Categoria: ortografia
+
+## [MON-03] Monossílabos átonos — sem acento
+Fonte: tradição gramatical; IFPR
+Descrição: Monossílabos átonos (pronunciados fracamente, apoiados na palavra seguinte) não recebem acento gráfico. Exemplos: me, te, se, lhe, nos, de, em, com, por, que (conjunção ou pronome átono).
+❌ Errado: (acentuar corretamente distinguindo: o artigo "o" sem acento vs. "ó" interjeição)
+✅ Correto: o (artigo) vs. ó (interjeição); me, te, se (átonos) vs. fé, pé (tônicos)
+Severidade: alta
+Categoria: ortografia
+
+================================================================================
+ACENTUAÇÃO DOS DITONGOS
+================================================================================
+
+## [DIT-01] Ditongos abertos -ei, -oi em paroxítonas — NÃO acentuados
+Fonte: Acordo Ortográfico 1990, Base IX, 3º; Brasil Escola
+Descrição: Os ditongos abertos -ei e -oi em palavras paroxítonas não recebem mais acento agudo. É a mudança mais visível do Acordo.
+❌ Errado: idéia, platéia, heróico, jibóia, geléia, coréia, assembléia
+✅ Correto: ideia, plateia, heroico, jiboia, geleia, coreia, assembleia, estreia, paranoia
+Severidade: alta
+Categoria: ortografia
+
+## [DIT-02] Ditongos abertos -éu em paroxítonas — permanece acento
+Fonte: tradição gramatical; o Acordo não alterou esta regra
+Descrição: Diferente de -ei e -oi, as paroxítonas com ditongo -éu são raríssimas; a regra geral de que ditongos abertos só se acentuam em oxítonas/monossílabos se mantém.
+❌ Errado: Não se aplica significativamente
+✅ Correto: chapéu (oxítona, mantém acento)
+Severidade: baixa
+Categoria: ortografia
+
+## [DIT-03] i e u tónicos em hiato — acento agudo
+Fonte: Acordo Ortográfico 1990, Base IX, 3º (hiato); Wikisource
+Descrição: As vogais i e u tónicas recebem acento agudo quando: (1) formam hiato com a vogal anterior; (2) estão sozinhas na sílaba (ou acompanhadas apenas de -s); (3) não são seguidas de nh.
+❌ Errado: saude, saida, paises, baú (sem acento), ciume, raizes
+✅ Correto: saúde, saída, países, baú, ciúme, raízes, egoísmo, faísca, graúdo, juízes
+Severidade: alta
+Categoria: ortografia
+
+## [DIT-04] i e u tónicos precedidos de ditongo em paroxítonas — sem acento
+Fonte: Acordo Ortográfico 1990, Base IX, 4º; Wikisource
+Descrição: Em palavras paroxítonas, o i e u tónicos quando precedidos de ditongo perdem o acento agudo.
+❌ Errado: baiúca, saíinha, feiúra, cheiínho
+✅ Correto: baiuca, saiinha, feiura, cheiinho, boiuno, cauila
+Severidade: alta
+Categoria: ortografia
+
+## [DIT-05] i e u tónicos precedidos de ditongo em oxítonas — acento mantido
+Fonte: Acordo Ortográfico 1990, Base IX, 5º; Wikisource
+Descrição: Em palavras oxítonas, i e u tónicos precedidos de ditongo mantêm o acento agudo quando em posição final ou seguidos de -s.
+❌ Errado: Piaui, teiu, tuiuiu
+✅ Correto: Piauí, teiú, tuiuiú, teiús
+Severidade: media
+Categoria: ortografia
+
+## [DIT-06] Ditongos -iu e -ui precedidos de vogal — sem acento
+Fonte: Acordo Ortográfico 1990, Base IX, 6º; Wikisource
+Descrição: Os ditongos tónicos -iu e -ui, quando precedidos de vogal, não recebem acento agudo.
+❌ Errado: distraíu, instruíu, paúis
+✅ Correto: distraiu, instruiu, pauis (plural de paul)
+Severidade: media
+Categoria: ortografia
+
+================================================================================
+CRASE
+================================================================================
+
+## [CRA-01] Crase antes de palavras femininas (a + a = à)
+Fonte: Câmara dos Deputados; Toda Matéria; Brasil Escola
+Descrição: Ocorre crase (fusão do a) quando há a preposição a exigida pela regência + artigo definido a ou as antes de palavra feminina. Regra prática: trocar a palavra feminina por uma masculina — se aparecer "ao", há crase.
+❌ Errado: Vou a praia, Fui a escola
+✅ Correto: Vou à praia, Fui à escola (Vou ao campo → à praia)
+Severidade: alta
+Categoria: ortografia
+
+## [CRA-02] Crase com pronomes demonstrativos aquele, aquela, aquilo
+Fonte: Câmara dos Deputados; Português Claro; Brasil Escola
+Descrição: A preposição a funde-se com o a inicial dos pronomes demonstrativos aquele, aquela, aquilo, formando àquele, àquela, àquilo.
+❌ Errado: Refiro-me aquele livro, Ele se referiu aquilo
+✅ Correto: Refiro-me àquele livro, Ele se referiu àquilo, Dirija-se àquela senhora
+Severidade: alta
+Categoria: ortografia
+
+## [CRA-03] Crase na indicação de horas
+Fonte: Câmara dos Deputados; Toda Matéria
+Descrição: Usa-se crase antes de horas determinadas (indicando hora exata). Não se usa crase antes de horas contadas ("As duas horas passaram").
+❌ Errado: O evento começa as 14h, Chegou as 8h
+✅ Correto: O evento começa às 14h, Chegou às 8h
+Severidade: alta
+Categoria: ortografia
+
+## [CRA-04] Crase em locuções adverbiais, prepositivas e conjuntivas femininas
+Fonte: Câmara dos Deputados; Toda Matéria
+Descrição: Usa-se crase em locuções adverbiais femininas (à noite, à tarde, às vezes, à vontade), prepositivas (à procura de, à espera de, à custa de) e conjuntivas (à medida que, à proporção que).
+❌ Errado: as vezes, a noite, a vontade, a medida que
+✅ Correto: às vezes, à noite, à vontade, à medida que
+Severidade: alta
+Categoria: ortografia
+
+## [CRA-05] Crase facultativa antes de nomes femininos de pessoas
+Fonte: Toda Matéria; Brasil Escola
+Descrição: Antes de nomes próprios femininos, a crase é facultativa (a não ser que haja especificação que torne o nome determinado).
+❌ Errado: Entreguei à Maria o presente (sem contexto de determinação)
+✅ Correto: Entreguei a Maria o presente / Entreguei à Maria o presente (ambos aceitáveis); Entreguei à Maria da Silva (com especificador, crase obrigatória)
+Severidade: baixa
+Categoria: ortografia
+
+## [CRA-06] Casos em que NÃO ocorre crase
+Fonte: Câmara dos Deputados; Toda Matéria
+Descrição: Não ocorre crase: (1) antes de palavras masculinas; (2) antes de verbos; (3) antes de nomes de cidade (sem especificador); (4) antes de pronomes pessoais, de tratamento (exceto senhora, senhorita), numerais; (5) antes de palavras no plural quando o a está no singular (a pessoas).
+❌ Errado: Fui à Paris, Passei à pedir, Vou à você
+✅ Correto: Fui a Paris, Passei a pedir, Vou a você, Entreguei a elas, Vou a prazo (masculino)
+Severidade: alta
+Categoria: ortografia
+
+================================================================================
+HÍFEN
+================================================================================
+
+## [HIF-01] Hífen em compostos com prefixo + elemento iniciado por h
+Fonte: Acordo Ortográfico 1990, Base XV; Senado Federal; Ciberdúvidas
+Descrição: Emprega-se hífen quando o prefixo termina em vogal e o segundo elemento começa por h.
+❌ Errado: anti higienico, superhomem, sobrehumano, préhistória
+✅ Correto: anti-higiênico, super-homem, sobre-humano, pré-história, sub-hepático
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-02] Hífen quando prefixo termina na mesma vogal que inicia o segundo elemento
+Fonte: Acordo Ortográfico 1990, Base XV; Senado Federal
+Descrição: Emprega-se hífen quando o prefixo termina em vogal e o segundo elemento começa pela mesma vogal.
+❌ Errado: microondas, contraataque, autoaprendizagem, antiimperialista
+✅ Correto: micro-ondas, contra-ataque, auto-observação, anti-imperialista (mas: autoestrada, antiáéreo — vogais diferentes)
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-03] Sem hífen quando prefixo + elemento começam com vogal diferente
+Fonte: Acordo Ortográfico 1990, Base XVI; Ciberdúvidas; Wikipedia
+Descrição: Não se emprega hífen quando o prefixo termina em vogal e o segundo elemento começa com vogal diferente. A grafia é aglutinada.
+❌ Errado: auto-estrada, anti-aéreo, auto-aprendizagem, infra-estrutura
+✅ Correto: autoestrada, antiaéreo, autoaprendizagem, infraestrutura, extraescolar, semiaberto
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-04] Sem hífen quando prefixo + r ou s — consoantes duplicadas
+Fonte: Acordo Ortográfico 1990, Base XVI; Senado Federal; Ciberdúvidas
+Descrição: Quando o prefixo termina em vogal e o segundo elemento começa por r ou s, duplicam-se essas consoantes (sem hífen).
+❌ Errado: anti-social, auto-retrato, ultra-som, anti-racismo, extra-regime
+✅ Correto: antissocial, autorretrato, ultrassom, antirracismo, extrarregime, minissaia, contrarregra
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-05] Hífen com prefixos hiper-, inter-, super- + r
+Fonte: Acordo Ortográfico 1990, Base XVI; Senado Federal
+Descrição: Os prefixos hiper-, inter-, super- terminados em r exigem hífen quando seguidos de elemento começado por r (pois o r não se duplica após r).
+❌ Errado: hiper-resistente, inter-racial, super-racional
+✅ Correto: hiper-resistente, inter-racial, super-racional (já terminam em r, hífen mantido)
+Severidade: media
+Categoria: ortografia
+
+## [HIF-06] Hífen com prefixos circum- e pan- + vogal, h, m, n
+Fonte: Acordo Ortográfico 1990, Base XV; Wikipedia
+Descrição: Os prefixos circum- e pan- recebem hífen quando o segundo elemento começa por vogal, h, m, n. Caso contrário, aglutinam-se.
+❌ Errado: circum-navegação (correto com hífen), pan americano
+✅ Correto: circum-navegação, pan-americano, circum-escolar, pan-mágico; mas: circunferir (sem hífen, fer- não começa com vogal/h/m/n)
+Severidade: media
+Categoria: ortografia
+
+## [HIF-07] Hífen com prefixos pós-, pré-, pró-
+Fonte: Acordo Ortográfico 1990, Base XV; tradição
+Descrição: Os prefixos tónicos pós-, pré-, pró- (com acento) exigem hífen obrigatoriamente. Em contraste, pos-, pre-, pro- (átonos) aglutinam-se.
+❌ Errado: pos-graduação, pre-natal, pro-labore (quando tónicos)
+✅ Correto: pós-graduação, pré-natal, pró-labore; mas: predeterminar, pospor, promover (átonos, sem acento e sem hífen)
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-08] Hífen com bem- e mal-
+Fonte: Acordo Ortográfico 1990, Base XV; Priberam; Senado Federal
+Descrição: Emprega-se hífen em compostos com bem- e mal- quando o segundo elemento começa por vogal ou h. Com mal-, também se usa hífen antes de consoante (mal-dizer). Com bem-, o hífen cai antes de consoante (exceto quando se forma nova palavra com h inicial ou vogal).
+❌ Errado: bemvindo, malcriação, mal humorado, bem estar
+✅ Correto: bem-vindo, bem-estar, mal-humorado, malcriação (sem hífen, consoante: malcriado). Atenção: bem-aventurado, bem-te-vi, mal-estar.
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-09] Compostos por justaposição sem elemento de ligação
+Fonte: Acordo Ortográfico 1990, Base XV; Portal da Língua Portuguesa
+Descrição: Palavras compostas por justaposição que formam unidade semântica com acentos próprios e sem elementos de ligação mantêm o hífen.
+❌ Errado: arcoiris, beijoflor, girassol (exceção: esta já aglutinada)
+✅ Correto: arco-íris, beija-flor, ano-luz, guarda-chuva, segunda-feira, couve-flor, amor-perfeito
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-10] Hífen em palavras com prefixo além-, aquém-, recém-, sem-
+Fonte: Acordo Ortográfico 1990, Base XV; Wikipedia
+Descrição: Os prefixos além-, aquém-, recém-, sem- sempre exigem hífen.
+❌ Errado: recemchegado, alemmar, aquemfronteira
+✅ Correto: recém-chegado, além-mar, aquém-fronteira, sem-vergonha
+Severidade: media
+Categoria: ortografia
+
+## [HIF-11] Hífen com prefixo vice-
+Fonte: Acordo Ortográfico 1990, Base XV; Wikipedia
+Descrição: O prefixo vice- exige hífen em todas as formações.
+❌ Errado: vicepresidente, vicediretor
+✅ Corretor: vice-presidente, vice-diretor, vice-rei, vice-campeão
+Severidade: alta
+Categoria: ortografia
+
+## [HIF-12] Hífen com prefixo ex-, sota-, soto-
+Fonte: Acordo Ortográfico 1990, Base XV; Wikipedia
+Descrição: Os prefixos ex- (com sentido de estado anterior), sota-, soto- exigem hífen.
+❌ Errado: exnamorado, exmarido, exdiretor
+✅ Correto: ex-namorado, ex-marido, ex-diretor, sota-piloto, soto-mestre
+Severidade: alta
+Categoria: ortografia
+
+================================================================================
+TREMA
+================================================================================
+
+## [TRE-01] Trema abolido em palavras portuguesas
+Fonte: Acordo Ortográfico 1990, Base XI; Brasil Escola
+Descrição: O trema (¨) foi completamente abolido em palavras da língua portuguesa. O u semítico em sequências gue, gui, que, qui deixa de ser marcado.
+❌ Errado: cinqüenta, agüentar, lingüiça, seqüência, ambíguo, freqüente
+✅ Correto: cinquenta, aguentar, linguiça, sequência, ambíguo, frequente, pinguim, tranquilo, sagui
+Severidade: alta
+Categoria: ortografia
+
+## [TRE-02] Trema mantido em nomes próprios estrangeiros e derivados
+Fonte: Acordo Ortográfico 1990, Base XI; Brasil Escola
+Descrição: O trema é mantido em palavras de origem estrangeira, nomes próprios estrangeiros e seus derivados (por razões de grafia original).
+❌ Errado: Não se aplica a este caso
+✅ Correto: Müller, mülleriano, Bündchen, Schönberg, Günter
+Severidade: baixa
+Categoria: ortografia
+
+================================================================================
+ACENTO DIFERENCIAL
+================================================================================
+
+## [DIF-01] Acento diferencial obrigatório: pôr (verbo) vs. por (preposição)
+Fonte: Acordo Ortográfico 1990, Base IX, 3º; TJSC; Gramática em Vídeo
+Descrição: O acento circunflexo em pôr (verbo) é mantido obrigatoriamente para diferenciar da preposição por.
+❌ Errado: Vou por o livro na mesa, Por a mesa
+✅ Correto: Vou pôr o livro na mesa, Por favor
+Severidade: alta
+Categoria: ortografia
+
+## [DIF-02] Acento diferencial obrigatório: pôde (pretérito) vs. pode (presente)
+Fonte: Acordo Ortográfico 1990, Base IX, 3º; TJSC; Gramática em Vídeo
+Descrição: Mantém-se o acento circunflexo em pôde (3ª pessoa do singular do pretérito perfeito do indicativo) para diferenciar de pode (3ª pessoa do singular do presente do indicativo).
+❌ Errado: Ontem ele pode ir, Hoje ele pôde
+✅ Correto: Ontem ele pôde ir, Hoje ele pode
+Severidade: alta
+Categoria: ortografia
+
+## [DIF-03] Acento diferencial facultativo: fôrma
+Fonte: Acordo Ortográfico 1990, Base IX; TJSC; Gramática em Vídeo
+Descrição: O acento circunflexo em fôrma (utensílio, molde) é facultativo, podendo-se escrever forma ou fôrma.
+❌ Errado: (não é erro usar sem acento; mantém-se para clareza quando necessário)
+✅ Correto: fôrma (forma) de bolo — ambas as grafias são aceitas
+Severidade: baixa
+Categoria: ortografia
+
+## [DIF-04] Acento diferencial abolido: pára, pêlo, pólo, pêra, péla
+Fonte: Acordo Ortográfico 1990, Base IX; TJSC; Brasil Escola
+Descrição: Foram abolidos os acentos diferenciais que distinguiam: pára (verbo parar) de para (preposição); pêlo (substantivo) de pelo (contração); pólo (substantivo) de polo (contração); pêra (substantivo) de pera (preposição arcaica); péla (verbo pelar) de pela (contração).
+❌ Errado: Ele pára o carro (grafia anterior ao acordo), O pêlo do gato
+✅ Correto: Ele para o carro, O pelo do gato, O polo industrial, A pera está madura
+Severidade: alta
+Categoria: ortografia
+
+## [DIF-05] Verbos ter e vir — acento diferencial para plural
+Fonte: Acordo Ortográfico 1990, Base IX; TJSC; IFPR
+Descrição: Os verbos ter e vir (e seus compostos) recebem acento circunflexo na 3ª pessoa do plural (têm, vêm) para diferenciar da 3ª pessoa do singular (tem, vem). Nos compostos (deter, manter, conter, intervir, etc.), o singular recebe acento agudo e o plural circunflexo: ele detém / eles detêm; ele intervém / eles intervêm.
+❌ Errado: Eles tem dinheiro, Eles vem de carro, Eles detem, Eles mantem
+✅ Correto: Eles têm dinheiro, Eles vêm de carro, Eles detêm, Eles mantêm
+Severidade: alta
+Categoria: ortografia
+
+## [DIF-06] Verbos crer, ler, ver, dar — acento abolido no plural (formas -eem)
+Fonte: Acordo Ortográfico 1990, Base IX; Brasil Escola
+Descrição: As formas da 3ª pessoa do plural do presente do indicativo de crer, ler, ver e dar (creem, leem, veem, deem) perderam o acento circunflexo que antes possuíam (crêem, lêem, vêem, dêem).
+❌ Errado: Eles crêem, Eles lêem, Eles vêem, Eles dêem
+✅ Correto: Eles creem, Eles leem, Eles veem, Eles deem
+Severidade: alta
+Categoria: ortografia
