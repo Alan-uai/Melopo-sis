@@ -1,8 +1,89 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --font-body: var(--font-literata), serif;
+  --font-headline: var(--font-literata), serif;
+  --font-code: monospace;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-border-pulse: border-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-border-beam: border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, 1) var(--animation-direction, normal);
+  --animate-border-color-pulse: border-color-pulse 0.7s ease-in-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  @keyframes border-pulse {
+    50% {
+      border-color: var(--pulse-color, hsl(var(--primary)));
+      opacity: 1;
+    }
+  }
+  @keyframes border-beam {
+    to { --border-angle: 360deg; }
+  }
+  @keyframes border-color-pulse {
+    0% { border-color: hsl(var(--anim-finish)); }
+    50% { border-color: hsl(60 95% 50%); }
+    100% { border-color: hsl(var(--anim-finish)); }
+  }
+}
 
 @layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
   :root {
     --background: 60 56% 91%;
     --foreground: 80 10% 20%;
@@ -37,11 +118,12 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    
+
     --anim-generate: 140 80% 60%;
     --anim-correct: 0 84% 60%;
     --anim-finish: 45 93% 61%;
   }
+
   .dark {
     --background: 240 6% 10%;
     --foreground: 60 56% 91%;
@@ -80,12 +162,11 @@
     --anim-correct: 0 70% 50%;
     --anim-finish: 35 80% 50%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -93,34 +174,9 @@
 
 @layer utilities {
   @property --border-angle {
-    syntax: '<angle>';
+    syntax: "<angle>";
     inherits: true;
     initial-value: 0deg;
-  }
-
-  @keyframes border-beam {
-    to {
-      --border-angle: 360deg;
-    }
-  }
-
-  @keyframes border-pulse {
-    50% {
-      border-color: var(--pulse-color, hsl(var(--primary)));
-      opacity: 1;
-    }
-  }
-
-  @keyframes border-color-pulse {
-    0% {
-      border-color: hsl(var(--anim-finish));
-    }
-    50% {
-      border-color: hsl(60 95% 50%); /* Amarelo */
-    }
-    100% {
-      border-color: hsl(var(--anim-finish));
-    }
   }
 
   .animate-border-beam {

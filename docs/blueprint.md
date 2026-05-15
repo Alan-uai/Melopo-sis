@@ -1,4 +1,4 @@
-# **App Name**: Verso Correto
+# **App Name**: Melopöesis
 
 ## Core Features:
 

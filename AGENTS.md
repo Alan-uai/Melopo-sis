@@ -5,7 +5,7 @@
 | Command | What it does |
 |---------|-------------|
 | `npm run dev` | Dev server on **port 9002** via Turbopack |
-| `npm run build` | `NEXT_PUBLIC_ENV=production next build` — skips TS errors & ESLint intentionally |
+| `npm run build` | `NODE_ENV=production next build` — skips TS errors & ESLint intentionally |
 | `npm run lint` | Requires eslint to be installed (Next.js 16 removed `next lint`) |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run genkit:dev` | Start Genkit flow dev server |
@@ -17,7 +17,7 @@ No test framework or test scripts exist.
 
 - **Next.js 16** App Router, React 19, TypeScript, `@/*` → `./src/*`
 - **shadcn/ui** components at `@/components/ui/*`, configured via `components.json`
-- **Tailwind CSS v3** with `tailwindcss-animate` plugin
+- **Tailwind CSS v4** (CSS-first config via `@theme`, no `tailwind.config.ts`) with `tailwindcss-animate` plugin
 - **Genkit** + `googleai/gemini-2.5-flash` for AI suggestions (needs `GOOGLE_GENAI_API_KEY` in `.env`)
 - **Firebase Auth + Firestore** (production backends — emulators are **disabled**)
 - UI language: **Brazilian Portuguese (pt-BR)**
@@ -29,6 +29,8 @@ No test framework or test scripts exist.
 - **Firestore writes** use non-blocking fire-and-forget helpers (`setDocumentNonBlocking`, `addDocumentNonBlocking`, etc.) — errors propagate via `errorEmitter` to `FirebaseErrorListener`.
 - **AI flows** (`src/ai/flows/`) use `'use server'` — these are Next.js Server Actions.
 - **`next.config.ts`**: `ignoreBuildErrors: true` — build will not catch TS/ESLint issues. Run `typecheck` separately (eslint config removed from NextConfig in v16).
+- **TypeScript 6**: `tsconfig.json` requires `"types": ["node"]` (TS 6.0 removed auto-discovery of `@types/*`).
+- **Tailwind v4**: Config is fully CSS-based (`postcss.config.mjs` uses `@tailwindcss/postcss`). No `tailwind.config.ts`. Theme variables in `src/app/globals.css` via `@theme inline`.
 - **Port 9002**, not default 3000.
 - `.env*` files are gitignored — required for Genkit API keys.
 
