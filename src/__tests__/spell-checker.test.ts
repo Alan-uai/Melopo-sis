@@ -1,18 +1,26 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-vi.mock('@/lib/build-word-set', () => ({
-  getWordSet: vi.fn().mockResolvedValue(
-    new Set([
-      'casa', 'vento', 'poema', 'poesia', 'amor', 'dor',
-      'noite', 'lua', 'sol', 'mar', 'céu', 'terra',
-      'feliz', 'triste', 'bela', 'vida', 'morte', 'sonho',
-      'faz', 'diz', 'quer', 'pode', 'sabe', 'vai', 'vem',
-      'tempo', 'mundo', 'alma', 'coração', 'silêncio',
-      'muito', 'pouco', 'todo', 'mesmo', 'grande',
-      'bonito', 'bonita',
-    ])
-  ),
-}));
+vi.mock('@/lib/dictionary', () => {
+  const knownWords = new Set([
+    'casa', 'vento', 'poema', 'poesia', 'amor', 'dor',
+    'noite', 'lua', 'sol', 'mar', 'céu', 'terra',
+    'feliz', 'triste', 'bela', 'vida', 'morte', 'sonho',
+    'faz', 'diz', 'quer', 'pode', 'sabe', 'vai', 'vem',
+    'tempo', 'mundo', 'alma', 'coração', 'silêncio',
+    'muito', 'pouco', 'todo', 'mesmo', 'grande',
+    'bonito', 'bonita',
+  ]);
+
+  return {
+    isWordCorrect: vi.fn(async (word: string) => {
+      const lower = word.toLowerCase();
+      return knownWords.has(lower);
+    }),
+    getWordSuggestions: vi.fn(async (word: string) => {
+      return ['bunita'];
+    }),
+  };
+});
 
 import { checkText } from '@/lib/spell-checker';
 

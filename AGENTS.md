@@ -21,8 +21,8 @@ Order: `typecheck -> test` (no lint, no build needed for dev).
 - **shadcn/ui** — Radix primitives, `components.json` at root, icons from `lucide-react`
 - **Firebase** — Auth (Google) + Firestore. Init in `src/firebase/index.ts`: tries App Hosting env vars first, falls back to hardcoded `firebaseConfig`. **Never modify `initializeFirebase`**.
 - **Genkit AI** — `googleai/gemini-2.5-flash`, prompt flows in `src/ai/flows/`. Requires `GOOGLE_GENAI_API_KEY` in `.env`.
-- **Vitest** — `environment: 'node'` (no jsdom). Spell checker mock (`@/lib/build-word-set`) needed in tests.
-- **nspell + hunspell (dictionary-pt-br)** — local spell check via `src/lib/spell-checker.ts`
+- **Vitest** — `environment: 'node'` (no jsdom). Mock `@/lib/dictionary` in tests.
+- **nspell + Hunspell (dictionary-pt + suplemento VOLP/ABL)** — local spell check via `src/lib/dictionary.ts` + `src/lib/spell-checker.ts`. Usa `nspell` com o `.dic` e `.aff` do VERO (via `dictionary-pt@4.0.0`) + suplemento de ~561k palavras do VOLP (ABL) e fserb/pt-br.
 
 ## Architecture notes
 
@@ -31,7 +31,7 @@ Order: `typecheck -> test` (no lint, no build needed for dev).
 - Firestore structure: `/users/{userId}` and `/users/{userId}/poems/{poemId}` (see `docs/backend.json` and `firestore.rules`)
 - Two suggestion modes: "gradual" (debounced auto-check on typing) and "final" (manual buttons)
 - AI flow (`src/ai/flows/generate-contextual-suggestions.ts`) is a `'use server'` module — both grammar and tone prompts feed through the same `suggestionFlow`
-- Local check + AI check: grammar errors first checked against `dictionary-pt-br`; if found, returned immediately without calling AI. AI is only called when local check passes (or for tone suggestions).
+- Local check + AI check: grammar errors first checked against `dictionary-pt` (VERO) + suplemento VOLP via nspell; if found, returned immediately without calling AI. AI is only called when local check passes (or for tone suggestions).
 - `docs/blueprint.md` — product design doc (features, color scheme, fonts)
 - No CI workflows, no pre-commit hooks, no ESLint
 
