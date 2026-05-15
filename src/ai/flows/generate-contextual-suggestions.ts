@@ -3,6 +3,7 @@
 import { ai } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
 import { checkText } from '@/lib/spell-checker';
+import { loadNbrRules } from '@/lib/nbr-loader';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
@@ -23,12 +24,7 @@ REGRAS DE LICENÇA POÉTICA:
 - Preserve a linguagem poética e metafórica. Corrija apenas o que for inequivocamente errado.
 
 REGRAS DA ESTRUTURA "{{structure}}":
-- Se "poema" ou "poesia": estrutura livre, sem regras fixas de métrica ou estrofação.
-- Se "soneto": 14 versos, 2 quartetos + 2 tercetos, esquema ABBA ABBA CDC DCD, decassílabos.
-- Se "haicai": 3 versos (5-7-5 sílabas), tema da natureza/estação.
-- Se "cordel": sextilhas (6 versos), métrica 7 sílabas, rima ABCBDB.
-- Se "redondilha": versos de 5 ou 7 sílabas, estrofes de 4-8 versos.
-- Se "decassilabo": 10 sílabas poéticas, ênfase 3ª-6ª-10ª ou 4ª-7ª-10ª.
+{{{nbrRules}}}
 
 O texto a ser analisado é:
 \`\`\`
@@ -115,6 +111,8 @@ REGRAS:
 - Se nenhum aprimoramento de tom for necessário, retorne array vazio.
 - Mantenha a métrica e a rima se o poema as utilizar.
 - Considere o tipo de estrutura: "{{structure}}".
+- Consulte as regras NBR abaixo para guiar as sugestões de tom dentro dos limites da estrutura escolhida:
+{{{nbrRules}}}
 
 EXEMPLO:
 {
@@ -140,6 +138,9 @@ const suggestionFlow = ai.defineFlow(
     if (!input.text.trim()) {
       return { suggestions: [] };
     }
+
+    const nbrRules = input.nbrRules || loadNbrRules(input.structure);
+    const enrichedInput = { ...input, nbrRules };
 
     if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
       const localResult = await checkText(input.text);
@@ -172,11 +173,11 @@ const suggestionFlow = ai.defineFlow(
     }
 
     if (input.suggestionType === 'tone') {
-      const { output } = await tonePrompt(input);
+      const { output } = await tonePrompt(enrichedInput);
       return output || { suggestions: [] };
     }
 
-    const { output } = await grammarPrompt(input);
+    const { output } = await grammarPrompt(enrichedInput);
     return output || { suggestions: [] };
   }
 );
