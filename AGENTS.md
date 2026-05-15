@@ -6,7 +6,7 @@
 |---------|-------------|
 | `npm run dev` | Dev server on **port 9002** via Turbopack |
 | `npm run build` | `NEXT_PUBLIC_ENV=production next build` — skips TS errors & ESLint intentionally |
-| `npm run lint` | `next lint` |
+| `npm run lint` | Requires eslint to be installed (Next.js 16 removed `next lint`) |
 | `npm run typecheck` | `tsc --noEmit` |
 | `npm run genkit:dev` | Start Genkit flow dev server |
 | `npm run genkit:watch` | Genkit dev server with file watch |
@@ -15,7 +15,7 @@ No test framework or test scripts exist.
 
 ## Architecture
 
-- **Next.js 15** App Router, React 18, TypeScript, `@/*` → `./src/*`
+- **Next.js 16** App Router, React 19, TypeScript, `@/*` → `./src/*`
 - **shadcn/ui** components at `@/components/ui/*`, configured via `components.json`
 - **Tailwind CSS v3** with `tailwindcss-animate` plugin
 - **Genkit** + `googleai/gemini-2.5-flash` for AI suggestions (needs `GOOGLE_GENAI_API_KEY` in `.env`)
@@ -28,7 +28,7 @@ No test framework or test scripts exist.
 - **Firestore hooks** (`useCollection`, `useDoc`) require memoized refs — use `useMemoFirebase()` from `@/firebase` instead of bare `useMemo`.
 - **Firestore writes** use non-blocking fire-and-forget helpers (`setDocumentNonBlocking`, `addDocumentNonBlocking`, etc.) — errors propagate via `errorEmitter` to `FirebaseErrorListener`.
 - **AI flows** (`src/ai/flows/`) use `'use server'` — these are Next.js Server Actions.
-- **`next.config.ts`**: `ignoreBuildErrors: true` + `eslint.ignoreDuringBuilds: true` — build will not catch TS/ESLint issues. Run `lint` + `typecheck` separately.
+- **`next.config.ts`**: `ignoreBuildErrors: true` — build will not catch TS/ESLint issues. Run `typecheck` separately (eslint config removed from NextConfig in v16).
 - **Port 9002**, not default 3000.
 - `.env*` files are gitignored — required for Genkit API keys.
 
