@@ -6,7 +6,7 @@ import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
+import type { Suggestion, SuggestionInput, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { collection, serverTimestamp, doc } from "firebase/firestore";
@@ -43,7 +43,6 @@ export default function Home() {
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
   
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
@@ -195,14 +194,12 @@ export default function Home() {
             description: `Encontramos ${result.suggestions.length} correções. Siga o guia para revisá-las.`,
           });
         } else {
-            toast({
-              title: "Nenhuma Correção Gramatical Necessária",
-              description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
-            });
-            await generateSuggestions('tone');
-            return; // Important to return here to not set isLoading to false twice
+          toast({
+            title: "Nenhuma Correção Gramatical Necessária",
+            description: "Seu texto está gramaticalmente correto segundo as normas ABNT.",
+          });
         }
-      } else { // tone
+      } else {
         setToneSuggestions(result.suggestions);
         if (result.suggestions.length > 0) {
           toast({
@@ -228,14 +225,21 @@ export default function Home() {
     }
   }, [text, tone, textStructure, rhyme, toast]);
   
-  const handleGenerateSuggestions = async () => {
+  const handleCheckGrammar = async () => {
     if (!text.trim() || isLoading) return;
 
     setGrammarSuggestions([]);
-    setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
     await generateSuggestions('grammar');
+  };
+
+  const handleSuggestTone = async () => {
+    if (!text.trim() || isLoading) return;
+
+    setToneSuggestions([]);
+
+    await generateSuggestions('tone');
   };
   
   const resetSuggestions = () => {
@@ -356,11 +360,6 @@ export default function Home() {
     });
   };
 
-  const handleSuggestionModeChange = (mode: SuggestionMode) => {
-    setSuggestionMode(mode);
-    resetSuggestions();
-  };
-
   const handleConfigChange = () => {
     resetSuggestions();
   }
@@ -384,25 +383,17 @@ export default function Home() {
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
       setCurrentSuggestionIndex(currentSuggestionIndex + 1);
     } else {
-      // Finished the last grammar suggestion
       setCurrentSuggestionIndex(null);
-      setGrammarSuggestions([]); 
-  
+      setGrammarSuggestions([]);
+
       if (grammarSuggestions.length > 0) {
         toast({
             title: "Correções Gramaticais Concluídas!",
-            description: "Buscando sugestões de estilo para o texto corrigido...",
+            description: "Todas as correções foram revisadas.",
         });
-        // Explicitly set loading state before fetching tone suggestions
-        setIsLoading(true);
-        try {
-          await generateSuggestions('tone');
-        } finally {
-          setIsLoading(false);
-        }
       }
     }
-  }, [currentSuggestionIndex, grammarSuggestions, generateSuggestions, toast]);
+  }, [currentSuggestionIndex, grammarSuggestions, toast]);
   
   
   const applyCorrection = useCallback((originalText: string, correctedText: string) => {
@@ -518,8 +509,6 @@ export default function Home() {
                       <div className="group flex items-center w-full">
                         <SidebarMenuButton
                             className="flex-1 justify-start"
-                            variant="ghost"
-                            size="sm"
                             onClick={() => loadPoem(poem)}
                             isActive={activePoem?.id === poem.id}
                         >
@@ -599,9 +588,8 @@ export default function Home() {
               onAccept={handleAccept}
               onDismiss={handleDismiss}
               onResuggest={handleResuggest}
-              suggestionMode={suggestionMode}
-              onSuggestionModeChange={handleSuggestionModeChange}
-              onFinalSuggestion={handleGenerateSuggestions}
+              onCheckGrammar={handleCheckGrammar}
+              onSuggestTone={handleSuggestTone}
               onClear={handleClear}
               onCopy={handleCopy}
               onSavePoem={handleSavePoem}

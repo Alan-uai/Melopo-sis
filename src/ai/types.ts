@@ -14,7 +14,7 @@ export const SuggestionInputSchema = z.object({
   tone: z.string().describe('O tom desejado para o poema (ex: Melancólico, Jubiloso).'),
   structure: z.enum(['poema', 'poesia']).describe("A estrutura do texto, 'poema' ou 'poesia'."),
   rhyme: z.boolean().describe('Indica se o texto deve ter rima.'),
-  suggestionType: z.enum(['all', 'grammar', 'tone']).describe("Define o tipo de sugestão a ser gerada."),
+  suggestionType: z.enum(['grammar', 'tone']).describe("Define o tipo de sugestão a ser gerada."),
   excludedPhrases: z.array(z.string()).optional().describe('Uma lista de palavras ou frases que a IA deve ignorar e não tentar corrigir.')
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
@@ -27,5 +27,4 @@ export type SuggestionOutput = z.infer<typeof SuggestionOutputSchema>;
 
 // Types for the frontend
 export type Suggestion = z.infer<typeof SuggestionSchema>;
-export type SuggestionMode = "gradual" | "final";
 export type TextStructure = "poesia" | "poema";

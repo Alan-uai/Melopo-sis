@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, Info, Save, Trash2, Wand2 } from "lucide-react";
+import { CheckCircle, Copy, Feather, Palette, Save, Trash2, Wand2 } from "lucide-react";
 import { Input } from "./ui/input";
 import {
   Card,
@@ -18,10 +18,9 @@ import {
 } from "@/components/ui/select";
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
-import type { Suggestion, SuggestionMode, TextStructure } from "@/ai/types";
+import type { Suggestion, TextStructure } from "@/ai/types";
 import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, useState, useEffect } from "react";
 import { Textarea } from "./ui/textarea";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
@@ -46,9 +45,8 @@ interface EditorProps {
   onAccept: (suggestion: Suggestion) => void;
   onDismiss: (suggestion: Suggestion) => void;
   onResuggest: (suggestion: Suggestion) => void;
-  suggestionMode: SuggestionMode;
-  onSuggestionModeChange: (mode: SuggestionMode) => void;
-  onFinalSuggestion: () => void;
+  onCheckGrammar: () => void;
+  onSuggestTone: () => void;
   onClear: () => void;
   onCopy: () => void;
   onSavePoem: () => void;
@@ -82,9 +80,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onAccept,
   onDismiss,
   onResuggest,
-  suggestionMode,
-  onSuggestionModeChange,
-  onFinalSuggestion,
+  onCheckGrammar,
+  onSuggestTone,
   onClear,
   onCopy,
   onSavePoem,
@@ -171,14 +168,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onTextChange(e.target.value);
     if(animationState !== 'idle') {
-      setAnimationState('idle'); // Reset animation on text change
+      setAnimationState('idle');
     }
   };
-  
-  const handleFinalSuggestion = () => {
-    setAnimationState('idle'); // Reset before starting
-    onFinalSuggestion();
-  }
 
   const editorContent = useMemo(() => {
     if (!activeGrammarSuggestion) {
@@ -321,46 +313,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
         
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
-            <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
-          </div>
-          <div className="flex items-center space-x-4">
-              <RadioGroup
-              value={suggestionMode}
-              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-              className="flex items-center space-x-4"
-              >
-              <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="gradual" id="gradual" disabled />
-                  <Label htmlFor="gradual" className="font-normal text-muted-foreground">Gradual</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="final" id="final" />
-                  <Label htmlFor="final" className="font-normal">Final</Label>
-              </div>
-              </RadioGroup>
-            <Popover>
-              <PopoverTrigger asChild>
-                <button className="flex items-center justify-center h-4 w-4">
-                    <Info className="h-full w-full text-muted-foreground" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-80">
-                <div className="grid gap-4">
-                  <div className="space-y-2">
-                    <h4 className="font-medium leading-none">Modo de Sugestão</h4>
-                    <p className="text-sm text-muted-foreground">
-                      <b>Modo Gradual (desativado):</b> As sugestões aparecem enquanto você escreve.
-                      <br />
-                      <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
-                    </p>
-                  </div>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </div>
+        <div className="flex items-center space-x-2">
+          <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
+          <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
         </div>
         
         <div 
@@ -423,14 +378,15 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </Popover>
        </div>
 
-        {suggestionMode === "final" && (
-          <div className="flex justify-end pt-4">
-            <Button onClick={handleFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
-              <Wand2 className="mr-2 h-4 w-4" />
-              {isLoading ? "Analisando..." : "Gerar Sugestões"}
-            </Button>
-          </div>
-        )}
+        <div className="flex justify-end gap-2 pt-4">
+          <Button onClick={onCheckGrammar} disabled={isLoading || text.trim().length === 0} variant="outline">
+            <CheckCircle className="mr-2 h-4 w-4" />
+            {isLoading ? "Analisando..." : "Verificar Ortografia"}
+          </Button>
+          <Button onClick={onSuggestTone} disabled={isLoading || text.trim().length === 0}>
+            {isLoading ? "Analisando..." : <><Wand2 className="mr-2 h-4 w-4" /> Sugerir Tom</>}
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
