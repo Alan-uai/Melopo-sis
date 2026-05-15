@@ -9,7 +9,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SuggestionCard } from "./suggestion-card";
+import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import { Undo2 } from "lucide-react";
 
 interface SuggestionListProps {
   suggestions: Suggestion[];
@@ -20,6 +22,8 @@ interface SuggestionListProps {
   onToggleExcludedPhrase: (originalText: string, phrase: string) => void;
   excludedPhrasesMap: Record<string, string[]>;
   onSwapAlternative?: (suggestion: Suggestion, alternativeIndex: number) => void;
+  appliedToneSuggestions?: Suggestion[];
+  onUndoAppliedTone?: (suggestion: Suggestion) => void;
 }
 
 export function SuggestionList({
@@ -31,6 +35,8 @@ export function SuggestionList({
   onToggleExcludedPhrase,
   excludedPhrasesMap,
   onSwapAlternative,
+  appliedToneSuggestions = [],
+  onUndoAppliedTone,
 }: SuggestionListProps) {
   const hasGrammar = suggestions.some(s => s.type === 'grammar');
   const toneSuggestions = suggestions.filter(s => s.type === 'tone');
@@ -75,10 +81,15 @@ export function SuggestionList({
               <Skeleton className="h-12 w-full rounded-lg" />
             </div>
           )}
-          {!isLoading && suggestions.length === 0 && (
+          {!isLoading && suggestions.length === 0 && appliedToneSuggestions.length === 0 && (
             <p className="py-8 text-center text-muted-foreground">
               Nenhuma sugestão por enquanto. Comece a escrever para ver a mágica
               acontecer.
+            </p>
+          )}
+          {!isLoading && suggestions.length === 0 && appliedToneSuggestions.length > 0 && (
+            <p className="py-4 text-center text-sm text-muted-foreground">
+              Todas as sugestões foram aplicadas.
             </p>
           )}
           {!isLoading && suggestions.length > 0 && (
@@ -94,6 +105,30 @@ export function SuggestionList({
                     excludedPhrases={excludedPhrasesMap[suggestion.originalText] || []}
                     onSwapAlternative={onSwapAlternative}
                   />
+              ))}
+            </div>
+          )}
+          {appliedToneSuggestions.length > 0 && (
+            <div className="mt-4 space-y-2 border-t border-border pt-4">
+              <p className="text-xs font-medium text-muted-foreground">Aplicadas recentemente:</p>
+              {appliedToneSuggestions.map((s, i) => (
+                <div
+                  key={`applied-${i}-${s.originalText}`}
+                  className="flex items-center justify-between gap-3 rounded-md border border-border/50 bg-secondary/20 px-3 py-2 text-sm"
+                >
+                  <span className="min-w-0 truncate text-muted-foreground">
+                    "<em className="text-foreground not-italic">{s.originalText}</em>" → "<em className="text-foreground not-italic">{s.correctedText}</em>"
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => onUndoAppliedTone?.(s)}
+                    className="shrink-0"
+                  >
+                    <Undo2 className="mr-1 h-3 w-3" />
+                    Desfazer
+                  </Button>
+                </div>
               ))}
             </div>
           )}

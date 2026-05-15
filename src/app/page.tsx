@@ -53,6 +53,7 @@ export default function Home() {
   const [rhyme, setRhyme] = useState<boolean>(false);
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
+  const [appliedToneSuggestions, setAppliedToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
 
@@ -481,6 +482,8 @@ export default function Home() {
           currentSuggestions.filter(s => s.originalText !== suggestionToAccept.originalText)
         );
 
+        setAppliedToneSuggestions(prev => [...prev, suggestionToAccept]);
+
         return newText;
       });
     }
@@ -564,6 +567,12 @@ export default function Home() {
       newAlternatives[alternativeIndex] = oldCorrectedText;
       return { ...s, correctedText: newCorrectedText, alternatives: newAlternatives };
     }));
+  }, []);
+
+  const handleUndoAppliedTone = useCallback((suggestionToUndo: Suggestion) => {
+    setText(prevText => prevText.replace(suggestionToUndo.correctedText, suggestionToUndo.originalText));
+    setToneSuggestions(prev => [...prev, suggestionToUndo]);
+    setAppliedToneSuggestions(prev => prev.filter(s => s.originalText !== suggestionToUndo.originalText));
   }, []);
 
   return (
@@ -711,6 +720,8 @@ export default function Home() {
               onToggleExcludedPhrase={handleToggleExcludedPhrase}
               excludedPhrasesMap={excludedPhrasesMap}
               onSwapAlternative={handleSwapAlternative}
+              appliedToneSuggestions={appliedToneSuggestions}
+              onUndoAppliedTone={handleUndoAppliedTone}
             />
           </div>
         </main>
