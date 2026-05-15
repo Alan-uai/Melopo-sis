@@ -1,6 +1,7 @@
 "use client";
 
 import { Copy, Feather, Info, Save, Trash2, Wand2 } from "lucide-react";
+import { Input } from "./ui/input";
 import {
   Card,
   CardContent,
@@ -31,6 +32,8 @@ import { cn } from "@/lib/utils";
 interface EditorProps {
   text: string;
   onTextChange: (newText: string) => void;
+  title: string;
+  onTitleChange: (title: string) => void;
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
@@ -65,6 +68,8 @@ type AnimationStage = 'beam' | 'pulse';
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
+  title,
+  onTitleChange,
   isLoading,
   tone,
   onToneChange,
@@ -273,6 +278,16 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4 flex-1 flex flex-col">
+        <div className="space-y-2">
+          <Label htmlFor="poem-title">Título do Poema</Label>
+          <Input
+            id="poem-title"
+            value={title}
+            onChange={(e) => onTitleChange(e.target.value)}
+            placeholder="Meu poema..."
+            className="w-full"
+          />
+        </div>
         <div className="grid grid-cols-2 gap-4">
            <div className="space-y-2">
             <Label htmlFor="structure-select">Estrutura do Texto</Label>

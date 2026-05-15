@@ -14,8 +14,9 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarItem, SidebarList, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
-import { LogIn, LogOut, PlusCircle, LoaderCircle } from "lucide-react";
-import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking } from '@/firebase';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog";
+import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2 } from "lucide-react";
+import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
 
 const LOCAL_STORAGE_KEY = "melopoeisis_data_v2";
 
@@ -33,10 +34,12 @@ type Poem = {
 export default function Home() {
   const [activePoem, setActivePoem] = useState<Poem | null>(null);
   const [text, setText] = useState<string>("");
+  const [title, setTitle] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const [tone, setTone] = useState<string>("Melancólico");
   const [textStructure, setTextStructure] = useState<TextStructure>("poema");
   const [rhyme, setRhyme] = useState<boolean>(false);
+  const [poemToDelete, setPoemToDelete] = useState<Poem | null>(null);
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -108,8 +111,9 @@ export default function Home() {
       try {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
-          const { text, tone, textStructure, rhyme } = JSON.parse(savedData);
+          const { text, title, tone, textStructure, rhyme } = JSON.parse(savedData);
           if (text) setText(text);
+          if (title) setTitle(title);
           if (tone) setTone(tone);
           if (textStructure) setTextStructure(textStructure);
           if (rhyme !== undefined) setRhyme(rhyme);
@@ -124,7 +128,7 @@ export default function Home() {
   useEffect(() => {
     if (isMounted && !activePoem) {
       try {
-        const dataToSave = JSON.stringify({ text, tone, textStructure, rhyme });
+        const dataToSave = JSON.stringify({ text, title, tone, textStructure, rhyme });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
@@ -135,6 +139,7 @@ export default function Home() {
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
     setText(poem.text);
+    setTitle(poem.title || "");
     setTone(poem.tone);
     setTextStructure(poem.structure);
     setRhyme(poem.rhyme);
@@ -148,6 +153,7 @@ export default function Home() {
   const handleNewPoem = () => {
     setActivePoem(null);
     setText("");
+    setTitle("");
     setTone("Melancólico");
     setTextStructure("poema");
     setRhyme(false);
@@ -270,10 +276,7 @@ export default function Home() {
       return;
     }
 
-    let poemTitle = activePoem?.title;
-    if (!poemTitle) {
-      poemTitle = text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
-    }
+    const poemTitle = title.trim() || text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
 
     const poemData = {
       title: poemTitle,
@@ -320,6 +323,20 @@ export default function Home() {
     } finally {
         setIsLoading(false);
     }
+  };
+
+  const handleDeletePoem = async () => {
+    if (!user || !firestore || !poemToDelete) return;
+    const poemRef = doc(firestore, `users/${user.uid}/poems`, poemToDelete.id);
+    deleteDocumentNonBlocking(poemRef);
+    if (activePoem?.id === poemToDelete.id) {
+      handleNewPoem();
+    }
+    setPoemToDelete(null);
+    toast({
+      title: "Poema Excluído",
+      description: `"${poemToDelete.title || 'Poema sem título'}" foi removido.`,
+    });
   };
 
   const handleCopy = () => {
@@ -498,15 +515,25 @@ export default function Home() {
               {isLoadingPoems && <p className="text-sm text-muted-foreground p-2">Carregando...</p>}
               {!isLoadingPoems && poems?.map(poem => (
                   <SidebarMenuItem key={poem.id}>
-                      <SidebarMenuButton
-                          className="w-full justify-start"
+                      <div className="group flex items-center w-full">
+                        <SidebarMenuButton
+                            className="flex-1 justify-start"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => loadPoem(poem)}
+                            isActive={activePoem?.id === poem.id}
+                        >
+                          {poem.title || "Poema sem título"}
+                        </SidebarMenuButton>
+                        <Button
                           variant="ghost"
-                          size="sm"
-                          onClick={() => loadPoem(poem)}
-                          isActive={activePoem?.id === poem.id}
-                      >
-                        {poem.title || "Poema sem título"}
-                      </SidebarMenuButton>
+                          size="icon"
+                          className="h-8 w-8 shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
+                          onClick={(e) => { e.stopPropagation(); setPoemToDelete(poem); }}
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
                   </SidebarMenuItem>
               ))}
               {!isLoadingPoems && poems?.length === 0 && (
@@ -558,6 +585,8 @@ export default function Home() {
               ref={editorRef}
               text={text}
               onTextChange={handleTextChange}
+              title={title}
+              onTitleChange={setTitle}
               isLoading={isLoading} 
               tone={tone}
               onToneChange={handleToneChange}
@@ -591,6 +620,20 @@ export default function Home() {
           </div>
         </main>
       </div>
+      <AlertDialog open={!!poemToDelete} onOpenChange={(open) => { if (!open) setPoemToDelete(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Excluir Poema</AlertDialogTitle>
+            <AlertDialogDescription>
+              Tem certeza que deseja excluir "{poemToDelete?.title || 'Poema sem título'}"? Esta ação não pode ser desfeita.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeletePoem}>Excluir</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </SidebarProvider>
   );
 }
