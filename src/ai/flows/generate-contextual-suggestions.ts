@@ -2,8 +2,9 @@
 
 import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
-import { checkText } from '@/lib/spell-checker';
-import { loadNbrRules, loadToneRules } from '@/lib/nbr-loader';
+import { loadNbrRules, loadToneRules, loadOrthographyRules, loadPunctuationRules } from '@/lib/nbr-loader';
+import type { TextStructure } from '@/lib/poetic-forms';
+import { validateAll } from '@/lib/local-validator';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
@@ -25,6 +26,12 @@ REGRAS DE LICENÇA POÉTICA:
 
 REGRAS DA ESTRUTURA "{{structure}}":
 {{{nbrRules}}}
+
+REGRAS DE PONTUAÇÃO POÉTICA:
+{{{punctuationRules}}}
+
+REGRAS DO ACORDO ORTOGRÁFICO:
+{{{orthographyRules}}}
 
 O texto a ser analisado é:
 \`\`\`
@@ -145,35 +152,19 @@ const suggestionFlow = ai.defineFlow(
 
     const nbrRules = input.nbrRules || loadNbrRules(input.structure);
     const toneRules = input.toneRules || loadToneRules(input.tone);
-    const enrichedInput = { ...input, nbrRules, toneRules };
+    const orthographyRules = input.orthographyRules || loadOrthographyRules();
+    const punctuationRules = input.punctuationRules || loadPunctuationRules();
+    const enrichedInput = { ...input, nbrRules, toneRules, orthographyRules, punctuationRules };
 
     if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
-      const localResult = await checkText(input.text);
-      if (localResult.errors.length > 0) {
-        const localSuggestions: Suggestion[] = localResult.errors.map((err) => {
-          const lines = input.text.split('\n');
-          let charCount = 0;
-          let contextLine = '';
-          for (const line of lines) {
-            if (charCount + line.length >= err.position) {
-              contextLine = line;
-              break;
-            }
-            charCount += line.length + 1;
-          }
-          return {
-            originalText: err.word,
-            correctedText: err.suggestions[0] || err.word,
-            explanation: err.suggestions.length > 0
-              ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
-              : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`,
-            type: 'grammar' as const,
-            severity: 'alta' as const,
-            context: contextLine,
-            alternatives: err.suggestions,
-          };
-        });
-        return { suggestions: localSuggestions };
+      const localResult = await validateAll(
+        input.text,
+        input.structure as TextStructure,
+        input.rhyme
+      );
+
+      if (localResult.suggestions.length > 0) {
+        return localResult;
       }
     }
 

@@ -1,3 +1,5 @@
+import { analyzeRhymeScheme, extractLastWord } from './rhyme-detector';
+
 export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo";
 
 export interface StructureValidation {
@@ -22,6 +24,231 @@ export function validateStructure(text: string, structure: TextStructure): Struc
   }
 }
 
+export function validateSyllableCount(text: string, structure: TextStructure): StructureError[] {
+  const errors: StructureError[] = [];
+  const lines = text.split('\n').filter(l => l.trim());
+
+  const expected =
+    structure === 'haicai' ? [5, 7, 5] as const :
+    structure === 'redondilha' ? null :
+    structure === 'decassilabo' ? null :
+    structure === 'soneto' ? null :
+    null;
+
+  if (expected && lines.length === 3) {
+    for (let i = 0; i < 3; i++) {
+      const syllables = countPoeticSyllables(lines[i]);
+      if (syllables !== expected[i]) {
+        errors.push({
+          line: i + 1,
+          message: `Haicai: verso ${i + 1} deveria ter ${expected[i]} sílabas poéticas. Encontradas: ${syllables}.`,
+          severity: 'media',
+        });
+      }
+    }
+    return errors;
+  }
+
+  if (structure === 'redondilha' || structure === 'soneto' || structure === 'decassilabo' || structure === 'cordel') {
+    const isCordel = structure === 'cordel';
+    const isRedondilha = structure === 'redondilha';
+    const isDecassilabo = structure === 'decassilabo' || structure === 'soneto';
+
+    const expectedSyllables = isCordel ? 7 : isRedondilha ? null : isDecassilabo ? 10 : null;
+
+    for (let i = 0; i < lines.length; i++) {
+      const syllables = countPoeticSyllables(lines[i]);
+
+      if (isRedondilha) {
+        if (syllables !== 5 && syllables !== 7) {
+          errors.push({
+            line: i + 1,
+            message: `Redondilha: verso ${i + 1} deve ter 5 (redondilha menor) ou 7 (redondilha maior) sílabas poéticas. Encontradas: ${syllables}.`,
+            severity: 'media',
+          });
+        }
+        continue;
+      }
+
+      if (expectedSyllables && syllables !== expectedSyllables) {
+        errors.push({
+          line: i + 1,
+          message: isCordel
+            ? `Cordel: verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas. Encontradas: ${syllables}.`
+            : `Verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas (${structure}). Encontradas: ${syllables}.`,
+          severity: 'media',
+        });
+      }
+    }
+  }
+
+  return errors;
+}
+
+export function validateAccentPositions(text: string, structure: TextStructure): StructureError[] {
+  const errors: StructureError[] = [];
+  if (structure !== 'decassilabo' && structure !== 'soneto') return errors;
+
+  const lines = text.split('\n').filter(l => l.trim());
+
+  if (structure === 'soneto') {
+    const stanzas = splitIntoStanzas(text);
+    const totalLines = lines.length;
+    if (totalLines !== 14) return errors;
+  }
+
+  for (let i = 0; i < lines.length; i++) {
+    const positions = getAccentPositions(lines[i]);
+    if (!positions.length) continue;
+
+    const has6 = positions.includes(6);
+    const has10 = positions.includes(10);
+
+    if (!has6 && !has10) continue;
+
+    if (structure === 'decassilabo' || structure === 'soneto') {
+      if (!has10) {
+        errors.push({
+          line: i + 1,
+          message: `Verso ${i + 1} sem acento obrigatório na 10ª sílaba poética (verso decassílabo).`,
+          severity: 'media',
+        });
+      }
+    }
+  }
+
+  return errors;
+}
+
+export function validateRhyme(text: string, structure: TextStructure, expectedRhyme: boolean): StructureError[] {
+  const errors: StructureError[] = [];
+  if (!expectedRhyme) return errors;
+
+  const poemLines = text.split('\n').filter(l => l.trim());
+  const analysis = analyzeRhymeScheme(text);
+  const stanzas = splitIntoStanzas(text);
+
+  if (structure === 'soneto') {
+    if (stanzas.length !== 4) return errors;
+
+    const q1 = stanzas[0].map(extractLastWord);
+    const q2 = stanzas[1].map(extractLastWord);
+    const t1 = stanzas[2].map(extractLastWord);
+    const t2 = stanzas[3].map(extractLastWord);
+
+    if (q1.length >= 4 && q2.length >= 4) {
+      if (q1[0] && q1[3]) {
+        const rhymeAEnding1 = getRhymeKey(q1[0]);
+        const rhymeAEnding2 = getRhymeKey(q1[3]);
+        if (getRhymeKey(q2[0]) !== rhymeAEnding1) {
+          errors.push({ line: 5, message: 'Soneto: esquema de rimas dos quartetos deve ser ABBA. O 1º verso do 2º quarteto (verso 5) deveria rimar com o 1º verso do 1º quarteto (verso 1).', severity: 'media' });
+        }
+        if (getRhymeKey(q2[3]) !== rhymeAEnding2) {
+          errors.push({ line: 8, message: 'Soneto: esquema de rimas dos quartetos deve ser ABBA. O 4º verso do 2º quarteto (verso 8) deveria rimar com o 4º verso do 1º quarteto (verso 4).', severity: 'media' });
+        }
+      }
+      if (q1[1] && q1[2]) {
+        const rhymeBEnding1 = getRhymeKey(q1[1]);
+        const rhymeBEnding2 = getRhymeKey(q1[2]);
+        if (getRhymeKey(q2[1]) !== rhymeBEnding1) {
+          errors.push({ line: 6, message: 'Soneto: o 2º verso do 2º quarteto (verso 6) deveria rimar com o 2º verso do 1º quarteto (verso 2).', severity: 'media' });
+        }
+        if (getRhymeKey(q2[2]) !== rhymeBEnding2) {
+          errors.push({ line: 7, message: 'Soneto: o 3º verso do 2º quarteto (verso 7) deveria rimar com o 3º verso do 1º quarteto (verso 3).', severity: 'media' });
+        }
+      }
+    }
+
+    if (t1.length >= 3 && t2.length >= 3) {
+      if (getRhymeKey(t1[0]) && getRhymeKey(t1[2]) && getRhymeKey(t2[1])) {
+        const cEnding = getRhymeKey(t1[0]);
+        const dEnding = getRhymeKey(t1[1] || '');
+        const c2Ending = getRhymeKey(t1[2] || '');
+
+        if (cEnding && c2Ending && cEnding !== c2Ending) {
+          errors.push({ line: poemLines.length - 5, message: `Soneto: rimas dos tercetos não correspondem. Os versos 11 (${t1[2]}) e 9 (${t1[0]}) deveriam rimar.`, severity: 'media' });
+        }
+        if (dEnding && getRhymeKey(t2[0] || '') !== dEnding) {
+          errors.push({ line: poemLines.length - 2, message: 'Soneto: esquema de rimas dos tercetos incompatível (esperado CDC DCD ou CDE CDE).', severity: 'media' });
+        }
+      }
+    }
+  }
+
+  if (structure === 'cordel' || structure === 'redondilha') {
+    for (let i = 0; i < stanzas.length; i++) {
+      const stanza = stanzas[i];
+      if (stanza.length < 2) continue;
+
+      const scheme = analysis.stanzaSchemes[i] || '';
+      const lastWords = stanza.map(extractLastWord);
+
+      if (stanza.length === 6) {
+        for (let j = 0; j < lastWords.length; j++) {
+          if ((j === 0 || j === 2 || j === 4) && lastWords[j + 1]) {
+            const a = getRhymeKey(lastWords[j]);
+            const b = getRhymeKey(lastWords[j + 1]);
+            if (a !== b) {
+              errors.push({
+                line: getGlobalLineIndex(text, i, j),
+                message: `Cordel: em sextilha, os versos ímpares (1º, 3º, 5º) devem rimar entre si, e os pares (2º, 4º, 6º) entre si.`,
+                severity: 'media',
+              });
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return errors;
+}
+
+function getRhymeKey(word: string): string {
+  const lower = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const match = lower.match(/([aeiou][^aeiou]*)$/);
+  return match ? match[1] : lower.slice(-3);
+}
+
+function getGlobalLineIndex(text: string, stanzaIdx: number, lineIdx: number): number {
+  const stanzas = splitIntoStanzas(text);
+  let global = 0;
+  for (let i = 0; i < stanzaIdx; i++) {
+    global += stanzas[i].length;
+  }
+  return global + lineIdx + 1;
+}
+
+export function validatePunctuation(text: string): StructureError[] {
+  const errors: StructureError[] = [];
+  const retRegex = /\.{2,}/g;
+  let match: RegExpExecArray | null;
+
+  while ((match = retRegex.exec(text)) !== null) {
+    if (match[0].length !== 3) {
+      errors.push({
+        message: `[PON-08] Reticências devem ter exatamente 3 pontos. Encontrados: ${match[0].length}.`,
+        severity: 'media',
+      });
+    }
+  }
+
+  const exclOpen = (text.match(/[!?]/g) || []).length;
+  const exclClose = (text.match(/[!?]/g) || []).length;
+
+  const openParens = (text.match(/\(/g) || []).length;
+  const closeParens = (text.match(/\)/g) || []).length;
+  if (openParens !== closeParens) {
+    errors.push({
+      message: `[PON-16] Parênteses desbalanceados: ${openParens} abertos, ${closeParens} fechados.`,
+      severity: 'media',
+    });
+  }
+
+  return errors;
+}
+
 function countLines(text: string): number {
   return text.split('\n').filter(l => l.trim()).length;
 }
@@ -32,7 +259,8 @@ function validateSoneto(text: string): StructureValidation {
 
   if (lines.length !== 14) {
     errors.push({
-      message: `Soneto deve ter 14 versos. Encontrados: ${lines.length}.`,
+      line: 1,
+      message: `[SON-01] Soneto deve ter 14 versos. Encontrados: ${lines.length}.`,
       severity: 'alta',
     });
   }
@@ -41,19 +269,22 @@ function validateSoneto(text: string): StructureValidation {
   if (stanzas.length > 0) {
     if (stanzas.length !== 4) {
       errors.push({
-        message: `Soneto deve ter 4 estrofes (2 quartetos + 2 tercetos). Encontradas: ${stanzas.length}.`,
+        line: 1,
+        message: `[SON-02] Soneto deve ter 4 estrofes (2 quartetos + 2 tercetos). Encontradas: ${stanzas.length}.`,
         severity: 'alta',
       });
     } else {
       if (stanzas[0].length !== 4 || stanzas[1].length !== 4) {
         errors.push({
-          message: 'As duas primeiras estrofes do soneto devem ser quartetos (4 versos cada).',
+          line: 1,
+          message: `[SON-02] As duas primeiras estrofes do soneto devem ser quartetos (4 versos cada). Estrofe 1: ${stanzas[0].length}, Estrofe 2: ${stanzas[1].length}.`,
           severity: 'alta',
         });
       }
       if (stanzas[2].length !== 3 || stanzas[3].length !== 3) {
         errors.push({
-          message: 'As duas últimas estrofes do soneto devem ser tercetos (3 versos cada).',
+          line: stanzas[0].length + stanzas[1].length + 1,
+          message: `[SON-02] As duas últimas estrofes do soneto devem ser tercetos (3 versos cada). Estrofe 3: ${stanzas[2].length}, Estrofe 4: ${stanzas[3].length}.`,
           severity: 'alta',
         });
       }
@@ -69,6 +300,7 @@ function validateHaicai(text: string): StructureValidation {
 
   if (lines.length !== 3) {
     errors.push({
+      line: 1,
       message: `Haicai deve ter exatamente 3 versos. Encontrados: ${lines.length}.`,
       severity: 'alta',
     });
@@ -82,9 +314,10 @@ function validateCordel(text: string): StructureValidation {
   const stanzas = splitIntoStanzas(text);
 
   for (let i = 0; i < stanzas.length; i++) {
-    if (stanzas[i].length !== 6 && stanzas[i].length !== 7) {
+    if (stanzas[i].length !== 6 && stanzas[i].length !== 7 && stanzas[i].length !== 10) {
       errors.push({
-        message: `Estrofe ${i + 1} deve ter 6 (sextilha) ou 7 (setilha) versos. Encontrados: ${stanzas[i].length}.`,
+        line: 1,
+        message: `Cordel: estrofe ${i + 1} deve ter 6 (sextilha), 7 (septilha) ou 10 (décima) versos. Encontrados: ${stanzas[i].length}.`,
         severity: 'media',
       });
     }
@@ -103,7 +336,8 @@ function validateRedondilha(text: string): StructureValidation {
   for (let i = 0; i < stanzas.length; i++) {
     if (stanzas[i].length < 4 || stanzas[i].length > 8) {
       errors.push({
-        message: `Estrofe ${i + 1} deve ter entre 4 e 8 versos na redondilha. Encontrados: ${stanzas[i].length}.`,
+        line: 1,
+        message: `Redondilha: estrofe ${i + 1} deve ter entre 4 e 8 versos. Encontrados: ${stanzas[i].length}.`,
         severity: 'media',
       });
     }
@@ -115,6 +349,17 @@ function validateRedondilha(text: string): StructureValidation {
 function validateDecassilabo(text: string): StructureValidation {
   const errors: StructureError[] = [];
   const lines = text.split('\n').filter(l => l.trim());
+
+  for (let i = 0; i < lines.length; i++) {
+    const syllables = countPoeticSyllables(lines[i]);
+    if (syllables !== 10 && syllables > 0) {
+      errors.push({
+        line: i + 1,
+        message: `Decassílabo: verso ${i + 1} deve ter 10 sílabas poéticas. Encontradas: ${syllables}.`,
+        severity: 'media',
+      });
+    }
+  }
 
   return { valid: errors.length === 0, errors };
 }
@@ -166,4 +411,68 @@ function countVowelGroups(word: string): number {
   if (!word) return 0;
   const groups = word.match(/[aeiouáàâãéèêíïóôõöúç]+/gi);
   return groups ? groups.length : 0;
+}
+
+function getAccentPositions(line: string): number[] {
+  const syllables = countPoeticSyllables(line);
+  if (syllables !== 10) return [];
+
+  const positions: number[] = [];
+  const cleaned = line
+    .toLowerCase()
+    .replace(/[^a-záàâãéèêíïóôõöúçñü\s]/g, '')
+    .trim();
+
+  const words = cleaned.split(/\s+/);
+
+  let wordStart = 1;
+  for (const word of words) {
+    const vowelCount = countVowelGroups(word);
+    const stressPos = findStressInWord(word);
+
+    if (stressPos !== -1) {
+      const absolutePos = wordStart + stressPos;
+      if (absolutePos <= syllables) {
+        positions.push(absolutePos);
+      }
+    }
+
+    wordStart += vowelCount;
+
+    if (word !== words[words.length - 1]) {
+      const nextWord = words[words.indexOf(word) + 1];
+      if (nextWord) {
+        const lastVowel = word.match(/[aeiouáàâãéèêíïóôõöú]+$/i);
+        const firstVowel = nextWord.match(/^[aeiouáàâãéèêíïóôõöúh]/i);
+        if (lastVowel && firstVowel) {
+          wordStart--;
+        }
+      }
+    }
+  }
+
+  return positions;
+}
+
+function findStressInWord(word: string): number {
+  const acutePattern = /[áàâãéèêíïóôõöú]/;
+  const match = word.match(acutePattern);
+  if (match) {
+    const vowelGroupBefore = word.slice(0, match.index).match(/[aeiou]+/gi);
+    const vowelGroupsBefore = vowelGroupBefore ? vowelGroupBefore.join('').length : 0;
+    return vowelGroupsBefore;
+  }
+
+  const vowelGroups = word.match(/[aeiou]+/gi);
+  if (!vowelGroups || vowelGroups.length === 0) return -1;
+
+  if (word.endsWith('r') || word.endsWith('s') || word.endsWith('l') || word.endsWith('z')) {
+    return vowelGroups.slice(0, -1).join('').length;
+  }
+
+  if (word.endsWith('am') || word.endsWith('em')) {
+    return vowelGroups.slice(0, -1).join('').length;
+  }
+
+  return vowelGroups.slice(0, -1).join('').length;
 }

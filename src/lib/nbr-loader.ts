@@ -15,6 +15,27 @@ const STRUCTURE_FILE_MAP: Record<string, string> = {
 
 const MAX_NBR_LENGTH = 6000;
 
+export function loadOrthographyRules(): string {
+  return loadRawDoc('acordo-ortografico.txt');
+}
+
+export function loadPunctuationRules(): string {
+  return loadRawDoc('pontuacao-poetica.txt');
+}
+
+function loadRawDoc(filename: string): string {
+  const filePath = join(NBR_DIR, filename);
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    if (content.length > MAX_NBR_LENGTH) {
+      return content.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)';
+    }
+    return content;
+  } catch {
+    return '';
+  }
+}
+
 export function loadNbrRules(structure: string): string {
   const filename = STRUCTURE_FILE_MAP[structure];
   if (!filename) {
