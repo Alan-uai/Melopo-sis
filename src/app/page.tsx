@@ -14,8 +14,19 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarItem, SidebarList, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
-import { LogIn, LogOut, PlusCircle, LoaderCircle } from "lucide-react";
-import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking } from '@/firebase';
+import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2 } from "lucide-react";
+import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const LOCAL_STORAGE_KEY = "melopoeisis_data_v2";
 
@@ -35,6 +46,7 @@ const GRADUAL_DEBOUNCE_MS = 800;
 export default function Home() {
   const [activePoem, setActivePoem] = useState<Poem | null>(null);
   const [text, setText] = useState<string>("");
+  const [poemTitle, setPoemTitle] = useState<string>("");
   const [isMounted, setIsMounted] = useState(false);
   const [tone, setTone] = useState<string>("Melancólico");
   const [textStructure, setTextStructure] = useState<TextStructure>("poema");
@@ -112,11 +124,12 @@ export default function Home() {
       try {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
-          const { text, tone, textStructure, rhyme } = JSON.parse(savedData);
+          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme } = JSON.parse(savedData);
           if (text) setText(text);
-          if (tone) setTone(tone);
-          if (textStructure) setTextStructure(textStructure as TextStructure);
-          if (rhyme !== undefined) setRhyme(rhyme);
+          if (title !== undefined) setPoemTitle(title);
+          if (savedTone) setTone(savedTone);
+          if (savedStructure) setTextStructure(savedStructure as TextStructure);
+          if (savedRhyme !== undefined) setRhyme(savedRhyme);
         }
       } catch (error) {
         console.error("Falha ao ler do localStorage", error);
@@ -128,17 +141,18 @@ export default function Home() {
   useEffect(() => {
     if (isMounted && !activePoem) {
       try {
-        const dataToSave = JSON.stringify({ text, tone, textStructure, rhyme });
+        const dataToSave = JSON.stringify({ text, title: poemTitle, tone, textStructure, rhyme });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
       }
     }
-  }, [text, tone, textStructure, rhyme, isMounted, activePoem]);
+  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem]);
 
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
     setText(poem.text);
+    setPoemTitle(poem.title || "");
     setTone(poem.tone);
     setTextStructure(poem.structure);
     setRhyme(poem.rhyme);
@@ -152,11 +166,25 @@ export default function Home() {
   const handleNewPoem = () => {
     setActivePoem(null);
     setText("");
+    setPoemTitle("");
     setTone("Melancólico");
     setTextStructure("poema");
     setRhyme(false);
     resetSuggestions();
     editorRef.current?.focus();
+  };
+
+  const handleDeletePoem = async (poemId: string) => {
+    if (!firestore || !user) return;
+    const poemRef = doc(firestore, `users/${user.uid}/poems`, poemId);
+    deleteDocumentNonBlocking(poemRef);
+    if (activePoem?.id === poemId) {
+      handleNewPoem();
+    }
+    toast({
+      title: "Poema Removido",
+      description: "O poema foi excluído permanentemente.",
+    });
   };
 
   const generateSuggestions = useCallback(async (
@@ -178,7 +206,7 @@ export default function Home() {
       if (text !== currentText) {
         toast({
           title: "Texto alterado",
-          description: "Você continuou a escrever. As sugestões foram descartadas. Clique para gerar novamente quando estiver pronto.",
+          description: "Você continuou a escrever. As sugestões foram descartadas.",
         });
         setIsLoading(false);
         return;
@@ -187,22 +215,23 @@ export default function Home() {
       if (suggestionType === 'grammar') {
         setGrammarSuggestions(result.suggestions);
         setToneSuggestions([]);
+        setCurrentSuggestionIndex(null);
         if (result.suggestions.length > 0) {
           setCurrentSuggestionIndex(0);
           toast({
-            title: "Correções Gramaticais Encontradas",
-            description: `Encontramos ${result.suggestions.length} correções. Siga o guia para revisá-las.`,
+            title: "Correções Ortográficas Encontradas",
+            description: `Encontramos ${result.suggestions.length} correções.`,
           });
         } else {
-            toast({
-              title: "Nenhuma Correção Gramatical Necessária",
-              description: "Seu texto parece gramaticalmente correto. Buscando sugestões de estilo...",
-            });
-            await generateSuggestions('tone');
-            return;
+          toast({
+            title: "Nenhum Erro Ortográfico",
+            description: "Seu texto parece correto.",
+          });
         }
-      } else { // tone
+      } else {
         setToneSuggestions(result.suggestions);
+        setGrammarSuggestions([]);
+        setCurrentSuggestionIndex(null);
         if (result.suggestions.length > 0) {
           toast({
             title: "Sugestões de Tom e Estilo",
@@ -210,7 +239,7 @@ export default function Home() {
           });
         } else {
           toast({
-            title: "Nenhuma Sugestão de Estilo Encontrada",
+            title: "Nenhuma Sugestão de Estilo",
             description: "Seu texto parece ótimo!",
           });
         }
@@ -227,14 +256,20 @@ export default function Home() {
     }
   }, [text, tone, textStructure, rhyme, toast]);
 
-  const handleGenerateSuggestions = async () => {
+  const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
-
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
-
     await generateSuggestions('grammar');
+  };
+
+  const handleSuggestTone = async () => {
+    if (!text.trim() || isLoading) return;
+    setGrammarSuggestions([]);
+    setToneSuggestions([]);
+    setCurrentSuggestionIndex(null);
+    await generateSuggestions('tone');
   };
 
   const resetSuggestions = () => {
@@ -297,8 +332,6 @@ export default function Home() {
     });
   }, [grammarSuggestions, text, currentSuggestionIndex, toast]);
 
-  const resetSuggestionsFn = resetSuggestions;
-
   const handleClear = () => {
     handleNewPoem();
     toast({
@@ -326,13 +359,10 @@ export default function Home() {
       return;
     }
 
-    let poemTitle = activePoem?.title;
-    if (!poemTitle) {
-      poemTitle = text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
-    }
+    const finalTitle = poemTitle.trim() || text.split('\n')[0].trim().substring(0, 50) || "Poema sem título";
 
     const poemData = {
-      title: poemTitle,
+      title: finalTitle,
       text: text,
       tone: tone,
       structure: textStructure,
@@ -347,9 +377,10 @@ export default function Home() {
         if (!firestore) return;
         const poemRef = doc(firestore, `users/${user.uid}/poems`, activePoem.id);
         updateDocumentNonBlocking(poemRef, poemData);
+        setActivePoem(prev => prev ? { ...prev, title: finalTitle } : null);
         toast({
           title: "Poema Atualizado!",
-          description: `"${poemTitle}" foi atualizado com sucesso.`,
+          description: `"${finalTitle}" foi atualizado com sucesso.`,
         });
       } else {
         const docRef = await addDocumentNonBlocking(poemsCollection, {
@@ -361,7 +392,7 @@ export default function Home() {
         }
         toast({
           title: "Poema Salvo!",
-          description: `"${poemTitle}" foi salvo em sua coleção.`,
+          description: `"${finalTitle}" foi salvo em sua coleção.`,
         });
       }
     } catch (error: any) {
@@ -377,11 +408,14 @@ export default function Home() {
   };
 
   const handleCopy = () => {
-    if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
+    if (!text && !poemTitle) return;
+    const copyContent = poemTitle.trim()
+      ? `${poemTitle}\n\n${text}`
+      : text;
+    navigator.clipboard.writeText(copyContent).then(() => {
       toast({
         title: "Texto Copiado!",
-        description: "O conteúdo do poema foi copiado para a área de transferência.",
+        description: "O título e o poema foram copiados para a área de transferência.",
       });
     }).catch(err => {
       console.error('Failed to copy text: ', err);
@@ -417,27 +451,14 @@ export default function Home() {
     handleConfigChange();
   };
 
-  const advanceToNextSuggestion = useCallback(async () => {
+  const advanceToNextSuggestion = useCallback(() => {
     if (currentSuggestionIndex !== null && currentSuggestionIndex < grammarSuggestions.length - 1) {
       setCurrentSuggestionIndex(currentSuggestionIndex + 1);
     } else {
       setCurrentSuggestionIndex(null);
       setGrammarSuggestions([]);
-
-      if (grammarSuggestions.length > 0) {
-        toast({
-            title: "Correções Gramaticais Concluídas!",
-            description: "Buscando sugestões de estilo para o texto corrigido...",
-        });
-        setIsLoading(true);
-        try {
-          await generateSuggestions('tone');
-        } finally {
-          setIsLoading(false);
-        }
-      }
     }
-  }, [currentSuggestionIndex, grammarSuggestions, generateSuggestions, toast]);
+  }, [currentSuggestionIndex, grammarSuggestions]);
 
   const applyCorrection = useCallback((originalText: string, correctedText: string) => {
     setText(prevText => {
@@ -545,13 +566,45 @@ export default function Home() {
               {isLoadingPoems && <p className="text-sm text-muted-foreground p-2">Carregando...</p>}
               {!isLoadingPoems && poems?.map(poem => (
                   <SidebarMenuItem key={poem.id}>
+                    <div className="flex items-center w-full gap-1">
                       <SidebarMenuButton
-                          className="w-full justify-start"
+                          className="flex-1 justify-start truncate"
                           onClick={() => loadPoem(poem)}
                           isActive={activePoem?.id === poem.id}
                       >
                         {poem.title || "Poema sem título"}
                       </SidebarMenuButton>
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8 flex-shrink-0 text-muted-foreground hover:text-destructive"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            <span className="sr-only">Excluir</span>
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Excluir poema</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              Tem certeza que deseja excluir "{poem.title || 'Poema sem título'}"?
+                              Esta ação não pode ser desfeita.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                            <AlertDialogAction
+                              onClick={() => handleDeletePoem(poem.id)}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              Excluir
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
                   </SidebarMenuItem>
               ))}
               {!isLoadingPoems && poems?.length === 0 && (
@@ -603,6 +656,8 @@ export default function Home() {
               ref={editorRef}
               text={text}
               onTextChange={handleTextChange}
+              title={poemTitle}
+              onTitleChange={setPoemTitle}
               isLoading={isLoading}
               tone={tone}
               onToneChange={handleToneChange}
@@ -617,7 +672,8 @@ export default function Home() {
               onResuggest={handleResuggest}
               suggestionMode={suggestionMode}
               onSuggestionModeChange={handleSuggestionModeChange}
-              onFinalSuggestion={handleGenerateSuggestions}
+              onCheckSpelling={handleCheckSpelling}
+              onSuggestTone={handleSuggestTone}
               onClear={handleClear}
               onCopy={handleCopy}
               onSavePoem={handleSavePoem}

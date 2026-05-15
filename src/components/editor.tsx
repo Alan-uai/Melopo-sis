@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck } from "lucide-react";
+import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -22,14 +22,18 @@ import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, u
 import { Textarea } from "./ui/textarea";
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "./ui/checkbox";
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
 import { cn } from "@/lib/utils";
+
 interface EditorProps {
   text: string;
   onTextChange: (newText: string) => void;
+  title: string;
+  onTitleChange: (newTitle: string) => void;
   isLoading: boolean;
   tone: string;
   onToneChange: (newTone: string) => void;
@@ -44,7 +48,8 @@ interface EditorProps {
   onResuggest: (suggestion: Suggestion) => void;
   suggestionMode: SuggestionMode;
   onSuggestionModeChange: (mode: SuggestionMode) => void;
-  onFinalSuggestion: () => void;
+  onCheckSpelling: () => void;
+  onSuggestTone: () => void;
   onClear: () => void;
   onCopy: () => void;
   onSavePoem: () => void;
@@ -63,9 +68,17 @@ export interface EditorRef {
 type AnimationState = 'idle' | 'generating' | 'correcting' | 'finishing';
 type AnimationStage = 'beam' | 'pulse';
 
+const TONES = [
+  "Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio",
+  "Saudoso", "Épico", "Lírico", "Satírico", "Filosófico",
+  "Intimista", "Nostálgico", "Visionário", "Conciso",
+];
+
 export const Editor = forwardRef<EditorRef, EditorProps>(({
   text,
   onTextChange,
+  title,
+  onTitleChange,
   isLoading,
   tone,
   onToneChange,
@@ -80,7 +93,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onResuggest,
   suggestionMode,
   onSuggestionModeChange,
-  onFinalSuggestion,
+  onCheckSpelling,
+  onSuggestTone,
   onClear,
   onCopy,
   onSavePoem,
@@ -89,7 +103,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onAcceptAllLowSeverity,
   lowSeverityCount,
 }, ref) => {
-  const tones = ["Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio"];
   const structures: { value: TextStructure, label: string }[] = [
     { value: 'poema', label: 'Poema' },
     { value: 'poesia', label: 'Poesia' },
@@ -172,9 +185,11 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   };
 
-  const handleFinalSuggestion = () => {
-    setAnimationState('idle');
-    onFinalSuggestion();
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      textareaRef.current?.focus();
+    }
   };
 
   const editorContent = useMemo(() => {
@@ -219,14 +234,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const isFinishingBeam = animationState === 'finishing' && animationStage === 'beam';
   const isFinishingPulse = animationState === 'finishing' && animationStage === 'pulse';
 
-  const severityColor = (severity?: string) => {
-    switch (severity) {
-      case 'alta': return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200';
-      case 'media': return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200';
-      case 'baixa': return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
-      default: return 'bg-gray-100 text-gray-800';
-    }
-  };
+  const hasText = text.trim().length > 0;
 
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
@@ -255,7 +263,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onCopy} disabled={!text}>
+                        <Button variant="ghost" size="icon" onClick={onCopy} disabled={!hasText && !title}>
                             <Copy className="h-4 w-4" />
                             <span className="sr-only">Copiar Texto</span>
                         </Button>
@@ -266,7 +274,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onClear} disabled={!text}>
+                        <Button variant="ghost" size="icon" onClick={onClear} disabled={!hasText}>
                             <Trash2 className="h-4 w-4" />
                             <span className="sr-only">Limpar Editor</span>
                         </Button>
@@ -307,7 +315,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 <SelectValue placeholder="Selecione um tom" />
               </SelectTrigger>
               <SelectContent>
-                {tones.map((t) => (
+                {TONES.map((t) => (
                   <SelectItem key={t} value={t}>
                     {t}
                   </SelectItem>
@@ -350,7 +358,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                     <p className="text-sm text-muted-foreground">
                       <b>Modo Gradual:</b> Sugestões aparecem automaticamente enquanto você escreve (com pausa).
                       <br />
-                      <b>Modo Final:</b> Clique no botão "Gerar Sugestões" para analisar o texto completo.
+                      <b>Modo Final:</b> Clique nos botões abaixo para analisar o texto completo.
                     </p>
                   </div>
                 </div>
@@ -384,7 +392,19 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             )}/>
           </div>
 
-          <Popover open={!!activeGrammarSuggestion} onOpenChange={() => {}}>
+          <div className="flex flex-col flex-1">
+            <div className="border-b border-border/40 px-4 pt-3 pb-2">
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => onTitleChange(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Título do poema..."
+                className="w-full bg-transparent font-headline text-xl font-semibold leading-tight text-foreground placeholder:text-muted-foreground/50 outline-none border-none"
+              />
+            </div>
+
+            <Popover open={!!activeGrammarSuggestion} onOpenChange={() => {}}>
               <div className="relative grid flex-1">
                   <Textarea
                       ref={textareaRef}
@@ -412,12 +432,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                   onResuggest={() => onResuggest(activeGrammarSuggestion)}
                 />
               )}
-          </Popover>
+            </Popover>
+          </div>
        </div>
 
         {suggestionMode === "final" && (
-          <div className="flex justify-between items-center pt-4">
-            <div className="flex gap-2">
+          <div className="flex flex-col gap-2 pt-4">
+            <div className="flex justify-start">
               {onAcceptAllLowSeverity && (lowSeverityCount ?? 0) > 0 && (
                 <Button
                   variant="outline"
@@ -431,10 +452,26 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 </Button>
               )}
             </div>
-            <Button onClick={handleFinalSuggestion} disabled={isLoading || text.trim().length === 0}>
-              <Wand2 className="mr-2 h-4 w-4" />
-              {isLoading ? "Analisando..." : "Gerar Sugestões"}
-            </Button>
+            <div className="flex justify-end gap-2">
+              <Button
+                variant="default"
+                onClick={onCheckSpelling}
+                disabled={isLoading || !hasText}
+                className="flex items-center gap-1.5"
+              >
+                <Wand2 className="h-4 w-4" />
+                {isLoading ? "Analisando..." : "Corrigir Ortografia"}
+              </Button>
+              <Button
+                variant="secondary"
+                onClick={onSuggestTone}
+                disabled={isLoading || !hasText}
+                className="flex items-center gap-1.5"
+              >
+                <Lightbulb className="h-4 w-4" />
+                Sugerir Tom
+              </Button>
+            </div>
           </div>
         )}
       </CardContent>
