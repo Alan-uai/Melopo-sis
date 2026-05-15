@@ -24,6 +24,7 @@ export const SuggestionInputSchema = z.object({
     suggestions: z.array(z.string()),
   })).optional().describe('Erros ortográficos detectados localmente antes da chamada à IA.'),
   nbrRules: z.string().optional().describe('Regras NBR carregadas do documento correspondente à estrutura.'),
+  toneRules: z.string().optional().describe('Regras de tom poético carregadas do documento de tom.'),
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
 

@@ -38,6 +38,55 @@ export function loadNbrRules(structure: string): string {
   }
 }
 
+export function loadToneRules(tone: string): string {
+  const filePath = join(NBR_DIR, 'tom.txt');
+
+  try {
+    const content = readFileSync(filePath, 'utf-8');
+    const lines = content.split('\n');
+    const sectionKey = tone.toUpperCase().trim();
+
+    const sectionLines: string[] = [];
+    let inSection = false;
+    let afterSeparator = false;
+
+    for (const line of lines) {
+      const trimmed = line.trimEnd();
+
+      if (line.startsWith('=') && line.length > 10) {
+        if (inSection) {
+          break;
+        }
+        if (afterSeparator) {
+          inSection = true;
+        }
+        continue;
+      }
+
+      if (!inSection && trimmed === sectionKey) {
+        afterSeparator = true;
+        continue;
+      }
+
+      if (inSection) {
+        sectionLines.push(line);
+      }
+    }
+
+    if (sectionLines.length === 0) return '';
+
+    const result = sectionLines.join('\n').trim();
+
+    if (result.length > MAX_NBR_LENGTH) {
+      return result.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)';
+    }
+
+    return result;
+  } catch {
+    return '';
+  }
+}
+
 function extractRelevantSections(lines: string[]): string {
   const result: string[] = [];
   let inHeader = true;

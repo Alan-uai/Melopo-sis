@@ -8,11 +8,12 @@
 | `npm run typecheck` | `tsc --noEmit` (separate from build) |
 | `npm run test` | `vitest run` — tests in `src/**/*.test.ts` |
 | `npm run test:watch` | `vitest` (watch mode) |
-| `npm run build` | `NODE_ENV=production next build` — **TS errors ignored** (`typescript.ignoreBuildErrors: true`) |
+| `npm run build` | `NODE_ENV=production next build` — TS errors ignored (`typescript.ignoreBuildErrors: true`) |
 | `npm run genkit:dev` | `genkit start -- tsx src/ai/dev.ts` |
+| `npm run genkit:watch` | same with `--watch` for hot-reload |
 | `npm run lint` | **Not configured** — placeholder echo only |
 
-Order: `typecheck -> test` (no lint, no build needed for dev).
+Order: `typecheck -> test`. No lint, no build needed for dev.
 
 ## Stack
 
@@ -20,19 +21,19 @@ Order: `typecheck -> test` (no lint, no build needed for dev).
 - **Tailwind CSS v4** — no `tailwind.config.ts`; config in `src/app/globals.css` via `@import "tailwindcss"` + `@theme {}` blocks
 - **shadcn/ui** — Radix primitives, `components.json` at root, icons from `lucide-react`
 - **Firebase** — Auth (Google) + Firestore. Init in `src/firebase/index.ts`: tries App Hosting env vars first, falls back to hardcoded `firebaseConfig`. **Never modify `initializeFirebase`**.
-- **Genkit AI** — `googleai/gemini-2.5-flash`, prompt flows in `src/ai/flows/`. Requires `GOOGLE_GENAI_API_KEY` in `.env`.
-- **Vitest** — `environment: 'node'` (no jsdom). Mock `@/lib/dictionary` in tests.
-- **nspell + Hunspell (dictionary-pt + suplemento VOLP/ABL)** — local spell check via `src/lib/dictionary.ts` + `src/lib/spell-checker.ts`. Usa `nspell` com o `.dic` e `.aff` do VERO (via `dictionary-pt@4.0.0`) + suplemento de ~561k palavras do VOLP (ABL) e fserb/pt-br.
+- **Genkit AI** — `googleai/gemini-2.5-flash`, prompt flows in `src/ai/flows/`. Requires `GOOGLE_GENAI_API_KEY` in `.env` (file is gitignored — create it).
+- **Vitest** — `environment: 'node'` (no jsdom). `spell-checker.test.ts` mocks `@/lib/dictionary`; `dictionary-integration.test.ts` uses the real module.
+- **Custom Portuguese dictionary** — ~561k words from `src/lib/supplement-words.txt` (VOLP/ABL + fserb/pt-br corpus) loaded at runtime via `src/lib/dictionary.ts`. Morphological analysis handles conjugations, plurals, feminine forms, adverbs in `-mente`, diminutives/augmentatives, and superlatives. No Hunspell or nspell involved despite unused `hunspell-spellchecker` and `dictionary-pt-br` deps. Run `npx tsx scripts/test-dictionary.ts` to verify the word set.
 
 ## Architecture notes
 
 - Path alias `@/*` → `./src/*`
 - Dark mode enforced: `<html lang="pt-BR" className="dark">` — no toggle
-- Firestore structure: `/users/{userId}` and `/users/{userId}/poems/{poemId}` (see `docs/backend.json` and `firestore.rules`)
-- Two suggestion modes: "gradual" (debounced auto-check on typing) and "final" (manual buttons)
-- AI flow (`src/ai/flows/generate-contextual-suggestions.ts`) is a `'use server'` module — both grammar and tone prompts feed through the same `suggestionFlow`
-- Local check + AI check: grammar errors first checked against `dictionary-pt` (VERO) + suplemento VOLP via nspell; if found, returned immediately without calling AI. AI is only called when local check passes (or for tone suggestions).
-- `docs/blueprint.md` — product design doc (features, color scheme, fonts)
+- Firestore: `/users/{userId}` and `/users/{userId}/poems/{poemId}` (see `docs/backend.json` and `firestore.rules`)
+- Two suggestion modes: `"gradual"` (debounced auto-check on typing) and `"final"` (manual buttons) — see `SuggestionMode` type in `src/ai/types.ts`
+- AI flow (`src/ai/flows/generate-contextual-suggestions.ts`) is a `'use server'` module — grammar + tone prompts through the same `suggestionFlow`
+- Local check + AI check order: grammar errors checked against custom dictionary first; if found, returned immediately without calling AI. AI only called when local check passes (or for tone suggestions).
+- `docs/nbr/` — NBR rule files per poetic structure (`soneto.txt`, `haicai.txt`, etc.), tone rules (`tom.txt`), orthographic agreement (`acordo-ortografico.txt`), and poetic punctuation (`pontuacao-poetica.txt`). Loaded at runtime by `src/lib/nbr-loader.ts`.
 - No CI workflows, no pre-commit hooks, no ESLint
 
 ## Conventions
@@ -40,4 +41,4 @@ Order: `typecheck -> test` (no lint, no build needed for dev).
 - UI labels in Brazilian Portuguese (`pt-BR`)
 - Font: Literata (Google Fonts) via `next/font/google`, applied as `--font-literata` CSS variable
 - Colors: CSS custom properties in `globals.css` under `:root` and `.dark` — do NOT use Tailwind color names directly
-- No server-side data fetching patterns — this is a client-heavy SPA
+- No server-side data fetching — client-heavy SPA with Firebase client SDK

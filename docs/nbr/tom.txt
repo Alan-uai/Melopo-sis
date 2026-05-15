@@ -1,0 +1,515 @@
+# Tom Poético — Guia Completo de Estilo e Tom
+# Fontes verificadas: Brasil Escola (https://brasilescola.uol.com.br/literatura)
+# Toda Matéria (https://www.todamateria.com.br/literatura)
+# Mundo Educação (https://mundoeducacao.uol.com.br/literatura)
+# Academia Brasileira de Letras (https://www.academia.org.br)
+# Obras de referência: Eu e Outras Poesias (Augusto dos Anjos), Poesias (Álvares de Azevedo),
+# Marília de Dirceu (Tomás Antônio Gonzaga), Poemas Escolhidos (Gregório de Matos),
+# A Rosa do Povo (Drummond), Romanceiro da Inconfidência (Cecília Meireles),
+# Os Lusíadas (Camões), Novas Poesias (Vinicius de Moraes), Eu (Pessoa),
+# Poemas (João Cabral de Melo Neto), Hilda Hilst (Do Desejo)
+# Data: 2026-05-15
+
+================================================================================
+MELANCÓLICO
+================================================================================
+
+## [TOM-001] Vocabulário da melancolia — escolha lexical soturna
+Fonte: Augusto dos Anjos, "Eu" (1912); Álvares de Azevedo, "Lira dos Vinte Anos"; Mundo Educação
+Descrição: Tom melancólico exige vocabulário que evoca finitude, ausência e vazio: treva, luto, silêncio, pranto, sombra, cinza, efêmero, ruína, mágoa, saudade, pesar, ermo, langor. Preferir substantivos abstratos a concretos. Evitar adjetivos genéricos como "triste" — substituir por termos que criem imagem ("soturno", "lívido", "funéreo", "morno", "opaco").
+❌ Errado: "Estou triste porque a vida é dura e sofro muito"
+✅ Correto: "Desce a treva, e no peito um vazio profundo / como a cinza que sobra do que já foi mundo"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-002] Imagens da melancolia — crepúsculo, ruínas, espelhos, névoa
+Fonte: Análise da poesia simbolista e ultrarromântica; Casimiro de Abreu; Baudelaire
+Descrição: Usar imagens de declínio e dissolução: entardecer, outono, folhas secas, névoa, chuva fina, quarto vazio, candeia moribunda, espelho embaçado, retrato antigo. Criar correlação entre paisagem externa e estado interno (paisagem de alma). Evitar imagens solares ou plenas.
+❌ Errado: "O sol brilhava forte no céu azul"
+✅ Correto: "A névoa entre os galhos desfeitos / velava o que resta do dia"
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-003] Figuras da melancolia — antítese, sinestesia, hipérbato
+Fonte: Análise estilística de Álvares de Azevedo; Alfredo Bosi, "História Concisa da Literatura Brasileira"
+Descrição: Antíteses que opõem passado/presente, vida/morte, luz/sombra. Sinestesias que cruzam sentidos (visão + tato: "luz fria"; audição + visão: "silêncio escuro"). Hipérbatos que arrastam a sintaxe, simulando o pesar. Evitar antíteses previsíveis demais (amor/dor) — preferir contrastes originais.
+❌ Errado: "Era feliz, agora sou infeliz" (antítese previsível)
+✅ Correto: "Tive jardins, tenho pátios de silêncio" (antítese concreta e original)
+Severidade: baixa
+Categoria: tom — figuras
+
+## [TOM-004] Ritmo da melancolia — versos longos, cesuras, encavalgamento
+Fonte: Análise métrica de Augusto dos Anjos, "Monólogo de uma Sombra"
+Descrição: Versos decassílabos ou alexandrinos arrastados, com cesuras que criam pausas de pesar. Encavalgamento (enjambement) para sugerir continuidade da dor. Preferir ritmo lento com muitas sílabas átonas entre os acentos. Evitar versos curtos e ritmo acelerado.
+❌ Errado: "Triste estou / Sem amor / Tudo é dor" (curto e acelerado demais)
+✅ Correto: "Despenca a noite sobre o vale, e o vento / arrasta folhas — que também sou eu, / disperso, vão, matéria de lamento"
+Severidade: baixa
+Categoria: tom — ritmo
+
+## [TOM-005] Anti-padrões melancolia — melodrama, autocomiseração, clichês saudosistas
+Fonte: Crítica literária (Bosi); análise de lugares-comuns na poesia amadora
+Descrição: Evitar autocomiseração explícita ("coitado de mim"), choro fácil ("lágrimas de crocodilo"), clichês saudosistas ("saudades do tempo que não volta mais"), personificação piegas da dor ("a dor bateu à minha porta"). A melancolia eficaz contém, não extravasa — a contenção gera mais impacto que o transbordamento. O sofrimento deve ser sugerido, não declarado.
+❌ Errado: "Ah, meu Deus, como sou infeliz, que dor imensa sinto!"
+✅ Correto: "Aperto ao peito o vazio que ficou — e ele tem o peso de tudo que se perdeu."
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+ROMÂNTICO
+================================================================================
+
+## [TOM-006] Vocabulário romântico — idealização, êxtase, natureza
+Fonte: Poesia romântica brasileira (Gonçalves Dias, Casimiro de Abreu); Toda Matéria
+Descrição: Tom romântico usa léxico da idealização: sonho, etéreo, divino, sublime, ternura, êxtase, desejo, olhar, céu, flor, luz, ninho, abrigo. Exaltação da natureza como refúgio e espelho do amor. Substantivos acompanhados de adjetivos valorativos (belo, doce, meigo, puro, casto). Evitar concretude excessiva ou linguagem prosaica.
+❌ Errado: "Gosto de você porque me faz bem e eu quero te beijar"
+✅ Correto: "Teu nome é flor que não se murcha ao vento / e arde em mim como um lume eterno e brando"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-007] Imagens do amor romântico — jardim, luar, olhar, abraço da natureza
+Fonte: Gonçalves Dias, "Canção do Exílio"; Casimiro de Abreu, "Meus Oito Anos"; Castro Alves
+Descrição: Imagens recorrentes: luar sobre o mar, jardim em flor, olhar como guia, abraço da natureza, ninho de aves, riacho cristalino. A natureza participa do sentimento — o vento suspira, as flores se abrem para o amor. Evitar imagens urbanas ou industriais (quebram o encanto romântico).
+❌ Errado: "Te encontrei no metrô e nosso amor começou"
+✅ Correto: "Te encontrei onde o rio encontra o vale, / onde a manhã se abre em luz e canto"
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-008] Figuras românticas — comparação, hipérbole, apóstrofe
+Fonte: Análise da poesia romântica (Brasil Escola)
+Descrição: Comparações com elementos da natureza ("teus olhos como dois sóis"). Hipérboles passionais ("amor maior que o mundo"). Apóstrofes diretas ao ser amado ou à natureza ("Oh minha amada!", "Oh natureza mãe!").
+❌ Errado: "Seus olhos são bonitos e castanhos"
+✅ Correto: "Teus olhos, poço escuro onde me afogo, / mais fundos que o silêncio sobre o lago"
+Severidade: baixa
+Categoria: tom — figuras
+
+## [TOM-009] Anti-padrões românticos — pieguice, lugar-comum, idealização vazia
+Fonte: Crítica literária; análise de poesia amadora
+Descrição: Evitar pieguice ("amor perfecto que nunva acaba"), declarações vagas ("te amo mais que tudo"), bordões do cancioneiro popular ("você é a razão do meu viver"). O romantismo poético exige imagem concreta, não grito vazio. Idealizar com imagens, não com adjetivos soltos.
+❌ Errado: "Você é a pessoa mais linda do mundo, te amo para sempre"
+✅ Correto: "Teu rosto é a pátria que me chama / de todo exílio que atravessei"
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+REFLEXIVO
+================================================================================
+
+## [TOM-010] Vocabulário reflexivo — abstração, indagação, ponderação
+Fonte: Drummond, "A Rosa do Povo"; Cecília Meireles, "Romanceiro da Inconfidência"; Bosi
+Descrição: Tom reflexivo usa léxico de indagação e dúvida: talvez, quem sabe, questão, enigma, sentido, essência, limite, abismo, tempo, memória, espelho. Verbos no presente do indicativo com valor gnômico (expressam verdades gerais). Substantivos abstratos predominam. Evitar certezas absolutas.
+❌ Errado: "A vida é assim e não tem jeito"
+✅ Correto: "Talvez a vida seja apenas este instante / em que o tempo hesita entre ser e não ser"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-011] Estrutura reflexiva — paradoxo, antítese, quiasmo
+Fonte: Drummond, "José"; Camões, "Amor é fogo que arde sem se ver"; análise de Bosi
+Descrição: Paradoxos que condensam contradições ("dor que desatina sem doer"). Antíteses que contrapõem ideias complementares. Quiasmo (cruzamento de termos: "viver é morrer, morrer é viver") para fechamento conceitual. Preferir estrutura dialógica — o poema pergunta e responde.
+❌ Errado: "Não sei o que pensar sobre a vida"
+✅ Correto: "Que resta, pergunto, do que fui? / A pergunta é a resposta que não veio."
+Severidade: baixa
+Categoria: tom — estrutura
+
+## [TOM-012] Tom reflexivo — contenção emocional, tom meditativo
+Fonte: Análise da poesia de Cecília Meireles e Drummond
+Descrição: O tom reflexivo é contido, meditativo, sem explosões emocionais. Versos mais longos, com pausas que sugerem ponderação. Uso de reticências, travessões, parênteses — marcas de hesitação e pensamento inacabado. Evitar exclamações e hipérboles emocionais.
+❌ Errado: "Que maravilha a vida! Como é bom existir!"
+✅ Correto: "A vida — esse intervalo entre dois silêncios — / dura o que dura um pássaro no ar."
+Severidade: media
+Categoria: tom — tom
+
+## [TOM-013] Anti-padrões reflexivos — obviedade filosofante, aforismo barato
+Fonte: Crítica de poesia filosófica
+Descrição: Evitar obviedades disfarçadas de filosofia ("a vida é cheia de altos e baixos"), aforismos de autoajuda ("seja luz em meio à escuridão"), perguntas retóricas sem aprofundamento. A reflexão poética exige imagem que pensa, não ideia decorativa. O concreto deve carregar o abstrato.
+❌ Errado: "O importante é ser feliz, seja você mesmo"
+✅ Correto: "Procurei a felicidade em cada estrada / e só achei o pó que o vento leva."
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+JUBILOSO
+================================================================================
+
+## [TOM-014] Vocabulário jubiloso — exultação, luz, plenitude
+Fonte: Vinicius de Moraes, "Soneto de Fidelidade"; Gonçalves Dias, "Canção do Exílio"
+Descrição: Tom jubiloso usa léxico de exultação: luz, canto, festa, glória, plenitude, riso, abundância, celebração, êxtase, alvorada, flor, dourado, vivo. Verbos de ação intensa (cantar, brilhar, dançar, florir). Predomínio do presente — o júbilo é agora. Evitar modulação dubitativa ou condicional.
+❌ Errado: "Estou feliz acho, talvez seja bom"
+✅ Correto: "Canta, que o dia nasce! Dança, que a vida é festa!"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-015] Imagens jubilosas — amanhecer, colheita, dança, mar em calmaria
+Fonte: Análise da poesia de Gonçalves Dias; Arcadismo brasileiro (Cláudio Manuel da Costa)
+Descrição: Imagens de plenitude: amanhecer radioso, colheita farta, dança circular, ave em voo, mar calmo, campo florido, ninho cheio, sol a pino. A natureza celebra — tudo participa da alegria. Evitar imagens de declínio, ruína, crepúsculo.
+❌ Errado: "A tarde chuvosa me deixa feliz" (imagem disfórica)
+✅ Correto: "O sol se espreguiça no azul sem fim / e cada folha baila ao vento brando"
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-016] Ritmo jubiloso — versos curtos, repetições, exclamações
+Fonte: Vinicius de Moraes, "Arrastão"; análise da poesia celebratória
+Descrição: Versos mais curtos (redondilhas), com repetições anafóricas ("canta, canta, canta") e exclamações. Ritmo acelerado, aliterações que sugerem dança e movimento. Preferir acentos regulares e próximos. Evitar encavalgamentos que arrastam o verso.
+❌ Errado: "Sinto uma grande alegria ao contemplar a natureza..." (arrastado)
+✅ Correto: "Riso, dança, canto, vento / tudo é festa, tudo é momento!"
+Severidade: baixa
+Categoria: tom — ritmo
+
+## [TOM-017] Anti-padrões jubilosos — euforia forçada, superficialidade
+Fonte: Análise de poesia amadora
+Descrição: Evitar aleluia vazia ("que bom, que bom, que bom"), alegria descolada de uma imagem concreta, otimismo gratuito ("tudo sempre dá certo no final"). O júbilo poético precisa de contraste ou profundidade — a alegria que ignora a dor é superficial. Melhor um júbilo conquistado que um gratuito.
+❌ Errado: "Sou feliz, sempre feliz, nada pode me abalar"
+✅ Correto: "Depois da chuva, o ar tem gosto de festa / e as folhas lavadas brilham como prata"
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+SOMBRIO
+================================================================================
+
+## [TOM-018] Vocabulário sombrio — treva, abismo, podridão, espectro
+Fonte: Augusto dos Anjos, "Eu"; Cruz e Sousa, "Broquéis"; Poe, "O Corvo" (trad. Machado)
+Descrição: Tom sombrio usa o léxico mais extremo da escuridão: treva, abismo, espectro, podridão, verme, tumba, lodo, mofo, necrose, maldição, preságio, sangue, gosma. Augusto dos Anjos introduz vocabulário científico-escatalogógico (moléculas, neurônio, encéfalo, matéria). Evitar eufemismos — o sombrio é direto.
+❌ Errado: "A noite estava um pouco escura e isso me deixou triste"
+✅ Correto: "O verme que roeu as entranhas do mundo / hoje devora o sonho que teci"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-019] Imagens sombrias — noite eterna, cemitério, predador, vazio
+Fonte: Cruz e Sousa; Augusto dos Anjos; expressão poética brasileira (Bosi)
+Descrição: Imagens de horror e dissolução: noite perpétua, cemitério ao luar, corpos, caveira, inseto, morcego, aranha, sangue coagulado, terra úmida, porta trancada, olho vazio, grito no escuro. A natureza é ameaçadora, não acolhedora. Evitar imagens bucólicas ou serenas.
+❌ Errado: "Era uma noite calma e fria com algumas estrelas"
+✅ Correto: "A noite abria suas goelas de breu / e o vento uivava como alma penada"
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-020] Figuras sombrias — sinestesia disfórica, catacrese, prosopopeia mórbida
+Fonte: Análise de Augusto dos Anjos; Alfredo Bosi
+Descrição: Sinestesias que cruzam sensações negativas ("cheiro de treva", "som úmido"). Prosopopeia da morte, do verme, da podridão ("o verme filosofa"). Catacreses que banalizam o horror. Vocabulário técnico-científico aplicado ao poético para criar estranhamento.
+❌ Errado: "A morte veio e levou minha esperança" (abstrato)
+✅ Correto: "A morte rói as cordas da laringe / com a paciência de um ourives do nada"
+Severidade: baixa
+Categoria: tom — figuras
+
+## [TOM-021] Anti-padrões sombrios — gore gratuito, terror de script
+Fonte: Crítica literária
+Descrição: Evitar violência descritiva sem propósito poético ("sangue escorria pelas paredes"), terror de filme B (monstros genéricos, sustos), acúmulo de horrores sem tensão narrativa. O sombrio eficaz incomoda pelo que sugere, não pelo que mostra. A imagem que fica na mente vale mais que o choque imediato.
+❌ Errado: "Sangue, tripas, gritos, morte, horror, desespero" (acúmulo gratuito)
+✅ Correto: "Na mesa, o prato intocado. No quarto, o eco. / O silêncio tem dentes que não se veem."
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+SAUDOSO
+================================================================================
+
+## [TOM-022] Vocabulário saudoso — ausência, lembrança, distância, perda
+Fonte: Casimiro de Abreu, "Meus Oito Anos"; Florbela Espanca, "Livro de Soror Saudades"; Camões
+Descrição: Tom saudoso usa léxico da ausência e da memória: distância, ausência, lembrança, passado, infância, partida, falta, exílio, retrato, eco, rastro, pegada, banco de jardim, casa vazia. Verbos no pretérito imperfeito (marca de tempo contínuo e inacabado). "Saudade" é usada com moderação — seu excesso banaliza.
+❌ Errado: "Tenho saudade do passado que não volta nunca mais"
+✅ Correto: "Onde estão os dias que foram tão leves? / Ficaram na curva do tempo, e eu não alcancei."
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-023] Imagens da saudade — casa, infância, retrato, objeto pessoal
+Fonte: Casimiro de Abreu; Bandeira, "Evocação do Recife"; Drummond, "Infância"
+Descrição: Imagens da memória afetiva: casa de infância, retrato amarelado, brinquedo esquecido, cartas, pente, roupa no varal, cadeira vazia, janela, porta entreaberta, relógio parado, jardim abandonado. Objetos pessoais como portais da memória. Evitar imagens grandiosas ou heroicas — a saudade está no pequeno.
+❌ Errado: "Lembro dos grandes feitos do passado glorioso" (tom épico, não saudoso)
+✅ Correto: "No fundo do baú, um lenço bordado / guarda o cheiro do tempo que passou."
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-024] Estrutura saudosa — paralelismo, anáfora do tempo, alternância passado/presente
+Fonte: Análise de Casimiro de Abreu e Bandeira
+Descrição: Alternância entre estrofes de passado e presente para criar contraste temporal. Anáforas temporais ("Quando eu era...", "Hoje já não..."). Paralelismos que prendem o leitor na repetição da falta. Perguntas retóricas sem resposta — a ausência não se resolve.
+❌ Errado: "Antes eu era feliz e agora sou triste" (declarativo e sem imagem)
+✅ Correto: "Onde os risos que corriam pela escada? / Hoje só o rangido da madeira."
+Severidade: baixa
+Categoria: tom — estrutura
+
+## [TOM-025] Anti-padrões saudosos — nostalgia piegas, lamentação sobre si
+Fonte: Crítica literária
+Descrição: Evitar nostalgia piegas ("que tempo bom que não volta mais"), lamentações autorreferentes ("como eu era feliz e não sabia"), comparações simplórias entre passado idealizado e presente miserável. A saudade poética deve materializar a ausência, não declarar a falta. Mostrar o objeto perdido, não o grito de perda.
+❌ Errado: "Ah, que saudades do meu tempo de criança, quando eu era feliz!"
+✅ Correto: "O cavalo de pau ainda está no canto / mas o menino que o montava se perdeu."
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+ÉPICO
+================================================================================
+
+## [TOM-026] Vocabulário épico — grandeza, glória, pátria, heroísmo, destino
+Fonte: Camões, "Os Lusíadas"; Basílio da Gama, "O Uraguai"; Castro Alves, "Navio Negreiro"
+Descrição: Tom épico usa léxico da grandeza: glória, heroísmo, pátria, destino, façanha, honra, brado, bravura, feito, vitória, porvir, estirpe, gênio. Substantivos majestosos seguidos de epítetos ("mar salgado", "céu profundo"). Verbos de ação heroica (avançar, conquistar, vencer, erguer). Evitar coloquialismo ou intimismo.
+❌ Errado: "O herói ficou com medo mas foi assim mesmo" (tom intimista e hesitante)
+✅ Correto: "As velas se abriram como asas de águia / e o mar se curvou ante o brado dos fortes"
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-027] Imagens épicas — mar, batalha, viagem, monumento
+Fonte: Camões, "Os Lusíadas"; análise de imagem épica na poesia brasileira
+Descrição: Imagens monumentais: mar revolto, batalha campal, viagem transoceânica, montanha, deserto, multidão, templo, bandeira ao vento, incêndio, tempestade. A natureza é cenário de desafio, não de refúgio. Preferir planos abertos e vastidão. O herói destaca-se contra o horizonte.
+❌ Errado: "O herói caminhava pela rua movimentada" (cotidiano e pequeno)
+✅ Correto: "Erguendo ao vento as bandeiras da aurora / o gigante marchava sobre o horizonte."
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-028] Estrutura épica — versos longos, invocação, narração em terceira pessoa
+Fonte: Camões; tradição épica ocidental (Homero, Virgílio, Milton)
+Descrição: Versos decassílabos ou alexandrinos com ritmo marcial (acentos fortes regulares). Invocação às musas ou a entidades superiores no início. Narração em terceira pessoa com onisciência. Uso de epíteto ("o herói valente", "a nau soberba"). Cenas de assembleia, discurso, batalha, profecia.
+❌ Errado: "Eu fui lá e vi o mar e achei bonito" (primeira pessoa, lírico)
+✅ Correto: "Cantam as gentes o feito do valente / que sobre as ondas construiu impérios"
+Severidade: alta
+Categoria: tom — estrutura
+
+## [TOM-029] Anti-padrões épicos — falso heroísmo, grandiloquência vazia
+Fonte: Crítica literária; paródias épicas
+Descrição: Evitar heroísmo gratuito (exaltação sem ação), grandiloquência vazia ("oh pátria amada, oh glória suprema"), clichês épicos ("o herói valente e destemido"), nacionalismo ufanista. O épico exige ação concreta. Um grande feito merece grande verso — o contrário é ruído.
+❌ Errado: "Grande herói, grande pátria, grande glória, tudo grande!"
+✅ Correto: "Nove luas durou a travessia / e o mar devorou metade dos irmãos."
+Severidade: baixa
+Categoria: tom — anti-padrão
+
+================================================================================
+LÍRICO
+================================================================================
+
+## [TOM-030] Essência do lírico — subjetividade, musicalidade, eu lírico
+Fonte: Tradição lírica (Safo, Camões, Bilac, Cecília Meireles); Bosi
+Descrição: O tom lírico é o mais fundamental — expressão da subjetividade através da musicalidade. Primeira pessoa como voz que sente e canta. Léxico do sentimento pessoal: alma, coração, desejo, sonho, vida, amor, dor, êxtase, pranto. Musicalidade intrínseca — o poema deve ser quase cantabile. Evitar discurso argumentativo ou narrativo puro.
+❌ Errado: "O poema lírico deve expressar os sentimentos do eu lírico" (definição metalinguística)
+✅ Correto: "Trago no peito um pássaro que canta / seu canto é a minha própria voz."
+Severidade: media
+Categoria: tom — essência
+
+## [TOM-031] Imagens líricas — elementos naturais como espelho da alma
+Fonte: Bilac; Cecília Meireles; Bandeira
+Descrição: Imagens líricas clássicas: fonte, rio, pássaro, flor, estrela, luar, brisa — sempre como correlato do estado interior ("o rio sou eu que passo"). A natureza é espelho, não cenário. Subjetivação da paisagem. Evitar objetividade descritiva (coisa por ela mesma).
+❌ Errado: "O rio tem 300 km de extensão e nasce na serra" (descritivo, não lírico)
+✅ Correto: "O rio que corre em mim / não tem margens nem foz."
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-032] Recursos líricos — aliteração, assonância, rima rica, ritmo cantabile
+Fonte: Análise da poesia lírica (Said Ali, "Versificação Portuguesa")
+Descrição: Musicalidade é essencial: aliterações e assonâncias que reforçam o tema, rimas ricas (diferentes classes gramaticais), ritmo regular e fluido. Preferir versos de arte menor (redondilhas) ou decassílabos melódicos. Evitar versos brancos sem musicalidade compensatória.
+❌ Errado: "O lamento do vento / era um som opaco e violento" (aliteração em V que conflita com o conteúdo)
+✅ Correto: "O vento vago vem do vale / e leva leve o meu cantar" (aliteração em V suave e coerente)
+Severidade: baixa
+Categoria: tom — recursos
+
+## [TOM-033] Anti-padrões líricos — confissão prosaica, sentimentalismo sem forma
+Fonte: Crítica literária
+Descrição: Evitar desabafo pessoal sem elaboração formal (diário íntimo versificado), sentimentalismo raso ("te amo porque te amo"), excesso de primeira pessoa sem universalização. O lírico transforma o pessoal em universal pela forma. Sem artesanato do verso, não há lírica — há apenas desabafo.
+❌ Errado: "Hoje acordei triste porque sonhei com você e foi tão real..."
+✅ Correto: "Teu nome acordou comigo / antes mesmo do sol / e doeu na luz do dia." (pessoal tornado imagem universal)
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+SATÍRICO
+================================================================================
+
+## [TOM-034] Vocabulário satírico — ironia, rebaixamento, troça, hipérbole crítica
+Fonte: Gregório de Matos, "Boca do Inferno"; Bocage; Oswald de Andrade, "Manifesto Antropófago"
+Descrição: Tom satírico usa léxico de ridicularização: troça, escárnio, mofa, ridículo, parvoíce, patranha, logro, farsa, embuste. Rebaixamento do objeto (tratar o elevado como vulgar). Hipérbole crítica para expor contradições. Mistura de registro erudito e chulo para efeito cômico. Evitar ofensa gratuita — a sátira tem alvo moral.
+❌ Errado: "O político é ladrão" (acusação direta, sem ironia)
+✅ Correto: "De que serve roubar meio milhão / se não se compra o Céu com esse perdão?" (crítica pela ironia)
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-035] Recursos satíricos — ironia, paródia, rebaixamento, quiasmo cômico
+Fonte: Gregório de Matos (análise de João Adolfo Hansen); literatura barroca brasileira
+Descrição: Ironia como figura central — dizer o contrário do que se afirma. Paródia de textos/estilos elevados. Rebaixamento (cômico: tratar o sério como vulgar). Quiasmo satírico para expor contradições. Uso de antífrase ("belo exemplar de virtude" dito a um corrupto). Rima cômica (aproximações inesperadas).
+❌ Errado: "O governador é corrupto e incompetente" (denúncia direta)
+✅ Correto: "Senhor Governador, que exemplo da Nação / rouba com tanto zelo e devoção!" (ironia + paródia de elogio)
+Severidade: media
+Categoria: tom — recursos
+
+## [TOM-036] Anti-padrões satíricos — grosseria, panfleto, agressão pessoal
+Fonte: Crítica literária
+Descrição: Sátira não é xingamento. Evitar agressão pessoal sem crítica social, grosseria por grosseria, panfleto político sem elaboração poética, nomeação direta do alvo sem máscara irônica. A sátira eficaz ataca o vício, não o indivíduo — e faz rir pensando.
+❌ Errado: "Seu corrupto, ladrão, vagabundo!" (xingamento)
+✅ Correto: "A Câmara parece feira de gado: / os mesmos bois, os mesmos chifres dourados." (crítica pela imagem cômica)
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+FILOSÓFICO
+================================================================================
+
+## [TOM-037] Vocabulário filosófico — ser, tempo, essência, limite, eternidade
+Fonte: Camões, "Sôbolos rios que vão"; Drummond, "A Máquina do Mundo"; Pessoa, "O Guardador de Rebanhos"
+Descrição: Tom filosófico usa léxico metafísico: ser, tempo, essência, eternidade, abismo, limite, questão, enigma, origem, fim, substância, vazio, cosmos, condição, existência. Verbos de estado (ser, estar, permanecer, existir, parecer). Indagação é o motor — perguntas que não se fecham. Evitar dogmatismo ou respostas prontas.
+❌ Errado: "Deus existe e a alma é eterna" (dogma, não filosofia)
+✅ Correto: "Se Deus existe, existe como pergunta / e não como resposta." (indagação aberta)
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-038] Estrutura filosófica — dialética, paradoxo, imagem conceitual
+Fonte: Drummond, "A Máquina do Mundo"; Camões; análise de Bosi
+Descrição: Estrutura dialética — tese, antítese, síntese no poema. Paradoxo como figura central ("a morte é a vida que se esconde"). Imagem conceitual: ideia abstrata corporificada em imagem concreta. Preferir segunda pessoa ("tu") como interlocutor filosófico. Rimas graves e solenes.
+❌ Errado: "O ser e o nada são opostos complementares" (abstrato puro)
+✅ Correto: "O nada é o ser que ainda não aprendeu a ter nome." (imagem conceitual)
+Severidade: baixa
+Categoria: tom — estrutura
+
+## [TOM-039] Tom filosófico — distanciamento, universalização, gnômico
+Fonte: Análise de poesia filosófica
+Descrição: O poeta filósofo não fala de si — fala da condição de todos. Eu lírico universalizado ("o homem", "nós", "quem"). Presente gnômico (verdades atemporais). Tom de reflexão serena, não de angústia (o filosófico contempla, o melancólico sofre). Evitar primeira pessoa confessional.
+❌ Errado: "Eu penso sobre a vida e acho tudo muito confuso" (confessional, não filosófico)
+✅ Correto: "O homem pergunta ao tempo o que o tempo cala / e a resposta é o silêncio que o habita."
+Severidade: media
+Categoria: tom — tom
+
+## [TOM-040] Anti-padrões filosóficos — pseudo-filosofia, aforismo de elevador
+Fonte: Crítica de poesia filosófica
+Descrição: Evitar pseudo-filosofia de autoajuda ("seja luz em meio às trevas"), aforismos de elevador ("a vida é breve"), citações disfarçadas de outros filósofos, terminologia oca sem imagem. Poesia filosófica é filosofia pela imagem, não filosofia versificada. A ideia deve nascer da imagem, não ser ilustrada por ela.
+❌ Errado: "O existencialismo diz que a vida é absurda, / então vamos viver intensamente" (filosofia explicada, não incorporada)
+✅ Correto: "O absurdo é a gente acordar / e fingir que o dia faz sentido."
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+INTIMISTA
+================================================================================
+
+## [TOM-041] Vocabulário intimista — casa, corpo, cotidiano, afeto doméstico
+Fonte: Cecília Meireles, "Romanceiro da Inconfidência"; Adélia Prado, "Bagagem"; Hilda Hilst
+Descrição: Tom intimista usa léxico do doméstico e do corporal: casa, quarto, cama, mesa, retrato, armário, xícara, pão, corpo, pele, mão, hálito, cabelo, travesseiro, chinelo. O sagrado está no miúdo. Preferir o concreto ao abstrato. Evitar grandiloquência ou abstração filosófica.
+❌ Errado: "A essência do amor transcende o espaço e o tempo" (abstracto, não intimista)
+✅ Correto: "Teu pão sobre a mesa ainda quente / e a tua mão na toalha de linho." (concreto, doméstico, corpóreo)
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-042] Imagens intimistas — janela, luz que entra, sombra no quarto, objetos
+Fonte: Adélia Prado; Ana Cristina Cesar; Cecília Meireles; Hilda Hilst
+Descrição: Imagens extraídas do quotidiano íntimo: luz de fim de tarde no quarto, chuva no telhado, café da manhã, retrato na parede, roupa estendida, gato no colo, panela no fogo, cartas na gaveta. A poesia está no gesto mínimo — o levantar, o deitar, o esperar. Evitar cenários grandiosos ou heróicos.
+❌ Errado: "No alto da montanha, o vento anuncia a glória" (grandioso, não intimista)
+✅ Correto: "A chuva de ontem ainda goteja na calha / e o café esfria enquanto te espero."
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-043] Estrutura intimista — verso livre, tom coloquial, confidência, pausa
+Fonte: Adélia Prado; Ana Cristina Cesar; análise da poesia contemporânea
+Descrição: Verso livre com tom de confidência. Sintaxe próxima da fala (mas não igual — há elaboração). Pausas que imitam hesitação. Uso de travessões, parênteses, reticências. O poema parece uma conversa consigo mesmo. Evitar métrica regular e rima forçada — o intimista respira com naturalidade.
+❌ Errado: "Cantar-te quero em verso bem medido / como os poetas de outros tempos" (formal, não intimista)
+✅ Correto: "Queria te escrever — mas as palavras / fogem, e fica só a xícara vazia."
+Severidade: baixa
+Categoria: tom — estrutura
+
+## [TOM-044] Anti-padrões intimistas — confessionalismo raso, diário sem forma
+Fonte: Crítica literária
+Descrição: O intimismo não é diário pessoal despejado em versos. Evitar relato cru do dia ("acordei, tomei café, fui trabalhar"), desabafo sem elaboração ("hoje foi um dia difícil"), intimidade gratuita (detalhes constrangedores sem propósito estético). O intimista seleciona, elabora, transforma o miúdo em universal.
+❌ Errado: "Hoje acordei tarde e não fiz nada / meu gato está doente e estou preocupada" (diário)
+✅ Correto: "O gato dorme sobre a minha blusa / e a tarde se arrasta como ele." (elaboração do miúdo)
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+NOSTÁLGICO
+================================================================================
+
+## [TOM-045] Vocabulário nostálgico — passado, lembrança, outrora, quando
+Fonte: Casimiro de Abreu; Bandeira; Drummond, "Infância"; Camões
+Descrição: Tom nostálgico usa léxico temporal que aponta para o passado: outrora, antigamente, quando, lembrança, memória, infância, menino, ontem, passado, resto, ruína, velho, último, derradeiro. Advérbios temporais e verbos no pretérito imperfeito (ação contínua no passado). Evitar presente absoluto — a nostalgia precisa de contraste temporal.
+❌ Errado: "A vida é bela e sempre foi bela" (presente, sem contraste)
+✅ Correto: "Quando a casa tinha cheiro de jasmim / e o tempo cabia inteiro numa tarde" (pretérito imperfeito + imagem)
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-046] Imagens nostálgicas — casa antiga, rua de infância, brinquedo, festa passada
+Fonte: Bandeira, "Evocação do Recife"; Drummond, "Infância"; Casimiro de Abreu
+Descrição: Imagens da memória recuperada: casa com quintal, rua de paralelepípedo, festa de São João, bolinha de gude, álbum de retratos, carta antiga, cheiro de mato, som de vizinha cantando, portão de ferro, mangueira no quintal. A memória é detonada por um objeto ou sensação. Evitar imagens genéricas de "passado".
+❌ Errado: "O passado era melhor do que o presente" (abstrato e genérico)
+✅ Correto: "O cheiro de manga no ar / e eis que volto a ter oito anos." (objeto-sensação detona a memória)
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-047] Recursos nostálgicos — anáfora do quando, pretérito imperfeito, apóstrofe ao passado
+Fonte: Bandeira; análise de poesia da memória
+Descrição: Anáfora com "Quando..." no início de versos para invocar o passado. Pretérito imperfeito como tempo da memória. Apóstrofe ao tempo ou ao passado ("Oh tempo, volta!"). Alternância entre o que foi (belo) e o que restou (pouco). Catálogo: enumeração de objetos perdidos.
+❌ Errado: "Lembro do passado com saudade" (fraca enumeração)
+✅ Correto: "Quando o quintal dava flor o ano inteiro / e a noite cabia no colo da mãe / e o medo cabia no foco do lampião" (catálogo + anáfora + pretérito imperfeito)
+Severidade: baixa
+Categoria: tom — recursos
+
+## [TOM-048] Anti-padrões nostálgicos — ufanismo do passado, memória idealizada
+Fonte: Crítica literária
+Descrição: Evitar idealização excessiva do passado ("tudo era perfeito antigamente"), memória falsa (passado que nunca existiu), contraste maniqueísta (passado bom / presente ruim). A nostalgia poética reconhece a perda sem julgar o presente. O passado também tinha fissuras.
+❌ Errado: "Antigamente tudo era perfeito, hoje tudo é ruim" (maniqueísta)
+✅ Correto: "O tempo roubou a casa, mas deixou o cheiro / e o cheiro mente: diz que o que passou não doía." (reconhece idealização)
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+VISIONÁRIO
+================================================================================
+
+## [TOM-049] Vocabulário visionário — profecia, cosmos, abismo, revelação
+Fonte: Augusto dos Anjos, "Solilóquio de um Visionário"; Murilo Mendes; Pessoa, "Mensagem"; Sousândrade
+Descrição: Tom visionário usa léxico de revelação e transe: profecia, visão, cosmos, abismo, revelação, apocalipse, êxtase, oráculo, além, infinito, transcendência, mistério, assombro. Substantivos cósmicos e abstratos. Verbos de revelação (ver, entrever, pressentir, anunciar). Evitar o prosaico e o cotidiano — o visionário mira o absoluto.
+❌ Errado: "Sonhei que o mundo ia acabar" (sonho pessoal, não visão)
+✅ Correto: "Vi o universo se fechar em círculo / e Deus dormir dentro de cada átomo." (cosmologia, revelação)
+Severidade: media
+Categoria: tom — vocabulário
+
+## [TOM-050] Imagens visionárias — cosmos, multidão, catástrofe, êxtase, templo
+Fonte: Murilo Mendes; Augusto dos Anjos; Pessoa, "Mensagem"; Bosi
+Descrição: Imagens de grande escala: universo em expansão, multidão em transe, ruínas de civilizações, tempestade cósmica, templo em chamas, figura mítica, besta apocalíptica, luz cegante, mar sem fim, montanha que arde. Mistura de registros: sagrado + científico + mítico. O visionário funde o material e o espiritual.
+❌ Errado: "Vi uma luz bonita no horizonte" (descrição simples)
+✅ Correto: "O incêndio dos sóis apagados / ardia na pupila do profeta." (escala cósmica + figura mítica)
+Severidade: media
+Categoria: tom — imagens
+
+## [TOM-051] Estrutura visionária — versículo, torneio de imagens, tom profético
+Fonte: Murilo Mendes; Sousândrade; Bíblia (Salmos, Profetas) como intertexto
+Descrição: Verso longo (versículo bíblico) com torneio de imagens justapostas. Tom profético, apocalíptico. Orações coordenadas por "e" que acumulam visões. Uso de numerais, tempos escatológicos. Antropomorfismo cósmico (o universo tem rosto, braços, voz). Preferir enumeração caótica e visão sincrética.
+❌ Errado: "O futuro será melhor que o passado" (otimismo racional, não visão)
+✅ Correto: "E vi no quarto selo o cavalo amarelo / e a morte cavalgava atrás, e o inferno / seguia e o mar devolveu os seus mortos / e a terra abriu a boca." (justaposição apocalíptica)
+Severidade: media
+Categoria: tom — estrutura
+
+## [TOM-052] Anti-padrões visionários — delírio gratuito, imagens sem conexão, ocultismo barato
+Fonte: Crítica literária
+Descrição: Evitar delírio sem estrutura (imagens soltas sem tensão poética), ocultismo de banca de jornal ("forças cósmicas", "energia astral"), misticismo genérico ("o universo conspira"). O visionário eficaz tem método na loucura — as imagens, por mais extremas, obedecem a uma lógica interna.
+❌ Errado: "O astral conspira com a energia do cosmos e a luz do além" (ocultismo barato)
+✅ Correto: "Cada estrela é uma ferida no escuro / e o céu, o curativo que não basta." (imagem insana mas coerente)
+Severidade: media
+Categoria: tom — anti-padrão
+
+================================================================================
+CONCISO
+================================================================================
+
+## [TOM-053] Essência do conciso — mínimo de palavras, máximo de intensidade
+Fonte: Paulo Leminski; Oswald de Andrade; haicai; João Cabral de Melo Neto, "A Educação pela Pedra"
+Descrição: Tom conciso opera pela supressão. Cada palavra precisa carregar peso máximo. Preferir monossílabos e dissílabos. Suprimir artigos, pronomes, conectivos quando possível. Substantivo + verbo + imagem direta. Evitar adjetivos decorativos, orações subordinadas, explicações. O conciso não explica — mostra e cala.
+❌ Errado: "O poeta olhou para a paisagem e ficou muito emocionado com o que viu" (11 palavras para nada)
+✅ Correto: "Olhou o mar — e se calou." (4 palavras, intensidade máxima)
+Severidade: alta
+Categoria: tom — essência
+
+## [TOM-054] Recursos concisos — elipse, assíndeto, zeugma, corte abrupto
+Fonte: João Cabral; Leminski; Oswald; análise de haicai (Matsuo Bashô, Goga Masuda)
+Descrição: Elipse (supressão de termos subentendidos). Assíndeto (ausência de conjunções, coma como única pausa). Zeugma (um termo regendo vários). Corte abrupto de verso (o resto silencia). Paralelismo sintático mínimo. Preferir frase nominal à verbal. O silêncio após o corte é parte do poema.
+❌ Errado: "Ela entrou no quarto e sentou na cama e começou a chorar" (conectivos desnecessários)
+✅ Correto: "Entrou. Sentou. Chorou." (assíndeto, corte, elipse do sujeito)
+Severidade: media
+Categoria: tom — recursos
+
+## [TOM-055] Sílaba, som, ritmo — peso da palavra única
+Fonte: João Cabral, "A Educação pela Pedra"; Leminski; análise de poesia minimalista
+Descrição: No conciso, cada fonema importa. Aliterações e assonâncias não são ornamentais — são estruturais. Rimas internas que amarram versos mínimos. Preferir palavras de sílabas abertas (vogais fortes) para impacto. O poema conciso é quase lapidar — parece inscrito em pedra. Evitar cacofonias e palavras foneticamente fracas.
+❌ Errado: "Foi aí que ele simplesmente, de repente, parou" (palavras-almofada)
+✅ Correto: "Parou. O mundo continuou." (contraste entre o gesto e o mundo, em 4 palavras)
+Severidade: baixa
+Categoria: tom — ritmo
+
+## [TOM-056] Anti-padrões concisos — hermetismo vazio, supressão que oculta
+Fonte: Crítica literária; Leminski
+Descrição: Conciso não é obscuro. Evitar supressão que torna o texto incompreensível, hermetismo gratuito (palavras difíceis para parecer profundo), fragmentação que perde o fio. A concisão clareia, não escurece. Se o leitor não entende, não é conciso — é mal escrito. Leminski: "menos é mais, desde que o menos seja muito."
+❌ Errado: "Ser. Não. Talvez. Sim. Fim." (incompreensível)
+✅ Correto: "Entre o sim e o não / o nada." (conciso e claro)
+Severidade: media
+Categoria: tom — anti-padrão

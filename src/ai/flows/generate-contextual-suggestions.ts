@@ -1,9 +1,9 @@
 'use server';
 
-import { ai } from '@/ai/genkit';
+import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
 import { checkText } from '@/lib/spell-checker';
-import { loadNbrRules } from '@/lib/nbr-loader';
+import { loadNbrRules, loadToneRules } from '@/lib/nbr-loader';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
@@ -104,14 +104,18 @@ O texto a ser analisado é:
 {{{text}}}
 \`\`\`
 
-REGRAS:
+ REGRAS:
 - Para cada sugestão, forneça o trecho original, uma alternativa estilística, e explique o motivo da mudança.
 - Forneça 2-3 alternativas quando possível (alternatives).
 - A justificativa deve ser estilística/literária, não gramatical.
 - Se nenhum aprimoramento de tom for necessário, retorne array vazio.
 - Mantenha a métrica e a rima se o poema as utilizar.
 - Considere o tipo de estrutura: "{{structure}}".
-- Consulte as regras NBR abaixo para guiar as sugestões de tom dentro dos limites da estrutura escolhida:
+
+REGRAS DE TOM — "{{tone}}":
+{{{toneRules}}}
+
+REGRAS ESTRUTURAIS (NBR):
 {{{nbrRules}}}
 
 EXEMPLO:
@@ -140,7 +144,8 @@ const suggestionFlow = ai.defineFlow(
     }
 
     const nbrRules = input.nbrRules || loadNbrRules(input.structure);
-    const enrichedInput = { ...input, nbrRules };
+    const toneRules = input.toneRules || loadToneRules(input.tone);
+    const enrichedInput = { ...input, nbrRules, toneRules };
 
     if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
       const localResult = await checkText(input.text);
@@ -173,11 +178,11 @@ const suggestionFlow = ai.defineFlow(
     }
 
     if (input.suggestionType === 'tone') {
-      const { output } = await tonePrompt(enrichedInput);
+      const { output } = await withFallback((model) => tonePrompt(enrichedInput, { model }));
       return output || { suggestions: [] };
     }
 
-    const { output } = await grammarPrompt(enrichedInput);
+    const { output } = await withFallback((model) => grammarPrompt(enrichedInput, { model }));
     return output || { suggestions: [] };
   }
 );
