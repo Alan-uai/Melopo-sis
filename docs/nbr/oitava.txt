@@ -1,0 +1,473 @@
+# Oitava (Ottava Rima / Oitava Camoniana) — Normas e Estrutura
+# Baseado na tradição italiana (Boccaccio, Ariosto, Tasso) e portuguesa (Camões, Durão, Bilac)
+# Data: 2026-05-16
+
+================================================================================
+DEFINIÇÃO
+================================================================================
+
+## [OIT-01] Número de versos — 8 versos obrigatórios
+Fonte: Camões, "Os Lusíadas" (1572); Boccaccio, "Il Teseida" (1340)
+Descrição: A oitava é uma estrofe de exatamente 8 versos. Pode constituir um poema inteiro (oitava-rima solta) ou, mais comumente, ser a unidade estrófica de um poema épico maior. Cada oitava é um bloco autossuficiente de narrativa, capaz de conter uma cena, uma descrição ou uma reflexão completa.
+❌ Errado: estrofe ou poema com 7 ou 9 versos chamado de oitava
+✅ Correto: 8 versos exatos, formando unidade temática e sintática
+📖 Exemplo real: Luís de Camões, "Os Lusíadas" (1572), Canto I, est. 1:
+  "As armas e os barões assinalados,
+  Que da ocidental praia lusitana,
+  Por mares nunca de antes navegados,
+  Passaram ainda além da Taprobana,
+  E em perigos e guerras esforçados,
+  Mais do que prometia a força humana,
+  E entre gente remota edificaram
+  Novo Reino, que tanto sublimaram."
+Severidade: alta
+Categoria: estrutura
+
+## [OIT-02] Esquema rímico ABABABCC — rimas alternadas + dístico final
+Fonte: Boccaccio, "Il Teseida"; Camões, "Os Lusíadas"
+Descrição: Os 6 primeiros versos seguem rimas alternadas (ABABAB). Os 2 últimos formam um dístico de rimas emparelhadas (CC). As rimas A e B se alternam rigorosamente: 1º rima com 3º e 5º; 2º rima com 4º e 6º. O dístico CC fecha a estrofe com rimas próprias, distintas de A e B.
+❌ Errado: ABABACAC, ABABCDEF, ou qualquer esquema que não respeite a alternância ABABAB + CC
+✅ Correto: ABABABCC — três pares alternados + dístico final
+📖 Exemplo real: Camões, "Os Lusíadas" (1572), Canto III, est. 118:
+  "Oh! Que faminto espírito queimava"         [A]
+  "O coração do fraco Capitão!"                [B]
+  "Que vossos ódios tanto estimulava,"         [A]
+  "Para se perder tua geração."                 [B]
+  "Mas Nuno, que a malícia não provava,"        [A]
+  "Tendo no peito a santa Inclinação,"          [B]
+  "Responde, qual convém a tanto prece,"        [C]
+  "Como quem erra, e sabe que obedece."         [C]
+Severidade: alta
+Categoria: rima
+
+## [OIT-03] Decassílabo heroico — 10 sílabas poéticas (padrão camoniano)
+Fonte: Camões, "Os Lusíadas"; Said Ali, "Versificação Portuguesa"
+Descrição: A oitava camoniana clássica exige o decassílabo heroico: 10 sílabas poéticas (contadas até a última tônica), com acentos obrigatórios na 6ª e na 10ª sílabas. A cesura natural ocorre após a 6ª sílaba. Este verso corresponde ao hendecassílabo italiano adaptado à prosódia portuguesa.
+❌ Errado: versos com 9 ou 11 sílabas; decassílabo sem acento na 6ª
+✅ Correto: "As / ar / mas / e_os / ba / rões / as / si / na / la / dos" = 10 sílabas, acentos na 6ª (rões) e 10ª (la)
+📖 Exemplo real com escansão: Camões, "Os Lusíadas", Canto I, est. 1:
+  "Por / ma / res / nun / ca / d~an / tes / na / ve / ga / dos"
+   1    2    3    4    5    6     7    8    9    10  (11 = pós-tônica)
+  Acento na 6ª (an-) e 10ª (ga). Cesura após "nunca d'antes".
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+MÉTRICA
+================================================================================
+
+## [OIT-04] Cesura obrigatória na 6ª sílaba do decassílabo heroico
+Fonte: Castilho, "Tratado de Metrificação"; Said Ali
+Descrição: O decassílabo heroico exige uma cesura (pausa métrica) após a 6ª sílaba, dividindo o verso em dois hemistíquios de 6 e 4 sílabas. A cesura é marcada por pausa sintática ou rítmica. Esta pausa é fundamental para o ritmo épico da oitava camoniana.
+❌ Errado: verso decassílabo sem cesura perceptível; cesura após a 4ª ou 5ª sílaba (é sáfico, não heroico)
+✅ Correto: "As armas e os barões // assinalados" — cesura após "barões" (6ª sílaba)
+📖 Exemplo real: Camões, "Os Lusíadas", Canto I, est. 1:
+  "As armas e os barões // assinalados"       ← cesura 6+4
+  "Que da ocidental praia // Lusitana"        ← cesura 6+4
+  "Por mares nunca de antes // navegados"     ← cesura 6+4
+Severidade: alta
+Categoria: métrica
+
+## [OIT-05] Decassílabo sáfico — variante com acentos na 4ª, 8ª e 10ª
+Fonte: tradição clássica; Cruz e Sousa, "Broquéis"; Bocage
+Descrição: O decassílabo sáfico tem acentos primários na 4ª, 8ª e 10ª sílabas. É menos comum na oitava camoniana, mas usado por poetas parnasianos e simbolistas. Na oitava clássica, o heroico é preferencial; o sáfico é admitido como variante desde que não se misturem os dois padrões na mesma estrofe.
+❌ Errado: misturar acentos heroicos (6ª) e sáficos (8ª) no mesmo verso
+✅ Correto: "Ó / for / mas / al / vas, / bran / cas, / for / mas / cla / ras" — acentos na 4ª (al-), 8ª (for-), 10ª (cla-)
+📖 Exemplo real: Cruz e Sousa, "Antífona" (Broquéis, 1893):
+  "Ó Formas alvas, brancas, Formas claras
+  De luares, de neves, de neblinas!" — sáfico predominante, cesura na 4ª
+Severidade: media
+Categoria: métrica
+
+## [OIT-06] Isometria — todos os 8 versos com o mesmo número de sílabas
+Fonte: tradição camoniana; Said Ali
+Descrição: Na oitava clássica, todos os 8 versos devem ter exatamente 10 sílabas poéticas (isometria estrita). Variações no número de sílabas entre versos quebram a regularidade épica. A oitava moderna e a oitava de cordel admitem maior flexibilidade, mas a forma camoniana é rigorosa.
+❌ Errado: 1º verso com 10 sílabas, 2º com 8, 3º com 10, 4º com 6 — quebra de isometria
+✅ Correto: todos os 8 versos com 10 sílabas exatas
+Severidade: alta
+Categoria: métrica
+
+## [OIT-07] Oitava alexandrina — 12 sílabas (variante parnasiana e simbolista)
+Fonte: Olavo Bilac, "O Caçador de Esmeraldas"; Alberto de Oliveira, "Poesias"
+Descrição: Há oitavas em versos alexandrinos (12 sílabas) no Parnasianismo e no Simbolismo, com cesura obrigatória na 6ª sílaba (alexandrino clássico). O andamento é mais solene que o decassílabo heroico. Bilac e Alberto de Oliveira usaram o alexandrino em poemas longos em oitavas.
+❌ Errado: alexandrino sem cesura na 6ª sílaba; misturar alexandrinos com decassílabos na mesma oitava
+✅ Correto: 8 versos alexandrinos (12 sílabas) com cesura na 6ª
+📖 Exemplo real: Olavo Bilac, "O Caçador de Esmeraldas" (Poesias, 1902):
+  "Eia! a noite morreu: e o sol dourado
+  Rompe as neblinas de ouro e de escarlata:" — alexandrino, cesura na 6ª
+Severidade: media
+Categoria: métrica
+
+================================================================================
+CHAVE DE OURO
+================================================================================
+
+## [OIT-08] A chave de ouro — dístico final CC como epifonema
+Fonte: Camões, "Os Lusíadas"; Said Ali; tradição épica
+Descrição: O dístico final (CC) é a "chave de ouro" da oitava. Funciona como epifonema — conclusão sentenciosa que remata a estrofe com impacto máximo. A chave de ouro pode conter conclusão moral, antítese, imagem surpreendente, mudança de tom (do narrativo para o reflexivo) ou resolução da cena narrada. É o verso mais forte da oitava.
+❌ Errado: dístico final anticlimático, sem força epigramática; chave de ouro que apenas repete o conteúdo dos versos anteriores
+✅ Correto: dístico final com conclusão impactante
+📖 Exemplo real: Camões, "Os Lusíadas" (1572), Canto I, est. 105:
+  "Para que possa a fraca voz humana
+  Dizer do vosso nome a fama ufana." — contraste "fraca"/"ufana" condensa o programa épico
+Severidade: alta
+Categoria: estrutura
+
+## [OIT-09] A chave de ouro como viragem de tom
+Fonte: Camões, "Os Lusíadas"; Tasso, "Gerusalemme Liberata"
+Descrição: A chave de ouro frequentemente opera uma viragem de tom: os 6 primeiros versos narram ou descrevem; o dístico final reflete, conclui ou surpreende. Esta mudança de registro é uma das marcas da oitava camoniana madura e diferencia a forma de uma mera sequência de 8 versos.
+❌ Errado: dístico final que mantém exatamente o mesmo tom narrativo dos 6 primeiros
+✅ Correto: dístico que conclui com mudança de registro (narrativo → reflexivo, descritivo → sentencioso)
+📖 Exemplo real: Camões, "Os Lusíadas", Canto II, est. 46:
+  "Estas palavras tais o Mouro ouvindo,
+  Como fora de si, desatinava.
+  Os olhos pelo templo ao redor lindo,
+  O gesto ledo, ou triste contemplava.
+  Tudo temia, enfim; e esclarecendo,
+  Depois que a turba santa se apartava,
+  Fitando os olhos nela, ledo e triste:
+  Ou quem é esta Deusa? E que lhe triste?" — viragem interrogativa no dístico
+Severidade: alta
+Categoria: estrutura
+
+================================================================================
+ORIGEM ITALIANA
+================================================================================
+
+## [OIT-10] Boccaccio — inventor da ottava rima (séc. XIV)
+Fonte: Boccaccio, "Il Teseida delle Nozze d'Emilia" (1340)
+Descrição: Giovanni Boccaccio criou a oitava-rima para seu poema épico "Il Teseida" (c. 1340). A estrofe de 8 hendecassílabos com rima ABABABCC inspirou-se na estrofe siciliana (canzone a stanza) e no sirventês provençal. Boccaccio fixou o padrão que seria seguido por toda a tradição épica europeia.
+❌ Errado: atribuir a invenção da oitava-rima a Camões ou a Petrarca
+✅ Correto: reconhecer Boccaccio como criador da forma no século XIV
+📖 Exemplo real: Boccaccio, "Il Teseida" (1340), Livro I, est. 1:
+  "O sacrosante vergini, e se mai
+  alcuna volta per alcun diletto
+  ne' vostri corpi sante fiamme avrai,
+  ora pregate il mio debole intelletto,
+  sì che 'l mio dir, quantunque rozzo, sai
+  a voi grato e piacevole e accetto,
+  e cominciate voi l'alto lavoro,
+  o sante ninfe, a' quai convien ch'io adoro."
+Severidade: baixa
+Categoria: história
+
+## [OIT-11] Ariosto e Tasso — flexibilidade e seriedade (séc. XVI)
+Fonte: Ariosto, "Orlando Furioso" (1532); Tasso, "Gerusalemme Liberata" (1581)
+Descrição: Ludovico Ariosto fixou a oitava-rima como estrofe do poema cavaleiresco renascentista, com cerca de 38.000 versos em "Orlando Furioso". Ariosto tornou a oitava mais flexível, permitindo enjambements e variações tonais. Torquato Tasso, influência direta de Camões, retomou a seriedade épica, rejeitando o tom cavaleiresco de Ariosto e impondo maior regularidade métrica.
+❌ Errado: ignorar a influência italiana sobre a oitava camoniana
+✅ Correto: reconhecer Ariosto e Tasso como precursores imediatos de Camões
+Severidade: baixa
+Categoria: história
+
+================================================================================
+TRADIÇÃO PORTUGUESA E BRASILEIRA
+================================================================================
+
+## [OIT-12] Camões e "Os Lusíadas" — o apogeu da oitava camoniana (1572)
+Fonte: Camões, "Os Lusíadas" (1572); Bosi, "História Concisa da Literatura Brasileira"
+Descrição: Camões escreveu 1.102 oitavas em 10 cantos, consolidando a oitava como a estrofe épica por excelência da língua portuguesa. Cada oitava é épica: narra ação heróica, descreve batalha ou paisagem, ou veicula reflexão moral. A oitava camoniana caracteriza-se por inversão sintática (hipérbato) frequente, vocabulário latinizante, imagens grandiosas e final epigramático.
+❌ Errado: escrever oitava épica sem o vocabulário elevado e a inversão sintática próprios do estilo camoniano
+✅ Correto: estudar as 1.102 oitavas de "Os Lusíadas" como modelo da forma
+📖 Exemplo real: Camões, "Os Lusíadas" (1572), Canto V, est. 37:
+  "Trazia o cabo Arábio e o Mar Vermelho
+  Por popa; e já cortando a costa ardente,
+  O Cabo Guardafum diante selho
+  Ia; Mas tanto a gente se impaciente
+  Por este mar tão longo, que aparelho
+  De tornar para a pátria, tão somente
+  Não sabe se deseja, se deseja
+  A morte, que da vida mais enseja."
+Severidade: alta
+Categoria: referência
+
+## [OIT-13] Santa Rita Durão — "Caramuru" (1781)
+Fonte: Santa Rita Durão, "Caramuru — Poema Épico do Descobrimento da Bahia" (1781)
+Descrição: Primeiro grande poema épico brasileiro em oitavas decassílabas camonianas. Narra a história de Diogo Álvares Correia (Caramuru) e o descobrimento da Bahia. Mantém o rigor métrico camoniano (decassílabo heroico, ABABABCC) com temática americanista, fundindo a tradição épica portuguesa à matéria brasileira.
+❌ Errado: ignorar "Caramuru" como marco da oitava brasileira
+✅ Correto: estudar Durão como introdutor da oitava camoniana no Brasil
+📖 Exemplo real: Santa Rita Durão, "Caramuru" (1781), Canto I, est. 1:
+  "De um varão em mil casos agitado,
+  Que as praias da Bahia discorrendo,
+  Os sertões inóspitos pisado,
+  De corsários e bárbaros temendo;
+  Os casos grandes, que ele só passado,
+  Na memória dos homens ainda vivendo,
+  E vós, ó ninfas da ria, se acaso
+  Mereço um favor vosso, dai-me um passo."
+Severidade: baixa
+Categoria: referência
+
+## [OIT-14] Basílio da Gama — "O Uraguai" e a oitava branca (1769)
+Fonte: Basílio da Gama, "O Uraguai" (1769)
+Descrição: "O Uraguai" é inovador por usar oitavas decassílabas brancas (sem rima). Basílio da Gama quebrou a tradição da rima em ABABABCC, escrevendo o poema em versos soltos — o que foi revolucionário para a época. A oitava perde a musicalidade rímica mas ganha em naturalidade sintática, aproximando a dicção épica da prosa poética.
+❌ Errado: confundir oitava branca com oitava sem métrica — "O Uraguai" mantém o decassílabo heroico
+✅ Correto: a oitava branca é variação métrica legítima que preserva o decassílabo mas liberta a rima
+📖 Exemplo real: Basílio da Gama, "O Uraguai" (1769), Canto I:
+  "Fumam ainda nas desertas praias
+  Lagos de sangue tépidos e impuros
+  Em que ondeiam cadáveres despidos,
+  Pasto de corvos. Dura inda nos ouvidos
+  O som da irada trompa e dos tambores:" — decassílabos sem rima
+Severidade: media
+Categoria: referência
+
+## [OIT-15] Oitava no Romantismo brasileiro — Magalhães e Gonçalves Dias
+Fonte: Gonçalves de Magalhães, "Confederação dos Tamoios" (1856); Gonçalves Dias, "Os Timbiras" (1857)
+Descrição: O Romantismo brasileiro retomou a oitava camoniana para épicas indigenistas. Magalhães escreveu "Confederação dos Tamoios" em oitavas decassílabas (criticado por Alencar como "camonianismo obsoleto"). Gonçalves Dias escreveu "Os Timbiras", poema épico inacabado em oitavas, com apenas 4 cantos concluídos. Ambos tentaram fundir a forma épica camoniana ao tema nacional.
+❌ Errado: imitar servilmente Camões sem adaptar a dicção ao tema brasileiro
+✅ Correto: usar a oitava camoniana para temas nacionais, como fizeram Magalhães e Dias
+📖 Exemplo real: Gonçalves Dias, "Os Timbiras" (1857), Canto I, est. 1:
+  "A tribo dos Timbiras, indomável,
+  Que as matas do Parnaíba senhoreia,
+  E do pasto dos campos deleitável
+  Ao Gavião e ao Pardo senhoreia,
+  A guerra ao branco tem por inefável,
+  E por glória e por honra a julga alheia.
+  A sua história canto, e a vingança
+  Que deu ao branco o índio sem tardança."
+Severidade: baixa
+Categoria: referência
+
+## [OIT-16] Oitava no Parnasianismo — Bilac e a ourivesaria formal
+Fonte: Olavo Bilac, "O Caçador de Esmeraldas" (1902); Alberto de Oliveira, "O Alcaide de Santarém"
+Descrição: No Parnasianismo, a oitava atingiu rigor formal máximo. Bilac escreveu "O Caçador de Esmeraldas" em oitavas heróicas com rimas ricas e descrição vívida. Alberto de Oliveira cultivou oitavas decassílabas e alexandrinas com ourivesaria verbal. A oitava parnasiana valoriza rimas raras (entre classes gramaticais diferentes), cesura rigorosa e vocabulário preciosista.
+❌ Errado: rimas pobres ou óbvias em contexto parnasiano; cesura ausente ou irregular
+✅ Correto: oitava com rimas ricas e raras, léxico seleto e cesura rigorosa
+📖 Exemplo real: Olavo Bilac, "O Caçador de Esmeraldas" (Poesias, 1902):
+  "Anda, anda, anda, o sertanejo. Pisa
+  O chão de fogo, as sílex, os abrolhos.
+  O sol, num céu de bronze, se desvaira,
+  E a terra, em roda, é um braseiro. Os olhos
+  Ardem-lhe. A roupa em tiras. A camisa
+  Ferve-lhe em fogo, e em fogo os couros molhos.
+  Anda. E nas mãos, que a febre crestou, visa
+  O verde inferno que as palhetas lisa."
+Severidade: media
+Categoria: referência
+
+## [OIT-17] Oitava no Simbolismo — musicalidade e sugestão (Cruz e Sousa)
+Fonte: Cruz e Sousa, "Broquéis" (1893), "Faróis" (1900)
+Descrição: O Simbolismo subverteu a função narrativa da oitava, tornando-a lírica e sugestiva. Cruz e Sousa escreveu oitavas com vocabulário preciosista, imagens sinestésicas e musicalidade extremada. A oitava simbolista é menos narrativa que a camoniana — privilegia a atmosfera, a repetição e a aliteração sobre o encadeamento épico.
+❌ Errado: usar dicção épica camoniana em oitava que se pretende simbolista
+✅ Correto: oitava com aliterações, sinestesias e vocabulário etéreo
+📖 Exemplo real: Cruz e Sousa, "Antífona" (Broquéis, 1893):
+  "Ó Formas alvas, brancas, Formas claras
+  De luares, de neves, de neblinas!
+  Ó Formas vagas, fluidas, cristalinas...
+  Incensos dos turíbulos das aras...
+  Formas do Amor, constelarmente puras,
+  De Virgens e de Santas vaporosas...
+  Brilham, soluçam lágrimas formosas
+  Como as auroras e as alvoradas..."
+Severidade: baixa
+Categoria: referência
+
+## [OIT-18] Oitava no Modernismo — verso livre e subversão formal
+Fonte: Manuel Bandeira, "Libertinagem" (1930); Carlos Drummond de Andrade, "A Rosa do Povo" (1945)
+Descrição: A partir do Modernismo, poetas escrevem oitavas sem métrica regular, sem rima fixa e sem cesura obrigatória. A oitava é definida apenas pelo número de versos (8). Bandeira, Drummond, Gullar e Leminski subverteram a forma clássica, usando oitavas de versos livres, linguagem coloquial e ironia. A recognoscibilidade dos 8 versos é o único traço formal constante.
+❌ Errado: chamar de oitava clássica uma oitava de versos livres — são categorias distintas
+✅ Correto: a oitava moderna é oitava pelo número de versos, não pela métrica
+📖 Exemplo real: Manuel Bandeira, "O Cacto" (Libertinagem, 1930):
+  "Aquele cacto lembrava os gestos desesperados da humanidade:
+  Aflitos, sujos, decadentes, feitos de sonho e de realidade.
+  De tarde, quando o sol se punha, aquele cacto fazia
+  Uma sombra mais negra, mais vazia, mais perdida.
+  E as suas flores, raras, brotavam entre os espinhos,
+  Como as almas dos que nada conseguem na vida,
+  Feias, sujas, decadentes, como a humanidade." — oitava livre, verso livre
+Severidade: media
+Categoria: referência
+
+================================================================================
+OITAVA NO CORDEL
+================================================================================
+
+## [OIT-19] Oitava cordelista — 8 versos decassílabos com rima variável
+Fonte: Leandro Gomes de Barros; João Martins de Ataíde; literatura de cordel nordestina
+Descrição: No cordel nordestino, a oitava de 8 versos decassílabos aparece com esquemas de rima adaptados (ABABABCC ou ABCBDDBB). A métrica é mais flexível que a camoniana (aceita 9-10 sílabas) e a chave de ouro pode ser substituída por refrão. É forma híbrida que mantém os 8 versos mas relaxa o rigor formal.
+❌ Errado: confundir oitava cordelista com martelo agalopado (que tem 7 versos, não 8)
+✅ Correto: a oitava cordelista tem 8 versos decassílabos, com rimas adaptadas
+📖 Exemplo real: Leandro Gomes de Barros, "O Romance do Pavão Misterioso" (c. 1920):
+  "Era uma vez um príncipe encantado,
+  que numa tarde de luar saiu.
+  Montado num cavalo gateado,
+  as terras do seu reino percorreu.
+  Chegando a um castelo abandonado,
+  uma princesa bela ele entreviu.
+  Casou-se com ela no outro dia,
+  e foi feliz até que Deus queria."
+Severidade: media
+Categoria: variação
+
+## [OIT-20] Martelo agalopado — não é oitava (7 versos)
+Fonte: Leandro Gomes de Barros; tradição do cordel nordestino
+Descrição: O martelo agalopado tem 7 versos de 10 sílabas (não 8!), com esquema ABABCCB. É frequentemente confundido com a oitava camoniana, mas difere no número de versos (7 vs. 8) e no esquema rímico (ABABCCB vs. ABABABCC). O martelo é modalidade específica do cordel, herdeiro da oitava de redondilhas populares, mas não é oitava.
+❌ Errado: classificar martelo agalopado como oitava — tem 7 versos, estrutura rímica distinta
+✅ Correto: o martelo é forma autônoma de 7 versos decassílabos com rima ABABCCB
+📖 Exemplo real: Leandro Gomes de Barros, "O Martelo Agalopado" (c. 1900):
+  "Vou cantar o martelo no estilo pernambucano,        [A]
+  com dez sílabas em cada verso, tudo feito a piano,    [B]
+  estes versos são bonitos e agradam ao coração.         [A]
+  Se eu cantar muita coisa, o povo não se engana,        [B]
+  que o martelo é uma trova de cordel mais soberana.    [C]
+  Quem ouvir o martelo, vai gostar do refrão:            [C]
+  martelo agalopado, que só canta o trovão!"            [B]
+Severidade: alta
+Categoria: definição
+
+================================================================================
+TEMÁTICA
+================================================================================
+
+## [OIT-21] Função épico-narrativa — a oitava como unidade de cena
+Fonte: Camões, "Os Lusíadas"; Tasso, "Gerusalemme Liberata"
+Descrição: A oitava é a forma do poema épico: narra ações heróicas, batalhas, viagens, descobertas. Cada oitava funciona como unidade mínima de narrativa — uma cena, um episódio, uma reflexão. A grandeza do decassílabo heroico combina com a solenidade da narrativa épica. A oitava camoniana não é lírica (como o soneto) — é narrativa.
+❌ Errado: usar oitava para tema exclusivamente lírico sem desenvolvimento narrativo
+✅ Correto: cada oitava deve conter progressão narrativa ou descritiva
+📖 Exemplo real: Camões, "Os Lusíadas", Canto IV, est. 67:
+  "A frota, que do Teja se despedia,
+  Das praias de Belém se ia apartando.
+  A gente, que na aresta aparecia,
+  Os lenços, as lágrimas, o choro, o bando,
+  Tudo a saudade e a dor significava,
+  Tudo a despedida e o adeus, amando.
+  Mas o vento, que as velas enchia,
+  A frota para o mar alto movia." — cena completa da partida
+Severidade: alta
+Categoria: conteúdo
+
+## [OIT-22] Função herói-cómica — paródia épica na oitava
+Fonte: António Diniz da Cruz e Silva, "O Hissope" (1768)
+Descrição: A oitava presta-se à paródia épica, tratando temas triviais em tom elevado (herói-cómico). "O Hissope" de Diniz é o exemplo clássico português: narra a disputa entre o bispo de Elvas e seu deão sobre quem deve carregar o hissope nas procissões. O contraste entre a forma solene (oitava camoniana) e o tema prosaico gera o efeito cômico.
+❌ Errado: tratar tema cômico com linguagem coloquial excessiva — o herói-cómico exige tom elevado contrastando com tema banal
+✅ Correto: matéria trivial em linguagem épica, mantendo o rigor métrico camoniano
+📖 Exemplo real: Diniz, "O Hissope" (1768), Canto I, est. 1:
+  "As armas e o varão, que, discorrendo
+  Por todos os empregos da cidade,
+  Foi sempre a vara da justiça erguendo
+  Contra a soberba, a fraude, a falsidade." — tom épico para tema cômico
+Severidade: media
+Categoria: conteúdo
+
+================================================================================
+ESTILO E SINTAXE
+================================================================================
+
+## [OIT-23] Hipérbato camoniano — inversão sintática à moda latina
+Fonte: Camões, "Os Lusíadas"; Said Ali
+Descrição: A oitava épica camoniana caracteriza-se pelo hipérbato (inversão sintática) frequente, herdado do latim e do italiano. A ordem direta (sujeito-verbo-objeto) é frequentemente alterada para efeito de solenidade e para acomodar a métrica. O hipérbato deve soar natural, não forçado — Camões o usava com maestria, mas imitadores inexpertos caem no hermetismo.
+❌ Errado: "Do mar as ondas que quebram na areia / eu, cavaleiro andante, vejo e canto" — inversão forçada e obscura
+✅ Correto: hipérbato que eleva o tom sem sacrificar a inteligibilidade
+📖 Exemplo real: Camões, "Os Lusíadas", Canto I, est. 1:
+  "As armas e os barões assinalados,
+  Que da ocidental praia lusitana" — inversão suave ("da ocidental praia" em vez de "da praia ocidental")
+Severidade: media
+Categoria: sintaxe
+
+## [OIT-24] Enjambement na oitava — uso moderado e expressivo
+Fonte: Camões, "Os Lusíadas"; Ariosto, "Orlando Furioso"
+Descrição: A oitava camoniana admite enjambement (encavalamento entre versos), mas deve ser controlado e expressivo, não abrupto. Camões usava enjambements para ligar pensamentos entre versos sem quebrar a unidade estrófica. Ariosto foi mais flexível, permitindo enjambements que atravessam a cesura. O enjambement excessivo que fragmenta o verso sem necessidade é erro.
+❌ Errado: "O cavaleiro, que na noite fria / e escura cavalgava sem destino / algum" — enjambement forçado
+✅ Correto: enjambement controlado que mantém a fluidez da leitura
+📖 Exemplo real: Camões, "Os Lusíadas", Canto I, est. 1:
+  "As armas e os barões assinalados,
+  Que da ocidental praia lusitana" — enjambement suave entre 1º e 2º verso
+Severidade: media
+Categoria: sintaxe
+
+================================================================================
+ANTIPADRÕES
+================================================================================
+
+## [OIT-25] Esquema de rimas incorreto — falta de alternância ABABAB
+Fonte: tradição camoniana; Said Ali
+Descrição: O erro mais comum na oitava é não respeitar a alternância rigorosa ABABAB. Esquemas como ABABCDCD, ABABCDEF, ou AABBCCDD quebram a estrutura fundamental. Os 6 primeiros versos devem alternar duas rimas (A e B) rigorosamente. O 5º verso deve rimar com o 1º e 3º (A); o 6º com o 2º e 4º (B).
+❌ Errado: "O mar se abre em ondas cristalinas [A] / e o barco corta o vento com bravura [B] / as aves no céu celebram [C — erro: devia ser A] / celebram a viagem, a aventura [B — erro de sequência]" — ABABCDEF, sem padrão
+✅ Correto: ABABABCC com alternância rigorosa
+Severidade: alta
+Categoria: antipadrão
+
+## [OIT-26] Chave de ouro fraca ou ausente
+Fonte: tradição camoniana; Said Ali
+Descrição: A chave de ouro (dístico CC) deve ser o ponto alto da oitava. Erro comum é escrever um dístico final anticlimático, que apenas conclui mecanicamente a narrativa sem impacto epigramático. O dístico deve conter imagem marcante, paradoxo, antítese ou conclusão sentenciosa que encerre a estrofe com força.
+❌ Errado: "E ele chegou no dia do seu fim / e tudo acabou para ele assim." — anticlimático, sem força epigramática
+✅ Correto: dístico que encerra a estrofe com impacto e conclusão
+📖 Exemplo real: Cláudio Manuel da Costa, "Vila Rica" (1773), est. 1:
+  "A riqueza e a miséria ao mesmo tempo oferece." — antítese na chave de ouro
+Severidade: alta
+Categoria: antipadrão
+
+## [OIT-27] Prosaísmo — linguagem coloquial excessiva em oitava épica
+Fonte: tradição camoniana; Bosi, "História Concisa da Literatura Brasileira"
+Descrição: A oitava épica exige dicção elevada, vocabulário seleto, linguagem solene. O prosaísmo (linguagem coloquial, expressões cotidianas, gírias) descaracteriza a forma. Uma oitava que se propõe camoniana não pode usar "o cara", "aí", "né" — exige o tom elevado da epopeia.
+❌ Errado: "O cara pegou a espada e saiu / pra luta, sem saber o que fazer. / Aí ele pensou: vou até o fim" — prosaísmo incompatível com oitava épica
+✅ Correto: dicção elevada à altura do metro heroico
+📖 Exemplo real: Alberto de Oliveira, "O Alcaide de Santarém" (Poesias, 1884):
+  "Na torre do castelo, o alcaide vela
+  A noite, ouvindo a chuva que desaba." — dicção elevada e solene
+Severidade: alta
+Categoria: antipadrão
+
+## [OIT-28] Cesura ausente ou deslocada no decassílabo heroico
+Fonte: Castilho, "Tratado de Metrificação"; Said Ali
+Descrição: O decassílabo heroico sem acento na 6ª sílaba (ou com acento deslocado para a 5ª ou 7ª) quebra o ritmo épico. Versos com acento na 4ª e 8ª (sáficos) são admitidos, mas não devem ser misturados com heroicos na mesma oitava. A cesura na 6ª é a marca rítmica fundamental da oitava camoniana.
+❌ Errado: "Belas paisagens de um mundo encantado" — acento na 4ª (sa-), não na 6ª; é sáfico, não heroico
+✅ Correto: "O coração do fraco Capitão" — acento na 6ª (-ção) e 10ª (tão)
+Severidade: alta
+Categoria: antipadrão
+
+## [OIT-29] Mistura de variantes métricas na mesma oitava
+Fonte: tradição camoniana; Said Ali
+Descrição: Não se devem misturar decassílabos heroicos com alexandrinos, ou decassílabos com redondilhas, na mesma oitava. Cada oitava deve ter isometria rigorosa. A oitava moderna de versos livres é exceção, mas não se confunde com a oitava clássica. A escolha métrica deve ser consciente e mantida por toda a estrofe.
+❌ Errado: 1º verso decassílabo, 2º alexandrino, 3º decassílabo — quebra de isometria
+✅ Correto: todos os 8 versos no mesmo metro
+Severidade: alta
+Categoria: antipadrão
+
+## [OIT-30] Hipérbato excessivo e obscuro
+Fonte: Camões, "Os Lusíadas"; Said Ali
+Descrição: O hipérbato camoniano deve ser expressivo sem sacrificar a clareza. Inversões exageradas que tornam o verso ininteligível são erro. Camões equilibrava inversão e clareza; imitadores que exageram produzem versos herméticos. A oitava épica deve ser solene, não obscura.
+❌ Errado: "Do mar as ondas que quebram na areia / eu, cavaleiro andante, vejo e canto" — inversão forçada
+✅ Correto: "As armas e os barões assinalados, / Que da ocidental praia lusitana" — inversão suave e clara
+Severidade: media
+Categoria: antipadrão
+
+================================================================================
+EXEMPLOS ADICIONAIS
+================================================================================
+
+## [OIT-31] Oitavas em Cláudio Manuel da Costa — "Vila Rica" (1773)
+Fonte: Cláudio Manuel da Costa, "Vila Rica" (1773)
+Descrição: Poema épico-histórico sobre a fundação de Ouro Preto, 10 cantos em oitavas decassílabas. Costa funde a tradição camoniana à matéria mineira, descrevendo paisagens, a exploração do ouro e o povoamento das Gerais. Exemplo de adaptação brasileira da oitava épica no período árcade.
+📖 Exemplo real: Cláudio Manuel da Costa, "Vila Rica" (1773), est. 1:
+  "Eu Canto as fundações do novo Império,
+  Que o ouro e a prata, com suor e sangue,
+  Firmaram sobre o monte, e no mistério
+  Dos sertões, onde o índio, a fera, o mangue,
+  Viram chegar o luso (o homem sério),
+  Que as matas derrubou, e ao novo e ingente
+  Povo, que neste solo estabelece,
+  A riqueza e a miséria ao mesmo oferece."
+Severidade: baixa
+Categoria: referência
+
+## [OIT-32] Oitava de redondilhas — 8 versos de 7 sílabas (forma popular)
+Fonte: Patativa do Assaré; tradição popular nordestina
+Descrição: Há oitavas de redondilha maior na poesia popular — são duas quadras unidas em uma estrofe de 8 versos de 7 sílabas. Não é oitava camoniana (que exige decassílabo), mas sim uma forma híbrida comum no cancioneiro popular e no cordel. A rima é variável e a chave de ouro não é obrigatória.
+❌ Errado: confundir oitava de redondilhas com oitava camoniana — categorias métricas distintas
+✅ Correto: reconhecer a oitava popular como variação legítima em metro de redondilha
+📖 Exemplo real: Castro Alves, "O Navio Negreiro" (Espumas Flutuantes, 1870):
+  "Senhor Deus dos desgraçados!
+  Dizei-me vós, Senhor Deus!
+  Se eu deliro... ou se é verdade
+  Tanto horror perante os céus...
+  Ó mar! Por que não apagas
+  Co'a as ondas do teu manto
+  Este turbilhão de infâmias
+  Que te cobrem de quebranto?" — oitava de redondilhas (7 sílabas)
+Severidade: baixa
+Categoria: variação
+
+================================================================================
+FIM DO ARQUIVO — OITAVA
+================================================================================

@@ -1,4 +1,4 @@
-export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo";
+export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo" | "trova" | "oitava" | "decima" | "elegia" | "ode" | "verso-livre";
 
 export interface StructureValidation {
   valid: boolean;
@@ -18,6 +18,9 @@ export function validateStructure(text: string, structure: TextStructure): Struc
     case 'cordel': return validateCordel(text);
     case 'redondilha': return validateRedondilha(text);
     case 'decassilabo': return validateDecassilabo(text);
+    case 'trova': return validateTrova(text);
+    case 'oitava': return validateOitava(text);
+    case 'decima': return validateDecima(text);
     default: return { valid: true, errors: [] };
   }
 }
@@ -47,12 +50,14 @@ export function validateSyllableCount(text: string, structure: TextStructure): S
     return errors;
   }
 
-  if (structure === 'redondilha' || structure === 'soneto' || structure === 'decassilabo' || structure === 'cordel') {
+  if (structure === 'redondilha' || structure === 'soneto' || structure === 'decassilabo' || structure === 'cordel' || structure === 'trova' || structure === 'oitava') {
     const isCordel = structure === 'cordel';
     const isRedondilha = structure === 'redondilha';
     const isDecassilabo = structure === 'decassilabo' || structure === 'soneto';
+    const isTrova = structure === 'trova';
+    const isOitava = structure === 'oitava';
 
-    const expectedSyllables = isCordel ? 7 : isRedondilha ? null : isDecassilabo ? 10 : null;
+    const expectedSyllables = isCordel ? 7 : isRedondilha ? null : isDecassilabo ? 10 : isTrova ? 7 : isOitava ? 10 : null;
 
     for (let i = 0; i < lines.length; i++) {
       const syllables = countPoeticSyllables(lines[i]);
@@ -73,6 +78,10 @@ export function validateSyllableCount(text: string, structure: TextStructure): S
           line: i + 1,
           message: isCordel
             ? `Cordel: verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas. Encontradas: ${syllables}.`
+            : isTrova
+            ? `Trova: verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas (redondilha maior). Encontradas: ${syllables}.`
+            : isOitava
+            ? `Oitava: verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas (decassílabo heroico). Encontradas: ${syllables}.`
             : `Verso ${i + 1} deve ter ${expectedSyllables} sílabas poéticas (${structure}). Encontradas: ${syllables}.`,
           severity: 'media',
         });
@@ -236,6 +245,55 @@ function validateRedondilha(text: string): StructureValidation {
       errors.push({
         line: 1,
         message: `Redondilha: estrofe ${i + 1} deve ter entre 4 e 8 versos. Encontrados: ${stanzas[i].length}.`,
+        severity: 'media',
+      });
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+function validateTrova(text: string): StructureValidation {
+  const errors: StructureError[] = [];
+  const lines = text.split('\n').filter(l => l.trim());
+
+  if (lines.length % 4 !== 0) {
+    errors.push({
+      line: 1,
+      message: `[TRV-01] Trova/quadra deve ter número de versos múltiplo de 4. Encontrados: ${lines.length}.`,
+      severity: 'media',
+    });
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+function validateOitava(text: string): StructureValidation {
+  const errors: StructureError[] = [];
+  const stanzas = splitIntoStanzas(text);
+
+  for (let i = 0; i < stanzas.length; i++) {
+    if (stanzas[i].length !== 8) {
+      errors.push({
+        line: 1,
+        message: `[OIT-01] Oitava: estrofe ${i + 1} deve ter 8 versos. Encontrados: ${stanzas[i].length}.`,
+        severity: 'media',
+      });
+    }
+  }
+
+  return { valid: errors.length === 0, errors };
+}
+
+function validateDecima(text: string): StructureValidation {
+  const errors: StructureError[] = [];
+  const stanzas = splitIntoStanzas(text);
+
+  for (let i = 0; i < stanzas.length; i++) {
+    if (stanzas[i].length !== 10) {
+      errors.push({
+        line: 1,
+        message: `[DCM-01] Décima: estrofe ${i + 1} deve ter 10 versos. Encontrados: ${stanzas[i].length}.`,
         severity: 'media',
       });
     }

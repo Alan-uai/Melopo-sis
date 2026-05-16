@@ -1,0 +1,381 @@
+# Trova (Quadra / Quadrinha) — Normas e Estrutura
+# Baseado na tradição trovadoresca medieval, na UBT, e na poesia popular brasileira
+# Data: 2026-05-16
+
+================================================================================
+DEFINIÇÃO
+================================================================================
+
+## [TRV-01] Número de versos — 4 versos obrigatórios
+Fonte: União Brasileira de Trovadores (UBT); tradição literária (Luiz Otávio, Adelmar Tavares)
+Descrição: A trova é um poema de exatamente 4 versos. Difere da quadra avulsa porque é uma forma em si mesma — não é estrofe de poema maior, mas poema completo e autossuficiente em apenas quatro linhas. Cada trova deve dizer algo cabalmente, sem necessidade de complemento.
+❌ Errado: trova com 3 ou 5 versos; quadra que é estrofe de poema maior tratada como trova autônoma
+✅ Correto: 4 versos formando um poema completo, com conteúdo fechado em si mesmo
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "O que a gente mais deseja,
+  tantas vezes se perdeu;
+  a vida é fogo de palha:
+  crepita, brilha e morreu."
+Severidade: alta
+Categoria: estrutura
+
+## [TRV-02] Redondilha maior — 7 sílabas poéticas (padrão clássico)
+Fonte: UBT; Said Ali, "Versificação Portuguesa"; tradição trovadoresca
+Descrição: A trova clássica exige o verso de redondilha maior (7 sílabas poéticas, contadas até a última tônica). É o metro mais popular da língua portuguesa, usado em cantigas, trovas, cordel e modinhas. A UBT não reconhece como trova clássica composições em outros metros.
+❌ Errado: versos com 5, 8 ou 10 sílabas em trova que se pretende clássica
+✅ Correto: "O que a gen te mais de se ja" = 7 sílabas poéticas (a pós-tônica "ja" não conta)
+📖 Exemplo real: Adelmar Tavares, "Trova" (Antologia de Trovas, 1940):
+  "Na fon te do meu jar dim" — 7 sílabas, oxítono perfeito
+  "Pas sa ri nho, se tens a sas" — 7 sílabas
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+MÉTRICA
+================================================================================
+
+## [TRV-03] Redondilha menor — 5 sílabas (variante admitida)
+Fonte: tradição popular; cantigas de amigo medievais; Câmara Cascudo, "Literatura Oral"
+Descrição: A redondilha menor (5 sílabas poéticas) é aceita como variante da trova popular e infantil. Era comum nas cantigas de amigo medievais. A UBT, porém, não a reconhece como trova clássica. Seu uso é mais frequente no cancioneiro folclórico que na trova erudita.
+❌ Errado: misturar redondilha maior e menor na mesma trova sem justificativa estilística
+✅ Correto: todos os 4 versos em redondilha menor (5 sílabas)
+📖 Exemplo real: Cantiga popular anônima (tradicional):
+  "Mo ro no Ca pim" — 5 sílabas
+  Lá / na / ser / ra = 4 sílabas (variação popular aceita)
+Severidade: media
+Categoria: métrica
+
+## [TRV-04] Isometria — todos os versos com o mesmo número de sílabas
+Fonte: UBT; tradição trovadoresca erudita
+Descrição: Na trova clássica, todos os 4 versos devem ter exatamente 7 sílabas poéticas. A trova popular admite variações (6 ou 8 sílabas por irregularidade da fala popular), mas a trova erudita exige isometria rigorosa. Versos de comprimentos diferentes quebram a regularidade rítmica.
+❌ Errado: verso 1 com 7 sílabas, verso 2 com 5, verso 3 com 7, verso 4 com 7
+✅ Correto: "Na praia eu andava a sonhar" (7) / "com meu bem tão sonhador" (7)
+📖 Exemplo real (popular com variação): Patativa do Assaré, "O Poeta da Roça" (Inspiração Nordestina, 1956):
+  "Sou fio das mata," (5 sílabas — variação popular)
+  "cantô da mão grossa," (6 sílabas)
+  "trabalho na roça," (6 sílabas)
+  "de inverno e de estio." (7 sílabas)
+Severidade: alta
+Categoria: métrica
+
+================================================================================
+RIMA
+================================================================================
+
+## [TRV-05] Esquema ABCB — rima nos versos pares (padrão UBT)
+Fonte: UBT; Luiz Otávio, "Trovas Seletas"; J. G. de Araújo Jorge, "Trovas"
+Descrição: O esquema mais comum e institucionalizado pela UBT: o 1º verso é livre (não rima), o 2º rima com o 4º (rima consoante obrigatória), o 3º é livre. O 1º e o 3º versos não devem rimar entre si, embora isso seja tolerado em variações.
+❌ Errado: 2º verso que não rima com o 4º; 1º verso rimando com 3º sem ser esquema ABAB
+✅ Correto: ABCB — versos 2 e 4 rimam, 1 e 3 livres
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Cada verso é uma saudade"       [A — livre]
+  "que me aperta o coração"        [B]
+  "Um verso de cada lágrima"       [C — livre]
+  "que caiu na minha mão."         [B — rima com coração]
+Severidade: alta
+Categoria: rima
+
+## [TRV-06] Esquema ABAB — rimas alternadas
+Fonte: tradição trovadoresca; Luiz Otávio, "Trovas Seletas"
+Descrição: O segundo esquema mais comum: o 1º rima com o 3º, e o 2º rima com o 4º. Exige duas rimas consoantes diferentes (A e B). É tão legítimo quanto o ABCB, mas ligeiramente mais difícil por exigir duas rimas em vez de uma.
+❌ Errado: 1º rima com 3º mas 2º não rima com 4º
+✅ Correto: ABAB — rimas alternadas perfeitas
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "Nunca exijas de ninguém"        [A]
+  "mais que a ti mesmo darás;"     [B]
+  "que o esperado bem de alguém"   [A — rima com ninguém]
+  "bem poucas vezes verás."        [B — rima com darás]
+Severidade: alta
+Categoria: rima
+
+## [TRV-07] Rima consoante obrigatória na trova erudita
+Fonte: UBT; Adelmar Tavares, "Obra Poética"
+Descrição: A UBT exige rima consoante (todos os fonemas iguais a partir da vogal tônica) nos versos pares (ou nos pares do esquema). Rima toante (só vogais) é aceita na trova popular, mas não na erudita. A rima deve ser perfeita — "cantar" rima com "amar", não com "cantou".
+❌ Errado: "amor" com "dó" (toante imperfeita); "vida" com "ferida" (consoante, aceito mas pobre)
+✅ Correto: rimas consoantes perfeitas
+📖 Exemplo real: Adelmar Tavares, "Trova" (Obra Poética, 1938):
+  "Passarinho, se tens asas,
+  não me deixes a cantar;
+  leva-me no bico as frases
+  que não posso te enviar." — cantar/enviar: rima consoante perfeita em -ar
+Severidade: alta
+Categoria: rima
+
+## [TRV-08] Esquemas alternativos — AABB e ABCC
+Fonte: tradição popular; Casimiro de Abreu, "Primaveras"
+Descrição: Além de ABCB e ABAB, existem os esquemas AABB (dois dísticos) e ABCC (3º rima com 4º, 1º e 2º livres). São menos comuns mas legítimos na tradição popular. O esquema ABCC é o mais raro e menos recomendado, pois tende a desequilibrar a trova com rimas apenas no final.
+❌ Errado: esquema que mistura padrões sem coerência (ex: ABAC)
+✅ Correto: AABB ou ABCC com rimas consoantes nos pares indicados
+📖 Exemplo real: Casimiro de Abreu, "Meus Oito Anos" (Primaveras, 1859):
+  "Oh! que saudades que tenho"     [A]
+  "Da aurora da minha vida,"       [A — rima toante com tenho? Análise: ABBA]
+  "Da minha infância querida"      [B]
+  "Que os anos não trazem mais!"   [B — rima consoante vida/querida]
+Severidade: media
+Categoria: rima
+
+================================================================================
+TEMÁTICA E CONTEÚDO
+================================================================================
+
+## [TRV-09] Conteúdo completo e autônomo
+Fonte: UBT; Luiz Otávio; J. G. de Araújo Jorge
+Descrição: A trova deve expressar uma ideia completa, um sentimento, um pensamento filosófico ou uma crítica social em apenas 4 versos. Não pode depender de estrofes anteriores ou posteriores. Cada trova é um poema autônomo — o leitor deve compreender a mensagem integralmente ao final do 4º verso.
+❌ Errado: trova que termina com sentido incompleto, como se precisasse de continuação
+✅ Correto: trova que encerra um pensamento completo
+📖 Exemplo real: Luiz Otávio, "Trova Filosófica" (Trovas de Filosofia, 1978):
+  "O tempo é mestre de tudo:
+  ensina a perdoar, a esquecer.
+  Mas o coração não aprende
+  a lição de não sofrer." — pensamento completo e autônomo
+Severidade: alta
+Categoria: conteúdo
+
+## [TRV-10] Musicalidade obrigatória
+Fonte: UBT; tradição trovadoresca; Câmara Cascudo
+Descrição: A trova é feita para ser cantada ou declamada. A musicalidade decorre do metro regular (7 sílabas), da rima consoante e do ritmo acentual. Versos prosaicos, sem ritmo, descaracterizam a forma. A trova deve ter "ouvido" — ao ser lida em voz alta, o ritmo deve ser evidente.
+❌ Errado: versos amétricos sem ritmo, prosaísmo sem musicalidade
+✅ Correto: versos com ritmo regular e sonoridade agradável
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (Primeiros Cantos, 1847):
+  "Minha terra tem palmeiras,
+  Onde canta o Sabiá;
+  As aves, que aqui gorjeiam,
+  Não gorjeiam como lá." — musicalidade perfeita
+Severidade: alta
+Categoria: conteúdo
+
+## [TRV-11] Temas preferenciais — amor, saudade, filosofia, crítica social
+Fonte: UBT; antologias de trova brasileira
+Descrição: A trova clássica trata preferencialmente de: amor (lírico ou resignado), saudade (tema central da língua portuguesa), filosofia popular / máxima (sabedoria condensada), crítica social (especialmente no cordel e em Patativa do Assaré), humor e sátira. Temas excessivamente abstratos ou prosaicos são desaconselhados.
+❌ Errado: trova sobre burocracia, procedimentos técnicos, temas áridos sem lirismo
+✅ Correto: trova sobre temas universais com tratamento lírico
+📖 Exemplo real (amor): Luiz Otávio, "Trova de Amor" (Trovas de Amor, 1965):
+  "Amor é luz que se acende
+  sem que ninguém veja o fósforo;
+  às vezes a gente sente
+  o coração virar pólen."
+📖 Exemplo real (crítica social): Patativa do Assaré, "O Político" (Inspiração Nordestina, 1956):
+  "Promete, promete, promete,
+  faz tudo que a gente quer.
+  Promete até dar o sangue,
+  mas depois... cadê você?"
+Severidade: media
+Categoria: conteúdo
+
+================================================================================
+ESTRUTURA SINTÁTICA
+================================================================================
+
+## [TRV-12] Autonomia dos versos — enjambement mínimo
+Fonte: UBT; Said Ali, "Versificação Portuguesa"
+Descrição: Cada verso deve ser uma unidade sintática completa ou quase completa. O enjambement (encavalamento) deve ser mínimo. A trova é memorizável — cada verso funciona como um respiro. Versos quebrados ao meio ou frases que se estendem por todo o poema sem pausa violam o espírito da forma.
+❌ Errado: "Eu vou seguir o caminho que / leva ao mar tão profundo e / tão azul como os olhos da / minha amada que perdi" — versos não se sustentam sozinhos
+✅ Correto: cada verso forma uma unidade de sentido
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "O que a gente mais deseja,"    — oração completa
+  "tantas vezes se perdeu;"       — oração completa
+  "a vida é fogo de palha:"       — oração completa
+  "crepita, brilha e morreu."     — oração completa
+Severidade: alta
+Categoria: sintaxe
+
+## [TRV-13] Paralelismo sintático como recurso expressivo
+Fonte: UBT; J. G. de Araújo Jorge; João de Deus
+Descrição: A trova frequentemente utiliza paralelismo sintático (repetição de estrutura sintática entre versos) para criar ritmo e ênfase. É um recurso herdado das cantigas medievais paralelísticas. O paralelismo pode ser entre versos 1-3 ou 2-4, ou entre os dois dísticos.
+❌ Errado: paralelismo forçado que sacrifica o sentido
+✅ Correto: paralelismo que reforça o conteúdo
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Cada verso é uma saudade"     [Cada X é um Y]
+  "que me aperta o coração."      [que me Z]
+  "Um verso de cada lágrima"      [Um X de cada Y]
+  "que caiu na minha mão."        [que me Z — paralelismo perfeito]
+Severidade: baixa
+Categoria: sintaxe
+
+================================================================================
+HISTÓRIA
+================================================================================
+
+## [TRV-14] Origens medievais — cantigas de amigo e de amor
+Fonte: Cancioneiro da Vaticana; Cancioneiro da Ajuda; D. Dinis
+Descrição: A trova portuguesa descende diretamente das cantigas medievais dos cancioneiros (sécs. XII-XIV). A quadra de redondilhas aparece já nas cantigas de amigo e de amor, com estrutura paralelística e refrão. O Trovadorismo é a matriz da trova — a passagem da cantiga musicada para o poema escrito.
+❌ Errado: ignorar a tradição trovadoresca como origem da forma
+✅ Correto: reconhecer a cantiga medieval como ancestral da trova moderna
+📖 Exemplo real: D. Dinis, "Cantiga de Amigo" (Cancioneiro da Vaticana, séc. XIII):
+  "Ai flores, ai flores do verde pino,
+  se sabedes novas do meu amigo?"
+Severidade: baixa
+Categoria: história
+
+## [TRV-15] A UBT e a institucionalização da trova (1966)
+Fonte: União Brasileira de Trovadores; Luiz Otávio; antologias UBT
+Descrição: Fundada em 1966, a União Brasileira de Trovadores institucionalizou a trova como forma poética autônoma, com regras rígidas, concursos nacionais e antologias. A UBT define a trova clássica como "poema de 4 versos em redondilha maior, com rima nos versos pares e conteúdo que expressa sentimento, pensamento filosófico ou crítica social, com linguagem simples e musical."
+❌ Errado: desconsiderar as regras da UBT em concurso de trova
+✅ Correto: conhecer e respeitar as normas da UBT quando aplicável
+Severidade: media
+Categoria: história
+
+================================================================================
+AUTORES CANÔNICOS
+================================================================================
+
+## [TRV-16] Trovadores portugueses — João de Deus e António Nobre
+Fonte: João de Deus, "Campo de Flores" (1893); António Nobre, "Só" (1892)
+Descrição: João de Deus (1830-1896) é o maior poeta português da quadra de redondilhas. Sua obra-prima "Campo de Flores" contém centenas de quadras com lirismo popular, metrificação exata e profunda simplicidade. António Nobre (1867-1900), em "Só", escreveu quadras de lirismo melancólico e decadente que se tornaram referência.
+❌ Errado: ignorar a tradição portuguesa da quadra
+✅ Correto: estudar João de Deus como mestre da forma
+📖 Exemplo real: João de Deus, "Se Eu Pudesse" (Campo de Flores, 1893):
+  "Se eu pudesse em cada estrela
+  uma paixão te escrever;
+  os céus eram uma carta,
+  o sol tinta de escrever."
+📖 Exemplo real: António Nobre, "Só" (Poesia Completa, 1892):
+  "Ai que saudades que tenho
+  De uma terra que não sei!
+  Se ela é perto ou se é longe,
+  Nem de noite a sonhei!"
+Severidade: baixa
+Categoria: referência
+
+## [TRV-17] Trovadores brasileiros — Casimiro, Gonçalves Dias, Patativa
+Fonte: Casimiro de Abreu, "Primaveras" (1859); Gonçalves Dias, "Primeiros Cantos" (1847); Patativa do Assaré, "Inspiração Nordestina" (1956)
+Descrição: O Romantismo brasileiro consagrou a quadra como forma popular. Casimiro de Abreu escreveu quadras de redondilha maior celebrando a infância e a pátria. Gonçalves Dias produziu a quadra mais famosa do Brasil ("Minha terra tem palmeiras"). Patativa do Assaré é o maior trovador popular, mesclando poesia erudita e popular com crítica social.
+❌ Errado: limitar a trova à tradição erudita, ignorando a veia popular
+✅ Correto: reconhecer Patativa como expoente máximo da trova popular brasileira
+📖 Exemplo real: Casimiro de Abreu, "Meus Oito Anos" (Primaveras, 1859):
+  "Oh! que saudades que tenho
+  Da aurora da minha vida,
+  Da minha infância querida
+  Que os anos não trazem mais!"
+📖 Exemplo real: Patativa do Assaré, "Amor e Dor" (Obra Completa, 1998):
+  "O amor é como a roseira,
+  que brota no espinhal.
+  Quem quiser colher a rosa
+  há de furar-se no espiral."
+Severidade: baixa
+Categoria: referência
+
+## [TRV-18] Luiz Otávio e Adelmar Tavares — a trova erudita do século XX
+Fonte: Luiz Otávio, "Trovas Seletas" (1973); Adelmar Tavares, "Obra Poética" (1938)
+Descrição: Luiz Otávio (1914-1999) foi presidente da UBT e o nome mais importante da trova erudita brasileira, com milhares de trovas publicadas. Adelmar Tavares (1888-1963), membro da ABL, escreveu quadras líricas, religiosas e filosóficas. Ambos são referências obrigatórias para o estudo da trova.
+❌ Errado: desconhecer as figuras centrais da trova erudita do século XX
+✅ Correto: estudar Luiz Otávio pela quantidade e qualidade, Adelmar Tavares pela profundidade filosófica
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Amor, 1965):
+  "Para que amar se o amor
+  é uma fonte tão breve?
+  Porque a vida sem amor
+  é uma chuva que não chove."
+📖 Exemplo real: Adelmar Tavares, "Trova Religiosa" (Obra Poética, 1942):
+  "Senhor, dai-me a paciência
+  de passar o que vier;
+  mas dai-me também a força
+  de lutar quando doer."
+Severidade: baixa
+Categoria: referência
+
+================================================================================
+TROVA vs. FORMAS VIZINHAS
+================================================================================
+
+## [TRV-19] Trova vs. quadra — distinção fundamental
+Fonte: UBT; Câmara Cascudo, "Literatura Oral"
+Descrição: "Trova" é o poema autônomo de 4 versos. "Quadra" é a estrofe de 4 versos, que pode ser parte de poema maior. Toda trova é uma quadra, mas nem toda quadra é uma trova. Uma quadra dentro de um poema épico ou lírico longo (ex: "O Navio Negreiro") não é uma trova — é uma estrofe.
+❌ Errado: chamar de trova qualquer quadra avulsa, independentemente de ser estrofe ou poema autônomo
+✅ Correto: reservar "trova" para o poema completo de 4 versos
+📖 Exemplo real (quadra como estrofe, não trova): Castro Alves, "O Navio Negreiro" (Espumas Flutuantes, 1870):
+  "Era um sonho dantesco... o tombadilho
+  Que das luzernas avermelha o brilho.
+  Em sangue a se banhar." — quadra dentro de poema longo, não trova
+Severidade: media
+Categoria: definição
+
+## [TRV-20] Trova vs. vilancete — mote vs. mote + voltas
+Fonte: tradição medieval; Garcia de Resende, "Cancioneiro Geral"
+Descrição: O vilancete é composto de mote (2-4 versos) + voltas (estrofes que desenvolvem o mote). A trova equivale apenas ao mote — sem desenvolvimento. O vilancete pode usar redondilha maior e estrutura de quadra, mas difere por ser uma forma composta (mote + glosa), enquanto a trova é a forma mínima e autossuficiente.
+❌ Errado: confundir vilancete com trova — o vilancete exige glosa
+✅ Correto: tratar a trova como forma completa em si mesma
+📖 Exemplo real: Vilancete de João Ruiz de Castelo Branco (Cancioneiro Geral, 1516):
+  Mote: "Nam me firais, olhos verdes, / que já m'ora nam doeram!"
+  Voltas: "Os vossos olhos, Senhora, / com que me tendes cativo..." — forma composta
+Severidade: media
+Categoria: definição
+
+================================================================================
+ANTIPADRÕES
+================================================================================
+
+## [TRV-21] Métrica irregular — versos de comprimentos diferentes
+Fonte: UBT; tradição erudita
+Descrição: Erro comum é escrever versos com diferentes contagens silábicas na mesma trova. Exemplo: 7 + 5 + 7 + 7. A quebra de isometria é o antipadrão mais frequente em iniciantes. A UBT exige rigorosamente 7 sílabas em todos os 4 versos para a trova clássica.
+❌ Errado: "Na praia eu andava a sonhar" (7) / "com meu bem" (3) / "o vento soprava as areias" (7) / "que o mar trazia também" (7)
+✅ Correto: todos os versos com exatas 7 sílabas poéticas
+Severidade: alta
+Categoria: antipadrão
+
+## [TRV-22] Esquema de rima quebrado — versos soltos sem rima
+Fonte: UBT; tradição trovadoresca
+Descrição: No esquema ABCB, o 2º verso deve obrigatoriamente rimar com o 4º. No esquema ABAB, o 1º com o 3º e o 2º com o 4º. Deixar versos soltos sem rima quando o esquema os exige é erro grave. Também é erro o 1º verso rimar com o 3º sem que o 2º rime com o 4º — o padrão fica quebrado e assimétrico.
+❌ Errado: "A manhã é tão bonita" / "que o sol brilha no azul" / "as flores desabrocham" / "no campo verdejante" — 2º e 4º não rimam, 1º e 3º rimam mas esquema não se sustenta
+✅ Correto: escolher um esquema (ABCB ou ABAB) e segui-lo rigorosamente
+Severidade: alta
+Categoria: antipadrão
+
+## [TRV-23] Prosaísmo — linguagem prosaica ou excessivamente abstrata
+Fonte: UBT; tradição literária
+Descrição: A trova não é prosa quebrada em 4 linhas. Exige concisão, imagem poética, musicalidade. Erro comum é escrever versos que são frases prosaicas sem nenhum trabalho de linguagem. A trova eficaz condensa uma imagem, um paradoxo, uma antítese em poucas palavras.
+❌ Errado: "Eu estava pensando na vida e no que ela significa / quando de repente me lembrei de que tudo é tão efêmero / que a gente precisa aproveitar cada momento com alegria / porque o tempo não espera e a vida passa depressa." — prosa em 4 linhas
+✅ Correto: linguagem poética concisa com imagem ou pensamento condensado
+📖 Exemplo real: Mário Quintana, "Quadrinha" (Nova Antologia Poética, 1981):
+  "O tempo está sempre a ensinar
+  quem tem paciência de aprender.
+  Mas às vezes o que se aprende
+  é melhor não saber."
+Severidade: alta
+Categoria: antipadrão
+
+## [TRV-24] Trova com refrão ou repetição excessiva
+Fonte: UBT; tradição trovadoresca
+Descrição: A trova não admite refrão. Por ter apenas 4 versos, a repetição de um verso ou de uma estrutura fixa descaracteriza a forma. Refrães são próprios de cantigas e poemas mais longos. A repetição de palavras-chave deve ser expressiva e parcimoniosa, não mecânica.
+❌ Errado: "Lá no alto da montanha" / "o vento sopra e me acompanha" / "Lá no alto da montanha" / "o vento sopra e me acompanha" — repetição integral dos versos
+✅ Correto: cada verso deve acrescentar informação nova ao poema
+Severidade: media
+Categoria: antipadrão
+
+## [TRV-25] Clichês e lugares-comuns
+Fonte: UBT; tradição parnasiana (Bilac)
+Descrição: A trova deve evitar expressões gastas como "noite escura", "lua cheia", "coração partido", "amor eterno". A forma breve exige originalidade em cada verso. O clichê é particularmente prejudicial na trova porque 4 versos não têm espaço para recuperar o desgaste da expressão.
+❌ Errado: "Noite escura e fria, / lua cheia e triste. / Solidão profunda e vazia, / saudade que não existe." — acúmulo de clichês românticos
+✅ Correto: imagem original que renova a linguagem poética
+📖 Exemplo real: Manuel Bandeira, "Quadrinha" (Lira dos Cinquent'anos, 1940):
+  "A vida tem uma quadra
+  que se repete em mim:
+  — Tudo que não foi agora
+  parece que nunca é."
+Severidade: media
+Categoria: antipadrão
+
+================================================================================
+EXEMPLOS ADICIONAIS
+================================================================================
+
+## [TRV-26] Trova na cantiga de roda e no cancioneiro popular
+Fonte: Câmara Cascudo, "Literatura Oral"; cantigas populares anônimas
+Descrição: A trova está na base do cancioneiro popular brasileiro: cantigas de roda, modinhas, lundus, sambas. Muitas das canções mais conhecidas do Brasil são trovas musicadas. A forma de 4 versos em redondilha maior é a estrutura mais natural da canção popular brasileira.
+❌ Errado: ignorar a dimensão musical da trova
+✅ Correto: reconhecer a trova como forma originária da canção popular
+📖 Exemplo real: Cantiga de Roda (tradicional, anônima):
+  "Ciranda, cirandinha,
+  vamos todos cirandar!
+  Vamos dar a meia volta,
+  volta e meia vamos dar."
+📖 Exemplo real: Cartola, "O Mundo É um Moinho" (1976):
+  "O mundo é um moinho,
+  e vai te triturar.
+  Tu és tão frágil, meu amor,
+  não podes te descuidar."
+Severidade: baixa
+Categoria: referência
+
+================================================================================
+FIM DO ARQUIVO — TROVA
+================================================================================

@@ -72,6 +72,7 @@ const TONES = [
   "Melancólico", "Romântico", "Reflexivo", "Jubiloso", "Sombrio",
   "Saudoso", "Épico", "Lírico", "Satírico", "Filosófico",
   "Intimista", "Nostálgico", "Visionário", "Conciso",
+  "Erótico", "Grotesco / Degradação", "Sagrado / Místico",
 ];
 
 export const Editor = forwardRef<EditorRef, EditorProps>(({
@@ -111,6 +112,12 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     { value: 'cordel', label: 'Cordel' },
     { value: 'redondilha', label: 'Redondilha' },
     { value: 'decassilabo', label: 'Decassílabo' },
+    { value: 'trova', label: 'Trova / Quadra' },
+    { value: 'oitava', label: 'Oitava' },
+    { value: 'decima', label: 'Décima' },
+    { value: 'elegia', label: 'Elegia' },
+    { value: 'ode', label: 'Ode' },
+    { value: 'verso-livre', label: 'Verso Livre' },
   ];
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
@@ -210,8 +217,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         }
 
         parts.push(
-            <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
-                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
+            <PopoverAnchor key={`anchor-${startIndex}-${originalText}`} className="relative">
+                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer animate-highlight-in">
                     {originalText.replace(/\n/g, '\n\u200B')}
                 </span>
             </PopoverAnchor>

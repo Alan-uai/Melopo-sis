@@ -1,0 +1,311 @@
+# Elegia — Normas e Estrutura
+# Baseado na tradição clássica (Catulo, Ovídio, Propércio), portuguesa (Camões, Antero, Garrett) e brasileira (Drummond, Bandeira, Cabral, Vinicius, Cecília, Adélia)
+# Fontes: Bosi, Candido, Moisés, Said Ali, A. J. Saraiva
+# Data: 2026-05-16
+
+================================================================================
+DEFINIÇÃO
+================================================================================
+
+## [ELE-01] Elegia como poema de lamento
+Fonte: tradição clássica greco-romana; Massaud Moisés, "A Poesia Portuguesa"
+Descrição: A elegia é um poema que expressa lamento, dor, perda ou saudade. Originalmente definida pela métrica (dístico elegíaco: hexâmetro + pentâmetro), passou a designar um tom — o tom do luto, da melancolia, da reflexão sobre a finitude — independentemente da forma métrica. Em português, a elegia não tem forma fixa obrigatória: pode ser soneto, ode, verso livre, redondilha ou prosa poética. O que a define é o TOM, não a métrica.
+❌ Errado: exigir forma fixa (ex: soneto de 14 versos) para classificar um poema como elegia
+✅ Correto: reconhecer a elegia pelo tom de lamento contido e reflexão sobre a perda
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938" (Sentimento do Mundo, 1940): "Trabalhas sem alegria para um mundo caduco / onde as formas e as ações não encerram nenhum exemplo." — verso livre, sem rima, mas inconfundivelmente elegíaco pelo tom.
+Severidade: alta
+Categoria: definição
+
+## [ELE-02] A elegia clássica — dístico elegíaco (hexâmetro + pentâmetro)
+Fonte: Catulo, Ovídio, Propércio; tradição greco-latina
+Descrição: Na origem greco-romana, a elegia era definida pela métrica: o dístico elegíaco, composto de um hexâmetro dáctilo seguido de um pentâmetro dáctilo. Usado por Tirteu (guerra), Sólon (política), Mimnermo (amor), Teógnis (moral) e, em Roma, por Catulo, Ovídio e Propércio (amor e perda). A associação elegia = lamento consolidou-se no período helenístico.
+❌ Errado: ignorar a origem métrica da elegia clássica ao tratar a forma
+✅ Correto: reconhecer que a elegia clássica tinha forma fixa (dístico elegíaco) antes de se tornar gênero de tom
+📖 Exemplo real: Catulo — "Carmen LXXXV" (c. 60 a.C.): "Odi et amo. Quare id faciam, fortasse requiris. / Nescio, sed fieri sentio et excrucior." — dístico elegíaco: hexâmetro + pentâmetro. "Odeio e amo. Por que faço isso, talvez perguntes. / Não sei, mas sinto que acontece e me torturo."
+Severidade: alta
+Categoria: definição
+
+## [ELE-03] Elegia em português — definida pelo tom, não pela forma
+Fonte: Camões; Antero; Drummond; Bandeira; Alfredo Bosi, "História Concisa da Literatura Brasileira"
+Descrição: Diferentemente da elegia clássica (dístico elegíaco obrigatório), a elegia em português não tem forma fixa. O que a define: (1) tema da perda (morte, amor, tempo, pátria, ilusão); (2) tonalidade de tristeza contida; (3) reflexão sobre a finitude; (4) beleza na tristeza; (5) universalização da dor individual. A elegia não é o gênero do pranto descontrolado — é o gênero da reflexão sobre a perda.
+❌ Errado: confundir elegia com pranto descontrolado ou lamento melodramático
+✅ Correto: elegia é lamento contido, reflexivo, que universaliza a dor
+📖 Exemplo real: Manuel Bandeira — "A Morte de Célia" (O Ritmo Dissoluto, 1924): "Morreste, Célia. E o mundo não mudou. / O sol continua nascendo, / as aves continuam cantando, / a vida continua — indiferente. / Mas para mim o mundo mudou, / desde que te perdi." — contenção perfeita: dor expressa pelo contraste, não por exclamações.
+Severidade: alta
+Categoria: definição
+
+================================================================================
+ORIGENS CLÁSSICAS
+================================================================================
+
+## [ELE-04] Catulo — o paradigma da elegia amorosa e fúnebre
+Fonte: Catulo, "Carmina" (c. 60-55 a.C.)
+Descrição: Catulo estabeleceu os dois grandes temas da elegia ocidental: o amor impossível (Lesbia/Cíntia) e a morte do irmão ("Carmen CI"). Sua influência sobre a poesia portuguesa é direta — Camões, Antero e Bandeira retomam o paradoxo catuliano do amor/ódio e a viagem ao túmulo do ente querido.
+❌ Errado: ignorar a matriz catuliana da elegia amorosa ocidental
+✅ Correto: reconhecer em Catulo a origem do paradoxo amoroso e do lamento fúnebre
+📖 Exemplo real: Catulo — "Carmen CI" (c. 55 a.C.): "Multas per gentes et multa per aequora vectus / advenio has miseras, frater, ad inferias" — "Trazido através de muitas gentes e muitos mares / chego, irmão, a estas miseras exéquias." A elegia mais comovente de Catulo: a viagem ao túmulo do irmão. Influenciou Camões ("Alma minha gentil").
+Severidade: media
+Categoria: referência
+
+## [ELE-05] Ovídio — a elegia do exílio
+Fonte: Ovídio, "Tristia" (8 d.C.), "Amores" (c. 16 a.C.)
+Descrição: Ovídio expandiu a elegia para o tema do exílio e da perda da pátria. "Tristia", escrita durante seu banimento em Tomis, é a obra-prima da elegia de exílio — o poeta que chora a pátria perdida. Sua influência chega a Gonçalves Dias ("Canção do Exílio") e a toda a poesia da saudade portuguesa.
+❌ Errado: limitar a elegia ovidiana ao tema amoroso, ignorando "Tristia"
+✅ Correto: reconhecer em Ovídio a elegia patriótica e do exílio
+📖 Exemplo real: Ovídio — "Tristia" (8 d.C.), Livro I, Elegia I: "Parve — nec invideo — sine me, liber, ibis in urbem: / ei mihi, quod domino non licet ire tuo!" — "Pequeno livro, irás sem mim à cidade: / ai de mim, que a teu dono não é lícito ir!" O livro que vai para Roma enquanto o poeta fica no exílio.
+Severidade: media
+Categoria: referência
+
+================================================================================
+ELEGIA EM PORTUGAL
+================================================================================
+
+## [ELE-06] Elegia camoniana — a contenção clássica
+Fonte: Camões, "Lírica Camoniana" (c. 1550-1570)
+Descrição: Camões escreveu elegias em múltiplas formas: sonetos elegíacos ("Alma minha gentil", "Quando vejo que o tempo se apressura"), poemas em tercetos decassílabos (terza rima dantesca) e redondilhas. Sua elegia é contida, digna, sem excesso melodramático. A tristeza expressa-se na estrutura mesma do poema, não em exclamações.
+❌ Errado: elegia camoniana com hipérboles melodramáticas — Camões é contido
+✅ Correto: "Alma minha gentil, que te partiste / tão cedo desta vida, descontente, / repousa lá no Céu eternamente, / e viva eu cá na terra sempre triste." — em 4 versos, Camões condensa a elegia perfeita: perda, tristeza contida, reflexão, universalização, beleza.
+Severidade: alta
+Categoria: escola/estilo
+
+## [ELE-07] Elegia anteriana — pessimismo filosófico e desejo de morte
+Fonte: Antero de Quental, "Odes Modernas" (1865), "Sonetos Completos" (1886)
+Descrição: Antero de Quental escreveu poemas de intenso tom elegíaco, marcados pelo pessimismo, pela reflexão sobre a morte e pelo desejo de transcendência. Sua elegia é filosófica — não chora uma morte específica, mas a condição mortal de todo ser. "Hino à Morte" é o exemplo máximo: a morte celebrada como libertação.
+❌ Errado: elegia anteriana sem a dimensão filosófica — é poesia de ideias, não de emoção bruta
+✅ Correto: "Morte, irmã da noite e do esquecimento / doce libertação de quem padece" — a morte como amiga, não como inimiga
+📖 Exemplo real: Antero de Quental — Soneto "A um Poeta Morto" (Sonetos Completos, 1886): "Morto! Dorme o teu sono, ó companheiro / que já não ouves nem sentes o clamor / deste mundo infiel e enganador / onde o bem é tão pouco e tão passageiro." — elegia pessoal a um poeta amigo, com a chave "sei que a morte é a vida, e a vida é o sonho".
+Severidade: media
+Categoria: escola/estilo
+
+## [ELE-08] Elegia garrettiana — romantismo e saudade patriótica
+Fonte: Almeida Garrett, "Camões" (1825), "Folhas Caídas" (1853)
+Descrição: Garrett escreveu a longa elegia patriótica "Camões" (1825), que lançou o Romantismo em Portugal. O poema lamenta o poeta nacional desterrado e esquecido, e através dele, a pátria que não reconhece seus heróis. Em "Folhas Caídas", a elegia é amorosa e saudosista, com tom de lamento contido.
+❌ Errado: elegia patriótica que se limita ao ufanismo — a elegia garrettiana é crítica, não celebratória
+✅ Correto: "Pátria, minha pátria, és tu que matas / os teus melhores filhos!" — a pátria como algoz dos poetas
+📖 Exemplo real: Almeida Garrett — "Camões" (1825): "Pátria, minha pátria, choras e não sabes / que o pranto que derramas é o sangue / dos teus poetas e dos teus guerreiros!" — elegia patriótica: a pátria que chora sem saber o que perde.
+Severidade: media
+Categoria: escola/estilo
+
+## [ELE-09] Cesário Verde — a elegia urbana
+Fonte: Cesário Verde, "O Sentimento de um Ocidental" (1880)
+Descrição: Cesário Verde inovou a elegia ao transportar o lamento para a paisagem urbana. "O Sentimento de um Ocidental" é uma elegia filosófica em que a cidade ao entardecer se torna cenário da melancolia. As imagens são concretas — bondes, lojas, multidões — mas carregadas de sentido elegíaco. A multidão que caminha para casa caminha também para a morte.
+❌ Errado: elegia urbana sem imagens concretas da cidade — a cidade deve ser personagem
+✅ Correto: "E os bondes passam, cheios de gente / que vai para casa, para o jantar, para a morte" — o cotidiano como elegia
+📖 Exemplo real: Cesário Verde — "O Sentimento de um Ocidental" (1880): "E eu sinto, ao ver a vida que passa / uma saudade imensa de não sei o quê." — elegia da saudade sem objeto definido, puro tom.
+Severidade: media
+Categoria: escola/estilo
+
+================================================================================
+ELEGIA NO BRASIL
+================================================================================
+
+## [ELE-10] Gonçalves Dias — a elegia patriótica brasileira
+Fonte: Gonçalves Dias, "Canção do Exílio" (1846), "I-Juca-Pirama" (1851)
+Descrição: Gonçalves Dias escreveu a mais famosa elegia patriótica da língua portuguesa: "Canção do Exílio", um poema de saudade da pátria que sintetiza o sentimento elegíaco brasileiro. A expressão "saudade da pátria" (exílio em Portugal) é o tema — não a morte, mas a distância. Em "I-Juca-Pirama", temos a auto-elegia do índio Tupi que canta sua própria morte.
+❌ Errado: ler "Canção do Exílio" apenas como ufanismo — é poema de lamento e ausência
+✅ Correto: "Minha terra tem palmeiras / onde canta o sabiá / as aves que aqui gorjeiam / não gorjeiam como lá" — elegia da terra distante
+📖 Exemplo real: Gonçalves Dias — "Canção do Exílio" (1846): "Não permita Deus que eu morra / sem que volte para lá" — o desejo de retorno antes da morte é o núcleo elegíaco.
+Severidade: alta
+Categoria: escola/estilo
+
+## [ELE-11] Drummond — a elegia filosófica moderna
+Fonte: Carlos Drummond de Andrade, "Sentimento do Mundo" (1940), "Alguma Poesia" (1930), "Claro Enigma" (1951)
+Descrição: Drummond escreveu algumas das mais poderosas elegias da poesia brasileira. "Elegia 1938" lamenta não a morte, mas a vida que já é morte — a alienação, a rotina, a falta de sentido. A repetição de "a morte não te pode prejudicar" é uma ironia amarga: a morte é irrelevante porque a vida já é morta. Drummond usa o verso livre, a anáfora e a interrogação retórica como recursos elegíacos fundamentais.
+❌ Errado: elegia drummondiana com tom de auto-comiseração — Drummond é seco, irônico, distanciado
+✅ Correto: "Trabalhas sem alegria para um mundo caduco / onde as formas e as ações não encerram nenhum exemplo" — a elegia do trabalho alienado
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938" (Sentimento do Mundo, 1940): "Que importa a morte, se a vida é já tão morta?" — a pergunta que condensa toda a elegia filosófica drummondiana.
+Severidade: alta
+Categoria: escola/estilo
+
+## [ELE-12] Bandeira — a elegia pessoal e contida
+Fonte: Manuel Bandeira, "O Ritmo Dissoluto" (1924), "Libertinagem" (1930), "Estrela da Vida Inteira" (1965)
+Descrição: Manuel Bandeira é um dos maiores elegíacos brasileiros. Sua poesia é marcada pela consciência da morte (tuberculose, perda de entes queridos) e pela melancolia existencial. Sua elegia é sempre contida, sem melodrama. "A Morte de Célia" e "Profundamente" exemplificam a contenção elegíaca: a dor expressa pelo silêncio, pelo vazio, pelo mundo que continua indiferente.
+❌ Errado: elegia bandeiriana com hipérboles sentimentalistas — Bandeira é minimalista na dor
+✅ Correto: "Morreste, Célia. E o mundo não mudou." — a indiferença do mundo como expressão máxima da perda
+📖 Exemplo real: Manuel Bandeira — "Profundamente" (Libertinagem, 1930): "E acordei assustado: / — onde estou? onde estavam? / E vi que estava morto / ou que eles estavam mortos / e que o tempo nos levara / a todos, um a um." — elegia da família perdida, construída sobre o vértice entre o sonho (presença) e a vigília (ausência).
+Severidade: alta
+Categoria: escola/estilo
+
+## [ELE-13] João Cabral — a auto-elegia coletiva e social
+Fonte: João Cabral de Melo Neto, "Morte e Vida Severina" (1955), "O Cão Sem Plumas" (1950)
+Descrição: João Cabral escreveu a elegia revolucionária: "Morte e Vida Severina" é uma auto-elegia do retirante nordestino que anuncia sua própria morte. A elegia tradicional é o lamento pela morte de outrem; aqui, o "Severino" (todos os nordestinos pobres) anuncia sua própria morte como denúncia social. Cabral faz a elegia pela contenção, não pelo transbordamento — sua linguagem é seca, antilírica, mas profundamente elegíaca.
+❌ Errado: elegia cabralina com lamento explícito — Cabral é seco, quase impessoal
+✅ Correto: "O meu nome é Severino / não tenho outro de pia" — a identidade genérica como condição coletiva
+📖 Exemplo real: João Cabral de Melo Neto — "Morte e Vida Severina" (1955): "E não há melhor resposta / que o espetáculo da vida" — a elegia cabralina não termina na morte, mas na celebração da vida que continua. O menino que nasce no final é a resposta à morte de Severino.
+Severidade: media
+Categoria: escola/estilo
+
+## [ELE-14] Vinicius de Moraes — a elegia amorosa
+Fonte: Vinicius de Moraes, "Sonetos" (1946-1951), "Poesia" (1943)
+Descrição: Vinicius escreveu elegias amorosas em que o amor é cantado com consciência de sua finitude. "Soneto de Fidelidade" é elegíaco porque o poeta canta o amor sabendo que ele é finito: "que não seja imortal, posto que é chama / mas que seja infinito enquanto dure." A elegia viniciana está na percepção da transitoriedade do sentimento. "Elegia" (1943) chora a morte do amor por tédio, rotina e cansaço — a morte cotidiana do afeto.
+❌ Errado: elegia amorosa que apenas declara amor sem a consciência da perda iminente
+✅ Correto: "Choro a morte do amor / como se chora a morte de um amigo" — o amor como ente que nasce, vive e morre
+📖 Exemplo real: Vinicius de Moraes — "Elegia" (1943): "O amor morre de morte natural / — de tédio, de rotina, de cansaço. / E a gente fica, depois, com a memória / do que foi e não será mais."
+Severidade: media
+Categoria: escola/estilo
+
+## [ELE-15] Cecília Meireles — a elegia da transitoriedade
+Fonte: Cecília Meireles, "Viagem" (1939), "Vaga Música", "Poema de Fim" (1947)
+Descrição: Cecília Meireles é a poetisa da transitoriedade, da melancolia e da reflexão sobre a passagem do tempo. Sua obra inteira é perpassada por um tom elegíaco contido e filosófico, em que a morte não é tragédia mas mistério. "Retrato" chora a perda da juventude; "Motivo" canta a identidade fugidia; "Morte" inverte o choro elegíaco — a morte é a resposta que a vida não soube dar.
+❌ Errado: elegia ceciliana com lamento direto — Cecília é sutil, filosófica, interrogativa
+✅ Correto: "Eu não tinha este rosto de hoje / assim calmo, assim triste, assim magro" — a descrição do rosto perdido é bela na própria tristeza
+📖 Exemplo real: Cecília Meireles — "Retrato" (Viagem, 1939): "Em que espelho ficou perdida / a minha face?" — a pergunta sem resposta sobre a identidade perdida no tempo.
+Severidade: alta
+Categoria: escola/estilo
+
+================================================================================
+ELEGIA vs LAMENTO vs ENDECHA vs NÉNIA vs EPITÁFIO
+================================================================================
+
+## [ELE-16] Distinção entre elegia e formas aparentadas
+Fonte: Said Ali; tradição clássica e popular
+Descrição: A elegia é frequentemente confundida com outras formas de poesia fúnebre. A elegia expressa lamento por qualquer perda com reflexão contida. O lamento é menos literário, mais "chorado", sem distanciamento filosófico. A endecha é poema fúnebre breve (3-6 versos) de arte menor e tradição popular. A nénia é canto fúnebre romano, de tom solene e religioso. O epitáfio é inscrição tumular breve (2-8 versos), séria ou irônica. A auto-elegia é variante moderna em que o poeta chora a própria morte.
+❌ Errado: chamar qualquer poema triste de elegia — a elegia requer reflexão e contenção
+✅ Correto: distinguir elegia (reflexão contida), lamento (pranto direto), endecha (breve popular), nénia (canto fúnebre religioso), epitáfio (inscrição tumular)
+📖 Exemplo real: Endecha — Camões, "Endechas a Bárbara Escrava" (c. 1560): "Aquela cativa / que me tem cativo / porque nela vivo / já não quer que viva." — endecha breve de tom amoroso-elegíaco. Epitáfio — Bocage, "Epitáfio" (1805): "Aqui jaz Bocage, o poeta / que amou, sofreu e cantou. / Passou pela vida como um cometa / que se apaga antes de ser visto."
+Severidade: alta
+Categoria: referência
+
+================================================================================
+TIPOS DE ELEGIA
+================================================================================
+
+## [ELE-17] Tipos de elegia em português
+Fonte: Bosi; Candido; Moisés
+Descrição: A elegia em português e brasileiro abrange um leque temático amplo:
+(1) PESSOAL — morte de alguém: Catulo ("Carmen CI"), Camões ("Alma minha gentil"), Bandeira ("A Morte de Célia"), Adélia ("Luto")
+(2) FILOSÓFICA — morte em geral: Antero ("Hino à Morte"), Cecília ("Morte"), Drummond ("Elegia 1938")
+(3) AMOROSA — amor perdido: Catulo ("Odi et amo"), Ovídio ("Amores"), Vinicius ("Soneto de Fidelidade")
+(4) PATRIÓTICA — perda da pátria: Ovídio ("Tristia"), Gonçalves Dias ("Canção do Exílio"), Garrett ("Camões")
+(5) DO TEMPO — perda da juventude: Cecília ("Retrato"), Bandeira ("Poema do Beco"), Camões ("Quando vejo que o tempo se apressura")
+(6) DA DESILUSÃO — perda da fé/esperança: Drummond ("Os Ombros Suportam o Mundo"), Antero
+(7) SOCIAL — perda coletiva: Castro Alves ("O Navio Negreiro"), João Cabral ("Morte e Vida Severina")
+(8) AUTO-ELEGIA — perda de si: Gonçalves Dias ("I-Juca-Pirama"), João Cabral, Bocage
+❌ Errado: tratar toda elegia como lamento fúnebre, ignorando as variações temáticas
+✅ Correto: reconhecer a multiplicidade de objetos de perda na elegia
+📖 Exemplo real: Elegia social — Castro Alves, "O Navio Negreiro" (1869): "Era um sonho dantesco! o tombadilho / que das luzernas avermelha o brilho / em sangue a se banhar." — elegia coletiva dos escravos no navio negreiro.
+Severidade: alta
+Categoria: temática
+
+================================================================================
+MODERNA E CONTEMPORÂNEA
+================================================================================
+
+## [ELE-18] A elegia moderna — verso livre e tom como definidor
+Fonte: Drummond; Bandeira; João Cabral; Ferreira Gullar; Ana Cristina Cesar
+Descrição: A elegia moderna (pós-simbolismo, modernismo, contemporânea) rompeu com as formas fixas e passou a ser definida exclusivamente pelo TOM. Pode ser em versos livres ou prosa poética, sem rima ou metrificação, longa ou curta, pessoal ou impessoal, irônica ou séria, política ou intimista. Drummond, Bandeira, João Cabral, Ferreira Gullar expandiram o gênero. A elegia contemporânea incorpora elementos do cotidiano e da cultura de massa sem perder o tom de lamento.
+❌ Errado: exigir metrificação ou rima para classificar um poema como elegia
+✅ Correto: a elegia moderna se define pelo tom de lamento contido e reflexão sobre a finitude, independentemente da forma
+📖 Exemplo real: Ferreira Gullar — "Poema Sujo" (1975): "A vida é um fio de espuma / que o vento desmancha no ar" — elegia lírica em verso livre.
+Severidade: alta
+Categoria: escola/estilo
+
+## [ELE-19] A elegia contemporânea — novos temas, mesma contenção
+Fonte: Adélia Prado; Hilda Hilst; Ana Cristina Cesar; Paulo Leminski; Waly Salomão
+Descrição: A elegia contemporânea brasileira expandiu o gênero para novos temas sem perder a contenção característica. Adélia Prado escreve a elegia da aceitação jubilosa da finitude. Hilda Hilst transforma a perda em interrogação metafísica. Ana Cristina Cesar dialoga com textos sagrados para falar do amor não correspondido. Leminski condensa a elegia em versos mínimos. A elegia contemporânea é diversa, mas mantém o núcleo: a reflexão sobre a perda com beleza e contenção.
+❌ Errado: elegia contemporânea sem a dimensão reflexiva — mero desabafo não é elegia
+✅ Correto: "A morte é o poema / que ninguém escreveu" (Leminski) — elegia condensada em haicai
+📖 Exemplo real: Adélia Prado — "Elegia" (O Coração Disparado, 1978): "Quando eu morrer, não quero / que ninguém chore por mim. / A morte não é o fim: / é o começo de outra coisa / que a gente não sabe o que é." — elegia da aceitação, invertendo a elegia clássica.
+Severidade: media
+Categoria: escola/estilo
+
+================================================================================
+RECURSOS ESTILÍSTICOS
+================================================================================
+
+## [ELE-20] Vocativo — a invocação direta ao morto ou à perda
+Fonte: Catulo; Camões; Antero; Bandeira
+Descrição: O vocativo é o recurso estilístico mais característico da elegia. O poeta invoca diretamente o morto, o amor perdido, a morte ou o tempo. "Alma minha gentil" (Camões), "Morte, irmã da noite" (Antero), "Célia" (Bandeira), "Frater" (Catulo). O vocativo instaura o diálogo impossível — o poeta fala a quem não pode ouvir.
+❌ Errado: elegia sem destinatário definido — o vocativo pessoaliza a perda
+✅ Correto: "Morreste, Célia" (Bandeira) — o nome próprio ancora o lamento no concreto
+📖 Exemplo real: Catulo — "Carmen CI" (c. 55 a.C.): "Frater, advenio" — "Irmão, chego". O vocativo "frater" condensa toda a elegia na invocação ao morto.
+Severidade: alta
+Categoria: estilo
+
+## [ELE-21] Anáfora e repetição — o ritmo do lamento
+Fonte: Antero; Drummond; Cecília; Adélia
+Descrição: A anáfora (repetição de palavras no início dos versos) é recurso central da elegia. Marca o ritmo do lamento, a obsessão do luto, a impossibilidade de escapar da perda. "Chora, meu coração, chora" (Antero), "Adeus, meus dias, adeus" (Drummond), "Perdi o meu caminho... Perdi a minha voz... Perdi o meu rosto..." (Cecília).
+❌ Errado: anáfora mecânica sem progressão semântica — a repetição deve intensificar, não apenas preencher
+✅ Correto: "Adeus, meus dias, adeus / noites que não voltareis / Adeus, amigos que partistes / antes de mim" (Drummond) — cada "Adeus" é uma perda nova
+📖 Exemplo real: Antero de Quental — "Elegia" (Poesias, 1870): "Chora, meu coração, chora / que já não tens o que amaste / chora, que o tempo levou / o que o tempo não pagou." — anáfora de "chora" como ato poético.
+Severidade: alta
+Categoria: estilo
+
+## [ELE-22] Interrogação retórica — a perplexidade diante da perda
+Fonte: Cecília; Bilac; Camões; Bandeira
+Descrição: A pergunta sem resposta expressa a perplexidade do eu elegíaco diante da perda. "Em que espelho ficou perdida a minha face?" (Cecília), "Por que hei de eu querer mais vida?" (Bilac). A interrogação retórica não busca resposta — busca expressar o inexprimível.
+❌ Errado: perguntas que têm resposta óbvia — a interrogação elegíaca deve ser insolúvel
+✅ Correto: "Onde estou? onde estavam?" (Bandeira, "Profundamente") — a pergunta que o poeta faz ao acordar do sonho, sem saber se ele ou os outros estão mortos
+📖 Exemplo real: Cecília Meireles — "Retrato" (Viagem, 1939): "Em que espelho ficou perdida / a minha face?" — a pergunta não tem resposta porque a face perdida não volta.
+Severidade: media
+Categoria: estilo
+
+================================================================================
+ANTIPADRÕES
+================================================================================
+
+## [ELE-23] Melodrama — o excesso sentimental que descaracteriza a elegia
+Fonte: análise da tradição elegíaca
+Descrição: O melodrama (exclamações excessivas, hipérboles vazias, auto-comiseração) é o principal antipadrão da elegia. A elegia de qualidade é contida. "Ai de mim! Como é cruel a vida! Por que me deixaste?!" — isto não é elegia, é histeria. A elegia pensa a dor, não apenas a grita.
+❌ Errado: "Oh! Meu Deus! Como é cruel a vida! / Levaste o meu amor, a minha luz! / Não posso viver sem ela! Ai de mim!"
+✅ Correto: "Morreste, Célia. E o mundo não mudou." (Bandeira) — contenção que expressa mais que mil exclamações
+📖 Exemplo real: Anti-elegia melodramática — poesia amadora: "A noite escura caiu sobre mim / e o meu coração partido chora / lágrimas de sangue pela tua ausência." — três clichês em três versos (noite escura, coração partido, lágrimas de sangue).
+Severidade: alta
+Categoria: antipadrão
+
+## [ELE-24] Clichê fúnebre — lugar-comum que empobrece o lamento
+Fonte: análise da tradição elegíaca
+Descrição: A elegia de qualidade evita lugares-comuns fúnebres: "noite escura", "coração partido", "lágrimas de sangue", "adeus para sempre", "saudade eterna". O clichê substitui a imagem concreta por fórmula vazia. A boa elegia ancora o lamento em objetos específicos — um rosto, uma mão, um nome, uma rua, um objeto cotidiano.
+❌ Errado: "adeus para sempre", "lágrimas de sangue", "noite escura da alma"
+✅ Correto: "Morreste, Célia. E o mundo não mudou." — o nome próprio (Célia) ancora a perda no concreto
+📖 Exemplo real: Manuel Bandeira — "Poema de Finados" (1965): "Amanhã é dia de Finados / dia de visitar os mortos / dia de rezar pelos mortos / dia de chorar pelos mortos. / Mas eu não tenho a quem visitar / nem por quem rezar / nem por quem chorar: / todos os meus mortos já morreram / dentro de mim." — Bandeira subverte o clichê do dia de Finados com ironia elegíaca.
+Severidade: alta
+Categoria: antipadrão
+
+## [ELE-25] Ausência de concretude — elegia abstrata sem imagens
+Fonte: análise da tradição elegíaca
+Descrição: A elegia que fala de "perda", "morte", "dor" sem imagens concretas que ancorem o lamento é vazia. A elegia precisa de objetos específicos — um nome, um lugar, um objeto, uma lembrança sensorial. Sem concretude, o lamento se torna genérico e não comove.
+❌ Errado: "A perda é uma coisa ruim / que dói no coração. / A morte é uma coisa triste / que acaba com a vida."
+✅ Correto: "Adeus, meus dias, adeus / noites que não voltareis / Adeus, amigos que partistes / antes de mim" (Drummond) — dias, noites, amigos: imagens concretas da perda
+📖 Exemplo real: Adélia Prado — "Luto" (Terra de Santa Cruz, 1982): "Choro a morte de meu pai / como se chora a morte de uma cidade inteira. / Meu pai não era uma pessoa: / era um mundo." — a metáfora da cidade dá concretude à perda do pai.
+Severidade: alta
+Categoria: antipadrão
+
+================================================================================
+EXEMPLOS
+================================================================================
+
+## [ELE-26] Elegia completa — Camões, "Alma minha gentil"
+Fonte: Camões, "Lírica Camoniana" (c. 1560)
+Descrição: O mais famoso soneto elegíaco de Camões, possivelmente dedicado à sua amada Dinamene, morta no naufrágio na Ilha de Moçambique. O poema é elegia pessoal, íntima, sem exageros. Em quatro versos, Camões condensa a elegia perfeita: perda, tristeza contida, reflexão, universalização, beleza.
+📖 Exemplo real: "Alma minha gentil, que te partiste / tão cedo desta vida, descontente, / repousa lá no Céu eternamente, / e viva eu cá na terra sempre triste." — soneto elegíaco completo: os quartetos lamentam a partida, os tercetos pedem intercessão ("Roga a Deus, que teus anos encurtou, / que tão cedo de cá me leve a ver-te").
+Severidade: baixa
+Categoria: exemplo
+
+## [ELE-27] Elegia completa — Drummond, "Elegia 1938"
+Fonte: Carlos Drummond de Andrade, "Sentimento do Mundo" (1940)
+Descrição: Uma das maiores elegias filosóficas da literatura brasileira. Drummond lamenta não a morte, mas a vida que já é morte: a alienação, a rotina, a falta de sentido. A repetição de "a morte não te pode prejudicar" é ironia amarga. A pergunta final — "Que importa a morte, se a vida é já tão morta?" — condensa o poema.
+📖 Exemplo real: "Trabalhas sem alegria para um mundo caduco / onde as formas e as ações não encerram nenhum exemplo. / Praticas laboriosamente os atos da rotina / e sentes que a morte não te pode prejudicar. / O mundo é grande e a vida é curta. / O mundo é rico e a vida é pobre. / Trabalhas, trabalhas, e nada pedes / e a morte não te pode prejudicar. / Que importa a morte, se a vida é já tão morta?"
+Severidade: baixa
+Categoria: exemplo
+
+## [ELE-28] Elegia completa — Bandeira, "A Morte de Célia"
+Fonte: Manuel Bandeira, "O Ritmo Dissoluto" (1924)
+Descrição: Modelo de contenção elegíaca. O poema não diz "estou triste" — mostra a tristeza pelo contraste entre o mundo que não muda e o eu que mudou. O nome próprio (Célia), a imagem concreta (sol, aves) e a ausência de exclamações fazem desta a elegia pessoal perfeita na contenção.
+📖 Exemplo real: "Morreste, Célia. E o mundo não mudou. / O sol continua nascendo, / as aves continuam cantando, / a vida continua — indiferente. / Mas para mim o mundo mudou, / desde que te perdi. / Agora há um vazio no lugar onde estavas / e esse vazio é o eco de ti / que não mais ouço, que não mais vejo / que não mais sentirei."
+Severidade: baixa
+Categoria: exemplo
+
+## [ELE-29] Elegia completa — Antero de Quental, "Hino à Morte"
+Fonte: Antero de Quental, "Odes Modernas" (1865)
+Descrição: O exemplo máximo da elegia filosófica em português. A morte não é inimiga, mas "irmã da noite", "doce libertação", "amiga dos que choram". Antero inverte a elegia clássica — não se chora a morte, celebra-se a morte como libertação do sofrimento.
+📖 Exemplo real: "Morte, irmã da noite e do esquecimento / doce libertação de quem padece / amiga dos que choram e padecem / tu és o fim de todo o sofrimento. / Vem, ó morte, vem com o teu silêncio / vem com o teu esquecimento santo / tira-me deste mundo de quebranto / leva-me para onde não há lamento."
+Severidade: baixa
+Categoria: exemplo
+
+## [ELE-30] Elegia completa — Pessoa, "A morte é a curva da estrada"
+Fonte: Fernando Pessoa, "Ficções do Interlúdio" (1930)
+Descrição: Elegia filosófica pessoana: a morte como curva da estrada — o morto não desaparece, apenas sai do campo de visão. O esquecimento como a única coisa que dura. A memória como sombra do esquecimento. Pessoa condensa a elegia em versos mínimos de grande densidade filosófica.
+📖 Exemplo real: "A morte é a curva da estrada / morrer é só não ser visto. / Se ouço, passo a não ouvir / a voz de quem não é visto. / Nada, a não ser o esquecimento / dura. E a memória é a sombra / que o esquecimento projeta / sobre o tempo que passou."
+Severidade: baixa
+Categoria: exemplo

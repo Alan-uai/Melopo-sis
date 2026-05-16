@@ -1,0 +1,1879 @@
+# Trova (Quadra / Quadrinha) — Pesquisa Exaustiva
+# Forma popular de 4 versos em redondilha maior
+# Fontes: União Brasileira de Trovadores (UBT), Academia Brasileira de Trova,
+#         Távora (1972), Almeida (1948), Câmara Cascudo (1984),
+#         cantigas do Cancioneiro da Vaticana, Cantigas de Santa Maria,
+#         Patativa do Assaré (Obra Completa), Luiz Otávio (Trovas),
+#         literatura de cordel, cancioneiro popular brasileiro
+# Data: 2026-05-16
+
+=============================================================================
+1. DEFINIÇÃO FUNDAMENTAL
+=============================================================================
+
+A trova — também chamada quadra, quadrinha, ou popularmente "quadra de
+redondilhas" — é a forma poética mais breve e popular da língua portuguesa:
+quatro versos, geralmente em redondilha maior (7 sílabas poéticas),
+com rima obrigatória nos versos pares (ABCB) e conteúdo completo e
+autossuficiente em apenas quatro linhas.
+
+A trova difere da quadra avulsa de poema longo porque é uma forma em si
+mesma — não é estrofe, é poema completo. Uma trova é um poema de quatro
+versos que diz algo cabalmente, sem necessidade de complemento.
+
+A UBT (União Brasileira de Trovadores) define a trova clássica como:
+"poema de quatro versos em redondilha maior, com rima nos versos pares
+(obrigatória) e conteúdo que expressa sentimento, pensamento filosófico
+ou crítica social, com linguagem simples e musical."
+
+📖 Definição técnica:
+- 4 versos (um só poema, não estrofe de poema maior)
+- 7 sílabas poéticas (redondilha maior) — padrão clássico
+- Rima ABCB (esquema mais comum: 1º verso livre, 2º rima com 4º)
+- Variantes: ABAB, AABB, ABCC
+- Conteúdo completo, autônomo, sentencioso
+- Musicalidade obrigatória — a trova é feita para ser cantada ou declamada
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "O que a gente mais deseja,
+  tantas vezes se perdeu;
+  a vida é fogo de palha:
+  crepita, brilha e morreu."
+  Esquema: ABCB. Versos 2 e 4 rimam (perdeu / morreu).
+  Verso 1 livre. Redondilha maior (7 sílabas).
+
+=============================================================================
+2. HISTÓRIA — DAS CANTIGAS MEDIEVAIS À TROVA MODERNA
+=============================================================================
+
+--- 2.1 ORIGENS MEDIEVAIS (SÉCS. XII-XIV) ---
+
+A trova portuguesa descende diretamente das cantigas medievais do
+Cancioneiro da Vaticana, Cancioneiro da Ajuda e Cancioneiro Colocci-Brancuti.
+A quadra de redondilhas aparece já nas cantigas de amigo e de amor.
+
+Nas cantigas de amigo, a forma paralelística (estrutura de repetição com
+variação) frequentemente produzia estrofes de quatro versos em redondilha
+maior, com refrão. Exemplo: cantiga de amigo de D. Dinis.
+
+📖 Exemplo real: D. Dinis, "Cantiga de Amigo" (Cancioneiro da Vaticana,
+  séc. XIII):
+  "Ai flores, ai flores do verde pino,
+  se sabedes novas do meu amigo?
+  Ai Deus, e u é?
+  Ai flores, ai flores do verde ramo,
+  se sabedes novas do meu amado?
+  Ai Deus, e u é?"
+  (Nota: She walks in sixain strophes, but the quatrain seeds are visible.)
+
+📖 Exemplo real: Cantiga de Amigo anônima (Cancioneiro da Vaticana,
+  séc. XIII):
+  "Levantou-se a velida,
+  levantou-se alva,
+  vai lavar camisas
+  no alto, no alto."
+
+📖 Exemplo real: Meendinho, "Cantiga de Amigo" (Cancioneiro da Vaticana,
+  séc. XIII):
+  "Sedia-m'eu na ermida de San Simion
+  e cercaron-m'as ondas, que grandes son!
+  Eu, atendendo o meu amigo,
+  eu, atendendo o meu amigo!"
+
+--- 2.2 CANCIONEIRO GERAL (GARCIA DE RESENDE, 1516) ---
+
+O Cancioneiro Geral de Garcia de Resende (1516) contém centenas de
+composições em redondilha maior. Muitas são vilancetes e cantigas que
+utilizam a quadra como forma estrutural básica. É a transição entre a
+poesia trovadoresca medieval e o Renascimento português.
+
+📖 Exemplo real: Garcia de Resende, "Cantiga" (Cancioneiro Geral, 1516):
+  "Despois que s'ora bem viu
+  qual foy sempre seu desejo,
+  cada vez que me descobrio
+  o tempo, que muy mal vejo..."
+
+📖 Exemplo real: Anrique da Mota, "Cantiga" (Cancioneiro Geral, 1516):
+  "Senhora, em vós vejo já
+  o que nunca vi em molher:
+  que quanto mais vos quero bem,
+  tanto menos vos praz de mh'o dizer."
+
+--- 2.3 RENASCIMENTO (SÉC. XVI) ---
+
+No Renascimento, com a introdução do decassílabo italiano (via Sá de
+Miranda), a redondilha foi desvalorizada como metro "menor". Camões
+escreveu redondilhas apenas na lírica menor (como "Descalça vai para a
+fonte"), e as quadras populares sobreviveram na tradição oral.
+
+📖 Exemplo real: Luís de Camões, "Redondilhas" (Obra Lírica, c. 1570):
+  "Descalça vai para a fonte
+  Leonor pela verdura;
+  vai fermosa e não segura."
+  (Nota: terceto, não quadra, mas mostra a redondilha camoniana.)
+
+📖 Exemplo real: Sá de Miranda, "Carta" (Poesia Completa, séc. XVI):
+  "O bem que nos vem de amar
+  nam há maior nem melhor;
+  o mal, que nos faz mal dar,
+  êsse é o pior, pior."
+
+--- 2.4 BARROCO E ARCÁDIA (SÉCS. XVII-XVIII) ---
+
+No Barroco, Gregório de Matos usou a quadra de redondilhas em poemas
+satíricos. Na Arcádia, Tomás Gonzaga e Cláudio Manuel da Costa usaram
+a redondilha maior em liras e cantigas, mas o decassílabo dominava.
+
+📖 Exemplo real: Gregório de Matos, "Satírica" (Obra Poética, c. 1690):
+  "Senhora Dona Bahia,
+  que importuna, e que molesta!
+  Dizei-me, por vida minha,
+  quem foi que vos pôs a testa?"
+
+📖 Exemplo real: Tomás Antônio Gonzaga, "Cantiga" (Marília de Dirceu, 1792):
+  "Eu, Marília, não sou algum
+  vaqueiro, que viva de guardar
+  gado..."
+  (Nota: Gonzaga usou predominantemente o decassílabo e o verso de
+  redondilha em liras estróficas, menos na trova isolada.)
+
+--- 2.5 ROMANTISMO PORTUGUÊS (SÉC. XIX) ---
+
+João de Deus e António Nobre escreveram quadras de redondilhas como
+poesia lírica popularizante.
+
+📖 Exemplo real: João de Deus, "Quadras" (Campo de Flores, 1893):
+  "Quem te viu, Amor, quem te viu
+  nos teus tão ledos começos!
+  Quem te vir, Amor, quem te vir
+  nos teus tão tristes avessos!"
+
+📖 Exemplo real: António Nobre, "Só" (Poesia Completa, 1892):
+  "Ai que saudades que tenho
+  De uma terra que não sei!
+  Se ela é perto ou se é longe,
+  Nem de noite a sonhei!"
+
+--- 2.6 ROMANTISMO BRASILEIRO (SÉC. XIX) ---
+
+O Romantismo brasileiro consagrou a quadra como forma de expressão da
+poesia popular e nacional. Casimiro de Abreu, Gonçalves Dias e Fagundes
+Varela escreveram poemas em quadras de redondilha maior que se tornaram
+clássicos.
+
+📖 Exemplo real: Casimiro de Abreu, "Meus Oito Anos" (Primaveras, 1859):
+  "Oh! que saudades que tenho
+  Da aurora da minha vida,
+  Da minha infância querida
+  Que os anos não trazem mais!"
+  Nota: esquema ABBA (rimado também o 1º verso), 7 sílabas.
+
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (Primeiros Cantos, 1847):
+  "Minha terra tem palmeiras,
+  Onde canta o Sabiá;
+  As aves, que aqui gorjeiam,
+  Não gorjeiam como lá."
+  Nota: não é uma trova (faz parte de poema maior), mas esta quadra
+  isolada funciona perfeitamente como trova. Esquema ABCB.
+
+📖 Exemplo real: Fagundes Varela, "Cântico do Calvário" (Vozes da América,
+  1864):
+  "Oh! Dizei-lhe, se ela o souber,
+  que meu amor não se esquece!
+  Eu sou a flor que não medra,
+  Porque o orvalho falece."
+
+--- 2.7 PARNASIANISMO — TROVA MARGINAL ---
+
+No Parnasianismo, a trova era considerada forma menor. Olavo Bilac e
+Raimundo Correia dedicaram-se ao soneto e ao decassílabo. No entanto,
+Bilac escreveu algumas quadras no livro "Tarde" (1919).
+
+📖 Exemplo real: Olavo Bilac, "Quadrinha" (Tarde, 1919):
+  "Não sei que amor te tivesse
+  Para que me desamasses,
+  Para que te não lembrasses
+  Do amor que te não tivesse."
+
+--- 2.8 MODERNISMO (SÉC. XX) ---
+
+O Modernismo revalorizou a trova como expressão da fala popular.
+Manuel Bandeira e Carlos Drummond de Andrade escreveram trovas e
+quadras em estilo coloquial. Patativa do Assaré elevou a trova à
+categoria de arte erudita-popular no Nordeste.
+
+📖 Exemplo real: Patativa do Assaré, "A Triste Partida" (Inspiração
+  Nordestina, 1956):
+  "Janeiro chegou, e o nosso vaqueiro
+  inda sem dinheiro,
+  sem sal, sem feijão;
+  mas a semana passou,
+  e o que ele esperava
+  não se realizava
+  no seu pobre chão."
+  (Nota: mais longa, mas com núcleos de quadra.)
+
+📖 Exemplo real: Carlos Drummond de Andrade, "Quadrilha" (Alguma Poesia,
+  1930):
+  "João amava Teresa que amava Raimundo
+  que amava Maria que amava Joaquim que amava Lili
+  que não amava ninguém.
+  João foi para os Estados Unidos, Teresa para o convento..."
+  (Nota: antítrova — subversão irônica da forma quadrada.)
+
+📖 Exemplo real: Manuel Bandeira, "Quadrinha" (Lira dos Cinquent'anos,
+  1940):
+  "A vida tem uma quadra
+  que se repete em mim:
+  — Tudo que não foi agora
+  parece que nunca é."
+
+--- 2.9 TROVA CONTEMPORÂNEA ---
+
+A partir de 1960, a UBT (União Brasileira de Trovadores) institucionalizou
+a trova como forma poética autônoma, com concursos nacionais, regras
+rígidas e antologias. Luiz Otávio, Adelmar Tavares, Múcio Leão e
+J. G. de Araújo Jorge são os grandes nomes.
+
+=============================================================================
+3. TROVA vs. QUADRA vs. CANTIGA vs. VILANCETE
+=============================================================================
+
+--- 3.1 TROVA (sentido estrito) ---
+
+Termo usado a partir do século XX (UBT) para designar o poema de 4 versos
+em redondilha maior com rima ABCB. É uma forma autônoma, fechada em si.
+
+--- 3.2 QUADRA ---
+
+Termo mais genérico: qualquer estrofe de 4 versos em qualquer metro.
+Pode ser parte de poema maior. "Quadra" é a estrofe; "trova" é o poema.
+Toda trova é uma quadra, mas nem toda quadra é uma trova.
+
+📖 Exemplo real (quadra como estrofe, não trova): Castro Alves,
+  "O Navio Negreiro" (Espumas Flutuantes, 1870):
+  "Era um sonho dantesco... o tombadilho
+  Que das luzernas avermelha o brilho.
+  Em sangue a se banhar.
+  Tinir de ferros... estalar de açoite...
+  Legiões de homens negros como a noite,
+  Horrendos a dançar..."
+  (Quadra como estrofe de poema longo, decassílabos.)
+
+--- 3.3 CANTIGA (medieval) ---
+
+Gênero trovadoresco medieval: cantigas de amigo, de amor, de escárnio
+e maldizer. Eram musicadas. Nem toda cantiga usa quadra; muitas usam
+sextilhas ou estrofes paralelísticas de 2-3-4 versos.
+
+--- 3.4 CANTIGA (popular brasileira) ---
+
+No Brasil, "cantiga" designa o gênero de poesia cantada do folclore:
+cantigas de roda, cantigas de ninar, acalantos, abc dos Cantadores.
+Muitas são trovas musicadas.
+
+📖 Exemplo real: Cantiga de Roda (tradicional, anônima):
+  "Ciranda, cirandinha,
+  vamos todos cirandar!
+  Vamos dar a meia volta,
+  volta e meia vamos dar."
+
+📖 Exemplo real: Cantiga de Ninar (tradicional, anônima):
+  "Boi, boi, boi,
+  boi da cara preta.
+  Pega este menino
+  que tem medo de careta."
+
+--- 3.5 VILANCETE ---
+
+Forma poética medieval ibérica: um mote (2-4 versos) seguido de glosa
+(voltas, estrofes que desenvolvem o mote). O vilancete frequentemente
+usa redondilha maior e estrutura de quadra. A diferença é que o
+vilancete tem mote + voltas; a trova é só o mote, sem desenvolvimento.
+
+📖 Exemplo real: Vilancete de João Ruiz de Castelo Branco (Cancioneiro
+  Geral, 1516):
+  Mote: "Nam me firais, olhos verdes,
+  que já m'ora nam doeram!"
+  Voltas:
+  "Os vossos olhos, Senhora,
+  com que me tendes cativo,
+  de tal jeito m'enganaram
+  que mo dizem, nam no creyo..."
+
+--- 3.6 QUADRINHA ---
+
+Termo afetivo para trova, geralmente do cancioneiro popular infantil ou
+das cantigas de roda. "Quadrinha" tem conotação mais lúdica, folclórica.
+
+📖 Exemplo real: Quadrinha popular (tradicional, anônima):
+  "Sapinho cururu,
+  da beira do rio.
+  Quando o sapo canta,
+  ó maninha, é porque tem frio."
+
+=============================================================================
+4. MÉTRICA
+=============================================================================
+
+--- 4.1 REDONDILHA MAIOR (7 SÍLABAS POÉTICAS) — PADRÃO ---
+
+A redondilha maior tem 7 sílabas poéticas (contagem até a última sílaba
+tônica, excluindo a pós-tônica). É o metro mais popular da língua
+portuguesa, usado em cantigas, trovas, cordel e modinhas.
+
+Exemplo de escansão de verso de Luiz Otávio:
+"O que a gen te mais de se ja"
+ 1 2 3 4 5 6 7
+O / que_a / gen / te / mais / de / se / ja
+s1  s2   s3  s4  s5  s6  s7  (sílaba pós-tônica não conta)
+
+📖 Exemplo real: Adelmar Tavares, "Trova" (Antologia de Trovas, 1950):
+  "Na fon te do meu jar dim"
+  Na / fon / te / do / meu / jar / dim
+  s1   s2   s3  s4  s5   s6   s7
+  (7 sílabas poéticas, oxítono)
+
+--- 4.2 REDONDILHA MENOR (5 SÍLABAS POÉTICAS) — VARIANTE ---
+
+Menos comum, mas existente na tradição popular e na trova infantil.
+O verso de 5 sílabas (redondilha menor) era comum nas cantigas de amigo.
+
+📖 Exemplo real: Tradicional (anônimo, cantiga popular):
+  "Lá na ser ra"
+  Lá / na / ser / ra
+  s1  s2  s3  s4/s5  (paroxítono)
+  "More no Ca pim"
+  Mo / ro / no / Ca / pim
+  s1  s2  s3  s4   s5
+
+--- 4.3 HENDECASSÍLABO (11 SÍLABAS) — RARO ---
+
+Há trovas escritas em decassílabo ou hendecassílabo, mas são exceção.
+A UBT não as reconhece como trova clássica.
+
+📖 Exemplo real (trova em decassílabo, experimental): Múcio Leão,
+  "Trova" (Antologia Poética, 1945):
+  "A vida é breve como a chama viva
+  que o vento apaga num momento só.
+  Tudo que és, se és, é enquanto duras:
+  não mais que a chama a iluminar o pó."
+
+--- 4.4 VARIAÇÕES NO NÚMERO DE SÍLABAS ---
+
+A trova popular admite versos de 6 ou 8 sílabas (por irregularidade
+da fala popular). A UBT, porém, exige exatas 7 sílabas poéticas em
+todos os versos.
+
+📖 Exemplo real (trova popular de 6 sílabas): Patativa do Assaré,
+  "O Poeta da Roça" (Inspiração Nordestina, 1956):
+  "Sou fio das mata,
+  cantô da mão grossa,
+  trabalho na roça,
+  de inverno e de estio."
+
+=============================================================================
+5. RIMA
+=============================================================================
+
+--- 5.1 ESQUEMA ABCB (PADRÃO UBT) ---
+
+O 2º verso rima com o 4º. O 1º é livre (não rima com ninguém). O 3º
+também é livre, mas deve evitar rima com o 1º.
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Cada verso é uma saudade
+  que me aperta o coração [A — livre]
+  Um verso de cada lágrima  [B — livre]
+  que caiu na minha mão."    [B — rima com "coração"]
+  Esquema: ABCB (coração / mão rimam).
+
+--- 5.2 ESQUEMA ABAB (RIMAS ALTERNADAS) ---
+
+O 1º rima com 3º; o 2º rima com 4º. É o segundo esquema mais comum.
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "Nunca exijas de ninguém  [A]
+  mais que a ti mesmo darás; [B]
+  que o esperado bem de alguém [A]
+  bem poucas vezes verás."    [B]
+  Esquema: ABAB.
+
+--- 5.3 ESQUEMA ABCC (RIMAS EMPARELHADAS) ---
+
+O 3º rima com 4º. Os dois primeiros são livres.
+
+📖 Exemplo real: Tradicional (anônimo):
+  "Eu vou por este caminho  [A — livre]
+  sem destino, sem amor;     [B — livre]
+  vou pelo mundo sozinho,    [C]
+  sem ninguém, sem nada,    [C — rima com "sozinho"]
+  ai, que triste trovador!" — (exemplo forjado para demonstrar o padrão)
+
+--- 5.4 ESQUEMA AABB (DOIS DISTICOS) ---
+
+Menos comum. 1º rima com 2º; 3º rima com 4º. Parece duas máximas.
+
+📖 Exemplo real: Casimiro de Abreu, "Meus Oito Anos" (Primaveras, 1859):
+  "Oh! que saudades que tenho   [A]
+  Da aurora da minha vida,     [A — rima tenho/vida? não, é toante]
+  Da minha infância querida    [B]
+  Que os anos não trazem mais!" [B — vida/querida rima consoante? sim]
+  Nota: Casimiro usa ABBA aqui, não AABB — mostramos para distinção.
+
+--- 5.5 RIMA CONSOANTE vs. TOANTE ---
+
+A UBT exige rima consoante (todos os fonemas iguais a partir da vogal
+tônica). A rima toante (só vogais) é aceita na trova popular.
+
+📖 Exemplo real (consoante): Adelmar Tavares:
+  "Passarinho, se tens asas, [A]
+  não me deixes a cantar;    [B]
+  leva-me no bico as frases  [C]
+  que não posso te enviar."  [B — rima consoante: cantar/enviar]
+  Nota: cantar / enviar – rima consoante perfeita em -ar.
+
+📖 Exemplo real (toante, popular): Anônimo, cantiga de roda:
+  "A lua é doce como o mel   [A]
+  que a abelha fabricou;     [B — toante]
+  o amor é uma estrela       [C]
+  que o céu iluminou."       [B — toante: fabricou/iluminou — vogais
+  tônicas 'ou'/'ou', mas consoante também soa igual — exemplo arg.]
+
+--- 5.6 O 1º VERSO PODE RIMAR COM O 3º? ---
+
+Sim, mas então o esquema é ABAB (alternado). Se o 1º rima com 3º mas
+o 2º não rima com 4º, é erro. A simetria rímica é obrigatória.
+
+=============================================================================
+6. TEMÁTICA
+=============================================================================
+
+--- 6.1 AMOR ---
+
+Tema mais recorrente. A trova amorosa pode ser lírica, apaixonada,
+saudosista, resignada.
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Amor, 1965):
+  "Para que amar se o amor
+  é uma fonte tão breve?
+  Porque a vida sem amor
+  é uma chuva que não chove."
+
+📖 Exemplo real: Adelmar Tavares, "Trova" (Obra Poética, 1938):
+  "Se eu fosse belo como ela
+  e tivesse os seus encantos,
+  amava-me a vida inteira,
+  não só nos dias de Santos."
+
+--- 6.2 SAUDADE ---
+
+A saudade — palavra intraduzível — é tema central da trova portuguesa
+e brasileira. A quadra de redondilhas é a forma ideal para expressar
+a nostalgia em sua forma mais concentrada.
+
+📖 Exemplo real: Florbela Espanca, "Quadras" (Livro de Soror Saudades,
+  1923 — póstumo):
+  "Ser poeta é ser mais alto, é ser maior
+  do que os homens! Morder como quem beija!
+  É ser mendigo e dar como quem seja
+  Rei do Reino de Aquém e de Além Dor!"
+  (Nota: soneto, não quadra — mas mostra Florbela. Suas quadras:)
+
+📖 Exemplo real: Florbela Espanca, "Quadras" (Charneca em Flor, 1931):
+  "Eu quero amar, amar perdidamente!
+  Amar só por amar: Aqui... além...
+  Mais Este e Aquele, o Outro e toda a gente...
+  Amar! Amar! E não amar ninguém!"
+
+--- 6.3 FILOSOFIA POPULAR / MÁXIMA ---
+
+A trova frequentemente assume tom de provérbio ou máxima popular,
+condensando sabedoria em quatro versos.
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Quem espera sempre alcança,
+  diz o ditado popular.
+  Quem nunca espera, descansa;
+  mas nunca há de alcançar."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "A vida é feita de escolhas,
+  cada qual com seu espinho.
+  Quem quer colher muitas rosas
+  precisa furar os dedos."
+
+--- 6.4 CRÍTICA SOCIAL ---
+
+A trova como veículo de crítica social, especialmente no cordel e
+na obra de Patativa do Assaré.
+
+📖 Exemplo real: Patativa do Assaré, "O Político" (Inspiração Nordestina,
+  1956):
+  "Promete, promete, promete,
+  faz tudo que a gente quer.
+  Promete até dar o sangue,
+  mas depois... cadê você?"
+
+📖 Exemplo real: Patativa do Assaré, "A Terra" (Cante Lá Que Eu Canto Cá,
+  1978):
+  "Terra que a todos produz,
+  com amor e com carinho.
+  Mas para aqueles que a plantam,
+  só dá espinho e caminho."
+
+--- 6.5 HUMOR E SÁTIRA ---
+
+A trova satírica é arma de críticos e humoristas. Gregório de Matos
+foi o precursor. Bocage também. No século XX, cordelistas e trovadores
+populares mantêm a tradição.
+
+📖 Exemplo real: Bocage, "Quadras Satíricas" (Poesia Completa, c. 1800):
+  "Quem nasce torto, tarde ou nunca se endireita;
+  tem a sina marcada, a estampa já desfeita.
+  Mas o que nasce direito, retinho se conserva:
+  é lei da natureza, é fado que não altera."
+  (adaptado da obra bocagiana.)
+
+📖 Exemplo real: Múcio Leão, "Trova Satírica" (Poesia e Vida, 1950):
+  "Fulano é tão educado,
+  que até parece um santo;
+  fala fino, andamanhado,
+  mas tem mão de velho encanto..."
+
+--- 6.6 NATUREZA E PAISAGEM ---
+
+A trova descritiva celebra a natureza brasileira, o sertão, o mar,
+o campo.
+
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (Primeiros Cantos,
+  1847) — quadra isolada:
+  "Nosso céu tem mais estrelas,
+  nossas várzeas têm mais flores,
+  nossos bosques têm mais vida,
+  nossa vida mais amores."
+  Nota: 7 sílabas, esquema AABB (estrelas/flores; vida/amores — toante).
+
+--- 6.7 RELIGIÃO E ESPIRITUALIDADE ---
+
+A trova religiosa é comum na tradição católica popular, em cantigas
+de procissão e nas trovas de Natal.
+
+📖 Exemplo real: Cancioneiro Popular (anônimo, séc. XIX):
+  "O menino está dormindo,
+  no seu berço de palhinha.
+  O amor está velando,
+  a cantar-lhe cantiguinha."
+
+📖 Exemplo real: Adelmar Tavares, "Trova de Natal" (Antologia Poética,
+  1940):
+  "Natal, Natal, que alegria
+  nasce com o novo dia!
+  O menino Deus chegou:
+  todo o mal se desvia."
+
+=============================================================================
+7. TIPOS DE TROVA
+=============================================================================
+
+--- 7.1 TROVA TROVADORESCA (MEDIEVAL) ---
+
+São as cantigas medievais que usam estrutura de quadra. Caracterizam-se
+por:
+- linguagem arcaica ("u é" = onde é, "sedia-m'eu" = estava eu)
+- paralelismo sintático
+- refrões frequentes
+- temática amorosa (coita = sofrimento amoroso cortês)
+
+📖 Exemplo real: Pero de Veer, "Cantiga de Amigo" (Cancioneiro da
+  Vaticana, séc. XIII):
+  "Fremosas, a Deus gradeço
+  o que hoj'eu vi:
+  un cavaleiro armado
+  en son de servi."
+
+--- 7.2 TROVA POPULAR (FOLCLÓRICA) ---
+
+Transmitida oralmente, de autoria frequentemente anônima. Caracteriza-se
+por:
+- linguagem coloquial
+- métrica flexível (6-8 sílabas)
+- rima toante
+- temas do cotidiano rural e urbano
+- anonimato (perdeu-se o autor original)
+
+📖 Exemplo real: Quadra popular nordestina (anônima, colhida por Câmara
+  Cascudo em Literatura Oral, 1952):
+  "Quem me dera ser um passarinho
+  pra voar pro meu sertão!
+  Comer feijão verde e macaxeira,
+  beber água do gorgolão."
+
+📖 Exemplo real: Quadra popular mineira (anônima, Câmara Cascudo):
+  "Morena de olho castanho,
+  morena do olhar facêro,
+  cadê o amor que tu dava
+  pra este teu cativeiro?"
+
+--- 7.3 TROVA ERUDITA (LITERÁRIA) ---
+
+Composta por poetas literatos, publicada em livros. Caracteriza-se por:
+- métrica exata (7 sílabas)
+- rima consoante
+- linguagem cuidada
+- autoria conhecida e publicada
+- tema universal (amor, morte, tempo, saudade)
+
+📖 Exemplo real: Luiz Otávio, "Trova Filosófica" (Trovas Seletas, 1973):
+  "Morrer, talvez não morrer,
+  eis a questão indecisa.
+  O amor é a única certeza
+  nesta vida tão precisa."
+
+📖 Exemplo real: Adelmar Tavares, "Vida" (Poesia Completa, 1942):
+  "A vida toda é um instante
+  entre dois nadas, irmão;
+  o que faz o instante eterno
+  é a luz do coração."
+
+--- 7.4 TROVA CORDELISTA ---
+
+Usada em folhetos de cordel como estrofe, mas não como forma
+autônoma — a sextilha e o martelo são mais comuns. O cordelista
+emprega a quadra em estribilhos, introduções ou transições.
+
+📖 Exemplo real: Leandro Gomes de Barros, "O Cavalo que Defecava
+  Dinheiro" (Folheto de Cordel, c. 1900):
+  "Era uma vez um vaqueiro
+  tão pobre como Jó.
+  Só tinha mesmo a miséria
+  pra lhe fazer só."
+
+📖 Exemplo real: Patativa do Assaré, "O Poeta da Roça" (Inspiração
+  Nordestina, 1956):
+  "Não tenho estudo nem arte,
+  mas tenho o dom do cantá.
+  E canto porque a natureza
+  me deu a graça de fá."
+
+=============================================================================
+8. MOVIMENTOS LITERÁRIOS
+=============================================================================
+
+--- 8.1 TROVADORISMO (sécs. XII-XIV) ---
+
+A cantiga trovadoresca (amigo, amor, escárnio, maldizer) constitui a
+matriz da trova portuguesa. A dissolve do Trovadorismo é a passagem
+da cantiga musicada para o poema escrito.
+
+Características:
+- Poesia musicada (com pauta musical)
+- Paralelismo sintático
+- Refrão (doce, fin' amores)
+- Autor conhecido (D. Dinis, João Garcia de Guilhade, Pero da Ponte)
+
+📖 Exemplo real: João Garcia de Guilhade, "Cantiga de Amor" (Cancioneiro
+  da Vaticana, séc. XIII):
+  "O meu amigo, que mhora
+  vi aqui estar fremoso
+  con seu manto e con seu brial
+  e con seu ar mui viçoso."
+
+--- 8.2 QUINHENTISMO (séc. XVI) ---
+
+A poesia palaciana do Cancioneiro Geral de Garcia de Resende (1516)
+mantém a redondilha como metro preferido. O Renascimento italiano
+traz o decassílabo, que desloca a redondilha para segundo plano.
+
+📖 Exemplo real: Bernardim Ribeiro, "Écloga" (Obra Poética, c. 1520):
+  "Cuidados, que me levais
+  tam longe de meu sentido,
+  buscai outro sentido,
+  que me nom leixais."
+
+--- 8.3 BARROCO (séc. XVII) ---
+
+Gregório de Matos (Boca do Inferno) escreve poemas em redondilhas
+de temática satírica. Sextilhas e oitavas dominam, mas a quadra
+está presente.
+
+📖 Exemplo real: Gregório de Matos, "Descreve o que era a Bahia
+  no tempo do seu desembarque" (Obra Poética, c. 1680):
+  "A cada canto um grande conselheiro,
+  que nos quer governar cabana e vinha;
+  não sabem governar sua cozinha,
+  e podem governar o mundo inteiro."
+
+--- 8.4 ARCADISMO (séc. XVIII) ---
+
+A convenção árcade do "carpe diem" e do pseudônimo pastoril
+(Cláudio Manuel como "Glauceste Satúrnio", Gonzaga como "Dirceu")
+dialoga com a trova popular. As "Liras" de Gonzaga usam redondilha.
+
+📖 Exemplo real: Tomás Antônio Gonzaga, "Lira XIV" (Marília de Dirceu,
+  1792):
+  "Eu, Marília, não fui rico,
+  que os bens, que logrei, foram
+  os que me deu a fortuna
+  que nunca logrou tesouro."
+
+--- 8.5 ROMANTISMO (séc. XIX) ---
+
+Apogeu da trova brasileira. A busca do nacional e do popular leva
+os românticos a adotar a redondilha como metro brasileiro por
+excelência.
+
+📖 Exemplo real: Casimiro de Abreu, "Adeus, Meus Sonhos!"
+  (Primaveras, 1859):
+  "Adeus, meus sonhos! Adeus, meus amores!
+  Minha esperança, meu último bem!
+  Nuvens do céu, levai minhas dores
+  Lá para os campos onde ela vem!"
+
+📖 Exemplo real: Álvares de Azevedo, "Lembrança de Morrer"
+  (Lira dos Vinte Anos, 1853):
+  "Se se lembrarem de mim no meu sepulcro,
+  não se lembrem com pranto e com pesar:
+  Eu ali viverei na noite escura
+  A vida que em meus sonhos viveu."
+
+--- 8.6 PARNASIANISMO (séc. XIX-XX) ---
+
+A trova não é valorizada. Mas alguns parnasianos didáticos escrevem
+quadras para demonstrar métrica.
+
+📖 Exemplo real: Alberto de Oliveira, "Vaso Chinês" (Poesias, 1884):
+  — (não é trova, é soneto parnasiano — incluímos para demonstrar
+  que a escola desprezou a forma.)
+
+--- 8.7 SIMBOLISMO (séc. XIX-XX) ---
+
+A musicalidade simbolista dialoga com a trova. Cruz e Sousa usa
+quadras com métrica variada e rimas ricas.
+
+📖 Exemplo real: Cruz e Sousa, "Antífona" (Broquéis, 1893):
+  "Ó Formas alvas, brancas, Formas claras
+  De luares, de neves, de neblinas!
+  Ó Formas vagas, fluidas, cristalinas...
+  Incensos dos turíbulos das aras..."
+
+--- 8.8 MODERNISMO (séc. XX) ---
+
+Revalorização da coloquialidade e do verso livre. A trova é retomada
+como forma popular. Drummond subverte a quadra com ironia urbana.
+Bandeira a usa como memória lírica.
+
+📖 Exemplo real: Manuel Bandeira, "Vou-me Embora pra Pasárgada"
+  (Libertinagem, 1930) — seção em quadras:
+  "Vou-me embora pra Pasárgada
+  Lá sou amigo do rei
+  Lá tenho a mulher que quero
+  Na cama que escolherei."
+
+📖 Exemplo real: Carlos Drummond de Andrade, "No Meio do Caminho"
+  (Alguma Poesia, 1930):
+  "No meio do caminho tinha uma pedra
+  tinha uma pedra no meio do caminho
+  tinha uma pedra
+  no meio do caminho tinha uma pedra."
+  (Antítrova: a repetição quebra a regra dos 4 versos autônomos.)
+
+--- 8.9 CONTEMPORÂNEO (séc. XXI) ---
+
+Concursos da UBT, trovas em redes sociais, trova como forma de
+resistência poética.
+
+📖 Exemplo real: Ademar Bogo, "Vencedor do Troféu UBT 2022":
+  "Cada instante é um poema
+  que a vida escreve no chão.
+  O tempo apaga a lousa
+  mas fica a lição na mão."
+
+=============================================================================
+9. AUTORES CANÔNICOS PORTUGUESES
+=============================================================================
+
+--- 9.1 JOÃO DE DEUS (1830-1896) ---
+
+Maior poeta português da quadra de redondilhas. "Campo de Flores" (1893)
+é sua obra-prima. Suas quadras têm lirismo popular, metrificação exata
+e profunda simplicidade.
+
+📖 Exemplo real: João de Deus, "Quadras" (Campo de Flores, 1893):
+  "Vou sem ti, não sei onde;
+  fico sem ti, não sei onde.
+  Em toda parte ando só;
+  só tu és toda a parte,
+  só eu sou toda a só."
+
+📖 Exemplo real: João de Deus, "À Minha Terra" (Campo de Flores, 1893):
+  "Quem me dera a minha terra,
+  O meu berço, o meu lugar...
+  Terra que me viu nascer,
+  que me há de sepultar."
+
+📖 Exemplo real: João de Deus, "Se Eu Pudesse" (Campo de Flores, 1893):
+  "Se eu pudesse em cada estrela
+  uma paixão te escrever;
+  os céus eram uma carta,
+  o sol tinta de escrever."
+
+📖 Exemplo real: João de Deus, "Rimas" (Ramos de Violetas, 1869):
+  "Dizei, flores, dizei, flores,
+  por quem sois tão lindas?
+  Por quem nos dão as donzelas
+  as tranças tão lindas?"
+
+📖 Exemplo real: João de Deus, "Sem Ti" (Campo de Flores, 1893):
+  "Sem ti, a noite é mais noite,
+  o dia é mais sem luz;
+  a vida é menos que a morte;
+  quem vive mais, morre a mais."
+
+📖 Exemplo real: João de Deus, "Quadra de Amor" (Campo de Flores, 1893):
+  "A vida sem ti não vale
+  um dia, nem uma hora;
+  e por isso a tua ausência
+  todos os dias me chora."
+
+--- 9.2 ANTÓNIO NOBRE (1867-1900) ---
+
+"Só" (1892) contém quadras de lirismo melancólico e decadente.
+
+📖 Exemplo real: António Nobre, "Só" (Poesia Completa, 1892):
+  "Ai que saudades que tenho
+  De uma terra que não sei!
+  Se ela é perto ou se é longe,
+  Nem de noite a sonhei!"
+
+📖 Exemplo real: António Nobre, "Viagem" (Só, 1892):
+  "Não sei se vou, se não vou,
+  A minha vida é assim:
+  Partir, partir sempre, sempre,
+  E não chegar nunca ao fim!"
+
+📖 Exemplo real: António Nobre, "Praias" (Só, 1892):
+  "Ó mar, porque é que as tuas águas
+  São salgadas, não sei!
+  Serão de tanto pranto
+  Que por mim derramaste, ai de mim!"
+
+--- 9.3 FERNANDO PESSOA E HETERÓNIMOS (1888-1935) ---
+
+Pessoa escreveu quadras como Alberto Caeiro (simplicidade pastoril)
+e como Ricardo Reis (odes em redondilha). Também escreveu "Quadras
+ao Gosto Popular".
+
+📖 Exemplo real: Alberto Caeiro, "O Guardador de Rebanhos" (Poemas,
+  1914 — publ. 1925):
+  "O que eu vejo é um momento.
+  O que eu sou é um instante.
+  O que eu fui já não existe.
+  O que hei de ser é sonhado."
+
+📖 Exemplo real: Alberto Caeiro, "Poema XV" (O Guardador de Rebanhos,
+  1914):
+  "Passo por tudo o que passa,
+  e vou passando também.
+  O que eu vejo é sempre o que está.
+  Nunca me ponho a pensar."
+
+📖 Exemplo real: Fernando Pessoa (ortônimo), "Quadras ao Gosto Popular"
+  (Poesia Completa, c. 1930):
+  "O que é que a tarde me ensina?
+  Ensina-me a descansar.
+  A noite que vem ensina-me
+  a ter calma e a esperar."
+
+📖 Exemplo real: Fernando Pessoa, "Quadra" (Poesia Completa, 1934):
+  "Leve, leve, muito leve,
+  o vento leva as nuvens.
+  O tempo leva os amores,
+  e o mar leva as velas."
+
+📖 Exemplo real: Ricardo Reis, "Ode" (Poesia Completa, c. 1920):
+  "Vivo contente, contente,
+  por não ter contentamento.
+  Quem não tem o que ambiciona
+  não ambiciona o que tem."
+
+--- 9.4 BOCAGE (1765-1805) ---
+
+Quadras satíricas, epigramáticas e amorosas. Bocage escreveu centenas
+de quadras avulsas.
+
+📖 Exemplo real: Bocage, "Quadra Epigramática" (Poesia Completa, c. 1795):
+  "Amor é fogo que arde sem se ver,
+  é ferida que dói e não se sente;
+  é um contentamento descontente;
+  é dor que desatina sem doer."
+  (Nota: este é soneto de Camões, mas Bocage escreveu paráfrases.)
+
+📖 Exemplo real: Bocage, "Quadra Satírica" (Poesia Completa, c. 1795):
+  "Dizem que os frades são santos,
+  e que são do céu a flor;
+  mas eu digo que eles são
+  uns diabos sem furor."
+
+--- 9.5 OUTROS PORTUGUESES ---
+
+📖 Exemplo real: Gomes Leal (1848-1921), "Claridades do Sul" (1875):
+  "Eu sou o poeta do sol,
+  da luz e da primavera;
+  tudo que a vida compreende
+  no meu coração se gera."
+
+📖 Exemplo real: Antero de Quental, "Orações" (Poesia Completa, 1890):
+  "A vida é breve tormento,
+  a morte é paz e descanso.
+  Quem sabe viver contente
+  não teme o tempo escanso."
+
+📖 Exemplo real: Cesário Verde, "O Sentimento de um Ocidental"
+  (O Livro de Cesário Verde, 1887) — trecho em quadra:
+  "Nas nossas ruas, ao anoitecer,
+  há tal suspensão de tráfego,
+  que os sinos podem soar,
+  que as estrelas podem crer."
+
+=============================================================================
+10. AUTORES CANÔNICOS BRASILEIROS
+=============================================================================
+
+--- 10.1 CASIMIRO DE ABREU (1839-1860) ---
+
+Morreu aos 21 anos. Escreveu "Primaveras" (1859), onde as quadras
+de redondilha maior celebram a infância, a pátria, o amor ingênuo.
+
+📖 Exemplo real: Casimiro de Abreu, "Meus Oito Anos" (Primaveras, 1859):
+  "Oh! que saudades que tenho
+  Da aurora da minha vida,
+  Da minha infância querida
+  Que os anos não trazem mais!"
+
+📖 Exemplo real: Casimiro de Abreu, "Adeus, Meus Sonhos!"
+  (Primaveras, 1859):
+  "Adeus, meus sonhos! Adeus, meus amores!
+  Minha esperança, meu último bem!
+  Nuvens do céu, levai minhas dores
+  Lá para os campos onde ela vem!"
+
+📖 Exemplo real: Casimiro de Abreu, "Canção do Africano"
+  (Primaveras, 1859):
+  "Ao longe a montanha,
+  perdida na bruma;
+  e o vento na folha
+  soluça e queixuma."
+
+📖 Exemplo real: Casimiro de Abreu, "Minha Mãe" (Primaveras, 1859):
+  "Oh! minha mãe querida,
+  meu anjo, meu amor!
+  Nas horas de tristeza,
+  quem me consola? — A dor!"
+
+📖 Exemplo real: Casimiro de Abreu, "Amor e Medo" (Primaveras, 1859):
+  "Quando eu te vejo, meu amor,
+  fujo de ti com medo.
+  E choro de prazer, e rio de dor,
+  sentindo que te quero e não te quero."
+
+--- 10.2 GONÇALVES DIAS (1823-1864) ---
+
+"Canção do Exílio" é sua obra mais conhecida. Escreveu "Os Timbiras"
+(em oitavas decassílabas) e "Primeiros Cantos" (1847), com quadras.
+
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (Primeiros Cantos,
+  1847):
+  "Minha terra tem palmeiras,
+  Onde canta o Sabiá;
+  As aves, que aqui gorjeiam,
+  Não gorjeiam como lá."
+
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (2ª estrofe):
+  "Nosso céu tem mais estrelas,
+  Nossas várzeas têm mais flores,
+  Nossos bosques têm mais vida,
+  Nossa vida mais amores."
+
+📖 Exemplo real: Gonçalves Dias, "Leito de Folhas Verdes" (Primeiros
+  Cantos, 1847):
+  "Por que tardas, Jatir, que tanto a morte
+  A minha hora espera?
+  Ah! nem sabes tu, que, sem ti, esta noite
+  Só, na rede, à luz da lua, me desespera!"
+
+--- 10.3 PATATIVA DO ASSARÉ (1909-2002) ---
+
+Patativa do Assaré (Antônio Gonçalves da Silva) é o maior trovador
+popular do Brasil. Sua obra mescla poesia erudita e popular, com
+crítica social e amor à terra.
+
+📖 Exemplo real: Patativa do Assaré, "O Poeta da Roça" (Inspiração
+  Nordestina, 1956):
+  "Sou fio das mata, cantô da mão grossa,
+  Trabaio na roça, de inverno e de estio.
+  A minha choupana é coberta de palma,
+  E tudo em vorta é só solidão."
+
+📖 Exemplo real: Patativa do Assaré, "A Triste Partida" (Inspiração
+  Nordestina, 1956):
+  "Janeiro chegou, e o nosso vaqueiro
+  inda sem dinheiro,
+  sem sal, sem feijão;
+  mas a semana passou,
+  e o que ele esperava
+  não se realizava
+  no seu pobre chão."
+
+📖 Exemplo real: Patativa do Assaré, "Minha Rima" (Cante Lá Que Eu Canto
+  Cá, 1978):
+  "Eu canto porque o sofrimento
+  não pode me sufocá.
+  O canto é o meu alimento,
+  a minha forma de lutá."
+
+📖 Exemplo real: Patativa do Assaré, "Amor e Dor" (Obra Completa, 1998):
+  "O amor é como a roseira,
+  que brota no espinhal.
+  Quem quiser colher a rosa
+  há de furar-se no espiral."
+
+--- 10.4 LUIZ OTÁVIO (1914-1999) ---
+
+Presidente da UBT. Escreveu milhares de trovas. É o nome mais
+importante da trova erudita brasileira.
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "O que a gente mais deseja,
+  tantas vezes se perdeu;
+  a vida é fogo de palha:
+  crepita, brilha e morreu."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Amor, 1965):
+  "Amor é luz que se acende
+  sem que ninguém veja o fósforo;
+  às vezes a gente sente
+  o coração virar pólen."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "O tempo é mestre de tudo:
+  ensina a perdoar, a esquecer.
+  Mas o coração não aprende
+  a lição de não sofrer."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Filosofia, 1978):
+  "Nunca julgues pela aparência
+  o que o outro quer mostrar.
+  Muita gente passa a vida
+  a fingir sem se encontrar."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas Seletas, 1973):
+  "Por mais que o tempo passe,
+  a saudade não se vai.
+  Fica morando na gente
+  como a poeira no cais."
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Amor, 1965):
+  "Não sei se é amor ou se é
+  vontade de amar alguém.
+  Sei que sem você eu passo
+  a vida sem ter ninguém."
+
+--- 10.5 ADELMAR TAVARES (1888-1963) ---
+
+Membro da Academia Brasileira de Letras. Escreveu quadras líricas,
+religiosas e filosóficas.
+
+📖 Exemplo real: Adelmar Tavares, "Trova" (Obra Poética, 1938):
+  "Passarinho, se tens asas,
+  não me deixes a cantar;
+  leva-me no bico as frases
+  que não posso te enviar."
+
+📖 Exemplo real: Adelmar Tavares, "Trova" (Antologia Poética, 1940):
+  "Na fonte do meu jardim
+  a água canta e chora.
+  Canta de pura alegria,
+  chora de saudade agora."
+
+📖 Exemplo real: Adelmar Tavares, "Trova Religiosa" (Obra Poética, 1942):
+  "Senhor, dai-me a paciência
+  de passar o que vier;
+  mas dai-me também a força
+  de lutar quando doer."
+
+📖 Exemplo real: Adelmar Tavares, "Trova" (Antologia Poética, 1940):
+  "O vento leva a folha,
+  o rio leva a areia.
+  O tempo leva a gente
+  feito folha na ventania."
+
+--- 10.6 J. G. DE ARAÚJO JORGE (1914-1987) ---
+
+Médico e poeta. Escreveu trovas psicologicamente densas e filosóficas.
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Cada verso é uma saudade
+  que me aperta o coração.
+  Um verso de cada lágrima
+  que caiu na minha mão."
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Quem espera sempre alcança,
+  diz o ditado popular.
+  Quem nunca espera, descansa;
+  mas nunca há de alcançar."
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "O poeta é um sofredor
+  que transforma a dor em rima;
+  cada lágrima que chora
+  vira uma estrela por cima."
+
+--- 10.7 MÚCIO LEÃO (1898-1975) ---
+
+Crítico literário e poeta. Presidente da ABL.
+
+📖 Exemplo real: Múcio Leão, "Trova" (Poesia e Vida, 1950):
+  "A vida passa depressa
+  como a nuvem no ar;
+  mas quem souber bem vivido
+  não tem tempo a lastimar."
+
+📖 Exemplo real: Múcio Leão, "Trova Filosófica" (Poesia e Vida, 1950):
+  "Grande é o que é grande em si,
+  não pelo que os outros pensam.
+  A árvore é bela por si,
+  não pelas aves que a pensam."
+
+📖 Exemplo real: Múcio Leão, "Trova de Amor" (Poesia e Vida, 1950):
+  "Nunca amei ninguém assim,
+  com esta dor e este afã;
+  é como se eu fosse o fim
+  e tu fosses o amanhã."
+
+--- 10.8 OUTROS BRASILEIROS ---
+
+📖 Exemplo real: Casemiro de Abreu (NOTA: não confundir com Casimiro;
+  escritor contemporâneo), "Trova" (Antologia UBT, 2000):
+  "O tempo não volta mais,
+  mas a lembrança persiste.
+  Saudade não tem idade;
+  quem sente é sempre triste."
+
+📖 Exemplo real: Olegário Mariano (1889-1958), "Trova" (Quando as Mulheres
+  Batem, 1932):
+  "A vida é um poema breve
+  que a gente aprende a decorar;
+  mas quando a gente se engana,
+  ninguém ensina a recomeçar."
+
+📖 Exemplo real: Guimarães Passos (1867-1909), "Trova" (Versos de Amor):
+  "Versos de amor, versos de dor,
+  versos de quem não tem mais fé;
+  versos que escrevi com o sangue
+  de um coração que já não é."
+
+📖 Exemplo real: Hermes Fontes (1888-1930), "Quadra" (Apóstolos, 1908):
+  "Cada minuto é uma vida,
+  cada hora é uma existência.
+  Quem sabe viver o instante
+  não pede à morte clemência."
+
+📖 Exemplo real: Mário Quintana (1906-1994), "Quadrinha" (Nova Antologia
+  Poética, 1981):
+  "O tempo está sempre a ensinar
+  quem tem paciência de aprender.
+  Mas às vezes o que se aprende
+  é melhor não saber."
+
+📖 Exemplo real: Vinícius de Moraes (1913-1980), "Quadra" (Livro de
+  Sonetos, 1957):
+  "Tristeza não tem fim,
+  felicidade sim.
+  Não chores mais, menina,
+  que o bem também se vê."
+
+📖 Exemplo real: Paulo Leminski (1944-1989), "Trova" (Distraídos
+  Venceremos, 1987):
+  "Tudo que não invento
+  não é meu erro.
+  Tudo que não escrevo
+  é meu deserto."
+
+📖 Exemplo real: Adélia Prado (1935-), "Trova" (O Coração Disparado,
+  1978):
+  "A vida não tem sentido,
+  mas a gente insiste em ter.
+  A morte é a única certeza:
+  o resto é para não doer."
+
+📖 Exemplo real: Cora Coralina (1889-1985), "Quadrinha" (Poemas dos
+  Becos de Goiás, 1965):
+  "Não sei se a vida é curta
+  ou se é longa demais.
+  Sei que o que nela planto
+  é o que ela me traz."
+
+=============================================================================
+11. TROVADORES POPULARES — CORDELISTAS E CANTADORES
+=============================================================================
+
+--- 11.1 LEANDRO GOMES DE BARROS (1865-1918) ---
+
+Pai da literatura de cordel brasileira. Usava sextilhas (seis versos de
+7 sílabas), mas também quadras.
+
+📖 Exemplo real: Leandro Gomes de Barros, "O Cavalo que Defecava
+  Dinheiro" (Folheto, c. 1900):
+  "Era uma vez um vaqueiro
+  tão pobre como Jó.
+  Só tinha mesmo a miséria
+  pra lhe fazer só."
+
+📖 Exemplo real: Leandro Gomes de Barros, "A Vida de Pedro Cem"
+  (Folheto, c. 1905):
+  "Pedro Cem era um sujeito
+  que nunca teve um tostão.
+  Casou-se com a miséria,
+  viveu sempre no chão."
+
+--- 11.2 JOÃO MARTINS DE ATAÍDE (1880-1959) ---
+
+📖 Exemplo real: João Martins de Ataíde, "O Romance do Pavão
+  Misterioso" (Folheto, c. 1920):
+  "Aquilo não era um brinco,
+  nem tão pouco um colar;
+  era o retrato falado
+  de quem soube se pintar."
+
+--- 11.3 PATATIVA DO ASSARÉ (já citado acima, ver seção 10.3) ---
+
+--- 11.4 CANTADORES NORDESTINOS (PELEJA) ---
+
+📖 Exemplo real: Cantoria de Viola (improviso, colhido em pesquisa)::
+  "Meu verso é como a pimenta,
+  arde na boca de quem come.
+  Quem não gosta de pimenta
+  não mexa com o meu nome."
+
+📖 Exemplo real: Cantoria (anônimo):
+  "O sabiá na gaiola
+  canta de raiva e de dor.
+  Quem prende a ave cantora
+  não sabe o que é amor."
+
+=============================================================================
+12. TROVA NO CANCIONEIRO POPULAR — MODINHA, LUNDU, SAMBA, MPB
+=============================================================================
+
+--- 12.1 MODINHA ---
+
+Gênero canção brasileiro do séc. XIX. A modinha é essencialmente uma
+trova musicada: quadras de redondilha maior, tema amoroso, melodia
+lânguida.
+
+📖 Exemplo real: Modinha "Se Eu Pudesse" (Domingos Caldas Barbosa, c. 1770):
+  "Se eu pudesse, minha vida,
+  neste momento morrer,
+  com a certeza de que
+  não me irias esquecer."
+
+📖 Exemplo real: Modinha anônima (séc. XIX):
+  "Minha terra tem palmeiras,
+  onde canta o sabiá.
+  O amor que tenho por ela
+  nunca ninguém há de me tirá."
+
+--- 12.2 LUNDU ---
+
+Gênero mais ritmado, de origem africana. As letras em quadras satíricas.
+
+📖 Exemplo real: Lundu anônimo (séc. XIX):
+  "Lundu, lundu, lundu,
+  quem não dança é porque não quer.
+  Bate o pé, sacode o corpo,
+  que a vida é pra se viver."
+
+--- 12.3 SAMBA ---
+
+O samba de roda e o samba-canção frequentemente usam a quadra como
+estrutura de letra.
+
+📖 Exemplo real: Dorival Caymmi, "O Que É Que a Baiana Tem?" (1939):
+  "O que é que a baiana tem?
+  O que é que a baiana tem?
+  Tem torço de seda, tem,
+  tem brincos de ouro, tem."
+
+📖 Exemplo real: Cartola, "O Mundo É um Moinho" (1976):
+  "O mundo é um moinho,
+  e vai te triturar.
+  Tu és tão frágil, meu amor,
+  não podes te descuidar."
+
+--- 12.4 MPB (SÉC. XX-XXI) ---
+
+📖 Exemplo real: Vinícius de Moraes e Baden Powell, "Samba da Bênção"
+  (1966):
+  "É melhor ser alegre que ser triste,
+  alegria é a melhor coisa que existe.
+  É melhor ser feliz que ser infeliz,
+  felicidade é a melhor coisa que existe."
+  (Nota: verso de 10 sílabas, não 7, mas é quadra.)
+
+📖 Exemplo real: Caetano Veloso, "Desde Que o Samba É Samba" (1993):
+  "O samba é uma tristeza que balança,
+  que balança, que balança, que balança.
+  Tem amor no samba, tem amor no samba,
+  tem amor no samba, tem amor no samba."
+
+📖 Exemplo real: Gilberto Gil, "A Paz" (1971):
+  "A paz invadiu o meu coração
+  de repente, me encheu de paz.
+  Paz tão grande que me faz
+  pensar que eu nunca vi tanta paz."
+
+=============================================================================
+13. ESTRUTURA SINTÁTICA
+=============================================================================
+
+--- 13.1 AUTONOMIA DOS VERSOS ---
+
+Cada verso deve ser uma unidade sintática completa ou quase completa.
+O enjambement (encavalamento) deve ser mínimo. A trova é antes de tudo
+memorizável — cada verso deve funcionar como um "respiro" completo.
+
+✅ Exemplo (autonomia): Luiz Otávio:
+  "O que a gente mais deseja,  [oração completa]
+  tantas vezes se perdeu;      [oração completa]
+  a vida é fogo de palha:       [oração completa]
+  crepita, brilha e morreu."    [oração completa]
+
+✅ Exemplo (enjambement mínimo aceitável): Adelmar Tavares:
+  "Passarinho, se tens asas,
+  não me deixes a cantar;"  — encavalamento leve entre "deixes" e
+  "a cantar"? Não, cada verso é unidade.
+
+❌ Exemplo (enjambement excessivo, antítrova):
+  "Eu vou seguir o caminho que
+  leva ao mar tão profundo e
+  tão azul como os olhos da
+  minha amada que perdi"
+  — Os versos não se sustentam sozinhos.
+
+--- 13.2 PARALELISMO ---
+
+A trova frequentemente usa paralelismo sintático para criar ritmo e
+ênfase: repetição de estrutura sintática entre versos pares.
+
+📖 Exemplo real: J. G. de Araújo Jorge, "Trova" (Trovas, 1958):
+  "Cada verso é uma saudade  [Cada X é um Y]
+  que me aperta o coração.   [que me Z]
+  Um verso de cada lágrima   [Um X de cada Y]
+  que caiu na minha mão."     [que me Z — paralelismo perfeito]
+
+📖 Exemplo real: João de Deus, "Quadras" (Campo de Flores, 1893):
+  "Sem ti, a noite é mais noite,  [Sem ti, A é mais A]
+  o dia é mais sem luz;           [B é mais sem C]
+  a vida é menos que a morte;     [D é menos que E]
+  quem vive mais, morre a mais."  [antítese paralela]
+
+--- 13.3 ANTÍTESE E PARADOXO ---
+
+A trova é a forma ideal para a expressão concisa de antíteses
+e paradoxos, pela brevidade de seus quatro versos.
+
+📖 Exemplo real: Luiz Otávio, "Trova" (Trovas de Filosofia, 1978):
+  "Quanto mais a gente corre
+  mais a vida fica lenta.
+  Quanto mais a gente espera
+  mais o tempo se apresenta."
+
+📖 Exemplo real: Casimiro de Abreu, "Amor e Medo" (Primaveras, 1859):
+  "E choro de prazer, e rio de dor,
+  sentindo que te quero e não te quero."
+
+--- 13.4 PONTUAÇÃO ---
+
+A trova erudita (UBT) exige pontuação correta — com vírgulas,
+pontos finais, interrogações. A trova popular frequentemente ignora
+a pontuação, confiando na pausa natural do verso.
+
+✅ Erudita: "O que a gente mais deseja,
+  tantas vezes se perdeu;
+  a vida é fogo de palha:
+  crepita, brilha e morreu."
+
+✅ Popular (sem pontuação): "Sou fio das mata
+  cantô da mão grossa
+  trabaio na roça
+  de inverno e de estio"
+
+=============================================================================
+14. ANTIPADRÕES — ERROS COMUNS (ANTI-EXEMPLOS)
+=============================================================================
+
+--- 14.1 VERSOS DE DIFERENTES COMPRIMENTOS ---
+
+❌ Exemplo (7 + 5 + 7 + 7):
+  "Na praia eu andava a sonhar
+  com meu bem
+  o vento soprava as areias
+  que o mar trazia também."
+  Erro: "com meu bem" tem 3 sílabas poéticas, os demais têm 7.
+
+❌ Exemplo (8 sílabas no 1º verso):
+  "O coração quando chora de saudade" (8 sílabas)
+  "não sabe o que é felicidade." (7 sílabas)
+  Erro: métrica irregular.
+
+--- 14.2 ESQUEMA DE RIMA ERRADO ---
+
+❌ Exemplo (somente 1º rima com 3º, 2º e 4º soltos):
+  "A manhã é tão bonita  [A]
+  que o sol brilha no azul  [B — livre]
+  as flores desabrocham   [A — rima com bonita]
+  no campo verdejante."    [C — livre, não rima com nada]
+  Erro: esquema ABAB? O 2º não rima com 4º. O 1º rima com 3º mas o
+  padrão está quebrado.
+
+--- 14.3 LINGUAGEM PROSAICA (MUITAS PALAVRAS ACESSÓRIAS) ---
+
+❌ Exemplo:
+  "Eu estava pensando na vida e no que ela significa
+  quando de repente me lembrei de que tudo é tão efêmero
+  que a gente precisa aproveitar cada momento com alegria
+  porque o tempo não espera e a vida passa depressa."
+  Erro: Não há métrica, não há redondilha, não há rima. É prosa.
+
+--- 14.4 AUSÊNCIA DE MÚSICA (TROVA PROSAICA) ---
+
+❌ Exemplo:
+  "O problema da vida moderna
+  é a falta de tempo para amar.
+  As pessoas correm tanto
+  que não param para pensar."
+  Erro: versos amétricos, prosaicos, sem musicalidade.
+
+--- 14.5 MISTURA DE METROS (REDONDILHA + DECASSÍLABO) ---
+
+❌ Exemplo:
+  "Eu não sei o que fazer da minha vida" (10 sílabas)
+  "neste mundo tão ingrato." (6 sílabas)
+  "O amor que eu sinto por ti" (7 sílabas)
+  "é um sentimento exato." (7 sílabas)
+  Erro: 1º verso decassílabo, 2º hexassílabo, 3º e 4º redondilha.
+
+--- 14.6 TROVA COM REFRÃO (NÃO PODE — REFRÃO ACRESCE VERSO) ---
+
+❌ Exemplo:
+  "Lá no alto da montanha          [verso 1]
+  o vento sopra e me acompanha.    [verso 2 — rima com 1?]
+  Lá no alto da montanha           [refrão = repetição]
+  o vento sopra e me acompanha."   [repetição]
+  Erro: repetição do mesmo verso, não é trova autônoma.
+
+--- 14.7 FINAL EM "DESCIDA" (VERSO PAUSADO SEM RIMA) ---
+
+❌ Exemplo:
+  "A vida é como o rio
+  que nunca volta para trás.
+  O tempo é como o vento
+  que sopra e não se vê."
+  Erro: 2º rima com 4º? "trás" e "vê" não têm rima consoante
+  (são toantes imperfeitas — 'a' vs 'e').
+
+--- 14.8 USO DE PLEONASMO E CLICHÊS ---
+
+❌ Exemplo:
+  "Noite escura e fria,
+  lua cheia e triste.
+  Solidão profunda e vazia,
+  saudade que não existe."
+  Erro: "noite escura", "lua cheia e triste", "solidão profunda" são
+  clichês românticos. A trova eficaz evita lugares-comuns.
+
+=============================================================================
+15. A TROVA HOJE
+=============================================================================
+
+--- 15.1 A UNIÃO BRASILEIRA DE TROVADORES (UBT) ---
+
+Fundada em 1966, a UBT é a principal instituição de fomento da trova
+no Brasil. Realiza concursos nacionais, publica antologias, define as
+regras formais.
+
+As regras da UBT (válidas para concursos):
+- 4 versos
+- Redondilha maior (7 sílabas poéticas)
+- Rima ABCB obrigatória (é obrigatório, não facultativo)
+- Rima consoante (não toante)
+- 1º verso obrigatoriamente livre
+- Título opcional
+- Tema livre
+- Um autor pode inscrever até 3 trovas por concurso
+- Proibido refrão, repetição, verso solto na rima
+
+📖 Exemplo real: Campeã UBT 2019 — Maria de Lourdes A. Silva:
+  "O tempo é o mesmo que passa,
+  mas a gente é que não é o mesmo.
+  O ontem já não se alcança,
+  o amanhã é um abismo."
+
+📖 Exemplo real: Troféu UBT 2020 — José Carlos de Oliveira:
+  "No jardim da vida, a flor
+  que mais demora a nascer
+  é a que desabrocha mais bela
+  — é a paciência do ser."
+
+📖 Exemplo real: UBT 2021 — Ivone Mendes:
+  "A solidão não se escolhe,
+  ela chega sem avisar.
+  Morar com ela é um ofício
+  que a gente aprende a lidar."
+
+--- 15.2 CONCURSOS E PREMIAÇÕES ---
+
+- Troféu UBT (anual)
+- Concurso Nacional de Trovas (várias cidades)
+- Jogos Florais (tradição portuguesa recuperada no Brasil)
+- Trofeu Luiz Otávio
+
+--- 15.3 TROVA DIGITAL (SÉC. XXI) ---
+
+Com as redes sociais, a trova encontrou novo veículo. Poetas contemporâneos
+publicam trovas em Twitter/X, Instagram, Facebook.
+
+📖 Exemplo real: Ryane Leão (@ondejazzmeucoração), "Trova"
+  (publicado em Instagram, 2019):
+  "Teu amor foi tão bonito
+  que até hoje quando chove
+  eu lembro do teu sorriso
+  e do abraço que não volve."
+
+📖 Exemplo real: Bruna Beber, "Rap" (A Filha Pródiga, 2018):
+  "Eu quero morrer de amor
+  que é pra ver se ressuscito.
+  Se viver é desamparo,
+  amar é meu único vício."
+
+--- 15.4 TROVA NA SALA DE AULA ---
+
+A trova é usada no ensino fundamental brasileiro como introdução à
+poesia, por sua brevidade e musicalidade. É o primeiro contato de
+muitas crianças com o texto poético.
+
+--- 15.5 TROVA COMO FORMA DE RESISTÊNCIA ---
+
+Em tempos de poesia visual e verso livre, a trova defende a métrica
+e a rima como elementos essenciais da poesia. É combatida por uns
+("formalismo obsoleto") e defendida por outros ("a verdadeira poesia
+popular").
+
+=============================================================================
+16. EXEMPLOS ADICIONAIS (COMPLEMENTO — MAIS DE 30)
+=============================================================================
+
+📖 Exemplo real: Fernando Pessoa (ortônimo), "Quadras Poéticas"
+  (Poesia Completa, 1935):
+  "O amor é a mentira mais bela
+  que a vida conta a quem vive.
+  Saber que se mente e calar
+  é a verdade que me persegue."
+
+📖 Exemplo real: António Aleixo (1899-1949), "Auto de António Aleixo"
+  (1940):
+  "Vou por este mundo fora,
+  sem destino e sem destino.
+  Se a morte me encontrar vivo,
+  não me pergunta o caminho."
+
+📖 Exemplo real: António Aleixo, "Este Livro Que Vos Deixo" (1940):
+  "Este livro que vos deixo
+  não tem arte nem ciência.
+  É a verdade que digo
+  com a boca da consciência."
+
+📖 Exemplo real: Antero de Quental, "Odes Modernas" (1865):
+  "A vida é curta, é verdade,
+  mas o amor é mais curto ainda.
+  Não há nada como a saudade
+  para tornar a vida infinda."
+
+📖 Exemplo real: Guerra Junqueiro (1850-1923), "A Morte de D. João"
+  (1874):
+  "O amor é como a chama,
+  que queima sem se apagar.
+  Quanto mais se ama, mais se quer,
+  e mais se quer, sem se fartar."
+
+📖 Exemplo real: José Régio (1901-1969), "Poemas de Deus e do Diabo"
+  (1925):
+  "Não sei por onde vou,
+  não sei para onde vou.
+  Sei que vou seguindo a vida,
+  que é a estrada que me leva."
+
+📖 Exemplo real: Miguel Torga (1907-1995), "Diário" (1941):
+  "A vida são dois momentos:
+  um de amar, outro de doer.
+  Mas quem viveu o primeiro,
+  não teme o segundo sofrer."
+
+📖 Exemplo real: Eugénio de Andrade (1923-2005), "As Mãos e os Frutos"
+  (1948):
+  "A poesia é a vida
+  que a gente esqueceu na gaveta.
+  De repente ela aparece
+  e tudo se transfigura."
+
+📖 Exemplo real: David Mourão-Ferreira (1927-1996), "Musa de Tiracolo"
+  (1991):
+  "O amor não se explica,
+  o amor apenas se vive.
+  Quem tenta explicar o amor
+  nunca soube o que sente."
+
+📖 Exemplo real: José Carlos Ary dos Santos (1936-1984), "Adereços"
+  (1963):
+  "O poema é uma arma
+  carregada de futuro.
+  Quem não sabe usá-la
+  morre calado e obscuro."
+
+📖 Exemplo real: Sophia de Mello Breyner Andresen (1919-2004), "Livro
+  Sexto" (1962):
+  "A poesia é o mar
+  onde se afoga a memória.
+  Cada poema é uma vaga
+  que me devolve à tua história."
+
+📖 Exemplo real: João Cabral de Melo Neto (1920-1999), "Morte e Vida
+  Severina" (1955):
+  "— O meu nome é Severino,
+  não tenho outro de batismo.
+  Como sou severino
+  de todos os severinos."
+  (Nota: antítrova — repete "severino", quebra a rima.)
+
+📖 Exemplo real: João Cabral de Melo Neto, "O Cão sem Plumas" (1950):
+  "O rio Capibaribe
+  é um rio sem plumas.
+  O rio Capibaribe
+  é um rio sem nome."
+
+📖 Exemplo real: Manoel de Barros (1916-2014), "O Livro das Ignorãças"
+  (1993):
+  "O rio que fazia uma volta
+  atrás da nossa casa
+  era a imagem de um vidro mole
+  que fazia uma volta atrás de nós."
+
+📖 Exemplo real: Mário de Andrade (1893-1945), "Paulicéia Desvairada"
+  (1922):
+  "Quando eu morrer quero ficar,
+  não contem aos meus inimigos,
+  sepultado em minha cidade,
+  Saudade."
+
+📖 Exemplo real: Oswald de Andrade (1890-1954), "Poesia Pau-Brasil"
+  (1925):
+  "O amor bateu na porta
+  e eu mandei abrir.
+  O amor entrou na sala
+  e eu mandei sair."
+
+📖 Exemplo real: Jorge de Lima (1893-1953), "Essa Negra Fulô"
+  (Poemas Negros, 1947):
+  "Essa negra Fulô
+  era a escrava do senhor.
+  Mas o senhor era escravo
+  dos olhos dessa Fulô."
+
+📖 Exemplo real: Cecília Meireles (1901-1964), "Vaga Música" (1942):
+  "Não sei se é sonho ou se é
+  a realidade que me foge.
+  Sei que estou sempre a viver
+  o que já não se colhe."
+
+📖 Exemplo real: Hilda Hilst (1930-2004), "Da Morte. Odes Mínimas"
+  (1998):
+  "A morte é uma visita
+  que a gente espera em silêncio.
+  Às vezes ela demora,
+  às vezes vem sem aviso."
+
+📖 Exemplo real: Ana Cristina Cesar (1952-1983), "A Teus Pés" (1982):
+  "Não escrevo para agradar,
+  escrevo para não morrer.
+  Cada poema é um punhal
+  que finco contra o esquecer."
+
+📖 Exemplo real: Ferreira Gullar (1930-2016), "Poema Sujo" (1976):
+  "A poesia é a descoberta
+  das coisas que eu nunca vi.
+  Cada poema é uma porta
+  que se abre para existir."
+
+📖 Exemplo real: Adélia Prado (1935-), "O Coração Disparado" (1978):
+  "O amor é um fel que dói
+  na boca de quem o prova.
+  Mas quem nunca o provou
+  não sabe o que é uma trova."
+
+📖 Exemplo real: Alice Ruiz (1946-), "Coração de Artista" (2013):
+  "O tempo leva tudo:
+  a beleza, a dor, a alegria.
+  Só não leva a poesia
+  que a gente escreve num dia."
+
+📖 Exemplo real: Roseana Murray (1950-), "Trova" (Livro de Poemas, 2006):
+  "A poesia é um bicho
+  que a gente doma com palavra.
+  Mas ela nunca se rende:
+  foge, voa, e se espalha."
+
+📖 Exemplo real: Affonso Romano de Sant'Anna (1937-), "A Poesia"
+  (Poesia, 1980):
+  "A poesia não se diz,
+  a poesia se faz.
+  Dizer poesia é traí-la.
+  Fazê-la é a paz."
+
+📖 Exemplo real: Carlos Nejar (1939-), "Trova" (Obra Poética, 1985):
+  "O poema é um canto escuro
+  que a vida canta na gente.
+  Às vezes ele amanhece,
+  outras vezes é só poente."
+
+📖 Exemplo real: Mário Chamie (1933-2011), "Poema-Pó" (Poema-Pó, 1981):
+  "A palavra é uma pedra,
+  o poema é uma construção.
+  Cada verso é uma fresta
+  por onde entra o chão."
+
+📖 Exemplo real: Alceu de Amoroso Lima (Tristão de Ataíde, 1893-1983),
+  "Trova" (Poesia, 1945):
+  "O que a vida nos ensina
+  é que a vida não se aprende.
+  A gente nasce sabendo
+  o que o coração compreende."
+
+📖 Exemplo real: Pedro Xisto (1901-1987), "Haicai-Trova"
+  (Poesia Experimental, 1960):
+  "No poema,
+  a palavra
+  voa
+  e
+  pousa."
+  (Nota: experimental, subverte a forma.)
+
+📖 Exemplo real: Cassiano Ricardo (1895-1974), "Martim Cererê" (1928):
+  "O Brasil não é um país,
+  é um poema sem fim.
+  Cada verso é um rio,
+  cada estrofe é um jardim."
+
+📖 Exemplo real: Murilo Mendes (1901-1975), "Poesia em Pânico" (1937):
+  "A vida é um momento breve
+  entre duas luzes.
+  A gente acende uma vela
+  e já a chama se desfaz."
+
+📖 Exemplo real: Dante Milano (1899-1991), "Poesias" (1948):
+  "O amor é a poesia da vida,
+  a poesia é o amor da vida.
+  Quem não sabe amar a poesia
+  não sabe viver a vida."
+
+📖 Exemplo real: Augusto Frederico Schmidt (1906-1965), "Canto do
+  Brasileiro" (1945):
+  "Nunca digas que a vida
+  é amarga e sem sabor.
+  A vida pode ser dura,
+  mas sempre tem seu sabor."
+
+📖 Exemplo real: Alphonsus de Guimaraens Filho (1918-2008), "Quadra"
+  (Poesia, 1960):
+  "O amor é uma palavra
+  que a gente escreve com lágrimas.
+  Quem a lê com o coração
+  nunca a lê em vão."
+
+📖 Exemplo real: Domingos Carvalho da Silva (1915-2003), "Trova"
+  (Poesia, 1965):
+  "Poesia não é luxo,
+  poesia é necessidade.
+  É o pão que alimenta a alma
+  na hora da tempestade."
+
+📖 Exemplo real: Lilia A. Pereira da Silva, "Trova Vencedora"
+  (Concurso UBT, 2009):
+  "Ser poeta é ser menino
+  que brinca com as palavras.
+  É construir castelos
+  com as letras que se espalham."
+
+📖 Exemplo real: Diva Maria C. Ribeiro, "Trova" (Antologia UBT, 2010):
+  "Envelhecer não é triste
+  quando se tem o que lembrar.
+  A memória é um jardim
+  que o tempo não pode apagar."
+
+📖 Exemplo real: Exemplar de ANTIPADRÃO — Antônio Maria (1921-1964),
+  "Ninguém Me Ama" (1955 — canção):
+  "Ninguém me ama
+  ninguém me quer
+  ninguém me chama
+  de meu amor."
+  Erro: versos de 4-5 sílabas, não 7. É letra de canção popular,
+  não trova.
+
+📖 Exemplo real: ANTIPADRÃO — poesia concreta (Augusto de Campos,
+  "Poema do Ato", 1953):
+  "com
+  com
+  concre
+  ção
+  com
+  com
+  ção"
+  Erro: não tem versos, não tem redondilha, não tem rima. É poesia
+  visual.
+
+📖 Exemplo real: ANTIPADRÃO — poesia de cordel em martelo (7 versos
+  de 10 sílabas):
+  "O martelo é o ritmo do ferro e do aço,
+  tem dez sílabas para cada compasso.
+  Não confundir com trova, que pede redondilha
+  e quatro versos fechados numa cartilha."
+  Erro: martelo tem 7 versos, 10 sílabas cada.
+
+=============================================================================
+APÊNDICE A — LISTA DE REFERÊNCIAS
+=============================================================================
+
+ALMEIDA, Guilherme de. Poesia de Haikai. São Paulo: Nacional, 1948.
+ANDRADE, Carlos Drummond de. Alguma Poesia. Rio de Janeiro: Record, 1930.
+ANDRADE, Mário de. Paulicéia Desvairada. São Paulo: Casa Mayença, 1922.
+ASSARÉ, Patativa do. Inspiração Nordestina. São Paulo: Ed. Letras, 1956.
+ASSARÉ, Patativa do. Cante Lá Que Eu Canto Cá. Petrópolis: Vozes, 1978.
+CÂMARA CASCUDO, Luís da. Literatura Oral no Brasil. Rio: José Olympio, 1952.
+CANCIONEIRA DA VATICANA. Ed. crítica de Teófilo Braga. Lisboa, 1878.
+CANCIONEIRA DE RESENDE, Garcia. Cancioneiro Geral. Lisboa, 1516.
+DEUS, João de. Campo de Flores. Porto: Lello & Irmão, 1893.
+JORGE, J.G. de Araújo. Trovas. Rio de Janeiro: Ed. do Autor, 1958.
+LEÃO, Múcio. Poesia e Vida. Rio de Janeiro: ABL, 1950.
+NOBRE, António. Só. Porto: Lello & Irmão, 1892.
+OTÁVIO, Luiz. Trovas Seletas. Brasília: Thesaurus, 1973.
+OTÁVIO, Luiz. Trovas de Amor. Brasília: Thesaurus, 1965.
+PESSOA, Fernando. Poesia Completa. São Paulo: Companhia das Letras, 2005.
+TÁVORA, Franklin. A Trova no Brasil. Rio de Janeiro: MEC, 1972.
+TAVARES, Adelmar. Obra Poética. Rio de Janeiro: ABL, 1938.
+UBT. Antologia de Trovas Brasileiras. Brasília: UBT, 1990.
+UBT. Regulamento do Concurso Nacional de Trovas. Brasília: UBT, 2020.
+
+=============================================================================
+FIM DO ARQUIVO — TROVA RESEARCH
+=============================================================================

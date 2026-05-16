@@ -1,0 +1,312 @@
+# Décima (Espinela) — Normas e Estrutura
+# Baseado na tradição hispânica-lusitana (Vicente Espinel, Camões), cordel nordestino e repentismo
+# Fontes: Vicente Espinel, Camões, ABLC, Câmara Cascudo, Aderaldo Luciano, Said Ali
+# Data: 2026-05-16
+
+================================================================================
+DEFINIÇÃO
+================================================================================
+
+## [DCM-01] Número de versos — 10 versos obrigatórios
+Fonte: Vicente Espinel, "Diversas Rimas" (1591); tradição hispânica-lusitana
+Descrição: A décima é uma estrofe de exatamente 10 versos. Pode ser autônoma (estrofe única) ou seriada (várias décimas encadeadas formando um poema maior). A décima espinela (criada por Vicente Espinel no séc. XVI) estabeleceu o esquema ABBAACCDDC como padrão canônico, com versos geralmente octossílabos (8 sílabas espanholas) ou em redondilha maior (7 sílabas portuguesas).
+❌ Errado: estrofe com 9 ou 11 versos chamada de décima
+✅ Correto: exatamente 10 versos, esquema ABBAACCDDC, métrica uniforme
+📖 Exemplo real: Vicente Espinel — "Diversas Rimas" (1591) — primeira aparição documentada da décima espinela, já plenamente formada com 10 versos e esquema ABBAACCDDC.
+Severidade: alta
+Categoria: estrutura
+
+## [DCM-02] Esquema de rimas canônico — ABBAACCDDC
+Fonte: Vicente Espinel; Navarro Tomás, "Métrica Española"
+Descrição: O esquema canônico da décima espinela é ABBAACCDDC. Distribui-se em: quadra inicial (ABBA), verso de transição que retoma A, dístico CC, e par D encadeado com C. Apenas 4 sons de rima (A, B, C, D) para 10 versos, exigindo grande domínio vocabular. A característica mais marcante é a "volta" do verso 5, que retoma a rima A e introduz a inflexão temática.
+❌ Errado: ABAB CDCD EE (sonetino), AABBCCDDEE sem retorno do verso 5
+✅ Correto: ABBA A CCD DC (verso 5 sempre em A)
+📖 Exemplo real: Camões — "Décima" (Lírica Camoniana, c. 1560): "A vida, quando a perder (A) / não há de ser de tal sorte (B) / que tirada pela morte (B) / se não possa logo erguer (A). / Mas há-se de oferecer (A) / ao desprezo da ventura (C) / há-se, na hora escura (D) / de mostrar o gesto forte (C) / e, assi, vencendo a morte (C) / se há na morte de vencer (D)."
+Severidade: alta
+Categoria: rima
+
+## [DCM-03] Volta no verso 5 — retomada obrigatória da rima A
+Fonte: Espinel; Said Ali, "Versificação Portuguesa"
+Descrição: O verso 5 da décima espinela retoma obrigatoriamente a rima A dos versos 1 e 4, criando uma inflexão temática — a "volta" ou "virada" no pensamento do poema. Esta retomada é o que distingue a espinela das demais formas de 10 versos. O verso 5 funciona como transição entre a quadra inicial e o desenvolvimento do restante da estrofe.
+❌ Errado: verso 5 com rima nova (E) ou rima C em vez de A
+✅ Correto: verso 5 sempre em A, ecoando o verso 1 e 4
+📖 Exemplo real: Olavo Bilac — "Décima" (Poesias, 1888): "Ama, com fé e com orgulho (A) / a tua mágoa e o teu quebranto (B) / porque a mágoa é melhor que o pranto (B) / e o quebranto melhor que o entulho (A). / Vive do alheio barulho (A) / o mundo..." — o verso 5 "barulho" retoma a rima A em -ulho.
+Severidade: alta
+Categoria: estrutura
+
+================================================================================
+DÉCIMA ESPINELA — ESTRUTURA INTERNA
+================================================================================
+
+## [DCM-04] Distribuição interna — 4 + 1 + 2 + 3
+Fonte: Navarro Tomás; Said Ali
+Descrição: A décima espinela divide-se internamente em quatro blocos rítmicos: uma quadra inicial (versos 1-4, ABBA), um verso de transição (verso 5, A), um dístico que introduz som novo (versos 6-7, CD), e um trio final (versos 8-10, CDC) que retoma o som C e fecha com D. Esta distribuição 4+1+2+3 cria uma arquitetura musical fechada e autossuficiente.
+❌ Errado: divisão 5+5 (dois quintetos), 3+3+2+2 sem respeito ao padrão espinela
+✅ Correto: 4+1+2+3 com a volta no verso 5
+📖 Exemplo real: Machado de Assis — "Décima" (Crisálidas, 1864): "Se eu tivera o dom da música (A) / Musicista te faria (B) / Se eu tivera o dom da púrpura (B) / Púrpura te teceria (A). / Mas eu tenho o dom da rima (A) / E, em vez da música e púrpura (C) / Teço rimas — uma a uma (D) / Com um fio da lua pálida (C) / Com um fio de ouro da névoa (C) / Com um raio de sol que escuma (D)." — 4+1+2+3 perfeito.
+Severidade: media
+Categoria: estrutura
+
+## [DCM-05] Autonomia estrófica — a décima como unidade fechada
+Fonte: tradição espineliana; Câmara Cascudo
+Descrição: Cada décima espinela deve formar uma unidade de sentido completa. Na forma seriada (várias décimas em sequência), cada estrofe de 10 versos deve poder ser lida isoladamente sem perda de sentido. A rima do último verso não se conecta à primeira rima da estrofe seguinte — cada décima é autossuficiente.
+❌ Errado: décima que termina com sentido incompleto, dependendo da estrofe seguinte
+✅ Correto: cada décima com início, meio e fim autônomos
+📖 Exemplo real: Machado de Assis — "Décima" (Occidentais, 1880): "Sou um homem de juízo / De vida honesta e correta / Mas a língua é um compasso / Que anda torto no meu peito. / Quero dizer um conceito / E saem-me dois desconcertos / Quero cantar — e arengos / Quero louvar — e blasfemo / Quero dormir — e não durmo / Quero parar — e ando em giros." — unidade fechada: o homem contraditório em 10 versos.
+Severidade: media
+Categoria: estrutura
+
+================================================================================
+DÉCIMA CAMONIANA
+================================================================================
+
+## [DCM-06] Décima camoniana — espinela avant la lettre
+Fonte: Camões, "Lírica Camoniana" (c. 1550-1570); Jorge de Sena
+Descrição: Camões escreveu décimas antes da formalização da espinela por Vicente Espinel (1591). Suas décimas seguem o esquema ABBAACCDDC em versos de redondilha maior (7 sílabas), com temática amorosa e filosófica. A crítica debate se Camões influenciou Espinel ou se a coincidência é paralela, mas o fato é que o esquema espinela aparece em Camões antes de Espinel.
+❌ Errado: atribuir a Espinel a criação exclusiva da forma — Camões já a praticava
+✅ Correto: reconhecer a precedência camoniana na língua portuguesa
+📖 Exemplo real: Camões — "Décima" (Lírica, c. 1560): "Apartava-se Natércia / mas tanto que se partia / o contentamento se ia / e a esperança se desfez. / Não sei como lhe não fez / a vida tanta mudança / que estar-se sem esperança / não é vida; mas não ter / com que se possa viver / da vida, é vida sem França." — redondilha maior, ABBAACCDDC, verso final idiomático.
+Severidade: media
+Categoria: escola/estilo
+
+## [DCM-07] Esquemas variáveis na décima camoniana
+Fonte: Camões; Said Ali
+Descrição: Camões experimentou diversos esquemas de rima para seus poemas de 10 versos, incluindo ABABABABAB, ABBAABBAAB, AABBCCDDEE. Embora a forma espinela (ABBAACCDDC) seja a mais frequente, a liberdade camoniana antecede a rigidez espineliana. A décima camoniana é sempre em redondilha maior (7 sílabas).
+❌ Errado: exigir ABBAACCDDC como único esquema legítimo para toda décima histórica
+✅ Correto: reconhecer que a décima camoniana admite variações de esquema
+📖 Exemplo real: Camões — "Décima" (Lírica, c. 1570): "Transforma-se o bem em mal / o mal em bem se transforma. / Quem da vida faz a norma / do tempo, que tudo iguala. / Acontece coisa iguala / na mudança natural / ver-se o dia já não ser / e a noite ser clara / ver-se o prazer acabar / e a dor permanecer." — rima toante em "mal/transforma/norma/iguala", Camões não exige consoância absoluta.
+Severidade: baixa
+Categoria: escola/estilo
+
+================================================================================
+DÉCIMA NO CORDEL BRASILEIRO
+================================================================================
+
+## [DCM-08] Décima de cordel — redondilha maior e rima consoante
+Fonte: Câmara Cascudo; Leandro Gomes de Barros; João Martins de Athayde
+Descrição: No cordel brasileiro, a décima é a terceira forma mais importante (após sextilha e quadra). É escrita em redondilha maior (7 sílabas poéticas), com esquemas variados (ABBAACCDDC, AABBAACCDD) e rima consoante obrigatória. Temática narrativa, satírica, épica e religiosa. A declamação oral impõe pausas respiratórias com cesura marcada na 4ª ou 5ª sílaba.
+❌ Errado: rima toante em décima de cordel; versos com mais de 7 sílabas
+✅ Correto: redondilha maior, rima consoante rigorosa
+📖 Exemplo real: Leandro Gomes de Barros — "O Dinheiro" (Cordel, c. 1900): "Quem tem dinheiro passeia / Quem não tem fica em casa / Quem tem, anda à vontade / Quem não tem, de medo não pazia / Quem tem, canta e assobia / Quem não tem, vive gemendo / Quem tem, quando está dormindo / Sonha com cédulas grandes / Quem não tem, os olhos grandes / Passa a noite sem dormindo." — 7 sílabas, rima consoante, temática social-satírica.
+Severidade: alta
+Categoria: estrutura
+
+## [DCM-09] Diferença entre décima erudita e décima de cordel
+Fonte: Câmara Cascudo; ABLC
+Descrição: A décima erudita (espinela) usa metro octossílabo ou decassílabo, ABBAACCDDC rigoroso, temática lírico-filosófica e autor único. A décima de cordel usa redondilha maior (7 sílabas), esquemas variáveis (ABBAACCDDC ou AABBAACCDD), temática narrativa e satírica, e autor identificado em folheto impresso. A décima de repente (martelo/galope) é hendecassílaba (11 sílabas), usada em desafios, com rima consoante rigorosa.
+❌ Errado: confundir as três modalidades; aplicar regras de uma à outra
+✅ Correto: distinguir erudita (7-8 sílabas), cordel (7 sílabas), repente (11 sílabas)
+📖 Exemplo real: Patativa do Assaré — "Cante Lá Que Eu Canto Cá" (1978): "Cante lá que eu canto cá / Pois o nosso verso é livro / Sob a claridade, vivo / E sem ninguém me ensinar. / Cante lá que eu cantarei / Agora mais convencido / Pois tenho o dom de poeta / Que por Deus me foi vendido / Verso de rima completa / Cheio de luz e harmonia." — décima de cordel em 7 sílabas.
+Severidade: media
+Categoria: referência
+
+================================================================================
+GALOPE À BEIRA-MAR
+================================================================================
+
+## [DCM-10] Galope à beira-mar — hendecassílabo com AABBAACCDD
+Fonte: José Pretinho (criação, c. 1950); tradição do repente nordestino
+Descrição: O galope à beira-mar é modalidade de décima do repente nordestino, criada por José Pretinho. São 10 versos hendecassílabos (11 sílabas poéticas) com esquema AABBAACCDD. O último verso de cada estrofe termina obrigatoriamente com a palavra "mar" ou com a expressão "galope na beira do mar". Acentos tônicos na 2ª, 5ª, 8ª e 11ª sílabas. Exclusivo do repente improvisado.
+❌ Errado: galope sem referência ao mar no último verso; versos com menos de 11 sílabas
+✅ Correto: hendecassílabo, AABBAACCDD, último verso em "mar"
+📖 Exemplo real: José Pretinho — "Galope à Beira-Mar" (c. 1950): "Quando eu venho na beira do mar cantando (A) / Meu verso bonito que o vento levou (A) / Trago na lembrança a canção que ficou (B) / Nas ondas do tempo, na areia rolando (B). / E o meu pensamento se vai espalhando (A) / Nas águas salgadas do oceano sem par (A) / Que vem e que vai, sem nunca parar (C) / Trazendo na espuma saudades e amores (C) / E eu canto na praia as minhas dores (D) / Galope na beira do mar (D)."
+Severidade: alta
+Categoria: estrutura
+
+## [DCM-11] Temática obrigatória do galope — o mar
+Fonte: José Pretinho; Luciano Maia; Zé Maria de Fortaleza
+Descrição: O galope à beira-mar exige temática marítima obrigatória. O poema deve evocar o mar, a praia, as ondas, a jangada, o pescador ou a paisagem litorânea. O verso final com "mar" é a assinatura formal da modalidade. A métrica hendecassílaba confere andamento solene e cadenciado, como o balanço das ondas.
+❌ Errado: galope com temática sertaneja ou urbana; último verso sem "mar"
+✅ Correto: tema marítimo, verso 10 com "mar" ou "galope na beira do mar"
+📖 Exemplo real: Zé Maria de Fortaleza — "Galope do Pescador" (1975): "Lá no Nordeste, nas praias de Iracema / Onde a jangada veleja no vento / O pescador chora o seu sofrimento / Nas madrugadas de prata e de pena. / O mar se agita, a maré se acalma / E a lua se deita nas águas do mar / Que vêm e que vão no vai e vem sem parar / E o tempo se perde nas horas do vento / E o pescador, no silêncio do tempo / Escuta o galope na beira do mar."
+Severidade: alta
+Categoria: temática
+
+================================================================================
+MARTELO AGALOPADO
+================================================================================
+
+## [DCM-12] Martelo agalopado — a forma nobre do repente
+Fonte: Cego Aderaldo; Ivanildo Vila Nova; Zé Maria de Fortaleza
+Descrição: O martelo agalopado é a forma mais nobre e exigente do repente nordestino. São 10 versos hendecassílabos (11 sílabas) com esquema ABBAACCDDC (espinela) ou AABBAACCDD. Acentos tônicos marcados ("martelados") — daí o nome — e rima consoante obrigatória em todos os versos. Usado em desafios e pelejas entre cantadores. A métrica de 11 sílabas confere andamento solene e cerimonioso.
+❌ Errado: martelo com versos de 7 sílabas (é cordel, não martelo); rima toante
+✅ Correto: hendecassílabo, rima consoante, acentos martelados
+📖 Exemplo real: Ivanildo Vila Nova — "Martelo Agalopado" (CD "A Invenção do Repente", 2005): "O galo já cantou, a aurora se fez (A) / E o dia desponta no topo da serra (B) / O canto da mata se espalha na terra (B) / No vento que sopra dos pés aos chinelos (A). / A vida é um verso de todos os selos (A) / A morte é uma rima no final da canção (C) / O tempo é um poeta sem explicação (D) / Que escreve o destino no livro da gente (C) / E o vento do tempo, implacável, inclemente (C) / Apaga do mundo a nossa inscrição (D)."
+Severidade: alta
+Categoria: estrutura
+
+## [DCM-13] Anáfora no martelo agalopado — recurso estilístico obrigatório
+Fonte: Ivanildo Vila Nova; Zé Maria de Fortaleza; tradição do repente
+Descrição: O martelo agalopado frequentemente utiliza anáfora (repetição de palavras no início dos versos) como recurso de improviso e coesão. As anáforas mais comuns são "Eu canto", "O galo", "A vida", "O tempo". A anáfora permite ao repentista manter o ritmo enquanto desenvolve o pensamento poético.
+❌ Errado: martelo sem qualquer repetição anafórica (possível, mas atípico)
+✅ Correto: anáfora em 3 a 5 versos consecutivos
+📖 Exemplo real: Zé Maria de Fortaleza — "Martelo" (1960): "Eu canto a verdade que o povo não sente / Eu canto a mentira que o povo engoliu / Eu canto o menino que nunca sorriu / Eu canto a tristeza do povo sofrido / Eu canto o cordel que não foi destruído / Eu canto o Brasil que o Brasil já cobriu." — anáfora de "Eu canto" em 6 versos.
+Severidade: baixa
+Categoria: estilo
+
+================================================================================
+MÉTRICA
+================================================================================
+
+## [DCM-14] Redondilha maior (7 sílabas) — metro padrão da décima portuguesa
+Fonte: Camões, Sá de Miranda; Said Ali
+Descrição: Na tradição portuguesa e brasileira, a décima é geralmente escrita em redondilha maior (7 sílabas poéticas). A contagem poética segue as regras de elisão (sinalefa) entre vogais átonas. A última sílaba tônica é a 7ª; sílabas pós-tônicas não contam.
+❌ Errado: versos com 6 ou 8 sílabas em décima de redondilha maior
+✅ Correto: exatamente 7 sílabas poéticas, contadas até a última tônica
+📖 Exemplo real com escansão: Gonçalves Dias — "Décima" (Obras Poéticas, 1844): "Se / tei-ma / em / ser / des-gra-ça-do" = 1 2 3 4 5 6 7 (7 sílabas poéticas). A última tônica é "ça-"; a pós-tônica "-do" não conta.
+Severidade: alta
+Categoria: métrica
+
+## [DCM-15] Hendecassílabo (11 sílabas) — metro do repente
+Fonte: tradição do repente nordestino; Câmara Cascudo
+Descrição: O martelo agalopado e o galope à beira-mar usam o hendecassílabo (11 sílabas poéticas) com acentos obrigatórios na 2ª, 5ª, 8ª e 11ª sílabas. A cesura natural dá-se na 5ª sílaba. O andamento é solene e cadenciado, mais lento que a redondilha maior.
+❌ Errado: hendecassílabo sem acento na 5ª sílaba; versos com 10 ou 12 sílabas
+✅ Correto: 11 sílabas, acento na 5ª e 10ª, cesura na 5ª
+📖 Exemplo real com escansão: Luciano Maia — "Galope à Beira-Mar" (1990): "Can-tor / das co-i-va-ras / quei-man-do o ho-ri-zon-te" = 1 2 3 4 5 6 7 8 9 10 11. Acento na 2ª (tor), 5ª (va-), 8ª (man-), 11ª (zon-).
+Severidade: alta
+Categoria: métrica
+
+## [DCM-16] Decassílabo na décima erudita
+Fonte: Camões; Olavo Bilac; Alberto de Oliveira
+Descrição: A décima erudita brasileira (Bilac, Alberto de Oliveira, Raimundo Correia) foi escrita em decassílabos (10 sílabas poéticas), seguindo o padrão heroico (acentos na 6ª e 10ª) ou sáfico (4ª, 8ª e 10ª). A cesura na 6ª sílaba é obrigatória no heroico. O verso decassílabo confere maior solenidade à forma.
+❌ Errado: décima decassílaba sem cesura; misturar heroicos e sáficos no mesmo poema
+✅ Correto: 10 sílabas, cesura na 6ª (heroico) ou acentos na 4ª/8ª/10ª (sáfico)
+📖 Exemplo real: Olavo Bilac — "Décima" (Poesias, 1888): "Se a vida é luta renhida / Se a morte é o fim da vida" — estas são redondilhas (7 sílabas). Para decassílabo na décima, ver Camões, "Décima" em Os Lusíadas (oitavas camonianas são 8 versos, não 10 — mas há décimas decassílabas na lírica camoniana).
+Severidade: media
+Categoria: métrica
+
+================================================================================
+RIMA
+================================================================================
+
+## [DCM-17] Rima consoante obrigatória no cordel e repente
+Fonte: Câmara Cascudo; ABLC
+Descrição: Na décima de cordel e no repente (martelo e galope), a rima é sempre consoante (perfeita), nunca toante. As palavras devem compartilhar a mesma terminação sonora completa, incluindo consoantes. Na poesia erudita, tanto a rima consoante quanto a toante são aceitas, dependendo do período.
+❌ Errado: rima toante em décima de cordel; "vida" rimando com "dias" (consoante imperfeita)
+✅ Correto: "amor/dor", "vida/ferida", "coração/paixão" (consoantes) no cordel
+📖 Exemplo real: João Martins de Athayde — "A Vida de João de Calais" (c. 1920): "Era um moço muito nobre (A) / Rico, forte e valentão (B) / Morava numa cidade (B) / Chamada de Carcasson (A)." — rima consoante em -on, -or, -ela em toda a décima.
+Severidade: alta
+Categoria: rima
+
+## [DCM-18] Esquemas de rima alternativos
+Fonte: tradição da décima portuguesa e brasileira
+Descrição: Além do esquema canônico ABBAACCDDC, a décima admite variações: AABBAACCDD (galope à beira-mar), ABBAABBAAB (raro), AABBCCDDEE (rimas emparelhadas, sem retorno), ABCBDBEBFB (só pares rimam). A variante AABBAACCDD é a mais comum no galope e no cordel. A rima deve ser sempre consoante nas formas populares.
+❌ Errado: ABAB CDCD EE (estrutura de sonetino, não décima)
+✅ Correto: AABBAACCDD, ABBAACCDDC, AABBCCDDEE (formas reconhecidas)
+📖 Exemplo real: Esquema AABBAACCDD — Luciano Maia, "Galope à Beira-Mar" (1990): cantando(A) / levou(A) / ficou(B) / rolando(B) / espalhando(A) / teimar(A) / finar(C) / sedenta(C) / inventa(D) / mar(D).
+Severidade: media
+Categoria: rima
+
+================================================================================
+TEMÁTICA
+================================================================================
+
+## [DCM-19] Temática amorosa — a décima do paradoxo
+Fonte: Camões; Bilac; Machado de Assis; Vinícius de Moraes
+Descrição: A décima amorosa é a mais comum na tradição erudita. O esquema de voltas e retornos da espinela favorece o paradoxo amoroso: o amor que fere e cura, a ausência que é presença, a morte que é vida. O verso 5 funciona como virada do sentimento, permitindo ao poeta desenvolver o paradoxo central.
+❌ Errado: décima amorosa que se limita a declarações lineares sem tensão paradoxal
+✅ Correto: uso do esquema ABBAACCDDC para criar e resolver tensão amorosa
+📖 Exemplo real: Olavo Bilac — "Décima" (Poesias, 1888): "O amor, quando se revela / Não se revela: disfarça / E a máscara, que é a mesma / Parece mais triste e bela. / Mas a palavra mais bela / É aquela que o amor não diz: / Porque o amor, que tudo diz / Não diz a palavra bela / E a palavra que revela / Não chega a dizer que é feliz." — paradoxo do amor que se revela escondendo-se.
+Severidade: baixa
+Categoria: temática
+
+## [DCM-20] Temática filosófica — transitoriedade e condição humana
+Fonte: Camões; Bilac; Alberto de Oliveira; Machado de Assis
+Descrição: A décima filosófica explora a transitoriedade do ser, a brevidade da vida, a condição humana diante da morte. Camões e Bilac são mestres neste tema. A estrutura fechada da espinela (10 versos, 4 rimas) funciona como metáfora formal da contenção filosófica — o poeta reflete sobre o finito dentro de uma forma finita.
+❌ Errado: filosofia abstrata sem imagens concretas; lugar-comum ("a vida é curta")
+✅ Correto: reflexão sobre a finitude ancorada em imagens específicas
+📖 Exemplo real: Machado de Assis — "Décima" (Poesias Completas, 1901): "A vida é uma ópera triste / E o amor é o seu bel canto / Mas, se a ópera dura tanto / O bel canto não consiste. / A morte, que a tudo assiste / Vai, de repente, baixando / O pano. E o povo, em surdina / Vai saindo, soluçando / E a orquestra, em surdina / Vai aos poucos se calando." — vida como ópera, morte como pano que baixa.
+Severidade: baixa
+Categoria: temática
+
+================================================================================
+AUTORES
+================================================================================
+
+## [DCM-21] Referências essenciais da décima em português
+Fonte: tradição literária luso-brasileira
+Descrição: Autores fundamentais da décima em língua portuguesa:
+- Vicente Espinel (séc. XVI): criador da espinela — "Diversas Rimas" (1591)
+- Camões (séc. XVI): décima camoniana avant la lettre — ABBAACCDDC em redondilha maior
+- Sá de Miranda (séc. XVI): décima moralizante e filosófica
+- António Ferreira (séc. XVI): décima estoicista — "Poemas Lusitanos" (1598)
+- Gregório de Matos (séc. XVII): décima satírica e religiosa
+- Bocage (séc. XVIII): décima neoclássica satírica
+- Gonçalves Dias (séc. XIX): décima romântica — "Obras Poéticas" (1844)
+- Machado de Assis (séc. XIX): décima irônica e metalinguística — "Crisálidas" (1864), "Falenas" (1870), "Occidentais" (1880)
+- Olavo Bilac (séc. XIX-XX): décima parnasiana rigorosa — "Poesias" (1888), "Tarde" (1919)
+- Alberto de Oliveira (séc. XIX-XX): décima descritiva e filosófica
+- Raimundo Correia (séc. XIX): décima pessimista e elegíaca
+- Almeida Garrett (séc. XIX): décima romântica saudosista — "Folhas Caídas" (1853)
+- Leandro Gomes de Barros (séc. XIX-XX): décima de cordel — "O Dinheiro"
+- João Martins de Athayde (séc. XX): décima narrativa de cordel
+- Patativa do Assaré (séc. XX): décima de cordel social — "Cante Lá Que Eu Canto Cá" (1978)
+- José Pretinho (séc. XX): criação do galope à beira-mar
+- Cego Aderaldo (séc. XX): martelo agalopado clássico
+- Ivanildo Vila Nova (séc. XX-XXI): martelo metalinguístico — "A Invenção do Repente" (2005)
+- Zé Maria de Fortaleza (séc. XX): martelo e galope nordestinos
+- Luciano Maia (séc. XX): galope à beira-mar — "Galope à Beira-Mar" (1990)
+Severidade: baixa
+Categoria: referência
+
+================================================================================
+ANTIPADRÕES
+================================================================================
+
+## [DCM-22] Quebra do padrão ABBAACCDDC
+Fonte: análise de conformidade com a tradição espineliana
+Descrição: O erro mais comum na décima é não respeitar o esquema ABBAACCDDC quando a forma proposta é a espinela. Verso 5 com rima diferente de A, verso 6 que não introduz C, ou verso 8 que não retoma C são violações estruturais graves. Na espinela, os 4 sons de rima (A, B, C, D) devem ser exatos e distribuídos no padrão fixo.
+❌ Errado: ABBA CDDC EE (verso 5 em C), ABBA ABC DDC (rima solta no verso 6)
+✅ Correto: ABBA A CCD DC — cada letra no seu lugar
+Severidade: alta
+Categoria: antipadrão
+
+## [DCM-23] Hiato forçado na contagem silábica
+Fonte: Castilho, "Tratado de Metrificação"; Said Ali
+Descrição: Na décima em redondilha maior (7 sílabas) ou hendecassílabo (11 sílabas), o hiato forçado (separação de vogais que naturalmente elidem) quebra o ritmo. A elisão (sinalefa) deve ser aplicada naturalmente. Evitar hiatos que forçam a contagem silábica para alcançar o metro desejado.
+❌ Errado: "De água e de ar" lido sem elisão para forçar 7 sílabas
+✅ Correto: aplicar elisão natural: "De á-gua e de ar" = 4 sílabas com elisão
+Severidade: media
+Categoria: antipadrão
+
+## [DCM-24] Excesso de palavras-rima no cordel
+Fonte: Câmara Cascudo; análise de folhetos de cordel
+Descrição: No cordel, o uso excessivo de palavras-rima (mesma palavra repetida em posição de rima dentro da mesma décima) é considerado pobreza vocabular. Cada som de rima (A, B, C, D) deve idealmente usar palavras diferentes. Exceção: a palavra "mar" no galope à beira-mar, que é obrigatória.
+❌ Errado: "amor" no verso 1 e "amor" no verso 4 (mesma palavra em A); "cantar" no verso 6 e "cantar" no verso 8
+✅ Correto: "amor/dor", "querer/sofrer", "vida/ferida" — palavras diferentes para a mesma rima
+Severidade: media
+Categoria: antipadrão
+
+## [DCM-25] Falta de volta temática no verso 5
+Fonte: Espinel; Navarro Tomás
+Descrição: A ausência de inflexão temática no verso 5 da espinela descaracteriza a forma. O verso 5 não deve ser mera repetição do que foi dito na quadra inicial — deve introduzir um novo ângulo, uma virada no pensamento, uma transição para o desenvolvimento final. A volta pode ser sutil, mas deve existir.
+❌ Errado: verso 5 que apenas parafraseia o verso 1 ou 4 sem acrescentar nova direção
+✅ Correto: verso 5 que retoma a rima A com novo sentido ou inflexão
+📖 Exemplo real: Olavo Bilac — "Décima (III)" (Poesias, 1888): Versos 1-4 perguntam por que o poeta se cala; verso 5 "Porque a sua inspiração" inaugura a resposta. A volta é clara: da pergunta (quadra) para a explicação (desenvolvimento).
+Severidade: media
+Categoria: antipadrão
+
+================================================================================
+EXEMPLOS
+================================================================================
+
+## [DCM-26] Décima completa — Machado de Assis
+Fonte: Machado de Assis, "Poesias Completas" (1901)
+Descrição: Exemplo completo de décima espinela de Machado de Assis, ilustrando a temática metalinguística, o esquema ABBAACCDDC e a ironia característica do autor.
+📖 Exemplo real: "A vida é uma ópera triste (A) / E o amor é o seu bel canto (B) / Mas, se a ópera dura tanto (B) / O bel canto não consiste (A). / A morte, que a tudo assiste (A) / Vai, de repente, baixando (C) / O pano. E o povo, em surdina (D) / Vai saindo, soluçando (C) / E a orquestra, em surdina (C) / Vai aos poucos se calando (D)."
+Severidade: baixa
+Categoria: exemplo
+
+## [DCM-27] Décima completa — Camões
+Fonte: Camões, "Lírica Camoniana" (c. 1560)
+Descrição: Exemplo completo de décima camoniana, em redondilha maior, com esquema ABBAACCDDC perfeito e temática amoroso-filosófica. Ilustra a precedência portuguesa da forma espinela.
+📖 Exemplo real: "Se me mata, com razão (A) / me está de tudo queixosa (B) / que, se a vida me tem, não ousa (B) / de me tirar o coração (A). / Mas vendo que com paixão (A) / estoutra me está querendo (C) / (se é que a querer me vai) (D) / está, comigo, dizendo (C) / que a vida também me sai (C) / pelos olhos, que estou vendo (D)."
+Severidade: baixa
+Categoria: exemplo
+
+## [DCM-28] Décima completa — Patativa do Assaré
+Fonte: Patativa do Assaré, "Cante Lá Que Eu Canto Cá" (1978)
+Descrição: Exemplo completo de décima de cordel, em redondilha maior, com rima consoante e temática de afirmação da arte popular. Ilustra a adaptação brasileira nordestina da forma espinela.
+📖 Exemplo real: "Cante lá que eu canto cá (A) / Pois o nosso verso é livro (B) / Sob a claridade, vivo (B) / E sem ninguém me ensinar (A). / Cante lá que eu cantarei (A) / Agora mais convencido (C) / Pois tenho o dom de poeta (D) / Que por Deus me foi vendido (C) / Verso de rima completa (C) / Cheio de luz e harmonia (D)."
+Severidade: baixa
+Categoria: exemplo

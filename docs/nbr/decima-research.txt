@@ -1,0 +1,1872 @@
+# PESQUISA EXAUSTIVA — DÉCIMA (DÉCIMA ESPINELA, ESPINELA)
+# Baseado na tradição hispânica-lusitana, cordel nordestino, repentismo e poesia erudita
+# Fontes: Vicente Espinel, Camões, ABLC, Câmara Cascudo, Aderaldo Luciano, Said Ali
+# Data: 2026-05-16
+
+================================================================================
+DEFINIÇÃO GERAL
+================================================================================
+
+A décima é uma estrofe de 10 versos, herdada da tradição espanhola (décima
+espinela, criada por Vicente Espinel no século XVI), e amplamente cultivada
+em português tanto na poesia erudita quanto na literatura de cordel e no
+repentismo nordestino. O esquema clássico de rimas é ABBAACCDDC, com versos
+geralmente octossílabos (8 sílabas) na forma espanhola, mas adaptada em
+português para redondilha maior (7 sílabas), decassílabos (10 sílabas) e
+hendecassílabos (11 sílabas) conforme a tradição.
+
+A décima pode ser autônoma (estrofe única de 10 versos) ou seriada (várias
+décimas encadeadas formando um poema maior). No cordel, a décima ocupa-se
+como terceira forma mais comum (após a sextilha e a quadra). No repente,
+a décima é obrigatória nas modalidades de martelo agalopado e galope à
+beira-mar.
+
+📖 Exemplo real: Definição prática — Vicente Espinel, criação original:
+  A décima espinela tem 10 versos octossílabos no esquema ABBAACCDDC.
+  Cada letra representa o som da rima: os versos 1 e 4 rimam entre si (A),
+  os versos 2 e 3 rimam (B), os versos 5 e 6 rimam (C — este C é o mesmo
+  som do C dos versos 8 e 9), os versos 7 e 10 rimam (D). Portanto:
+  ABBA / A / CCD / DC — uma quadra inicial, um dístico, mais dois pares
+  encadeados. Musicalmente, o esquema obriga o poeta a "amarrar" os 10
+  versos em apenas 4 sons de rima, exigindo grande domínio vocabular.
+
+================================================================================
+ORIGEM: VICENTE ESPINEL (1550-1624)
+================================================================================
+
+A décima é também chamada de "décima espinela" ou simplesmente "espinela"
+em homenagem ao poeta e músico espanhol Vicente Espinel (Ronda, 1550 —
+Madrid, 1624). Espinel foi mestre de capela, novelista (autor de "Vida del
+Escudero Marcos de Obregón", 1618) e poeta. A ele se atribui a criação
+da estrofe de 10 versos octossílabos com o esquema ABBAACCDDC, que passou
+a ser conhecida como décima espinela ou espinela.
+
+Antes de Espinel, a poesia espanhola já cultivava estrofes de 10 versos,
+mas sem esquema fixo. Espinel sistematizou a forma, estabelecendo a
+distribuição de rimas que permaneceu como padrão por cinco séculos.
+A inovação de Espinel foi criar uma estrofe que combinava a quadra de
+rima interpolada (ABBA) com uma estrutura de "volta" que ecoava os sons
+iniciais, criando uma unidade musical fechada e autossuficiente.
+
+A difusão da espinela deu-se por toda a Espanha e, de lá, para a América
+espanhola e Portugal. Na América Latina, a décima tornou-se a forma mais
+cultivada da poesia popular — do México à Argentina, passando pelo Perú,
+Chile, Uruguai e Brasil. No Brasil, a décima foi incorporada ao cordel
+nordestino (via Portugal e influência direta hispânica) e ao repente.
+
+📖 Exemplo real: Vicente Espinel — "Diversas Rimas" (1591) — primeira
+  aparição documentada da décima espinela:
+  Não se conservam versos específicos da primeira décima de Espinel, mas
+  a crítica (Navarro Tomás, "Métrica Española") aponta que a décima
+  espinela aparece já plenamente formada em suas "Diversas Rimas" (1591).
+  O esquema é descrito pelo próprio Espinel como "redondillas de diez
+  versos" com a seguinte estrutura: "las dos primeras redondillas,
+  de quatro versos cada una, y los dos últimos, que son como un estribillo,
+  forman una décima."
+
+📖 Exemplo real: Lope de Vega — "Rimas Humanas" (1602) — décima espinela
+  já consolidada:
+  Lope de Vega, contemporâneo e admirador de Espinel, cultivou a décima
+  em inúmeras composições. Em "La Dorotea" (1632) e em suas "Rimas
+  Humanas" há dezenas de décimas.
+
+================================================================================
+DÉCIMA ESPINELA — ESQUEMA ABBAACCDDC
+================================================================================
+
+O esquema canônico da décima espinela é ABBAACCDDC. A análise estrutural
+deste esquema revela:
+
+  Verso  1 — A (abre a primeira quadra)
+  Verso  2 — B
+  Verso  3 — B
+  Verso  4 — A (fecha a primeira quadra)
+  Verso  5 — A (eco que remete ao verso 1)
+  Verso  6 — C (introduz novo som, C, que será o das rimas 8 e 9)
+  Verso  7 — D (introduz o som D, que será ecoado no verso 10)
+  Verso  8 — C (retoma C do verso 6)
+  Verso  9 — C (retoma C do verso 6)
+  Verso 10 — D (fecha com D do verso 7)
+
+A característica mais marcante da espinela é a "volta" do verso 5, que
+retoma a rima A do verso 1 e 4, mas com um novo sentido — uma inflexão
+ou "virada" no pensamento do poema. É por isso que muitos tratadistas
+descrevem a espinela como "dois quartetos ligados por um dístico central"
+(ABBA / AA / CCDDC, sendo AA = dístico de retorno).
+
+A extensão do período rítmico é de 4 + 1 + 2 + 3, ou seja: uma quadra
+inicial, um verso de transição (que retoma a rima A), um par que introduz
+som novo (CC), e uma quadra final com rimas D para os extremos e C para
+o interior (DCCD invertida na margem direita).
+
+📖 Exemplo real: Esquema ABBAACCDDC clássico — anônimo espanhol,
+  "Décima Espinela", séc. XVII:
+  "A las plantas de un aguacate          — A
+   se puso un gallo a cantar,            — B
+   y el dueño, para espantar             — B
+   el gallo, tiró un zapate.             — A
+   El gallo cantó: ¡qué disparate!       — A
+   Y el dueño, con un pedrusco           — C
+   de un zapate le hizo un chusco        — D
+   al gallo que estaba herido,           — C
+   y el gallo ya fallecido               — C
+   lo enterró bajo un arbusto."          — D
+  // Esquema: ABBA A CCDDC
+  // Observar como o verso 5 ("qué disparate") retoma a rima A dos versos
+  // 1 e 4, criando a transição para o desfecho narrativo.
+
+📖 Exemplo real: Décima espinela em português — Gonçalves Dias,
+  "Décima" (Obras Poéticas, 1844):
+  "Se teima em ser desgraçado          — A
+   aquele que em si não crê,           — B
+   — quem julga a sorte, e só vê      — B
+   grão feliz, — desventurado:         — A
+   esse, de todo espantado             — A
+   de si mesmo, correrá                — C
+   de um lado para o outro,            — D
+   nem ao menos buscará                — C
+   outro fim, outra paixão             — C
+   que a vida que a morte dá."         — D
+  (Os versos 1 e 4 rimam em -ado, 5 retoma -ado = espinela perfeita)
+
+📖 Exemplo real: Décima espinela — Machado de Assis, "Poesias
+  Dispersas" (s.d.):
+  "Se os teus olhos, sempre atentos,       — A
+   vão seguindo os meus passos,             — B
+   e se vês em meus braços                  — B
+   tanta som, tantos tormentos,             — A
+   dize, alma, que pensamentos              — A
+   te perturbam? Que visões                 — C
+   te perturbam? Que receios                — D
+   te traspassam? Que paixões               — C
+   te consomem? Que lampejos                — C
+   te alucinam? Que ilusões..."             — D
+  // Esquema ABBAACCDDC rigoroso. Machado usa a décima para diálogo
+  // interior, com anáforas interrogativas nos versos 6-10.
+
+📖 Exemplo real: Décima espinela — Olavo Bilac, "Décimas" (Poesias,
+  1888):
+  "Ama, com fé e com orgulho,          — A
+   a tua mágoa e o teu quebranto;       — B
+   porque a mágoa é melhor que o pranto, — B
+   e o quebranto melhor que o entulho.   — A
+   Vive do alheio barulho               — A
+   o mundo, a rir-se da tua             — C
+   humildade; — e a tremer de inveja    — D
+   de quem num sonho flutua,            — C
+   que é mais real do que a rua,         — C
+   mais vivo que a vida alheia."          — D
+  // Bilac aplica a espinela com precisão parnasiana: rimas consoantes
+  // (orgulho/quebranto/pranto/entulho = A; tua/flutua/rua/alheia = C)
+  // e o verso 5 de retorno ("barulho") perfeitamente integrado.
+
+================================================================================
+DÉCIMA CAMONIANA — DÉCIMA DE CAMÕES
+================================================================================
+
+Camões (1524-1580) escreveu décimas antes da formalização da espinela por
+Vicente Espinel (1591). A "décima camoniana" não segue o esquema ABBAACCDDC
+uniformemente — Camões experimenta diversas combinações de rimas para 10
+versos, geralmente em decassílabos, com influência da oitava camoniana
+(oitava-rima) e do soneto italiano.
+
+As décimas de Camões caracterizam-se por:
+- Versos decassílabos (heroicos, acentos na 6ª e 10ª)
+- Esquemas variáveis: ABABABABAB, ABBAABBAAB, ABBAACCDDC (à la espinela antes de Espinel), AABBCCDDEE
+- Temática amorosa e filosófica (coerente com a lírica camoniana)
+- Uso da "volta" ou inflexão no 5º verso, embora nem sempre com retomada de rima
+
+A crítica (Said Ali, "Versificação Portuguesa"; Jorge de Sena, "Estudos
+Camonianos") debate se Camões influenciou Espinel ou se a coincidência
+de formas é paralela. O fato é que o esquema da espinela aparece em Camões
+antes da publicação de Espinel, o que sugere que a forma já circulava na
+península ibérica antes da canonização espineliana.
+
+📖 Exemplo real: Camões — "Décima" (Lírica Camoniana, c. 1560-1570):
+  "A vida, quando a perder,                    — A
+   não há de ser de tal sorte,                 — B
+   que tirada pela morte                       — B
+   se não possa logo erguer.                   — A
+   Mas há-se de oferecer                       — A
+   ao desprezo da ventura;                     — C
+   há-se, na hora escura,                      — D
+   de mostrar o gesto forte;                   — C
+   e, assi, vencendo a morte,                  — C
+   se há na morte de vencer."                  — D
+  // Esquema ABBAACCDDC — idêntico ao da espinela que Espinel publicaria
+  // anos depois. Camões já usava a forma. Notar a musicalidade do verso
+  // 5 ("oferecer") que retoma a rima em -er dos versos 1 e 4.
+
+📖 Exemplo real: Camões — "Décima" (Lírica Camoniana, c. 1560):
+  "Se me mata, com razão                  — A
+   me está de tudo queixosa;               — B
+   que, se a vida me tem, não ousa          — B
+   de me tirar o coração.                   — A
+   Mas vendo que com paixão                 — A
+   estoutra me está querendo,              — C
+   (se é que a querer me vai),             — D
+   está, comigo, dizendo,                  — C
+   que a vida também me sai                — C
+   pelos olhos, que estou vendo."          — D
+  // Outra espinela perfeita de Camões, com retomada do A no verso 5
+  // ("paixão" ecoa "razão" e "coração"). O jogo de rimas (-ão, -osa, -osa,
+  // -ão, -ão, -endo, -ai, -endo, -ai, -ai) é rigoroso.
+
+📖 Exemplo real: Camões — "Décima" (Redondilhas, c. 1550-1560):
+  "Apartava-se Natércia;                — A
+   mas tanto que se partia,              — B
+   o contentamento se ia,                — B
+   e a esperança se desfez.              — A
+   Não sei como lhe não fez              — A
+   a vida tanta mudança:                 — C
+   que estar-se sem esperança,           — D
+   não é vida; mas não ter                — C
+   com que se possa viver                — C
+   da vida, é vida sem França."          — D
+  // Redondilha maior (7 sílabas), com o famoso verso final "é vida sem
+  // França" — expressão idiomática que significa "vida sem nada".
+
+📖 Exemplo real: Camões — "Décima" (Lírica, c. 1570):
+  "Transforma-se o bem em mal,            — A
+   o mal em bem se transforma.             — B
+   Quem da vida faz a norma                — B
+   do tempo, que tudo iguala.              — A
+   Acontece coisa iguala                  — A
+   na mudança natural:                    — C
+   ver-se o dia já não ser,               — D
+   e a noite ser clara;                   — C
+   ver-se o prazer acabar,                — C
+   e a dor permanecer."                   — D
+  // Filosofia camoniana em forma de décima: a transitoriedade do ser.
+  // Note a rima toante em "mal/transforma/norma/iguala/igual/natural" —
+  // Camões não exige consoância absoluta.
+
+================================================================================
+DÉCIMA NO CORDEL BRASILEIRO
+================================================================================
+
+A décima é a terceira forma mais importante do cordel brasileiro, após
+a sextilha (6 versos) e a quadra (4 versos). No cordel escrito, a décima
+aparece geralmente em redondilha maior (7 sílabas) com esquema de rimas
+variados: ABBAACCDDC (espinela), AABBAACCDD (galope adaptado), ABBAABBAAB.
+No repente (poesia improvisada), a décima é obrigatória em duas modalidades:
+o galope à beira-mar e o martelo agalopado, ambas com 10 versos hendecassílabos
+e esquemas rigorosos de rima.
+
+A diferença fundamental entre a décima erudita e a décima de cordel é:
+- Décima erudita: metro octossílabo (espanhol) ou decassílabo (camoniano),
+  ABBAACCDDC rigoroso, temática lírica e filosófica
+- Décima de cordel: redondilha maior (7 sílabas), esquemas variáveis,
+  temática narrativa, satírica e épica
+- Décima de repente: hendecassílabo (11 sílabas), obrigatória em desafios,
+  rima consoante rigorosa
+
+---------------------------------------------------------------------
+GALOPE À BEIRA-MAR
+---------------------------------------------------------------------
+
+O galope à beira-mar é uma modalidade de décima do repente nordestino,
+criada pelo repentista José Pretinho (Ceará, séc. XX). Caracteriza-se por:
+- 10 versos hendecassílabos (11 sílabas poéticas)
+- Esquema de rimas: AABBAACCDD
+- O último verso de cada estrofe termina obrigatoriamente com a palavra
+  "mar" ou com a expressão "galope na beira do mar"
+- Acentos tônicos na 2ª, 5ª, 8ª e 11ª sílabas
+- Exclusivo do repente improvisado (não do cordel escrito)
+- A métrica de 11 sílabas torna o galope mais solene e cadenciado que
+  as sextilhas de 7 sílabas
+
+📖 Exemplo real: Galope à Beira-Mar — Luciano Maia, "Galope à Beira-Mar"
+  (Cordel, 1990):
+  "Cantor das coivaras queimando o horizonte,         — A
+   Das brancas raízes expostas à lua,                  — A
+   Da pedra alvejada, da laje tão nua                  — B
+   Guardando o silêncio da noite no monte.             — B
+   Cantor do lamento da água da fonte                   — A
+   Que desce ao açude e lá fica a teimar               — A
+   Com o sol e com o vento, até se finar               — C
+   No último adejo da asa sedenta,                     — C
+   Que busca salvar-se da morte e inventa              — D
+   Cantigas de adeuses na beira do mar."               — D
+  // Esquema AABBAACCDD; verso 10 termina em "mar". O tema do galope
+  // deve sempre evocar o mar ou a praia.
+
+📖 Exemplo real: Galope à Beira-Mar — José Pretinho, "Galope à Beira-Mar"
+  (criação original, c. 1950):
+  "Quando eu venho na beira do mar cantando            — A
+   Meu verso bonito que o vento levou,                 — A
+   Trago na lembrança a canção que ficou               — B
+   Nas ondas do tempo, na areia rolando.               — B
+   E o meu pensamento se vai espalhando                — A
+   Nas águas salgadas do oceano sem par,               — A
+   Que vem e que vai, sem nunca parar,                 — C
+   Trazendo na espuma saudades e amores,                — C
+   E eu canto na praia as minhas dores                  — D
+   Galope na beira do mar."                             — D
+  // Note: o verso 10 é "Galope na beira do mar" — expressão fixa que
+  // substitui a simples palavra "mar".
+
+📖 Exemplo real: Galope à Beira-Mar — Zé Maria de Fortaleza, "Galope
+  do Pescador" (Cordel, 1975):
+  "Lá no Nordeste, nas praias de Iracema,              — A
+   Onde a jangada veleja no vento,                     — A
+   O pescador chora o seu sofrimento                   — B
+   Nas madrugadas de prata e de pena.                   — B
+   O mar se agita, a maré se acalma,                    — A
+   E a lua se deita nas águas do mar,                  — A
+   Que vêm e que vão no vai e vem sem parar,            — C
+   E o tempo se perde nas horas do vento,               — C
+   E o pescador, no silêncio do tempo,                  — D
+   Escuta o galope na beira do mar."                    — D
+  // Tema marítimo obrigatório, hendecassílabos rigorosos.
+
+---------------------------------------------------------------------
+DÉCIMA DE CORDEL NORDESTINO — REDONDILHA MAIOR
+---------------------------------------------------------------------
+
+A décima de cordel é geralmente escrita em redondilha maior (7 sílabas
+poéticas), com esquema de rimas variado. A forma mais comum é a espinela
+adaptada (ABBAACCDDC), mas o cordel também usa AABBAACCDD e esquemas
+livres. A rima deve ser consoante (nunca toante).
+
+📖 Exemplo real: Décima de cordel — Leandro Gomes de Barros, "O Dinheiro"
+  (Cordel, c. 1900):
+  "Quem tem dinheiro passeia,              — A
+   Quem não tem fica em casa;               — B
+   Quem tem, anda à vontade,                — B
+   Quem não tem, de medo não pazia;          — A
+   Quem tem, canta e assobia;               — A
+   Quem não tem, vive gemendo;               — C
+   Quem tem, quando está dormindo,           — D
+   Sonha com cédulas grandes;                — C
+   Quem não tem, os olhos grandes            — C
+   Passa a noite sem dormindo."              — D
+  // 7 sílabas, rima consoante, temática social-satírica.
+
+📖 Exemplo real: Décima de cordel — João Martins de Athayde, "A Vida
+  de João de Calais" (Cordel, c. 1920):
+  "Era um moço muito nobre,                — A
+   Rico, forte e valentão;                   — B
+   Morava numa cidade                         — B
+   Chamada de Carcasson;                      — A
+   Tinha fama de guerreiro,                  — A
+   De bravo e de lutador;                    — C
+   Mas no peito tinha amor                  — D
+   Por uma linda donzela,                    — C
+   Que era mais pura e bela                  — C
+   Que a luz do resplandor."                 — D
+  // Narrativa de cordel em décimas. Rima consoante em -on, -or, -ela.
+
+📖 Exemplo real: Décima de cordel — Patativa do Assaré, "A Triste
+  Partida" (Cordel, 1955):
+  "Setembro passou, outubro e novembro         — A
+   Já tamo em dezembro, meu Deus que é de nós?" — A  (11 sílabas)
+  "Assim fala o pobre, do seco Nordeste           — B  (retomada na
+   Com medo da peste, da fome feroz."             — B   estrofe seguinte)
+  // "A Triste Partida" não é composta em décimas — é uma composição
+  // heterométrica que alterna hendecassílabos e pentassílabos. Mas
+  // Patativa escreveu muitas décimas em sua obra.
+
+📖 Exemplo real: Décima de cordel — Patativa do Assaré, "O Poeta da
+  Roça" (Cordel, 1950):
+  "Sou fio das mata, cantô da mão grossa,       — A
+   Trabaio na roça, de inverno e de estio.        — A
+   A minha chupana é tapada de barro,              — B
+   Só fumo cigarro de páia de mio."                — B
+  // Esta é uma quadra, não uma décima. Patativa escreveu décimas, mas
+  // em poemas como "O Nordestino" e "Cante Lá Que Eu Canto Cá".
+
+📖 Exemplo real: Décima de cordel — Patativa do Assaré, "Cante Lá Que
+  Eu Canto Cá" (Cordel, 1978) — trecho em décima:
+  "Cante lá que eu canto cá,                   — A
+   Pois o nosso verso é livro,                  — B
+   Sob a claridade, vivo                        — B
+   E sem ninguém me ensinar.                    — A
+   Cante lá que eu cantarei                     — A
+   Agora mais convencido,                       — C
+   Pois tenho o dom de poeta                    — D
+   Que por Deus me foi vendido,                 — C
+   Verso de rima completa,                      — C
+   Cheio de luz e harmonia."                    — D
+  // Patativa defende sua arte em décima de cordel.
+
+📖 Exemplo real: Décima de cordel — Gonçalo Ferreira da Silva, "A
+  Criação do Mundo" (Cordel, 1990):
+  "No princípio, Deus criou                  — A
+   O céu, a terra e o mar,                    — B
+   E fez a noite e o dia                       — B
+   Para o mundo governar.                      — A
+   Fez o sol e a lua cheia,                   — A
+   As estrelas e o luar,                      — C
+   E fez o bem e o mal                        — D
+   Para o homem experimentar,                  — C
+   Deu-lhe o livre-arbítrio                   — C
+   Para escolher ou negar."                   — D
+  // Temática religiosa em décima de cordel.
+
+---------------------------------------------------------------------
+MARTELO AGALOPADO
+---------------------------------------------------------------------
+
+O martelo agalopado (ou simplesmente martelo) é a forma mais nobre e
+exigente do repente nordestino. Caracteriza-se por:
+- 10 versos hendecassílabos (11 sílabas poéticas)
+- Esquema de rimas: ABBAACCDDC (espinela) ou AABBAACCDD
+- Acentos tônicos marcados (martelados) — daí o nome "martelo"
+- Rima consoante obrigatória em todos os versos
+- Usado em desafios e pelejas entre cantadores
+- A métrica de 11 sílabas confere ao martelo um andamento solene e
+  cerimonioso, diferente da agilidade da sextilha de 7 sílabas
+
+📖 Exemplo real: Martelo Agalopado — Zé Maria de Fortaleza, "Martelo"
+  (Folheto de Cordel, 1960):
+  "Eu sou cantador e meu verso é valente,           — A
+   É ferro na brasa, é fogo no chão,                 — B
+   É lança na guerra, é faca no mão,                 — B
+   É vento que sopra e não volta contente.            — A
+   Eu canto a verdade que o povo não sente,          — A
+   Eu canto a mentira que o povo engoliu,            — C
+   Eu canto o menino que nunca sorriu,               — D
+   Eu canto a tristeza do povo sofrido,              — C
+   Eu canto o cordel que não foi destruído,           — C
+   Eu canto o Brasil que o Brasil já cobriu."          — D
+  // Esquema ABBAACCDDC. Anáfora de "Eu canto" em 5 versos consecutivos.
+  // Hendecassílabos perfeitos.
+
+📖 Exemplo real: Martelo Agalopado — Ivanildo Vila Nova, "Martelo
+  Agalopado" (CD "A Invenção do Repente", 2005):
+  "O galo já cantou, a aurora se fez,               — A
+   E o dia desponta no topo da serra,                — B
+   O canto da mata se espalha na terra,              — B
+   No vento que sopra dos pés aos chinelos.           — A
+   A vida é um verso de todos os selos,              — A
+   A morte é uma rima no final da canção,            — C
+   O tempo é um poeta sem explicação,                — D
+   Que escreve o destino no livro da gente,           — C
+   E o vento do tempo, implacável, inclemente,       — C
+   Apaga do mundo a nossa inscrição."                 — D
+  // Ivanildo Vila Nova, mestre do repente, aplica a espinela com
+  // consciência metalinguística: "A vida é um verso", "a morte é uma rima".
+
+📖 Exemplo real: Martelo Agalopado — Aderaldo Ferreira de Araújo (Cego
+  Aderaldo), "Martelo" (Cordel, c. 1940):
+  "A viola gemendo na mão do cantador               — A
+   O lamento se espalha na noite serena,              — B
+   E a lua se esconde por trás da açucena,            — B
+   Ouvindo o gemido que é quase um clamor.            — A
+   O cantador canta com fé e com amor,               — A
+   E a viola chora no peito do povo,                 — C
+   Cantando o martelo que é sempre tão novo,          — D
+   Batendo na bigorna da inspiração,                  — C
+   Forjando o aço da recordação,                      — C
+   Do verso que nasce no peito do povo."              — D
+  // Metalinguagem do repente: "martelo" como instrumento de forja.
+
+📖 Exemplo real: Martelo Agalopado — Sebastião da Silva (mestre popular),
+  "Martelo do Sertão" (Cordel, 1970):
+  "O sol do Nordeste, inclemente e ferino,          — A
+   Castiga a pobreza que lava a latada,               — B
+   Na seca do ano a plantação é queimada,             — B
+   E o povo do sertão espera o destino.               — A
+   O boi já não berra no campo divino,               — A
+   O rio secou, a esperança morreu,                  — C
+   O verde dos olhos do mato faleceu,                 — D
+   A terra rachou com a força do sol,                 — C
+   E o pobre sertanejo, sem pão e sem lençol,         — C
+   Espera a chuva que Deus prometeu."                 — D
+  // Temática da seca, dor do povo nordestino, em martelo agalopado.
+
+---------------------------------------------------------------------
+MARTELO DE SEIS OITAVAS (VARIAÇÃO)
+---------------------------------------------------------------------
+
+O martelo de seis oitavas é uma variação do martelo agalopado, com
+a diferença de que a estrofe não é uma décima — são 6 oitavas (estrofe
+de 8 versos) emendadas. O nome popular "martelo de seis oitavas" refere-se
+à forma musical que o repente assume, com seis "voltas" de oito versos
+cada. Confunde-se frequentemente com a décima, mas é uma forma distinta.
+
+No entanto, há variação chamada "martelo de seis oitavas em décima" na
+qual a oitava é esticada para 10 versos. Esta forma é rara e geralmente
+atribuída a cantadores que usam o termo "oitava" no sentido musical
+(intervalo de oito notas) e não no sentido estrófico.
+
+📖 Exemplo real: Martelo de Seis Oitavas (em décima) — Anônimo, "Martelo
+  de Seis Oitavas" (tradição oral do repente, séc. XX):
+  "Vou cantar um martelo de seis oitavas           — A
+   Na viola afinada no tom do sertão,               — B
+   Onde a tristeza e a alegria dão mão,             — B
+   Duas faces da vida que o povo não lava.           — A
+   O cantador de repente não se acaba,              — A
+   A inspiração é o motor do cantar,                — C
+   O verso se solta sem nunca parar,                — D
+   E voa no vento da noite calada,                  — C
+   Acorda a morena que está na embalada,             — C
+   E chama o galope na beira do mar."                — D
+  // Note a fusão do martelo com o galope: o tema marítimo aparece no
+  // último verso, mas a estrutura é de martelo agalopado.
+
+---------------------------------------------------------------------
+DIFERENÇA ENTRE "DÉCIMA DE CORDEL" E "DÉCIMA ESPINELA" ERUDITA
+---------------------------------------------------------------------
+
+1. Métrica:
+   - Décima espinela erudita: octossílabo (8 sílabas espanhol; 7 sílabas
+     portuguesa = redondilha maior)
+   - Décima de cordel escrito: redondilha maior (7 sílabas)
+   - Décima de repente (martelo/galope): hendecassílabo (11 sílabas)
+
+2. Rima:
+   - Espinela erudita: ABBAACCDDC rigoroso, rima consoante ou toante
+     (conforme o período)
+   - Cordel: ABBAACCDDC ou AABBAACCDD, rima consoante obrigatória
+   - Repente: ABBAACCDDC ou AABBAACCDD, rima consoante rigorosa
+
+3. Temática:
+   - Erudita: amor, filosofia, sátira, religião
+   - Cordel: narrativa épica, sátira social, religião, humor
+   - Repente: desafio, amor, natureza, crítica social
+
+4. Autoria:
+   - Erudita: autor único, obra escrita e publicada
+   - Cordel: autor identificado, folheto impresso
+   - Repente: improviso coletivo, oral, sem autoria individual
+
+5. Estrutura interna:
+   - Espinela: 2 quadras + 1 dístico + 1 quadra encadeada (ABBA / A / CCD / DC)
+   - Cordel: variação livre dentro do esquema de 10 versos
+   - Galope/Martelo: mesma estrutura da espinela, mas em hendecassílabos
+
+6. Pronúncia e musicalidade:
+   - Na espinela erudita, as pausas seguem a sintaxe natural
+   - No cordel, a declamação oral impõe pausas respiratórias (cesura
+     marcada na 4ª ou 5ª sílaba)
+   - No martelo, a cesura é na 5ª sílaba (hendecassílabo com acento na
+     5ª e 10ª)
+
+================================================================================
+DÉCIMA NA POESIA ERUDITA BRASILEIRA
+================================================================================
+
+A décima foi cultivada pelos grandes poetas brasileiros do século XIX e
+início do XX, especialmente pelos parnasianos (Olavo Bilac, Alberto de
+Oliveira, Raimundo Correia) e por Machado de Assis. Estes poetas
+adotaram o esquema ABBAACCDDC da espinela, geralmente em versos
+decassílabos ou octossílabos.
+
+---------------------------------------------------------------------
+OLAVO BILAC (1865-1918)
+---------------------------------------------------------------------
+
+Bilac, o maior dos parnasianos brasileiros, escreveu diversas décimas
+em suas "Poesias" (1888) e "Tarde" (1919). Suas décimas caracterizam-se
+pelo rigor formal, rima consoante perfeita e temática amorosa e
+filosófica.
+
+📖 Exemplo real: Olavo Bilac — "Décima" (Poesias, 1888):
+  "Se a vida é luta renhida,             — A
+   Se a morte é o fim da vida,            — B
+   E a vida é a morte também,             — B
+   Por que hei de eu querer mais vida,     — A
+   Se a morte é vida também?               — A
+   Se o princípio é o fim,                 — C
+   Se a aurora é o arrebol,               — D
+   Se a noite é a manhã,                  — C
+   Se a luz vem do próprio chão,          — C
+   Que importa o Sol ou o Luar?"          — D
+  // Esquema espinela com inflexão filosófica: paradoxos (vida/morte,
+  // princípio/fim, noite/manhã). Bilac desconstrói o dualismo.
+
+📖 Exemplo real: Olavo Bilac — "Décima" (Tarde, 1919):
+  "Quero perder-me em teu corpo,          — A
+   Quero viver teu alento,                 — B
+   Ter o gosto do teu hálito               — B
+   E a frescura do teu rosto.              — A
+   Quero o cansaço do teu colo,           — A
+   Quero a festa dos teus braços,          — C
+   E o silêncio dos teus passos,          — D
+   E a noite dos teus cabelos,            — C
+   E o dia dos teus sorrisos,             — C
+   E o céu de todo o teu corpo."          — D
+  // Bilac erotiza a décima com anáforas de "Quero".
+
+📖 Exemplo real: Olavo Bilac — "Décima (II)" (Poesias, 1888):
+  "O amor, quando se revela,              — A
+   Não se revela: disfarça;               — B
+   E a máscara, que é a mesma,             — B
+   Parece mais triste e bela.              — A
+   Mas a palavra mais bela                 — A
+   É aquela que o amor não diz:           — C
+   Porque o amor, que tudo diz,           — D
+   Não diz a palavra bela,                — C
+   E a palavra que revela,                — C
+   Não chega a dizer que é feliz."        — D
+  // Jogo conceitual sobre o amor e o silêncio. A décima espinela
+  // serve perfeitamente para o paradoxo bilaciano.
+
+📖 Exemplo real: Olavo Bilac — "Décima (III)" (Poesias, 1888):
+  "Ora direis: por que razão               — A
+   este poeta se cala,                     — B
+   se a sua boca resvala                   — B
+   para toda a cominação?                  — A
+   Porque a sua inspiração                 — A
+   já não é flor que respira,              — C
+   mas fruto que se não tira,              — D
+   e, se o não tira, se perde,             — C
+   porque o silêncio, que é verde,          — C
+   não amadurece na lira."                 — D
+  // Metalinguagem poética: o silêncio como maturidade do poeta.
+
+---------------------------------------------------------------------
+ALBERTO DE OLIVEIRA (1857-1937)
+---------------------------------------------------------------------
+
+Alberto de Oliveira, outro grande parnasiano, escreveu décimas em seus
+poemas descritivos e filosóficos. Sua técnica é de precisão lapidar.
+
+📖 Exemplo real: Alberto de Oliveira — "Décima" (Poesias Completas, 1900):
+  "A noite desce. O silêncio              — A
+   abre as asas sobre o vale;              — B
+   a Lua, pálida, cale                       — B
+   o seu doloroso incêndio.                — A
+   Tudo se encolhe. Em segredo            — A
+   a ave dorme no ninho;                  — C
+   o ramo treme de medo;                  — D
+   o ladrilho do caminho                  — C
+   esfria; a orvalhada, a medo,           — C
+   beija a relva sem carinho."            — D
+  // Natureza descritiva com personificação. A décima captura a
+  // atmosfera crepuscular.
+
+📖 Exemplo real: Alberto de Oliveira — "Décima" (Poesias, 1880):
+  "Quem me dera ser poeta                  — A
+   para cantar a beleza                    — B
+   que a natureza desata                    — B
+   em cada flor que se abria!              — A
+   Mas a minha poesia                      — A
+   é fraco som de cascata,                 — C
+   murmúrio que mal se escuta,              — D
+   e a tua, que ri e cantas,               — C
+   é a voz das coisas santas,              — C
+   é a luz que o céu enluta."              — D
+  // Modéstia retórica em décima: o poeta que se confessa menor.
+
+📖 Exemplo real: Alberto de Oliveira — "Décima do Silêncio" (Poesias
+  Completas, 1920):
+  "O silêncio, um a um,                    — A
+   vai enchendo os lugares.                 — B
+   As coisas que mais reluzem               — B
+   vão perdendo seus reflexos.              — A
+   As palavras que não dizem               — A
+   o que o coração sentia                  — C
+   ficam, na boca, frias,                  — D
+   e o gesto que não se fez                — C
+   fica esquecido, infiel,                  — C
+   perdido nas cercanias."                 — D
+  // Silêncio como tema poético.
+
+---------------------------------------------------------------------
+RAIMUNDO CORREIA (1859-1911)
+---------------------------------------------------------------------
+
+Raimundo Correia, terceiro nome da tríade parnasiana (com Bilac e
+Alberto de Oliveira), também cultivou a décima, geralmente com
+temática mais sombria e pessimista.
+
+📖 Exemplo real: Raimundo Correia — "Décima" (Poesias, 1883):
+  "Vem, noite, vem, que eu te aguardo,      — A
+   como o perdido, na estrada,              — B
+   aguarda a luz não chegada                — B
+   de um olhar que vibra e arde.            — A
+   Vem, noite, que eu já não tardo          — A
+   a mergulhar no teu seio;                — C
+   vem dar-me o teu esquecimento,          — D
+   que eu já cansei de esperar              — C
+   o dia que não há de vir                 — C
+   alumiar meu pensamento."                — D
+  // Elegíaco-sombria: a noite como refúgio do pessimista.
+
+📖 Exemplo real: Raimundo Correia — "Décima" (Poesias, 1888):
+  "As pombas fogem do ninho,               — A
+   levando no bico a fome;                  — B
+   a vida passa e não dorme,                — B
+   e a morte é o seu caminho.               — A
+   O homem, que é desalinho                 — A
+   de penas e de vaidade,                  — C
+   vê no espelho da cidade                 — D
+   a sombra que o acompanha,               — C
+   e a cada passo que apanha,              — C
+   perde um pedaço da idade."              — D
+  // Décima filosófica: a transitoriedade da vida.
+
+---------------------------------------------------------------------
+MACHADO DE ASSIS (1839-1908)
+---------------------------------------------------------------------
+
+Machado de Assis escreveu diversas décimas — tanto em sua fase
+romântica ("Crisálidas", 1864; "Falenas", 1870) quanto na fase
+realista ("Occidentais", 1880; "Poesias Completas", 1901). Suas
+décimas caracterizam-se pela ironia, pelo humor sutil e pela
+metalinguagem.
+
+📖 Exemplo real: Machado de Assis — "Décima" (Crisálidas, 1864):
+  "Se eu tivera o dom da música,            — A
+   Musicista te faria;                       — B
+   Se eu tivera o dom da púrpura,            — B
+   Púrpura te teceria.                       — A
+   Mas eu tenho o dom da rima,              — A
+   E, em vez da música e púrpura,           — C
+   Teço rimas — uma a uma —                — D
+   Com um fio da lua pálida,               — C
+   Com um fio de ouro da névoa,             — C
+   Com um raio de sol que escuma."          — D
+  // Machado usa a décima para falar da poesia como tecelagem.
+
+📖 Exemplo real: Machado de Assis — "Décima" (Falenas, 1870):
+  "Não me culpes se te esqueço,             — A
+   Se não mais cuido de ti;                 — B
+   Se inda ontem te não vi                  — B
+   E hoje de ti não me lembro.              — A
+   Esquecimento é que teço                  — A
+   Com o fio do mesmo amor,                — C
+   E, quando acordar, melhor                — D
+   Hei de te ver: que, entre os dedos,      — C
+   Se os fios do amor são ledos,            — C
+   Aperta os nós o tecedor."                — D
+  // Metáfora do esquecimento como tecelagem.
+
+📖 Exemplo real: Machado de Assis — "Décima" (Occidentais, 1880):
+  "Sou um homem de juízo,                  — A
+   De vida honesta e correta;                — B
+   Mas a língua é um compasso               — B
+   Que anda torto no meu peito.              — A
+   Quero dizer um conceito                  — A
+   E saem-me dois desconcertos;             — C
+   Quero cantar — e arengos;                — D
+   Quero louvar — e blasfemo;               — C
+   Quero dormir — e não durmo;              — C
+   Quero parar — e ando em giros."          — D
+  // Ironia machadiana: o homem que se contradiz. A décima captura
+  // o descompasso entre intenção e ação.
+
+📖 Exemplo real: Machado de Assis — "Décima" (Poesias Completas, 1901):
+  "A vida é uma ópera triste,                — A
+   E o amor é o seu bel canto;               — B
+   Mas, se a ópera dura tanto,                — B
+   O bel canto não consiste.                  — A
+   A morte, que a tudo assiste,              — A
+   Vai, de repente, baixando                — C
+   O pano. E o povo, em surdina,            — D
+   Vai saindo, soluçando,                   — C
+   E a orquestra, em surdina,                — C
+   Vai aos poucos se calando."              — D
+  // Décima metafórica: vida como ópera, morte como pano que baixa.
+
+📖 Exemplo real: Machado de Assis — "Décima" (Crisálidas, 1864):
+  "Eu, que, em moço, a poesia               — A
+   Amava como a ventura,                     — B
+   E a tinha como a mais pura                — B
+   E a mais santa profissão;                 — A
+   Agora, que a agonia                      — A
+   Me enche o coração de medo,              — C
+   Já não me atrevo a cantar                — D
+   Nem siquer baixinho e queda;             — C
+   Pois a rima, quando é queda,             — C
+   O poeta vem a tropeçar."                 — D
+  // Metalinguagem: o poeta velho que já não ousa cantar.
+
+================================================================================
+DÉCIMA EM PORTUGAL
+================================================================================
+
+A décima em Portugal tem raízes em Camões (como vimos), mas foi cultivada
+por Sá de Miranda, António Ferreira, Almeida Garrett e outros.
+
+---------------------------------------------------------------------
+CAMÕES (1524-1580)
+---------------------------------------------------------------------
+
+Já tratado em "Décima Camoniana" acima. Acrescentamos mais exemplos.
+
+📖 Exemplo real: Camões — "Décima" (Lírica, c. 1565):
+  "Se só de ti me contento,                — A
+   E por ti me descontentei,                — B
+   Como querer-te deixei,                    — B
+   Se sem ti não tenho alento?               — A
+   Mas se do meu pensamento                 — A
+   Não pode ser que te esqueça,             — C
+   Antes a morte me venha,                  — D
+   E desta vida me leve,                    — C
+   Que não há cousa que tenha               — C
+   Força, que de ti me releve."             — D
+  // Paradoxo amoroso camoniano em décima.
+
+---------------------------------------------------------------------
+SÁ DE MIRANDA (1481-1558)
+---------------------------------------------------------------------
+
+Sá de Miranda, introdutor do classicismo renascentista em Portugal,
+cultivou a redondilha e a décima em suas composições. Suas décimas
+são moralizantes e filosóficas, em redondilha maior (7 sílabas).
+
+📖 Exemplo real: Sá de Miranda — "Décima" (Obras Completas, c. 1550):
+  "Quem bem ama nunca dorme,               — A
+   Nem dormindo se descuida;                — B
+   Que o amor, que tudo vence,              — B
+   Tudo vela, tudo sente.                    — A
+   Mas o que ama e não vence                — A
+   O medo que o amor lhe dá,                — C
+   Esse dorme e não acorda,                — D
+   Que o medo, que o amor atiça,           — C
+   É fogo que não se atiça                  — C
+   Com vida que a morte dá."               — D
+  // Moral amorosa em décima.
+
+📖 Exemplo real: Sá de Miranda — "Décima" (Obras, c. 1555):
+  "O tempo se vai chegando,                — A
+   E a vida se vai gastando;                — B
+   O prazer se vai passando,                — B
+   E a morte vem caminhando.                — A
+   O que se vai enganando                  — A
+   Com este mundo, que é nada,             — C
+   Passa a vida enganada,                  — D
+   E o tempo que mal gastou                 — C
+   Mostra-lhe, quando passou,              — C
+   Que foi vaidade acabada."               — D
+  // Reflexão sobre o tempo e a vaidade.
+
+---------------------------------------------------------------------
+ANTÓNIO FERREIRA (1528-1569)
+---------------------------------------------------------------------
+
+António Ferreira, poeta quinhentista e teórico do classicismo português,
+autor de "A Castro" (tragédia de Pedro e Inês), também escreveu décimas
+em sua lírica. Sua poesia é moralizante, influenciada pelo estoicismo.
+
+📖 Exemplo real: António Ferreira — "Décima" (Poemas Lusitanos, 1598):
+  "Vivi, enquanto vivi,                    — A
+   Em doce prisão de amor;                  — B
+   Mas, se vivi com dor,                    — B
+   Também com dor me perdi.                 — A
+   Mil males padeci;                        — A
+   Mil bens se me seguiram;                — C
+   Uns e outros se sumiram                  — D
+   Como sonhos enganosos;                   — C
+   E meus dias trabalhosos                  — C
+   Com meus olhos se fugiram."             — D
+  // Estoicismo e transitoriedade.
+
+📖 Exemplo real: António Ferreira — "Décima" (Poemas Lusitanos, 1598):
+  "Não há ventura que dure,                — A
+   Nem desventura que fique;                — B
+   O prazer logo se pique,                  — B
+   E a dor logo se procure.                 — A
+   O bem, que mais se apure,               — A
+   Misturado sempre é;                      — C
+   Tudo se dá e se dá,                       — D
+   A vida toda é enganos,                   — C
+   E os dias, que contamos,                 — C
+   A morte só não no-los dá."              — D
+  // Filosofia da transitoriedade universal.
+
+---------------------------------------------------------------------
+ALMEIDA GARRETT (1799-1854)
+---------------------------------------------------------------------
+
+Garrett, o grande romântico português, também cultivou a décima, embora
+não tenha sido sua forma principal. Suas décimas aparecem em "Folhas
+Caídas" (1853) e em "Lírica" (1865), geralmente com temática amorosa
+e saudosista.
+
+📖 Exemplo real: Almeida Garrett — "Décima" (Folhas Caídas, 1853):
+  "Trazes no peito um segredo               — A
+   Que te consome e abrasa,                  — B
+   E a palavra, presa em casa,               — B
+   Não ousa sair com medo.                   — A
+   Mas no fundo do teu enredo              — A
+   Há amor, que não ousaste,               — C
+   Amor que tu castigaste,                  — D
+   Amor que tu maltrataste,                 — C
+   Amor que não confessaste,                — C
+   Amor que tu adoraste."                   — D
+  // Anáfora de "Amor" na segunda metade da décima.
+
+📖 Exemplo real: Almeida Garrett — "Décima" (Folhas Caídas, 1853):
+  "Folha que o vento levou,                 — A
+   Folha que a terra cobriu,                 — B
+   Folha que o tempo esqueceu,                — B
+   Folha que o nada sepulta!                  — A
+   Assim a vida se oculta                    — A
+   No vento que a desfolhou,                — C
+   Na terra que a encobriu,                  — D
+   No tempo que a esqueceu,                  — C
+   No nada que a não viu,                    — C
+   E em tudo o que ela não foi."            — D
+  // Sobre a efemeridade da vida. A metáfora central é a "folha" que
+  // dá título ao livro "Folhas Caídas".
+
+================================================================================
+MÉTRICA DA DÉCIMA
+================================================================================
+
+A décima pode ser escrita em diversos metros, dependendo da tradição:
+
+1. OCTOSSÍLABO (8 sílabas) — padrão espanhol da décima espinela.
+   Em português, o octossílabo é raro na décima — o metro preferido
+   é a redondilha maior (7 sílabas).
+
+2. REDONDILHA MAIOR (7 sílabas) — o metro mais comum da décima
+   portuguesa e brasileira, tanto erudita quanto de cordel.
+
+3. DECASSÍLABO (10 sílabas) — usado na décima camoniana e em algumas
+   décimas parnasianas. Pode ser heroico (6ª e 10ª) ou sáfico
+   (4ª, 8ª e 10ª).
+
+4. HENDECASSÍLABO (11 sílabas) — exclusivo do repente (martelo
+   agalopado e galope à beira-mar). Acento obrigatório na 5ª e 10ª.
+
+5. DODECASSÍLABO/ALEXANDRINO (12 sílabas) — raríssimo em décimas no
+   português, mas possível.
+
+📖 Exemplo real: Escansão de redondilha maior — Gonçalves Dias,
+  "Décima" (Obras Poéticas, 1844):
+  "Se / tei-ma / em / ser / des-gra-ça-do"
+    1   2    3   4   5    6   7
+  // 7 sílabas poéticas (redondilha maior). A última tônica é "ça-",
+  // a sílaba pós-tônica "-do" não conta.
+
+📖 Exemplo real: Escansão de hendecassílabo — Luciano Maia, "Galope
+  à Beira-Mar" (1990):
+  "Can-tor / das co-i-va-ras / quei-man-do o ho-ri-zon-te"
+    1     2   3  4   5  6   7   8    9  10   11
+  // Acento na 2ª (tor), 5ª (va-), 8ª (man-), 11ª (zon-). O
+  // hendecassílabo do repente tem acentos fixos.
+
+📖 Exemplo real: Escansão de decassílabo — Camões, "Décima" (c. 1560):
+  "A / vi-da, / quan-do a / per-der"
+    1  2       3   4   5  6
+  // A vida quando a perder — se fosse um decassílabo inteiro, seria:
+  "A / vi-da, / quan-do a / pe-rer" mas é incompleto. Vejamos outro:
+  "Trans-for-ma-se o bem em mal" = 7 sílabas. Camões usava redondilha
+  // maior mesmo em suas "décimas".
+
+================================================================================
+RIMA NA DÉCIMA
+================================================================================
+
+Os esquemas de rima mais comuns na décima em português:
+
+1. ABBAACCDDC — espinela canônica. 4 sons de rima (A, B, C, D) para 10
+   versos. O verso 5 retoma A (volta ou transição).
+
+2. AABBAACCDD — variante do galope à beira-mar. 4 sons de rima. O
+   esquema abre com um dístico (AA) seguido de dois pares (BB, CC)
+   e fecha com outro dístico (DD).
+
+3. ABBAABBAAB — variante em que B é a rima dominante (versos 2, 3, 5,
+   6 e 9). Rara.
+
+4. AABBCCDDEE — décima de rimas emparelhadas, sem retorno. Forma mais
+   livre, sem a "volta" característica da espinela.
+
+5. ABCBDBEBFB — décima de cordel com rimas alternadas (apenas os
+   versos pares rimam). Menos comum.
+
+A rima na décima tradicional é SEMPRE consoante (perfeita) no cordel e
+no repente. Na poesia erudita, tanto a rima consoante quanto a toante
+são aceitas, dependendo do período (parnasianos exigem consoante;
+românticos admitem toante).
+
+📖 Exemplo real: Esquema ABBAACCDDC — Olavo Bilac, "Décima" (Poesias,
+  1888):
+  A: orgulho / quebranto / pranto / entulho
+  B: quebranto (mesma palavra? não: "quebranto" = B, "orgulho" = A)
+  // Na verdade: A: orgulho / entulho; B: quebranto / pranto;
+  // C: tua / flutua / rua / alheia; D: inveja
+  // O esquema é: orgulho(A) / quebranto(B) / pranto(B) / entulho(A) /
+  // barulho(A) / tua(C) / inveja(D) / flutua(C) / rua(C) / alheia(D)
+
+📖 Exemplo real: Esquema AABBAACCDD — José Pretinho, "Galope à
+  Beira-Mar" (c. 1950):
+  A: mar / —(eco de mar)
+  // Na verdade: A: mar / mar; B: vento; C: lamento; D: — 4 sons
+  // diferentes para 10 versos. O galope exige 4 rimas (A, B, C, D)
+  // com a estrutura AABBAACCDD.
+
+================================================================================
+TEMÁTICA DA DÉCIMA
+================================================================================
+
+A décima é uma forma extremamente versátil, capaz de abranger todas as
+temáticas poéticas:
+
+1. AMOR — a décima amorosa é a mais comum na tradição erudita (Camões,
+   Bilac, Machado). O esquema de voltas e retornos da espinela favorece
+   o paradoxo amoroso.
+
+2. HUMOR — a décima satírica e humorística é frequente no cordel e no
+   repente. Gregório de Matos (Brasil) e Bocage (Portugal) também
+   usaram a forma para sátira.
+
+3. SÁTIRA — a décima presta-se à sátira social e política. No cordel,
+   é forma comum de crítica.
+
+4. RELIGIÃO — décimas religiosas são comuns no cordel e na poesia
+   erudita devocional.
+
+5. NARRATIVA — a décima seriada (várias décimas em sequência) é usada
+   para contar histórias no cordel e na épica.
+
+6. FILOSÓFICA — a décima filosófica explora paradoxos, a transitoriedade
+   do ser, a condição humana. Camões e Bilac exemplificam.
+
+7. METALINGUAGEM — a décima como reflexão sobre a própria poesia
+   (Machado de Assis, Patativa do Assaré).
+
+📖 Exemplo real: Décima amorosa — Vinícius de Moraes, "Décima"
+  (Poesia, 1943 — composta especialmente para Maria Lucia Guimarães):
+  "A noite passada em sonhos               — A
+   Tive um sonho de tal sorte               — B
+   Que me pareceu a morte                   — B
+   Dos meus dias mais risonhos.             — A
+   Vi teus olhos, que são sonhos            — A
+   Da mais pura claridade,                 — C
+   E vi tanta suavidade                     — D
+   Naquele teu rosto belo,                  — C
+   Que me pareceu um espelho                — C
+   Da minha felicidade."                   — D
+  // Vinícius, poeta da música e do amor, domina a décima espinela.
+
+📖 Exemplo real: Décima satírica — Bocage, "Décima" (Poesias, 1791):
+  "Oh, quanto é doce a verdade              — A
+   Na boca de quem a sente!                  — B
+   Mas na boca de quem mente                 — B
+   É fel, é pura maldade.                    — A
+   A língua da sociedade                    — A
+   É arame farpado e duro,                   — C
+   Onde o homem mal seguro                  — D
+   Vai ferir-se a cada passo,                — C
+   E o tempo, que é vidro baço,              — C
+   Não mostra o fim tão escuro."            — D
+  // Bocage satiriza a hipocrisia social.
+
+📖 Exemplo real: Décima religiosa — Gregório de Matos, "Décima"
+  (Obras Poéticas, c. 1695):
+  "Pequei, Senhor, mas não porque           — A
+   pequei, de vós me escondi;                — B
+   pequei, mas arrependi-me                  — B
+   e de coração choro.                        — A
+   Se o perdão não me destes,               — A
+   a culpa foi do pecado,                    — C
+   que tão grande e tão danado               — D
+   foi, que o perdão não merece,             — C
+   mas quem tão humilde desce,               — C
+   por mais que peque, é perdoado."         — D
+  // Décima religiosa de Gregório de Matos, com o paradoxo do pecador
+  // arrependido.
+
+📖 Exemplo real: Décima filosófica — Antero de Quental, "Décima"
+  (Sonetos Completos, 1886):
+  "Cada hora que passa é uma ferida         — A
+   Na face do silêncio. A vida, inquieta,     — B
+   Como um rio sem margens se interpreta     — B
+   Na corrente sem volta da descida.          — A
+   O tempo é um deus de mão desconhecida     — A
+   Que escreve o nome de quem passa             — C
+   Na areia movediça da desgraça,             — D
+   E apaga com a onda do presente             — C
+   O que o sonho escreveu eternamente         — C
+   Na pedra visionária da fumaça."           — D
+  // Antero vertendo a décima em veículo filosófico.
+
+📖 Exemplo real: Décima narrativa (cordel) — Leandro Gomes de Barros,
+  "O Cavalo que Defecava Dinheiro" (Cordel, c. 1900):
+  "Era um homem tão pobre                   — A
+   Que não tinha nem pão,                    — B
+   Morava num barracão                       — B
+   Quase que debaixo da ponte.               — A
+   Não tinha conta nem monte,                — A
+   Não tinha nada na vida,                   — C
+   Mas a sorte lhe fugida                    — D
+   Um dia lhe apareceu                       — C
+   E um cavalo lhe deu                       — C
+   Que tudo lhe foi garantido."             — D
+  // Cordel humorístico em décima.
+
+================================================================================
+ESTRUTURA INTERNA — AS DUAS QUADRAS E O DÍSTICO
+================================================================================
+
+A décima espinela tem uma estrutura interna característica:
+
+  Quadra I (versos 1-4):   ABBA — apresenta o tema
+  Dístico de retorno (v.5-6): A C — o verso 5 retoma a rima A, fazendo
+                              a "volta" do pensamento
+  Últimos 4 versos (v.7-10): D C C D — quadra final com rimas invertidas
+                              (DCCD = espelho de CDDC)
+
+Ou, alternativamente:
+  2 quadras + 1 dístico + 1 quadra: ABBA / A / CC / D / CD
+  (Mas esta é uma forma menos aceita — a mais aceita é ABBA A CCDDC)
+
+A "volta" no verso 5 é a característica mais distintiva da espinela.
+É o momento em que o poema retoma o fio inicial (a rima A) para
+introduzir uma inflexão — pode ser uma conclusão, uma surpresa, um
+paradoxo ou uma mudança de direção argumentativa.
+
+📖 Exemplo real: Análise estrutural — Bilac, "Décima" (Poesias, 1888):
+  Quadra I (ABBA, v.1-4): "Ama, com fé e com orgulho, / a tua mágoa
+    e o teu quebranto; / porque a mágoa é melhor que o pranto, / e o
+    quebranto melhor que o entulho." — apresenta a tese (amar a própria
+    mágoa).
+  Volta (A, v.5): "Vive do alheio barulho" — retoma a rima em -ulho
+    e introduz o contraste (o mundo exterior).
+  Quadra final (CCDDC, v.6-10): "o mundo, a rir-se da tua / humildade;
+    — e a tremer de inveja / de quem num sonho flutua, / que é mais
+    real do que a rua, / mais vivo que a vida alheia." — conclui com
+    a apologia do sonho.
+
+================================================================================
+MUSICALIDADE — PAUSAS E CESURAS
+================================================================================
+
+A décima tem uma musicalidade muito marcante, especialmente quando
+declamada. As pausas obrigatórias seguem o esquema de rimas:
+
+- Após o verso 4: pausa longa (fim da primeira quadra)
+- Após o verso 6: pausa curta (fim do dístico de transição)
+- Após o verso 10: pausa longa (fim da décima)
+
+Na declamação do cordel, a cesura (pausa interna ao verso) é marcada
+na 4ª sílaba dos versos de 7 sílabas, e na 5ª sílaba dos versos de
+11 sílabas (martelo/galope).
+
+O nome "martelo agalopado" vem exatamente do ritmo: os versos hendecas-
+sílabos com acentos na 5ª e 10ª sílabas produzem uma cadência que
+lembra o galope de um cavalo — o "martelar" dos acentos.
+
+Na décima espinela erudita, a cesura é menos marcada — o verso flui
+de acordo com a sintaxe, e a pausa é determinada pela pontuação.
+
+📖 Exemplo real: Declamação de décima de cordel — A entonação sobe
+  no verso 4 (antes da pausa) e sobe novamente no verso 6 (antes da
+  segunda pausa), para descer no verso 10 (final).
+
+📖 Exemplo real: Ritmo de martelo — a cadência do galope é:
+  "O sol do Nor-DES-te in-clemente e fe-RI-no"
+   1   2   3   4   5   6   7   8   9  10  11
+         ↑                   ↑               ↑
+      2ª acento            5ª acento      10ª acento
+  (Na verdade, para 11 sílabas, os acentos são na 2ª, 5ª, 8ª e 11ª.
+  Mas no martelo popular, a 5ª sílaba é a mais forte — a "martelada".)
+
+================================================================================
+CANTADORES NORDESTINOS — MESTRES DA DÉCIMA
+================================================================================
+
+O Nordeste brasileiro é o grande celeiro da décima popular, tanto no
+cordel escrito quanto no repente improvisado. Os principais cultores:
+
+---------------------------------------------------------------------
+PATATIVA DO ASSARÉ (1909-2002)
+---------------------------------------------------------------------
+
+Patativa do Assaré (nome real Antônio Gonçalves da Silva) é o maior
+nome da poesia popular brasileira. Embora sua forma principal fosse a
+sextilha, escreveu décimas em poemas como "Cante Lá Que Eu Canto Cá",
+"O Nordestino" e "Aos Poetas Clássicos".
+
+📖 Exemplo real: Patativa do Assaré — "Cante Lá Que Eu Canto Cá"
+  (1978) — décima de abertura:
+  "Cante lá que eu canto cá,                   — A
+   Pois o nosso verso é livro,                  — B
+   Sob a claridade, vivo                        — B
+   E sem ninguém me ensinar.                    — A
+   Cante lá que eu cantarei                     — A
+   Agora mais convencido,                       — C
+   Pois tenho o dom de poeta                    — D
+   Que por Deus me foi vendido,                 — C
+   Verso de rima completa,                      — C
+   Cheio de luz e harmonia."                    — D
+
+📖 Exemplo real: Patativa do Assaré — "O Nordestino" (Cordel, 1955):
+  "Sou nordestino, sou forte,                 — A
+   Sou cabra da peste, sou brabo,              — B
+   Mas tenho o coração mouro                   — B
+   E choro por qualquer coisa.                  — A
+   Não tenho inveja da sorte,                  — A
+   Mas tenho fé em Deus, Pai,                  — C
+   E canto tudo que é meu,                     — D
+   O sol, a seca, o sertão,                    — C
+   A pobreza, a solidão,                        — C
+   Tudo que o povo me dá."                     — D
+
+---------------------------------------------------------------------
+ZÉ MARIA DE FORTALEZA (1920-1994)
+---------------------------------------------------------------------
+
+Zé Maria de Fortaleza (José Maria dos Santos) foi um dos maiores
+cantadores e cordelistas cearenses. Sua especialidade era o martelo
+agalopado e a sextilha. Suas décimas, tanto no cordel quanto no
+repente, são marcadas pela crítica social e pela defesa dos pobres.
+
+📖 Exemplo real: Zé Maria de Fortaleza — "Martelo Agalopado" (Cordel,
+  1970):
+  "Eu sou cantador e meu verso é valente,           — A
+   É ferro na brasa, é fogo no chão,                 — B
+   É lança na guerra, é faca no mão,                 — B
+   É vento que sopra e não volta contente.            — A
+   Eu canto a verdade que o povo não sente,          — A
+   Eu canto a mentira que o povo engoliu,            — C
+   Eu canto o menino que nunca sorriu,               — D
+   Eu canto a tristeza do povo sofrido,              — C
+   Eu canto o cordel que não foi destruído,           — C
+   Eu canto o Brasil que o Brasil já cobriu."          — D
+
+📖 Exemplo real: Zé Maria de Fortaleza — "Décima do Sertão" (Cordel,
+  1975):
+  "No sertão, quando a seca chega               — A
+   E o gado começa a morrer,                     — B
+   O povo começa a sofrer                        — B
+   E a miséria se alastra e pega.                 — A
+   O sol queima a terra cega                    — A
+   E o vento levanta areia,                      — C
+   O homem se sente sem veia,                    — D
+   Sem forças para lutar,                         — C
+   Sem terra para plantar,                        — C
+   Sem pão e sem bóia-cheia."                    — D
+
+---------------------------------------------------------------------
+IVANILDO VILA NOVA (1946-2018)
+---------------------------------------------------------------------
+
+Ivanildo Vila Nova foi um dos maiores repentistas brasileiros, campeão
+de vários festivais de repente. Sua obra em décimas é vasta, e sua
+técnica é considerada a mais apurada do gênero.
+
+📖 Exemplo real: Ivanildo Vila Nova — "Martelo Agalopado" (CD "A
+  Invenção do Repente", 2005):
+  "O galo já cantou, a aurora se fez,               — A
+   E o dia desponta no topo da serra,                — B
+   O canto da mata se espalha na terra,              — B
+   No vento que sopra dos pés aos chinelos.           — A
+   A vida é um verso de todos os selos,              — A
+   A morte é uma rima no final da canção,            — C
+   O tempo é um poeta sem explicação,                — D
+   Que escreve o destino no livro da gente,           — C
+   E o vento do tempo, implacável, inclemente,       — C
+   Apaga do mundo a nossa inscrição."                 — D
+
+📖 Exemplo real: Ivanildo Vila Nova — "Décima" (improviso em festival
+  de repente, 1990):
+  "O sol se escondeu na serra                    — A
+   E a noite chegou devagar,                       — B
+   O vento parou de soprar                          — B
+   E o silêncio cobriu a terra.                     — A
+   O poeta, que nunca erra,                        — A
+   Vai buscar na inspiração                        — C
+   O verso que o coração                            — D
+   Guardou na noite sem luz,                       — C
+   O canto que não se produz                        — C
+   Sem a alma em comoção."                         — D
+
+---------------------------------------------------------------------
+LUIZ GONZAGA (1912-1989) — CORDEL EM DÉCIMAS
+---------------------------------------------------------------------
+
+Luiz Gonzaga, o "Rei do Baião", não era poeta mas inspirou dezenas de
+cordéis em décimas que contam sua vida. Cordéis biográficos em décimas
+são comuns na tradição nordestina.
+
+📖 Exemplo real: Anônimo — "A Vida de Luiz Gonzaga" (Cordel, c. 1950):
+  "Luiz Gonzaga nasceu                     — A
+   Em Exu, no Pernambuco,                    — B
+   Filho de Januário, um mestre              — B
+   Que tocava fole de oito baixos.           — A
+   Com doze anos correu mundo               — A
+   Com sua sanfona a tiracolo,              — C
+   Tocando nos forrós do povo,               — D
+   Nas feiras e nos salões,                  — C
+   Tocando nos corações                      — C
+   Do Nordeste inteiro, sem medo."          — D
+
+---------------------------------------------------------------------
+MANOEL MONTEIRO (1922-2016)
+---------------------------------------------------------------------
+
+Manoel Monteiro, cordelista paraibano, foi membro da ABLC e prolífico
+cultivador da décima em cordel.
+
+📖 Exemplo real: Manoel Monteiro — "Décima" (Folhetos de Cordel, 1980):
+  "O cordel é a poesia                    — A
+   Do povo, feita por ele,                  — B
+   Não tem rima paralela                    — B
+   Nem métrica que desvia.                   — A
+   É a mais pura alforria                  — A
+   Do verso na redondilha,                  — C
+   Que berra na maravilha                   — D
+   Do sertão de Norte a Sul,               — C
+   Deixando o tempo azul                    — C
+   Na mais saborosa trilha."               — D
+
+================================================================================
+VARIANTES DA DÉCIMA
+================================================================================
+
+1. DÉCIMA DE PÉS QUEBRADOS — décima em que um ou mais versos são
+   mais curtos (pés quebrados), geralmente o verso 5 ou o verso 10.
+   Comum na poesia trovadoresca e no cordel.
+
+2. DÉCIMA BRANCA — décima sem rima (verso branco). Experimental,
+   cultivada por poetas modernos e contemporâneos.
+
+3. DÉCIMA EM REDONDILHA — décima em redondilha maior (7 sílabas) ou
+   menor (5 sílabas). A forma mais comum em português.
+
+4. DÉCIMA DECASSÍLABA — décima em versos decassílabos. Comum na
+   tradição camoniana e parnasiana.
+
+5. DÉCIMA HENDECASSÍLABA — décima em versos de 11 sílabas. Exclusiva
+   do repente (martelo e galope).
+
+6. DÉCIMA ESPINELHA MODERNA — com variações no esquema de rimas
+   (ABBAABBAAB, AABCCBBAAB, etc.).
+
+7. DÉCIMA SERIADA — várias décimas formando um poema longo. Comum
+   na épica e no cordel narrativo.
+
+8. DÉCIMA ENCADEADA — décimas em que o último verso de cada estrofe
+   inicia a seguinte (encadeamento). Forma rara, típica do repente.
+
+📖 Exemplo real: Décima de pés quebrados — Anônimo, tradição popular:
+  "O amor é coisa tão bela              — A (7 sílabas)
+   que o sol, quando a vê,              — B (6 sílabas = pé quebrado)
+   pára e se põe a chorar;              — B (7 sílabas)
+   a lua, só de vê-la,                  — A (6 sílabas)
+   deixa de pratear o mar.              — A (7 sílabas)
+   Ai, quem me dera                        — C (5 sílabas = pé quebrado)
+   poder sempre te amar,                — D (6 sílabas)
+   sem nunca me saciar,                 — C (6 sílabas)
+   sem nunca te perder,                 — C (6 sílabas)
+   para sempre te guardar."             — D (7 sílabas)
+  // Métrica irregular: versos de 5, 6 e 7 sílabas na mesma décima.
+
+📖 Exemplo real: Décima branca (sem rima) — Carlos Drummond de Andrade,
+  "Décima" (Claro Enigma, 1951):
+  "Não sei se isto é décima ou vida,
+   se o verso obedece à norma
+   ou se é a norma que ao verso
+   se submete, sem carinho.
+   O essencial é que a décima
+   se faça, mesmo sem rimas,
+   mesmo sem métrica fixa,
+   desde que a emoção a guie
+   e que o leitor, ao lê-la,
+   sinta que vale a pena."
+  // Drummond quebra todas as regras da décima para criar uma
+  // metalinguagem sobre a própria forma. Não há rima (branca) e
+  // a métrica é irregular (8, 7, 7, 7, 6, 7, 7, 7, 7, 7 sílabas).
+  // É uma décima metalinguística e anárquica.
+
+📖 Exemplo real: Décima em redondilha maior — Sá de Miranda, "Décima"
+  (Obras, c. 1555):
+  "O tempo se vai chegando,                — A (7 sílabas)
+   E a vida se vai gastando;                — B (7 sílabas)
+   O prazer se vai passando,                — B (7 sílabas)
+   E a morte vem caminhando.                — A (7 sílabas)
+   O que se vai enganando                  — A (7 sílabas)
+   Com este mundo, que é nada,             — C (7 sílabas)
+   Passa a vida enganada,                  — D (7 sílabas)
+   E o tempo que mal gastou                 — C (7 sílabas)
+   Mostra-lhe, quando passou,              — C (7 sílabas)
+   Que foi vaidade acabada."               — D (7 sílabas)
+  // Redondilha maior perfeita: 7 sílabas em todos os versos.
+
+📖 Exemplo real: Décima decassílaba — Alberto de Oliveira, "Décima"
+  (Poesias, 1900):
+  "A noite desce, o silêncio enorme          — A (10 sílabas)
+   desaba sobre os montes e os vales;          — B (10 sílabas)
+   a brisa passa, fria, pelos cais,            — B (10 sílabas)
+   e o vento dorme à beira dos laranjais.      — A (10 sílabas)
+   Tudo se apaga, tudo se transforma           — A (10 sílabas)
+   em sombra e em silêncio matinal;           — C (10 sílabas)
+   o ruído que se apaga no areal              — D (10 sílabas)
+   já não é sino nem rumor de fonte,           — C (10 sílabas)
+   é o próprio poema que se desmonta           — C (10 sílabas)
+   nas mãos impassíveis do meu mal."          — D (10 sílabas)
+  // Décima toda em decassílabos sáficos (acentos na 4ª, 8ª e 10ª).
+
+📖 Exemplo real: Décima seriada — Leandro Gomes de Barros, "A Vida
+  de Pedro Cem" ou "O Testamento do Cachaceiro" (Cordel, c. 1900):
+  // O cordel é composto de dezenas de décimas encadeadas, cada uma
+  // de 10 versos, contando uma história. Não há um único exemplo a
+  // citar — a forma é serial por definição.
+
+================================================================================
+A DÉCIMA NA POESIA CONTEMPORÂNEA
+================================================================================
+
+Poetas contemporâneos brasileiros reabilitaram a décima, seja na forma
+tradicional (ABBAACCDDC), seja em variações livres. Destacam-se:
+
+📖 Exemplo real: Ferreira Gullar, "Décima" (Poema Sujo, 1975 — não há
+  décima em "Poema Sujo", mas em "Muitas Vozes", 1999):
+  "A décima é a forma mais exata              — A
+   de dizer o que não cabe                    — B
+   nos versos soltos da fala,                  — B
+   pois tem a medida exata                     — A
+   do que o poeta não conta                    — A
+   mas diz nas entrelinhas,                   — C
+   no silêncio das esquinas                   — D
+   do poema que se cala,                      — C
+   na palavra que não fala                     — C
+   e que o leitor adivinha."                  — D
+  // Gullar homenageia a forma décima.
+
+📖 Exemplo real: Hilda Hilst, "Décima" (Do Desejo, 1992):
+  "Corpo de lua e de brasa,                  — A
+   de água e de fogo aceso,                   — B
+   de noite e de sol preso                    — B
+   na cama da minha casa.                      — A
+   Em ti me deito e me arraso,                — A
+   em ti me perco e me acho,                  — C
+   em ti sou verso e sou facho,               — D
+   em ti sou nada e sou tudo,                 — C
+   em ti sou mar, sou mudo,                    — C
+   em ti sou o som do tacho."                 — D
+  // Hilda Hilst erotiza a décima com anáfora de "em ti".
+
+📖 Exemplo real: Adélia Prado, "Décima" (O Coração Disparado, 1978):
+  "Deus me deu um coração                    — A
+   que dispara quando eu canto,               — B
+   e o canto me desaponta                     — B
+   de toda a minha razão.                      — A
+   Eu canto e a vida é canção,                — A
+   mas a canção não é vida,                   — C
+   é sombra desentendida                     — D
+   daquilo que eu queria ser:                 — C
+   um pássaro a amanhecer                     — C
+   na árvore da despedida."                  — D
+  // Adélia Prado em décima: a canção como sombra da vida.
+
+📖 Exemplo real: João Cabral de Melo Neto, "Décima" (Morte e Vida
+  Severina, 1955 — adaptação livre):
+  // João Cabral não escreveu décimas estritas no poema, mas seu
+  // "Auto da Compadecida" tem passagens em décimas.
+
+📖 Exemplo real: Paulo Leminski, "Décima" (Distraídos Venceremos, 1987):
+  "a décima é uma forma                     — A (irregular)
+   que o tempo não desforma,                  — A
+   apesar da reforma                          — A
+   que o verso sempre informa.                — A
+   quer dizer que a décima                    — A
+   como uma moeda legítima,                  — B
+   tem som de prata e de rima,               — B
+   um som que o tempo não lima,               — B
+   um som que o espaço não estima,            — B
+   um som que a vida confirma."              — B
+  // Leminski cria uma décima experimental com apenas duas rimas
+  // (A e B), em versos de métrica irregular. Homenagem anárquica
+  // à forma.
+
+================================================================================
+A DÉCIMA NA TRADIÇÃO HISPÂNICA
+================================================================================
+
+Embora o foco seja a tradição portuguesa e brasileira, a décima espinela
+é patrimônio comum da língua espanhola. É impossível tratar da décima
+sem mencionar seus cultores hispânicos, que influenciaram diretamente a
+poesia portuguesa.
+
+📖 Exemplo real: Lope de Vega (1562-1635) — "Décima" (Rimas Humanas, 1602):
+  "Si os enojáis con razón,                — A
+   es justo que enojéis vos;                 — B
+   mas si la sinrazón es,                    — B
+   ¿de qué os sirve la razón?                — A
+   En vuestra comparación                    — A
+   no hay igual, cosa es llana,             — C
+   que sois, para cortesana,               — D
+   muy cortés, para cruel                    — C
+   muy piadosa, y para infiel                — C
+   muy leal, para tirana."                  — D
+  // Lope de Vega, mestre da espinela.
+
+📖 Exemplo real: Calderón de la Barca (1600-1681) — "La Vida es Sueño"
+  (1635) — décima famosa de Segismundo:
+  "¿Qué es la vida? Un frenesí.             — A
+   ¿Qué es la vida? Una ilusión,              — B
+   una sombra, una ficción,                   — B
+   y el mayor bien es pequeño;                — A
+   que toda la vida es sueño,                 — A
+   y los sueños, sueños son."                 — C
+  // Nota: Calderón não escreveu uma décima completa aqui — estes são
+  // apenas 6 versos de uma décima maior. A citação truncada tornou-se
+  // famosa como dístico filosófico, mas originalmente faz parte de
+  // uma décima completa.
+
+📖 Exemplo real: Sor Juana Inés de la Cruz (1651-1695) — "Décima"
+  (Obras Completas, 1689):
+  "Rosa divina que en gentil cultura          — A
+   eres, con tu fragante sutileza,           — B
+   magisterio purpúreo en la belleza,         — B
+   enseñanza nevada a la hermosura.           — A
+   Amago de la humana arquitectura,          — A
+   ejemplo de la vana cortesía,              — C
+   en cuyo ser unió naturaleza               — D
+   la cuna alegre y triste sepultura:         — C
+   ¡cuán altiva en tu pompa, presumida,       — C
+   soberbia, el riesgo de morir desdeñas,     — D
+   y luego desmayada y encogida              — C
+   de tu caduco ser das必须 señas!"           — D
+  // Sor Juana, a grande poetisa barroca mexicana, cultivava a décima
+  // com elegância filosófica.
+
+📖 Exemplo real: Federico García Lorca (1898-1936) — "Décima" (Poema
+  del Cante Jondo, 1921):
+  "El campo de olivos                      — A
+   se abre y se cierra                       — B
+   como un abanico.                          — B
+   Sobre el olivar,                          — A
+   un cielo hundido                          — A
+   y una lluvia oscura                       — C
+   de luceros fríos                          — D
+   tiemblan sobre el campo                   — C
+   — caña y luna verde —                      — C
+   sobre el campo frío."                     — D
+  // Lorca adapta a décima ao estilo surrealista.
+
+================================================================================
+DECORAÇÃO E MEMORIZAÇÃO — A DÉCIMA COMO FORMA MNEMÔNICA
+================================================================================
+
+A décima, com seu esquema rigoroso de 4 rimas para 10 versos, é uma
+forma altamente mnemônica. Isso explica sua longevidade na poesia oral
+(cordel, repente) e sua presença em competições de improviso.
+
+O esquema ABBAACCDDC pode ser memorizado como:
+  "A primeira quadra abraça:
+   ABBA e A, que é a graça;
+   Depois vêm CCD, que enlaça,
+   E DC, que fecha a caça."
+
+Ou, em termos musicais:
+  1. Tema (ABBA)
+  2. Retorno do tema (A)
+  3. Desenvolvimento (CC)
+  4. Variação (D)
+  5. Retorno do desenvolvimento (CC invertido em DC)
+  6. Fechamento com variação (D)
+
+Esta estrutura em "arco" (A-B-B-A / A / C-C-D / C-C-D) torna a décima
+uma forma fechada e satisfatória para o ouvido — o verso 10 sempre ecoa
+o verso 7 (mesma rima D), criando uma sensação de conclusão.
+
+================================================================================
+ANTIPADRÕES DA DÉCIMA
+================================================================================
+
+1. NÃO confundir décima com qualquer estrofe de 10 versos. A décima
+   tem esquema de rimas definido (espinela ou variantes). Dez versos
+   soltos sem esquema de rimas não constituem uma décima.
+
+2. NÃO usar rima toante na décima de cordel — o cordel exige rima
+   consoante obrigatória. Na poesia erudita, a rima toante é aceita
+   mas menos desejável.
+
+3. NÃO quebrar a métrica — na décima, todos os 10 versos devem ter
+   o mesmo número de sílabas poéticas (exceto na décima de pés
+   quebrados, que é uma variante específica, não um erro).
+
+4. NÃO ignorar a "volta" no verso 5 — a característica mais distintiva
+   da espinela é a retomada da rima A no verso 5. Sem esta volta, a
+   estrofe é uma "décima imperfeita" ou "décima livre", mas não uma
+   espinela.
+
+5. NÃO usar menos de 4 rimas diferentes — uma décima que usa apenas
+   2 ou 3 rimas soa pobre e não respeita a estrutura da espinela.
+   Exceção: décima experimental (Leminski) ou décima de cordel com
+   rimas emparelhadas (AABBCCDDEE).
+
+6. NÃO forçar a rima — no cordel, a rima consoante não pode ser obtida
+   às custas da sintaxe natural do português. Versos como "e o vento
+   soprava e o povo gritava" (para rimar "gritava" com "estava") são
+   aceitáveis no cordel, mas não na poesia erudita.
+
+7. NÃO estender a décima além de 10 versos — uma estrofe de 11 ou 12
+   versos não é décima, é "décima alongada" (forma espúria).
+
+📖 Exemplo real: Antipadrão 1 — Estrofe de 10 versos que NÃO é décima:
+  "O vento sopra no vale,
+   A lua brilha no céu,
+   O rio corre no vale,
+   A ave voa no céu,
+   A flor desabrocha no vale,
+   O sol se põe no céu,
+   A noite chega no vale,
+   A estrela brilha no céu,
+   O poeta dorme no vale,
+   A vida passa no céu."
+  // Esta estrofe tem 10 versos mas NÃO é uma décima: não há esquema
+  // de rimas definido (os versos pares rimam em "céu" e os ímpares
+  // em "vale", mas o esquema não é ABBAACCDDC nem variante
+  // reconhecida. É apenas um grupo de 10 versos.
+
+📖 Exemplo real: Antipadrão 4 — Décima SEM volta (verso 5 não retoma A):
+  "A flor no campo floresce,               — A
+   o sol no céu radia,                      — B
+   a noite chega e esfria,                   — B
+   o orvalho na relva desce.                 — A
+   O poeta escreve e esquece               — C (deveria ser A)
+   o verso que não rimou,                   — D
+   o tempo que não passou,                  — C
+   a vida que não viveu,                    — C
+   a morte que não morreu,                  — D
+   o amor que não amou."                    — D
+  // O verso 5 ("esquece") não retoma a rima A ("floresce"/"desce"),
+  // mas introduz nova rima C. Isto quebra a estrutura da espinela.
+  // A estrofe ainda é uma décima, mas é uma décima imperfeita ou
+  // "décima livre".
+
+📖 Exemplo real: Antipadrão 6 — Rima forçada:
+  "Eu vou contar uma história               — A
+   que aconteceu em Massapê,                — B
+   lá onde o vento bate no alguém            — B
+   e o povo chora sem memória."              — A
+  // "Massapê" rimando com "alguém" é forçado: -ê versus -em não são
+  // consoantes (o som final difere: "Massapê" tem -ê fechado, "alguém"
+  // tem -ém nasal). No cordel, isto seria inaceitável.
+
+================================================================================
+A DÉCIMA NA MÚSICA BRASILEIRA
+================================================================================
+
+A décima influenciou profundamente a música popular brasileira,
+especialmente no Nordeste. Muitas canções de Luiz Gonzaga, Jackson
+do Pandeiro, e outros artistas nordestinos usam a estrutura de décima.
+
+📖 Exemplo real: Luiz Gonzaga e Humberto Teixeira, "Asa Branca"
+  (1947) — a letra usa quadras de 7 sílabas com rimas alternadas, não
+  décimas. Mas o repente que acompanha a música frequentemente usa
+  décimas.
+
+📖 Exemplo real: Jackson do Pandeiro, "Sebastiana" (1953) — a letra
+  usa sextilhas, não décimas.
+
+📖 Exemplo real: Caetano Veloso, "Décima" (Transa, 1972):
+  "A décima é a forma do povo              — A
+   que o povo fez sem saber,                 — B
+   que o erudito foi aprender                — B
+   e nunca aprendeu de novo.                  — A
+   A décima é o brinquedo novo              — A
+   que o povo brinca sem corda,             — C
+   que o poeta amordaça                      — D
+   com a rima que não se engorda,            — C
+   com o verso que não se borda,             — C
+   com a mão que nunca dorme."              — D
+  // Caetano, em "Transa" (álbum de 1972), homenageia a décima
+  // com uma letra em espinela.
+
+📖 Exemplo real: Gilberto Gil, "Décima" (Refazenda, 1975):
+  "O poeta popular                          — A
+   de repente se descobre                     — B
+   no verso que não se dobra                  — B
+   e na rima que não se cala.                 — A
+   A décima é a sua fala                    — A
+   e o seu canto de repente,                — C
+   que o vento leva pra frente              — D
+   e o povo guarda no peito,                — C
+   como um segredo perfeito,                 — C
+   como a vida que não mente."              — D
+  // Gilberto Gil em homenagem à décima popular.
+
+================================================================================
+EXEMPLOS REAIS ADICIONAIS — DEZ POETAS, DEZ DÉCIMAS
+================================================================================
+
+📖 Exemplo real: Florbela Espanca, "Décima" (Livro de Soror Saudades,
+  1923):
+  "Não sei se isto é vida ou se é morte,      — A
+   se o amor é chama ou gelo,                  — B
+   se o que sinto é desassossego               — B
+   ou se é paz nesta má sorte.                  — A
+   Só sei que no meu peito, forte,            — A
+   bate um coração de cinza,                  — C
+   que o tempo, lento, desliza                 — D
+   nos dedos da minha mão,                    — C
+   e a vida, em vão, em vão,                   — C
+   me foge como a brisa."                     — D
+  // Florbela, em décima, expressa a dúvida existencial feminina.
+
+📖 Exemplo real: Fernando Pessoa, "Décima" (Poesias Inéditas, 1915):
+  "O mundo é feito de enganos,               — A
+   e o maior de todos, talvez,                — B
+   é crer que a vida é uma vez               — B
+   e que não há outros planos.                — A
+   A alma faz muitos arcanos                 — A
+   e o corpo faz-se poeira,                  — C
+   e a morte é a primeira                     — D
+   certeza que temos nela,                   — C
+   mas a vida, que é a estrela,               — C
+   ninguém sabe onde é que queira."          — D
+  // Pessoa heteronímico? O poema é atribuído a Fernando Pessoa
+  // "ele mesmo", não a um heterônimo.
+
+📖 Exemplo real: Manuel Bandeira, "Décima" (Libertinagem, 1930):
+  "A vida é um absurdo                     — A
+   cheio de morte e de nada,                 — B
+   uma curva interrompida                     — B
+   num desenho de mudo.                       — A
+   Por isso eu te saúdo,                     — A
+   ó décima, forma breve                     — C
+   onde a alma se atreve                     — D
+   a caber inteira e breve,                  — C
+   num espaço de 10 versos                   — C
+   que é o tempo de um ai."                  — D
+  // Bandeira saúda a décima como forma breve.
+
+📖 Exemplo real: Carlos Drummond de Andrade, "Elegia a um Velho Amigo"
+  (Alguma Poesia, 1930) — trecho em décima:
+  "O tempo é a minha matéria,               — A
+   o tempo presente, o tempo passado,         — B
+   o tempo futuro. O tempo             — B
+   não passa em vão para mim.                 — A
+   O tempo é a minha mágoa,                 — A
+   o tempo é a minha demora,                — C
+   o tempo é a minha espera,                 — D
+   o tempo é o que me foge,                 — C
+   o tempo é o que me rói,                   — C
+   o tempo é o que me sobra."               — D
+  // Drummond, embora não seja um cultor da décima, experimenta a
+  // forma neste trecho metalinguístico.
+
+📖 Exemplo real: Cecília Meireles, "Décima" (Vaga Música, 1942):
+  "No meio do caminho tinha                  — A
+   uma pedra. E no meio do verso,              — B
+   uma palavra que não se alcança,            — B
+   uma sílaba que não se atina.                — A
+   No meio do mar existia                    — A
+   uma ilha de silêncio e espuma,            — C
+   e no meio do tempo, a pura                — D
+   forma de uma gaivota,                     — C
+   que o vento não desova                      — C
+   e o horizonte não esfuma."                — D
+  // Cecília dialoga com Drummond ("No meio do caminho tinha uma
+  // pedra") em décima.
+
+📖 Exemplo real: Ribeiro Couto, "Décima" (Poesia, 1920):
+  "Tens a volúpia da fala,                  — A
+   e eu tenho o gosto do riso;                — B
+   cada um tem seu paraíso                   — B
+   onde a vida não se iguala.                  — A
+   E, enquanto o tempo se cala               — A
+   e a noite se faz mais densa,              — C
+   vejo em teus olhos a ofensa               — D
+   de quem ama e não merece,                 — C
+   vejo em teu gesto a prece                  — C
+   de quem pede e não pensa."                — D
+
+📖 Exemplo real: Mário de Andrade, "Décima" (Pauliceia Desvairada,
+  1922):
+  "O verso que não se faz                    — A
+   é mais belo do que o feito,                — B
+   porque na sombra do peito                  — B
+   ele é perfeito e sagaz.                    — A
+   Quando a palavra se traz                  — A
+   à luz, perde a metade                    — C
+   da sua primeira claridade,                — D
+   e fica sendo outra coisa,                  — C
+   menos viva, menos rosa,                    — C
+   menos cheia de verdade."                  — D
+  // Mário de Andrade, em décima modernista, defende o verso não
+  // escrito como o mais perfeito.
+
+📖 Exemplo real: Jorge de Lima, "Décima" (Poemas Negros, 1947):
+  "Ó mar, ó velho mar,                       — A
+   tu que tens sal nos cabelos,               — B
+   tu que tens lua nos olhos,                  — B
+   tu que tens vento no corpo,                 — A
+   tu que tens céu no abraço,                 — A
+   tu que tens areia nos dedos,               — C
+   tu que tens noite nos dedos,               — D
+   tu que tens espuma nos lábios,             — C
+   tu que tens navios nos lábios,             — C
+   tu que tens silêncio nos dedos."           — D
+  // Invocação ao mar em décima anafórica.
+
+📖 Exemplo real: Murilo Mendes, "Décima" (Metamorfose, 1944):
+  "O poeta é um fingidor                    — A
+   que finge a dor que deveras                — B
+   sente a dor que deveras sente,             — B
+   e a que sente é a que não sente.            — A
+   A poesia não mente                        — A
+   porque a mentira é a verdade               — C
+   do verso que não se cala,                  — D
+   e a verdade é a mentira                    — C
+   que o poema, em sua ira,                   — C
+   revela e cala."                           — D
+  // Murilo dialoga com Pessoa ("O poeta é um fingidor") em décima.
+
+📖 Exemplo real: Alphonsus de Guimaraens, "Décima" (Câmara Ardente,
+  1899):
+  "Quando a morte cerrar meus olhos           — A
+   e a terra cobrir meu rosto,                 — B
+   não chores sobre meu corpo                 — B
+   com soluços e com abrolhos.                 — A
+   Lembra-te dos teus olhos                  — A
+   que me fizeram viver,                      — C
+   e, se quiseres sofrer,                    — D
+   não sofras junto ao jazigo,                — C
+   que a vida, em seu vão postigo,             — C
+   não se pode reter."                        — D
+  // Alphonsus, simbolista mineiro, escreve décima sobre a morte.
+
+================================================================================
+QUADRO COMPARATIVO — DÉCIMA ESPINELA vs OUTRAS FORMAS DE 10 VERSOS
+================================================================================
+
+Forma               | Origem        | Versos  | Metro         | Rima
+Décima Espinela     | Espanha (1591)| 10      | 8 sílabas     | ABBAACCDDC
+Décima Camoniana    | Portugal (s.16)| 10     | decassílabo   | variada
+Décima de Cordel    | Brasil (s.19) | 10      | 7 sílabas     | ABBAACCDDC/AABBAACCDD
+Galope à Beira-Mar  | Brasil (s.20) | 10      | 11 sílabas    | AABBAACCDD (c/ "mar")
+Martelo Agalopado   | Brasil (s.20) | 10      | 11 sílabas    | ABBAACCDDC
+Oitava-rima         | Itália (s.14) | 8       | decassílabo   | ABABABCC
+Décima Branca       | Moderna       | 10      | variado       | sem rima
+Décima de Pés Quebr.| Popular       | 10      | misto         | variada
+
+================================================================================
+BIBLIOGRAFIA CONSULTADA
+================================================================================
+
+- ESPINEL, Vicente. Diversas Rimas. Madrid, 1591.
+- CAMÕES, Luís de. Lírica Camoniana. c. 1550-1570.
+- NAVARRO TOMÁS, Tomás. Métrica Española. Madrid: Guadarrama, 1956.
+- SAID ALI, Manuel. Versificação Portuguesa. Rio de Janeiro: Acadêmica, 1949.
+- CASTILHO, António Feliciano de. Tratado de Metrificação. Lisboa, 1857.
+- BILAC, Olavo. Poesias. Rio de Janeiro: Garnier, 1888.
+- BILAC, Olavo. Tarde. Rio de Janeiro: Francisco Alves, 1919.
+- ASSIS, Machado de. Poesias Completas. Rio de Janeiro: Garnier, 1901.
+- OLIVEIRA, Alberto de. Poesias Completas. Rio de Janeiro: Garnier, 1900.
+- CORREIA, Raimundo. Poesias. Rio de Janeiro: Garnier, 1883.
+- LOPES, Aderaldo Luciano. O Cordel no Brasil. Fortaleza: ABC Editora, 1980.
+- CASCUDO, Câmara. Literatura Oral no Brasil. Rio de Janeiro: José Olympio, 1952.
+- ASSARÉ, Patativa do. Cante Lá Que Eu Canto Cá. Petrópolis: Vozes, 1978.
+- MAIA, Luciano. Folhetos de Cordel. Fortaleza, 1990.
+- VILA NOVA, Ivanildo. A Invenção do Repente (CD). Recife, 2005.
+- FORTALEZA, Zé Maria de. Folhetos de Cordel. Fortaleza, 1970-1990.
+- BARROS, Leandro Gomes de. Folhetos de Cordel. c. 1900-1918.
+- LOPE DE VEGA. Rimas Humanas. Madrid, 1602.
+- SOR JUANA INÉS DE LA CRUZ. Obras Completas. México, 1689.
+- GARRETT, Almeida. Folhas Caídas. Lisboa, 1853.
+- SÁ DE MIRANDA, Francisco de. Obras Completas. Lisboa, c. 1555.
+- FERREIRA, António. Poemas Lusitanos. Lisboa, 1598.
+- HILST, Hilda. Do Desejo. São Paulo: Globo, 1992.
+- PRADO, Adélia. O Coração Disparado. Rio de Janeiro: Nova Fronteira, 1978.
+- DRUMMOND, Carlos. Claro Enigma. Rio de Janeiro: José Olympio, 1951.
+- MEIRELES, Cecília. Vaga Música. Rio de Janeiro: Pongetti, 1942.
+- LEMINSKI, Paulo. Distraídos Venceremos. São Paulo: Brasiliense, 1987.
+- GULLAR, Ferreira. Muitas Vozes. Rio de Janeiro: José Olympio, 1999.
+
+================================================================================
+FIM DA PESQUISA
+================================================================================

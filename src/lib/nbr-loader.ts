@@ -11,6 +11,12 @@ const STRUCTURE_FILE_MAP: Record<string, string> = {
   decassilabo: 'decassilabo.txt',
   poema: 'poema-poesia.txt',
   poesia: 'poema-poesia.txt',
+  trova: 'trova.txt',
+  oitava: 'oitava.txt',
+  decima: 'decima.txt',
+  elegia: 'elegia.txt',
+  ode: 'ode.txt',
+  'verso-livre': 'verso-livre.txt',
 };
 
 const MAX_NBR_LENGTH = 50000;

@@ -11,6 +11,7 @@ import {
 import { SuggestionCard } from "./suggestion-card";
 import { Button } from "./ui/button";
 import { Skeleton } from "./ui/skeleton";
+import { cn } from "@/lib/utils";
 import { Undo2 } from "lucide-react";
 
 interface SuggestionListProps {
@@ -24,6 +25,7 @@ interface SuggestionListProps {
   onSwapAlternative?: (suggestion: Suggestion, alternativeIndex: number) => void;
   appliedToneSuggestions?: Suggestion[];
   onUndoAppliedTone?: (suggestion: Suggestion) => void;
+  activeSuggestion?: Suggestion | null;
 }
 
 export function SuggestionList({
@@ -37,6 +39,7 @@ export function SuggestionList({
   onSwapAlternative,
   appliedToneSuggestions = [],
   onUndoAppliedTone,
+  activeSuggestion,
 }: SuggestionListProps) {
   const hasGrammar = suggestions.some(s => s.type === 'grammar');
   const toneSuggestions = suggestions.filter(s => s.type === 'tone');
@@ -98,6 +101,7 @@ export function SuggestionList({
                   <SuggestionCard
                     key={`${index}-${suggestion.originalText}`}
                     suggestion={suggestion}
+                    isActive={activeSuggestion?.originalText === suggestion.originalText && activeSuggestion?.type === suggestion.type}
                     onAccept={() => onAccept(suggestion)}
                     onDismiss={() => onDismiss(suggestion)}
                     onResuggest={() => onResuggest(suggestion)}

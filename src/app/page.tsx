@@ -722,6 +722,7 @@ export default function Home() {
               onSwapAlternative={handleSwapAlternative}
               appliedToneSuggestions={appliedToneSuggestions}
               onUndoAppliedTone={handleUndoAppliedTone}
+              activeSuggestion={activeGrammarSuggestion}
             />
           </div>
         </main>
