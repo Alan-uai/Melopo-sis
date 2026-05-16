@@ -218,23 +218,47 @@ export function getIndexedCount(): number {
 // Retrieval
 // ---------------------------------------------------------------------------
 
-function buildQuery(structure: string, text: string): string {
+export type RetrievalOptions = {
+  structure: string;
+  text: string;
+  focus: 'grammar' | 'tone';
+  tone?: string;
+  rhyme?: boolean;
+  k?: number;
+};
+
+function buildQuery(opts: RetrievalOptions): string {
+  const { structure, text, focus, tone, rhyme } = opts;
   const preview = text.replace(/\s+/g, ' ').slice(0, 300);
-  return `[${structure}] ${preview}`;
+
+  if (focus === 'grammar') {
+    const parts = [
+      `[${structure}]`,
+      'NBR regras: métrica rima estrofação estrofe verso escansão sílaba acento pontuação espaçamento parágrafo concordância ortografia',
+    ];
+    if (rhyme) parts.push('rima obrigatória rima consoante toante rica pobre');
+    return parts.join(' ');
+  }
+
+  const parts = [
+    `[${structure}]`,
+    tone ? `tom ${tone}` : '',
+    'tom poético estilo dicção figura de linguagem metáfora imagem exemplos',
+  ];
+  if (rhyme) parts.push('rima musicalidade sonoridade');
+  return parts.filter(Boolean).join(' ');
 }
 
 export async function retrieveRelevantChunks(
-  structure: string,
-  text: string,
-  k: number = 6,
+  opts: RetrievalOptions,
 ): Promise<Array<{ text: string; metadata: Record<string, string> }>> {
-  const query = buildQuery(structure, text);
+  const query = buildQuery(opts);
 
   try {
     const docs = await ai.retrieve({
       retriever: nbrRetriever,
       query,
-      options: { k },
+      options: { k: opts.k || 6 },
     });
 
     if (!docs || docs.length === 0) return [];
@@ -275,13 +299,13 @@ export function loadResearchFallback(structure: string): string {
 // ---------------------------------------------------------------------------
 
 export async function buildResearchContext(
-  structure: string,
-  text: string,
+  opts: RetrievalOptions,
 ): Promise<string> {
-  const chunks = await retrieveRelevantChunks(structure, text, 6);
+  const chunks = await retrieveRelevantChunks(opts);
 
   if (chunks.length === 0) {
-    return loadResearchFallback(structure);
+    if (opts.focus === 'grammar') return '';
+    return loadResearchFallback(opts.structure);
   }
 
   return chunks

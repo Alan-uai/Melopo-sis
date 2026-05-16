@@ -127,23 +127,22 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
     const blob = await captureCard(3);
     if (!blob) return;
     try {
+      const mod = await import("jspdf");
+      const JsPDF = (mod as any).default || mod;
+      const pdf = Reflect.construct(JsPDF, [{ orientation: "portrait", unit: "px", format: [400, 600] }]) as any;
       const imgData = await new Promise<string>((resolve) => {
         const reader = new FileReader();
-        reader.onload = () => resolve(reader.result as string);
+        reader.addEventListener("loadend", () => resolve(reader.result as string));
         reader.readAsDataURL(blob);
       });
-      const JsPDFMod: Record<string, unknown> = await import("jspdf");
-      const JsPDF = (JsPDFMod.default || JsPDFMod) as new (...args: unknown[]) => Record<string, unknown>;
-      const pdf = new JsPDF({ orientation: "portrait", unit: "px", format: [400, 600] });
-      const img = new Image();
+      const img = document.createElement("img");
       img.src = imgData;
-      await new Promise((resolve) => { img.onload = resolve; });
+      await new Promise<void>((resolve) => { img.onload = () => resolve(); });
       const imgW = 380;
       const imgH = (img.height / img.width) * imgW;
-      const pageH = 580;
-      if (imgH > pageH) {
-        const scale = pageH / imgH;
-        pdf.addImage(imgData, "PNG", 10, 10, imgW * scale, pageH);
+      if (imgH > 580) {
+        const scale = 580 / imgH;
+        pdf.addImage(imgData, "PNG", 10, 10, imgW * scale, 580);
       } else {
         pdf.addImage(imgData, "PNG", 10, 10, imgW, imgH);
       }

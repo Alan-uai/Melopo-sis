@@ -170,31 +170,45 @@ const suggestionFlow = ai.defineFlow(
     const punctuationRules = input.punctuationRules || loadPunctuationRules();
     const rhymeRules = input.rhymeRules || loadRhymeRules();
 
-    const researchRules = input.researchRules || await buildResearchContext(input.structure, input.text);
-
-    const enrichedInput = {
-      ...input, nbrRules, researchRules, toneRules,
+    const baseInput = {
+      ...input, nbrRules, toneRules,
       orthographyRules, punctuationRules, rhymeRules,
     };
 
-    if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
-      const localResult = await validateAll(
-        input.text,
-        input.structure as TextStructure,
-        input.rhyme
-      );
-
-      if (localResult.suggestions.length > 0) {
-        return localResult;
-      }
-    }
-
     if (input.suggestionType === 'tone') {
-      const { output } = await withFallback((model) => tonePrompt(enrichedInput, { model }));
+      const researchRules = input.researchRules || await buildResearchContext({
+        structure: input.structure,
+        text: input.text,
+        focus: 'tone',
+        tone: input.tone,
+        rhyme: input.rhyme,
+      });
+
+      const { output } = await withFallback((model) =>
+        tonePrompt({ ...baseInput, researchRules }, { model })
+      );
       return output || { suggestions: [] };
     }
 
-    const { output } = await withFallback((model) => grammarPrompt(enrichedInput, { model }));
+    const localResult = await validateAll(
+      input.text,
+      input.structure as TextStructure,
+      input.rhyme,
+    );
+    if (localResult.suggestions.length > 0) {
+      return localResult;
+    }
+
+    const researchRules = input.researchRules || await buildResearchContext({
+      structure: input.structure,
+      text: input.text,
+      focus: 'grammar',
+      rhyme: input.rhyme,
+    });
+
+    const { output } = await withFallback((model) =>
+      grammarPrompt({ ...baseInput, researchRules }, { model })
+    );
     return output || { suggestions: [] };
   }
 );
