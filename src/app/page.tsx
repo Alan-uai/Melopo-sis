@@ -43,6 +43,11 @@ type Poem = {
   rhyme: boolean;
   createdAt: any;
   updatedAt: any;
+  grammarSuggestions?: Suggestion[];
+  toneSuggestions?: Suggestion[];
+  appliedToneSuggestions?: Suggestion[];
+  excludedPhrasesMap?: Record<string, string[]>;
+  currentSuggestionIndex?: number | null;
 };
 
 const GRADUAL_DEBOUNCE_MS = 800;
@@ -83,6 +88,8 @@ export default function Home() {
   const [pastStates, setPastStates] = useState<string[]>([]);
   const [futureStates, setFutureStates] = useState<string[]>([]);
   const MAX_UNDO = 50;
+
+  const [lastAcceptedOrigin, setLastAcceptedOrigin] = useState<string | null>(null);
 
   const [poemSearchQuery, setPoemSearchQuery] = useState("");
   const [poemFilterStructure, setPoemFilterStructure] = useState("");
@@ -154,12 +161,18 @@ export default function Home() {
       try {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
-          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme } = JSON.parse(savedData);
+          const parsed = JSON.parse(savedData);
+          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex } = parsed;
           if (text) setText(text);
           if (title !== undefined) setPoemTitle(title);
           if (savedTone) setTone(savedTone);
           if (savedStructure) setTextStructure(savedStructure as TextStructure);
           if (savedRhyme !== undefined) setRhyme(savedRhyme);
+          if (grammarSuggestions) setGrammarSuggestions(grammarSuggestions);
+          if (toneSuggestions) setToneSuggestions(toneSuggestions);
+          if (appliedToneSuggestions) setAppliedToneSuggestions(appliedToneSuggestions);
+          if (excludedPhrasesMap) setExcludedPhrasesMap(excludedPhrasesMap);
+          if (currentSuggestionIndex !== undefined) setCurrentSuggestionIndex(currentSuggestionIndex);
         }
       } catch (error) {
         console.error("Falha ao ler do localStorage", error);
@@ -171,7 +184,11 @@ export default function Home() {
   useEffect(() => {
     if (isMounted && !activePoem) {
       try {
-        const dataToSave = JSON.stringify({ text, title: poemTitle, tone, textStructure, rhyme });
+        const dataToSave = JSON.stringify({
+          text, title: poemTitle, tone, textStructure, rhyme,
+          grammarSuggestions, toneSuggestions, appliedToneSuggestions,
+          excludedPhrasesMap, currentSuggestionIndex,
+        });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
@@ -188,7 +205,11 @@ export default function Home() {
     setRhyme(poem.rhyme);
     setPastStates([]);
     setFutureStates([]);
-    resetSuggestions();
+    setGrammarSuggestions(poem.grammarSuggestions ?? []);
+    setToneSuggestions(poem.toneSuggestions ?? []);
+    setAppliedToneSuggestions(poem.appliedToneSuggestions ?? []);
+    setExcludedPhrasesMap(poem.excludedPhrasesMap ?? {});
+    setCurrentSuggestionIndex(poem.currentSuggestionIndex ?? null);
     toast({
       title: "Poema Carregado",
       description: `"${poem.title || 'Poema sem título'}" carregado no editor.`,
@@ -426,6 +447,11 @@ export default function Home() {
       rhyme: rhyme,
       authorId: user.uid,
       updatedAt: serverTimestamp(),
+      grammarSuggestions: grammarSuggestions,
+      toneSuggestions: toneSuggestions,
+      appliedToneSuggestions: appliedToneSuggestions,
+      excludedPhrasesMap: excludedPhrasesMap,
+      currentSuggestionIndex: currentSuggestionIndex,
     };
 
     setIsLoading(true);
@@ -528,6 +554,8 @@ export default function Home() {
   const handleAccept = useCallback((suggestionToAccept: Suggestion) => {
     if (!suggestionToAccept) return;
 
+    setLastAcceptedOrigin(suggestionToAccept.originalText);
+
     if (suggestionToAccept.type === 'grammar') {
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
@@ -610,7 +638,6 @@ export default function Home() {
   };
 
   const handleSwapAlternative = useCallback((suggestionToSwap: Suggestion, alternativeIndex: number) => {
-    if (suggestionToSwap.type !== 'tone') return;
     const alternatives = suggestionToSwap.alternatives;
     if (!alternatives || alternativeIndex >= alternatives.length) return;
 
@@ -894,6 +921,7 @@ export default function Home() {
               toneSuggestions={toneSuggestions}
               onAcceptAllLowSeverity={handleAcceptAllLowSeverity}
               lowSeverityCount={lowSeverityCount}
+              lastAcceptedOrigin={lastAcceptedOrigin}
             />
             {isMobile ? (
               totalSuggestionCount > 0 && (

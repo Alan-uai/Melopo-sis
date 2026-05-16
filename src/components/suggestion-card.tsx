@@ -4,8 +4,7 @@ import { useState, useCallback, useRef, useEffect } from "react";
 import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
 import { useAnimationState, useInkOrigin, useReducedMotion } from "@/hooks/use-animation";
 import type { SwapIntensity } from "@/lib/animation";
-import { GoldenSpiral } from "@/components/golden-spiral";
-import { QuillPen } from "@/components/quill-pen";
+import { PencilStrike } from "@/components/pencil-strike";
 import {
   Accordion,
   AccordionContent,
@@ -54,7 +53,7 @@ export function SuggestionCard({
   const { phase: inkPhase, transitionTo: inkTransition } = useAnimationState();
   const { origin, capture: captureInkOrigin, clear: clearInkOrigin } = useInkOrigin();
   const reducedMotion = useReducedMotion();
-  const [showAcceptEffect, setShowAcceptEffect] = useState(false);
+  const [showPencilStrike, setShowPencilStrike] = useState(false);
 
   const intensity: SwapIntensity = suggestion.severity === "alta" ? "high" : suggestion.severity === "media" ? "medium" : "low";
 
@@ -83,7 +82,13 @@ export function SuggestionCard({
           <div className="flex w-full items-start justify-between gap-2">
             <div className="flex items-start gap-2 overflow-hidden">
                <Icon className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-1" />
-               <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">"{suggestion.originalText}"</em></span>
+                <span className="text-left">{triggerText} <em className="font-normal text-muted-foreground">
+                  {showPencilStrike ? (
+                    <PencilStrike text={suggestion.originalText} width={120} height={20} />
+                  ) : (
+                    `"${suggestion.originalText}"`
+                  )}
+                </em></span>
             </div>
             <div className="flex items-center gap-1.5 flex-shrink-0">
               {suggestion.severity && (
@@ -174,11 +179,9 @@ export function SuggestionCard({
                     </li>
                   ))}
                 </ul>
-                {!isGrammar && (
-                  <p className="text-[10px] text-muted-foreground/60 mt-1">
-                    Clique em uma alternativa para trocá-la com a sugestão atual
-                  </p>
-                )}
+                <p className="text-[10px] text-muted-foreground/60 mt-1">
+                  Clique em uma alternativa para trocá-la com a sugestão atual
+                </p>
               </div>
             )}
             <div className="flex justify-end gap-2">
@@ -196,13 +199,13 @@ export function SuggestionCard({
                 onClick={(e) => {
                   captureInkOrigin(e as unknown as React.MouseEvent<HTMLElement>);
                   inkTransition("active");
-                  if (!isGrammar) setShowAcceptEffect(true);
+                  setShowPencilStrike(true);
                   setTimeout(() => {
                     onAccept();
                     setTimeout(() => {
                       inkTransition("idle");
                       clearInkOrigin();
-                      setShowAcceptEffect(false);
+                      setShowPencilStrike(false);
                     }, 700);
                   }, 100);
                 }}
@@ -212,14 +215,7 @@ export function SuggestionCard({
                 Aceitar
               </Button>
             </div>
-            {showAcceptEffect && !isGrammar && acceptBtnRef.current && (
-              <div className="relative flex justify-center pt-2">
-                <GoldenSpiral width={100} height={60} pointCount={6} scale={30} />
-                <div className="absolute bottom-0 right-0">
-                  <QuillPen width={80} height={28} />
-                </div>
-              </div>
-            )}
+
           </div>
         </AccordionContent>
       </AccordionItem>

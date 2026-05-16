@@ -4,6 +4,7 @@ import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb, Image 
 import { HaikuCounter } from "@/components/haiku-counter";
 import { SonnetVisualizer } from "@/components/sonnet-visualizer";
 import { MeterVisualizer } from "@/components/meter-visualizer";
+import { QuillPen } from "@/components/quill-pen";
 import {
   Card,
   CardContent,
@@ -64,6 +65,7 @@ interface EditorProps {
   toneSuggestions: Suggestion[];
   onAcceptAllLowSeverity?: () => void;
   lowSeverityCount?: number;
+  lastAcceptedOrigin?: string | null;
 }
 
 export interface EditorRef {
@@ -110,6 +112,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   toneSuggestions,
   onAcceptAllLowSeverity,
   lowSeverityCount,
+  lastAcceptedOrigin,
 }, ref) => {
   const structures: { value: TextStructure, label: string }[] = [
     { value: 'poema', label: 'Poema' },
@@ -129,6 +132,37 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const isMobile = useIsMobile();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
+  const quillContainerRef = useRef<HTMLDivElement>(null);
+
+  const [quillPos, setQuillPos] = useState<{ top: number; left: number } | null>(null);
+  const [quillText, setQuillText] = useState<string | null>(null);
+  const prevAcceptedOriginRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (lastAcceptedOrigin && lastAcceptedOrigin !== prevAcceptedOriginRef.current && textareaRef.current) {
+      const ta = textareaRef.current;
+      const idx = text.indexOf(lastAcceptedOrigin);
+      if (idx !== -1) {
+        const textBefore = text.substring(0, idx);
+        const lines = textBefore.split('\n');
+        const lineNum = lines.length - 1;
+        const colNum = lines[lines.length - 1].length;
+
+        const lineHeight = 24;
+        const charWidth = 8.5;
+        const top = lineNum * lineHeight + 8;
+        const left = Math.min(colNum * charWidth, ta.clientWidth - 60);
+
+        setQuillPos({ top, left });
+        setQuillText(lastAcceptedOrigin);
+        setTimeout(() => {
+          setQuillPos(null);
+          setQuillText(null);
+        }, 1500);
+      }
+      prevAcceptedOriginRef.current = lastAcceptedOrigin;
+    }
+  }, [text, lastAcceptedOrigin]);
 
   const [animationState, setAnimationState] = useState<AnimationState>('idle');
   const [animationStage, setAnimationStage] = useState<AnimationStage>('beam');
@@ -501,7 +535,15 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </div>
 
             <Popover open={!!activeGrammarSuggestion} onOpenChange={() => {}}>
-              <div className="relative grid flex-1">
+              <div className="relative grid flex-1" ref={quillContainerRef}>
+                  {quillPos && quillText && (
+                    <div
+                      className="absolute pointer-events-none z-40"
+                      style={{ top: quillPos.top, left: quillPos.left }}
+                    >
+                      <QuillPen width={80} height={24} color="hsl(var(--accent))" />
+                    </div>
+                  )}
                   <Textarea
                       ref={textareaRef}
                       value={text}
