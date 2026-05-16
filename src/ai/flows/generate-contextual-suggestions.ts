@@ -6,6 +6,7 @@ import { loadNbrRules, loadToneRules, loadOrthographyRules, loadPunctuationRules
 import { buildResearchContext } from '@/lib/nbr-rag';
 import type { TextStructure } from '@/lib/poetic-forms';
 import { validateAll } from '@/lib/local-validator';
+import { globalCache } from '@/lib/suggestion-cache';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
@@ -153,6 +154,27 @@ EXEMPLO:
   `
 });
 
+function getParams(input: SuggestionInput) {
+  return {
+    suggestionType: input.suggestionType === 'all' ? 'grammar' as const : input.suggestionType,
+    structure: input.structure,
+    tone: input.tone,
+    rhyme: input.rhyme,
+  };
+}
+
+function filterSuggestionsForSegments(
+  suggestions: Suggestion[],
+  segments: string[],
+): Suggestion[] {
+  return suggestions.filter(s =>
+    segments.some(seg =>
+      (s.context && s.context.includes(seg.trim()))
+      || seg.includes(s.originalText)
+    )
+  );
+}
+
 const suggestionFlow = ai.defineFlow(
   {
     name: 'suggestionFlow',
@@ -161,6 +183,13 @@ const suggestionFlow = ai.defineFlow(
   },
   async (input) => {
     if (!input.text.trim()) {
+      return { suggestions: [] };
+    }
+
+    const cacheParams = getParams(input);
+    const { changed } = globalCache.diff(input.text, cacheParams);
+
+    if (changed.length === 0) {
       return { suggestions: [] };
     }
 
@@ -187,7 +216,15 @@ const suggestionFlow = ai.defineFlow(
       const { output } = await withFallback((model) =>
         tonePrompt({ ...baseInput, researchRules }, { model })
       );
-      return output || { suggestions: [] };
+
+      const suggestions = output?.suggestions || [];
+      const newSuggestions = filterSuggestionsForSegments(
+        suggestions,
+        changed.map(s => s.text),
+      );
+
+      globalCache.store(changed, cacheParams, newSuggestions);
+      return { suggestions: newSuggestions };
     }
 
     const localResult = await validateAll(
@@ -195,8 +232,15 @@ const suggestionFlow = ai.defineFlow(
       input.structure as TextStructure,
       input.rhyme,
     );
-    if (localResult.suggestions.length > 0) {
-      return localResult;
+
+    const localNew = filterSuggestionsForSegments(
+      localResult.suggestions,
+      changed.map(s => s.text),
+    );
+
+    if (localNew.length > 0) {
+      globalCache.store(changed, cacheParams, localNew);
+      return { suggestions: localNew };
     }
 
     const researchRules = input.researchRules || await buildResearchContext({
@@ -209,6 +253,14 @@ const suggestionFlow = ai.defineFlow(
     const { output } = await withFallback((model) =>
       grammarPrompt({ ...baseInput, researchRules }, { model })
     );
-    return output || { suggestions: [] };
+
+    const suggestions = output?.suggestions || [];
+    const newSuggestions = filterSuggestionsForSegments(
+      suggestions,
+      changed.map(s => s.text),
+    );
+
+    globalCache.store(changed, cacheParams, newSuggestions);
+    return { suggestions: newSuggestions };
   }
 );

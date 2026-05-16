@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { Document } from 'genkit/retriever';
 import { ai, nbrIndexer, nbrRetriever } from '@/ai/genkit';
+import { extractRelevantContent } from './context-extractor';
 
 const NBR_DIR = join(process.cwd(), 'docs', 'nbr');
 
@@ -308,11 +309,5 @@ export async function buildResearchContext(
     return loadResearchFallback(opts.structure);
   }
 
-  return chunks
-    .map(c => {
-      const source = c.metadata.sourceFile || '';
-      const section = c.metadata.section || c.metadata.code || '';
-      return `[${source}]${section ? ` — ${section}` : ''}\n${c.text}`;
-    })
-    .join('\n\n---\n\n');
+  return extractRelevantContent(chunks, opts.text);
 }
