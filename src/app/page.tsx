@@ -64,104 +64,7 @@ export default function Home() {
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
-  const textRef = useRef(text);
-  textRef.current = text;
-
-  const undoStackRef = useRef<string[]>([]);
-  const redoStackRef = useRef<string[]>([]);
-
-  const pushUndoHistory = useCallback((currentText: string) => {
-    undoStackRef.current.push(currentText);
-    if (undoStackRef.current.length > 100) undoStackRef.current.shift();
-    redoStackRef.current = [];
-  }, []);
-
-  const handleUndo = useCallback(() => {
-    if (undoStackRef.current.length === 0) return;
-    redoStackRef.current.push(textRef.current);
-    const restoredText = undoStackRef.current.pop()!;
-    setText(restoredText);
-  }, []);
-
-  const handleRedo = useCallback(() => {
-    if (redoStackRef.current.length === 0) return;
-    undoStackRef.current.push(textRef.current);
-    const restoredText = redoStackRef.current.pop()!;
-    setText(restoredText);
-  }, []);
-
   const gradualTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  // Keyboard shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // Don't trigger shortcuts when typing in textarea/inputs
-      const target = e.target as HTMLElement;
-      const isTypingInInput =
-        target.tagName === 'INPUT' ||
-        target.tagName === 'TEXTAREA' ||
-        target.isContentEditable ||
-        target.closest('input, textarea, [contenteditable]') !== null;
-
-      if (isTypingInInput) return;
-
-      const ctrlKey = e.ctrlKey || e.metaKey; // Support Cmd on Mac
-      const shiftKey = e.shiftKey;
-
-      // Ctrl+S / Cmd+S: Save poem
-      if (ctrlKey && !shiftKey && e.key.toLowerCase() === 's') {
-        e.preventDefault();
-        handleSavePoem();
-        return;
-      }
-
-      // Ctrl+Z / Cmd+Z: Undo
-      if (ctrlKey && !shiftKey && e.key.toLowerCase() === 'z') {
-        e.preventDefault();
-        handleUndo();
-        return;
-      }
-
-      // Ctrl+Shift+Z / Cmd+Shift+Z: Redo
-      if (ctrlKey && shiftKey && e.key.toLowerCase() === 'z') {
-        e.preventDefault();
-        handleRedo();
-        return;
-      }
-
-      // Escape: Close suggestion popover
-      if (!ctrlKey && !shiftKey && e.key === 'Escape') {
-        e.preventDefault();
-        // Close popover by setting state that would close it
-        // This is handled by the Editor component's internal state
-        // We can't directly close it from here, but Escape in editor
-        // is handled by the SuggestionPopover component
-        return;
-      }
-
-      // Only process these in final mode
-      if (suggestionMode === 'final') {
-        // Ctrl+Enter: Check spelling
-        if (ctrlKey && !shiftKey && e.key === 'Enter') {
-          e.preventDefault();
-          handleCheckSpelling();
-          return;
-        }
-
-        // Ctrl+Shift+Enter: Suggest tone
-        if (ctrlKey && shiftKey && e.key === 'Enter') {
-          e.preventDefault();
-          handleSuggestTone();
-          return;
-        }
-      }
-    };
-
-    document.addEventListener('keydown', handleKeyDown);
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [handleCheckSpelling, handleRedo, handleUndo, handleSavePoem, handleSuggestTone, suggestionMode]);
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -667,7 +570,6 @@ export default function Home() {
   }, []);
 
   const handleUndoAppliedTone = useCallback((suggestionToUndo: Suggestion) => {
-    pushUndoHistory(textRef.current);
     setText(prevText => prevText.replace(suggestionToUndo.correctedText, suggestionToUndo.originalText));
     setToneSuggestions(prev => [...prev, suggestionToUndo]);
     setAppliedToneSuggestions(prev => prev.filter(s => s.originalText !== suggestionToUndo.originalText));
