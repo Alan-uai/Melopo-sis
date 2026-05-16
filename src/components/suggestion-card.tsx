@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
 import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
 import {
   Accordion,
@@ -17,7 +16,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./ui/t
 
 interface SuggestionCardProps {
   suggestion: Suggestion;
-  isActive?: boolean;
   onAccept: () => void;
   onDismiss: () => void;
   onResuggest: () => void;
@@ -34,7 +32,6 @@ const severityVariant: Record<string, "destructive" | "secondary" | "default"> =
 
 export function SuggestionCard({
   suggestion,
-  isActive,
   onAccept,
   onDismiss,
   onResuggest,
@@ -66,7 +63,7 @@ export function SuggestionCard({
     <Accordion type="single" collapsible className="w-full" defaultValue={`item-${suggestion.originalText}`}>
       <AccordionItem
         value={`item-${suggestion.originalText}`}
-        className={cn("rounded-lg border-none bg-secondary/30", isActive && "animate-suggestion-highlight")}
+        className="rounded-lg border-none bg-secondary/30"
       >
         <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
           <div className="flex w-full items-start justify-between gap-2">

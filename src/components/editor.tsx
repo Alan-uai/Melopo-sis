@@ -217,8 +217,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         }
 
         parts.push(
-            <PopoverAnchor key={`anchor-${startIndex}-${originalText}`} className="relative">
-                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer animate-highlight-in">
+            <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
+                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
                     {originalText.replace(/\n/g, '\n\u200B')}
                 </span>
             </PopoverAnchor>
