@@ -3,6 +3,7 @@
 import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
 import { loadNbrRules, loadToneRules, loadOrthographyRules, loadPunctuationRules, loadRhymeRules } from '@/lib/nbr-loader';
+import { buildResearchContext } from '@/lib/nbr-rag';
 import type { TextStructure } from '@/lib/poetic-forms';
 import { validateAll } from '@/lib/local-validator';
 
@@ -26,6 +27,9 @@ REGRAS DE LICENÇA POÉTICA:
 
 REGRAS DA ESTRUTURA "{{structure}}":
 {{{nbrRules}}}
+
+MATERIAL DE PESQUISA (consulte em caso de dúvida sobre contexto histórico, tradição, exemplos, ou fundamentação teórica):
+{{{researchRules}}}
 
 REGRAS DE PONTUAÇÃO POÉTICA:
 {{{punctuationRules}}}
@@ -129,6 +133,9 @@ REGRAS DE TOM — "{{tone}}":
 REGRAS ESTRUTURAIS (NBR):
 {{{nbrRules}}}
 
+MATERIAL DE PESQUISA (consulte para fundamentar sugestões com exemplos da tradição poética brasileira):
+{{{researchRules}}}
+
 REGRAS DE RIMA:
 {{{rhymeRules}}}
 
@@ -162,7 +169,13 @@ const suggestionFlow = ai.defineFlow(
     const orthographyRules = input.orthographyRules || loadOrthographyRules();
     const punctuationRules = input.punctuationRules || loadPunctuationRules();
     const rhymeRules = input.rhymeRules || loadRhymeRules();
-    const enrichedInput = { ...input, nbrRules, toneRules, orthographyRules, punctuationRules, rhymeRules };
+
+    const researchRules = input.researchRules || await buildResearchContext(input.structure, input.text);
+
+    const enrichedInput = {
+      ...input, nbrRules, researchRules, toneRules,
+      orthographyRules, punctuationRules, rhymeRules,
+    };
 
     if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
       const localResult = await validateAll(

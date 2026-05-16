@@ -12,6 +12,7 @@
 | `npm run genkit:dev` | `genkit start -- tsx src/ai/dev.ts` |
 | `npm run genkit:watch` | same with `--watch` for hot-reload |
 | `npm run lint` | **Not configured** — placeholder echo only |
+| `npx tsx src/scripts/index-nbr.ts` | Indexar todos os `.txt` e `-research.txt` no vector store local (RAG) |
 
 Order: `typecheck -> test`. No lint, no build needed for dev.
 
@@ -21,7 +22,8 @@ Order: `typecheck -> test`. No lint, no build needed for dev.
 - **Tailwind CSS v4** — no `tailwind.config.ts`; config in `src/app/globals.css` via `@import "tailwindcss"` + `@theme {}` blocks
 - **shadcn/ui** — Radix primitives, `components.json` at root, icons from `lucide-react`
 - **Firebase** — Auth (Google) + Firestore. Init in `src/firebase/index.ts`: tries App Hosting env vars first, falls back to hardcoded `firebaseConfig`. **Never modify `initializeFirebase`**.
-- **Genkit AI** — `googleai/gemini-2.5-flash` (configurable via `MODELS` env var), prompt flows in `src/ai/flows/`. Model fallback via `withFallback()` in `src/ai/genkit.ts`. Requires `GOOGLE_GENAI_API_KEY` in `.env` (file is gitignored — create it).
+- **Genkit AI** — `googleai/gemini-2.5-flash` (configurable via `MODELS` env var), prompt flows in `src/ai/flows/`. Model fallback via `withFallback()` in `src/ai/genkit.ts`. Requires `GEMINI_API_KEY` or `GOOGLE_API_KEY` in `.env` (file is gitignored — copy `.env.example`).
+- **RAG semântico** (NBR) — `src/lib/nbr-rag.ts` indexa todos os `.txt` e `-research.txt` em vector store local (`devLocalVectorstore`). Indexação via `npx tsx src/scripts/index-nbr.ts`. Na falta de indexação prévia, o sistema cai em fallback carregando o research file da estrutura diretamente (comportamento anterior).
 - **Vitest** — `environment: 'node'` (no jsdom). `spell-checker.test.ts` mocks `@/lib/dictionary`; `dictionary-integration.test.ts` uses the real module.
 - **Custom Portuguese dictionary** — ~561k words from `src/lib/supplement-words.txt` (VOLP/ABL + fserb/pt-br corpus) loaded at runtime via `src/lib/dictionary.ts`. Morphological analysis handles conjugations, plurals, feminine forms, adverbs in `-mente`, diminutives/augmentatives, and superlatives. No Hunspell or nspell involved despite unused `hunspell-spellchecker` and `dictionary-pt-br` deps. Run `npx tsx scripts/test-dictionary.ts` to verify the word set.
 

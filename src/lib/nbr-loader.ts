@@ -37,7 +37,7 @@ export function loadRhymeRules(): string {
   return loadRawDoc('rima.txt');
 }
 
-function loadRawDoc(filename: string): string {
+export function loadRawDoc(filename: string): string {
   const filePath = join(NBR_DIR, filename);
   try {
     const content = readFileSync(filePath, 'utf-8');

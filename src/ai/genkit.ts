@@ -1,10 +1,24 @@
 import {genkit} from 'genkit';
 import {googleAI} from '@genkit-ai/google-genai';
+import {devLocalVectorstore, devLocalIndexerRef, devLocalRetrieverRef} from '@genkit-ai/dev-local-vectorstore';
+
+const embedder = googleAI.embedder('gemini-embedding-001');
 
 export const ai = genkit({
-  plugins: [googleAI()],
+  plugins: [
+    googleAI(),
+    devLocalVectorstore([
+      {
+        indexName: 'nbr_index',
+        embedder,
+      },
+    ]),
+  ],
   model: 'googleai/gemini-2.5-flash',
 });
+
+export const nbrIndexer = devLocalIndexerRef('nbr_index');
+export const nbrRetriever = devLocalRetrieverRef('nbr_index');
 
 function parseModels(): string[] {
   const raw = process.env.MODELS || '';
