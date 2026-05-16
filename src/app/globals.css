@@ -2,6 +2,7 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+@custom-variant motion-safe (@media (prefers-reduced-motion: no-preference));
 
 @theme inline {
   --color-background: hsl(var(--background));
@@ -51,6 +52,25 @@
   --animate-border-beam: border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, 1) var(--animation-direction, normal);
   --animate-border-color-pulse: border-color-pulse 0.7s ease-in-out;
   --animate-swap-flash: swap-flash 0.4s ease-out;
+  --animate-swap-enhanced: swap-enhanced 0.6s ease-out;
+  --animate-accordion-elastic: accordion-elastic 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-ink-bloom: ink-bloom 0.7s ease-out forwards;
+  --animate-ink-ripple: ink-ripple 0.5s ease-out forwards;
+  --animate-particle-float: particle-float 1.2s ease-out forwards;
+  --animate-stagger-in: stagger-fade-in 0.3s ease-out both;
+  --animate-parchment: parchment-reveal 2s ease-out forwards;
+  --animate-pulse-stress: pulse-stress 1s ease-in-out infinite;
+  --animate-brush-stroke: brush-stroke 1.5s ease-out forwards;
+  --animate-quill-stroke: quill-stroke 1.2s ease-out forwards;
+  --animate-golden-spiral: golden-spiral-draw 1s linear forwards;
+  --animate-expand-circle: expand-circle 0.8s ease-out forwards;
+  --animate-ripple-fast: ripple-fast 0.3s ease-out forwards;
+  --animate-ripple-slow: ripple-slow 0.6s ease-out forwards;
+  --animate-draw-icon: draw-icon 0.6s ease-out forwards;
+  --animate-meter-wave: meter-wave 1.5s ease-in-out forwards;
+  --animate-sonnet-line: sonnet-line 0.4s ease-out both;
+  --animate-sonnet-connector: sonnet-connector 0.6s ease-out forwards;
+  --animate-petal-float: petal-float 4s ease-in-out infinite;
 
   @keyframes accordion-down {
     from { height: 0; }
@@ -77,6 +97,94 @@
   @keyframes swap-flash {
     0% { background-color: hsl(var(--accent) / 0.4); transform: scale(1.04); }
     100% { background-color: transparent; transform: scale(1); }
+  }
+  @keyframes swap-enhanced {
+    0% { background-color: transparent; transform: scale(1); box-shadow: none; filter: none; }
+    5% { background-color: hsl(var(--accent) / 0.3); transform: scale(1.04); box-shadow: 0 0 0 0 hsl(var(--accent) / 0.5); filter: brightness(1.1); }
+    20% { background-color: hsl(var(--accent) / 0.2); transform: scale(1.02); box-shadow: 0 0 0 8px transparent; filter: brightness(1.05); }
+    50% { background-color: transparent; transform: scale(1); box-shadow: 0 0 0 4px hsl(var(--accent) / 0.1); filter: brightness(1); }
+    100% { background-color: transparent; transform: scale(1); box-shadow: none; filter: none; }
+  }
+  @keyframes accordion-elastic {
+    0% { height: 0; opacity: 0; }
+    60% { height: var(--radix-accordion-content-height); opacity: 1; }
+    80% { height: calc(var(--radix-accordion-content-height) * 1.03); }
+    100% { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes ink-bloom {
+    0% { --bloom-radius: 0; opacity: 0.9; }
+    40% { --bloom-radius: 80; opacity: 0.7; }
+    70% { --bloom-radius: 120; opacity: 0.3; }
+    100% { --bloom-radius: 150; opacity: 0; }
+  }
+  @keyframes ink-ripple {
+    0% { box-shadow: 0 0 0 0 hsl(var(--accent) / 0.3); }
+    100% { box-shadow: 0 0 0 20px transparent; }
+  }
+  @keyframes particle-float {
+    0% { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--particle-x, 30px), var(--particle-y, -40px)) scale(0); opacity: 0; }
+  }
+  @keyframes stagger-fade-in {
+    0% { opacity: 0; transform: translateY(8px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes parchment-reveal {
+    0% { opacity: 0; }
+    30% { opacity: 0.06; }
+    100% { opacity: 0.08; }
+  }
+  @keyframes pulse-stress {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+  @keyframes brush-stroke {
+    0% { stroke-dashoffset: var(--path-length, 1000); }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes quill-stroke {
+    0% { stroke-width: 0; opacity: 0; }
+    20% { stroke-width: 2; opacity: 0.8; }
+    60% { stroke-width: 1; opacity: 0.6; }
+    100% { stroke-width: 0.5; opacity: 1; }
+  }
+  @keyframes golden-spiral-draw {
+    0% { stroke-dashoffset: var(--spiral-length, 2000); }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes expand-circle {
+    0% { r: 0; opacity: 0.8; }
+    60% { opacity: 0.4; }
+    100% { r: var(--fib-radius, 20); opacity: 0; }
+  }
+  @keyframes ripple-fast {
+    0% { transform: scale(0); opacity: 0.4; }
+    100% { transform: scale(3); opacity: 0; }
+  }
+  @keyframes ripple-slow {
+    0% { transform: scale(0); opacity: 0.2; }
+    100% { transform: scale(4); opacity: 0; }
+  }
+  @keyframes draw-icon {
+    0% { stroke-dashoffset: 100; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes meter-wave {
+    0% { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes sonnet-line {
+    0% { opacity: 0; transform: translateX(-10px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes sonnet-connector {
+    0% { stroke-dashoffset: 200; }
+    100% { stroke-dashoffset: 0; }
+  }
+  @keyframes petal-float {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.7; }
+    50% { transform: translateY(-60px) rotate(180deg) scale(0.6); opacity: 0.3; }
+    100% { transform: translateY(-120px) rotate(360deg) scale(0.3); opacity: 0; }
   }
 }
 
@@ -197,6 +305,26 @@
     inherits: true;
     initial-value: 0deg;
   }
+  @property --bloom-radius {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+  }
+  @property --ink-x {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 50;
+  }
+  @property --ink-y {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 50;
+  }
+  @property --swap-intensity {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 1;
+  }
 
   .animate-border-beam {
     --border-size: 1px;
@@ -211,5 +339,143 @@
       )
       1;
     animation: border-beam var(--animation-duration, 5s) linear var(--animation-iteration-count, infinite) var(--animation-direction, normal);
+  }
+
+  .ink-bloom-overlay {
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      circle at calc(var(--ink-x, 50) * 1%) calc(var(--ink-y, 50) * 1%),
+      hsl(var(--bloom-color, var(--accent)) / 0.3) 0%,
+      transparent calc(var(--bloom-radius, 0) * 1px)
+    );
+    animation: ink-bloom 0.7s ease-out forwards;
+    will-change: background, opacity;
+    contain: layout style paint;
+  }
+
+  .swap-enhanced {
+    animation: swap-enhanced calc(0.6s * var(--swap-intensity, 1)) ease-out;
+    will-change: transform, box-shadow, filter;
+    contain: layout style;
+  }
+
+  .parchment-bg {
+    position: relative;
+    overflow: hidden;
+  }
+  .parchment-bg::before {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    inset: 0;
+    opacity: 0;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--foreground) / 0.02) 2px,
+        hsl(var(--foreground) / 0.02) 4px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        hsl(45 30% 70% / 0.08),
+        transparent 70%
+      );
+    mix-blend-mode: multiply;
+    animation: parchment-reveal 2s ease-out forwards;
+    will-change: opacity;
+    contain: layout style paint;
+  }
+  .dark .parchment-bg::before {
+    background:
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 2px,
+        hsl(var(--foreground) / 0.015) 2px,
+        hsl(var(--foreground) / 0.015) 4px
+      ),
+      radial-gradient(
+        ellipse at 50% 0%,
+        hsl(45 20% 20% / 0.12),
+        transparent 70%
+      );
+    mix-blend-mode: screen;
+  }
+
+  .button-ripple {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .button-ripple::before,
+  .button-ripple::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    background: hsl(var(--ripple-color, var(--accent)) / 0.2);
+    transform: scale(0);
+    width: 100%;
+    padding-bottom: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    will-change: transform, opacity;
+  }
+  .button-ripple::before {
+    animation: ripple-fast 0.3s ease-out forwards;
+  }
+  .button-ripple::after {
+    animation: ripple-slow 0.6s ease-out forwards;
+  }
+
+  .icon-draw svg {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: draw-icon 0.6s ease-out forwards;
+  }
+
+  .accordion-elastic {
+    animation: accordion-elastic 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .sonnet-connector-line {
+    stroke-dasharray: 200;
+    stroke-dashoffset: 200;
+    animation: sonnet-connector 0.6s ease-out forwards;
+  }
+
+  .haiku-brush-svg path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: brush-stroke 1.5s ease-out forwards;
+  }
+
+  .quill-pen-svg path {
+    animation: quill-stroke 1.2s ease-out forwards;
+  }
+
+  .golden-spiral-svg path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: golden-spiral-draw 1s linear forwards;
+  }
+
+  .stress-mark {
+    animation: pulse-stress 1s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

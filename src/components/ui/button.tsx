@@ -37,19 +37,19 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
+  rippleColor?: string
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  ({ className, variant, size, asChild = false, rippleColor, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
-    
-    // Allow passing custom size classes
+
     const sizeClass =
       size && ['default', 'sm', 'lg', 'icon'].includes(size)
         ? buttonVariants({ variant, size })
         : '';
-        
-    const customSizeClass = 
+
+    const customSizeClass =
       size && !['default', 'sm', 'lg', 'icon'].includes(size)
       ? size
       : '';
@@ -57,11 +57,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          buttonVariants({ variant }), 
+          buttonVariants({ variant }),
           sizeClass,
-          customSizeClass, 
+          customSizeClass,
+          "button-ripple",
           className
         )}
+        style={{
+          "--ripple-color": rippleColor ?? "var(--accent)",
+        } as React.CSSProperties}
         ref={ref}
         {...props}
       />

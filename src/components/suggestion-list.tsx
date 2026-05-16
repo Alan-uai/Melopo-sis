@@ -47,7 +47,7 @@ export function SuggestionList({
   }, {} as Record<string, number>);
 
   return (
-    <Card className="w-full shadow-lg">
+    <Card className="w-full shadow-lg parchment-bg">
       <CardHeader>
         <CardTitle className="font-headline text-3xl">
           {hasGrammar ? "Sugestões de Correção" : "Sugestões de Tom"}

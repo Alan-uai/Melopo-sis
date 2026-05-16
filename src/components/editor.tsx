@@ -1,6 +1,9 @@
 "use client";
 
 import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb, Image } from "lucide-react";
+import { HaikuCounter } from "@/components/haiku-counter";
+import { SonnetVisualizer } from "@/components/sonnet-visualizer";
+import { MeterVisualizer } from "@/components/meter-visualizer";
 import {
   Card,
   CardContent,
@@ -527,7 +530,39 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               )}
             </Popover>
           </div>
-       </div>
+        </div>
+
+        {textStructure === "haicai" && text.trim() && (
+          <div className="pt-4">
+            <HaikuCounter
+              lines={(() => {
+                const lines = text.split('\n').filter(l => l.trim());
+                return [lines[0] ?? "", lines[1] ?? "", lines[2] ?? ""] as [string, string, string];
+              })()}
+              className="py-2"
+            />
+          </div>
+        )}
+
+        {textStructure === "soneto" && text.trim() && (
+          <div className="pt-4 flex justify-center">
+            <SonnetVisualizer
+              lines={text.split('\n').filter(l => l.trim()).slice(0, 14)}
+              className="py-2"
+            />
+          </div>
+        )}
+
+        {text.trim() && (textStructure === "decassilabo" || textStructure === "verso-livre") && (
+          <div className="pt-4">
+            <MeterVisualizer
+              text={text}
+              width={300}
+              height={48}
+              className="py-1"
+            />
+          </div>
+        )}
 
         {suggestionMode === "final" && (
           <div className="flex flex-col gap-2 pt-4">

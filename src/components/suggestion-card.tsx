@@ -2,6 +2,10 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
+import { useAnimationState, useInkOrigin, useReducedMotion } from "@/hooks/use-animation";
+import type { SwapIntensity } from "@/lib/animation";
+import { GoldenSpiral } from "@/components/golden-spiral";
+import { QuillPen } from "@/components/quill-pen";
 import {
   Accordion,
   AccordionContent,
@@ -45,6 +49,16 @@ export function SuggestionCard({
 
   const [swapVersion, setSwapVersion] = useState(0);
   const lastCorrectedRef = useRef(suggestion.correctedText);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const acceptBtnRef = useRef<HTMLButtonElement>(null);
+  const { phase: inkPhase, transitionTo: inkTransition } = useAnimationState();
+  const { origin, capture: captureInkOrigin, clear: clearInkOrigin } = useInkOrigin();
+  const reducedMotion = useReducedMotion();
+  const [showAcceptEffect, setShowAcceptEffect] = useState(false);
+
+  const intensity: SwapIntensity = suggestion.severity === "alta" ? "high" : suggestion.severity === "media" ? "medium" : "low";
+
+  const inkActive = inkPhase === "active" || inkPhase === "finishing";
 
   useEffect(() => {
     if (lastCorrectedRef.current !== suggestion.correctedText) {
@@ -103,7 +117,18 @@ export function SuggestionCard({
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <blockquote key={`corrected-${swapVersion}`} className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic animate-swap-flash">
+                <div ref={contentRef} className="relative">
+                  {inkActive && origin && (
+                    <div
+                      className="ink-bloom-overlay"
+                      style={{
+                        "--ink-x": origin.x,
+                        "--ink-y": origin.y,
+                        "--bloom-color": `var(--${suggestion.type === 'grammar' ? 'anim-correct' : 'anim-finish'})`,
+                      } as React.CSSProperties}
+                    />
+                  )}
+                <blockquote key={`corrected-${swapVersion}`} className={`whitespace-pre-wrap border-l-2 border-primary pl-4 italic ${reducedMotion ? '' : 'swap-enhanced'}`} style={{ "--swap-intensity": intensity === "high" ? 1.5 : intensity === "medium" ? 1 : 0.5 } as React.CSSProperties}>
                   <TooltipProvider>
                     {correctedTextParts.map((part, index) => {
                        const isWord = part.match(/\w/);
@@ -130,6 +155,7 @@ export function SuggestionCard({
                     })}
                   </TooltipProvider>
                 </blockquote>
+                </div>
               </CardContent>
             </Card>
             {suggestion.alternatives && suggestion.alternatives.length > 1 && (
@@ -166,13 +192,34 @@ export function SuggestionCard({
               </Button>
               <Button
                 size="sm"
-                onClick={onAccept}
+                ref={acceptBtnRef}
+                onClick={(e) => {
+                  captureInkOrigin(e as unknown as React.MouseEvent<HTMLElement>);
+                  inkTransition("active");
+                  if (!isGrammar) setShowAcceptEffect(true);
+                  setTimeout(() => {
+                    onAccept();
+                    setTimeout(() => {
+                      inkTransition("idle");
+                      clearInkOrigin();
+                      setShowAcceptEffect(false);
+                    }, 700);
+                  }, 100);
+                }}
                 className="bg-accent text-accent-foreground hover:bg-accent/90"
               >
-                <Check className="mr-2 h-4 w-4" />
+                <Check className="mr-2 h-4 w-4 icon-draw" />
                 Aceitar
               </Button>
             </div>
+            {showAcceptEffect && !isGrammar && acceptBtnRef.current && (
+              <div className="relative flex justify-center pt-2">
+                <GoldenSpiral width={100} height={60} pointCount={6} scale={30} />
+                <div className="absolute bottom-0 right-0">
+                  <QuillPen width={80} height={28} />
+                </div>
+              </div>
+            )}
           </div>
         </AccordionContent>
       </AccordionItem>
