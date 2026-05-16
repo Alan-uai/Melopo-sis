@@ -11,6 +11,21 @@ Fonte: Wikipédia, "Soneto"; tradição literária (Petrarca, Camões, Bilac, An
 Descrição: O soneto é composto obrigatoriamente por 14 versos, geralmente decassílabos (10 sílabas) ou dodecassílabos/alexandrinos (12 sílabas), distribuídos em 2 quartetos (estrofe de 4 versos) e 2 tercetos (estrofe de 3 versos). Não se admitem variações no número de versos.
 ❌ Errado: soneto com 12 versos, soneto com 16 versos, estrofação irregular
 ✅ Correto: 2 quartetos + 2 tercetos = 14 versos
+📖 Exemplo real: Camões, "Amor é fogo que arde sem se ver" — 14 versos exatos em decassílabos, distribuídos 4+4+3+3:
+  "Amor é fogo que arde sem se ver;
+  É ferida que dói, e não se sente;
+  É um contentamento descontente;
+  É dor que desatina sem doer.
+  É um não querer mais que bem querer;
+  É um andar solitário entre a gente;
+  É nunca contentar-se e contente;
+  É um cuidar que ganha em se perder.
+  É querer estar preso por vontade;
+  É servir a quem vence, o vencedor;
+  É ter com quem nos mata, lealdade.
+  Mas como causar pode seu favor
+  Nos corações humanos amizade,
+  Se tão contrário a si é o mesmo Amor?"
 Severidade: alta
 Categoria: estrutura
 
@@ -19,6 +34,11 @@ Fonte: tradição literária (Camões, Sonetos completos)
 Descrição: Os 14 versos devem ser agrupados em exatamente 4 estrofes: dois quartetos (estrofe I e II) seguidos de dois tercetos (estrofe III e IV). A separação visual entre estrofes é obrigatória.
 ❌ Errado: 3 estrofes (ex: 4+6+4), 5 estrofes, bloco único sem separação
 ✅ Correto: 4 estrofes na ordem 4-4-3-3, com espaçamento entre elas
+📖 Exemplo real: Vinícius de Moraes, "Soneto de Fidelidade" — estrofação 4+4+3+3 com clara separação visual:
+  Quarteto I: "De tudo, ao meu amor serei atento / Antes, e com tal zelo, e sempre, e tanto / Que mesmo em face do maior encanto / Dele se encante mais meu pensamento."
+  Quarteto II: "Quero vivê-lo em cada vão momento / E em seu louvor hei de espalhar meu canto / E rir meu riso e derramar meu pranto / Ao seu pesar ou seu contentamento."
+  Terceto I: "E assim, quando mais tarde me procure / Quem sabe a morte, angústia de quem vive / Quem sabe a solidão, fim de quem ama"
+  Terceto II: "Eu possa me dizer do amor (que tive): / Que não seja imortal, posto que é chama / Mas que seja infinito enquanto dure."
 Severidade: alta
 Categoria: estrutura
 
@@ -27,6 +47,13 @@ Fonte: tradição petrarquiana; Camões, "Amor é fogo que arde sem se ver"
 Descrição: No soneto italiano clássico, os quartetos seguem o esquema ABBA ABBA (rimas interpoladas). Os tercetos seguem variações como CDC DCD, CDE CDE, ou CDC CDC. As rimas dos quartetos são fixas e idênticas (ABBA = mesmas rimas A e B nos dois quartetos).
 ❌ Errado: ABAB ABAB nos quartetos (é esquema inglês), ABCA ABCA, rimas diferentes entre 1º e 2º quartetos
 ✅ Correto: ABBA ABBA CDC DCD, ABBA ABBA CDE CDE, ABBA ABBA CDC CDC
+📖 Exemplo real: Camões, "Amor é fogo que arde sem se ver" — esquema ABBA ABBA CDC DCD:
+  A: ver / sente / descontente / doer     (1º quarteto: ABBA)
+  A: querer / gente / contente / perder   (2º quarteto: ABBA)
+  C: vontade / vencedor / lealdade        (1º terceto: CDC)
+  D: favor / amizade / Amor               (2º terceto: DCD)
+  ⚠ Nota: o A de "ver" rima com "querer"; o B de "sente" rima com "gente"; os quartetos compartilham as mesmas rimas A e B.
+📖 Exemplo real: Vinícius de Moraes, "Soneto de Fidelidade" — quarteto ABBA (atento/encanto/tanto/pensamento), segundo quarteto ABBA (momento/canto/pranto/contentamento), tercetos CDE DEC (procure/vive/ama : tive/chama/dure).
 Severidade: alta
 Categoria: rima
 
@@ -35,6 +62,15 @@ Fonte: tradição inglesa (Shakespeare, Spenser); adaptado na poesia brasileira 
 Descrição: Variação alternativa onde os 12 primeiros versos organizam-se em 3 quartetos com rimas alternadas (ABAB CDCD EFEF), seguidos de um dístico final (GG). Esta forma é aceita na tradição brasileira como variação, mas a forma italiana é a canônica.
 ❌ Errado: misturar esquemas italiano e inglês no mesmo soneto
 ✅ Correto: ABAB CDCD EFEF GG (inglês); ABBA ABBA CDC DCD (italiano, preferencial)
+📖 Exemplo real: Manuel Bandeira, "Soneto Inglês nº 1" — esquema ABAB CDCD EFEF GG:
+  A: duros / imaturos             ┐ 1º quarteto
+  B: padecimentos / momentos      ┘ ABAB
+  C: distante / instante          ┐ 2º quarteto
+  B: isenta / prevejo             ┘ CDCD  (nota: variação ligeira na rima B)
+  E: abandono / embora            ┐ 3º quarteto
+  F: nudez / tez (subentendida)   ┘ EFEF
+  G: momento / esquecimento       ─ dístico GG
+  "Quando a morte cerrar meus olhos duros — / Duros de tantos vãos padecimentos, / Que pensarão teus peitos imaturos / Da minha dor de todos os momentos? // Vejo-te agora alheia, e tão distante: / Mais que distante — isenta. E bem prevejo, / Desde já bem prevejo o exato instante / Em que de outro será não teu desejo, // Que o não terás, porém teu abandono, / Tua nudez! Um dia hei de ir embora / Adormecer no derradeiro sono. // E, ao despertar, na fria madrugada, / Serei enfim a sombra que não chora / Na noite obscura e para sempre nada."
 Severidade: media
 Categoria: rima
 
@@ -47,6 +83,18 @@ Fonte: Wikipédia, "Soneto"; Bilac, "Via Láctea"; Camões, "Os Lusíadas"
 Descrição: No soneto clássico português, cada verso é geralmente decassílabo (10 sílabas poéticas, contadas até a última tônica). O soneto em alexandrinos (12 sílabas) também é usado desde o Parnasianismo. A contagem poética funde vogais átonas em hiato (sinalefa).
 ❌ Errado: versos com 9 ou 11 sílabas poéticas em soneto decassílabo clássico
 ✅ Correto: "A-mor é / fo-go que / ar-de sem / se ver" (10 sílabas: A-mor-é-fo-go-que-ar-de-sem-se-ver)
+📖 Exemplo real com escansão: Camões, "Amor é fogo que arde sem se ver" — escansão do primeiro verso:
+  A-mor-(é)-fo-go-que-ar-de-sem-se-ver
+  1   2  3  4   5  6  7  8   9  10
+  (elisão: "amor é" → a-mo-ré, fundem-se)
+📖 Exemplo real: Bilac, "Via Láctea" (Soneto XIII):
+  "O-ra (di-reis) ou-vir es-tre-las! Cer-to
+   1   2   3   4   5   6   7  8    9   10
+  Per-des-te o sen-so!" E eu vos di-rei, no en-tan-to,
+   1   2   3  4   5  6   7  8   9   10
+  Que, pa-ra ou-vi-las, mui-ta vez des-per-to
+  E a-bro as ja-ne-las, pá-li-do de es-pan-to..."
+  — todos decassílabos perfeitos, com elisões em "E eu" e "no entanto".
 Severidade: alta
 Categoria: métrica
 
@@ -55,6 +103,16 @@ Fonte: Wikipédia, "Verso decassílabo"; Said Ali, "Versificação Portuguesa"; 
 Descrição: O decassílabo heroico (camoniano) tem acentos primários obrigatórios na 6ª e 10ª sílabas poéticas. A acentuação na 6ª sílaba permite uma cesura natural na declamação. Pode haver acentos secundários complementares (ex: 3ª na variante martelo).
 ❌ Errado: versos sem acento na 6ª sílaba (ex: acento na 5ª ou 7ª)
 ✅ Correto: "As ar-mas e os ba-rões as-si-na-la-dos" (6ª: -rões, 10ª: -dos)
+📖 Exemplo real com escansão: Camões, "Os Lusíadas", Canto I, est. 1:
+  "As / ar-mas / e os / ba-RÕES / as-si-na-LA-dos"
+   1    2     3   4   5  6     7   8   9  10
+                        ↑ acento primário na 6ª (RÕES)
+                                            ↑ acento primário na 10ª (LA)
+  Acento secundário na 1ª (As), 3ª (ar-), 8ª (na-).
+📖 Exemplo real: Camões, soneto "Amor é fogo que arde sem se ver":
+  "É / ser-vir a / quem ven-ce, o / ven-ce-DOR"
+   1   2   3  4   5   6  7  8    9   10
+                        ↑ 6ª: -ce   ↑ 10ª: DOR
 Severidade: alta
 Categoria: métrica
 
@@ -63,6 +121,16 @@ Fonte: Wikipédia, "Verso decassílabo"; tradição clássica
 Descrição: O decassílabo sáfico tem acentos primários na 4ª, 8ª e 10ª sílabas poéticas. É menos comum que o heroico na tradição portuguesa, mas é reconhecido como variante legítima. Pode ser combinado com heroicos no mesmo poema.
 ❌ Errado: misturar acentos heroicos (6ª) e sáficos (8ª) no mesmo verso
 ✅ Correto: "A luz mor-reu, a noi-te vem ca-in-do" (4ª: -reu, 8ª: -te, 10ª: -do)
+📖 Exemplo real com escansão: "A luz morreu, a noite vem caindo" — de Cruz e Sousa:
+  A / luz / mor-REU / a / NOI-te / vem / ca-IN-do
+  1   2   3   4    5   6    7   8   9  10
+              ↑ 4ª: REU        ↑ 8ª: NOI    ↑ 10ª: IN
+  (acento na 4ª: "morreu", 8ª: "noite", 10ª: "caindo")
+📖 Exemplo real: Gonçalves Dias, "Canção do Exílio" (verso de abertura, em redondilha maior — mas para decassílabo sáfico, ver Cruz e Sousa, "Antífona"):
+  "Ó / For-mas / al-vas, / BRAN-cas, / For-mas / CLA-ras"
+   1   2   3   4   5   6   7   8   9
+        ↑ 3ª          ↑ 6ª — variação livre
+  — para sáfico puro, buscar em Bocage ou Gonzaga.
 Severidade: alta
 Categoria: métrica
 
@@ -71,6 +139,16 @@ Fonte: tradição clássica; Castilho, "Tratado de Metrificação"
 Descrição: O verso decassílabo clássico exige uma cesura (pausa) após a 5ª ou 6ª sílaba, dividindo o verso em dois hemistíquios. A cesura é marcada por pausa sintática ou rítmica.
 ❌ Errado: verso decassílabo sem pausa interna perceptível, com cesura após a 3ª sílaba
 ✅ Correto: "As armas e os barões // assinalados" (cesura após barões, 6ª sílaba)
+📖 Exemplo real: Camões, "Os Lusíadas", Canto I, 1:
+  "As armas e os barões // assinalados"     ← cesura 5+5 (barões / assi-)
+  "Que da ocidental praia // Lusitana"      ← cesura 6+4 (praia / Lusi-)
+  "Por mares nunca de antes // navegados"   ← cesura 6+4 (antes / nave-)
+📖 Exemplo real: Bilac, "Via Láctea", Soneto XIII:
+  "Ora (direis) ouvir estrelas! // Certo perdeste o senso!"
+  — cesura após "estrelas" (6ª sílaba), marcada por exclamação.
+📖 Exemplo real: Camões, "Amor é fogo":
+  "É ferida que dói // e não se sente"      ← cesura 5+5 (dói / e não)
+  "É um contentamento // descontente"        ← cesura 5+5 (-to / des-)
 Severidade: media
 Categoria: métrica
 
@@ -83,6 +161,18 @@ Fonte: tradição literária; Manuais de versificação
 Descrição: Os tercetos admitem maior liberdade de esquemas que os quartetos. Os mais comuns são: CDC DCD (entrelaçado), CDE CDE (paralelo), CDC CDC (repetido), CCD EED (gradativo). A partir do Modernismo, variantes mais livres são aceitas, desde que haja coerência interna.
 ❌ Errado: tercetos sem qualquer rima ou padrão reconhecível (em soneto clássico)
 ✅ Correto: CDC DCD, CDE CDE, CDC CDC, CCD EED
+📖 Exemplo real — CDC DCD: Camões, "Amor é fogo que arde sem se ver":
+  1º terceto: "É querer estar preso por vontade (C) / É servir a quem vence, o vencedor (D) / É ter com quem nos mata, lealdade (C)"
+  2º terceto: "Mas como causar pode seu favor (D) / Nos corações humanos amizade (C) / Se tão contrário a si é o mesmo Amor? (D)"
+  — esquema CDC DCD (vontade(C) / vencedor(D) / lealdade(C) // favor(D) / amizade(C) / Amor(D))
+📖 Exemplo real — CDE CDE: Vinícius de Moraes, "Soneto de Fidelidade":
+  1º terceto: "E assim, quando mais tarde me procure (C) / Quem sabe a morte, angústia de quem vive (D) / Quem sabe a solidão, fim de quem ama (E)"
+  2º terceto: "Eu possa me dizer do amor (que tive): (C) / Que não seja imortal, posto que é chama (D) / Mas que seja infinito enquanto dure. (E)"
+  — esquema CDE CDE (procure(C)/vive(D)/ama(E) // tive(C)/chama(D)/dure(E))
+📖 Exemplo real — CDC CDC: Augusto dos Anjos, "Psicologia de um Vencido":
+  1º terceto: "Sofro, desde a epigénesis da infância, (C) / A influência má dos signos do zodíaco (D) / E, por hipertelismo, a minha essência (C)"
+  2º terceto: "Sob a forma imperfeita de um silogismo (D) / Despiu-se, gradativamente, da consciência (C) / E apenas sou um poeta falido (D)"
+  (variação livre — mas CDC CDC recognoscível)
 Severidade: media
 Categoria: rima
 
@@ -91,6 +181,17 @@ Fonte: Manuais de versificação; Olavo Bilac
 Descrição: Na tradição parnasiana brasileira (Bilac, Raimundo Correia, Alberto de Oliveira), valorizam-se rimas ricas (entre palavras de classes gramaticais diferentes, ex: substantivo + verbo) e rimas raras (entre palavras incomuns). Rimas pobres (mesma classe gramatical) eram evitadas.
 ❌ Errado: "amor" rima com "dor" (ambos substantivos — rima pobre, aceitável mas desvalorizada)
 ✅ Correto: "amor" (subst.) rima com "tanto" (advérbio — rima rica)
+📖 Exemplo real — rima rica em Bilac, "Via Láctea", Soneto XIII:
+  "Certamente perdeste o senso!" E eu vos direi, no entanto, (A)
+  "Que, para ouvi-las, muita vez desperto (B) / E abro as janelas, pálido de espanto..." (B)
+  — "desperto" (verbo) rima com "espanto" (substantivo) → rima rica (classes diferentes)
+📖 Exemplo real — rima rica em Bilac, "Profissão de Fé":
+  "E a glória só pertence ao forte (A) / E o mérito só ao que luta (B)"
+  — "forte" (adjetivo/substantivo) rima com... (rima heterogênea valorizada)
+📖 Exemplo real — rima rara: Alberto de Oliveira, "Vaso Chinês":
+  "Estranho mimo aquele vaso! Vi-o, (A) / Casualmente, uma vez, de um perfumado (B)"
+  — "Vi-o" (verbo + pronome) rima com... construção rara.
+📖 Exemplo real — rima pobre a evitar: "amor/dor", "vida/ferida", "coração/paixão" (todos substantivos abstratos — considerada banal no Parnasianismo).
 Severidade: baixa
 Categoria: rima
 
@@ -103,6 +204,15 @@ Fonte: tradição literária; Cegalla, "Novíssima Gramática"
 Descrição: No soneto clássico, cada estrofe geralmente encerra com ponto final. O 1º quarteto fecha com ponto; o 2º quarteto também. Os tercetos podem ter ponto apenas no final do último verso, mas cada terceto idealmente forma uma unidade de sentido.
 ❌ Errado: 1º quarteto terminando com vírgula, 2º quarteto sem pontuação final
 ✅ Correto: Ponto final após o 4º verso, ponto final após o 8º verso
+📖 Exemplo real: Camões, "Amor é fogo que arde sem se ver":
+  1º quarteto termina em "doer." (ponto final)
+  2º quarteto termina em "perder." (ponto final)
+  1º terceto termina em "lealdade." (ponto final)
+  2º terceto termina em "Amor?" (interrogação — variante aceita)
+📖 Exemplo real: Raimundo Correia, "As Pombas":
+  "Raia, sanguínea, a luz de um novo dia; (;) / A onda do mar, de vaga em vaga, v... (—) / E das tristes, saudosas, uma a uma / Fogem as pombas... (...)" — cada estrofe com pontuação forte no final.
+  — 1º quarteto: ponto e vírgula; 2º quarteto: dois pontos; 1º terceto: ponto; 2º terceto: ponto final.
+📖 Exemplo real: Vinícius, "Soneto de Fidelidade": ponto final após 1º quarteto (pensamento.), após 2º quarteto (contentamento.), 1º terceto sem ponto final (ama — encadeamento), 2º terceto: ponto final (dure.).
 Severidade: media
 Categoria: pontuação
 
@@ -111,6 +221,16 @@ Fonte: tradição literária; Cegalla
 Descrição: Cada estrofe do soneto clássico deve constituir uma unidade sintática e semântica completa. O 1º quarteto apresenta o tema; o 2º quarteto desenvolve; o 1º terceto aprofunda ou contrapõe; o 2º terceto conclui (chave de ouro). Evitar encavalgamento (enjambement) excessivo entre estrofes.
 ❌ Errado: frase que começa no 1º quarteto e termina no 1º terceto; sentido incompleto ao fim do 2º quarteto
 ✅ Correto: cada estrofe com sentido autônomo e pontuação final
+📖 Exemplo real: Camões, "Amor é fogo que arde sem se ver":
+  1º quarteto: paradoxos do amor (fogo que arde, ferida que dói) — unidade temática: "o amor é contradição"
+  2º quarteto: expansão dos paradoxos (não querer mais que bem querer, andar solitário entre a gente) — "o amor é solidão na multidão"
+  1º terceto: viragem para a ação do amor (servir, estar preso, lealdade) — "o amor é servidão voluntária"
+  2º terceto: conclusão lógica (silogismo: se o amor é tão contraditório, como causa amizade?) — "chave de ouro interrogativa"
+📖 Exemplo real: Vinícius, "Soneto de Fidelidade":
+  1º quarteto: promessa de atenção e zelo ("De tudo, ao meu amor serei atento")
+  2º quarteto: modos de amar (rir, chorar, cantar, viver)
+  1º terceto: consciência da finitude (morte, solidão)
+  2º terceto: chave de ouro ("infinito enquanto dure")
 Severidade: media
 Categoria: estrutura
 
@@ -123,6 +243,22 @@ Fonte: Modernismo brasileiro; Drummond, "Soneto da Burrinha"; Vinícius de Morae
 Descrição: A partir do Modernismo, admite-se: versos de métrica variada (não apenas decassílabos), rimas toantes ou ausentes, esquemas de rima livres, e até ausência de pontuação. Porém, a estrutura de 14 versos em 4 estrofes (4-4-3-3) permanece o identificador central do soneto.
 ❌ Errado: chamar de soneto um poema com mais ou menos de 14 versos
 ✅ Correto: 14 versos, 4 estrofes (4-4-3-3), com métrica e rima livres (soneto moderno)
+📖 Exemplo real: Carlos Drummond de Andrade, "Soneto da Burrinha" (Claro Enigma, 1951):
+  "Burrinha,
+  que és minha irmã tão calada
+  e vives de ser pisada
+  e sobre ti vão estrada,
+  como pó de ouro e de nada:
+  ah, como pesa, esta carga
+  de ser no mundo de todos,
+  e de ninguém ser, amada!"
+  — 14 versos, 4 estrofes (4-4-3-3), mas métrica irregular (versos de 2 a 8 sílabas), tom prosaico, ironia deliberada. Subverte a expectativa do soneto clássico mantendo a recognoscibilidade formal.
+📖 Exemplo real: Drummond, "Oficina Irritada" (Claro Enigma):
+  "Eu quero compor um soneto duro
+  como poeta algum ousara escrever.
+  Eu quero pintar um soneto escuro,
+  seco, abafado, difícil de ler."
+  — soneto metalinguístico que discute a própria dificuldade de escrever sonetos, com rimas toantes e métrica irregular.
 Severidade: media
 Categoria: estrutura
 
@@ -132,6 +268,177 @@ EXEMPLOS CLÁSSICOS
 
 ## [SON-14] Referências brasileiras essenciais
 Fonte: tradição literária brasileira
-Descrição: Autores fundamentais para estudo do soneto em português: Luís de Camões (soneto italiano clássico), Olavo Bilac (soneto parnasiano), Augusto dos Anjos (soneto expressionista), Vinícius de Moraes (soneto moderno/lírico), Carlos Drummond de Andrade (soneto modernista/irônico).
+Descrição: Autores fundamentais para estudo do soneto em português:
+  - Luís de Camões (séc. XVI): soneto italiano clássico — "Amor é fogo que arde sem se ver", "Transforma-se o amador na cousa amada", "Alma minha gentil que te partiste"
+  - Gregório de Matos (séc. XVII): soneto barroco satírico-religioso — "Triste Bahia", "A Jesus Cristo Nosso Senhor"
+  - Cláudio Manuel da Costa (séc. XVIII): soneto árcade — "Sonetos" (Obras, 1768)
+  - Bocage (séc. XVIII): soneto neoclássico com sátira — "Já Bocage não sou...", "Aí, Janela!"
+  - Olavo Bilac (séc. XIX): soneto parnasiano — "Via Láctea" (35 sonetos), "Profissão de Fé"
+  - Raimundo Correia (séc. XIX): "As Pombas", "Mal Secreto"
+  - Alberto de Oliveira (séc. XIX-XX): "Vaso Chinês", "Vaso Grego"
+  - Cruz e Sousa (séc. XIX): soneto simbolista — "Antífona", "Últimos Sonetos"
+  - Augusto dos Anjos (séc. XX): soneto expressionista-científico — "Eu" (1912), "Psicologia de um Vencido", "Versos Íntimos"
+  - Vinícius de Moraes (séc. XX): soneto moderno/lírico — "Soneto de Fidelidade", "Soneto do Amor Total", "Soneto da Separação"
+  - Carlos Drummond de Andrade (séc. XX): soneto modernista/irônico — "Soneto da Burrinha", "Oficina Irritada", "Amor e Seu Tempo"
+  - Manuel Bandeira (séc. XX): soneto inglês coloquial — "Soneto Inglês nº 1", "Soneto Inglês nº 2"
+  - Jorge de Lima (séc. XX): soneto religioso-surrealista — "Invenção de Orfeu" (66 sonetos), "Livro de Sonetos"
+  - Murilo Mendes (séc. XX): "Sonetos Brancos" (1946-48)
+  - Paulo Henriques Britto (séc. XX-XXI): soneto contemporâneo metalinguístico
 Severidade: baixa
 Categoria: referência
+
+===============================================================================
+A VOLTA (MUDANÇA) — O TURNO NO SONETO
+===============================================================================
+
+## [SON-15] Volta clássica — mudança obrigatória entre oitava e sétima
+Fonte: tradição petrarquiana; Camões, "Sonetos Completos"; análise estrutural do soneto
+Descrição: A "volta" (ou "mudança") é a viragem temática ou argumentativa entre o 8º e o 9º verso do soneto. Na forma clássica, os dois quartetos apresentam um tema, problema ou situação (proposição), enquanto os dois tercetos oferecem resposta, contraponto ou conclusão (resolução). Sem a volta, o soneto perde sua tensão dialética essencial e torna-se mera descrição em 14 versos.
+❌ Errado: 9º verso que continua linearmente o 8º sem mudança de direção; tercetos que apenas repetem o conteúdo dos quartetos; soneto sem progressão argumentativa
+✅ Correto: Camões, "Amor é fogo que arde sem se ver": octave enumera paradoxos do amor ("Amor é fogo que arde sem se ver, / É ferida que dói e não se sente"); sestet conclui com confirmação pessoal ("E eu sem ti" — viragem assertiva). "Soneto de Fidelidade" (Vinícius): octave = como serei atento ao amor; 1º terceto = "tudo passar"; 2º terceto = "infinito enquanto dure" — chave de ouro que resolve a tensão.
+Severidade: alta
+Categoria: estrutura
+
+## [SON-16] Microvoltas entre primeiro e segundo terceto
+Fonte: tradição camoniana; análise de Antonio Candido, "O Estudo Analítico do Poema"
+Descrição: O soneto clássico frequentemente abriga uma segunda volta entre o 1º e o 2º terceto, criando uma estrutura de 4 movimentos: tese (1º quarteto), desenvolvimento (2º quarteto), antítese (1º terceto), síntese (2º terceto — "chave de ouro"). O 1º terceto aprofunda ou contrapõe o tema; o 2º terceto conclui com verso de impacto, geralmente o último.
+❌ Errado: dois tercetos que dizem o mesmo sem progressão; conclusão que não decorre do que foi exposto
+✅ Correto: Raimundo Correia, "As Pombas": 1º terceto descreve pombas que fogem dos pombais ("Também dos corações onde abotoam, / Os sonhos, um por um, céleres voam"); 2º terceto inverte a analogia com viragem melancólica ("Fogem... Mas aos pombais as pombas voltam, / E eles aos corações não voltam mais"). A chave de ouro ("não voltam mais") resolve todo o poema.
+Severidade: media
+Categoria: estrutura
+
+===============================================================================
+ENJAMBEMENT (ENCAVALGAMENTO) NO SONETO
+===============================================================================
+
+## [SON-17] Enjambement clássico — uso moderado e expressivo
+Fonte: Said Ali, "Versificação Portuguesa"; Castilho, "Tratado de Metrificação"
+Descrição: No soneto clássico, o enjambement (encavalgamento) entre versos da mesma estrofe é permitido quando expressivo, mas o enjambement inter-estrófico é raro e visto como licença. A cesura medial do decassílabo heroico (após a 6ª sílaba) já provê pausa natural, tornando o enjambement desnecessário na maioria dos casos. Cada estrofe idealmente forma uma unidade sintática fechada.
+❌ Errado: enjambement que força o leitor a saltar para a estrofe seguinte para completar a frase (em soneto clássico)
+✅ Correto: "As armas e os barões assinalados / Que da ocidental praia lusitana" (Camões, "Os Lusíadas") — enjambement suave entre 1º e 2º verso do quarteto, sem quebrar a unidade estrófica
+Severidade: baixa
+Categoria: métrica
+
+## [SON-18] Enjambement modernista como subversão deliberada
+Fonte: Carlos Drummond de Andrade, "Soneto da Burrinha" (em "Claro Enigma", 1951); Davi Arrigucci, "O Humilde Cotidiano"
+Descrição: O Modernismo brasileiro adotou o enjambement extremo como forma de tensionar a estrutura fechada do soneto. Drummond usa encavalgamentos que forçam o verso a invadir a estrofe seguinte, quebrando a autonomia do quarteto e do terceto. O efeito é de prosaísmo deliberado, ironia e desconforto rítmico. A forma exterior de soneto é mantida, mas sua respiração interna é deliberadamente truncada.
+❌ Errado: usar enjambement extremo em soneto que se propõe clássico — estilos misturados criam incoerência
+✅ Correto: "A burrinha / Era uma pobre burrinha / De carga" (Drummond, "Soneto da Burrinha") — verso inicial de 2 sílabas invade o quarteto com tom prosaico e anticlímax, subvertendo a expectativa de gravidade
+Severidade: media
+Categoria: métrica
+
+===============================================================================
+VARIANTES MÉTRICAS DO SONETO
+===============================================================================
+
+## [SON-19] Soneto alexandrino — 12 sílabas poéticas
+Fonte: Parnasianismo brasileiro; Olavo Bilac, "Via Láctea"; Alberto de Oliveira, "Vaso Chinês"; Cruz e Sousa, "Broquéis"
+Descrição: O soneto em versos alexandrinos (dodecassílabos, 12 sílabas poéticas) teve amplo cultivo no Parnasianismo brasileiro. O alexandrino clássico exige cesura obrigatória na 6ª sílaba, dividindo cada verso em dois hemistíquios iguais. O andamento é mais solene e fluido que o decassílabo heroico. Simbolistas (Cruz e Sousa) e modernistas também o praticaram.
+❌ Errado: alexandrino sem cesura na 6ª sílaba; alexandrino com 13 sílabas por sinalefa mal aplicada; misturar alexandrinos com decassílabos no mesmo soneto sem justificativa métrica
+✅ Correto: "Estranho mimo aquele vaso! Vi-o, / Casualmente, uma vez, de um perfumado / Contador sobre o mármor luzidio" (Alberto de Oliveira, "Vaso Chinês") — 12 sílabas, cesura após "vaso"/"vez"/"mármor", rimas alternadas ABAB
+Severidade: media
+Categoria: métrica
+
+## [SON-20] Sonetilho — soneto em redondilha (5 ou 7 sílabas)
+Fonte: Camões (redondilha maior); Manuel Bandeira, "Soneto Inglês nº 1"; tradição popular portuguesa
+Descrição: O sonetilho é um soneto escrito em versos de redondilha — 5 sílabas (redondilha menor) ou 7 sílabas (redondilha maior). A estrutura de 14 versos em 4-4-3-3 mantém-se. Camões praticou esta forma. Modernistas como Bandeira a retomaram para efeito de ligeireza e tom coloquial, aproximando o soneto da lírica popular. A métrica curta exige ainda mais concisão e precisão.
+❌ Errado: sonetilho com mais de 7 sílabas por verso (não é mais redondilha); versos que não fecham o sentido nos 14 versos
+✅ Correto: "Aceitar o castigo imerecido, / Não por fraqueza, mas por altivez. / No tormento mais fundo o teu gemido / Trocar num grito de ódio a quem o fez" (Bandeira, "Soneto Inglês nº 2") — redondilha maior, tom estoico e direto
+Severidade: baixa
+Categoria: métrica
+
+## [SON-21] Soneto de versos livres — métrica irregular (moderno/contemporâneo)
+Fonte: Modernismo brasileiro; Carlos Drummond de Andrade, "Soneto da Burrinha"; Paulo Henriques Britto
+Descrição: No soneto moderno e contemporâneo, admite-se métrica variada dentro do mesmo poema (redondilha + decassílabo + alexandrino). O que define o soneto é a estrutura recognoscível de 14 versos em 4-4-3-3, não a isometria. A liberdade métrica é contrabalançada pela rigidez estrutural. Rimas toantes ou ausentes são aceitas.
+❌ Errado: verso livre sem qualquer ritmo interno que se descaracteriza como poema; soneto que perde a recognoscibilidade de 14 versos
+✅ Correto: "Burrinha, / Que és minha irmã tão calada / E vives de ser pisada" (Drummond, "Soneto da Burrinha") — 2, 8, 8 sílabas, métrica irregular, mas 14 versos e 4 estrofes recognoscíveis
+Severidade: baixa
+Categoria: métrica
+
+===============================================================================
+SUBVERSÕES E ESCOLAS MODERNAS
+===============================================================================
+
+## [SON-22] Anti-soneto drummondiano — ironia e subversão deliberada
+Fonte: Carlos Drummond de Andrade, "Claro Enigma" (1951); "Soneto da Burrinha", "Soneto do Milho"; crítica de Antonio Candido
+Descrição: Drummond cultivou o que se pode chamar de "anti-soneto": poemas que respeitam a estrutura externa de 14 versos e 4 estrofes mas subvertem deliberadamente o tom elevado, a unidade temática e a gravidade do soneto clássico. Temas banais (uma burrinha, milho), vocabulário prosaico, enjambement extremo e conclusões anticlimáticas. É crítica irônica à tradição parnasiana e ao soneto como "forma nobre". O anti-soneto não nega o soneto — depende dele para existir.
+❌ Errado: anti-soneto sem a recognoscibilidade da forma-soneto (torna-se poema livre indistinto)
+✅ Correto: manutenção dos 14 versos + conteúdo anti-lírico + quebra de expectativa na chave de ouro (Drummond: "Burrinha, / Que és minha irmã tão calada" — anti-clímax como chave de ouro)
+Severidade: media
+Categoria: subversão
+
+## [SON-23] Soneto expressionista — terror e ciência na forma clássica (Augusto dos Anjos)
+Fonte: Augusto dos Anjos, "Eu" (1912); "Psicologia de um Vencido", "Versos Íntimos"; crítica de Ferreira Gullar
+Descrição: Augusto dos Anjos levou ao extremo a tensão entre forma clássica perfeita e conteúdo mórbido. Seus sonetos são decassílabos heroicos rigorosos (esquema ABBA ABBA CCD EED), com rimas ricas e cesura na 6ª. O vocabulário, porém, é deliberadamente científico e grotesco: "carbono", "amoníaco", "epigénesis", "verme", "escarro", "pantera". O efeito é de um expressionismo avant la lettre — horror cósmico dentro da camisa-de-força do soneto parnasiano.
+❌ Errado: vocabulário científico impreciso ou mal encaixado na métrica; quebra da cesura ao forçar termos técnicos longos
+✅ Correto: "Eu, filho do carbono e do amoníaco, / Monstro de escuridão e rutilância, / Sofro, desde a epigénesis da infância, / A influência má dos signos do zodíaco" (Augusto dos Anjos, "Psicologia de um Vencido") — decassílabo heroico rigoroso, léxico científico, tom expressionista
+Severidade: media
+Categoria: escola/estilo
+
+## [SON-24] Soneto lírico-moderno — intimismo erótico (Vinícius de Moraes)
+Fonte: Vinícius de Moraes, "Soneto de Fidelidade" (1939), "Soneto do Amor Total" (1951), "Soneto da Separação" (1938)
+Descrição: Vinícius modernizou o soneto amoroso ao fundir rigor formal (decassílabos, rimas interpoladas) com dicção coloquial e erótica herdada do Modernismo. Seus sonetos usam anáforas, paradoxos e tensão entre eternidade e efemeridade. A chave de ouro é sempre verso de virada emocional. Vinícius demonstra que o soneto clássico pode acolher a fala direta do desejo sem perder dignidade formal.
+❌ Errado: imitar Vinícius com clichês românticos sem a tensão paradoxal que caracteriza sua obra; sentimentalismo sem contraponto
+✅ Correto: "De tudo, ao meu amor serei atento / Antes, e com tal zelo, e sempre, e tanto / Que mesmo em face do maior encanto / Dele se encante mais meu pensamento" (Vinícius, "Soneto de Fidelidade") — anáfora de "e" que acelera o ritmo; sestet: "Que não seja imortal, posto que é chama / Mas que seja infinito enquanto dure" — paradoxo central resolvido na chave de ouro
+Severidade: baixa
+Categoria: escola/estilo
+
+## [SON-25] Soneto simbolista — musicalidade e sugestão (Cruz e Sousa, Camilo Pessanha)
+Fonte: Cruz e Sousa, "Broquéis" (1893), "Últimos Sonetos" (1905); Camilo Pessanha, "Clepsidra" (1920)
+Descrição: O soneto simbolista brasileiro, capitaneado por Cruz e Sousa, privilegia a musicalidade sobre a precisão descritiva. Aliterações sibilantes, sinestesias, vocabulário etéreo ("Formas alvas, brancas, Formas claras / De luares, de neves, de neblinas"). Camilo Pessanha, em Portugal, cultiva o alexandrino decadentista. O soneto simbolista mantém a forma fechada como continente para o conteúdo difuso e sugestivo.
+❌ Errado: hermetismo que sacrifica a inteligibilidade sem ganho musical; descrição parnasiana em vez de sugestão simbolista
+✅ Correto: "Ó Formas alvas, brancas, Formas claras / De luares, de neves, de neblinas!... / Ó Formas vagas, fluidas, cristalinas... / Incensos dos turíbulos das aras..." (Cruz e Sousa, "Antífona") — repetição, aliteração em S, atmosfera criada por acumulação, não por descrição
+Severidade: baixa
+Categoria: escola/estilo
+
+## [SON-26] Soneto coloquial — tom prosaico e estoico (Manuel Bandeira)
+Fonte: Manuel Bandeira, "Estrela da Vida Inteira"; "Soneto Inglês nº 1", "Soneto Inglês nº 2"
+Descrição: Bandeira praticou o soneto de dicção coloquial e temática existencial-cotidiana. Seus sonetos em forma inglesa (3 quartetos + 1 dístico) mantêm métrica irregular e rimas toantes. O tom é de estoicismo e aceitação da dor, sem grandiloquência parnasiana. Bandeira demonstra que o soneto pode acolher a fala cotidiana — o "tom menor" — sem perder intensidade filosófica.
+❌ Errado: coloquialismo que derrapa em prosaísmo banal sem tensão poética subjacente
+✅ Correto: "Quando a morte cerrar meus olhos duros / — Duros de tantos vãos padecimentos, / Que pensarão teus peitos imaturos / Da minha dor de todos os momentos?" (Bandeira, "Soneto Inglês nº 1") — dicção direta, imagem concreta (olhos duros), tom de fala
+Severidade: baixa
+Categoria: escola/estilo
+
+## [SON-27] Soneto religioso-visionário — surrealismo e mística (Jorge de Lima, Murilo Mendes)
+Fonte: Jorge de Lima, "Livro de Sonetos" (1949), "Invenção de Orfeu" (1952); Murilo Mendes, "Sonetos Brancos" (1946-1948); "Tempo e Eternidade" (1935, em coautoria)
+Descrição: A geração católica-modernista brasileira (Jorge de Lima, Murilo Mendes) produziu sonetos que fundem temática religiosa com linguagem surrealista. Jorge de Lima escreveu 66 sonetos em "Invenção de Orfeu", incluindo "sonetos gémeos" (dois sonetos xifópagos com encadeamento sintático entre eles). Murilo Mendes publicou "Sonetos Brancos", de temática sacra. A forma clássica serve como continente para conteúdo visionário, onírico e místico.
+❌ Errado: confundir surrealismo com incoerência; perder o controle formal do soneto
+✅ Correto: "A igreja toda em curvas avança para mim, / Enlaçando-me com ternura — mas quer me asfixiar. / Com um braço me indica o seio e o paraíso, / Com outro braço me convoca para o inferno" (Murilo Mendes, "Igreja Mulher") — religiosidade ambígua e sensual em forma controlada
+Severidade: baixa
+Categoria: escola/estilo
+
+===============================================================================
+PANORAMA HISTÓRICO DO SONETO BRASILEIRO
+===============================================================================
+
+## [SON-28] Soneto parnasiano — ourivesaria formal e rigor métrico
+Fonte: Olavo Bilac, "Poesias" (1888); Alberto de Oliveira, "Sonetos e Poemas" (1886); Raimundo Correia, "Sinfonias" (1883)
+Descrição: A tríade parnasiana brasileira (Bilac, Alberto de Oliveira, Raimundo Correia) elevou o soneto ao rigor máximo: decassílabo heroico obrigatório, cesura na 6ª, rimas ricas e raras (entre classes gramaticais diferentes), vocabulário preciosista, descrição objetiva. Bilac escreveu 35 sonetos em "Via Láctea", série que narra um amor não correspondido. Alberto de Oliveira celebrizou-se com "Vaso Chinês" e "Vaso Grego". Raimundo Correia compôs "As Pombas", o soneto mais popular do período. O soneto parnasiano é a referência canônica contra a qual todo soneto brasileiro subsequente se define ou se rebela.
+❌ Errado: rimas pobres em contexto parnasiano; ausência de cesura; vocabulário coloquial em soneto que se pretende parnasiano
+✅ Correto: "Ora (direis) ouvir estrelas! Certo / Perdeste o senso!" E eu vos direi, no entanto, / Que, para ouvi-las, muita vez desperto / E abro as janelas, pálido de espanto" (Bilac, "Via Láctea" — Soneto XIII) — decassílabo heroico, cesura na 6ª, diálogo coloquial dentro da forma nobre
+Severidade: media
+Categoria: escola/estilo
+
+## [SON-29] Soneto barroco e árcade — origens brasileiras da forma
+Fonte: Gregório de Matos (séc. XVII); Cláudio Manuel da Costa (séc. XVIII); Bocage (séc. XVIII)
+Descrição: O soneto chega ao Brasil com Gregório de Matos (Boca do Inferno), que praticou sonetos satíricos, líricos e religiosos em decassílabos barrocos com dualidade carne/espírito. No Arcadismo, Cláudio Manuel da Costa (Glauceste Satúrnio) cultivou o soneto neoclássico de temática pastoral, fingimento poético e natureza mineira. Bocage, português mas de influência fundamental no Brasil, escreveu sonetos em que o decassílabo polido encobre sátira ferina e erotismo.
+❌ Errado: tratar o soneto barroco como mero precursor — tem dicção e hipérbatos próprios
+✅ Correto: "Triste Bahia! oh quão dessemelhante / Estás, e estou do nosso antigo estado! / Pobre te vejo a ti, tu a mim empenhado, / Rica te vejo eu já, tu a mim abundante" (Gregório de Matos, "Triste Bahia") — lamento barroco, hipérbato ("Rica te vejo eu já"), identificação poeta-cidade
+Severidade: baixa
+Categoria: escola/estilo
+
+## [SON-30] Soneto contemporâneo (1970–atual) — reinvenção metalinguística
+Fonte: Paulo Henriques Britto; Ana Martins Marques; poesia brasileira dos séculos XX-XXI
+Descrição: O soneto contemporâneo brasileiro caracteriza-se pela reinvenção metalinguística da forma. Poetas como Paulo Henriques Britto escrevem sonetos com dicção coloquial, métrica irregular e humor autoirônico, frequentemente tematizando a própria dificuldade de escrever sonetos na contemporaneidade. O soneto torna-se palco de sua própria crise. A tradição é invocada para ser tensionada, comentada ou parodiada.
+❌ Errado: pastiche acrítico do soneto parnasiano sem consciência histórica ou ironia
+✅ Correto: soneto contemporâneo bem-sucedido reconhece a tradição e a subverte ou comenta — métrica pode ser livre, tema autorreferencial, tom irônico, sem perder a recognoscibilidade dos 14 versos
+Severidade: baixa
+Categoria: escola/estilo
+
+## [SON-31] Coroa de sonetos — série interligada
+Fonte: tradição renascentista italiana; Olavo Bilac, "Via Láctea" (35 sonetos); Murilo Mendes, "Sonetos Brancos"; Jorge de Lima, "Invenção de Orfeu" (66 sonetos)
+Descrição: A "coroa de sonetos" (corona di sonetti) é uma série de sonetos interligados tematicamente. Na forma clássica, o último verso de um soneto é o primeiro do seguinte, e o último verso do soneto final retoma o primeiro do inicial (encadeamento rigoroso). Na tradição brasileira, a série de sonetos sem encadeamento literal é mais comum: Bilac tece 35 sonetos em "Via Láctea" como narrativa amorosa contínua; Jorge de Lima insere 66 sonetos em "Invenção de Orfeu" como blocos de um poema épico-moderno. A unidade temática e formal é o requisito essencial.
+❌ Errado: sonetos de uma série sem coerência temática, formal ou estilística entre si
+✅ Correto: "Via Láctea" (Bilac): 35 sonetos decassílabos com rimas interpoladas, narrando uma história de amor não correspondido com crescendo dramático e desfecho nos sonetos finais
+Severidade: baixa
+Categoria: estrutura

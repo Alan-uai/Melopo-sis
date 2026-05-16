@@ -13,7 +13,7 @@ ESTRUTURA GERAL
 Fonte: tradição japonesa; Bashō, "O Caminho Estreito para o Norte Profundo"
 Descrição: O haicai (ou haiku) é composto por exatamente 3 versos. Não se admitem variações no número de versos. Cada verso deve funcionar como unidade autônoma.
 ❌ Errado: haicai com 2 ou 4 versos
-✅ Correto: 3 versos curtos
+✅ Correto: "Velha lagoa — / uma rã pula / som da água" (Matsuo Bashō, trad. H. Masuda Goga) — 3 versos, o haicai mais célebre do mundo, modelo da forma tripartida
 Severidade: alta
 Categoria: estrutura
 
@@ -21,7 +21,8 @@ Categoria: estrutura
 Fonte: tradição japonesa; Bashō; Brasil, Guilherme de Almeida, "Poesia de Haikai"
 Descrição: Tradicionalmente, o haicai segue a métrica de 5 sílabas no 1º verso, 7 sílabas no 2º verso, e 5 sílabas no 3º verso. No entanto, no haicai brasileiro moderno (Leminski, Millôr), essa métrica é frequentemente flexibilizada ou abandonada.
 ❌ Errado: (no haicai clássico) verso 1 com 4 ou 6 sílabas, verso 2 com 6 ou 8 sílabas
-✅ Correto: 5-7-5 sílabas poéticas; no haicai moderno, métrica livre é aceita
+✅ Correto (clássico 5-7-5): "De noite / um salgueiro / na lua" (Guilherme de Almeida, 3-5-3 em sílabas poéticas — mas sua escola exige 5-7-5 com contagem à portuguesa); "Passeando / cheguei ao fim / do último dia de primavera" (Yosa Buson, trad. Paulo Medeiros, mantém 5-7-5)
+✅ Correto (moderno, métrica livre): "noite sem sono / o cachorro late / um sonho sem dono" (Paulo Leminski, 4-5-4, métrica irregular)
 Severidade: alta (clássico) / baixa (moderno)
 Categoria: métrica
 
@@ -29,7 +30,8 @@ Categoria: métrica
 Fonte: tradição japonesa; Bashō; Brasil, "Teoria do Haicai"
 Descrição: O haicai clássico deve conter um kigo (palavra que remete a uma estação do ano), como "flores" (primavera), "neve" (inverno), "colheita" (outono), "calor" (verão). No Brasil, o kigo é frequentemente adaptado ao clima tropical (ex: "garoa" = outono/inverno paulista, "sol escaldante" = verão).
 ❌ Errado: poema sem referência sazonal alguma (no haicai clássico)
-✅ Correto: "Flores de ipê / cobrem o chão da praça / outono chega" (kigo: outono / flores de ipê)
+✅ Correto: "Jacarandá em flor — / Saudade da minha mãe / Que gostava de roxo" (H. Masuda Goga, kigo: jacarandá em flor = primavera brasileira)
+✅ Correto: "Cada onda reflete na areia / a nova lua cheia" (Alice Ruiz, kigo: lua cheia — outono, colheita, ciclo lunar)
 Severidade: media (clássico) / baixa (moderno)
 Categoria: estrutura
 
@@ -37,7 +39,8 @@ Categoria: estrutura
 Fonte: tradição japonesa; Matsuo Bashō
 Descrição: O kireji ("palavra de corte") é um elemento que marca uma pausa ou interrupção, geralmente no final do 1º ou 2º verso. Em português, não há equivalentes diretos dos kireji japoneses, mas pode-se usar travessão, exclamação, dois-pontos ou pausa sintática para produzir efeito similar.
 ❌ Errado: haicai sem qualquer pausa ou cesura entre os versos
-✅ Correto: usar pontuação de corte (— ! :) ou cesura sintática para marcar pausa
+✅ Correto (kireji clássico): "Velha lagoa — / uma rã pula / som da água" (Bashō, o ya japonês é o kireji original; na tradução, o travessão substitui o corte)
+✅ Correto (kireji com exclamação): "Ah! Que prazer / atravessar um ribeiro no verão / sandálias na mão" (Yosa Buson, a exclamação marca o corte após o 1º verso)
 Severidade: baixa
 Categoria: pontuação
 
@@ -50,6 +53,7 @@ Fonte: tradição japonesa; Bashō, "O Caminho Estreito"
 Descrição: O haicai clássico descreve um momento presente, concreto, observado na natureza, sem abstrações ou opiniões pessoais. Deve ser impessoal e objetivo, capturando uma percepção sensorial imediata (visão, audição, tato, olfato). Evitar metáforas elaboradas e sentimentalismo.
 ❌ Errado: "Meu coração triste chora por teu amor" (subjetivismo, abstração, sentimentalismo)
 ✅ Correto: "Folha seca cai / o vento a leva sozinha / fim de tarde" (imagem concreta, natureza, momento)
+✅ Correto: "Trouxe a melancolia do meu coração / ao cimo da colina / para as rosas silvestres em flor" (Yosa Buson) — mesmo com "melancolia", a concretude das rosas ancora a emoção no mundo físico
 Severidade: alta (clássico) / baixa (moderno)
 Categoria: estilo
 
@@ -58,6 +62,7 @@ Fonte: tradição japonesa; "Haikai: Uma Poética do Instante"
 Descrição: O haicai clássico justapõe duas imagens independentes (separadas pelo kireji), criando um contraste ou associação. Uma imagem é geralmente mais ampla/generalizante (fundo) e a outra mais específica/detalhada (primeiro plano). A justaposição gera um insight (satori) no leitor.
 ❌ Errado: "O sol se põe lento no mar azul e as ondas quebram na areia" (uma única cena contínua, linear)
 ✅ Correto: "Lua de inverno / no lago gelado / um pássaro bebe" (duas imagens — céu/lago e pássaro — justapostas)
+✅ Correto: "Vento de outono — / montões de pedras / que outrora foram castelos" (Masaoka Shiki) — justaposição do vento efémero com as ruínas eternas, passado e presente
 Severidade: media
 Categoria: estilo
 
@@ -66,6 +71,7 @@ Fonte: Bashō; "The Haiku Handbook"
 Descrição: O haicai deve sugerir, não descrever exaustivamente. A brevidade do haicai exige que cada palavra carregue significado máximo. Evitar adjetivos desnecessários e explicações. O leitor completa o significado.
 ❌ Errado: "O belo e majestoso monte Fuji coberto de linda neve branca brilhava" (excesso de adjetivos e descrição)
 ✅ Correto: "Monte Fuji / neve no topo / silêncio" (sugestivo, minimalista)
+✅ Correto: "Galho morto / e, nele pousado, um corvo: / tarde de outono" (Bashō, trad. Olga Savary) — quatro elementos secos (galho, corvo, tarde, outono), sem um único adjetivo, toda a melancolia está na justaposição
 Severidade: media
 Categoria: estilo
 
@@ -74,6 +80,7 @@ Fonte: tradição japonesa; Brasil, "Teoria do Haicai"
 Descrição: O haicai clássico utiliza o tempo presente, pois descreve uma observação momentânea e imediata. O passado distante ou o futuro comprometem a sensação de instantaneidade.
 ❌ Errado: "Folhas caíram ontem / o vento levou todas / estava frio" (passado)
 ✅ Correto: "Folhas caem / o vento as leva / frio" (presente)
+✅ Correto: "varal vazio / um só fio / lua ao meio" (Alice Ruiz) — tudo no presente, instante capturado
 Severidade: media
 Categoria: concordância
 
@@ -86,6 +93,7 @@ Fonte: tradição brasileira; Leminski, Millôr
 Descrição: O haicai moderno no Brasil frequentemente dispensa pontuação. Quando usada, deve ser mínima e funcional: travessão ou dois-pontos para marcar o kireji (corte), exclamação para surpresa. Evitar vírgulas desnecessárias e ponto final.
 ❌ Errado: "A folha caiu, no chão, e o vento, soprou." (pontuação excessiva e artificial)
 ✅ Correto: "Folha seca — / o vento a leva / fim de tarde"
+✅ Correto: "o cachorro late / um sonho sem dono" (Leminski, sem pontuação alguma — a quebra de verso basta)
 Severidade: baixa
 Categoria: pontuação
 
@@ -94,6 +102,7 @@ Fonte: tradição brasileira moderna; Leminski, "Todas as Poesias"
 Descrição: No haicai brasileiro moderno, é convenção usar letra minúscula no início de cada verso e no início do poema, salvo para nomes próprios. Isso reforça a ideia de continuidade e humildade perante a natureza.
 ❌ Errado: "A Folha Caiu / O Vento Soprou" (maiúsculas desnecessárias)
 ✅ Correto: "folha cai / vento sopra / silêncio"
+✅ Correto: "noite sem sono / o cachorro late / um sonho sem dono" (Leminski, minúsculas inclusive no 1º verso)
 Severidade: baixa
 Categoria: estilo
 
@@ -105,7 +114,10 @@ HAICAI BRASILEIRO — PARTICULARIDADES
 Fonte: Guilherme de Almeida, "Poesia de Vária" (1947); Casa Guilherme de Almeida; Kakinet
 Descrição: Guilherme de Almeida propôs o haicai "à moda brasileira" em 1937, sistematizado no artigo "Os Meus Haicais". Mantém os 5-7-5 sílabas, mas acrescenta: (1) título; (2) rima entre 1º e 3º versos (esquema A-B-A); (3) rima interna no 2º verso entre a 2ª e 7ª sílabas. Esta forma é reconhecida como escola "guilhermina" do haicai brasileiro.
 ❌ Errado: forçar rima em haicais que não seguem a forma de Almeida
-✅ Correto: "Vento no jardim / desfolha o ipê dourado / só resta o fim" (A-B-A, 5-7-5, com rima interna em "desfolha" e "dourado")
+✅ Correto: "Chuva de Primavera — / Vê como se atraem / nos fios os pingos frios! / E juntam-se. E caem." (Guilherme de Almeida) — A-B-A (atraem/caem), rima interna (2ª/7ª sílabas: atraem/pingos)
+✅ Correto: "Um salgueiro / na lua — como são tristes / os salgueiros!" (Guilherme de Almeida) — A-B-A (salgueiro/salgueiros), rima interna, 5-7-5
+✅ Correto: "Outono — / o vento leva as folhas / uma a uma" (Guilherme de Almeida) — 5-7-5, A-B-A, título monossilábico
+✅ Correto (escola guilhermina completa): "Vento no jardim / desfolha o ipê dourado / só resta o fim" — A-B-A, 5-7-5, com rima interna em "desfolha" e "dourado"
 Severidade: media
 Categoria: rima
 
@@ -114,6 +126,7 @@ Fonte: tradição brasileira
 Descrição: No haicai, o título não é obrigatório e frequentemente é omitido. O poema deve bastar-se por si mesmo, sendo um instantâneo poético completo em três versos. Quando há título, geralmente é uma palavra ou expressão curta.
 ❌ Errado: títulos longos e descritivos que competem com o poema
 ✅ Correto: sem título, ou título mínimo (ex: "Inverno", "Garoa")
+✅ Correto: Guilherme de Almeida usava títulos de palavra única: "Outono", "Frio", "Outubro", "Festa Móvel", "Romance", "Pescaria", "Filosofia" — cada um é uma só palavra que nomeia o instante
 Severidade: baixa
 Categoria: estrutura
 
@@ -123,6 +136,155 @@ EXEMPLOS CLÁSSICOS
 
 ## [HAI-13] Referências brasileiras essenciais
 Fonte: tradição literária brasileira
-Descrição: Autores fundamentais para o estudo do haicai no Brasil: Guilherme de Almeida (haicai com rima, 5-7-5), Paulo Leminski (haicai moderno, métrica livre, jogo de palavras), Millôr Fernandes (haicai humorístico/crítico), Alice Ruiz S. (haicai contemporâneo, temática urbana), Afrânio Peixoto (haicai clássico brasileiro).
+Descrição: Autores fundamentais para o estudo do haicai no Brasil: Guilherme de Almeida (haicai com rima, 5-7-5), Paulo Leminski (haicai moderno, métrica livre, jogo de palavras), Millôr Fernandes (haicai humorístico/crítico), Alice Ruiz S. (haicai contemporâneo, temática urbana), Afrânio Peixoto (haicai clássico brasileiro), Teruko Oda e H. Masuda Goga (haicai nipo-brasileiro, sistematização do kigo tropical).
+Severidade: baixa
+Categoria: referência
+
+===============================================================================
+KIGO BRASILEIRO — ADAPTAÇÃO TROPICAL
+===============================================================================
+
+## [HAI-14] Kigo brasileiro — palavras de estação adaptadas ao trópico
+Fonte: Grêmio Haicai Ipê, "Kigologia" (1994); H. Masuda Goga e Teruko Oda, "Natureza — Berço do Haicai" (1996); kakinet.com
+Descrição: O haicai brasileiro desenvolveu um sistema próprio de kigo adaptado ao clima tropical do Brasil. Enquanto o kigo japonês marca as quatro estações temperadas, o kigo brasileiro utiliza flora, fauna e fenômenos locais. O Grêmio Haicai Ipê catalogou cerca de 1400 kigo brasileiros. Exemplos: primavera: ipê em flor, jacarandá em flor, jasmineiro, flor de café; verão: calor, vaga-lume, Carnaval, trovoada, cajueiro, jabuticaba; outono: paineira, garoa (SP), folha seca, libélula; inverno: geada, festa junina, neblina, vento seco, frio.
+❌ Errado: usar kigo japonês importado sem adaptação (ex: "cerejeira em flor" em vez de "ipê em flor" em poema ambientado no Brasil); estação do hemisfério norte em haicai brasileiro
+✅ Correto: "Jacarandá em flor — / Saudade da minha mãe / Que gostava de roxo" (H. Masuda Goga, kigo: jacarandá em flor = primavera brasileira)
+Severidade: media
+Categoria: estrutura
+
+## [HAI-15] Kigo urbano — sazonalidade na cidade brasileira
+Fonte: Grêmio Haicai Ipê; Paulo Franchetti; haicai urbano brasileiro contemporâneo
+Descrição: O haicai urbano brasileiro desenvolveu kigo específicos da vida na cidade: asfalto quente (verão), ar-condicionado pingando (verão), engarrafamento (atemporal, mas sazonal em feriados), enchente (verão chuvoso), povo na calçada (fim de tarde, verão), sorveteiro (primavera/verão). A sazonalidade urbana difere da rural, mas ainda segue o ciclo das estações brasileiras.
+❌ Errado: usar kigo rural clássico em contexto urbano explícito sem adaptação (ex: "geada nos campos" em poema ambientado em São Paulo)
+✅ Correto: "Manhã de inverno — / Notícias de guerra / Na tela do computador" (Benedita Azevedo, kigo: inverno, contexto urbano-tecnológico)
+Severidade: baixa
+Categoria: estrutura
+
+===============================================================================
+SENRYU — HAICAI SOBRE A NATUREZA HUMANA
+===============================================================================
+
+## [HAI-16] Senryu — definição e distinção do haicai clássico
+Fonte: Haiku Society of America; Clement Hoyt; "Senryu: A Poetic Form"
+Descrição: O senryu é um poema de 3 versos que segue a mesma estrutura do haicai (5-7-5 ou métrica livre) mas difere no conteúdo: trata da natureza humana em vez da natureza natural. O senryu é irônico, satírico, cômico ou crítico, focando nos defeitos, hábitos e contradições humanas. Não exige kigo (palavra de estação). Enquanto o haicai busca o satori (insight) através da contemplação da natureza, o senryu busca o humor ou a crítica através da observação do comportamento humano.
+❌ Errado: chamar de haicai um poema claramente sobre comportamento humano sem kigo — é senryu; usar kigo em senryu é opcional, não obrigatório
+✅ Correto: "Sorriso maroto — / Um rapaz observa as flores / na saia da mulher" (Rafael Noris) — tema: desejo humano, não natureza; sem kigo
+✅ Correto: "Sertão; / as nuvens — / o gado" (Millôr Fernandes) — se lido como haicai, kigo indefinido; se lido como senryu, observação da condição humana no árido
+Severidade: media
+Categoria: estilo
+
+## [HAI-17] Senryu brasileiro — humor e crítica social
+Fonte: Millôr Fernandes; Lyad de Almeida; Raul Pough; antologia de senryus do Estadão
+Descrição: O senryu brasileiro frequentemente assume tom de crítica social e política. Millôr Fernandes escreveu centenas de poemas nesta linha. Autores populares publicam senryus em jornais e redes sociais. O senryu brasileiro é mais acessível que o haicai clássico e frequentemente confundido com ele pelo público geral. A distinção entre senryu e haicai é uma das principais falhas na classificação de poemas curtos no Brasil.
+❌ Errado: senryu apenas cômico sem a "agudeza" crítica que o define (piada em 3 versos não é senryu)
+✅ Correto: "Grávida a mulher solteira. / Matará o filho / ou o preconceito?" (Lyad de Almeida) — crítica social, sem kigo, 3 versos, ironia
+Severidade: baixa
+Categoria: estilo
+
+===============================================================================
+HAICAI VISUAL E CONCRETO
+===============================================================================
+
+## [HAI-18] Haicai visual — iconicidade e disposição espacial
+Fonte: Concretismo brasileiro; Paulo Leminski, "Caprichos & Relaxos"; Augusto de Campos; Décio Pignatari
+Descrição: O haicai visual (ou concreto) utiliza a disposição espacial das palavras na página como elemento sígnico. Influenciado pelo Concretismo brasileiro (Augusto de Campos, Décio Pignatari), o haicai visual explora alinhamento, repetição visual, formas gráficas e diagramação icônica. Leminski foi o principal cultor do haicai visual no Brasil, criando poemas onde a forma gráfica reproduz o conteúdo.
+❌ Errado: haicai visual cuja forma gráfica é arbitrária ou não dialoga com o sentido do poema
+✅ Correto: "lua na / alguma lua / lua alguma" (Leminski, "Caprichos & Relaxos") — as palavras se repetem como eco visual, com "lua na" / "lua alguma" invertidas como sombra ou reflexo, reforçando o tema da lua que é e não é a mesma
+Severidade: baixa
+Categoria: estilo
+
+===============================================================================
+HAICAI ZEN / MEDITATIVO
+===============================================================================
+
+## [HAI-19] Haicai como prática zen — haimi e estado meditativo
+Fonte: Budismo Hoje; Paulo Franchetti, "Haikai — Antologia e História"; kakinet.com, "Dez Mandamentos do Haicai"
+Descrição: O haicai está historicamente ligado ao zen-budismo. O conceito de haimi (o "barato" do haicai, a percepção estética) é alcançado através de um estado meditativo: mente serena, observação silenciosa, fusão entre sujeito e objeto. O haicai deve prezar pela simplicidade, espontaneidade e concisão. O poema é uma "fotografia instantânea" — sem voltar ao passado, sem projetar o futuro. O mestre zen Dogen (fundador do Soto Zen no Japão) também foi poeta de haicais.
+❌ Errado: haicai como mero exercício formal sem a atitude contemplativa que lhe dá origem; forçar temática zen em haicai que não pede
+✅ Correto: Bashō, "Velha lagoa — / uma rã pula / som da água" — o som da rã quebrando o silêncio da lagoa antiga captura o momento de iluminação (satori) no instante presente
+Severidade: baixa
+Categoria: estilo
+
+===============================================================================
+HAICAI URBANO E CONTEMPORÂNEO
+===============================================================================
+
+## [HAI-20] Haicai urbano — cidade, tecnologia, vida moderna
+Fonte: Paulo Franchetti; Alice Ruiz S.; Millôr Fernandes; haicai brasileiro contemporâneo
+Descrição: A partir do final do século XX, o haicai brasileiro incorporou temas urbanos: trânsito, tecnologia, apartamentos, vida digital. O haicai urbano mantém a estrutura de 3 versos e a atitude contemplativa, mas aplica-a ao ambiente construído. Kigo urbano substitui o kigo rural. A observação da natureza é substituída pela observação da vida na cidade — igualmente momentânea, igualmente reveladora.
+❌ Errado: haicai urbano que perde a concisão e a sugestão do haicai clássico, tornando-se crônica em 3 versos
+✅ Correto: "Manhã de frio. / Se fosse menino escrevia / Meu nome no vidro" (Paulo Franchetti) — imagem urbana (vidro embaçado), momento presente, sugestão de infância sem abrir mão do instantâneo
+Severidade: baixa
+Categoria: estilo
+
+===============================================================================
+AUTORES MODERNOS BRASILEIROS
+===============================================================================
+
+## [HAI-21] Leminski — jogo de palavras e métrica livre
+Fonte: Paulo Leminski, "Caprichos & Relaxos" (1983), "Distraídos Venceremos" (1987)
+Descrição: Paulo Leminski revolucionou o haicai brasileiro ao abandonar a métrica 5-7-5 e a rima obrigatórias, mantendo apenas a estrutura de 3 versos e a concisão. Seus haicais caracterizam-se por: trocadilhos, humor autoirônico, métrica irregular, vocabulário coloquial, temática existencial e autorreferente. Leminski frequentemente usa rimas toantes e aliterações como substitutos da métrica fixa. Seus "haicais" (ele próprio usava o termo com ambiguidade) são entremeados por poemas mais longos na mesma seção.
+❌ Errado: imitar Leminski com trocadilhos forçados sem a consciência formal e filosófica que sustenta seu humor
+✅ Correto: "noite sem sono / o cachorro late / um sonho sem dono" (Leminski) — 3 versos, métrica livre (4-5-4), rima toante (sono/dono/late), humor existencial
+Severidade: baixa
+Categoria: escola/estilo
+
+## [HAI-22] Millôr Fernandes — haicai satírico e reflexivo
+Fonte: Millôr Fernandes, "Hai-Kais" (L&PM, 1997)
+Descrição: Millôr Fernandes cultivou o haicai (e o senryu) como forma de sátira social e reflexão existencial. Seus "hai-kais" (grafia própria) abandonam a métrica 5-7-5 e frequentemente a rima, mantendo apenas os 3 versos e a concisão. O tom varia do humor crítico à melancolia filosófica. Millôr foi um dos primeiros a popularizar o haicai de métrica livre no Brasil, precedendo Leminski.
+❌ Errado: tratar haicai de Millôr como mera piada — há sempre camada reflexiva subjacente
+✅ Correto: "A vida é um saque / Que se faz no espaço / Entre o tic e o tac" (Millôr) — 3 versos, reflexão sobre a brevidade da vida entre um tic-tac do relógio, humor melancólico
+Severidade: baixa
+Categoria: escola/estilo
+
+## [HAI-23] Alice Ruiz S. — haicai feminino e cotidiano
+Fonte: Alice Ruiz S., "Desorientais" (Iluminuras, 1996), "Pelos Pélos", "Dois em Um"
+Descrição: Alice Ruiz S. é a principal haicaista brasileira contemporânea. Seus haicais caracterizam-se pela observação do cotidiano doméstico e urbano com sensibilidade feminina, sem métrica fixa mas com rigor na concisão. Temas recorrentes: natureza, relações afetivas, solidão, casa, corpo. Alice Ruiz mantém o princípio clássico do momento presente (presente do indicativo) e da justaposição de imagens.
+❌ Errado: haicai feminino como "poesia de mulher" redutora — Alice Ruiz utiliza perspectiva feminina como lente, não como tema
+✅ Correto: "varal vazio / um só fio / lua ao meio" (Alice Ruiz, "Desorientais") — 3 versos, 4-3-4 sílabas, justaposição de duas imagens (varal vazio + lua ao meio), sugestão de ausência e solidão
+Severidade: baixa
+Categoria: escola/estilo
+
+## [HAI-24] Escola guilhermina — expansão da rima interna
+Fonte: Guilherme de Almeida, "Poesia Vária" (1947); "Os Meus Haicais" (1937); Kakinet
+Descrição: Além da rima A-B-A entre 1º e 3º versos, a escola guilhermina exige rima interna no 2º verso entre a 2ª e a 7ª sílabas poéticas. Exemplo: "Por fora, bela viola" — "fora" (2ª sílaba) rima com "viola" (7ª sílaba). A rima interna é obrigatória no haicai guilhermino clássico. O título é sempre uma palavra (não frase). O haicai guilhermino é a forma mais rigorosa do haicai brasileiro.
+❌ Errado: haicai guilhermino sem rima interna no 2º verso; título frasal em vez de palavra única
+✅ Correto: "Chuva de Primavera — / Vê como se atraem / nos fios os pingos frios! / E juntam-se. E caem." (Guilherme de Almeida) — A-B-A (atraem/caem), rima interna (atraem/pingos, 2ª e 7ª sílabas), título: "Chuva de Primavera"
+Severidade: media (para quem se propõe a seguir a escola)
+Categoria: rima
+
+===============================================================================
+QUATRO MESTRES JAPONESES — REFERÊNCIAS
+===============================================================================
+
+## [HAI-25] Bashō — fundador do haicai como arte
+Fonte: Matsuo Bashō (1644-1694); "O Caminho Estreito para o Norte Profundo"; traduções brasileiras de Edson Iura, Olga Savary, H. Masuda Goga
+Descrição: Bashō é o mestre fundador do haicai como arte poética. Elevou o haikai (poema cômico) à condição de arte séria ao impregná-lo de zen-budismo, simplicidade e observação precisa da natureza. Seu haicai mais célebre — "Velha lagoa / uma rã pula / som da água" — encapsula o ideal do haicai: o choque do instante presente que revela o eterno. O haicai de Bashō é referência mundial de concisão poética.
+❌ Errado: citar Bashō como "poeta zen" de modo genérico sem referência a poemas específicos; imitar seu estilo sem entender o contexto japonês
+✅ Correto: "Galho morto / e, nele pousado, um corvo: / tarde de outono" (Bashō, trad. Olga Savary) — kigo (outono), justaposição (galho morto + corvo + tarde), tom melancólico (sabi), momento presente
+Severidade: baixa
+Categoria: referência
+
+## [HAI-26] Buson — haicai pictórico e sensorial
+Fonte: Yosa Buson (1716-1784); traduções brasileiras de Paulo Franchetti e Elza Doi
+Descrição: Buson foi pintor e poeta, excelso no haicai-pintura. Seus haicais são visualmente ricos, com cores, texturas e composição espacial evidentes. Se o haicai de Bashō é filosófico, o de Buson é sensorial e descritivo. Buson é frequentemente citado como o mestre do haicai como arte visual.
+❌ Errado: haicai excessivamente descritivo sem a sugestão que o haicai requer (Buson descreve, mas sempre com economia)
+✅ Correto: "Lua de outono / Nos cantos da varanda / A voz dos insetos" (Buson, trad. Franchetti & Doi) — imagem visual (lua, varanda) + auditiva (insetos), justaposição, kigo (outono)
+Severidade: baixa
+Categoria: referência
+
+## [HAI-27] Issa — haicai humanizado e compassivo
+Fonte: Kobayashi Issa (1763-1827); traduções brasileiras de Edson Iura
+Descrição: Issa é o mestre do haicai humanizado e compassivo. Diferente de Bashō (filosófico) e Buson (pictórico), Issa escreve sobre os pequenos seres — pulgas, gatos, lesmas, sapos — com humor e compaixão. Perdeu filhos ainda pequenos e sua poesia reflete a consciência da fragilidade da vida. Seus haicais frequentemente quebram o tom sério do haicai clássico com humor deliberado.
+❌ Errado: confundir o humor de Issa com sátira ou ironia (Issa é compassivo, não crítico)
+✅ Correto: "O mundo de orvalho / é mundo de orvalho, e, no entanto, / apesar disso..." (Issa, poema de leito de morte, trad. Edson Iura) — a vida é tão frágil quanto orvalho, mas "apesar disso" o poema não termina, deixando o sentido em aberto — compaixão pela existência
+Severidade: baixa
+Categoria: referência
+
+## [HAI-28] Shiki — reforma moderna e realismo
+Fonte: Masaoka Shiki (1867-1902); traduções brasileiras; "Haikai — Antologia e História"
+Descrição: Shiki foi o reformador que estabeleceu o haicai moderno. Abandonou o termo haikai (cômico) e cunhou haiku (poema cômico), hoje o termo padrão mundial. Defendeu o realismo (shasei — "esboço da natureza") contra o simbolismo acadêmico em que o haicai havia caído. Shiki também escreveu tankas e foi o primeiro a teorizar o haicai como forma literária autônoma. Sua reforma pavimentou o haicai de métrica livre praticado no Ocidente.
+❌ Errado: ignorar o papel histórico de Shiki na modernização do haicai — sem ele, o haicai talvez não tivesse se difundido no Ocidente
+✅ Correto: "Vento de outono — / montões de pedras / que outrora foram castelos" (Shiki) — realismo (shasei: esboço de uma cena real), justaposição (vento + ruínas), kigo (outono), contemplação histórica
 Severidade: baixa
 Categoria: referência

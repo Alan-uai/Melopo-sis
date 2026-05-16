@@ -14,6 +14,7 @@ Fonte: Antonio Candido, "O Estudo Analítico do Poema"; Cegalla
 Descrição: Poema é a composição em versos (a obra concreta). Poesia é a essência lírica, o efeito estético que pode existir em prosa ou verso. No contexto do sistema, "poema" e "poesia" como estruturas significam forma livre: sem métrica fixa, sem esquema de rimas obrigatório, sem estrofação predeterminada.
 ❌ Errado: exigir métrica, rima ou estrofação fixa em poema/poesia (estrutura livre)
 ✅ Correto: versos livres, estrofação variável, rimas ocasionais ou ausentes
+✅ Correto (Drummond, "No meio do caminho"): é poema (forma concreta em versos) que contém poesia (efeito estético de estranhamento) — a repetição de "pedra" gera o efeito poético sem metáfora explícita
 Severidade: baixa
 Categoria: estrutura
 
@@ -22,6 +23,7 @@ Fonte: Bandeira, "Itinerário de Pasárgada"; Candido
 Descrição: O verso livre não obedece a contagem silábica predeterminada. Cada verso pode ter comprimento variável. É a forma dominante na poesia brasileira a partir do Modernismo (1922). Não se aplicam regras de escansão clássica.
 ❌ Errado: escandir versos livres como se fossem metrificados; forçar contagem silábica
 ✅ Correto: versos de comprimento variável, sem padrão métrico obrigatório
+✅ Correto (Manuel Bandeira, "Vou-me embora pra Pasárgada"): "Vou-me embora pra Pasárgada / Lá sou amigo do rei" — 9 sílabas no 1º verso, 7 no 2º; Bandeira alterna livremente os comprimentos sem padrão fixo
 Severidade: baixa
 Categoria: métrica
 
@@ -30,6 +32,7 @@ Fonte: tradição moderna; Candido
 Descrição: O verso branco (ou solto) não possui rima, independentemente de ter ou não métrica fixa. Poemas em verso branco podem ser metrificados (ex: decassílabos brancos de Drummond) ou livres. A ausência de rima não é erro.
 ❌ Errado: forçar rimas onde o poema optou pelo verso branco
 ✅ Correto: versos sem rima, com ou sem métrica definida
+✅ Correto (João Cabral, "A Educação pela Pedra"): versos brancos (sem rima) mas com métrica regular — a ausência de rima é escolha estrutural, não omissão
 Severidade: baixa
 Categoria: rima
 
@@ -42,6 +45,7 @@ Fonte: Candido; Bandeira
 Descrição: No verso livre, a pontuação é inteiramente uma escolha estilística do poeta. Pode ser abundante, mínima ou ausente. Não há regras fixas. A pontuação serve à respiração e ao ritmo do poema, não a regras gramaticais da prosa.
 ❌ Errado: "corrigir" a pontuação de um poema moderno para adequá-la às regras da prosa
 ✅ Correto: qualquer pontuação que sirva à intenção expressiva do poeta
+✅ Correto (Adélia Prado, "Festa do corpo de Deus"): "Jesus tem um par de nádegas! / E os sinos, as hóstias, os altares, tudo / é para nosso uso" — a exclamação no 1º verso e a vírgula enumerativa são escolhas expressivas, não erros de pontuação
 Severidade: alta (não corrigir pontuação)
 Categoria: pontuação
 
@@ -50,6 +54,7 @@ Fonte: Modernismo brasileiro; Drummond, Bandeira, João Cabral
 Descrição: A poesia moderna frequentemente abole totalmente a pontuação, usando apenas a quebra de verso e os espaços em branco como elementos rítmicos e sintáticos. A ausência de pontuação não é erro.
 ❌ Errado: adicionar pontuação onde o poeta optou por não usá-la
 ✅ Correto: poema sem qualquer pontuação, usando versos e estrofes como pausa
+✅ Correto (Drummond, "No meio do caminho"): zero pontuação — a quebra de verso é a única pausa; "pedra" repetida sem vírgulas cria um fluxo alucinatório
 Severidade: alta (não adicionar)
 Categoria: pontuação
 
@@ -62,6 +67,8 @@ Fonte: tradição literária; Cegalla
 Descrição: Na poesia clássica, todo verso inicia com letra maiúscula, independentemente de pontuação. Na poesia moderna, a minúscula no início do verso é uma escolha estilística válida.
 ❌ Errado: corrigir maiúscula/minúscula em início de verso (é escolha estilística)
 ✅ Correto: maiúscula (clássico) ou minúscula (moderno) — ambas aceitas
+✅ Correto (Camões, soneto "Amor é fogo"): maiúscula em cada verso — "Amor é fogo que arde sem se ver", convenção clássica
+✅ Correto (Leminski, "noite sem sono"): minúscula total — "noite sem sono / o cachorro late / um sonho sem dono", convenção moderna
 Severidade: baixa
 Categoria: estilo
 
@@ -74,6 +81,7 @@ Fonte: Cegalla; tradição literária
 Descrição: O hipérbato (inversão da ordem direta sujeito-verbo-objeto) é recurso poético legítimo. Ex: "As estrelas no céu brilhavam" em vez de "As estrelas brilhavam no céu". Não deve ser corrigido.
 ❌ Errado: "Corrigir" para ordem direta: "As estrelas brilhavam no céu"
 ✅ Correto: "As estrelas no céu brilhavam" (hipérbato preservado)
+✅ Correto (Camões, soneto "Amor é fogo"): "Amor é fogo que arde sem se ver" — hipérbato duplo: "arder sem se ver" (sem se ver arder) + "é ferida que dói e não se sente"; a inversão é necessária à métrica e ao efeito de paradoxo
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -82,6 +90,7 @@ Fonte: Cegalla; tradição literária
 Descrição: A síncope é a supressão de fonemas no interior de palavras para efeito métrico ou estilístico. Ex: "corar" por "colorar", "esperma" por "esperança" (em contextos poéticos). Não deve ser corrigida.
 ❌ Errado: "corrigir" para a forma completa
 ✅ Correto: preservar a forma sincopada escolhida pelo poeta
+✅ Correto (Augusto dos Anjos, "Psicologia de um Vencido"): "Sofro, desde a epigénesis da infância" — "epigénesis" é forma sincopada (vs. "epigênese"), escolha que mantém o decassílabo e o tom científico arcaizante
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -90,6 +99,8 @@ Fonte: tradição literária; Cegalla
 Descrição: Arcaísmos (palavras em desuso) são usados como recurso estilístico para evocar tempos passados ou criar efeito solene. Ex: "lume" (luz), "escuro" (escuridão), "fazer" (no sentido de "criar"), "assaz" (bastante). Não devem ser corrigidos.
 ❌ Errado: substituir arcaísmo por termo moderno equivalente
 ✅ Correto: preservar o arcaísmo como escolha estilística
+✅ Correto (Augusto dos Anjos, "Psicologia de um Vencido"): "amoníaco", "rutilância", "epigénesis", "Psychologia" (título original) — arcaísmos científicos do século XIX que o poeta mantém como parte do tom
+✅ Correto (Gregório de Matos, "Triste Bahia"): "Oh quão dessemelhante / Estás, e estou do nosso antigo estado!" — "dessemelhante" (diferente) é arcaísmo do português seiscentista, preservado
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -98,6 +109,7 @@ Fonte: Castilho; Cegalla
 Descrição: A elisão (ou elixir) poética é a supressão de uma vogal átona final antes de palavra começada por vogal, marcada por apóstrofo. Ex: "d'água", "d'alma", "m'alma", "n'alma". É recurso métrico e estilístico legítimo.
 ❌ Errado: expandir para "de água", "de alma", "minha alma"
 ✅ Correto: "d'água", "d'alma", "m'alma"
+✅ Correto (Gonçalves Dias, "Canção do Exílio"): "Minha terra tem palmeiras / Onde canta o Sabiá" — não usa elisão, mas a métrica de redondilha maior (7 sílabas) depende de elisões internas: "Minha terra tem palmeiras" = Mi-nha-te-rra-tem-pal-MEI-ras (7 sílabas, com elisão de "terra" + "tem")
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -110,6 +122,7 @@ Fonte: Cegalla; tradição literária
 Descrição: A silepse (concordância pelo sentido, não pela forma) é recurso poético comum. Ex: "A multidão gritavam" (silepse de número — a multidão são muitas pessoas). "Vossa Excelência está cansado" (silepse de gênero). Não deve ser corrigida em contexto poético.
 ❌ Errado: "corrigir" silepse para concordância gramatical padrão
 ✅ Correto: "A multidão gritavam" (preservado como escolha estilística)
+✅ Correto (Oswald de Andrade, "Erro de português"): "Quando o português chegou / Debaixo duma bruta chuva / Vestiu o índio" — o título "Erro de português" é em si uma silepse: o "erro" é a perspectiva do colonizador, não do poema
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -118,6 +131,7 @@ Fonte: Cegalla; Candido
 Descrição: O anacoluto é a quebra da estrutura sintática esperada, deixando um termo "solto" na frase. Ex: "Eu, não sei se vou conseguir." É recurso expressivo da poesia moderna.
 ❌ Errado: "corrigir" o anacoluto para estrutura sintática padrão
 ✅ Correto: preservar o anacoluto como recurso expressivo
+✅ Correto (Drummond, "No meio do caminho"): "No meio do caminho tinha uma pedra" — anacoluto: o sujeito "pedra" aparece depois do verbo "tinha" (haver impessoal), mas Drummond usa "tinha" como verbo pessoal, criando uma estrutura sintática quebrada que reforça o estranhamento
 Severidade: alta (não corrigir)
 Categoria: licença poética
 
@@ -130,6 +144,7 @@ Fonte: Candido, "O Estudo Analítico do Poema"
 Descrição: A metáfora (transferência de significado) é o recurso central da poesia. Não se deve "corrigir" metáforas para sentido literal. Avaliar apenas a coerência interna da imagem, não sua veracidade factual.
 ❌ Errado: "corrigir" metáfora para expressão literal ("o céu está chorando" → "está chovendo")
 ✅ Correto: "o céu está chorando" (metáfora preservada)
+✅ Correto (Cruz e Sousa, "Antífona"): "Ó Fórmas alvas, brancas, Fórmas claras / De luares, de neves, de neblinas!" — a metáfora da "brancura" não é literal; "luares" e "neblinas" são metáforas da alvura absoluta, não objetos físicos. O sistema não deve "corrigir" a aparente contradição (neblina dentro de forma)
 Severidade: alta (não corrigir)
 Categoria: estilo
 
@@ -138,6 +153,7 @@ Fonte: Candido; tradição literária
 Descrição: A repetição (anáfora, epífora, paralelismo) é recurso poético fundamental, não erro de estilo. Palavras, versos ou estruturas repetidas intencionalmente criam ritmo e ênfase.
 ❌ Errado: "corrigir" repetições como se fossem vícios de linguagem
 ✅ Correto: "É claro que a vida / É clara e bela" (anáfora preservada)
+✅ Correto (Drummond, "No meio do caminho"): "No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho" — a repetição de "pedra" e "caminho" não é vício, é o eixo estrutural do poema; a anáfora cria o efeito de obsessão
 Severidade: alta (não corrigir)
 Categoria: estilo
 
@@ -150,6 +166,7 @@ Fonte: Candido; tradição poética
 Descrição: O enjambement ocorre quando uma frase ou oração ultrapassa o limite do verso, continuando no verso seguinte. É recurso expressivo que cria tensão e surpresa. Comum na poesia moderna e no soneto (encavalgamento entre tercetos).
 ❌ Errado: "corrigir" o poema para que cada verso seja uma unidade sintática completa
 ✅ Correto: "A noite desce / sobre a cidade / como um manto" (enjambement preservado)
+✅ Correto (João Cabral, "A Educação pela Pedra"): "Uma educação pela pedra: por lições; / para aprender da pedra, frequentá-la" — o enjambement entre "lições;" e "para aprender" cria tensão entre o fim do verso (ponto-e-vírgula) e a continuidade da frase, que é a própria "lição" do poema
 Severidade: alta (não corrigir)
 Categoria: estrutura
 
@@ -162,6 +179,8 @@ Fonte: Modernismo brasileiro; Drummond, Bandeira, João Cabral
 Descrição: A poesia moderna incorpora expressões coloquiais e da fala cotidiana como recurso de aproximação com o leitor e de ruptura com o formalismo parnasiano. Não devem ser "corrigidos" para norma culta.
 ❌ Errado: substituir "tá" por "está", "pra" por "para", "né" por "não é"
 ✅ Correto: "tá", "pra", "né", "cê", "tô" — preservados quando intencionais
+✅ Correto (Patativa do Assaré, "O Poeta da Roça"): "Sou fio das mata, cantô da mão grossa" — "fio" (filho), "cantô" (cantor), "mata" (matas) são coloquialismos rurais que o sistema não deve "corrigir" para a norma culta
+✅ Correto (Oswald de Andrade, "Erro de português"): "duma" por "de uma" — coloquialismo preservado
 Severidade: alta (não corrigir)
 Categoria: estilo
 
@@ -171,6 +190,73 @@ REFERÊNCIAS ESSENCIAIS
 
 ## [POE-17] Autores fundamentais do verso livre brasileiro
 Fonte: tradição modernista brasileira
-Descrição: Principais referências: Manuel Bandeira ("Libertinagem", "Estrela da Manhã"), Carlos Drummond de Andrade ("Alguma Poesia", "Sentimento do Mundo"), João Cabral de Melo Neto ("A Educação pela Pedra"), Cecília Meireles ("Viagem"), Mário de Andrade ("Pauliceia Desvairada"), Murilo Mendes, Jorge de Lima.
+Descrição: Principais referências: Manuel Bandeira ("Libertinagem", "Estrela da Manhã"), Carlos Drummond de Andrade ("Alguma Poesia", "Sentimento do Mundo"), João Cabral de Melo Neto ("A Educação pela Pedra"), Cecília Meireles ("Viagem", "Romanceiro da Inconfidência"), Mário de Andrade ("Pauliceia Desvairada"), Murilo Mendes, Jorge de Lima, Adélia Prado ("Bagagem"), Patativa do Assaré ("Inspiração Nordestina"), Oswald de Andrade ("Pau-Brasil"), Vinicius de Moraes ("Antologia Poética"), Augusto dos Anjos ("Eu").
 Severidade: baixa
 Categoria: referência
+
+======= NOVAS REGRAS — TEORIA E GÊNEROS =======
+
+## [POE-18] Função poética da linguagem (Jakobson) — o eixo paradigmático no sintagmático
+Fonte: Roman Jakobson, "Linguística e Poética" (1960); Antonio Candido, "O Estudo Analítico do Poema"
+Descrição: A função poética da linguagem, segundo Jakobson, projeta o princípio de equivalência do eixo paradigmático (seleção) sobre o eixo sintagmático (combinação). Na prática: palavras escolhidas por similaridade sonora ou semântica (rimas, aliterações, assonâncias, metáforas) são combinadas na sequência do poema, criando paralelismos e correspondências. O poema não é apenas mensagem — é um objeto verbal onde a forma é constitutiva do sentido. Aplicação prática: (1) rima não é ornamento — é equivalência projetada; (2) metáfora não é decoração — é seleção paradigmática visível; (3) a estrutura do poema é tão significativa quanto seu conteúdo. Esta teoria fundamenta a não-correção de recursos poéticos como repetição, paralelismo e rima.
+❌ Errado: tratar rima, aliteração e paralelismo como "erros de repetição" — são projeções do eixo paradigmático
+✅ Correto: reconhecer que na função poética a equivalência sonora (rima) e a equivalência semântica (metáfora) são estruturais, não ornamentais
+Severidade: informativa
+Categoria: teoria
+
+## [POE-19] Poema vs. Poesia — distinção aprofundada
+Fonte: Antonio Candido; Roman Jakobson; Afrânio Coutinho; Croce
+Descrição: Distinção fundamental: (1) Poema é a forma concreta — composição em versos, com ou sem métrica, rima, estrofação. É mensurável, descritível, analisável. (2) Poesia é a qualidade estética — a "literariedade" que faz um texto ser literário. Pode existir em prosa ("prosa poética", "poesia em prosa"), em música (letras de canção), em artes visuais. (3) Um poema pode não ter poesia (poema meramente técnico, versificado sem lirismo). (4) A poesia pode existir sem poema (um quadro, uma paisagem, uma cena — "isso é poesia"). (5) No contexto do sistema, "poema" como forma indica estrutura livre (sem métrica/rima fixa), enquanto "poesia" como indicador de forma é raramente usado (preferir "poema").
+❌ Errado: usar "poesia" como sinónimo de "poema" em metadados técnicos; confundir "gênero poesia" com "gênero lírico"
+✅ Correto: "Isto é um poema" (forma concreta) / "Isto tem poesia" (qualidade estética, mesmo que em prosa)
+Severidade: informativa
+Categoria: teoria
+
+## [POE-20] Verso, estrofe e poema — hierarquia estrutural
+Fonte: Castilho, "Tratado de Metrificação Portuguesa"; Candido, "O Estudo Analítico do Poema"; Cegalla
+Descrição: A hierarquia estrutural da poesia: (1) Verso — a menor unidade rítmica, definida por uma linha do poema; contém um número variável (livre) ou fixo (metrificado) de sílabas poéticas; (2) Estrofe — agrupamento de versos separado por espaço em branco; pode ter número fixo (dístico 2, terceto 3, quarteto 4, sextilha 6, oitava 8, décima 10) ou variável (estrofe irregular); (3) Poema — a totalidade do texto, composto de versos e estrofes. Na poesia moderna, a distinção entre verso e estrofe pode ser fluida (poemas de um só verso — monóstico; poemas sem quebras de estrofe — poema contínuo). O sistema deve reconhecer que versos e estrofes são unidades estruturais que organizam o ritmo, a respiração e o sentido.
+❌ Errado: confundir verso com linha de prosa (o verso é unidade rítmica, não tipográfica); ignorar a função estrutural da estrofe
+✅ Correto: "Vou-me embora pra Pasárgada / Lá sou amigo do rei" (Bandeira) — são 2 versos, 1 estrofe (dístico), unidade de sentido
+Severidade: informativa
+Categoria: teoria
+
+## [POE-21] Gêneros poéticos — lírica, épica e dramática
+Fonte: Aristóteles, "Poética"; Horácio; tradição ocidental; Emilia Fernandes, "Gêneros Literários"
+Descrição: A poesia ocidental divide-se classicamente em três gêneros: (1) Lírica — expressão do eu, subjetividade, emoção. Formas: ode, elegia, soneto, haicai, canção. É o gênero dominante na poesia moderna. (2) Épica — narração de feitos heroicos, objetiva, impessoal. Formas: epopeia, romanceiro, cantar de gesta. No Brasil: "Os Lusíadas" (Camões, pertencente ao português mas fundador), "O Uraguai" (Basílio da Gama), "Caramuru" (Santa Rita Durão), "I-Juca Pirama" (Gonçalves Dias), "Romanceiro da Inconfidência" (Cecília Meireles, forma híbrida lírico-épica). (3) Dramática — poesia feita para ser representada; textos teatrais em verso. Exemplos: "Auto da Compadecida" (Ariano Suassuna, em prosa e verso), "Macbeth" e "Hamlet" (Shakespeare, em verso branco). A poesia moderna frequentemente mescla os gêneros — Cecília Meireles em "Romanceiro da Inconfidência" funde lírica (subjetividade dos personagens históricos) com épica (narrativa da Inconfidência Mineira).
+❌ Errado: classificar todo poema como "lírico" (há épica e dramática também); ignorar a tradição épica brasileira
+✅ Correto: "Romanceiro da Inconfidência" é lírico-épico — "Ó meio-dia confuso / que fazer da luz que sobra? / Quem ordena, julga e pune? / Quem perdoa?" — voz lírica que narra a épica da Inconfidência
+Severidade: informativa
+Categoria: teoria — gênero
+
+## [POE-22] Poesia visual — concreta, processo, experimental
+Fonte: Concretismo brasileiro; Augusto de Campos, Décio Pignatari, Haroldo de Campos; Wlademir Dias-Pino, "Poema-Processo"; Ferreira Gullar, "Poema Sujo"
+Descrição: A poesia visual brasileira é uma das mais inovadoras do mundo. Divide-se em: (1) Poesia Concreta (1956-): Augusto de Campos, Décio Pignatari, Haroldo de Campos. O poema é um objeto visual — a disposição espacial das palavras na página é constitutiva do sentido. Ex: "Luxo" de Augusto de Campos, onde as letras se organizam como padrão gráfico. (2) Poema-Processo (1967-): Wlademir Dias-Pino. Abole a poesia visual "fechada" do Concretismo — o poema é um processo, não um objeto; usa diagramas, signos não-verbais, cores, sequências fotográficas. A palavra pode desaparecer. (3) Poesia Experimental: Neovanguarda, poesia cibernética, poesia sonora, poesia holográfica. O sistema reconhece essas formas como categoria à parte — não aplicar regras de pontuação, ortografia ou métrica.
+❌ Errado: aplicar regras de poesia verbal a poesia visual ou concreta (a forma gráfica é o conteúdo)
+✅ Correto: poesia concreta e visual — o sistema deve ignorar (fora de escopo de correção)
+✅ Correto (Augusto de Campos, "Luxo"): o poema é um quadrado visual de letras; não há métrica, rima ou pontuação — há design gráfico
+Severidade: informativa (fora de escopo)
+Categoria: teoria — visual
+
+## [POE-23] Poesia marginal brasileira — os anos 1970 e a geração mimeógrafo
+Fonte: Ana Cristina Cesar, "A Teus Pés"; Cacaso; Chacal; Francisco Alvim; Heloísa Buarque de Hollanda, "26 Poetas Hoje"; poesia mimeógrafo
+Descrição: A poesia marginal brasileira (geração mimeógrafo, anos 1970) caracteriza-se por: (1) publicação independente — mimeógrafos, edições artesanais, fora do circuito editorial; (2) verso livre, coloquialismo, tom confessional; (3) ausência de pontuação e maiúsculas como marca estilística; (4) temática do cotidiano urbano, afetos, política indireta (devido à censura da ditadura); (5) influência do Concretismo na visualidade mas rejeição do formalismo. Ana Cristina Cesar é a figura mais canónica — sua poesia usa coloquialismo, parênteses, enumerações caóticas, versos fragmentados. A poesia marginal não deve ser corrigida por regras formais — seus desvios são intencionais e constitutivos.
+❌ Errado: corrigir ortografia, pontuação ou sintaxe de poesia marginal — o "erro" é a marca do gênero
+✅ Correto (Ana Cristina Cesar): fragmentação deliberada, ausência de pontuação, coloquialismo — preservar como escolha estética
+Severidade: informativa
+Categoria: teoria — contemporânea
+
+## [POE-24] Poesia contemporânea brasileira — tendências do século XXI
+Fonte: Angélica Freitas; Marília Garcia; Ricardo Aleixo; Fabiano Calixto; Ana Martins Marques; poesia digital e cibernética; slam poetry
+Descrição: Tendências da poesia brasileira do século XXI: (1) Poesia slam — performance, oralidade, competição de poesia falada; prioriza o impacto ao vivo; a grafia é secundária; usa pontuação expressiva, letras maiúsculas, repetições, pausas marcadas por barras. (2) Poesia digital — poemas em redes sociais (Instagram, Twitter), hipertexto, poemas-generativos, IA poética. (3) Poesia ensaística — Marília Garcia, Fabiano Calixto — mescla poesia e ensaio, metalinguagem, prosa poética. (4) Poesia queer e feminista — Angélica Freitas ("Rilke Shake"), Ana Martins Marques — questionamento de gênero e identidade. (5) Poesia negra contemporânea — Ricardo Aleixo, Lubi Prates — oralidade, ritmo, política, experimentação formal. O sistema deve reconhecer que as regras formais da poesia clássica não se aplicam a estas produções contemporâneas.
+❌ Errado: aplicar regras de metrificação clássica a poesia slam ou digital
+✅ Correto: reconhecer que cada movimento/tendência tem suas próprias convenções; o sistema deve marcar como "baixa severidade" e sugerir verificação humana
+Severidade: informativa
+Categoria: teoria — contemporânea
+
+## [POE-25] Licença poética — limites e reconhecimento
+Fonte: Castilho; Candido; Cegalla; Said Ali; análise de poesia amadora e profissional
+Descrição: A licença poética é o direito do poeta de desviar-se das normas gramaticais, ortográficas e métricas para obter efeito estético. Distinção entre licença legítima e erro disfarçado: (1) Consistência — a licença aparece de forma sistemática, não isolada; (2) Intencionalidade — o desvio serve ao sentido do poema (ênfase, métrica, tom); (3) Reconhecibilidade — o leitor identifica o desvio como recurso, não como descuido; (4) Tradição — o recurso tem lastro na tradição poética (hipérbato, síncope, arcaísmo, silepse são licenças clássicas). Licenças não aceitas: acentuação errada em palavra que não exige desvio para métrica, ortografia que torna a palavra irreconhecível, concordância que quebra a inteligibilidade. O sistema deve aplicar três níveis: verde (licença clássica reconhecida — não corrigir), amarelo (suspeito — verificação humana), vermelho (erro provável — sinalizar).
+❌ Errado: aceitar "licença poética" como justificativa para qualquer desvio (licença tem limites)
+✅ Correto: "No meio do caminho tinha uma pedra" — anacoluto reconhecido como licença legítima (verde) vs. "os livro" em poema que não usa coloquialismo — erro provável (vermelho)
+Severidade: informativa (diretriz de classificação)
+Categoria: teoria — licença

@@ -13,6 +13,7 @@ Fonte: Castilho, "Tratado de Metrificação Portuguesa"; Bilac e Passos
 Descrição: Rima consoante exige identidade total de sons a partir da última vogal tônica, incluindo consoantes. Ex: "ventura" / "ternura" (tura); "mar" / "cantar" (ar); "belo" / "castelo" (elo). É o tipo mais comum na poesia clássica e formal.
 ❌ Errado: "vento" / "sentir" (vogal tónica diferente: -en- vs -ir)
 ✅ Correto: "vento" / "lamento" (tónica: -en-; terminação igual: -ento)
+✅ Correto (Camões, soneto "Amor é fogo"): "ver" / "doler" (rime consoante: -er infinitivo); "sentir" / "desatinar" não rimam — mas Camões usa "sente" / "contentamento" com rima consoante perfeita (-ente/-ento)
 Severidade: alta (quando a forma exige)
 Categoria: rima — tipo
 
@@ -20,7 +21,8 @@ Categoria: rima — tipo
 Fonte: Castilho; Said Ali; tradição medieval portuguesa (cantigas)
 Descrição: Rima toante exige identidade apenas das vogais a partir da última tônica, permitindo consoantes diferentes. Ex: "vento" / "belo" (vogais: -e-o); "mar" / "falar" (vogais: -a-). Comum na poesia medieval, no modernismo e em letras de canção. Aceitável em poesia moderna, mas indicar explicitamente se o esquema é toante.
 ❌ Errado: considerar rima toante como erro quando o esquema pede consoante
-✅ Correto: usar rima toante intencionalmente em poesia moderna ("vento" / "recrespo") — marcar a intenção no poema
+✅ Correto (toante medieval): Cantiga de amigo — "ai flores, ai flores do verde pino, / se sabedes novas do meu amigo!" (vogais: -i-o, -i-o, mas consoantes diferentes: pino/amigo)
+✅ Correto (toante moderno): usar rima toante intencionalmente em poesia moderna ("vento" / "recrespo") — marcar a intenção no poema
 Severidade: baixa (contextual — válida se intencional)
 Categoria: rima — tipo
 
@@ -28,7 +30,8 @@ Categoria: rima — tipo
 Fonte: Bilac e Passos; Castilho; tradição parnasiana
 Descrição: Rima entre palavras de diferentes classes gramaticais (substantivo + verbo, adjetivo + substantivo, etc.) é considerada mais valiosa que rima pobre (mesma classe). Quanto maior a distância gramatical e semântica, mais rica a rima.
 ❌ Errado: "amor" / "dor" (substantivo + substantivo — rima pobre)
-✅ Correto: "cantar" (verbo) / "mar" (substantivo) — verbo com substantivo clsses distintas
+✅ Correto: "cantar" (verbo) / "mar" (substantivo) — verbo com substantivo classes distintas
+✅ Correto: Camões no soneto "Amor é fogo que arde sem se ver" — "ver" (verbo) rima com "doler" (verbo — rima pobre), mas "sente" (verbo) rima com "contentamento" (substantivo — rima rica)
 Severidade: baixa (sugestão de qualidade, não erro)
 Categoria: rima — qualidade
 
@@ -45,6 +48,7 @@ Fonte: Castilho; Said Ali; tradição trovadoresca
 Descrição: Rima que ocorre entre uma palavra simples e uma composta, ou entre combinações de palavras que soam como uma só. Ex: "vinha" / "rainha" (palavra simples composta); "vê-la" / "estrela" (verbo + pronome = palavra). Usada com moderação — em excesso soa artificial.
 ❌ Errado: "amá-la" / "fala" (forçado — evitar)
 ✅ Correto: "vê-la" / "estrela" (preciosa natural — a elisão flui organicamente)
+✅ Correto: "Vou-me embora pra Pasárgada / Lá sou amigo do rei" (Manuel Bandeira) — "Pasárgada" / "rei" não rimam, mas Bandeira não precisava de rima — exemplo de rima preciosa evitada em favor do verso livre
 Severidade: baixa
 Categoria: rima — tipo
 
@@ -53,6 +57,7 @@ Fonte: Castilho; Said Ali; tradição simbolista (Cruz e Sousa, "Antífona")
 Descrição: Rima que ocorre entre palavras no interior do verso, não apenas no final. Cria efeito de musicalidade e riqueza sonora. Pode ser combinada com rima externa para maior complexidade. Cruz e Sousa é mestre da rima interna no simbolismo brasileiro.
 ❌ Errado: usar rima interna que compete com a rima externa ou desorienta a leitura
 ✅ Correto: "A lua cheia clareia a aldeia" (rima interna "lu-a" / "clareia" + externa "cheia" / "aldeia")
+✅ Correto (Cruz e Sousa, "Antífona"): "Ó Fórmas alvas, brancas, Fórmas claras / De luares, de neves, de neblinas!..." — rima interna em "alvas" / "brancas" / "claras" e "luares" / "neves" / "neblinas", criando cascata de assonâncias que é a marca do simbolismo
 Severidade: baixa
 Categoria: rima — tipo
 
@@ -65,6 +70,7 @@ Fonte: Castilho; tradição da poesia medieval e cordel
 Descrição: Dois versos consecutivos rimam entre si (AA), seguidos de outro par (BB). Esquema: A A B B. Usado em cordel (sextilha: A B C B D B — cada par ou sequência), em parlenda, e em poesia narrativa. Efeito: ritmo rápido, fechamento a cada dois versos.
 ❌ Errado: A A B C (terceiro verso sem rima — quebra o padrão pareado)
 ✅ Correto: O vento sopra no vale (A) / E a folha seca se cale (A) / O tempo passa no monte (B) / E o rio corre na fonte (B)
+✅ Correto (Leandro Gomes de Barros, cordel "O Dinheiro"): "O dinheiro é quem governa / A mulher bonita e o faz / Quem faz o homem ser eterno / E o que não presta ser capaz" — sextilha em ABCBDB, mas a quadra acima segue AABB com rima pareada típica de cordel
 Severidade: media (contextual)
 Categoria: rima — esquema
 
@@ -73,6 +79,7 @@ Fonte: Castilho; tradição da poesia lírica (Camões, soneto inglês)
 Descrição: Versos ímpares rimam entre si, e versos pares rimam entre si. Esquema: A B A B. Efeito: diálogo entre versos, mais dinâmico que AABB. Muito usado em quadras populares, soneto inglês (Shakespeare) e trovas. Ritmo de pergunta e resposta.
 ❌ Errado: A B C B (terceiro verso sem rima — quebra alternância)
 ✅ Correto: No céu as nuvens passam (A) / No chão as flores dormem (B) / As aves se desfaçam (A) / E as águas se transformem (B)
+✅ Correto (Vinicius de Moraes, "Soneto de Fidelidade"): "De tudo, ao meu amor serei atento / Antes, e com tal zelo, e sempre, e tanto / Que mesmo em face do maior encanto / Dele se encante mais meu pensamento" — ABAB nos quartetos (atento/tanto/encanto/pensamento)
 Severidade: media (contextual)
 Categoria: rima — esquema
 
@@ -80,7 +87,8 @@ Categoria: rima — esquema
 Fonte: Castilho; soneto italiano (Petrarca, Camões)
 Descrição: O primeiro verso rima com o quarto, e o segundo com o terceiro. Esquema: A B B A. Efeito: circular, fechamento, sensação de completude. Obrigatório nos quartetos do soneto italiano clássico. Também usado em quartetos isolados para criar unidade fechada.
 ❌ Errado: A B A B em quartetos de soneto italiano (é esquema inglês, não italiano)
-✅ Correto: Amor é fogo que arde sem se ver (A) / É ferida que dói e não se sente (B) / É um contentamento descontente (B) / É dor que desatina sem doer (A)
+✅ Correto (Camões, soneto "Amor é fogo"): "Amor é fogo que arde sem se ver (A) / É ferida que dói e não se sente (B) / É um contentamento descontente (B) / É dor que desatina sem doer (A)" — ABBA nos dois quartetos, CDC DCD nos tercetos
+✅ Correto (Gregório de Matos, "Triste Bahia"): "Oh quão dessemelhante (A) / Estás, e estou do nosso antigo estado! (B) / Pobre, te vejo a ti, tu a mim empenhado (B) / Rica te vi eu já, tu a mim abundante (A)" — ABBA, soneto italiano perfeito
 Severidade: alta (em soneto italiano)
 Categoria: rima — esquema
 
@@ -89,6 +97,7 @@ Fonte: tradição da balada medieval; Said Ali
 Descrição: Apenas o segundo e o quarto verso de cada quadra rimam. Os versos ímpares ficam livres (sem rima obrigatória). Esquema: A B C B. Efeito: mais flexível que esquemas completos; ritmo de balada e narrativa. Comum em poesia popular, canções e baladas.
 ❌ Errado: A B C D (nenhuma rima — se rhymme=true, ao menos B deve rimar com D)
 ✅ Correto: A lua já vai alta (A) / E o vento traz o frio (B) / A noite sobressalta (C) / Na sombra do desvio (B)
+✅ Correto (Cecília Meireles, "Romanceiro da Inconfidência"): "Ó meio-dia confuso (A) / que fazer da luz que sobra? (B) / Quem ordena, julga e pune? (C) / Quem perdoa? (B)" — ABCB típico das baladas e romances em verso
 Severidade: media
 Categoria: rima — esquema
 
@@ -97,6 +106,7 @@ Fonte: ABLC; tradição do cordel nordestino
 Descrição: Na sextilha de cordel (6 versos em redondilha maior de 7 sílabas), o 2º, 4º e 6º versos rimam entre si (B). O 1º verso rima com o 3º e 5º? Não — no cordel tradicional, apenas os pares rimam. Ou: A B C B D B (apenas pares rimam). Na septilha, 2º, 4º e 7º rimam. Na décima, esquema ABCBDCCBAA.
 ❌ Errado: fazer todos os versos rimarem entre si em cordel (não é a tradição)
 ✅ Correto: O sertão é grande e vasto (A) / Mas o povo sofre em vão (B) / O sol queima todo o rastro (C) / E a seca aperta o chão (B) / O gado berra no pasto (D) / E morre de privação (B)
+✅ Correto (Leandro Gomes de Barros, "O Dinheiro", 1ª sextilha): "O dinheiro é quem governa (A) / A mulher bonita e o faz (B) / Quem faz o homem ser eterno (C) / E o que não presta ser capaz (B) / Envelhece o homem moço (D) / E o velho torna rapaz (B)" — ABCBDB, os pares (2º, 4º, 6º) rimam em -az/-az/-apaz
 Severidade: media (contextual)
 Categoria: rima — esquema
 
@@ -105,6 +115,7 @@ Fonte: Candido; análise de poesia moderna
 Descrição: Misturar esquemas de rima no mesmo poema pode ser elegante (consciente, com propósito expressivo) ou inconsistente (acidental, por falta de técnica). A diferença: na mistura elegante, a mudança de esquema coincide com virada temática ou de tom. Na inconsistência, a rima aparece e desaparece sem razão.
 ❌ Errado: AABB nas primeiras estrofes e ABAB nas seguintes sem mudança de tom ou estrofe
 ✅ Correto: transição de AABB para ABAB quando o poema muda de tema ou tom
+✅ Correto (Bilac, "Via Láctea" Soneto XIII): "Ora direis ouvir estrelas! Certo / Perdeste o senso!" — Bilac mantém o mesmo esquema nos quartetos (ABBA) e varia nos tercetos (CDE CDE), que é a mistura padrão e aceita do soneto; a chave é que a mudança coincide com a virada do poema entre quartetos e tercetos
 Severidade: baixa (sugestão, não erro)
 Categoria: rima — esquema
 
@@ -117,6 +128,7 @@ Fonte: Candido; Castilho; análise de poesia amadora
 Descrição: Hipérbato excessivo que sacrifica a clareza para forçar uma rima. Ex: "O amor eu sinto no meu coração / que bate forte com grande emoção" → "emoção" foi puxada para o final só para rimar com "coração", criando sintaxe estranha em português. A rima deve soar natural, mesmo em poesia formal.
 ❌ Errado: "No meu peito o amor eu guardo / E dele sempre me lembro / Pois sem ele não me atardo / E com ele me reinvento" (inversão forçada)
 ✅ Correto: "Guardo no peito o amor que me alimenta / E lembro dele como quem sedenta" (rima natural, sem forçar a sintaxe)
+✅ Correto (Gregório de Matos, "Triste Bahia"): "Oh quão dessemelhante / Estás, e estou do nosso antigo estado!" — o hipérbato é forte mas não serve à rima (dessemelhante/abundante), serve à ênfase poética; a rima soa natural dentro da inversão
 Severidade: media
 Categoria: rima — qualidade
 
@@ -125,6 +137,7 @@ Fonte: Castilho; análise de rima
 Descrição: Repetir a mesma palavra exata no final de dois versos para fazer "rimar". Isso não constitui rima — é eco. A rima exige palavras diferentes com sons iguais, não a mesma palavra. Exceto em jogos poéticos intencionais (ex: poesia concreta) ou anáfora estrutural.
 ❌ Errado: "O vento sopra no vale / e a noite cresce no vale" (eco de "vale")
 ✅ Correto: "O vento sopra no vale / e a noite cresce no cale" (rima verdadeira)
+✅ Exceção (repetição intencional): "No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho" (Drummond) — Drummond repete "pedra" não como rima-eco mas como anáfora estrutural, recurso consciente e não erro
 Severidade: alta
 Categoria: rima — qualidade
 
@@ -133,6 +146,7 @@ Fonte: Castilho; análise de poesia formal
 Descrição: Uma vez estabelecido o esquema de rimas (ABAB, AABB, etc.), ele deve ser mantido ao longo de todo o poema ou, no mínimo, dentro de cada estrofe. Mudar de esquema sem aviso ou razão estrutural quebra a expectativa rítmica do leitor.
 ❌ Errado: primeira quadra em ABAB, segunda em AABB, terceira em ABCB — sem padrão
 ✅ Correto: manter ABAB por todo o poema, ou mudar apenas entre seções claramente demarcadas (ex: do quarteto ao terceto no soneto)
+✅ Correto (Vinicius, "Soneto de Fidelidade"): Quartetos ABBA ABBA, tercetos DED EDE — mudança de esquema coincide com a virada temática (do amor abstrato ao amor concreto)
 Severidade: media
 Categoria: rima — qualidade
 
@@ -141,6 +155,7 @@ Fonte: Candido; Said Ali
 Descrição: A rima não é mero ornamento — deve apoiar o sentido do poema. Palavras que rimam tendem a ser associadas pelo leitor. Use isso a seu favor: aproxime por rima palavras que tenham relação de sentido (oposição, complemento, causa-efeito). Evite rimas que juntam palavras sem relação semântica.
 ❌ Errado: "amor" / "flor" / "dor" — óbvias e desgastadas; "coração" / "ilusão" — cliché
 ✅ Correto: "vento" / "lamento" — som e sentido se reforçam; "silêncio" / "imenso" — rima rica que une conceitos
+✅ Correto (Cruz e Sousa, "Antífona"): "Ó Fórmas alvas, brancas, Fórmas claras / De luares, de neves, de neblinas!..." — "claras" / "neblinas" não rimam formalmente, mas a assonância em -a- + líquidas (l, r, n) cria uma "rima difusa" que apoia o sentido de dissolução e brancura
 Severidade: baixa (sugestão de qualidade)
 Categoria: rima — qualidade
 
@@ -153,6 +168,7 @@ Fonte: Cegalla; Said Ali; fonologia do português brasileiro
 Descrição: Em português, certas combinações não formam rima verdadeira: (1) -am/-ão (falam/coração — nasal diferente); (2) -e aberto/-e fechado (pé/fé — são diferentes em PT-BR? "pé" tem e aberto, "fé" tem e fechado — não rimam perfeitamente); (3) consoante surda/sonora diferente (passo/caso — /s/ vs /z/ — não rimam); (4) -l final e -u (cantar/amou — não rimam em PT-BR onde o -r é pronunciado). Exceto em rima toante, onde apenas as vogais importam.
 ❌ Errado: "falam" / "coração" (-am vs -ão: nasais diferentes), "passo" / "caso" (ç/s surdo vs z sonoro)
 ✅ Correto: "cantaram" / "falaram" (mesma nasal -am), "passo" / "braço" (mesmo /s/ surdo)
+✅ Observação: Em Augusto dos Anjos, "Psicologia de um Vencido", "amoníaco" / "rutilância" têm terminações diferentes (-aco/-ância) — Augusto usa rimas toantes e consoantes mescladas, mas sempre consciente das diferenças fonéticas; "amoníaco" / "hipocondríaco" seria a rima consoante perfeita que ele evita por escolha expressiva
 Severidade: alta
 Categoria: rima — fonologia
 
@@ -161,6 +177,7 @@ Fonte: Castilho; Candido; análise de poesia amadora
 Descrição: Certos pares de rima são tão usados que perderam o impacto: amor/dor, coração/ilusão, vida/ferida, paixão/coração, flor/amor, pranto/canto, mar/cantar, sozinho/caminho, mundo/profundo, céu/véu. Evite-os ou use-os com inversão de expectativa.
 ❌ Errado: "O amor que sinto no coração / me causa tanta dor / é pura ilusão" (três clichês em sequência)
 ✅ Correto: "O amor não é flor que se cultive / é fogo que se aviva quando morre" (evita a rima previsível "amor/flor")
+✅ Correto (Oswald de Andrade, "Erro de português"): "Quando o português chegou / Debaixo duma bruta chuva / Vestiu o índio" — sem rima alguma, quebra intencional contra o Parnasianismo; o poema usa o "erro" como afirmação estética
 Severidade: baixa (sugestão)
 Categoria: rima — anti-padrão
 
@@ -169,6 +186,7 @@ Fonte: Castilho; Said Ali
 Descrição: A rima não pode forçar a quebra de uma palavra no meio do verso ou adicionar sílabas extras (hipermetria) para acomodar a palavra que rima. O verso deve manter o número correto de sílabas independentemente da rima. Preferir sinônimos ou reordenar a frase a forçar métrica.
 ❌ Errado: "No silêncio profundo da noite imensa escondida" (decassílabo estourado pela palavra "imensa" adicionada para rimar com "sentida")
 ✅ Correto: "No silêncio da noite imensa e escura" (a métrica se mantém, a rima é natural)
+✅ Correto (Bilac, "Via Láctea" XIII): "Ora direis ouvir estrelas! Certo / Perdeste o senso!" — Bilac mantém os decassílabos heróicos perfeitos sem que a rima force hipermetria; "Certo" e "senso" são oxítona e paroxítona que se encaixam naturalmente na contagem
 Severidade: media
 Categoria: rima — anti-padrão
 
@@ -181,6 +199,7 @@ Fonte: análise de Augusto dos Anjos, Álvares de Azevedo, Florbela Espanca
 Descrição: No tom melancólico, preferir rimas graves (palavras paroxítonas: -ento, -ura, -ia, -ume, -ença) e sons abertos (-ar, -or, -al) que sugerem amplidão e vazio. Evitar rimas agudas muito curtas (-im, -um) que soam abruptas. Rimas ricas entre substantivos abstratos e verbos de estado funcionam bem.
 ❌ Errado: "vim" / "assim" (rima aguda curta, tom muito leve para melancolia)
 ✅ Correto: "silêncio" / "imenso" (rima grave, paroxítona, som aberto)
+✅ Correto (Augusto dos Anjos, "Psicologia de um Vencido"): "Eu, filho do carbono e do amoníaco, / Monstro de escuridão e rutilância" — rimas graves (-aco/-ância) que arrastam o verso, sugerindo peso existencial e melancolia científica
 Severidade: baixa (sugestão)
 Categoria: rima — criação
 
@@ -189,6 +208,7 @@ Fonte: análise de Vinicius de Moraes, Gonçalves Dias
 Descrição: No tom jubiloso, preferir rimas agudas (oxítonas: -ar, -er, -ir, -á, -ei) e consoantes vibrantes (r, s, l). Rimas curtas e frequentes (AABB) criam ritmo acelerado de festa. Evitar rimas graves muito longas que arrastam o verso.
 ❌ Errado: "cantávamos" / "amávamos" (graves longas — arrastadas)
 ✅ Correto: "cantar" / "brilhar" (agudas, vibrantes, aceleram o ritmo)
+✅ Correto (Gonçalves Dias, "Canção do Exílio"): "Minha terra tem palmeiras / Onde canta o Sabiá" — rima em -á (aguda), ritmo acelerado, tom jubiloso de pertencimento e saudade ativa
 Severidade: baixa (sugestão)
 Categoria: rima — criação
 
@@ -197,6 +217,7 @@ Fonte: Camões, "Os Lusíadas"; Basílio da Gama, "O Uraguai"
 Descrição: No tom épico, preferir rimas consoantes perfeitas, palavras polissílabas e graves (-aram, -eram, -ente, -oso). Rimas que conotam grandeza e duração. Evitar rimas muito curtas e coloquiais. O alexandrino e o decassílabo heroico favorecem rimas em -aram e -ento.
 ❌ Errado: "mar" / "cantar" (curtas demais para o épico)
 ✅ Correto: "naveganto" / "espanto" (graves, cheias, solenes)
+✅ Correto (Camões, "Os Lusíadas"): "As armas e os barões assinalados / Que da ocidental praia lusitana" — rimas em -ados/-ana, graves, polissílabas, solenes; o tom épico exige o verso decassílabo heroico com rimas cheias
 Severidade: baixa (sugestão)
 Categoria: rima — criação
 
@@ -205,6 +226,7 @@ Fonte: Gregório de Matos; Bocage; Oswald de Andrade
 Descrição: No tom satírico, a rima pode ser usada para efeito cômico: aproximar palavras de campos semânticos opostos (sagrado + vulgar), usar rima preciosa, criar pares inesperados. A rima rica e a rima preciosa funcionam bem. Evitar rimas óbvias que não surpreendem.
 ❌ Errado: "amor" / "dor" (previsível — sem efeito satírico)
 ✅ Correto: "sermão" / "ladrão" (aproximação inesperada, crítica)
+✅ Correto (Gregório de Matos, poesia satírica): "Que falta nesta cidade? / Verdade. / Que mais por sua desonra? / Honra." — rimas curtas e quebradas (cidade/verdade, desonra/honra) que criam um efeito de agudeza e ironia, típico da sátira barroca
 Severidade: baixa (sugestão)
 Categoria: rima — criação
 
@@ -217,6 +239,8 @@ Fonte: Castilho; Camões; Bilac
 Descrição: No soneto italiano clássico, os dois quartetos devem seguir o mesmo esquema ABBA ABBA. Os tercetos podem variar: CDC DCD (intercalado), CDE CDE (sequencial), CDC CDC (repetido). No soneto inglês, ABAB CDCD EFEF GG. Misturar esquemas italiano e inglês é erro.
 ❌ Errado: ABAB CDCD EFEF GG com tercetos (não existe — soneto inglês tem 3 quartetos + dístico)
 ✅ Correto: ABBA ABBA CDC DCD (italiano); ABAB CDCD EFEF GG (inglês)
+✅ Correto (Camões, "Amor é fogo"): Quartetos ABBA ABBA, tercetos CDC DCD — soneto italiano canónico
+✅ Correto (Bilac, "Via Láctea" XIII): Quartetos ABBA ABBA, tercetos CDE CDE — variante permitida do soneto italiano
 Severidade: alta
 Categoria: rima — forma
 
@@ -225,6 +249,7 @@ Fonte: ABLC; tradição do cordel
 Descrição: Sextilha (6 versos, 7 sílabas): ABCBDB (2º, 4º e 6º rimam). Septilha (7 versos): ABCBDDB (2º, 4º, 6º e 7º rimam). Décima (10 versos, 10 sílabas): ABCBDCCBAA (esquema complexo com rimas entrelaçadas). O 1º verso de cada estrofe geralmente não rima com ninguém.
 ❌ Errado: fazer os versos ímpares rimarem em sextilha
 ✅ Correto: ABCBDB, mantendo a rima B consistente em toda a estrofe
+✅ Correto (Leandro Gomes de Barros, "O Dinheiro"): "Envelhece o homem moço (D) / E o velho torna rapaz (B) / Mas falar no luxo grosso (E) / É o mesmo que nada (F)" — na 2ª sextilha o padrão ABCBDB se mantém; a liberdade criativa de Leandro varia a rima F, mas o B é consistente
 Severidade: alta
 Categoria: rima — forma
 
@@ -233,6 +258,7 @@ Fonte: tradição popular; Brasil Escola
 Descrição: A quadra popular (4 versos de 7 sílabas) tradicionalmente segue ABAB (alternada) ou ABCB (segundo e quarto rimam). Na trova, o esquema canónico é ABAB com rima rica. A poesia popular brasileira aceita variações.
 ❌ Errado: AABB em trova (esquema pareado, não tradicional na trova)
 ✅ Correto: "O amor quando é verdadeiro (A) / Não tem medo de sofrer (B) / É como um rio ribeiro (A) / Que não cansa de correr (B)"
+✅ Correto (Patativa do Assaré, "O Poeta da Roça"): "Sou fio das mata, cantô da mão grossa / Trabaio na roça, de inverno e de estio / A minha chupana é tapada de barro / Só vejo o luar do caráter de um cio" — ABCB em quadras, rima popular com toantes e consoantes misturadas, típico do cancioneiro nordestino
 Severidade: media
 Categoria: rima — forma
 
@@ -241,5 +267,49 @@ Fonte: Candido; Drummond, Bandeira, modernismo
 Descrição: Poesia moderna frequentemente usa rima ocasional ou esparsa — rimas que aparecem sem esquema fixo, para efeito pontual de musicalidade ou ênfase. Isso é aceitável e não constitui erro, desde que não crie expectativa de esquema que depois é quebrada. Se o poema começa rimando regularmente e para de rimar, soa como erro.
 ❌ Errado: ABAB nas duas primeiras quadras e verso livre nas restantes (expectativa quebrada sem aviso)
 ✅ Correto: rima ocasional distribuída organicamente, sem criar expectativa de esquema fixo
+✅ Correto (Drummond, "No meio do caminho"): "No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho / tinha uma pedra / no meio do caminho tinha uma pedra" — sem rima fixa, mas a repetição de "pedra" e "caminho" cria uma "rima sintática" baseada em paralelismo, não em sonoridade
 Severidade: baixa (sugestão)
 Categoria: rima — forma
+
+======= NOVAS REGRAS =======
+
+## [RIM-28] Rima na canção popular brasileira — samba, MPB, funk, rap
+Fonte: tradição da MPB; Vinicius de Moraes, Chico Buarque, Caetano Veloso; análise de letras de canção
+Descrição: A canção popular usa rima de forma diferente da poesia escrita: (1) rima toante é mais aceita, pois a melodia carrega a musicalidade; (2) rimas entre palavras de mesma classe (pobres) são comuns e não consideradas defeito; (3) a rima deve funcionar na oralidade e no canto — falsas rimas fonéticas (-am/-ão) são aceitas se cantadas; (4) o refrão frequentemente usa rima eco (repetição da mesma palavra) como recurso de fixação melódica; (5) rimas regionais e coloquiais são valorizadas.
+❌ Errado: aplicar regras de rima poética clássica a letras de canção como se fossem a mesma forma
+✅ Correto: "De tudo, ao meu amor serei atento / Antes, e com tal zelo, e sempre, e tanto" (Vinicius, "Soneto de Fidelidade" musicado) — na canção, a rima consoante do soneto ganha nova dimensão com a melodia
+✅ Correto (Chico Buarque, "Construção"): "Amou daquela vez como se fosse a última / Beijou sua mulher como se fosse a última" — rima eco intencional (última/última) como recurso de repetição dramática, não como erro
+Severidade: baixa
+Categoria: rima — canção
+
+## [RIM-29] Rima e oralidade — performance e declamação
+Fonte: tradição oral; cantoria nordestina; repente; cordel declamado; Zumthor, "Performance, Recepção, Leitura"
+Descrição: Na poesia oral (cantoria, repente, cordel declamado), a rima tem função mnemónica e estruturante — ajuda o poeta-improvisador a lembrar o fio do discurso e o ouvinte a acompanhar. Regras específicas: (1) rima deve ser facilmente audível — sons nítidos e repetidos; (2) rima toante é menos eficaz que consoante em performance; (3) a pausa de declamação pode substituir a rima perdida; (4) rimas ricas são valorizadas como demonstração de habilidade; (5) o "erre" do r pode ser pronunciado de forma enrolada para forçar rima (licença oral).
+❌ Errado: exigir rima perfeita em poesia de improviso oral (a performance tem suas próprias regras)
+✅ Correto (repente nordestino): "O cantador quando canta / Tira verso do fundo / Da garganta e do peito / E do conhecimento do mundo" — ABCB, rima consoante em "fundo"/"mundo", fácil de auditar
+Severidade: baixa
+Categoria: rima — oralidade
+
+## [RIM-30] Dicionário de rimas — consulta e criação
+Fonte: "Dicionário de Rimas" de António Tomás; "Dicionário de Rimas da Língua Portuguesa" (ABL); ferramentas online
+Descrição: O dicionário de rimas é ferramenta auxiliar na composição poética, não substituto da criatividade. Orientações: (1) consultar para encontrar rimas ricas em classes gramaticais diferentes; (2) evitar rimas óbvias listadas no dicionário (amor/dor, coração/ilusão); (3) o dicionário revela falsas rimas (som igual, grafia diferente) e verdadeiras rimas escondidas; (4) usar rimas de palavras compostas e derivadas para enriquecer o repertório; (5) o dicionário não substitui a verificação fonética — confirmar a pronúncia real na variante do português usada (PT-BR vs PT-PT).
+❌ Errado: copiar rimas do dicionário sem considerar o sentido (rima vazia)
+✅ Correto: usar o dicionário para descobrir pares inesperados e depois testá-los no contexto do poema
+Severidade: baixa (sugestão)
+Categoria: rima — criação
+
+## [RIM-31] Rima toante na poesia contemporânea
+Fonte: Augusto de Campos; poesia concreta; poesia marginal; José Paulo Paes; Ana Cristina Cesar
+Descrição: A poesia contemporânea brasileira resgatou a rima toante como recurso expressivo, especialmente após o Concretismo. A rima toante contemporânea não é herança medieval — é escolha consciente que (1) permite maior liberdade lexical sem perder musicalidade; (2) valoriza a vogal como elemento estruturante (poesia concreta); (3) cria "campos sonoros" em vez de pares fixos; (4) pode combinar com aliteração e assonância para formar redes de som. A poesia marginal dos anos 1970 (Ana Cristina Cesar, Cacaso, Chacal) usou rima toante como marca de informalidade e oralidade.
+❌ Errado: tratar rima toante como "rima incompleta" ou "erro" em poesia contemporânea
+✅ Correto (Ana Cristina Cesar): versos que usam toantes como "vento" / "dedo" (vogais -e-o) — não fecham o som mas criam expectativa sonora, típico da poesia marginal
+Severidade: baixa
+Categoria: rima — contemporânea
+
+## [RIM-32] Rima como elemento estruturante (não decorativo)
+Fonte: Antonio Candido; Roman Jakobson, "A Função Poética"; João Cabral de Melo Neto
+Descrição: Na poesia de alto nível, a rima não é ornamento — é elemento estruturante do poema. Jakobson demonstrou que a rima projeta o princípio de equivalência do eixo paradigmático sobre o eixo sintagmático: palavras que rimam são postas em relação de sentido. João Cabral de Melo Neto é exemplo de poeta que estrutura o poema inteiro a partir de rimas que organizam o sentido, não apenas o som. A rima deve (1) conectar palavras com relação semântica; (2) marcar viradas temáticas; (3) criar ou quebrar expectativa conscientemente; (4) organizar a respiração do poema.
+❌ Errado: rimar apenas porque "soa bem" sem considerar a relação de sentido entre as palavras rimadas
+✅ Correto (João Cabral, "Duas das festas da morte"): "A morte não é festa de que se participe / dela só se ouve o disco, o longínquo disco" — a rima "participe"/"disco" conecta a impossibilidade de participar com a distância do som, criando unidade semântica
+Severidade: baixa (sugestão de qualidade)
+Categoria: rima — teoria

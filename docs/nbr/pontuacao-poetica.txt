@@ -14,6 +14,7 @@ Fonte: Candido, "O Estudo Analítico do Poema"
 Descrição: Na poesia, a pontuação desempenha função rítmica e respiratória, além da função sintático-gramatical. Vírgulas marcam pausas curtas; pontos finais marcam pausas longas; pontos de exclamação e interrogação indicam entonação. A poesia tem licença para desviar das regras de pontuação da prosa.
 ❌ Errado: aplicar regras de pontuação de prosa a um poema sem considerar efeito rítmico
 ✅ Correto: pontuação a serviço do ritmo e da respiração poética
+✅ Correto (Cruz e Sousa, "Antífona"): "Ó Fórmas alvas, brancas, Fórmas claras / De luares, de neves, de neblinas!..." — as vírgulas criam pausas rítmicas que mimetizam a dispersão das "fórmas" no espaço; a exclamação e as reticências fecham o verso com suspensão, não com ponto final
 Severidade: alta (contexto sensível)
 Categoria: pontuação
 
@@ -21,7 +22,8 @@ Categoria: pontuação
 Fonte: Modernismo brasileiro; Drummond, "No Meio do Caminho"; Bandeira
 Descrição: A ausência total ou parcial de pontuação é escolha estilística legítima na poesia moderna. O verso em si e o espaço em branco funcionam como marcadores de pausa. Não se deve adicionar pontuação ausente.
 ❌ Errado: "corrigir" a ausência de pontuação, adicionando vírgulas e pontos onde o poeta optou por não usar
-✅ Correto: "No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho" (Drummond, sem pontuação)
+✅ Correto: "No meio do caminho tinha uma pedra / tinha uma pedra no meio do caminho" (Drummond, "No Meio do Caminho", sem pontuação)
+✅ Correto: "Vou-me embora pra Pasárgada / Lá sou amigo do rei" (Manuel Bandeira, "Vou-me embora pra Pasárgada", sem pontuação — o verso é a única pausa)
 Severidade: alta (não adicionar)
 Categoria: pontuação
 
@@ -34,6 +36,7 @@ Fonte: Cegalla; tradição poética
 Descrição: Na poesia, a vírgula indica uma pausa curta ou uma mudança de entonação. Pode ser usada onde gramaticalmente não seria necessária na prosa, para criar efeito rítmico (vírgula expressiva).
 ❌ Errado: eliminar vírgulas "desnecessárias" que têm função rítmica no poema
 ✅ Correto: "A noite, desce, sobre a cidade, calma" (vírgulas rítmicas)
+✅ Correto (Adélia Prado, "Festa do corpo de Deus"): "Jesus tem um par de nádegas! / E os sinos, as hóstias, os altares, tudo / é para nosso uso" — as vírgulas após "sinos", "hóstias", "altares" criam pausa enumerativa que acumula objetos sagrados antes da virada ("tudo / é para nosso uso")
 Severidade: media (depende do contexto)
 Categoria: pontuação
 
@@ -41,7 +44,8 @@ Categoria: pontuação
 Fonte: Cegalla; tradição literária
 Descrição: Diferente da prosa jornalística, a poesia pode usar vírgula antes da conjunção "e" em enumerações (vírgula polissindética) para efeito de ênfase ou de pausa. Ex: "Trouxe flores, e cartas, e promessas, e nada."
 ❌ Errado: "corrigir" a vírgula antes de "e" como erro gramatical
-✅ Correto: "Trouxe flores, e cartas, e promessas, e nada"
+✅ Correto: "Trouxe flores, e cartas, e promessas, e nada" (polissíndeto, vírgula antes de cada "e" para efeito de acumulação)
+✅ Correto (Oswald de Andrade, "Erro de português"): "Quando o português chegou / Debaixo duma bruta chuva / Vestiu o índio" — Oswald opta pela ausência total de vírgulas, mesmo onde a gramática as exigiria ("chegou, debaixo"), como afirmação do primitivismo modernista
 Severidade: baixa
 Categoria: pontuação
 
@@ -54,6 +58,8 @@ Fonte: tradição literária; Cegalla
 Descrição: O ponto final no encerramento do poema não é obrigatório na poesia moderna. Muitos poemas terminam sem pontuação (abertos) ou com recursos como reticências. A ausência de ponto final no fim do poema não é erro.
 ❌ Errado: adicionar ponto final ausente no fim do poema
 ✅ Correto: poema pode terminar com ou sem ponto final
+✅ Correto (Drummond, "No meio do caminho"): termina abruptamente, sem ponto final — a pedra "no meio do caminho" fica suspensa, eternamente presente
+✅ Correto (Camões, soneto "Amor é fogo"): termina com ponto final — "É dor que desatina sem doer." — fechamento clássico
 Severidade: baixa
 Categoria: pontuação
 
@@ -62,6 +68,7 @@ Fonte: tradição clássica; Cegalla
 Descrição: Na poesia metrificada e rimada (soneto, ode, elegia), cada estrofe idealmente encerra com ponto final, pois cada estrofe constitui uma unidade de sentido. Exceção: enjambement entre estrofes (raro na poesia clássica).
 ❌ Errado: estrofe de soneto clássico terminando em vírgula, sem ponto final
 ✅ Correto: ponto final ao fim de cada estrofe em poesia clássica
+✅ Correto (Bilac, "Via Láctea" XIII): "Ora direis ouvir estrelas! Certo / Perdeste o senso!" — o 4º verso do 1º quarteto fecha com ponto final, o 8º verso também; os tercetos fecham com exclamação ou ponto final, conforme o tom
 Severidade: media
 Categoria: pontuação
 
@@ -74,6 +81,7 @@ Fonte: Cegalla; Candido
 Descrição: As reticências na poesia indicam silêncio, hesitação, continuidade implícita, ou sugestão de algo não dito. São mais frequentes na poesia que na prosa. O efeito é de abertura e incompletude intencional. Não substituir reticências por ponto final.
 ❌ Errado: substituir reticências por ponto final ou exclamação
 ✅ Correto: "O vento levou as folhas... e o tempo..." (reticências preservadas)
+✅ Correto (Cruz e Sousa, "Antífona"): "Ó Fórmas alvas, brancas, Fórmas claras / De luares, de neves, de neblinas!..." — as reticências finais abrem o poema para o infinito, sugerindo que a enumeração do branco não tem fim
 Severidade: media
 Categoria: pontuação
 
@@ -94,6 +102,7 @@ Fonte: Cegalla; Candido
 Descrição: Na poesia, o ponto de exclamação indica entonação exclamativa e carga emocional intensificada. Pode aparecer no meio do verso, não apenas no final. Exclamações frequentes são características da poesia romântica e expressionista.
 ❌ Errado: substituir exclamação por ponto final para "normalizar" o tom
 ✅ Correto: "Ah! Que saudade tenho do meu sertão!"
+✅ Correto (Adélia Prado, "Festa do corpo de Deus"): "Jesus tem um par de nádegas!" — a exclamação é essencial ao tom de descoberta maravilhada, marca a virada teológica-poética do poema
 Severidade: media (depende do contexto)
 Categoria: pontuação
 
@@ -102,6 +111,7 @@ Fonte: Cegalla
 Descrição: Na poesia, perguntas que são retóricas ou reflexivas podem prescindir do ponto de interrogação se o contexto e a entonação sugerirem a pergunta. A ausência do ponto de interrogação em pergunta retórica é licença poética.
 ❌ Errado: forçar acréscimo de interrogação onde o poeta optou pela ausência
 ✅ Correto: "Quem me dera saber o que sentes" (pergunta retórica sem interrogação)
+✅ Correto (Cecília Meireles, "Romanceiro da Inconfidência"): "Quem ordena, julga e pune? / Quem perdoa?" — com interrogação, porque são perguntas diretas ao leitor; a pontuação marca a mudança de voz entre narrador e questionamento dramático
 Severidade: baixa
 Categoria: pontuação
 
@@ -114,6 +124,7 @@ Fonte: tradição poética; Cegalla
 Descrição: O travessão na poesia pode indicar: corte abrupto do pensamento (função similar ao kireji do haicai), mudança de interlocutor em poemas dialógicos, ou inserção de uma voz diferente. Não substituir por parênteses ou vírgula.
 ❌ Errado: substituir travessão por vírgula para padronização
 ✅ Correto: "O vento sopra — silêncio — a folha cai"
+✅ Correto (Bashō, trad. Goga): "Velha lagoa — / uma rã pula / som da água" — o travessão substitui o kireji japonês (ya), marcando o corte entre a imagem estática (lagoa) e o evento súbito (rã)
 Severidade: baixa
 Categoria: pontuação
 
@@ -122,6 +133,7 @@ Fonte: Cegalla; Candido
 Descrição: Parênteses na poesia criam um efeito de tom mais baixo, confidencial, ou de segunda voz (um comentário à margem). Podem conter uma palavra, um verso inteiro, ou múltiplos versos. É recurso comum na poesia moderna (ex: João Cabral, Drummond).
 ❌ Errado: eliminar parênteses ou substituir por travessões sem considerar o efeito de tom
 ✅ Correto: "E a vida (que é breve) passa" (parênteses como murmúrio)
+✅ Correto (João Cabral de Melo Neto, "A Educação pela Pedra"): usa parênteses como segunda voz — o poema principal diz uma coisa e os parênteses comentam, corrigem, aprofundam. Exemplo: "Uma educação pela pedra: por lições; / (de moral) ouvir a pedra inerte e elementar" — os parênteses criam um "sussurro didático" típico de Cabral
 Severidade: baixa
 Categoria: pontuação
 
@@ -134,6 +146,7 @@ Fonte: Cegalla
 Descrição: O ponto-e-vírgula é menos comum na poesia que na prosa. Quando usado, marca uma pausa intermediária entre vírgula e ponto. Pode separar orações coordenadas longas dentro do mesmo verso ou entre versos. Na poesia moderna, é frequentemente substituído pela quebra de verso.
 ❌ Errado: substituir ponto-e-vírgula por vírgula sem considerar a pausa pretendida
 ✅ Correto: "A noite cai; o vento sopra; o mundo dorme"
+✅ Correto (Bilac, "Via Láctea"): usa ponto-e-vírgula nos tercetos para marcar pausas médias entre a respiração do verso e o fechamento do poema — "Céu estrelado; e a Terra, a Terra, a Terra"
 Severidade: baixa
 Categoria: pontuação
 
@@ -146,6 +159,7 @@ Fonte: Cegalla
 Descrição: Os dois-pontos na poesia funcionam como prosa: introduzem fala direta, explicação, enumeração, ou citação. Na poesia moderna, podem também indicar uma pausa de expectativa antes de uma revelação ou virada no poema.
 ❌ Errado: substituir dois-pontos por vírgula (altera o efeito de expectativa)
 ✅ Correto: "E então ele disse: nunca mais"
+✅ Correto (Manuel Bandeira, "Vou-me embora pra Pasárgada"): "Vou-me embora pra Pasárgada / Lá sou amigo do rei / Lá tenho a mulher que eu quero / Na cama que escolherei" — Bandeira usa dois-pontos em outros poemas para introduzir visões; "Vou-me embora pra Pasárgada" funciona como "dois-pontos implícitos" que introduzem todo o paraíso imaginário
 Severidade: baixa
 Categoria: pontuação
 
@@ -158,6 +172,7 @@ Fonte: Cegalla; Acordo Ortográfico
 Descrição: O apóstrofo (') na poesia marca elisão de vogal (supressão de vogal átona final antes de palavra começada por vogal). Ex: "d'água", "d'alma", "m'alma". Também usado em nomes próprios poéticos e estrangeiros.
 ❌ Errado: expandir a elisão sem considerar a métrica ou o efeito estilístico
 ✅ Correto: "Morro d'alma sede e frio" (Gonçalves Dias); "Alma minha gentil, que te partiste" (Camões, sem apóstrofo — é outra forma)
+✅ Correto (Augusto dos Anjos, "Psicologia de um Vencido"): usa formas sincopadas como "âmago" (sem apóstrofo, mas com elisão interna) e "hipocondríaco" — o apóstrofo não é necessário; a elisão se dá na fusão da leitura
 Severidade: alta (não corrigir)
 Categoria: pontuação
 
@@ -210,5 +225,57 @@ Fonte: tradição do cordel; ABLC
 Descrição: No cordel, a pontuação deve ser simples e funcional, refletindo a tradição oral. Usar ponto final ao fim de cada estrofe (sextilha). Vírgula para pausas curtas de declamação. Evitar travessões, parênteses e ponto-e-vírgula complexos.
 ❌ Errado: "O poeta — valente e forte — cantou; e o povo (comovido) escutou." (pontuação excessiva para cordel)
 ✅ Correto: "O poeta valente cantou. / E o povo escutou com fé." (final de estrofe)
+✅ Correto (Leandro Gomes de Barros, "O Dinheiro"): "O dinheiro é quem governa / A mulher bonita e o faz" — sem pontuação interna, apenas pausa de verso e ponto final no fim da sextilha
 Severidade: media
 Categoria: pontuação
+
+======= NOVAS REGRAS =======
+
+## [PON-21] Pontuação na poesia concreta e visual
+Fonte: Concretismo brasileiro; Augusto de Campos, "Poesia Concreta"; Décio Pignatari; Ferreira Gullar, "Poema Sujo"
+Descrição: Na poesia concreta e visual, a pontuação ganha função icónica — os sinais gráficos são também elementos visuais que compõem a forma do poema. Exemplos: (1) pontos podem ser "olhos" num rosto desenhado com palavras; (2) travessões podem ser linhas de separação espacial; (3) parênteses podem criar molduras visuais; (4) a ausência de pontuação é total em poemas puramente tipográficos. A pontuação concreta não segue regras gramaticais — segue a lógica interna do design poético.
+❌ Errado: aplicar regras de pontuação gramatical a um poema concreto (a pontuação é visual, não sintática)
+✅ Correto: Augusto de Campos, "Luxo" — os pontos e vírgulas são dispostos como elementos gráficos que compõem a malha visual do poema, não como marcadores sintáticos
+Severidade: baixa
+Categoria: pontuação — concreta
+
+## [PON-22] Espaço branco como pontuação — o silêncio tipográfico
+Fonte: poesia moderna; Mallarmé, "Un Coup de Dés"; poesia concreta; poesia marginal brasileira; Ana Cristina Cesar
+Descrição: Na poesia moderna, o espaço em branco da página funciona como elemento de pontuação — o "silêncio tipográfico" substitui vírgulas, pontos e pausas. Quanto maior o espaço branco, maior a pausa. Formas: (1) espaçamento entre letras para sugerir lentidão ou isolamento; (2) espaçamento entre palavras para indicar hesitação; (3) verso isolado no centro da página para indicar solidão ou ênfase; (4) página quase vazia com uma palavra no canto. O espaço branco é especialmente relevante na poesia marginal brasileira (Ana Cristina Cesar) e na poesia visual.
+❌ Errado: preencher espaços brancos ou ignorá-los como "erro de formatação"
+✅ Correto: preservar o espaço branco como elemento poético — ele é a "pontuação do silêncio"
+Severidade: alta (não alterar)
+Categoria: pontuação — espaço
+
+## [PON-23] Pontuação expressiva — interjeições e onomatopeias
+Fonte: poesia modernista; Mário de Andrade, "Pauliceia Desvairada"; poesia marginal; poesia infantil
+Descrição: Interjeições (Ah!, Oh!, Ui!) e onomatopeias (Pum!, Tique-taque, Zás!) na poesia dispensam pontuação adicional — a exclamação já está embutida na palavra. Quando grafadas sem exclamação, a entonação é indicada pelo contexto. Mário de Andrade usou onomatopeias como elemento rítmico em "Pauliceia Desvairada" — os sons da cidade são pontuação sonora.
+❌ Errado: adicionar exclamação a interjeições que o poeta grafou sem pontuação (ex: "ah" sem exclamação pode ser suspiro, não grito)
+✅ Correto: "Ah! Que saudade!" (exclamação explícita) vs. "ah, que saudade" (suspiro, vírgula suave)
+Severidade: baixa
+Categoria: pontuação — expressiva
+
+## [PON-24] Letra maiúscula como pontuação — função demarcadora no verso
+Fonte: tradição clássica; poesia moderna; Augusto de Campos; E. E. Cummings
+Descrição: Na poesia, a letra maiúscula no início de cada verso funciona como demarcador de unidade versal — é uma "pontuação implícita" que marca o início de cada linha como nova unidade rítmica. Na poesia moderna, a abolição da maiúscula no início do verso (Leminski, Ana Cristina Cesar) transfere essa função demarcadora exclusivamente para a quebra de verso. Em Augusto de Campos, maiúsculas podem ser usadas seletivamente para enfatizar palavras específicas, funcionando como "pontuação de intensidade".
+❌ Errado: padronizar maiúsculas/minúsculas sem considerar a função expressiva do poeta
+✅ Correto: "No Meio do Caminho" (Drummond usa maiúscula apenas no título; no poema, "no meio do caminho" em minúscula) — a minúscula no início de cada verso reforça a ideia de continuidade ininterrupta
+✅ Correto: Leminski, "noite sem sono / o cachorro late / um sonho sem dono" — minúscula total, inclusive nomes próprios poetizados
+Severidade: baixa
+Categoria: pontuação — maiúsculas
+
+## [PON-25] Pontuação e enjambement — quando a frase não termina com o verso
+Fonte: Candido; João Cabral; poesia moderna brasileira
+Descrição: O enjambement (quebra de verso no meio da frase) interage diretamente com a pontuação: (1) vírgula no final do verso seguido de enjambement cria "pausa-falsa" — o leitor hesita entre pausar e continuar; (2) ausência de pontuação no fim do verso enjambado acelera a leitura; (3) ponto final no meio do verso (após enjambement) cria choque rítmico. João Cabral usa a pontuação para controlar a velocidade do enjambement: vírgulas e pontos finais marcam onde o leitor deve respirar, independentemente da quebra de verso.
+❌ Errado: remover pontuação de fim de verso em enjambement para "suavizar" a leitura
+✅ Correto: "A educação pela pedra: por lições; / para aprender da pedra, frequentá-la" (João Cabral) — o ponto-e-vírgula no fim do 1º verso do enjambement cria tensão entre a pausa tipográfica e a continuidade sintática
+Severidade: media
+Categoria: pontuação — enjambement
+
+## [PON-26] Pontuação nula em poemas-processo e poesia experimental
+Fonte: Poema-processo (Wlademir Dias-Pino); poesia experimental brasileira; poesia cibernética; poesia sonora
+Descrição: A poesia experimental brasileira — especialmente o Poema-Processo (Wlademir Dias-Pino, 1967) — aboliu completamente a pontuação, substituindo-a por signos visuais, diagramas, cores e sequências fotográficas. A pontuação nula é deliberada: o poema não precisa de marcadores sintáticos porque sua estrutura é visual, não verbal-linear. Na poesia sonora (performance), a pausa substitui a pontuação. Esses casos estão fora do escopo de correção automática do sistema.
+❌ Errado: aplicar qualquer regra de pontuação a poemas-processo ou experimentais (o sistema deve reconhecê-los como categoria à parte)
+✅ Correto: poemas-processo não usam pontuação; usam signos visuais e espaciais como equivalentes funcionais da pontuação
+Severidade: alta (ignorar — fora de escopo)
+Categoria: pontuação — experimental

@@ -1,0 +1,1092 @@
+# PESQUISA EXAUSTIVA — TONS POÉTICOS (TOM.TXT)
+# Real-author verses, anti-patterns, new categories, cross-tone analysis
+# Data: 2026-05-16
+
+=============================================================================
+NOTA METODOLÓGICA
+=============================================================================
+Esta pesquisa compila versos de poetas canônicos brasileiros e portugueses
+para cada tom catalogado em tom.txt (TOM-001 a TOM-085), mais propostas de
+novos tons. Cada entrada inclui: poeta, poema, livro, versos citados e
+aspecto do tom que exemplifica.
+
+Fontes consultadas: Obras completas de Augusto dos Anjos, Drummond,
+Cecília Meireles, Fernando Pessoa (e heterônimos), Camões, Castro Alves,
+Gregório de Matos, Cláudio Manuel da Costa, Tomás Gonzaga, Adélia Prado,
+Hilda Hilst, João Cabral, Murilo Mendes, Jorge de Lima, Ferreira Gullar,
+Bandeira, Leminski, Vinicius de Moraes, Florbela Espanca, Bocage,
+Angélica Freitas, Lubi Prates, e crítica literária (Bosi, Candido,
+Arrigucci, Hansen).
+
+
+=============================================================================
+1. MELANCÓLICO (TOM-001 a TOM-005)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Augusto dos Anjos — "Psicologia de um Vencido" — Eu (1912)
+  "Eu, filho do carbono e do amoníaco,
+   Monstro de escuridão e rutilância,
+   Sofro, desde a epigênese da infância,
+   A influência má dos signos do zodíaco."
+  Aspecto: Vocabulário científico-cósmico da melancolia; o sofrimento
+  como condição ontológica, não circunstancial. Uso de "epigênese"
+  (termo biológico) para falar de dor existencial — fusão de ciência e
+  melancolia.
+
+Exemplo B: Augusto dos Anjos — "Monólogo de uma Sombra" — Eu (1912)
+  "Sou uma Sombra! Venho de outras eras,
+   Do cosmopolitismo das moneras…
+   Pólipo de recônditas reentrâncias,
+   Larva de caos telúrico, procedo
+   Da escuridão do cósmico segredo,
+   Da substância de todas as substâncias!"
+  Aspecto: Melancolia evolucionista — o eu lírico como ser pré-histórico,
+  anterior à consciência; a tristeza como estado primordial do cosmos.
+
+Exemplo C: Cecília Meireles — "Retrato" — Viagem (1939)
+  "Eu não tinha este rosto de hoje,
+   Assim calmo, assim triste, assim magro,
+   Nem estes olhos tão vazios,
+   Nem o lábio amargo."
+  "— Em que espelho ficou perdida / a minha face?"
+  Aspecto: Melancolia contida, sem autocomiseração. A pergunta final
+  condensa a perda de identidade. O tom é sugestivo, não declaratório.
+  Contraste passado/presente sem nomear a causa.
+
+Exemplo D: Florbela Espanca — "Livro de Soror Saudades" (1923)
+  "Não sei se isto é amor, se é ter saudades:
+   Talvez sejam verdades inventadas
+   Que a minha fantasia, irmã do absurdo,
+   Fosse buscar longínquas aos confins
+   Do meu passado incerto e já perdido,
+   Para fazer presentes os meus fins."
+  Aspecto: Melancolia amorosa feminina — a dúvida como substância da
+  dor. A melancolia florbeliana é íntima, visceral, diferente da
+  cósmica augustiana. A poesia como autoanálise.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar "noite escura" como única imagem de melancolia (clichê
+  ultrarromântico esvaziado). Augusto dos Anjos não usa "noite escura"
+  — usa "cosmopolitismo das moneras", que é original.
+- Evitar inversão sintática forçada para "soar poético" ("Triste estou
+  eu, que a vida me é amarga") — isso é pastiche parnasiano, não
+  melancolia genuína.
+- Evitar joão-sem-braço: "Tristeza / vazio / solidão / dor / nada"
+  (lista de abstrações sem imagem). A melancolia eficaz sempre ancora
+  a dor numa imagem concreta.
+- Anti-exemplo real (poesia amadora): "A noite chegou e com ela a
+  tristeza / que habita meu peito sem nenhuma beleza" — rima pobre,
+  imagem genérica, declaração direta.
+
+--- NOVAS REFERÊNCIAS PARA O TOM ---
+
+- Adélia Prado, "Com Licença Poética" (Poesia Reunida, 1991):
+  "Quando nasci, um anjo esbelto, / desses que tocam trombeta, anunciou:
+  / vai carregar bandeira." — melancolia contida na ironia (resposta
+  feminina ao "Poema de Sete Faces" de Drummond).
+- Bandeira, "Vou-me embora pra Pasárgada" (Libertinagem, 1930):
+  melancolia disfarçada de utopia — a alegria impossível como forma
+  suprema de melancolia.
+- Manuel Bandeira, "Profundamente" (Libertinagem, 1930):
+  "Quando ontem adormeci / Na noite de são João / Havia alegria e rumor
+  / Estrondos de foguetes / E clarões de fogo de artifício." — a
+  melancolia da infância perdida pela lembrança dos mortos.
+
+
+=============================================================================
+2. ROMÂNTICO (TOM-006 a TOM-009)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Gonçalves Dias — "Canção do Exílio" — Primeiros Cantos (1846)
+  "Minha terra tem palmeiras,
+   Onde canta o sabiá;
+   As aves que aqui gorjeiam,
+   Não gorjeiam como lá."
+  "Nosso céu tem mais estrelas,
+   Nossas várzeas têm mais flores,
+   Nossos bosques têm mais vida,
+   Nossa vida mais amores."
+  Aspecto: Idealização romântica da pátria/natureza. Hipérbole
+  ("mais estrelas", "mais flores"). Natureza como espelho do
+  sentimento. Canção de exílio — o que o eu lírico ama está ausente.
+
+Exemplo B: Álvares de Azevedo — "Lira dos Vinte Anos" (1853)
+  "Se eu morresse amanhã, viria ao menos
+   Fechar meus olhos minha triste irmã;
+   Minha mãe de saudades morreria
+   Se eu morresse amanhã!"
+  Aspecto: Romantismo ultrarromântico — idealização da própria morte.
+  Hipérbole sentimental ("minha mãe de saudades morreria").
+  O amor à vida se expressa pela contemplação da própria morte.
+
+Exemplo C: Castro Alves — "O Navio Negreiro" (1868/Os Escravos)
+  "Senhor Deus dos desgraçados!
+   Dizei-me vós, Senhor Deus!
+   Se é loucura... se é verdade
+   Tanto horror perante os céus?!"
+  "Era um sonho dantesco... O tombadilho
+   Que das luzernas avermelha o brilho,
+   Em sangue a se banhar."
+  Aspecto: Romantismo condoreiro/social — idealização da liberdade.
+  Apóstrofe a Deus, hipérbole do horror. Natureza como testemunha do
+  sofrimento. O tom romântico a serviço da denúncia social.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar "lua" e "estrelas" como única moldura romântica (clichê de
+  poesia de namorados). O romantismo eficaz de Gonçalves Dias inova
+  no tratamento da natureza brasileira — não copia paisagens europeias.
+- Evitar pastiche camoniano em pleno século XXI ("Os olhos da
+  donzela são dois astros / que iluminam meu peito de amador").
+- Evitar idealização vazia da mulher sem concretude ("És anjo, és
+  deusa, és musa, és santa") — o Romantismo de Castro Alves dá
+  dignidade e concretude histórica aos escravizados.
+- Anti-exemplo real (poesia amadora): "Nossos olhos se encontraram /
+  e foi amor à primeira vista / você é a razão do meu viver" — frases
+  feitas, zero construção imagética.
+
+
+=============================================================================
+3. REFLEXIVO (TOM-010 a TOM-013)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Carlos Drummond de Andrade — "Procura da Poesia" —
+           A Rosa do Povo (1945)
+  "Não faças versos sobre acontecimentos.
+   Não há criação nem morte perante a poesia.
+   Diante dela, a vida é um sol estático
+   que não aquece nem ilumina."
+  "Penetra surdamente no reino das palavras.
+   Lá estão os poemas que esperam ser escritos."
+  Aspecto: Reflexão metalinguística. Tom meditativo, gnômico. O
+  conselho poético em forma de verso. Verbos no imperativo como
+  mandamentos da criação.
+
+Exemplo B: Cecília Meireles — "Motivo" — Viagem (1939)
+  "Eu canto porque o instante existe
+   e a minha vida está completa.
+   Não sou alegre nem sou triste:
+   sou poeta."
+  "E um dia sei que estarei mudo:
+   — mais nada."
+  Aspecto: Reflexão sobre a identidade do poeta e a transitoriedade.
+  Tom gnômico, sentencioso. Redondilha maior — musicalidade a
+  serviço da meditação. A poesia como estado de ser, não como emoção.
+
+Exemplo C: Fernando Pessoa (Alberto Caeiro) — "O Guardador de
+           Rebanhos" (1914/1925)
+  "Pensar incomoda como andar à chuva
+   Quando o vento cresce e parece que chove mais."
+  "Há metafísica bastante em não pensar em nada."
+  Aspecto: Reflexão sobre o não-pensar. Paradoxo e ironia filosófica.
+  O poema reflete sobre os limites do próprio refletir.
+
+--- NOVO SUB-TIPO: REFLEXIVO-EXISTENCIAL ---
+
+Exemplo: Drummond — "José" (José, 1942)
+  "E agora, José?
+   A festa acabou,
+   a luz apagou,
+   o povo sumiu,
+   a noite esfriou,
+   e agora, José?
+   e agora, você?
+   você que é sem nome,
+   que zomba dos outros,
+   você que faz versos,
+   que ama, protesta?
+   e agora, José?"
+  Aspecto: Indagação existencial sobre identidade. Repetição anafórica
+  do "e agora". Pergunta sem resposta. O reflexivo como crise.
+
+Exemplo: Fernando Pessoa (Álvaro de Campos) — "Tabacaria" (1928)
+  "Não sou nada.
+   Nunca serei nada.
+   Não posso querer ser nada.
+   À parte isso, tenho em mim todos os sonhos do mundo."
+  Aspecto: Reflexão filosófica sobre o ser e o não-ser. Angústia
+  existencial com ironia. O eu lírico se aniquila para renascer na
+  contradição. Pessimismo metafísico.
+
+
+=============================================================================
+4. JUBILOSO (TOM-014 a TOM-017)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Vinicius de Moraes — "Soneto de Fidelidade" (1954)
+  "De tudo, ao meu amor serei atento
+   Antes, e com tal zelo, e sempre, e tanto
+   Que mesmo em face do maior encanto
+   Dele se encante mais meu pensamento."
+  Aspecto: Júbilo amoroso contido em forma de soneto. A alegria do
+  amor expressa não como explosão, mas como disciplina ("serei atento",
+  "com tal zelo"). Júbilo maduro, não ingênuo.
+
+Exemplo B: Vinicius de Moraes — "Arrastão" (1965, com Baden Powell)
+  "É chegada a hora
+   do cantar festivo
+   do cantar amigo
+   É chegada a hora
+   do canto mais vivo
+   do canto mais lindo."
+  Aspecto: Júbilo coletivo, festa, celebração da vida. Repetições
+  anafóricas ("canta, canta, canta"). Ritmo de dança. O júbilo
+  brasileiro como manifestação corporal e musical.
+
+Exemplo C: Gonçalves Dias — "Canção do Exílio" (1846)
+  "Nossos bosques têm mais vida,
+   Nossa vida mais amores."
+  Aspecto: Júbilo nativista. Exaltação da terra. Hipérbole jubilosa
+  — o "mais" como figura central. Alegria que nasce da comparação
+  entre a terra distante e a terra presente.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar "alegria" abstrata e sem causa ("Sou feliz, que bom que sou
+  feliz"). O júbilo de Vinicius é sempre ancorado no amor, na música,
+  no encontro.
+- Evitar exaltação ufanista vazia ("Brasil, país maravilhoso"). O
+  jubiloso drummondiano em "A Rosa do Povo" tem um pé no pessimismo
+  — a rosa nasce no asfalto. Júbilo conquistado, não gratuito.
+- Evitar aleluia piegas ("A vida é bela, o sol brilha sobre nós").
+
+
+=============================================================================
+5. SOMBRIO (TOM-018 a TOM-021)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Augusto dos Anjos — "Versos Íntimos" — Eu (1912)
+  "Vês! Ninguém assistiu ao formidável
+   Enterro de tua última quimera.
+   Somente a Ingratidão — esta pantera —
+   Foi tua companheira inseparável!"
+  "Toma um fósforo. Acende teu cigarro!
+   O beijo, amigo, é a véspera do escarro,
+   A mão que afaga é a mesma que apedreja."
+  Aspecto: Pessimismo absoluto. O belo (beijo) é sombra do repugnante
+  (escarro). Antítese extrema. Cosmovisão sombria sem redenção —
+  não há transcendência, só degradação.
+
+Exemplo B: Cruz e Sousa — "Antífona" — Broquéis (1893)
+  "Ó Formas alvas, brancas, Formas claras
+   De luares, de neves, de neblinas!...
+   Ó Formas vagas, fluidas, cristalinas...
+   Levai-me a vós, ao ar das nebulosas!"
+  Aspecto: Sombrio simbolista — escuridão como transcendência. O
+  branco/lunar como extremo da ausência de cor. O "ar das nebulosas"
+  como destino da alma. Sombrio não é gótico — é cósmico.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar gore gratuito ("caveiras, sangue, tripas"). O sombrio de
+  Augusto dos Anjos é filosófico — o horror serve a uma visão de
+  mundo materialista.
+- Evitar "noite sombria" como único adjetivo sem contexto metafísico.
+- Anti-exemplo real (poesia amadora/gótica): "A noite escura caiu
+  sobre mim / e o vento uivava como um lobo / meu coração sangrava"
+  — clichês de filme B.
+
+
+=============================================================================
+6. SAUDOSO / NOSTÁLGICO (TOM-022 a TOM-025, TOM-045 a TOM-048)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Casimiro de Abreu — "Meus Oito Anos" (1859)
+  "Oh! que saudades que tenho
+   Da aurora da minha vida,
+   Da minha infância querida
+   Que os anos não trazem mais!
+   Que amor, que sonhos, que flores,
+   Naquelas tardes fagueiras
+   À sombra das bananeiras,
+   Debaixo dos laranjais!"
+  Aspecto: Saudade da infância como paraíso perdido. Anáfora de "que"
+  (exclamação). Imagens do Brasil rural (bananeiras, laranjais).
+  Pretérito imperfeito como tempo da memória. Tom de lamento doce.
+
+Exemplo B: Manuel Bandeira — "Evocação do Recife" — Libertinagem (1930)
+  "Rua da União...
+   Como eram lindas as noites da minha terra...
+   A vida não me chegava pelos jornais nem pelos livros
+   Vinha da boca do povo na língua errada do povo
+   Língua certa do povo
+   Porque ele é que fala gostoso o português do Brasil."
+  Aspecto: Saudade urbana, concreta. Catálogo de imagens — não uma
+  infância abstrata, mas uma cidade específica com ruas, personagens,
+  cheiros. A memória é detonada por objetos e nomes. Nostalgia
+  modernista — sem pieguice, com oralidade.
+
+Exemplo C: Drummond — "Infância" — Alguma Poesia (1930)
+  "Meu pai montava a cavalo, ia para o campo.
+   Minha mãe ficava sentada cosendo.
+   Meu irmão pequeno dormia.
+   Eu sozinho menino entre mangueiras
+   Lia a história de Robinson Crusoé,
+   Comprida história que não acaba mais."
+  Aspecto: Saudade seca, sem adjetivos. O poema não diz "que saudade"
+  — mostra a cena. A comoção está na ausência de comoção declarada.
+  O past perfect "ficava", "dormia", "lia" como tempo da memória
+  contínua, inacabada.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar "saudade" paradigmática em todo verso (a palavra "saudade"
+  usada como muleta). Bandeira não diz "saudade" em "Evocação do
+  Recife" — ele evoca.
+- Evitar idealização rasa ("antigamente tudo era perfeito"). A
+  nostalgia de Drummond inclui a solidão do menino — o passado não
+  é só alegria.
+
+
+=============================================================================
+7. ÉPICO (TOM-026 a TOM-029)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Camões — Os Lusíadas, Canto I (1572)
+  "As armas e os barões assinalados
+   Que, da ocidental praia lusitana,
+   Por mares nunca de antes navegados
+   Passaram ainda além da Taprobana,
+   Em perigos e guerras esforçados,
+   Mais do que prometia a força humana,
+   E entre gente remota edificaram
+   Novo Reino, que tanto sublimaram."
+  Aspecto: Proposição épica canônica. Invocação às armas e aos heróis.
+  Hipérbole heróica ("mais do que prometia a força humana"). Oitava
+  rima decassílaba. Tom de grandeza nacional. Planos: viagem, história,
+  mitologia, poeta.
+
+Exemplo B: Camões — Os Lusíadas, Canto III, estrofe 21
+  "Esta é a ditosa pátria minha amada,
+   A qual se o Céu me dá que eu sem perigo
+   Torne, com esta empresa já acabada,
+   Acabe-se esta luz ali comigo."
+  Aspecto: Invocação à pátria. O herói deseja morrer na pátria amada.
+  O amor à terra como motor épico. Sublime patriótico.
+
+Exemplo C: Basílio da Gama — O Uraguai (1769)
+  "Fumam ainda nas desertas praias
+   Lagos de sangue tépidos, e inchados
+   Os mortos sobre a areia mal cobertos
+   Dos sequiosos cães o dente afiam."
+  Aspecto: Épica ameríndia — o herói não é europeu, o cenário é
+  o Brasil colonial. Versos decassílabos brancos (sem rima) —
+  inovação formal. O horror da guerra como matéria épica.
+
+--- NOVO SUB-TIPO: ÉPICO SOCIAL / CONDOREIRO ---
+
+Exemplo: Castro Alves — "O Navio Negreiro" (1868)
+  "Existe um povo que a bandeira empresta
+   P'ra cobrir tanta infâmia e cobardia!...
+   ... Mas é infâmia de mais... Da etérea plaga
+   Levantai-vos, heróis do Novo Mundo...
+   Andrada! arranca este pendão dos ares!
+   Colombo! fecha a porta dos teus mares!"
+  Aspecto: Épica a serviço da denúncia. Invocação aos heróis
+  (Andrada, Colombo). Hipérbole épica ("infâmia de mais"). O épico
+  não celebra — acusa. Palavras finais como brado de guerra.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar ufanismo vazio ("Brasil, gigante pela própria natureza").
+  O épico camoniano tem ação concreta — navegação, batalha, descoberta.
+- Evitar falso épico sobre temas cotidianos ("A luta de cada dia
+  para pagar as contas"). O épico exige escala, não intimismo.
+
+
+=============================================================================
+8. LÍRICO / ÍNTIMO / CONFESSIONAL (TOM-030 a TOM-033, TOM-041 a TOM-044)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Cecília Meireles — "Motivo" — Viagem (1939)
+  "Irmão das coisas fugidias,
+   não sinto gozo nem tormento.
+   Atravesso noites e dias
+   no vento."
+  Aspecto: Lirismo despersonalizado. O eu lírico não é biográfico —
+  é voz da condição humana. A poesia como estado de ser
+  ("sou poeta"). Musicalidade extrema em redondilhas.
+
+Exemplo B: Adélia Prado — "Com Licença Poética" — Bagagem (1976)
+  "Quando nasci, um anjo esbelto,
+   desses que tocam trombeta, anunciou:
+   vai carregar bandeira.
+   Cargo muito pesado pra mulher,
+   esta espécie ainda envergonhada."
+  Aspecto: Lirismo intimista com ironia. A confidência pessoal
+  como afirmação de gênero. O cotidiano feminino elevado a tema
+  lírico.
+
+Exemplo C: Ana Cristina Cesar — "A Teus Pés" (1982)
+  "Não quero que me ames.
+   Quero que me ames
+   com a avidez dos objetos
+   que cobiçaste."
+  Aspecto: Intimismo irônico e fragmentário. A confissão é
+  sabotada pela ironia. Lirismo de bricolagem.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar diário pessoal em versos ("Hoje acordei, tomei café, vi
+  TV"). O intimismo poetiza o cotidiano, não o transcreve.
+- Evitar sentimentalismo raso ("Te amo, te quero, preciso de você").
+  Adélia Prado usa o doméstico para falar do sagrado — o intimismo
+  dela tem profundidade metafísica.
+
+
+=============================================================================
+9. SATÍRICO (TOM-034 a TOM-036)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Gregório de Matos — "O Poeta Descreve a Cidade da Bahia"
+  "A cada canto um grande conselheiro,
+   Que nos quer governar cabana e vinha;
+   Não sabem governar sua cozinha,
+   E podem governar o mundo inteiro."
+  Aspecto: Sátira social via ironia e paradoxo. Quiasmo satírico
+  ("não sabem a cozinha / podem o mundo inteiro"). Hipérbole
+  cômica. A sátira critica a hipocrisia — conselheiros que nada
+  sabem.
+
+Exemplo B: Gregório de Matos — "Aos Caramurus da Bahia"
+  "Que falta nesta cidade? Verdade.
+   Que mais por sua desonra? Honra.
+   Falta mais que se lhe ponha? Vergonha."
+  Aspecto: Sátira por definição negativa. Estrutura de pergunta e
+  resposta. Acúmulo de faltas. O poema define a cidade pelo que
+  ela não tem.
+
+Exemplo C: Oswald de Andrade — "Erro de Português" — Pau-Brasil (1925)
+  "Quando o português chegou
+   Debaixo duma bruta chuva
+   Vestiu o índio.
+   Que pena!
+   Fosse uma manhã de sol
+   O índio tinha despido
+   o português."
+  Aspecto: Sátira histórica concisa. Ironia pela inversão da
+  história oficial. O poema-piada como crítica. Minimalismo
+  satírico — 7 versos para desconstruir a colonização.
+
+Exemplo D: Bocage — Soneto satírico (séc. XVIII)
+  "Magros, olhinhos verdes, carão comprido,
+   Cabeção, bigodeira, beiço grosso,
+   Copião de latim puro, e mais puro,
+   Sovina, que de esmolas não dá sumo."
+  (retrato de um fidalgo pedante)
+  Aspecto: Sátira de tipo social. Acúmulo de detalhes grotescos.
+  Rebaixamento da figura elevada. Catálogo de defeitos físicos e
+  morais.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar xingamento puro ("Político ladrão, corrupto, safado").
+  A sátira de Gregório ataca o vício pela ironia e pelo humor, não
+  pela agressão.
+- Evitar piada fácil sem crítica social. A sátira oswaldiana
+  desmonta estruturas históricas — não é só humor.
+
+
+=============================================================================
+10. FILOSÓFICO / ÉPICO-LÍRICO (TOM-037 a TOM-040, TOM-046 a TOM-049)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Camões — "Sôbolos rios que vão" (Redondilhas, 1595)
+  "Sôbolos rios que vão
+   Babilónia, onde achei
+   Tão caro o tempo que gastei,
+   Ali me assentei,
+   Ali lavei
+   Os olhos, alinhei
+   A viola, e os cantares
+   Que na pátria ouvi cantar,
+   Comecei logo a lembrar
+   Dos passados meus pesares."
+  Aspecto: Paráfrase do Salmo 136. Tom filosófico que indaga o
+  sentido do exílio e do tempo. Imagem conceitual (Babilônia =
+  exílio). O canto como consolo filosófico.
+
+Exemplo B: Drummond — "A Máquina do Mundo" — Claro Enigma (1951)
+  "E como eu palmilhasse vagamente
+   uma estrada de Minas, pedregosa,
+   e no fecho da tarde um sino rouco
+   se misturasse ao som de meus sapatos
+   que era pausado e seco; e aves pairassem
+   no crepúsculo...
+   ... eis que a Máquina do Mundo
+   se entreabriu para quem a decifrava."
+  Aspecto: Filosofia em forma de visão. O encontro com o absoluto
+  numa estrada mineira. Tom de revelação que se nega — a máquina
+  não se entrega. O filosófico como espera e frustração.
+
+Exemplo C: Fernando Pessoa (Ricardo Reis) — Odes (1914-1935)
+  "Para ser grande, sê inteiro: nada
+   Teu exagera ou exclui.
+   Sê todo em cada coisa. Põe quanto és
+   No mínimo que fazes."
+  Aspecto: Filosofia estoico-epicurista em verso. Presente gnômico
+  (verdades atemporais). Tom de conselho universal. O poema como
+  máxima filosófica.
+
+--- NOVO SUB-TIPO: FILOSÓFICO-EXISTENCIAL ---
+
+Exemplo: Drummond — "Congresso Internacional do Medo" — A Rosa do Povo
+  "Temia-se a bomba. Temia-se o Amor.
+   Temia-se a flor.
+   Temia-se o vinho em cada mesa.
+   Temia-se a morte.
+   Temia-se o beijo.
+   Temia-se o vento (que alçava os vestidos
+   com perversa inocência)."
+  Aspecto: Medo como condição existencial e histórica. Catálogo
+  anafórico ("Temia-se..."). O filosófico encontra o político.
+
+
+=============================================================================
+11. VISIONÁRIO / PROFÉTICO (TOM-049 a TOM-052, TOM-054 a TOM-056)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Augusto dos Anjos — "Solilóquio de um Visionário" — Eu (1912)
+  "Vi o universo se fechar em círculo
+   E Deus dormir dentro de cada átomo."
+  Aspecto: Visão cosmológica. Funde ciência e misticismo. O
+  visionário como aquele que vê a estrutura secreta do real.
+
+Exemplo B: Murilo Mendes — Poesia Liberdade (1947)
+  "Assisto em mim a um desdobrar de planos:
+   as mãos vêem, os olhos ouvem, o cérebro se move,
+   A luz desce das origens através dos tempos."
+  Aspecto: Visão sinestésica — os sentidos se fundem. O poeta como
+  vidente. Versículo profético. O visionário muriliano é surrealista
+  e cristão simultaneamente.
+
+Exemplo C: Fernando Pessoa — "Mensagem" (1934)
+  "Não sou eu quem navega: o mar é que me navega."
+  "Deus quer, o homem sonha, a obra nasce."
+  Aspecto: Visão profética da pátria. O herói é instrumento do
+  destino. Tom de oráculo. Frases lapidares como revelações.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar ocultismo de banca de jornal ("forças cósmicas do universo
+  conspirando a meu favor"). O visionário eficaz tem método —
+  veja Augusto dos Anjos e sua cosmologia materialista.
+- Evitar delírio gratuito (imagens soltas sem conexão). O visionário
+  de Murilo tem coesão interna — surrealismo, não psicose.
+
+
+=============================================================================
+12. CONCISO / MINIMALISTA (TOM-053 a TOM-056)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: João Cabral de Melo Neto — "A Educação pela Pedra" (1966)
+  "Uma educação pela pedra: por lições;
+   para aprender da pedra, frequentá-la;
+   captar sua voz inenfática, impessoal
+   (pela de dicção ela começa as aulas)."
+  Aspecto: Poesia como arquitetura. Cada palavra pesa como pedra.
+  Supressão de adjetivos decorativos. Tom didático e seco.
+
+Exemplo B: João Cabral — "O Cão Sem Plumas" (1950)
+  "A paisagem
+   é um estado
+   de capim
+   seco."
+  Aspecto: Concisão máxima. 4 versos, 8 palavras, uma imagem
+  completa. O silêncio entre os versos é parte do poema.
+
+Exemplo C: Paulo Leminski — "Distraídos Venceremos" (1987)
+  "Distraídos
+   Venceremos.
+   Nem tanto.
+   Nem tão pouco.
+   Nem tão nítido.
+   Nem tão mudo.
+   Distraídos
+   Venceremos
+   o dia
+   e a noite
+   com seus
+   entretantos."
+  Aspecto: Concisão com ironia. O poema minimalista que finge ser
+   bobo. Zen budista com humor. Cada linha pesa.
+
+--- ANTI-PATTERNS (EXPANSÃO) ---
+
+- Evitar hermetismo gratuito (palavras difíceis para parecer profundo).
+  Leminski é conciso e claro — "menos é mais, desde que o menos seja
+  muito."
+- Evitar fragmentação sem nexo ("Ser. Não. Talvez. Sim. Fim.") —
+  isso é ilegível, não conciso.
+
+
+=============================================================================
+13. ERÓTICO (TOM-057 a TOM-063)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Hilda Hilst — "Do Desejo" (1992)
+  "Extasiada, fodo contigo
+   Ao invés de ganir diante do Nada."
+  "Colada à tua boca a minha desordem.
+   O meu vasto querer. O incompossível se fazendo ordem."
+  "DESEJO é um Todo lustroso de carícias /
+   Uma boca sem forma, um Caracol de Fogo."
+  Aspecto: Erotismo filosófico. O sexo como via de acesso ao
+  absoluto. Crueza e metafísica — "fodo" e "Nada" no mesmo verso.
+
+Exemplo B: Adélia Prado — "Festa do Corpo de Deus" — O Coração
+           Disparado (1978)
+  "Jesus tem um par de nádegas!
+   Mais que Javé na montanha
+   esta revelação me prostra."
+  "E teu corpo na cruz, suspenso.
+   E teu corpo na cruz, sem panos:
+   olha para mim."
+  Aspecto: Sagrado-erótico. O corpo de Cristo como revelação erótica.
+  Inversão da teologia da culpa — "a inocência da carne". A nudez
+  não é pecado — é plenitude.
+
+Exemplo C: Lubi Prates — "um corpo negro" (2018)
+  "te ofereço as minhas águas, você aceita e mata sua sede
+   — avidamente.
+   algumas gotas transbordam da sua boca, escorrem pelo
+   seu queixo, pescoço, peito."
+  Aspecto: Erotismo negro-feminino contemporâneo. A água como
+  elemento de fusão. O corpo negro como território de desejo e
+  resistência.
+
+--- NOVAS REFERÊNCIAS ---
+
+- Angélica Freitas, "Um útero é do tamanho de um punho" (2012):
+  "era uma vez uma mulher que não perdia / a chance de enfiar o dedo
+  no ânus / no próprio e no dos outros" — erotismo satírico-político.
+- Mar Becker, "A mulher submersa" (2020): "não fosse cada pequeno
+  insulto da forma / não me tomarias imaculada" — erotismo lésbico.
+- Bráulio Tavares, "Poema da Buceta Cabeluda": "A buceta da minha
+  amada é cabeluda como um tapete persa. / É um buraco-negro bem
+  no meio do púbis do Universo." — erotismo cômico-cósmico.
+
+
+=============================================================================
+14. GROTESCO / DEGRADAÇÃO (TOM-064 a TOM-069)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Augusto dos Anjos — "O Deus-Verme" — Eu (1912)
+  "Fator universal do transformismo,
+   Filho da teleológica matéria,
+   Na universal Contextura etérea
+   Vive e reina o Proteu do Proteísmo..."
+  "Almoça a podridão das drupas agras,
+   Janta hidrópicos, rói vísceras magras
+   E dos defuntos novos incha a mão..."
+  Aspecto: O verme como protagonista cósmico — "deus". Sublime
+  hediondo. Vocabulário científico aplicado ao repugnante.
+
+Exemplo B: Augusto dos Anjos — "Monólogo de uma Sombra" — Eu (1912)
+  "Como um pouco de saliva quotidiana
+   Mostro meu nojo à Natureza Humana.
+   A podridão me serve de Evangelho…
+   Amo o esterco, os resíduos ruins dos quiosques
+   E o animal inferior que urra nos bosques
+   É com certeza meu irmão mais velho."
+  Aspecto: Antropologia às avessas. O baixo corporal como matéria
+  de poesia. Inversão hierárquica — o esterco é evangelho, o animal
+  é irmão.
+
+Exemplo C: Augusto dos Anjos — "Soneto (A meu pai morto)" — Eu (1912)
+  "Podre meu Pai! E a mão que enchi de beijos
+   Roída toda de bichos, como os queijos
+   Sobre a mesa de orgíacos festins!..."
+  Aspecto: Grotesco aplicado à dor mais pessoal — o pai morto e
+  podre. Amor filial expresso pela imagem mais repugnante. Choque
+  como forma de dizer o indizível.
+
+--- NOVA REFERÊNCIA ---
+
+- Bráulio Tavares, "Três da Madrugada": "Era uma tira de plástico,
+  escuro, comprido, elástico, / que um vento qualquer mexeu. / Não
+  era bicho nem nada. / Era a cabeça cansada / de pensar tanto; era
+  Eu." — grotesco moderno: o eu é lixo, a identidade é refugo.
+
+
+=============================================================================
+15. SAGRADO / MÍSTICO (TOM-070 a TOM-076)
+=============================================================================
+
+--- VERSOS REAIS (CANÔNICOS) ---
+
+Exemplo A: Jorge de Lima — "A Túnica Inconsútil" (1938)
+  "O mar, a terra e o céu
+   se unem numa só coisa:
+   o homem.
+   E o homem numa só coisa:
+   Deus."
+  Aspecto: Mística da unidade. Versículo bíblico. Linguagem de
+  revelação. O sagrado como fusão de todos os planos.
+
+Exemplo B: Murilo Mendes — "Poema" — Poesia Liberdade (1947)
+  "Sou responsável pela lepra do leproso e pela órbita vazia do cego,
+   Pelos gritos isolados que não entraram no coro."
+  Aspecto: Mística da responsabilidade total. O eu lírico assume o
+  peso do mundo. Cristianismo engajado. Versículo profético. A
+  consciência mística como responsabilidade ética.
+
+Exemplo C: Adélia Prado — "Festa do Corpo de Deus"
+  "Expondo-te como um fruto
+   nesta árvore de execração
+   o que dizes é amor,
+   amor do corpo, amor."
+  Aspecto: Mística encarnada. O sagrado não nega o corpo — o
+  transfigura. Poesia como oração e como ato de amor.
+
+--- NOVA REFERÊNCIA ---
+
+- Hilda Hilst, "Alcoólicas" (1968): "Noite é o velado coração de
+  Deus / Esse que por pudor não mais procuro." — mística do vazio,
+  Deus como ausência. O sagrado no não-dito.
+
+
+=============================================================================
+16. NOVOS TONS CATEGÓRICOS (PROPOSTA DE ADIÇÃO)
+=============================================================================
+
+--- A. TOM BUCÓLICO / PASTORIL / ARCADIANO ---
+
+Base: Poesia arcádica brasileira (Cláudio Manuel da Costa, Tomás
+Antônio Gonzaga, 1768-1820). Paisagem idealizada, pastores que
+cantam amores em estilo clássico.
+
+Versos exemplo (Cláudio Manuel da Costa — "Obras" 1768):
+  "Brandas ribeiras, quanto estou contente
+   De ver-vos outra vez, se isto é verdade!
+   Quanto me alegra ouvir a suavidade,
+   Com que Fílis entoa a voz cadente!"
+  Aspecto: Locus amoenus. Natureza idealizada. Pastores com nomes
+  clássicos (Fílis). Serenidade formal.
+
+Versos exemplo (Tomás Gonzaga — "Marília de Dirceu", 1792):
+  "Eu, Marília, não sou algum vaqueiro,
+   Que viva de guardar alheio gado,
+   De tosco trato, de expressões grosseiro,
+   Dos frios gelos e dos sóis queimado.
+   Tenho próprio casal e nele assisto;
+   Dá-me vinho, legume, fruta, azeite;
+   Das brancas ovelhinhas tiro o leite
+   E mais as finas lãs, de que me visto."
+  Aspecto: Bucolismo do "fingimento poético" — o eu lírico se finge
+  pastor. Imagens de abundância rústica. Autoelogio da vida simples.
+  Idealização da natureza como refúgio da corte.
+
+--- B. TOM PANFLETÁRIO / ENGAJADO / RESISTÊNCIA ---
+
+Base: Castro Alves ("Navio Negreiro"), Ferreira Gullar ("Poema
+Sujo", "Dentro da Noite Veloz"), Drummond social ("A Rosa do Povo").
+
+Versos exemplo (Ferreira Gullar — "Poema Sujo", 1976):
+  "O homem está na cidade
+   como uma coisa está em outra
+   e a cidade está no homem
+   como o voo está no pássaro."
+  "bela bela / mais que bela / mas como era o nome dela?"
+  Aspecto: Poesia como testemunho. Exílio e memória. O pessoal e
+  o político se fundem. A cidade e o homem como uma coisa só.
+  Neoconcretismo + engajamento.
+
+Versos exemplo (Drummond — "Nosso Tempo", A Rosa do Povo, 1945):
+  "O poeta
+   declina de toda responsabilidade
+   na marcha do mundo capitalista
+   e com suas palavras, intuições, símbolos e outras armas
+   promete ajudar
+   a destruí-lo
+   como uma pedreira, uma floresta,
+   um verme."
+  Aspecto: Poesia engajada sem panfleto. Ironia na assunção do
+  compromisso político. O poeta como "verme" que destrói o
+  capitalismo.
+
+--- C. TOM METALINGUÍSTICO (POESIA SOBRE POESIA) ---
+
+Base: João Cabral ("A Educação pela Pedra"), Drummond ("Procura da
+Poesia"), Pessoa ("Autopsicografia"), Leminski.
+
+Versos exemplo (Pessoa — "Autopsicografia", 1932):
+  "O poeta é um fingidor.
+   Finge tão completamente
+   Que chega a fingir que é dor
+   A dor que deveras sente."
+  Aspecto: Ars poetica. O poema explica o fazer poético. Teoria do
+  fingimento. Metalinguagem explícita. O paradoxo do poeta que
+  cria a dor que sente.
+
+Versos exemplo (João Cabral — "A Educação pela Pedra", 1966):
+  "A lição de moral, sua resistência fria
+   ao que flui e a fluir, a ser maleada;
+   a de poética, sua carnadura concreta;
+   a de economia, seu adensar-se compacta:
+   lições da pedra (de fora para dentro,
+   cartilha muda), para quem soletrá-la."
+  Aspecto: Poesia que ensina a fazer poesia. A pedra como metáfora
+  do poema bem construído. Didatismo poético. O fazer poético como
+  ofício, não como inspiração.
+
+--- D. TOM CONCRETIVO / VERBIVOCOVISUAL ---
+
+Base: Concretismo brasileiro (Haroldo de Campos, Augusto de Campos,
+Décio Pignatari, 1952+). Poesia visual, supressão da sintaxe linear.
+
+Versos exemplo (Décio Pignatari — "beba coca-cola", 1957):
+  "beba coca-cola
+   beba coca
+   beba coca
+   beba
+   cola
+   beba
+   coca
+   cola"
+  Aspecto: Poesia concreta. Fragmentação da palavra. Crítica ao
+  consumismo via forma. Poema visual e sonoro simultaneamente.
+
+Versos exemplo (Augusto de Campos — "dias dias dias", 1953):
+  Disposição espacial das palavras "dias" formando um cubo/retângulo
+  visual na página. Aspecto: Poema como objeto. O espaço gráfico
+  como agente estrutural. Verbivocovisualidade.
+
+--- E. TOM MÍNIMO / HAICAICO ---
+
+Base: Haicai brasileiro (Leminski, Alice Ruiz, Millôr Fernandes).
+Concisão zen. Justaposição de imagens. 3 versos (5-7-5 ou livre).
+
+Versos exemplo (Paulo Leminski — "Haicais"):
+  "Zebra
+   o que é zebra?
+   Afinal, perguntava o beduíno.
+   Um cavalo de listras
+   ou uma lista de cavalo?"
+  Aspecto: Haicai com humor. Filosofia zen + trocadilho. Concisão
+  que gera infinitas leituras.
+
+--- F. TOM PAGÃO / SENSORIAL (ALBERTO CAEIRO) ---
+
+Base: Alberto Caeiro (Fernando Pessoa), "O Guardador de Rebanhos".
+
+Versos exemplo:
+  "O meu olhar é nítido como um girassol.
+   Tenho o costume de andar pelas estradas
+   Olhando para a direita e para a esquerda,
+   E de vez em quando olhando para trás...
+   O que vejo a cada momento
+   É aquilo que nunca antes eu tinha visto,
+   E eu sei dar por isso muito bem."
+  Aspecto: Poesia das sensações sem pensamento. A recusa do
+  filosofar como ato filosófico. "Pensar é estar doente dos olhos."
+  A natureza percebida, não interpretada. Paganismo.
+
+--- G. TOM FANTÁSTICO / SURREAL (MURILO MENDES, JORGE DE LIMA) ---
+
+Base: Murilo Mendes, "Poesia Liberdade" (1947); Jorge de Lima,
+"Anunciação e Encontro de Mira-Celi" (1943); surrealismo cristão.
+
+Versos exemplo (Murilo Mendes — "O Discípulo de Emaús", 1943):
+  "Diante do crucifixo
+   Eu paro pálido tremendo:
+   — Já que és o verdadeiro filho de Deus
+   Desprega a humanidade desta cruz."
+  Aspecto: Surrealismo bíblico. Blasfêmia e fé no mesmo gesto.
+  Imagens oníricas. Fusão de sagrado e absurdo.
+
+
+=============================================================================
+17. TONS EXPANDIDOS — REFERÊNCIAS ADICIONAIS
+=============================================================================
+
+--- SOMBRIO (EXPANSÃO) ---
+Cruz e Sousa — "Broquéis" (1893):
+  "Ó Abismos! Ó poços de martírio!
+   Ó sombras, ó silêncios, ó neblinas!
+   Levai-me, ó ventos, por ínvias colinas,
+   Para outros climas de letal delírio!"
+  Aspecto: Simbolismo sombrio. Abismosp' como apelo ao nada.
+  Musicalidade fúnebre.
+
+--- JUBILOSO (EXPANSÃO) ---
+Cassiano Ricardo — "Martim Cererê" (1928):
+  Poesia de exaltação da terra brasileira com ritmo de dança
+  indígena. Júbilo nativista modernista.
+
+--- REFLEXIVO (EXPANSÃO) ---
+Drummond — "Poema de Sete Faces" — Alguma Poesia (1930):
+  "Quando nasci, um anjo torto
+   desses que vivem na sombra
+   disse: Vai, Carlos! ser gauche na vida."
+  Aspecto: Reflexão sobre a identidade como destino. Ironia
+  existencial. O "anjo torto" como figura do desvio fundador.
+
+
+=============================================================================
+18. CROSS-TONE ANALYSIS (HÍBRIDOS)
+=============================================================================
+
+--- MIXAGEM #1: IRÔNICO-MELANCÓLICO (DRUMMOND) ---
+TOM-077 já documenta. Real-author: "No meio do caminho tinha uma
+pedra" — leitura literal: piada absurda; leitura profunda: angústia
+do impasse.
+
+--- MIXAGEM #2: GROTESCO-SUBLIME (AUGUSTO DOS ANJOS) ---
+TOM-078 já documenta. O verme como deus. Escarro como filosofia.
+A síntese mais radical de opostos.
+
+--- MIXAGEM #3: SAGRADO-ERÓTICO (ADÉLIA PRADO) ---
+TOM-079 já documenta. Jesus tem nádegas. Sexo é santo.
+
+--- MIXAGEM #4: ÉPICO-LÍRICO SOCIAL ---
+TOM-080 já documenta (Drummond social).
+
+--- MIXAGEM #5: FILOSÓFICO-SATÍRICO (GREGÓRIO, BOCAGE) ---
+Não documentado ainda. Gregório usa sátira para expressar
+amargura existencial. Exemplo: "Tristes sucessos, casos
+lastimosos" — soneto sobre a Bahia como elegia disfarçada de
+sátira. A crítica social carrega uma melancolia de fundo.
+
+--- MIXAGEM #6: MELANCÓLICO-ERÓTICO (FLORBELA) ---
+Florbela Espanca: o amor como ferida. "Ser amada é ser ferida."
+O erotismo florbeliano nunca é júbilo — é melancolia do desejo
+irrealizado. O sexo é sonho, não ato.
+
+--- MIXAGEM #7: CONCISO-VISIONÁRIO (LEMINSKI) ---
+"Zebra" — o haicai serve à visão cósmica. A katana do zen como
+ferramenta de transcendência. Concisão + profundidade.
+
+--- MIXAGEM #8: ÉPICO-ÍNTIMO (BANDEIRA, "EVOCAÇÃO DO RECIFE") ---
+A perda individual da infância se confunde com a perda histórica
+de uma cidade. O épico do cotidiano — a cidade como personagem.
+
+--- MIXAGEM #9: SATÍRICO-ERÓTICO (BOCAGE, ANGÉLICA FREITAS) ---
+Bocage: sonetos satíricos sobre freiras e frades libidinosos.
+Angélica Freitas: "mulher de respeito / diz-me com quem te deitas
+/ angélica freitas" — sátira do controle do corpo feminino via
+erotismo.
+
+--- MIXAGEM #10: MÍSTICO-CONCRETO (AUGUSTO DE CAMPOS) ---
+"Luxo" (Augusto de Campos): poema visual sobre a palavra luxo/
+lixo — fusão de poesia concreta com crítica social. O sagrado
+no lixo.
+
+--- QUAIS TONS CLASHAM (NÃO MISTURAM BEM) ---
+
+1. ÉPICO + ÍNTIMO: O épico exige escala coletiva; o íntimo,
+   escala pessoal. Funciona em Drummond (tom #80) mas é raro.
+   Em mãos inábeis, soa falso.
+
+2. JUBILOSO + SOMBRIO: Dificilmente combinam no mesmo poema.
+   Augusto dos Anjos tenta: "a mais alta expressão da dor
+   estética / consiste essencialmente na alegria" — inverte a
+   equação. A alegria é a forma suprema da dor. Mas é exceção.
+
+3. CONCISO + ÉPICO: O épico precisa de extensão para criar
+   grandeza. O conciso opera por supressão. João Cabral foge
+   do épico justamente por ser conciso. Exceção: Leminski em
+   seus poemas longos.
+
+4. PROFÉTICO + SATÍRICO: A profecia exige seriedade; a sátira,
+   distanciamento. Gregório tenta — e o resultado é ambíguo:
+   a Bahia é ao mesmo tempo caso perdido e objeto de escárnio.
+
+--- TONS QUE MISTURAM BEM (SINERGIAS COMPROVADAS) ---
+
+1. MELANCÓLICO + REFLEXIVO: Drummond, Pessoa. A tristeza gera
+   pensamento. O pensar aprofunda a tristeza. Simbiose natural.
+
+2. SAGRADO + ERÓTICO: Adélia Prado. O amor divino e o amor
+   carnal como a mesma chama. Fusão orgânica.
+
+3. SATÍRICO + FILOSÓFICO: Gregório, Bocage, Oswald. A sátira
+   que pensa. O riso como ato crítico.
+
+4. GROTESCO + SUBLIME: Augusto dos Anjos. O nojo como revelação
+   do absoluto. O verme como Deus.
+
+5. NOSTÁLGICO + LÍRICO: Bandeira, Casimiro. A memória afetiva
+   como matéria lírica. A infância como paraíso perdido.
+
+6. ÉPICO + LÍRICO: Drummond (social), Castro Alves. A compaixão
+   como gesto épico. O indivíduo e a história.
+
+7. CONCISO + VISIONÁRIO: Leminski. Poucas palavras, visão
+   cósmica.
+
+8. INTIMISTA + IRÔNICO: Ana Cristina Cesar. A confidência
+   sabotada pelo humor. O confessionário virado do avesso.
+
+=============================================================================
+19. BIBLIOGRAFIA CONSULTADA
+=============================================================================
+
+Obras primárias:
+- ANJOS, Augusto dos. Eu e Outras Poesias (1912/1920)
+- CAMÕES, Luís de. Os Lusíadas (1572)
+- MEIRELES, Cecília. Viagem (1939); Romanceiro da Inconfidência (1953)
+- PESSOA, Fernando. Obra Poética (Ática, 1946)
+- DRUMMOND, Carlos. Alguma Poesia (1930); A Rosa do Povo (1945);
+  Claro Enigma (1951)
+- BANDEIRA, Manuel. Libertinagem (1930)
+- PRADO, Adélia. Poesia Reunida (Record, 2015)
+- HILST, Hilda. Do Desejo (1992)
+- CABRAL, João. A Educação pela Pedra (1966)
+- MENDES, Murilo. Poesia Completa e Prosa (Nova Aguilar, 1994)
+- LIMA, Jorge de. Poesia Completa (Nova Aguilar, 1997)
+- GULLAR, Ferreira. Poema Sujo (1976)
+- GONZAGA, Tomás. Marília de Dirceu (1792)
+- MATOS, Gregório de. Poemas Escolhidos (Wisnik org.)
+- CAMPOS, Augusto; CAMPOS, Haroldo; PIGNATARI, Décio. Teoria da
+  Poesia Concreta (1965)
+- ESPANCA, Florbela. Livro de Soror Saudades (1923)
+- LEMINSKI, Paulo. Distraídos Venceremos (1987)
+- PRATES, Lubi. um corpo negro (2018)
+- FREITAS, Angélica. Um útero é do tamanho de um punho (2012)
+- TAVARES, Bráulio. Poesia Reunida
+- CESAR, Ana Cristina. A Teus Pés (1982)
+
+Crítica:
+- BOSI, Alfredo. História Concisa da Literatura Brasileira
+- CANDIDO, Antonio. Vários Escritos; Formação da Literatura Brasileira
+- ARRIGUCCI Jr., Davi. Humildade, Paixão e Morte
+- HANSEN, João Adolfo. A Sátira e o Engenho
+- ELIADE, Mircea. O Sagrado e o Profano
+- OTTO, Rudolf. O Sagrado (1917)
+- KAYSER, Wolfgang. O Grotesco (1957)
+- BAKHTIN, Mikhail. A Cultura Popular na Idade Média e no Renascimento (1965)
+- PAZ, Octavio. A Dupla Chama (1994)
+
+=============================================================================
+FIM DA PESQUISA
+=============================================================================

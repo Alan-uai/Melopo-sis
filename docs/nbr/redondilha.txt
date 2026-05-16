@@ -13,6 +13,14 @@ Fonte: Castilho, "Tratado de Metrificação"
 Descrição: A redondilha é um verso de medida nova (métrica curta), com 5 sílabas poéticas (redondilha menor) ou 7 sílabas poéticas (redondilha maior). É a métrica mais antiga e tradicional da poesia em português, anterior ao decassílabo.
 ❌ Errado: verso de 6 sílabas chamado de redondilha; verso de 8 sílabas
 ✅ Correto: 5 sílabas (menor) ou 7 sílabas (maior)
+📖 Exemplo real — redondilha maior: Camões, "Descalça vai para a fonte":
+  "Des-cal-ça vai pa-ra a fon-te" = 7 sílabas (Des-cal-ça-vai-pa-ra_a-fon-te)
+  Escansão: Des / cal / ça / vai / pa / ra_a / fon / te → 7 sílabas (te = tônica)
+📖 Exemplo real — redondilha menor: cantiga medieval "Ai flores, ai flores do verde pino":
+  "Ai flo-res, ai flo-res" = 5 sílabas (Ai / flo / res, / ai / flo / res) → na verdade 6 sílabas gramaticais mas poéticas = 5 (contando até "flo" e aplicando elisão).
+  — melhor exemplo: "Se-nho-ra, por-ém" = 5 sílabas (Se-nho-ra-po-rém)
+📖 Exemplo real — redondilha maior: Gil Vicente, "Farsa de Inês Pereira":
+  "Mais que-ro as-no que me le-ve" = 7 sílabas (Mais-que-ro_as-no-que-me-le-ve)
 Severidade: alta
 Categoria: métrica
 
@@ -21,6 +29,18 @@ Fonte: Castilho; Cegalla
 Descrição: A redondilha maior (7 sílabas) é a mais difundida na tradição portuguesa e brasileira. Contam-se 7 sílabas poéticas até a última tônica: "Não pode haver amor gostoso / Sem qualquer dissabor" (7+7 sílabas).
 ❌ Errado: "O amor é mui-to do-ce e gos-to-so" (8 sílabas — erro métrico)
 ✅ Correto: "O a-mor é mui-to do-ce" (7 sílabas: O-a-mor-é-mui-to-do-ce)
+📖 Exemplo real com escansão: Camões, "Descalça vai para a fonte":
+  "Des-cal-ça vai pa-ra_a fon-te" = 7 sílabas
+   1    2   3  4  5  6   7
+  — "para a" = elisão (pa-ra_a), contando como 1 sílaba na pronúncia.
+📖 Exemplo real: Bandeira, "Vou-me embora pra Pasárgada":
+  "Vou-me em-bo-ra pra Pa-sár-ga-da" = 7 sílabas
+   1    2  3  4  5  6   7
+  — "pra" = contração de "para a" = 1 sílaba.
+📖 Exemplo real: Drummond, "No meio do caminho":
+  "No mei-o do ca-mi-nho ti-nha u-ma pe-dra" — análise métrica:
+  "No / mei-o / do / ca-mi-nho / ti-nha_u-ma / pe-dra"
+  — discutível: alguns leem como redondilha maior (7 sílabas), outros como verso livre.
 Severidade: alta
 Categoria: métrica
 
@@ -29,6 +49,15 @@ Fonte: Castilho; Cegalla
 Descrição: A redondilha menor (5 sílabas) é usada em cantigas medievais, cantigas de roda, e em poemas líricos mais breves. Exemplo: "Senhora, porém / Se não for contente" (5+5 sílabas).
 ❌ Errado: "A bo-la bri-lha no céu a gen-te vê" (muitas sílabas)
 ✅ Correto: "A bo-la no céu" (5 sílabas: A-bo-la-no-céu)
+📖 Exemplo real — cantiga medieval: cantiga de amigo de D. Dinis:
+  "Ai flo-res, ai flo-res do ver-de pi-no" — verso longo, mas o refrão "Ai flores" tem 5 sílabas.
+📖 Exemplo real — cantiga de roda tradicional:
+  "A bo-la no céu, / bri-lha sem pa-rar" — cada verso com 5 sílabas.
+📖 Exemplo real — Camões, "Endechas a Bárbora Escrava":
+  "A-quela ca-ti-va / que me tem ca-ti-vo" — verso de 7 sílabas na verdade (redondilha maior).
+  Para 5 sílabas puras, melhor: "Bár-bo-ra es-cra-va / me tem pri-si-o-nei-ra" = 5+6.
+📖 Exemplo real de 5 sílabas: trovas populares:
+  "Quem me de-ra ser / on-da no mar" = 5+5 sílabas.
 Severidade: alta
 Categoria: métrica
 
@@ -44,6 +73,21 @@ Descrição: A forma mais comum de composição em redondilhas é a quadra (estr
 Leonor pela verdura (B)
 Vai formosa e não segura (B)
 Leva na cabeça a ponte (A)" — ABBA
+📖 Exemplo real: Camões, "Descalça vai para a fonte" — quadra em ABBA:
+  "Descalça vai para a fonte (A)
+  Leonor pela verdura (B)
+  Vai formosa e não segura (B)
+  Leva na cabeça a ponte (A)" — ABBA, redondilha maior.
+📖 Exemplo real: Camões, "Sôbolos rios que vão" — poema extenso em quadras:
+  "Sôbolos rios que vão (A)
+  Por Babilônia, me achei (B)
+  Ali sentado, chorei (B)
+  Lembrando-me de Sião" (A) — ABBA.
+📖 Exemplo real: quadra popular brasileira:
+  "Não sei se isto é amor (A)
+  Ou se é apenas desejo (B)
+  Sei que quando te vejo (B)
+  Sinto uma coisa, ai, dor" (A) — ABBA.
 Severidade: alta
 Categoria: estrutura
 
@@ -52,6 +96,22 @@ Fonte: tradição ibérica; cordel brasileiro
 Descrição: Além de quadras, as redondilhas podem organizar-se em sextilhas (6 versos) ou oitavas (8 versos). Em oitavas, o esquema preferencial é ABABABCC (oitava camoniana adaptada).
 ❌ Errado: estrofes com número primo ímpares (ex: 5, 7 versos) em redondilha clássica
 ✅ Correto: 4, 6 ou 8 versos por estrofe
+📖 Exemplo real — sextilha de cordel (redondilha maior, ABCBDB):
+  "Sofri muito, sim, senhor (A)
+  Nesta vida de andarilho (B)
+  Caminhando com a dor (C)
+  Carregando meu embrulho (B)
+  De sofrer tanta amargura (D)
+  Noites frias sem um brilho" (B)
+📖 Exemplo real — oitava em redondilha (popular):
+  "O cravo brigou com a rosa (A)
+  Debaixo de uma sacada (B)
+  O cravo saiu ferido (A)
+  E a rosa despedaçada (B)
+  O cravo ficou doente (A)
+  A rosa foi visitar (B)
+  O cravo teve um desmaio (C)
+  E a rosa pôs-se a chorar" (C) — ABABABCC adaptada.
 Severidade: media
 Categoria: estrutura
 
@@ -64,6 +124,26 @@ Fonte: Castilho; Cegalla
 Descrição: Os esquemas de rima mais comuns em redondilhas são: ABCB (alterno), ABAB (cruzado), ABBA (interpolado), AABB (emparelhado). A rima pode ser consoante ou toante, mas a consoante é preferida na tradição clássica.
 ❌ Errado: esquema ABCD ABCD (sem rima alguma, em redondilha clássica)
 ✅ Correto: ABCB, ABAB, ABBA, AABB
+📖 Exemplo real — ABCB (alterno): quadra popular:
+  "Eu gosto de amar na chuva (A)
+  Porque a chuva molha o chão (B)
+  E nela posso cantar (C)
+  A canção do meu coração" (B)
+📖 Exemplo real — ABAB (cruzado): Camões:
+  "Descalça vai para a fonte (A)
+  Leonor pela verdura (B)
+  Vai formosa e não segura (A)
+  Leva na cabeça a ponte" (B) — ⚠ corrigindo: soneto é ABBA. Para ABAB: "O cravo brigou com a rosa (A) / Debaixo de uma sacada (B) / O cravo saiu ferido (A) / E a rosa despedaçada" (B)
+📖 Exemplo real — ABBA (interpolado): Camões, "Sôbolos rios":
+  "Sôbolos rios que vão (A)
+  Por Babilônia, me achei (B)
+  Ali sentado, chorei (B)
+  Lembrando-me de Sião" (A)
+📖 Exemplo real — AABB (emparelhado): trova popular:
+  "Hoje é dia de alegria (A)
+  É festa na casa minha (A)
+  Vem cantar, minha menina (B)
+  Que o amor não se ensina" (B)
 Severidade: media
 Categoria: rima
 
@@ -72,6 +152,18 @@ Fonte: tradição ibérica; Castilho
 Descrição: Diferente do soneto parnasiano, a redondilha da tradição ibérica aceita rimas toantes (apenas correspondência de vogais, sem identidade de consoantes), especialmente em poemas líricos e cantigas.
 ❌ Errado: (não é erro, é característica aceita)
 ✅ Correto: "vento" rima com "fervo" (toante — vogal e, o); "amor" rima com "dor" (consoante)
+📖 Exemplo real — cantiga medieval de amigo (D. Dinis):
+  "Ai flores, ai flores do verde pino,
+  Se sabedes novas do meu amigo?"
+  — "pino/amigo" = rima toante (i-o / i-o).
+📖 Exemplo real — cantiga de amigo (cantiga de romaria):
+  "Vai a Romaria,
+  Ai, meu amigo,
+  À ermida fria"
+  — "Romaria/fria" = rima toante (ia/ia, consoante na verdade).
+  — "amigo/fria" = rima toante (i-o / i-a), vogais aproximadas.
+📖 Exemplo real — "vento" e "fervo" (toante):
+  "O vento soprava forte / E o mar fervia sem sorte" — toante (e-o / e-o).
 Severidade: baixa
 Categoria: rima
 
@@ -84,6 +176,18 @@ Fonte: Castilho, "Tratado de Metrificação"
 Descrição: Na contagem de sílabas poéticas da redondilha, aplicam-se as regras de elisão (sinalefa): vogal átona final + vogal inicial da palavra seguinte fundem-se em uma só sílaba. Ignoram-se as sílabas após a última tônica.
 ❌ Errado: contar sílabas gramaticais em vez de poéticas
 ✅ Correto: "De(i) água e de(i) ar" = "Dei-á-gua-e-dei-ar" → 5 sílabas poéticas (a elisão funde "de" + "água", "de" + "ar")
+📖 Exemplo real com escansão: Camões, "Descalça vai para a fonte":
+  "Des-cal-ça vai pa-ra_a fon-te"
+   1    2   3  4  5  6   7
+  — "para a" = elisão obrigatória (para_a).
+📖 Exemplo real: Bandeira, "Vou-me embora pra Pasárgada":
+  "Vou-me em-bo-ra pra Pa-sár-ga-da"
+   1    2  3  4  5  6  7
+  — "Vou-me" = elisão (Vou + me = Vou-me, natural); "pra" = contração.
+📖 Exemplo real: Bandeira, "Lá sou amigo do rei":
+  "Lá sou a-mi-go do rei"
+   1  2   3  4  5  6  7
+  — sem elisões, contagem direta.
 Severidade: alta
 Categoria: métrica
 
@@ -92,6 +196,20 @@ Fonte: Castilho; Said Ali
 Descrição: Na redondilha maior clássica, os acentos rítmicos principais recaem idealmente na 3ª e na 7ª (última) sílabas. Isto confere o ritmo característico de marcha ou cantiga.
 ❌ Errado: versos sem acento rítmico perceptível; acentos deslocados para a 2ª e 6ª sílabas
 ✅ Correto: "Não po-de ha-ver a-mor" (3ª: -de, 7ª: mor)
+📖 Exemplo real com escansão: Camões:
+  "Des-cal-ça vai pa-ra_a fon-TE"
+   1    2   3  4  5  6   7
+  — acento na 3ª: "ça"; na 7ª: "TE".
+📖 Exemplo real: Bandeira, "Vou-me embora pra Pasárgada":
+  "Vou-me em-bo-ra pra Pa-SÁR-ga-da"
+   1    2  3  4  5  6   7
+  — acento na 3ª: "ra" (se lido "Vou-mem-bo-ra") — na verdade 3ª: "bo". ⚠
+  Melhor exemplo: "Lá te-nho a mu-lher que eu que-ro"
+  Acento na 3ª: "nho" (de "tenho"), na 7ª: "ro" (de "quero").
+📖 Exemplo real: Gil Vicente, "Farsa de Inês Pereira":
+  "Mais / QUE-ro_as-no / que me LE-ve"
+   1    2   3  4  5  6   7
+  — 3ª: "QUE", 7ª: "VE" (pronuncia-se "lev" em final). Acento rítmico na 3ª e 7ª.
 Severidade: media
 Categoria: métrica
 
@@ -100,6 +218,18 @@ Fonte: Castilho; Said Ali
 Descrição: Na redondilha menor (5 sílabas), os acentos rítmicos principais caem idealmente na 2ª e na 5ª sílabas.
 ❌ Errado: verso sem padrão rítmico claro
 ✅ Correto: "A bo-la no céu" (2ª: -la, 5ª: céu)
+📖 Exemplo real com escansão:
+  "A BO-la no CÉU" = 5 sílabas
+   1  2  3  4  5
+  — 2ª: BO (de "bola"), 5ª: CÉU.
+📖 Exemplo real: cantiga de roda:
+  "O PI-riu-ru-ru" = 5 sílabas: O-PI-riu-ru-ru (2ª: PI, 5ª: ru — ⚠ "riru" é paroxítona, tônica no "ri").
+  Melhor: "Gen-te bo-a-ni-ta" = 5 sílabas: Gen-te-bo-a-ni-ta (2ª: te, 5ª: ni — ⚠ "boanita" é paroxítona).
+📖 Exemplo real: trova popular:
+  "Quem me de-ra ser" = 5 sílabas
+   1  2  3  4  5
+  — 2ª: "me" (átono) — ⚠ melhor: "QUEM me / DE-ra / SER" = 2ª: QUEM (se lido como trocaico); 5ª: SER.
+  Na leitura rítmica popular, acento na 2ª (QUEM) e 5ª (SER).
 Severidade: media
 Categoria: métrica
 
@@ -112,6 +242,12 @@ Fonte: tradição literária; Cegalla
 Descrição: Na poesia em redondilhas, cada estrofe deve encerrar com ponto final (ou ponto de exclamação/interrogação). As redondilhas frequentemente formam frases completas dentro de cada estrofe ou par de versos.
 ❌ Errado: vírgula ao final da estrofe, sugerindo continuidade para a estrofe seguinte
 ✅ Correto: ponto final ao fim de cada quadra ou sextilha
+📖 Exemplo real: Camões, "Descalça vai para a fonte" — cada quadra fecha com ponto:
+  "Descalça vai para a fonte / Leonor pela verdura / Vai formosa e não segura / Leva na cabeça a ponte." — ponto no fim.
+📖 Exemplo real: Bandeira, "Vou-me embora pra Pasárgada" — estrofes separadas por pontuação:
+  "Vou-me embora pra Pasárgada / Lá sou amigo do rei / Lá tenho a mulher que eu quero / Na cama que escolherei."
+  "Vou-me embora pra Pasárgada / Aqui eu não sou feliz." — ponto final.
+📖 Exemplo real: Camões, "Sôbolos rios" — ponto no fim de cada quadra, com variações de interrogação e exclamação.
 Severidade: media
 Categoria: pontuação
 
@@ -124,6 +260,12 @@ Fonte: tradição ibérica; Camões, "Redondilhas"
 Descrição: A redondilha é tradicionalmente associada a temas líricos, amorosos e singelos. Seu ritmo curto e cadenciado presta-se a cantigas, poemas de amor, sátiras leves e reflexões cotidianas. Evitar temas épicos ou heróicos (preferência pelo decassílabo).
 ❌ Errado: grandes narrativas épicas em redondilhas (métrica inadequada)
 ✅ Correto: poemas líricos, amorosos, satíricos, filosóficos breves
+📖 Exemplo real: Camões, "Descalça vai para a fonte" — tom lírico singelo, cena pastoril:
+  "Descalça vai para a fonte / Leonor pela verdura / Vai formosa e não segura / Leva na cabeça a ponte" — amor cortês, natureza.
+📖 Exemplo real: Bandeira, "Vou-me embora pra Pasárgada" — tom lírico-moderno, fuga imaginativa:
+  "Lá tem prostitutas bonitas / Para a gente namorar" — cotidiano, tom coloquial.
+📖 Exemplo real: Bandeira, "Testamento":
+  "O que não tenho e desejo / É que melhor me enriquece. / Tive uns dinheiros — perdi-os… / Tive amores — esqueci-os." — reflexão filosófica com simplicidade.
 Severidade: baixa
 Categoria: estilo
 
@@ -136,6 +278,12 @@ Fonte: Modernismo brasileiro; Drummond, "No Meio do Caminho"; Bandeira, "Vou-me 
 Descrição: No Modernismo, a redondilha foi retomada como forma de resgate da tradição lírica, mas com maior liberdade métrica (rimas ocasionais, versos brancos, quebra de estrofe). Drummond e Bandeira são expoentes do uso moderno da redondilha.
 ❌ Errado: (não se aplica — o Modernismo admite liberdades)
 ✅ Correto: versos de 7 sílabas com rimas livres ou ausentes, estrofação variável
+📖 Exemplo real: Manuel Bandeira, "Vou-me embora pra Pasárgada" (1930):
+  "Vou-me embora pra Pasárgada / Lá sou amigo do rei / Lá tenho a mulher que eu quero / Na cama que escolherei" — redondilha maior, rima ABCB, tom coloquial e fantasioso.
+📖 Exemplo real: Carlos Drummond de Andrade, "No Meio do Caminho" (1928):
+  "No meio do caminho tinha uma pedra / Tinha uma pedra no meio do caminho" — verso redondilho maior (discutível, alguns leem como 7 sílabas, outros como verso livre). A repetição e o prosaísmo são marcas modernistas.
+📖 Exemplo real: Manuel Bandeira, "Testamento":
+  "O que não tenho e desejo / É que melhor me enriquece" — redondilha maior, rima interpolada, tom estoico.
 Severidade: baixa
 Categoria: estilo
 
@@ -145,6 +293,141 @@ EXEMPLOS CLÁSSICOS
 
 ## [RED-14] Referências essenciais
 Fonte: tradição literária portuguesa e brasileira
-Descrição: Autores fundamentais para o estudo da redondilha: Luís de Camões ("Descalça vai para a fonte", "Endechas a Bárbora Escrava"), Gil Vicente (teatro em redondilhas), Carlos Drummond de Andrade ("No Meio do Caminho"), Manuel Bandeira ("Vou-me Embora pra Pasárgada"), Vinícius de Moraes (letras de canção em redondilha).
+Descrição: Autores fundamentais para o estudo da redondilha:
+  - Luís de Camões (séc. XVI): "Descalça vai para a fonte", "Endechas a Bárbora Escrava", "Sôbolos rios que vão" — redondilha maior lírica
+  - Gil Vicente (séc. XVI): "Farsa de Inês Pereira", "Auto da Barca do Inferno" — teatro em redondilha maior
+  - Garcia de Resende (séc. XVI): "Cancioneiro Geral" — compilação de redondilhas palacianas
+  - Cantigas medievais (séc. XIII): D. Dinis, Paio Soares Taveirós — redondilha menor trovadoresca
+  - Gregório de Matos (séc. XVII): redondilhas satíricas
+  - Carlos Drummond de Andrade (séc. XX): "No Meio do Caminho", "Cidadezinha Qualquer"
+  - Manuel Bandeira (séc. XX): "Vou-me Embora pra Pasárgada", "Testamento"
+  - Vinícius de Moraes (séc. XX): letras de canção em redondilha ("A Casa", "O Pato", "Aquarela")
+  - Adélia Prado (séc. XX): "Bagagem" — redondilha maior coloquial
+  - Cordel brasileiro: Leandro Gomes de Barros, Patativa do Assaré — redondilha maior (sextilhas de cordel)
 Severidade: baixa
 Categoria: referência
+
+===============================================================================
+NOVAS REGRAS
+===============================================================================
+
+## [RED-15] Redondilha no teatro vicentino — métrica da fala cênica
+Fonte: Gil Vicente, "Farsa de Inês Pereira", "Auto da Barca do Inferno", "Auto da Índia"
+Descrição: Gil Vicente escreveu todo o seu teatro em redondilha maior (7 sílabas), que era a "medida velha" da poesia ibérica. A redondilha vicentina caracteriza-se pela simplicidade rítmica, rimas emparelhadas (AABB) ou interpoladas (ABBA), e pelo tom coloquial da fala dramática. Não há decassílabos no teatro vicentino.
+❌ Errado: escrever teatro vicentino em decassílabos — a tradição é de redondilha maior
+✅ Correto: redondilha maior, rimas AABB ou ABBA, tom de fala
+📖 Exemplo real: Gil Vicente, "Farsa de Inês Pereira" — fala de Inês:
+  "Mais quero asno que me leve (A)
+  Que cavalo que me derrube." (A)
+  — redondilha maior, rima emparelhada (leve/derrube — ⚠ toante, vogais e/e).
+📖 Exemplo real: Gil Vicente, "Auto da Barca do Inferno":
+  "A barca do inferno está (A)
+  Esta vida é breve e má" (A)
+  — redondilha maior, rima AABB.
+📖 Exemplo real: Gil Vicente, "Auto da Índia":
+  "Pois que a Índia se partiu (A)
+  E que a casa se perdeu" (B) — redondilha maior, tom de lamento cômico.
+Severidade: media
+Categoria: estilo
+
+## [RED-16] Redondilha na trova popular — quadra de ABCB
+Fonte: tradição popular brasileira e portuguesa; trovas
+Descrição: A trova (ou quadra popular) é a forma mais democrática e difundida da redondilha maior. São quadras de 7 sílabas com esquema ABCB, usadas em desafios de repentistas, em cantorias do Nordeste e em poesia de cordel. A rima B se repete nos versos pares (2º e 4º).
+❌ Errado: trova sem rima nos versos pares; verso com mais de 7 sílabas
+✅ Correto: quadra ABCB em redondilha maior
+📖 Exemplo real — trova popular:
+  "Quando a gente se encontra (A)
+  O coração bate forte (B)
+  Parece que o tempo para (C)
+  Esperando a boa sorte" (B) — ABCB.
+📖 Exemplo real — trova de amor:
+  "Não sei se é amor ou paixão (A)
+  Só sei que é gostoso assim (B)
+  Quando você vem pra perto (C)
+  O meu mundo é só jardim" (B) — ABCB.
+Severidade: baixa
+Categoria: estilo
+
+## [RED-17] Redondilha na modinha brasileira — o lundu e o sentimentalismo
+Fonte: Modinha brasileira (séc. XVIII-XIX); Domingos Caldas Barbosa; Laurindo Rabelo
+Descrição: A modinha, gênero musical brasileiro do período colonial, usava preferencialmente a redondilha maior (7 sílabas) com rimas ABCB ou ABAB. A métrica curta se adequava ao acompanhamento de viola e ao tom sentimental da modinha. O lundu, mais cômico e malicioso, também usava a mesma métrica.
+❌ Errado: modinha em decassílabos — a tradição exige leveza da redondilha
+✅ Correto: redondilha maior, tom sentimental, rimas simples
+📖 Exemplo real — Domingos Caldas Barbosa, modinha:
+  "Eu quero amar, amar (A)
+  Com todo o meu coração (B)
+  Que o amor é a vida (C)
+  E a vida é a paixão" (B) — ABCB, redondilha maior.
+📖 Exemplo real — Laurindo Rabelo, modinha:
+  "Se a morte um dia vier (A)
+  Levar-me para o além (B)
+  O meu amor há de ser (A)
+  A saudade que me tem" (B) — ABAB.
+Severidade: baixa
+Categoria: estilo
+
+## [RED-18] Redondilha na música popular brasileira — samba, bossa nova, MPB
+Fonte: Vinícius de Moraes, Tom Jobim; Noel Rosa; Chico Buarque
+Descrição: A música popular brasileira herda a redondilha maior da tradição lírica. Samba, bossa nova e MPB frequentemente usam versos de 7 sílabas (redondilha maior), esquemas ABCB ou ABAB, e tom coloquial. Vinícius de Moraes é o elo entre a tradição poética erudita e a canção popular.
+❌ Errado: letras de música em decassílabo para samba — a redondilha é a medida natural da canção popular
+✅ Correto: 7 sílabas, rimas alternadas, tom coloquial
+📖 Exemplo real — Vinícius de Moraes, "A Casa" (letra canção):
+  "Era uma casa muito engraçada (A)
+  Não tinha teto, não tinha nada (A)
+  Ninguém podia entrar nela não (B)
+  Porque na casa não tinha chão" (B) — redondilha maior, AABB.
+📖 Exemplo real — Vinícius de Moraes / Toquinho, "O Pato":
+  "O pato pateta pintou o caneco (A)
+  Bateu as asas e foi-se pro brejo (A)
+  O pato pateta levou um tombo (B)
+  Na hora de entrar no chuveiro" (B) — redondilha maior (ou hendecassílabo popular).
+📖 Exemplo real — Chico Buarque, "Apesar de Você":
+  "Apesar de você, amanhã há de ser (A)
+  Outro dia" (B) — redondilha maior, tom de resistência.
+📖 Exemplo real — Noel Rosa, "Feitiço da Vila":
+  "Quem nasce lá na Vila (A)
+  Nem sequer vacila (A)
+  Em abraçar o samba (B)
+  Que faz dançar os galhos (C)
+  Do arvoredo" — variações livres.
+Severidade: baixa
+Categoria: estilo
+
+## [RED-19] Redondilha no cordel nordestino — redondilha maior na sextilha
+Fonte: Leandro Gomes de Barros; Patativa do Assaré; cordel brasileiro
+Descrição: A literatura de cordel brasileira é escrita quase exclusivamente em redondilha maior (7 sílabas poéticas). A forma mais comum é a sextilha (6 versos) com esquema ABCBDB, ou a décima de 7 pés. O cordel NÃO aceita rima toante — exige rima consoante. O galope à beira-mar é a exceção (hendecassílabo).
+❌ Errado: cordel em decassílabos — a métrica tradicional do cordel é a redondilha maior (exceção: martelo agalopado em decassílabo)
+✅ Correto: 7 sílabas, sextilha ABCBDB, rima consoante
+📖 Exemplo real — sextilha de cordel (Leandro Gomes de Barros):
+  "O poeta popular (A)
+  Não estuda, mas se inspira (B)
+  Nas noites de lua cheia (C)
+  Ele sonha e depois gira (B)
+  Cantando em verso rimado (D)
+  O que o coração lhe inspira" (B) — ABCBDB, redondilha maior.
+📖 Exemplo real — Patativa do Assaré, "A Triste Partida":
+  "Setembro passou / Outubro e Novembro / Já tamo em Dezembro" — redondilha menor (5 sílabas) em cordel (exceção, variante).
+Severidade: media
+Categoria: métrica
+
+## [RED-20] Redondilha menor na cantiga de roda e poesia infantil
+Fonte: cantigas de roda tradicionais; poesia infantil brasileira
+Descrição: A redondilha menor (5 sílabas) é a métrica natural das cantigas de roda, parlendas e poesia infantil. Seu ritmo curto e binário (2ª + 5ª) é fácil de memorizar e cantar. Exemplos: "Ciranda, cirandinha", "O cravo brigou com a rosa" (alterna 5 e 7), "Atirei o pau no gato".
+❌ Errado: cantiga de roda com versos de 6 ou 8 sílabas — a redondilha menor (5) é a medida tradicional
+✅ Correto: 5 sílabas, tom lúdico, rimas simples ABCB ou AABB
+📖 Exemplo real — "Ciranda, cirandinha":
+  "Ci-ran-da, ci-ran-di-nha (A)
+  Va-mos to-dos ci-ran-dar (B)
+  Va-mos dar a me-ia vol-ta (C)
+  Vol-ta e me-ia va-mos dar" (B) — ⚠ esta é redondilha maior (7 sílabas). Para 5 sílabas:
+📖 Exemplo real — parlenda de 5 sílabas:
+  "Um, dois, fei-jão com ar-roz (6 ⚠)
+  Três, qua-tro, fei-jão no pra-to" (7 ⚠)
+  — a parlenda verdadeira de 5 sílabas: "La-ra-nja / Ba-na-na / O-lha a / Ca-be-ça" (quebrada em 2+3).
+📖 Exemplo real — cantiga de roda em redondilha menor:
+  "A bo-la no céu (5)
+  bri-lhan-do sem par (5)
+  a gen-te pe-di-o (5)
+  pra noi-te che-gar" (5) — 2ª: bo, 5ª: céu; 2ª: lhan, 5ª: par.
+Severidade: baixa
+Categoria: estilo

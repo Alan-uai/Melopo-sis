@@ -414,3 +414,54 @@ Descrição: As formas da 3ª pessoa do plural do presente do indicativo de crer
 ✅ Correto: Eles creem, Eles leem, Eles veem, Eles deem
 Severidade: alta
 Categoria: ortografia
+
+======= ORTOGRAFIA E POESIA =======
+
+## [POE-ORT-01] Arcaísmos ortográficos na poesia — preservação histórica
+Fonte: Acordo Ortográfico 1990, Base I (§ único); tradição poética; Augusto dos Anjos, Cruz e Sousa, Camões
+Descrição: A poesia frequentemente preserva grafias arcaicas como recurso estilístico, mesmo quando a ortografia oficial as aboliu. O Acordo Ortográfico (Base I, § único) permite a manutenção de grafias antigas em obras literárias, desde que com finalidade estilística. Exemplos: (1) "Psychologia" em vez de "Psicologia" (Augusto dos Anjos); (2) "hypocondríaco" em vez de "hipocondríaco" (Augusto dos Anjos); (3) "ph" com valor de /f/; (4) "rh" em palavras de origem grega; (5) "ç" em palavras hoje grafadas com "s". Estes arcaísmos não devem ser corrigidos — são escolha do poeta.
+❌ Errado: "corrigir" "Psychologia" para "Psicologia" (Augusto dos Anjos), "epigénesis" para "epigênese" (o poeta optou pela grafia arcaizante)
+✅ Correto: "Eu, filho do carbono e do amoníaco, / Monstro de escuridão e rutilância / Sofro, desde a epigénesis da infância / A influência má dos signos do zodíaco" (Augusto dos Anjos, "Psicologia de um Vencido") — "epigénesis" grafado com -is final em vez de -e, "Psychologia" no título original; preservar a grafia original do poeta
+Severidade: alta (não corrigir)
+Categoria: ortografia — arcaísmo poético
+
+## [POE-ORT-02] Poetic license — desvios ortográficos intencionais
+Fonte: tradição modernista e contemporânea; Oswald de Andrade; Paulo Leminski; poesia marginal
+Descrição: A poesia modernista e contemporânea incorpora desvios ortográficos intencionais como recurso expressivo: (1) grafia fonética ("tá" por "está", "pra" por "para"); (2) supressão de letras para efeito métrico ("tô" por "estou", "cê" por "você"); (3) aglutinação de palavras para criar neologismos; (4) redução de palavras para efeito coloquial; (5) uso de "k" no lugar de "qu" ou "c" (tendência da poesia concreta e marginal). Esses desvios não são erros ortográficos — são escolhas estéticas que o sistema não deve corrigir.
+❌ Errado: corrigir "tá" para "está", "pra" para "para", "tô" para "estou" em poesia que optou pelo coloquialismo
+✅ Correto: "tô", "pra", "cê", "tá" — preservados quando intencionais, especialmente em Oswald de Andrade, Leminski, Ana Cristina Cesar
+✅ Correto (Oswald de Andrade, "Erro de português"): "Quando o português chegou / Debaixo duma bruta chuva / Vestiu o índio" — "duma" por "de uma" é elisão ortográfica intencional, marca do primitivismo modernista
+Severidade: alta (não corrigir)
+Categoria: ortografia — licença poética
+
+## [POE-ORT-03] Erros comuns em poesia amadora — confusão entre licença e descuido
+Fonte: análise de poesia amadora; Candido; concursos literários
+Descrição: Poetas iniciantes frequentemente confundem "licença poética" com descuido ortográfico. Critérios para distinguir: (1) a licença poética é consistente ao longo do poema — o desvio acidental é isolado; (2) a licença poética tem função expressiva — o desvio acidental não serve ao sentido; (3) a licença poética respeita a pronúncia — o desvio acidental cria forma impronunciável; (4) a licença poética é assumida pelo poeta (paratextos, estilo reconhecível) — o desvio acidental é negado pelo autor quando apontado.
+❌ Errado: usar "licença poética" como justificativa para erros de acentuação (ex: "voce" sem acento em poema que usa norma culta no resto)
+✅ Correto: licença poética é recurso consciente e consistente, não desculpa para erro; o sistema deve marcar como "suspeito" (baixa severidade) e sugerir verificação humana
+Severidade: media (marcar como suspeito, não corrigir automaticamente)
+Categoria: ortografia — análise
+
+## [POE-ORT-04] Ortografia de nomes próprios poéticos e estrangeiros
+Fonte: Acordo Ortográfico 1990, Base I; VOLP; tradição literária
+Descrição: Nomes próprios (personagens, lugares ficcionais, nomes de poetas) e estrangeirismos na poesia seguem regras específicas: (1) nomes de poetas estrangeiros mantêm a grafia original (Bashō, e não Báxio; Yeats, e não Iates); (2) nomes de personagens ficcionais podem usar grafia inventada, e esta não deve ser corrigida; (3) palavras estrangeiras incorporadas ao poema não seguem as regras de acentuação do português; (4) topónimos ficcionais (Pasárgada, A Pedra) têm ortografia fixada pelo poeta. O sistema deve reconhecer que nomes próprios poéticos estão fora do escopo de correção ortográfica.
+❌ Errado: acentuar "Bashō" como "Báxio" ou corrigir "Pasárgada" para presumir erro (Pasárgada é nome próprio)
+✅ Correto: "Vou-me embora pra Pasárgada / Lá sou amigo do rei" (Manuel Bandeira) — "Pasárgada" é topónimo ficcional, grafia fixada pelo poeta, inalterável
+Severidade: alta (não corrigir nomes próprios)
+Categoria: ortografia — nomes próprios
+
+## [POE-ORT-05] Acentuação em monossílabos poéticos — ênclise e próclise
+Fonte: tradição poética; Castilho; Said Ali
+Descrição: Na poesia, monossílabos átonos podem tornar-se tónicos por exigência métrica (ictus), e monossílabos tónicos podem tornar-se átonos em próclise. A acentuação gráfica, no entanto, segue a regra padrão independentemente do ictus. Exceção: em casos de ênclise com pronome, a forma verbal pode receber acento que não teria na prosa (ex: "fá-lo" em vez de "falo"). O sistema deve distinguir entre o acento métrico (ictus) e o acento gráfico — a ausência de acento gráfico não é erro mesmo que a sílaba seja tónica no verso.
+❌ Errado: adicionar acento gráfico a monossílabos átonos que recebem ictus no verso (ex: "o" com ictus sem acento — correto)
+✅ Correto: preservar a acentuação padrão independentemente do ictus poético
+Severidade: baixa (apenas informativo)
+Categoria: ortografia — acentuação poética
+
+## [POE-ORT-06] Uso do apóstrofo em poesia — elisão e crase poética
+Fonte: Castilho; Cegalla; tradição poética portuguesa e brasileira
+Descrição: O apóstrofo em poesia serve à elisão de vogais para efeito métrico: (1) "d'alma" = de + alma; (2) "n'alma" = na + alma; (3) "m'alma" = minha + alma; (4) "d'água" = de + água; (5) "d'oiro" = de + oiro. Não confundir com crase (fusão de a + a = à) — a elisão poética é supressão de vogal, não fusão. O apóstrofo poético não segue as mesmas regras da crase padrão. Exemplo clássico: Gonçalves Dias usa "d'escarlate" — forma elidida que a prosa não usaria.
+❌ Errado: substituir "d'alma" por "de alma" (perde a contagem silábica e o efeito estilístico)
+✅ Correto: "Morro d'alma sede e frio" (Gonçalves Dias) — apóstrofo preservado
+Severidade: alta (não corrigir)
+Categoria: ortografia — elisão poética

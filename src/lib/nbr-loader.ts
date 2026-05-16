@@ -13,7 +13,7 @@ const STRUCTURE_FILE_MAP: Record<string, string> = {
   poesia: 'poema-poesia.txt',
 };
 
-const MAX_NBR_LENGTH = 6000;
+const MAX_NBR_LENGTH = 50000;
 
 export function loadOrthographyRules(): string {
   return loadRawDoc('acordo-ortografico.txt');

@@ -9,44 +9,36 @@
 ESTRUTURA GERAL
 ================================================================================
 
-## [COR-01] Sextilha — estrofe de 6 versos (forma mais comum)
-Fonte: tradição do cordel nordestino; Aderaldo Luciano, "O Cordel no Brasil"
-Descrição: A sextilha é a forma estrófica mais comum do cordel brasileiro: estrofes de 6 versos com métrica de 7 sílabas poéticas (redondilha maior) e esquema de rimas ABCBDB (o 2º verso rima com o 4º e o 6º; o 1º, 3º e 5º são livres).
-❌ Errado: estrofes com número variável de versos, esquema de rima inconsistente
-✅ Correto: "O poeta nordestino (A)
-Num cordel vai declamar (B)
-A história do seu povo (C)
-Que aprendeu a lutar (B)
-Com a seca e a terra dura (D)
-Sem nunca se entregar (B)"
+## [COR-01] Sextilha — estrofe de 6 versos (forma mais comum do cordel)
+Fonte: tradição do cordel nordestino; Leandro Gomes de Barros; Aderaldo Luciano, "O Cordel no Brasil"
+Descrição: A sextilha é a forma estrófica mais comum e característica do cordel brasileiro: estrofes de 6 versos com métrica de 7 sílabas poéticas (redondilha maior) e esquema de rimas ABCBDB. O 2º, 4º e 6º versos rimam entre si (B); os versos 1º, 3º e 5º (A, C, D) são livres. A sextilha foi consagrada por Leandro Gomes de Barros (1865-1918), considerado o pai do cordel brasileiro, e permanece a forma dominante até hoje.
+❌ Errado: estrofes com número variável de versos; rimar 1º com 3º; esquema inconsistente entre estrofes
+✅ Correto: "O dinheiro neste mundo / Não há força que o debande / Nem perigo que o enfrente / Nem senhoria que o mande / Tudo está abaixo dele / Só ele ali é o grande." (Leandro Gomes de Barros, "O Dinheiro") — sextilha com 7 sílabas, ABCBDB perfeito
 Severidade: alta
 Categoria: estrutura
 
 ## [COR-02] Quadra — estrofe de 4 versos (2ª forma mais comum)
-Fonte: tradição do cordel; Aderaldo Luciano
-Descrição: A quadra é a segunda forma mais comum: estrofes de 4 versos com métrica de 7 sílabas e esquema ABCB (2º e 4º versos rimam, 1º e 3º são livres). Usada em poemas narrativos mais curtos ou como variação entre sextilhas.
-❌ Errado: rimar 1º com 3º em vez de 2º com 4º
-✅ Correto: "No sertão a vida é dura (A)
-Mas o povo tem valor (B)
-Plantam sonhos na ternura (C)
-E colhem fé e suor (B)"
+Fonte: tradição do cordel; Patativa do Assaré; Aderaldo Luciano
+Descrição: A quadra é a segunda forma mais comum do cordel: estrofes de 4 versos com métrica de 7 sílabas e esquema ABCB (2º e 4º versos rimam, 1º e 3º são livres). Usada em poemas narrativos mais curtos, em aberturas de cordéis, ou como variação entre sextilhas. Patativa do Assaré frequentemente abria seus cordéis com quadras antes de passar às sextilhas.
+❌ Errado: rimar 1º com 3º em vez de 2º com 4º; alternar quadra com sextilha sem padrão definido
+✅ Correto: "Sou fio das mata, cantô da mão grossa, / Trabaio na roça, de inverno e de estio. / A minha chupana é tapada de barro, / Só fumo cigarro de páia de mio." (Patativa do Assaré, "O Poeta da Roça") — quadra com 7 sílabas, ABCB, linguagem matuta
 Severidade: alta
 Categoria: estrutura
 
 ## [COR-03] Décima — estrofe de 10 versos (3ª forma)
-Fonte: tradição ibérica; cordel brasileiro
-Descrição: A décima é uma estrofe de 10 versos com métrica de 7 sílabas e esquema ABBAACCDDC (estilo espanhol) ou variações. É usada em cordéis mais eruditos ou em desafios/pelejas.
-❌ Errado: usar esquema de rima próprio sem coerência interna
-✅ Correto: ABBAACCDDC (cada letra representa o som da rima)
-Severidade: media
+Fonte: tradição ibérica; cordel brasileiro; repentismo (martelo agalopado)
+Descrição: A décima é uma estrofe de 10 versos, geralmente em redondilha maior (7 sílabas) no cordel, ou hendecassílabos (11 sílabas) no repentismo (martelo agalopado e galope à beira-mar). O esquema clássico é ABBAACCDDC (décima espanhola). No cordel escrito, a décima aparece em narrativas mais eruditas; no repente, é forma obrigatória de desafios. A décima exige rima consoante rigorosa em todos os 10 versos.
+❌ Errado: décima com menos de 10 versos; esquema de rimas que não se repete entre estrofes; rima toante em vez de consoante
+✅ Correto: ABBAACCDDC — cada letra representa o som da rima; o 1º e 4º versos rimam (A), 2º e 3º (B), 5º e 6º (C), 7º e 10º (D), 8º e 9º (C); ou variação ABBAABBAAB
+Severidade: alta
 Categoria: estrutura
 
-## [COR-04] Martírio — galope à beira-mar (forma especializada)
-Fonte: tradição do cordel; Antônio de Mar Vila, "Martírio"
-Descrição: O galope à beira-mar (também chamado martírio) é uma forma de 6 versos com métrica de 10 sílabas e esquema de rimas AABCCB. Cada estrofe termina com o refrão "Na beira do mar" (ou variações). Usado em narrativas épicas de mar.
-❌ Errado: usar métrica de 7 sílabas e chamar de galope à beira-mar
-✅ Correto: versos decassílabos com refrão "Na beira do mar" ao final de cada estrofe
-Severidade: media
+## [COR-04] Galope à Beira-Mar — décima hendecassílaba com refrão obrigatório
+Fonte: repentismo cearense; José Pretinho; Luciano Maia; ABLC
+Descrição: O Galope à Beira-Mar é uma forma de décima (estrofe de 10 versos) em versos hendecassílabos (11 sílabas poéticas, com acentos na 2ª, 5ª, 8ª e 11ª). O esquema de rimas é ABBAACCDDC. O último verso de cada estrofe termina obrigatoriamente com a palavra "mar" (ou a expressão "galope na beira do mar"). A forma foi criada pelo repentista José Pretinho e é exclusiva do repente nordestino, não do cordel escrito (embora apareça em cordéis de temática marítima).
+❌ Errado: usar métrica de 7 sílabas; terminar sem a palavra "mar"; menos de 10 versos; chamar de galope à beira-mar uma estrofe de 6 versos (não confundir com a sextilha)
+✅ Correto: 10 versos hendecassílabos, ABBAACCDDC, último verso com "mar": "Cantor das coivaras queimando o horizonte, / Das brancas raízes expostas à lua, / Da pedra alvejada, da laje tão nua / Guardando o silêncio da noite no monte. / Cantor do lamento da água da fonte / Que desce ao açude e lá fica a teimar / Com o sol e com o vento, até se finar / No último adejo da asa sedenta, / Que busca salvar-se da morte e inventa / Cantigas de adeuses na beira do mar." (Luciano Maia)
+Severidade: alta
 Categoria: estrutura
 
 ================================================================================
@@ -54,18 +46,18 @@ MÉTRICA DO CORDEL
 ================================================================================
 
 ## [COR-05] Redondilha maior — 7 sílabas poéticas
-Fonte: tradição do cordel; Câmara Cascudo
-Descrição: O cordel clássico usa versos de 7 sílabas poéticas (redondilha maior). A contagem é feita até a última sílaba tônica, com elisão de vogais átonas em hiato. Versos de 6 ou 8 sílabas são considerados falhas métricas no cordel tradicional.
-❌ Errado: "O poeta popu-lar can-ta a vi-da no ser-tão" (8 sílabas — erro de métrica)
-✅ Correto: "O po-e-ta po-pu-lar" (7 sílabas: O-poe-ta-po-pu-lar)
+Fonte: tradição do cordel; Câmara Cascudo; Patativa do Assaré, "O Poeta da Roça"
+Descrição: O cordel clássico usa versos de 7 sílabas poéticas (redondilha maior). A contagem é feita até a última sílaba tônica, com elisão de vogais átonas em hiato (sinalefa). Versos de 6 ou 8 sílabas são considerados falhas métricas no cordel tradicional — o ouvido do declamador percebe imediatamente a quebra. Há registro histórico de cordéis com métrica heterogênea (ex: Patativa, "Triste Partida") mas são exceções e não o padrão.
+❌ Errado: "O poeta popu-lar can-ta a vi-da no ser-tão" (8 sílabas — erro de métrica); alternar 7 e 8 sílabas sem justificativa estilística
+✅ Correto: "Sou fi-o das ma-ta, can-tô da mão gros-sa" (7 sílabas: Sou-fi-o-das-ma-ta-can-tô-da-mão-gros-sa) — Patativa, "O Poeta da Roça"
 Severidade: alta
 Categoria: métrica
 
 ## [COR-06] Redondilha menor — 5 sílabas poéticas (variação)
-Fonte: tradição ibérica; cordel brasileiro
-Descrição: Embora a redondilha maior (7 sílabas) seja o padrão do cordel, a redondilha menor (5 sílabas) também aparece, especialmente em quadras e em cordéis infantis ou mais líricos.
-❌ Errado: misturar versos de 5 e 7 sílabas na mesma estrofe sem padrão definido
-✅ Correto: estrofe inteira em 5 sílabas, ou estrofe inteira em 7 sílabas
+Fonte: tradição ibérica; cordel brasileiro; Patativa do Assaré, "Triste Partida"
+Descrição: Embora a redondilha maior (7 sílabas) seja o padrão do cordel, a redondilha menor (5 sílabas) aparece em cordéis infantis ou mais líricos. A exceção mais célebre é "Triste Partida" de Patativa do Assaré, que alterna versos hendecassílabos (11 sílabas, 1º e 4º da estrofe) com pentassílabos (5 sílabas, demais versos) — num esquema original que foge de todas as convenções métricas do cordel e ainda assim é reconhecido como obra-prima do gênero.
+❌ Errado: alternar 5 e 7 sílabas na mesma estrofe sem padrão definido ou justificativa estilística
+✅ Correto: "Setembro passou, Outubro e Novembro / Já tamo em Dezembro / Meu Deus, que é de nós?" (Patativa, "Triste Partida") — 11 + 5 + 5 sílabas, exceção métrica que cria efeito musical próprio
 Severidade: media
 Categoria: métrica
 
@@ -75,25 +67,25 @@ RIMAS NO CORDEL
 
 ## [COR-07] Rima consoante obrigatória — apenas rima consoante é aceita
 Fonte: ABLC; Cordel na Educação (cordelnaeducacao.com.br); Aderaldo Luciano
-Descrição: A literatura de cordel clássica exige APENAS rimas consoantes (perfeitas, com identidade total de sons a partir da vogal tônica — consoantes e vogais). Rimas toantes (apenas vogais) NÃO são aceitas em cordel. Esta é uma diferença fundamental entre cordel e outras formas poéticas (que podem usar rima toante).
-❌ Errado: "casa" rima com "fala" (toante — vogal a apenas); "gente" rima com "neste" (toante)
-✅ Correto: "amor" rima com "cantor" (consoante); "O galo cantou no terreiro / Anunciando o dia inteiro" (rimas consoantes -eiro)
+Descrição: A literatura de cordel clássica exige APENAS rimas consoantes (perfeitas, com identidade total de sons a partir da vogal tônica, incluindo consoantes). Rimas toantes (apenas vogais) NÃO são aceitas em cordel — esta é a diferença mais rigorosa entre cordel e outras formas poéticas brasileiras. No cordel, "gente" rima com "dente" (consoante), não com "neste" (toante). A rima consoante é o que permite a memorização e a declamação oral sem apoio de texto escrito. A rima deve ser perfeita no ouvido, não apenas na grafia: "fosse" e "enxofre" (toante) não é aceita; "fosse" e "pósse" (consoante hipotética) seria.
+❌ Errado: "casa" rima com "fala" (toante — apenas vogal a); "gente" rima com "neste" (toante — o som de -nte vs -ste difere); "pobre" rima com "hombre" (toante)
+✅ Correto: "Judas era homem santo / Pregava religião / Era discípulo de Cristo / Tinha toda direção / Porém por trinta dinheiros / Dispensou a salvação!" (Leandro G. Barros, "O Dinheiro") — santo/direção/dinheiro/salvação = rimas consoantes rigorosas entre 2º, 4º e 6º versos (B: -ão, -ão, -ão, -ão)
 Severidade: alta
 Categoria: rima
 
-## [COR-08] Esquema ABCBDB na sextilha
-Fonte: tradição do cordel; ABLC
-Descrição: Na sextilha, o 2º verso rima com o 4º e o 6º (B). Os versos 1, 3 e 5 (A, C, D) são livres e não rimam entre si. Este esquema é o mais característico e identificador do cordel brasileiro.
-❌ Errado: rimar 1º e 3º versos na sextilha (exceto em variações como a septilha)
-✅ Correto: A-B-C-B-D-B (apenas B rima)
+## [COR-08] Esquema ABCBDB na sextilha — apenas o 2º/4º/6º rimam
+Fonte: tradição do cordel; Leandro Gomes de Barros; ABLC
+Descrição: Na sextilha, o 2º verso rima com o 4º e o 6º (B). Os versos 1, 3 e 5 (A, C, D) são livres e não rimam entre si. Este esquema é o mais característico e identificador do cordel brasileiro. O verso B de rima deve ser consistente ao longo de todo o cordel — não se muda a rima B sem deixar de ser sextilha. Em cordéis longos (32, 64 páginas), a rima B é mantida por dezenas de estrofes, o que exige grande domínio vocabular do poeta.
+❌ Errado: rimar 1º com 3º na sextilha; mudar a rima B a cada estrofe
+✅ Correto: "O dinheiro neste mundo (A) / Não há força que o debande (B) / Nem perigo que o enfrente (C) / Nem senhoria que o mande (B) / Tudo está abaixo dele (D) / Só ele ali é o grande. (B)" (Leandro G. Barros) — cada sextilha mantém o mesmo som B (-ande/-ande/-ande)
 Severidade: alta
 Categoria: rima
 
 ## [COR-09] Sete versos — septilha (variação)
-Fonte: tradição do cordel
-Descrição: A septilha é variação de 7 versos com esquema ABBAACB ou ABCBDDB. Menos comum que a sextilha, mas aparece em cordéis mais antigos e em desafios.
-❌ Errado: usar 7 versos sem esquema de rima definido
-✅ Correto: ABBAACB ou ABCBDDB
+Fonte: tradição do cordel; João Martins de Athayde
+Descrição: A septilha é variação de 7 versos, comum em cordéis de João Martins de Athayde. Os dois esquemas principais são ABBAACB (com duas rimas A que abrem e fecham) e ABCBDDB (extensão da sextilha com um 7º verso que rima com o 2º/4º/6º). Menos comum que a sextilha, mas frequente em cordéis de desafio e peleja.
+❌ Errado: usar 7 versos sem esquema de rima definido; chamar de sextilha uma estrofe de 7 versos
+✅ Correto: ABBAACB ou ABCBDDB — ambas com rima consoante obrigatória
 Severidade: media
 Categoria: estrutura
 
@@ -101,27 +93,27 @@ Categoria: estrutura
 PONTUAÇÃO NO CORDEL
 ================================================================================
 
-## [COR-10] Pontuação mínima — oralidade
-Fonte: tradição do cordel; Câmara Cascudo
-Descrição: O cordel é uma poesia de tradição oral. A pontuação deve ser mínima, refletindo a entonação natural da fala. Vírgulas indicam pausas curtas para respiração; pontos finais marcam o fim da estrofe. Evitar ponto-e-vírgula e travessões complexos.
-❌ Errado: "O poeta — que viveu no sertão — cantou; e o povo escutou." (pontuação excessiva, não-oral)
-✅ Correto: "O poeta no sertão cantou / E o povo escutou com fé" (pontuação natural)
-Severidade: baixa
+## [COR-10] Pontuação mínima — oralidade e declamação
+Fonte: tradição do cordel; Câmara Cascudo; Leandro Gomes de Barros
+Descrição: O cordel é uma poesia de tradição oral, feita para ser declamada em voz alta. A pontuação deve ser mínima, refletindo pausas naturais de respiração. Vírgulas indicam pausa curta; pontos finais marcam o fim da estrofe; exclamações e interrogações aparecem conforme a entonação da fala. Evitar ponto-e-vírgula, travessões e parênteses — recursos da escrita que não têm correspondente na declamação oral. A oralidade também justifica o uso de repetições e paralelismos sintáticos como marcação rítmica.
+❌ Errado: "O poeta — que viveu no sertão — cantou; e o povo escutou." (pontuação excessiva); parênteses explicativos que quebram o fluxo da declamação
+✅ Correto: "E assim é o Carnaval: / Três dias de bandalheira, / Três dias de orgia, / Três dias de mulequeira, / Três dias de pandemônio, / Três dias de bebedeira." (Cuíca de Santo Amaro) — pontuação mínima, anáfora rítmica, oralidade
+Severidade: media
 Categoria: pontuação
 
-## [COR-11] Título obrigatório com autor
-Fonte: ABLC; tradição do cordel
-Descrição: Diferente de outras formas poéticas, o cordel exige título e identificação do autor. Tradicionalmente, o título aparece em uma linha curta e impactante, seguido do nome do autor. A capa (xilogravura) é parte integral da obra.
-❌ Errado: cordel sem título ou sem autor identificado
-✅ Correto: "A Chegada de Lampião no Céu / de Leandro Gomes de Barros"
+## [COR-11] Título obrigatório com autor e subtítulo
+Fonte: ABLC; João Martins de Athayde; tradição do cordel
+Descrição: Diferente de outras formas poéticas, o cordel exige título e identificação do autor na abertura. João Martins de Athayde introduziu o padrão editorial de subtítulo explicativo, ainda usado hoje. O título deve ser curto e impactante, frequentemente anunciando o tema de forma sensacionalista para atrair o comprador. A capa (tradicionalmente com xilogravura) e a identificação do poeta e da tipografia são partes integrais da obra.
+❌ Errado: cordel sem título, sem autor, ou sem capa; título excessivamente longo sem função de chamariz
+✅ Correto: "A Chegada de Lampião no Céu / de Leandro Gomes de Barros" — ou, no estilo Athayde: "O Cachorro dos Mortos / Romance de grande sensação / por Leandro Gomes de Barros"
 Severidade: alta
 Categoria: estrutura
 
-## [COR-12] Refrão em cordéis musicados
-Fonte: tradição do cordel; repentistas
-Descrição: Em cordéis destinados à declamação musicada (acompanhados de viola), um refrão (estribilho) pode repetir-se a cada estrofe. O refrão deve manter a mesma métrica e rima da estrofe.
-❌ Errado: refrão com métrica diferente do restante da estrofe
-✅ Correto: refrão constante de 2 ou 4 versos, repetido ao fim de cada estrofe
+## [COR-12] Refrão em cordéis musicados e cantorias
+Fonte: tradição do cordel; repentistas; Patativa do Assaré, "Triste Partida"
+Descrição: Em cordéis destinados à declamação musicada (acompanhados de viola) ou em cantorias de repente, um refrão (estribilho) pode repetir-se a cada estrofe. O refrão deve manter a mesma métrica e rima da estrofe e repetir-se sem variação ao longo de todo o poema. Patativa do Assaré usou refrão em "Triste Partida", onde o quarto verso de cada estrofe funciona como quase-refrão de transição temática.
+❌ Errado: refrão com métrica diferente da estrofe; refrão que varia a cada repetição
+✅ Correto: refrão constante de 2 a 4 versos, repetido integralmente ao fim de cada estrofe; ou refrão-entremeio no 4º verso de cada sextilha
 Severidade: media
 Categoria: estrutura
 
@@ -129,27 +121,27 @@ Categoria: estrutura
 LINGUAGEM E ESTILO
 ================================================================================
 
-## [COR-13] Linguagem popular e regional
-Fonte: ABLC; Câmara Cascudo
-Descrição: O cordel utiliza linguagem popular, com vocabulário regional nordestino. É aceitável e esperado o uso de expressões como "muié" (mulher), "home" (homem), "trem" (coisa), "avexado" (apressado), "sortar" (soltar). A correção ortográfica formal não deve eliminar esses regionalismos.
-❌ Errado: corrigir regionalismos para a norma culta ("mulher" em vez de "muié" quando intencional)
-✅ Correto: "Muié valente do sertão / Não tem medo de tudim" (regionalismo preservado)
+## [COR-13] Linguagem popular e regional — oralidade sertaneja
+Fonte: ABLC; Câmara Cascudo; Patativa do Assaré, "O Poeta da Roça"
+Descrição: O cordel utiliza linguagem popular, com vocabulário regional nordestino. É aceitável e esperado o uso de expressões como "muié" (mulher), "home" (homem), "trem" (coisa), "avexado" (apressado), "sortar" (soltar), "inté" (até), "tudim" (tudo), "fio" (filho), "cantá" (cantar), "assová" (assobiar), "paia" (palha), "mio" (milho). A ortografia deve representar a pronúncia real do sertanejo, não a norma culta. Patativa do Assaré é o mestre absoluto desta dicção — escrevia exatamente como se fala no sertão cearense.
+❌ Errado: corrigir regionalismos para a norma culta ("mulher" em vez de "muié"); usar regionalismo caricatural sem conhecimento real da fala sertaneja
+✅ Correto: "Sou fio das mata, cantô da mão grossa, / Trabaio na roça, de inverno e de estio. / A minha chupana é tapada de barro, / Só fumo cigarro de páia de mio." (Patativa do Assaré) — cada palavra reflete a pronúncia real do sertão
 Severidade: alta
 Categoria: estilo
 
-## [COR-14] Narrativa épica e moralizante
-Fonte: ABLC; tradição do cordel
-Descrição: O cordel tradicionalmente narra histórias épicas, cômicas, ou moralizantes em tom acessível. Os temas incluem: cangaço, seca, milagres, amor trágico, política, e sátira. A estrutura narrativa segue: apresentação, desenvolvimento, clímax e conclusão moral.
-❌ Errado: cordel puramente lírico e abstrato, sem narrativa
-✅ Correto: estrutura narrativa com começo, meio e fim
-Severidade: media
+## [COR-14] Narrativa épica e moralizante — estrutura do folheto
+Fonte: ABLC; Leandro Gomes de Barros; Câmara Cascudo
+Descrição: O cordel tradicionalmente narra histórias épicas, cômicas ou moralizantes em tom acessível. Os temas clássicos incluem: cangaço (Lampião), seca e migração, milagres e religião, amor trágico, sátira política, e histórias de "trancoso" (aventuras fantásticas). A estrutura narrativa segue: apresentação do herói ou situação, desenvolvimento com conflito, clímax dramático, e conclusão com moral explícita. O cordel não é lírico nem abstrato — é narrativo por definição, herdeiro da tradição dos romances de cavalaria ibéricos e dos contos populares europeus.
+❌ Errado: cordel puramente lírico e abstrato, sem progressão narrativa; sentimentalismo sem ação
+✅ Correto: "Eu vou contar a história / Dum pavão misterioso, / Que levantou voo da Grécia / Com um rapaz corajoso, / Raptando uma condessa, / Filha dum conde orgulhoso." (José Camelo de Melo Rezende, "O Pavão Misterioso") — abertura que anuncia narrativa, personagens, conflito
+Severidade: alta
 Categoria: estilo
 
-## [COR-15] Redondilha maior obrigatória no cordel clássico
-Fonte: Aderaldo Luciano; ABLC
-Descrição: Exceto em formas especializadas (galope à beira-mar usa 10 sílabas), o cordel clássico exige redondilha maior (7 sílabas) em todas as estrofes. Este é o traço métrico mais identificador do cordel brasileiro.
-❌ Errado: alternar entre 5, 7 e 10 sílabas na mesma obra
-✅ Correto: métrica uniforme de 7 sílabas em todas as estrofes
+## [COR-15] Uniformidade métrica — redondilha maior em toda a obra
+Fonte: Aderaldo Luciano; ABLC; Leandro Gomes de Barros
+Descrição: Exceto em formas especializadas (galope à beira-mar usa hendecassílabos), o cordel clássico exige uniformidade métrica em toda a obra. A redondilha maior (7 sílabas) é o padrão absoluto para sextilhas, quadras, décimas e septilhas. Um cordel não alterna métricas entre estrofes — a métrica é fixada na primeira estrofe e mantida até o fim. Esta uniformidade permite que o declamador memorize e recite o cordel sem hesitação rítmica.
+❌ Errado: alternar 5, 7 e 10 sílabas na mesma obra; começar num metro e mudar depois sem justificativa
+✅ Correto: métrica uniforme de 7 sílabas em todas as estrofes — como em Leandro Gomes de Barros, "O Dinheiro": 38 sextilhas, todas invariáveis em 7 sílabas
 Severidade: alta
 Categoria: métrica
 
@@ -159,6 +151,94 @@ EXEMPLOS CLÁSSICOS
 
 ## [COR-16] Referências brasileiras essenciais
 Fonte: ABLC; tradição literária brasileira
-Descrição: Autores fundamentais do cordel: Leandro Gomes de Barros (pai do cordel brasileiro), Patativa do Assaré (poeta popular cearense), Gonçalo Ferreira da Silva (fundador da ABLC), Aderaldo Luciano (pesquisador do cordel), João Martins de Athayde (editor e poeta).
+Descrição: Autores fundamentais do cordel brasileiro: Leandro Gomes de Barros (1865-1918, "pai do cordel", autor de "O Dinheiro", "A Chegada de Lampião no Céu", "O Cachorro dos Mortos"); Patativa do Assaré (1909-2002, maior voz poética popular do Brasil, "Triste Partida", "O Poeta da Roça"); Gonçalo Ferreira da Silva (1937-2022, fundador da ABLC, mais de 300 folhetos); João Martins de Athayde (1880-1959, maior editor e divulgador, comprou direitos de Leandro, introduziu padrão editorial do folheto de 4/8/16 páginas); Manuel Camilo dos Santos (1905-1987, "Viagem a São Saruê"); Cuíca de Santo Amaro (1907-1964, "poeta-repórter" baiano); Silvino Pirauá (fundador do ABC do cordel); José Camelo de Melo Rezende (autor de "O Pavão Misterioso"); Aderaldo Luciano (pesquisador contemporâneo, "Apontamentos para uma História Crítica do Cordel Brasileiro"). Xilogravuristas: J. Borges (Bezerros-PE, o mais famoso), Mestre Dila (Patrimônio Vivo de PE).
 Severidade: baixa
 Categoria: referência
+
+===============================================================================
+FORMAS ESPECIALIZADAS DO CORDEL E DO REPENTE
+===============================================================================
+
+## [COR-17] Mourão — quadra e meia (forma de desafio)
+Fonte: tradição do repente nordestino; Jacinto Silva; Câmara Cascudo
+Descrição: O mourão é uma forma de desafio cantado, baseada na alternância entre uma "quadra" (4 versos) e uma "quadra e meia" (6 versos, equivalente à sextilha). No repente, o primeiro cantador propõe um tema em quadra; o segundo responde com uma sextilha que retoma a rima da quadra. A alternância entre 4 e 6 versos é a marca registrada do mourão — criar uma sextilha que rime com os 4 versos da quadra exige grande habilidade de improviso.
+❌ Errado: chamar qualquer alternância de estrofes de "mourão"; ignorar a regra de retomada da rima
+✅ Correto: "Galope beira-mar é diferente de uma sextilha / Uma sextilha não pode ser um mourão / Preste bem atenção: é uma quadra, / É quadra e meia, é um martelo alagoano, / É um quadrado, é um quadrão" (Jacinto Silva) — definição em verso da forma
+Severidade: media
+Categoria: estrutura
+
+## [COR-18] Oitava — estrofe de 8 versos no cordel
+Fonte: tradição do cordel; ABLC
+Descrição: A oitava (estrofe de 8 versos) é menos comum que a sextilha e a quadra, mas aparece em cordéis de desafio e em certos poetas do ciclo do Juazeiro. O esquema mais comum é ABABABAB (rimas alternadas) ou ABABCDCD (quarteto seguido de quarteto), sempre com redondilha maior (7 sílabas) e rima consoante obrigatória. A oitava é usada para passagens de grande impacto narrativo ou para marcação de virada na história.
+❌ Errado: oitava com rima toante; usar menos de 8 versos e chamar de oitava
+✅ Correto: ABABABAB ou ABABCDCD, 7 sílabas, rima consoante
+Severidade: baixa
+Categoria: estrutura
+
+## [COR-19] Embolada — coco de embolada (forma acelerada e percussiva)
+Fonte: tradição do repente nordestino; Jacinto Silva; Terezinha e Lindalva; Câmara Cascudo
+Descrição: A embolada (ou coco de embolada) é uma forma de poesia cantada improvisada, caracterizada pela velocidade extrema, pela sincopação rítmica e pelo tongue-twister (trava-língua). Diferente do repente de viola (lento, melódico), a embolada é percussiva, acompanhada de pandeiro, com versos rápidos e frequentemente cômicos. As estrofes são geralmente sextilhas ou oitavas, com métrica de 7 sílabas, mas o ritmo acelerado permite elisões e síncopes que distendem a contagem silábica tradicional.
+❌ Errado: embolada lenta ou sem trava-língua; confundir embolada com repente de viola (são gêneros distintos)
+✅ Correto: "É um nó, é um garrancho, / É um garrancho, é um nó / Cantador tenha cuidado / Pra língua não enrolar" (Jacinto Silva) — repetição, velocidade, humor, percussão verbal
+Severidade: media
+Categoria: estrutura
+
+## [COR-20] Peleja e glosa — desafio entre poetas
+Fonte: tradição do cordel e do repente; Leandro Gomes de Barros, "Peleja de Serrador e Carneiro"; Câmara Cascudo
+Descrição: A peleja (ou desafio) é um gênero de cordel que registra o confronto poético entre dois cantadores. Cada poeta alterna estrofes respondendo ao outro, geralmente no mesmo esquema métrico e de rimas. A "glosa" é a forma específica de responder a um mote (tema proposto) com uma estrofe completa que termina com o verso do mote. A peleja pode ser escrita (cordel) ou improvisada (repente). Os cordéis de peleja de Leandro Gomes de Barros são os mais célebres do gênero.
+❌ Errado: peleja onde os poetas não respondem ao tema proposto; estrofes sem conexão com o mote
+✅ Correto: "Os nossos antepassados / Eram muito prevenidos / Diziam: — Mato tem olhos / E paredes têm ouvidos, / Os crimes são descobertos, / Por mais que sejam escondidos." (Leandro G. Barros, "O Cachorro dos Mortos") — cada estrofe avança a narrativa de desafio
+Severidade: media
+Categoria: estrutura
+
+## [COR-21] ABC de cordel — acróstico alfabético
+Fonte: tradição ibérica; Rodolfo Coelho Cavalcanti; Câmara Cascudo; cordel religioso anônimo
+Descrição: O ABC de cordel é uma forma em que cada estrofe começa com uma letra consecutiva do alfabeto (A a Z). A função original era mnemônica — facilitar a memorização e a venda do folheto pelo poeta nas feiras. O tema pode ser religioso (ABC de Maria, de Nossa Senhora), satírico (ABC do Carnaval), biográfico (ABC de Lampião) ou didático (ABC do Cordel). A estrutura é sempre em sextilhas, quadras ou décimas, mantendo rima consoante e redondilha maior.
+❌ Errado: estrofes fora da ordem alfabética; letras repetidas ou omitidas; esquema de rima inconsistente
+✅ Correto: "Diz o A... Ave Maria / Diz o B... Bondosa e Bela / Diz o C... Cofrim da Graça / Diz o D... Divina Estrela" (cordel mariano anônimo) — cada letra inicia uma estrofe, alfabeto completo
+Severidade: media
+Categoria: estrutura
+
+===============================================================================
+REPENTE E CORDEL — DISTINÇÕES CRUCIAIS
+===============================================================================
+
+## [COR-22] Martelo agalopado — décima hendecassílaba do repente
+Fonte: tradição do repente nordestino; repentistas do Nordeste
+Descrição: O martelo agalopado (ou martelo alagoano) é uma forma do repente em décimas (10 versos) hendecassílabas (11 sílabas), com esquema de rimas ABBAABBAAB ou ABBAACCDDC. É a forma mais nobre e difícil do repente, usada em desafios de alto nível. Diferencia-se do galope à beira-mar por não terminar com a palavra "mar" e por ter esquema de rimas mais variado. A métrica hendecassílaba (11 sílabas) é obrigatória, com acentos na 2ª, 5ª, 8ª e 11ª sílabas.
+❌ Errado: usar redondilha maior (7 sílabas) no martelo agalopado; confundir com galope à beira-mar; décima com menos de 10 versos
+✅ Correto: "Se eu conversasse com Deus / Iria lhe perguntar: / Por que é que sofremos tanto / Quando viemos pra cá? / Que dívida é essa que o homem / Tem que morrer pra pagar?" (atribuído a Leandro, citado por Suassuna) — décima hendecassílaba, esquema rigoroso
+Severidade: media
+Categoria: estrutura
+
+===============================================================================
+XILOGRAVURA E SUPORTE EDITORIAL
+===============================================================================
+
+## [COR-23] Xilogravura de capa — ilustração obrigatória do folheto
+Fonte: J. Borges; Mestre Dila; ABLC; Aderaldo Luciano
+Descrição: A xilogravura (gravura em madeira) tornou-se a ilustração característica das capas de cordel a partir dos anos 1940-50, especialmente no Ciclo do Juazeiro (tipografia de José Bernardo da Silva). Antes, usavam-se clichês de metal, fotos de artistas (Athayde) ou linoleogravuras. A xilogravura não é parte da forma poética do cordel, mas é seu suporte visual mais identificador. Os mestres xilogravuristas são artistas autônomos reconhecidos internacionalmente: J. Borges (Bezerros-PE, expôs na França, EUA, Alemanha; ilustrou Saramago e Galeano), Mestre Dila (Patrimônio Vivo de Pernambuco), e Inocêncio da Costa Nick.
+❌ Errado: tratar a xilogravura como parte da forma poética do cordel (é ilustração, não texto); cordel sem qualquer identificação visual de capa
+✅ Correto: capa com xilogravura temática + título + autor + tipografia — a ilustração deve dialogar com o conteúdo do folheto
+Severidade: baixa
+Categoria: referência
+
+## [COR-24] Estrutura do folheto — páginas e tipografia
+Fonte: João Martins de Athayde; ABLC; tradição editorial do cordel
+Descrição: O cordel clássico é vendido como folheto (opuscule) de 4, 8, 16 ou 32 páginas. João Martins de Athayde padronizou o formato: folheto de 8 páginas para histórias curtas, 16 para romances completos, 32 para narrativas extensas. A capa em papel mais grosso traz xilogravura, título e autor. O miolo é em papel-jornal. O formato de bolso (11x16 cm) permitia ao poeta carregar dezenas de folhetos nas feiras e vendê-los a preço acessível. Atualmente, o cordel também circula em formato digital (PDF, EPUB, websites).
+❌ Errado: formato que não cabe no bolso, impossibilitando a venda ambulante; capa sem identificação visual; ausência de dados editoriais
+✅ Correto: folheto de 16 páginas, capa com xilogravura, título e autor, formato aproximadamente 11x16 cm, papel-jornal no miolo
+Severidade: baixa
+Categoria: referência
+
+===============================================================================
+CORDEL CONTEMPORÂNEO
+===============================================================================
+
+## [COR-25] Cordel contemporâneo — temas urbanos e suporte digital
+Fonte: ABLC; Gonçalo Ferreira da Silva; cordel digital; literatura de cordel no século XXI
+Descrição: O cordel contemporâneo expandiu seus temas tradicionais (cangaço, seca, milagres) para incluir questões urbanas, política nacional, direitos humanos, meio ambiente e tecnologia. Gonçalo Ferreira da Silva escreveu cordéis sobre a Chacina da Candelária e sobre Mahatma Gandhi (traduzido para alemão e inglês). O suporte digital (PDF, blogs, redes sociais) permitiu que o cordel ultrapassasse as fronteiras do Nordeste e alcançasse novos leitores. A forma poética (sextilha/redondilha maior/rima consoante) permanece a mesma — a mudança é temática e de suporte.
+❌ Errado: cordel contemporâneo que abandona a rima consoante ou a redondilha maior (desc caracteriza-se como poema, não cordel)
+✅ Correto: "Foi uma carnificina / De crueldade chocante / De brutalidade torpe, / Bestial, repugnante / E outros adjetivos / Acima de horripilante." (Gonçalo Ferreira da Silva, "Meninos de Rua e a Chacina da Candelária") — tema urbano e social, forma clássica de sextilha
+Severidade: media
+Categoria: estilo
