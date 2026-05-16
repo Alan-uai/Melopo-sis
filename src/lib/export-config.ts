@@ -7,6 +7,13 @@ export interface ExportConfig {
   showWatermark: boolean;
   showQRCode: boolean;
   qrCodeUrl: string;
+  textColor: string;
+  titleColor: string;
+  watermarkSize: number;
+  watermarkOpacity: number;
+  qrCodeSize: number;
+  qrCodeColor: string;
+  qrCodeBg: string;
 }
 
 const STORAGE_KEY = "melopoeisis_export_config";
@@ -20,6 +27,13 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   showWatermark: true,
   showQRCode: false,
   qrCodeUrl: "https://melopoesis.vercel.app",
+  textColor: "#ffffffcc",
+  titleColor: "#ffffffe6",
+  watermarkSize: 12,
+  watermarkOpacity: 0.4,
+  qrCodeSize: 56,
+  qrCodeColor: "#ffffffcc",
+  qrCodeBg: "transparent",
 };
 
 export function loadExportConfig(): ExportConfig {

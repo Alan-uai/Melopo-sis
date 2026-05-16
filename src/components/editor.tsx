@@ -227,6 +227,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }, []);
 
+  useEffect(() => {
+    syncScroll();
+  }, [text, syncScroll]);
+
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onTextChange(e.target.value);
     if(animationState !== 'idle') {
@@ -278,24 +282,35 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         const lineIdx = startLineIdx + j;
         if (j > 0) nodes.push('\n');
 
+        const lineContent: React.ReactNode[] = [];
+
         const rhymeColor = getRhymeColor(lineIdx);
         if (rhymeColor && line.trim()) {
           const rMatch = line.match(/^(.*\s)([\wáàâãéèêíïóôõöúçñü-]+)([^\w]*)$/u);
           if (rMatch) {
-            nodes.push(rMatch[1]);
-            nodes.push(<span key={`rw-${prefix}-${j}`} style={{ color: rhymeColor }}>{rMatch[2]}</span>);
-            nodes.push(rMatch[3]);
+            lineContent.push(rMatch[1]);
+            lineContent.push(<span key={`rw-${prefix}-${j}`} style={{ color: rhymeColor }}>{rMatch[2]}</span>);
+            lineContent.push(rMatch[3]);
           } else {
-            nodes.push(line || '\u200B');
+            lineContent.push(line || '\u200B');
           }
         } else {
-          nodes.push(line || '\u200B');
+          lineContent.push(line || '\u200B');
         }
 
         if (hasFixedMetric && line.trim()) {
           nodes.push(
-            <span key={`syl-${prefix}-${j}`} className="ml-2 text-muted-foreground/60 text-xs font-mono select-none">
-              [{countPoeticSyllables(line)}]
+            <span key={`wrapper-${prefix}-${j}`} className="relative">
+              <span>{lineContent}</span>
+              <span key={`syl-${prefix}-${j}`} className="absolute right-1 top-0 text-muted-foreground/60 text-xs font-mono select-none">
+                [{countPoeticSyllables(line)}]
+              </span>
+            </span>
+          );
+        } else {
+          nodes.push(
+            <span key={`wrapper-${prefix}-${j}`}>
+              {lineContent}
             </span>
           );
         }
@@ -555,7 +570,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                   />
                   <div
                       ref={highlightsRef}
-                      className="pointer-events-none col-start-1 row-start-1 w-full resize-none overflow-auto whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
+                      className="pointer-events-none col-start-1 row-start-1 w-full overflow-hidden whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
                       aria-hidden="true"
                   >
                       {editorContent}

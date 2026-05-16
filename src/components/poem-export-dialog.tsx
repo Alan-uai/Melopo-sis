@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Download, Image, Share2, Copy, FileText, Palette, QrCode, Eye } from "lucide-react";
+import { Download, Image, Share2, Copy, FileText, Palette, QrCode, Eye, Type } from "lucide-react";
 import { toPng } from "html-to-image";
 import { useToast } from "@/hooks/use-toast";
 import { loadExportConfig, saveExportConfig, FONT_OPTIONS, BG_COLOR_PRESETS, type ExportConfig } from "@/lib/export-config";
@@ -63,15 +63,15 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
     if (config.showQRCode && typeof window !== "undefined") {
       import("qrcode").then((QRCode) => {
         QRCode.toDataURL(config.qrCodeUrl, {
-          width: 80,
+          width: config.qrCodeSize,
           margin: 1,
-          color: { dark: "#ffffffcc", light: "#0000" },
+          color: { dark: config.qrCodeColor, light: config.qrCodeBg },
         }).then(setQrDataUrl).catch(() => setQrDataUrl(null));
       });
     } else {
       setQrDataUrl(null);
     }
-  }, [config.showQRCode, config.qrCodeUrl]);
+  }, [config.showQRCode, config.qrCodeUrl, config.qrCodeSize, config.qrCodeColor, config.qrCodeBg]);
 
   const poemTitle = title.trim() || "Poema sem título";
 
@@ -214,30 +214,37 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
           >
             {poemTitle && (
               <h3
-                className="font-bold mb-6 leading-snug text-white/90"
-                style={{ fontSize: `${config.fontSize + 8}px`, fontFamily: config.fontFamily }}
+                className="font-bold mb-6 leading-snug"
+                style={{ fontSize: `${config.fontSize + 8}px`, fontFamily: config.fontFamily, color: config.titleColor }}
               >
                 {poemTitle}
               </h3>
             )}
             <div
-              className="leading-relaxed whitespace-pre-line text-white/80"
-              style={{ fontSize: `${config.fontSize}px`, fontFamily: config.fontFamily, lineHeight: config.lineHeight }}
+              className="leading-relaxed whitespace-pre-line"
+              style={{ fontSize: `${config.fontSize}px`, fontFamily: config.fontFamily, lineHeight: config.lineHeight, color: config.textColor }}
             >
               {text || "..."}
             </div>
 
             <div className="mt-6 flex items-end justify-between">
               {config.showWatermark && (
-                <div className="text-xs text-white/40 tracking-widest uppercase flex items-center gap-1.5">
-                  <svg width="14" height="14" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60">
+                <div
+                  className="tracking-widest uppercase flex items-center gap-1.5"
+                  style={{
+                    fontSize: `${config.watermarkSize}px`,
+                    opacity: config.watermarkOpacity,
+                    color: config.textColor,
+                  }}
+                >
+                  <svg width={config.watermarkSize + 2} height={config.watermarkSize + 2} viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-60">
                     <path d="M22.6455 58.7454C21.2588 58.0515 20 56.5929 20 54.5C20 49.2533 30.2547 43.4149 34.9999 41.5C39.7451 39.5851 45.4166 33.3562 43.1662 25.5C41.222 18.7505 32.5598 16.3331 29.8333 22C28.4124 25.0416 29.1559 29.4173 30.4999 32.5C23.4999 30.5 17.5849 21.9149 22.4162 13.5C27.2475 5.08511 38.9999 5.49999 44.9999 15.5C50.9999 25.5 45.8327 40.0851 34.9999 46C29.7451 48.9149 24.0322 59.4392 22.6455 58.7454Z" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                   Melopoësis
                 </div>
               )}
               {config.showQRCode && qrDataUrl && (
-                <img src={qrDataUrl} alt="QR Code" className="w-12 h-12" />
+                <img src={qrDataUrl} alt="QR Code" style={{ width: config.qrCodeSize, height: config.qrCodeSize }} />
               )}
             </div>
           </div>
@@ -335,6 +342,33 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label className="text-xs flex items-center gap-1.5">
+                  <Type className="h-3.5 w-3.5" />
+                  Cor do texto
+                </Label>
+                <input
+                  type="color"
+                  value={config.textColor}
+                  onChange={(e) => setConfig((c) => ({ ...c, textColor: e.target.value }))}
+                  className="w-full h-8 p-0.5 cursor-pointer rounded-md"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label className="text-xs flex items-center gap-1.5">
+                  <Type className="h-3.5 w-3.5" />
+                  Cor do título
+                </Label>
+                <input
+                  type="color"
+                  value={config.titleColor}
+                  onChange={(e) => setConfig((c) => ({ ...c, titleColor: e.target.value }))}
+                  className="w-full h-8 p-0.5 cursor-pointer rounded-md"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
               <div className="flex items-center justify-between">
                 <Label className="text-xs flex items-center gap-1.5">
                   <Eye className="h-3.5 w-3.5" />
@@ -375,16 +409,78 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
               </div>
             </div>
 
+            {config.showWatermark && (
+              <div className="grid grid-cols-2 gap-3">
+                <div className="space-y-1.5">
+                  <Label className="text-xs">Tamanho marca ({config.watermarkSize}px)</Label>
+                  <input
+                    type="range"
+                    min={8}
+                    max={18}
+                    value={config.watermarkSize}
+                    onChange={(e) => setConfig((c) => ({ ...c, watermarkSize: Number(e.target.value) }))}
+                    className="w-full h-1.5 accent-accent"
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <Label className="text-xs">Opacidade ({Math.round(config.watermarkOpacity * 100)}%)</Label>
+                  <input
+                    type="range"
+                    min={0.1}
+                    max={1}
+                    step={0.05}
+                    value={config.watermarkOpacity}
+                    onChange={(e) => setConfig((c) => ({ ...c, watermarkOpacity: Number(e.target.value) }))}
+                    className="w-full h-1.5 accent-accent"
+                  />
+                </div>
+              </div>
+            )}
+
             {config.showQRCode && (
-              <div className="space-y-1.5">
-                <Label className="text-xs">URL do QR Code</Label>
-                <Input
-                  type="url"
-                  value={config.qrCodeUrl}
-                  onChange={(e) => setConfig((c) => ({ ...c, qrCodeUrl: e.target.value }))}
-                  className="h-8 text-xs"
-                  placeholder="https://melopoesis.vercel.app"
-                />
+              <div className="space-y-2">
+                <div className="space-y-1.5">
+                  <Label className="text-xs">URL do QR Code</Label>
+                  <Input
+                    type="url"
+                    value={config.qrCodeUrl}
+                    onChange={(e) => setConfig((c) => ({ ...c, qrCodeUrl: e.target.value }))}
+                    className="h-8 text-xs"
+                    placeholder="https://melopoesis.vercel.app"
+                  />
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Tamanho ({config.qrCodeSize}px)</Label>
+                    <input
+                      type="range"
+                      min={40}
+                      max={160}
+                      step={8}
+                      value={config.qrCodeSize}
+                      onChange={(e) => setConfig((c) => ({ ...c, qrCodeSize: Number(e.target.value) }))}
+                      className="w-full h-1.5 accent-accent"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Cor</Label>
+                    <input
+                      type="color"
+                      value={config.qrCodeColor}
+                      onChange={(e) => setConfig((c) => ({ ...c, qrCodeColor: e.target.value }))}
+                      className="w-full h-8 p-0.5 cursor-pointer rounded-md"
+                    />
+                  </div>
+                  <div className="space-y-1.5">
+                    <Label className="text-xs">Fundo</Label>
+                    <input
+                      type="color"
+                      value={config.qrCodeBg}
+                      onChange={(e) => setConfig((c) => ({ ...c, qrCodeBg: e.target.value }))}
+                      className="w-full h-8 p-0.5 cursor-pointer rounded-md"
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>
