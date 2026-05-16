@@ -62,16 +62,17 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
   useEffect(() => {
     if (config.showQRCode && typeof window !== "undefined") {
       import("qrcode").then((QRCode) => {
+        const lightColor = config.qrCodeTransparent ? "#0000" : config.qrCodeBg;
         QRCode.toDataURL(config.qrCodeUrl, {
           width: config.qrCodeSize,
           margin: 1,
-          color: { dark: config.qrCodeColor, light: config.qrCodeBg },
+          color: { dark: config.qrCodeColor, light: lightColor },
         }).then(setQrDataUrl).catch(() => setQrDataUrl(null));
       });
     } else {
       setQrDataUrl(null);
     }
-  }, [config.showQRCode, config.qrCodeUrl, config.qrCodeSize, config.qrCodeColor, config.qrCodeBg]);
+  }, [config.showQRCode, config.qrCodeUrl, config.qrCodeSize, config.qrCodeColor, config.qrCodeBg, config.qrCodeTransparent]);
 
   const poemTitle = title.trim() || "Poema sem título";
 
@@ -473,12 +474,34 @@ export function PoemExportDialog({ title, text, tone }: PoemExportDialogProps) {
                   </div>
                   <div className="space-y-1.5">
                     <Label className="text-xs">Fundo</Label>
-                    <input
-                      type="color"
-                      value={config.qrCodeBg}
-                      onChange={(e) => setConfig((c) => ({ ...c, qrCodeBg: e.target.value }))}
-                      className="w-full h-8 p-0.5 cursor-pointer rounded-md"
-                    />
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          type="button"
+                          className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors ${
+                            config.qrCodeTransparent ? "bg-accent" : "bg-muted"
+                          }`}
+                          onClick={() => setConfig((c) => ({ ...c, qrCodeTransparent: !c.qrCodeTransparent }))}
+                        >
+                          <span
+                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                              config.qrCodeTransparent ? "translate-x-4.5" : "translate-x-0.5"
+                            }`}
+                          />
+                        </button>
+                        <span className="text-[10px] text-muted-foreground">
+                          {config.qrCodeTransparent ? "Transparente" : "Cor sólida"}
+                        </span>
+                      </div>
+                      {!config.qrCodeTransparent && (
+                        <input
+                          type="color"
+                          value={config.qrCodeBg}
+                          onChange={(e) => setConfig((c) => ({ ...c, qrCodeBg: e.target.value }))}
+                          className="w-full h-7 p-0.5 cursor-pointer rounded-md"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>

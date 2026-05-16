@@ -14,6 +14,7 @@ export interface ExportConfig {
   qrCodeSize: number;
   qrCodeColor: string;
   qrCodeBg: string;
+  qrCodeTransparent: boolean;
 }
 
 const STORAGE_KEY = "melopoeisis_export_config";
@@ -33,7 +34,8 @@ export const DEFAULT_EXPORT_CONFIG: ExportConfig = {
   watermarkOpacity: 0.4,
   qrCodeSize: 56,
   qrCodeColor: "#ffffffcc",
-  qrCodeBg: "transparent",
+  qrCodeBg: "#ffffff",
+  qrCodeTransparent: true,
 };
 
 export function loadExportConfig(): ExportConfig {

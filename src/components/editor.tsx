@@ -1,7 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb, Image } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Copy, Feather, Info, Save, Trash2, CheckCheck, Image } from "lucide-react";
+import { LightbulbIcon, type BulbState } from "@/components/animations/lightbulb-icon";
+import { WandIcon } from "@/components/animations/wand-icon";
+import { CheckFlip3D } from "@/components/animations/check-flip-3d";
+import { ProgressRing } from "@/components/animations/progress-ring";
+import { ParticleBurst } from "@/components/animations/particle-burst";
 import { HaikuCounter } from "@/components/haiku-counter";
 import { SonnetVisualizer } from "@/components/sonnet-visualizer";
 import { MeterVisualizer } from "@/components/meter-visualizer";
@@ -167,6 +172,15 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const [animationStage, setAnimationStage] = useState<AnimationStage>('beam');
   const prevToneSuggestionsLength = useRef(toneSuggestions.length);
 
+  const [bulbState, setBulbState] = useState<BulbState>("off");
+  const [wandActive, setWandActive] = useState(false);
+  const [showSaveCheck, setShowSaveCheck] = useState(false);
+  const [showCopyCheck, setShowCopyCheck] = useState(false);
+  const [showClearCheck, setShowClearCheck] = useState(false);
+  const [showSaveProgress, setShowSaveProgress] = useState(false);
+  const [showCopyParticles, setShowCopyParticles] = useState(false);
+  const [showClearParticles, setShowClearParticles] = useState(false);
+
   useEffect(() => {
     if (isLoading) {
       setAnimationState('generating');
@@ -198,6 +212,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       };
     }
   }, [animationState]);
+
+  useEffect(() => {
+    if (toneSuggestions.length > 0 && prevToneSuggestionsLength.current === 0) {
+      setBulbState("pulling");
+      setTimeout(() => setBulbState("on"), 400);
+    } else if (toneSuggestions.length === 0 && prevToneSuggestionsLength.current > 0) {
+      setBulbState("turning-off");
+      setTimeout(() => setBulbState("off"), 600);
+    } else if (toneSuggestions.length < prevToneSuggestionsLength.current && toneSuggestions.length > 0) {
+      setBulbState("blinking");
+      setTimeout(() => setBulbState("on"), 800);
+    }
+    prevToneSuggestionsLength.current = toneSuggestions.length;
+  }, [toneSuggestions, setBulbState]);
 
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -400,9 +428,50 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                           whileTap={{ scale: 0.9, rotateX: 5 }}
                           style={{ transformStyle: "preserve-3d" } as any}
                         >
-                          <Button variant="ghost" size="icon" onClick={onSavePoem} disabled={isLoading}>
-                              <Save className="h-4 w-4" />
-                              <span className="sr-only">Salvar Poema</span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            disabled={isLoading}
+                            onClick={() => {
+                              setShowSaveProgress(true);
+                              setShowSaveCheck(false);
+                              setTimeout(() => {
+                                onSavePoem();
+                                setShowSaveProgress(false);
+                                setShowSaveCheck(true);
+                                setTimeout(() => setShowSaveCheck(false), 1500);
+                              }, 800);
+                            }}
+                            className="relative"
+                          >
+                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
+                              <AnimatePresence mode="wait">
+                                {showSaveCheck ? (
+                                  <motion.div
+                                    key="save-check"
+                                    initial={{ rotateY: 180, scale: 0 }}
+                                    animate={{ rotateY: 0, scale: 1 }}
+                                    exit={{ rotateY: -180, scale: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                    className="preserve-3d"
+                                    style={{ transformStyle: "preserve-3d" } as any}
+                                  >
+                                    <CheckFlip3D show={showSaveCheck} size={16} color="hsl(var(--accent))" />
+                                  </motion.div>
+                                ) : (
+                                  <motion.div
+                                    key="save-icon"
+                                    initial={{ rotateY: 0 }}
+                                    exit={{ rotateY: 180 }}
+                                    transition={{ duration: 0.2 }}
+                                  >
+                                    <Save className="h-4 w-4" />
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                            <ProgressRing isActive={showSaveProgress} size={28} />
+                            <span className="sr-only">Salvar Poema</span>
                           </Button>
                         </motion.div>
                     </PopoverTrigger>
@@ -417,9 +486,51 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                           whileTap={{ scale: 0.9, rotateX: 5 }}
                           style={{ transformStyle: "preserve-3d" } as any}
                         >
-                          <Button variant="ghost" size="icon" onClick={onCopy} disabled={!hasText && !title}>
-                              <Copy className="h-4 w-4" />
-                              <span className="sr-only">Copiar Texto</span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            disabled={!hasText && !title}
+                            onClick={() => {
+                              onCopy();
+                              setShowCopyCheck(true);
+                              setShowCopyParticles(true);
+                              setTimeout(() => {
+                                setShowCopyCheck(false);
+                                setShowCopyParticles(false);
+                              }, 1500);
+                            }}
+                            className="relative"
+                          >
+                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
+                              <AnimatePresence mode="wait">
+                                {showCopyCheck ? (
+                                  <motion.div
+                                    key="copy-check"
+                                    initial={{ rotateX: 180, scale: 0 }}
+                                    animate={{ rotateX: 0, scale: 1 }}
+                                    exit={{ rotateX: -180, scale: 0 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                                    className="preserve-3d"
+                                    style={{ transformStyle: "preserve-3d" } as any}
+                                  >
+                                    <CheckFlip3D show={showCopyCheck} size={16} color="hsl(var(--accent))" />
+                                  </motion.div>
+                                ) : (
+                                  <motion.div
+                                    key="copy-icon"
+                                    exit={{ rotateX: 180 }}
+                                  >
+                                    <Copy className="h-4 w-4" />
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                            <ParticleBurst
+                              isActive={showCopyParticles}
+                              count={6}
+                              color="hsl(var(--accent) / 0.6)"
+                            />
+                            <span className="sr-only">Copiar Texto</span>
                           </Button>
                         </motion.div>
                     </PopoverTrigger>
@@ -441,9 +552,56 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                           whileTap={{ scale: 0.9, rotateX: 5 }}
                           style={{ transformStyle: "preserve-3d" } as any}
                         >
-                          <Button variant="ghost" size="icon" onClick={onClear} disabled={!hasText}>
-                              <Trash2 className="h-4 w-4" />
-                              <span className="sr-only">Limpar Editor</span>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            disabled={!hasText}
+                            onClick={() => {
+                              setShowClearCheck(true);
+                              setShowClearParticles(true);
+                              setTimeout(() => {
+                                onClear();
+                                setShowClearCheck(false);
+                                setShowClearParticles(false);
+                              }, 400);
+                            }}
+                            className="relative"
+                          >
+                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
+                              <AnimatePresence mode="wait">
+                                {showClearCheck ? (
+                                  <motion.div
+                                    key="clear-shred"
+                                    initial={{ rotateX: 90, scale: 0.5, opacity: 0 }}
+                                    animate={{
+                                      rotateX: 0,
+                                      scale: [1, 1.2, 0.8, 0],
+                                      opacity: [1, 0.8, 0.4, 0],
+                                    }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="preserve-3d"
+                                    style={{ transformStyle: "preserve-3d" } as any}
+                                  >
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2M19 6v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                      <motion.line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.2 }} />
+                                      <motion.line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.25 }} />
+                                    </svg>
+                                  </motion.div>
+                                ) : (
+                                  <motion.div key="trash-icon">
+                                    <Trash2 className="h-4 w-4" />
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                            <ParticleBurst
+                              isActive={showClearParticles}
+                              count={4}
+                              color="hsl(var(--destructive) / 0.5)"
+                            />
+                            <span className="sr-only">Limpar Editor</span>
                           </Button>
                         </motion.div>
                     </PopoverTrigger>
@@ -735,11 +893,24 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               >
                 <Button
                   variant="default"
-                  onClick={onCheckSpelling}
+                  onClick={() => {
+                    setWandActive(true);
+                    setTimeout(() => setWandActive(false), 600);
+                    onCheckSpelling();
+                  }}
                   disabled={isLoading || !hasText}
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-1.5 relative"
                 >
-                  <Wand2 className="h-4 w-4" />
+                  <motion.span
+                    className="inline-flex"
+                    animate={wandActive ? {
+                      scale: [1, 1.2, 1],
+                      rotate: [0, -10, 10, 0],
+                    } : {}}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <WandIcon isActive={wandActive} size={16} />
+                  </motion.span>
                   {isLoading ? "Analisando..." : "Corrigir Ortografia"}
                 </Button>
               </motion.div>
@@ -753,11 +924,24 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               >
                 <Button
                   variant="secondary"
-                  onClick={onSuggestTone}
+                  onClick={() => {
+                    if (bulbState === "on" || bulbState === "blinking") {
+                      setBulbState("turning-off");
+                      setTimeout(() => {
+                        setBulbState("off");
+                      }, 600);
+                    } else {
+                      setBulbState("pulling");
+                      setTimeout(() => {
+                        setBulbState("on");
+                        onSuggestTone();
+                      }, 400);
+                    }
+                  }}
                   disabled={isLoading || !hasText}
-                  className="flex items-center gap-1.5"
+                  className="flex items-center gap-1.5 relative"
                 >
-                  <Lightbulb className="h-4 w-4" />
+                  <LightbulbIcon state={bulbState} size={16} />
                   Sugerir Tom
                 </Button>
               </motion.div>
