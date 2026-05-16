@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarItem, SidebarList, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
+import { motion, AnimatePresence } from "framer-motion";
 import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2, Search, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
 import {
@@ -267,15 +268,19 @@ export default function Home() {
         return;
       }
 
+      const withIds = result.suggestions.map((s, i) => ({
+        ...s,
+        id: s.id || `sug-${Date.now()}-${i}`,
+      }));
       if (suggestionType === 'grammar') {
-        setGrammarSuggestions(result.suggestions);
+        setGrammarSuggestions(withIds);
         setToneSuggestions([]);
         setCurrentSuggestionIndex(null);
-        if (result.suggestions.length > 0) {
+        if (withIds.length > 0) {
           setCurrentSuggestionIndex(0);
           toast({
             title: "Correções Ortográficas Encontradas",
-            description: `Encontramos ${result.suggestions.length} correções.`,
+            description: `Encontramos ${withIds.length} correções.`,
           });
         } else {
           toast({
@@ -284,13 +289,13 @@ export default function Home() {
           });
         }
       } else {
-        setToneSuggestions(result.suggestions);
+        setToneSuggestions(withIds);
         setGrammarSuggestions([]);
         setCurrentSuggestionIndex(null);
-        if (result.suggestions.length > 0) {
+        if (withIds.length > 0) {
           toast({
             title: "Sugestões de Tom e Estilo",
-            description: `Encontramos ${result.suggestions.length} sugestões para aprimorar seu poema.`,
+            description: `Encontramos ${withIds.length} sugestões para aprimorar seu poema.`,
           });
         } else {
           toast({
@@ -641,11 +646,14 @@ export default function Home() {
     const alternatives = suggestionToSwap.alternatives;
     if (!alternatives || alternativeIndex >= alternatives.length) return;
 
+    const swapId = suggestionToSwap.id;
+    if (!swapId) return;
+
     const oldCorrectedText = suggestionToSwap.correctedText;
     const newCorrectedText = alternatives[alternativeIndex];
 
     setToneSuggestions(current => current.map(s => {
-      if (s.originalText !== suggestionToSwap.originalText) return s;
+      if (s.id !== swapId) return s;
       const newAlternatives = [...(s.alternatives || [])];
       newAlternatives[alternativeIndex] = oldCorrectedText;
       return { ...s, correctedText: newCorrectedText, alternatives: newAlternatives };
@@ -737,12 +745,23 @@ export default function Home() {
           <SidebarHeader>
             <h2 className="text-xl font-semibold">Meus Poemas</h2>
           </SidebarHeader>
-          <SidebarContent className="p-2">
-              <Button className="w-full" onClick={handleNewPoem}>
-                  <PlusCircle className="mr-2 h-4 w-4" />
-                  Novo Poema
-              </Button>
-              <div className="mt-3 space-y-2">
+          <SidebarContent className="p-2 preserve-3d perspective-near">
+              <motion.div
+                whileHover={{ rotateX: -5, z: 10 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ transformStyle: "preserve-3d" } as any}
+              >
+                <Button className="w-full" onClick={handleNewPoem}>
+                    <PlusCircle className="mr-2 h-4 w-4" />
+                    Novo Poema
+                </Button>
+              </motion.div>
+              <motion.div
+                className="mt-3 space-y-2"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 25 }}
+              >
                 <div className="relative">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
                   <Input
@@ -799,11 +818,41 @@ export default function Home() {
                     </Button>
                   </div>
                 </div>
-              </div>
-              <SidebarMenu className="mt-4">
-              {isLoadingPoems && <p className="text-sm text-muted-foreground p-2">Carregando...</p>}
-              {!isLoadingPoems && filteredPoems?.map(poem => (
-                  <SidebarMenuItem key={poem.id}>
+              </motion.div>
+              <AnimatePresence mode="popLayout">
+              <SidebarMenu className="mt-4 preserve-3d perspective-near">
+              {isLoadingPoems && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="text-sm text-muted-foreground p-2"
+                >
+                  Carregando...
+                </motion.p>
+              )}
+              {!isLoadingPoems && filteredPoems?.map((poem, idx) => (
+                <motion.div
+                  key={poem.id}
+                  layout
+                  initial={{ rotateX: -90, opacity: 0, x: -30 }}
+                  animate={{
+                    rotateX: 0,
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      rotateX: { type: "spring", stiffness: 200, damping: 25, delay: idx * 0.03 },
+                      opacity: { duration: 0.25, delay: idx * 0.03 },
+                      x: { type: "spring", stiffness: 200, damping: 25, delay: idx * 0.03 },
+                    },
+                  }}
+                  exit={{ rotateY: -90, opacity: 0, scale: 0.8, x: -20 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                  whileHover={{ z: 15, rotateX: -3, rotateY: 3 }}
+                  className="preserve-3d"
+                  style={{ transformStyle: "preserve-3d" } as any}
+                >
+                  <SidebarMenuItem>
                     <div className="flex items-center w-full gap-1">
                       <SidebarMenuButton
                           className="flex-1 justify-start truncate"
@@ -814,14 +863,19 @@ export default function Home() {
                       </SidebarMenuButton>
                       <AlertDialog>
                         <AlertDialogTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="icon"
-                            className="h-8 w-8 flex-shrink-0 text-muted-foreground hover:text-destructive"
+                          <motion.div
+                            whileHover={{ scale: 1.2, rotate: 10 }}
+                            whileTap={{ scale: 0.9 }}
                           >
-                            <Trash2 className="h-4 w-4" />
-                            <span className="sr-only">Excluir</span>
-                          </Button>
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="h-8 w-8 flex-shrink-0 text-muted-foreground hover:text-destructive"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                              <span className="sr-only">Excluir</span>
+                            </Button>
+                          </motion.div>
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
@@ -844,13 +898,19 @@ export default function Home() {
                       </AlertDialog>
                     </div>
                   </SidebarMenuItem>
+                </motion.div>
               ))}
               {!isLoadingPoems && (!filteredPoems || filteredPoems.length === 0) && (
-                  <p className="text-sm text-muted-foreground p-2 text-center">
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-sm text-muted-foreground p-2 text-center"
+                  >
                     {poemSearchQuery || poemFilterStructure ? "Nenhum poema encontrado." : "Nenhum poema salvo."}
-                  </p>
+                  </motion.p>
               )}
               </SidebarMenu>
+              </AnimatePresence>
           </SidebarContent>
           <SidebarFooter>
               {isUserLoading ? (

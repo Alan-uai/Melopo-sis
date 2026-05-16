@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Check, X, BookText, Lightbulb, RefreshCw } from "lucide-react";
 import { useAnimationState, useInkOrigin, useReducedMotion } from "@/hooks/use-animation";
 import type { SwapIntensity } from "@/lib/animation";
@@ -33,6 +34,12 @@ const severityVariant: Record<string, "destructive" | "secondary" | "default"> =
   baixa: 'default',
 };
 
+const durationByIntensity: Record<SwapIntensity, number> = {
+  low: 0.6,
+  medium: 0.8,
+  high: 1.2,
+};
+
 export function SuggestionCard({
   suggestion,
   onAccept,
@@ -56,6 +63,7 @@ export function SuggestionCard({
   const [showPencilStrike, setShowPencilStrike] = useState(false);
 
   const intensity: SwapIntensity = suggestion.severity === "alta" ? "high" : suggestion.severity === "media" ? "medium" : "low";
+  const animDuration = durationByIntensity[intensity];
 
   const inkActive = inkPhase === "active" || inkPhase === "finishing";
 
@@ -72,10 +80,12 @@ export function SuggestionCard({
 
   const correctedTextParts = suggestion.correctedText.split(/(\s+|[,.;:!?])/g).filter(Boolean);
 
+  const isSwapActive = swapVersion > 0;
+
   return (
-    <Accordion type="single" collapsible className="w-full" defaultValue={`item-${suggestion.originalText}`}>
+    <Accordion type="single" collapsible className="w-full" defaultValue={`item-${suggestion.id || suggestion.originalText}`}>
       <AccordionItem
-        value={`item-${suggestion.originalText}`}
+        value={`item-${suggestion.id || suggestion.originalText}`}
         className="rounded-lg border-none bg-secondary/30"
       >
         <AccordionTrigger className="rounded-lg px-4 text-left text-secondary-foreground hover:bg-secondary/50 hover:no-underline">
@@ -133,33 +143,66 @@ export function SuggestionCard({
                       } as React.CSSProperties}
                     />
                   )}
-                <blockquote key={`corrected-${swapVersion}`} className={`whitespace-pre-wrap border-l-2 border-primary pl-4 italic ${reducedMotion ? '' : 'swap-enhanced'}`} style={{ "--swap-intensity": intensity === "high" ? 1.5 : intensity === "medium" ? 1 : 0.5 } as React.CSSProperties}>
-                  <TooltipProvider>
-                    {correctedTextParts.map((part, index) => {
-                       const isWord = part.match(/\w/);
-                       if (!isWord) return <span key={index}>{part}</span>;
-                       
-                       const isExcluded = excludedPhrases.includes(part);
-                       return (
-                        <Tooltip key={index}>
-                          <TooltipTrigger asChild>
-                            <button 
-                                onClick={() => onToggleExcludedPhrase(part)}
-                                className={`rounded px-0.5 py-0 ${isExcluded ? 'line-through bg-destructive/20' : ''} transition-colors hover:bg-accent/20`}
-                            >
-                                {part}
-                            </button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>
-                              {isExcluded ? "Incluir" : "Excluir"} esta palavra da próxima sugestão
-                            </p>
-                          </TooltipContent>
-                        </Tooltip>
-                       )
-                    })}
-                  </TooltipProvider>
-                </blockquote>
+                  <AnimatePresence mode="wait">
+                    <motion.blockquote
+                      key={`corrected-${swapVersion}`}
+                      initial={reducedMotion ? { opacity: 0 } : {
+                        rotateX: -90,
+                        opacity: 0,
+                        filter: "brightness(1.3)",
+                      }}
+                      animate={reducedMotion ? { opacity: 1 } : {
+                        rotateX: 0,
+                        opacity: 1,
+                        filter: "brightness(1)",
+                        boxShadow: [
+                          "0 0 0 0 hsl(var(--accent) / 0.5)",
+                          "0 0 0 8px transparent",
+                          "0 0 0 4px hsl(var(--accent) / 0.1)",
+                          "none",
+                        ],
+                        transition: {
+                          rotateX: { type: "spring", stiffness: 200, damping: 20 },
+                          opacity: { duration: 0.3 },
+                          filter: { duration: animDuration },
+                          boxShadow: { duration: animDuration, ease: "easeOut" },
+                        },
+                      }}
+                      exit={reducedMotion ? { opacity: 0 } : {
+                        rotateX: 90,
+                        opacity: 0,
+                        transition: { duration: 0.2 },
+                      }}
+                      className="whitespace-pre-wrap border-l-2 border-primary pl-4 italic preserve-3d perspective-near"
+                      style={{ transformOrigin: "left center" }}
+                    >
+                      <TooltipProvider>
+                        {correctedTextParts.map((part, index) => {
+                           const isWord = part.match(/\w/);
+                           if (!isWord) return <span key={index}>{part}</span>;
+
+                           const isExcluded = excludedPhrases.includes(part);
+                           return (
+                            <Tooltip key={index}>
+                              <TooltipTrigger asChild>
+                                <button
+                                    onClick={() => onToggleExcludedPhrase(part)}
+                                    className={`rounded px-0.5 py-0 ${isExcluded ? 'line-through bg-destructive/20' : ''} transition-colors hover:bg-accent/20`}
+                                >
+                                    {part}
+                                </button>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>
+                                  {isExcluded ? "Incluir" : "Excluir"} esta palavra da próxima sugestão
+                                </p>
+                              </TooltipContent>
+                            </Tooltip>
+                           )
+                        })}
+                      </TooltipProvider>
+                    </motion.blockquote>
+                  </AnimatePresence>
                 </div>
               </CardContent>
             </Card>
@@ -167,17 +210,21 @@ export function SuggestionCard({
               <div className="space-y-1">
                 <p className="text-xs text-muted-foreground">Alternativas:</p>
                 <ul className="text-xs space-y-0.5">
-                  {suggestion.alternatives.map((alt, i) => (
-                    <li key={`alt-${i}-${swapVersion}`}>
-                      <button
-                        type="button"
-                        onClick={() => handleSwapAlternative(i)}
-                        className="w-full text-left border-l-2 border-muted-foreground/20 pl-2 italic text-xs transition-all hover:border-accent hover:bg-accent/10 hover:scale-[1.01] rounded-sm py-0.5 animate-swap-flash"
-                      >
-                        {alt}
-                      </button>
-                    </li>
-                  ))}
+                  {suggestion.alternatives.map((alt, i) => {
+                    const wasSwapped = isSwapActive && lastCorrectedRef.current === alt;
+                    return (
+                      <li key={`alt-${i}`}>
+                        <motion.button
+                          type="button"
+                          onClick={() => handleSwapAlternative(i)}
+                          whileTap={{ scale: 0.97 }}
+                          className="w-full text-left border-l-2 border-muted-foreground/20 pl-2 italic text-xs transition-all hover:border-accent hover:bg-accent/10 rounded-sm py-0.5"
+                        >
+                          {alt}
+                        </motion.button>
+                      </li>
+                    );
+                  })}
                 </ul>
                 <p className="text-[10px] text-muted-foreground/60 mt-1">
                   Clique em uma alternativa para trocá-la com a sugestão atual
@@ -185,35 +232,45 @@ export function SuggestionCard({
               </div>
             )}
             <div className="flex justify-end gap-2">
-              <Button variant="ghost" size="sm" onClick={onDismiss}>
-                <X className="mr-2 h-4 w-4" />
-                Dispensar
-              </Button>
-               <Button variant="outline" size="sm" onClick={onResuggest}>
-                <RefreshCw className="mr-2 h-4 w-4" />
-                Resugerir
-              </Button>
-              <Button
-                size="sm"
-                ref={acceptBtnRef}
-                onClick={(e) => {
-                  captureInkOrigin(e as unknown as React.MouseEvent<HTMLElement>);
-                  inkTransition("active");
-                  setShowPencilStrike(true);
-                  setTimeout(() => {
-                    onAccept();
-                    setTimeout(() => {
-                      inkTransition("idle");
-                      clearInkOrigin();
-                      setShowPencilStrike(false);
-                    }, 700);
-                  }, 100);
-                }}
-                className="bg-accent text-accent-foreground hover:bg-accent/90"
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Button variant="ghost" size="sm" onClick={onDismiss}>
+                  <X className="mr-2 h-4 w-4" />
+                  Dispensar
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                <Button variant="outline" size="sm" onClick={onResuggest}>
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Resugerir
+                </Button>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05, z: 10 }}
+                whileTap={{ scale: 0.95 }}
+                style={{ transformStyle: "preserve-3d" } as any}
               >
-                <Check className="mr-2 h-4 w-4 icon-draw" />
-                Aceitar
-              </Button>
+                <Button
+                  size="sm"
+                  ref={acceptBtnRef}
+                  onClick={(e) => {
+                    captureInkOrigin(e as unknown as React.MouseEvent<HTMLElement>);
+                    inkTransition("active");
+                    setShowPencilStrike(true);
+                    setTimeout(() => {
+                      onAccept();
+                      setTimeout(() => {
+                        inkTransition("idle");
+                        clearInkOrigin();
+                        setShowPencilStrike(false);
+                      }, 2000);
+                    }, 300);
+                  }}
+                  className="bg-accent text-accent-foreground hover:bg-accent/90"
+                >
+                  <Check className="mr-2 h-4 w-4 icon-draw" />
+                  Aceitar
+                </Button>
+              </motion.div>
             </div>
 
           </div>

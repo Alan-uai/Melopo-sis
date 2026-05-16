@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb, Image } from "lucide-react";
 import { HaikuCounter } from "@/components/haiku-counter";
 import { SonnetVisualizer } from "@/components/sonnet-visualizer";
@@ -24,11 +25,9 @@ import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode, TextStructure } from "@/ai/types";
 import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, useState, useEffect } from "react";
 import { Textarea } from "./ui/textarea";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Checkbox } from "./ui/checkbox";
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
 import { PoemExportDialog } from "./poem-export-dialog";
@@ -392,14 +391,20 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               Melopoësis
             </CardTitle>
           </div>
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 preserve-3d perspective-near">
              <TooltipProvider>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onSavePoem} disabled={isLoading}>
-                            <Save className="h-4 w-4" />
-                            <span className="sr-only">Salvar Poema</span>
-                        </Button>
+                        <motion.div
+                          whileHover={{ rotateX: -10, rotateY: 5, z: 10 }}
+                          whileTap={{ scale: 0.9, rotateX: 5 }}
+                          style={{ transformStyle: "preserve-3d" } as any}
+                        >
+                          <Button variant="ghost" size="icon" onClick={onSavePoem} disabled={isLoading}>
+                              <Save className="h-4 w-4" />
+                              <span className="sr-only">Salvar Poema</span>
+                          </Button>
+                        </motion.div>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-2">
                         <p className="text-sm">{isPoemSaved ? 'Atualizar poema' : 'Salvar poema'}</p>
@@ -407,22 +412,40 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onCopy} disabled={!hasText && !title}>
-                            <Copy className="h-4 w-4" />
-                            <span className="sr-only">Copiar Texto</span>
-                        </Button>
+                        <motion.div
+                          whileHover={{ rotateX: -10, rotateY: -5, z: 10 }}
+                          whileTap={{ scale: 0.9, rotateX: 5 }}
+                          style={{ transformStyle: "preserve-3d" } as any}
+                        >
+                          <Button variant="ghost" size="icon" onClick={onCopy} disabled={!hasText && !title}>
+                              <Copy className="h-4 w-4" />
+                              <span className="sr-only">Copiar Texto</span>
+                          </Button>
+                        </motion.div>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-2">
                         <p className="text-sm">Copiar texto</p>
                     </PopoverContent>
                 </Popover>
-                <PoemExportDialog title={title} text={text} tone={tone} />
+                <motion.div
+                  whileHover={{ rotateX: -10, z: 10 }}
+                  whileTap={{ scale: 0.9, rotateX: 5 }}
+                  style={{ transformStyle: "preserve-3d" } as any}
+                >
+                  <PoemExportDialog title={title} text={text} tone={tone} />
+                </motion.div>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <Button variant="ghost" size="icon" onClick={onClear} disabled={!hasText}>
-                            <Trash2 className="h-4 w-4" />
-                            <span className="sr-only">Limpar Editor</span>
-                        </Button>
+                        <motion.div
+                          whileHover={{ rotateX: -10, rotateY: 5, z: 10 }}
+                          whileTap={{ scale: 0.9, rotateX: 5 }}
+                          style={{ transformStyle: "preserve-3d" } as any}
+                        >
+                          <Button variant="ghost" size="icon" onClick={onClear} disabled={!hasText}>
+                              <Trash2 className="h-4 w-4" />
+                              <span className="sr-only">Limpar Editor</span>
+                          </Button>
+                        </motion.div>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-2">
                         <p className="text-sm">Limpar editor</p>
@@ -470,31 +493,87 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Checkbox id="rhyme-check" checked={rhyme} onCheckedChange={(checked) => onRhymeChange(checked as boolean)} />
-            <Label htmlFor="rhyme-check" className="font-normal">Forçar Rima</Label>
-          </div>
-          <div className="flex items-center space-x-4">
-              <RadioGroup
-              value={suggestionMode}
-              onValueChange={(value) => onSuggestionModeChange(value as SuggestionMode)}
-              className="flex items-center space-x-4"
-              >
-              <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="gradual" id="gradual" />
-                  <Label htmlFor="gradual" className="font-normal">Gradual</Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="final" id="final" />
-                  <Label htmlFor="final" className="font-normal">Final</Label>
-              </div>
-              </RadioGroup>
+        <div className="flex items-center justify-between preserve-3d perspective-near">
+          <motion.div
+            className="flex items-center gap-2"
+            whileHover={{ z: 5 }}
+            style={{ transformStyle: "preserve-3d" } as any}
+          >
+            <motion.button
+              type="button"
+              role="switch"
+              aria-checked={rhyme}
+              onClick={() => onRhymeChange(!rhyme)}
+              className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors preserve-3d perspective-near ${
+                rhyme ? "bg-accent" : "bg-muted"
+              }`}
+              whileHover={{ scale: 1.05, rotateX: -5 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: rhyme
+                  ? "0 0 12px hsl(var(--accent) / 0.4), 0 0 0 1px hsl(var(--accent) / 0.3)"
+                  : "0 0 0px transparent",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+            >
+              <motion.span
+                className="inline-block h-5 w-5 rounded-full bg-white"
+                animate={{
+                  x: rhyme ? 24 : 2,
+                  rotateY: rhyme ? 360 : 0,
+                  boxShadow: rhyme
+                    ? "0 2px 8px hsl(var(--accent) / 0.5)"
+                    : "0 1px 3px rgb(0 0 0 / 0.2)",
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              />
+            </motion.button>
+            <Label className="font-normal text-sm cursor-pointer" onClick={() => onRhymeChange(!rhyme)}>
+              Forçar Rima
+            </Label>
+          </motion.div>
+
+          <div className="flex items-center gap-3 preserve-3d perspective-near">
+            <motion.div
+              className="relative flex rounded-lg bg-muted p-0.5 preserve-3d"
+              style={{ transformStyle: "preserve-3d" } as any}
+            >
+              {(["gradual", "final"] as const).map((mode) => (
+                <motion.button
+                  key={mode}
+                  type="button"
+                  onClick={() => onSuggestionModeChange(mode)}
+                  className={`relative z-10 px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                    suggestionMode === mode
+                      ? "text-accent-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                  whileHover={suggestionMode !== mode ? { z: 5, scale: 1.05 } : {}}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {mode === "gradual" ? "Gradual" : "Final"}
+                </motion.button>
+              ))}
+              <motion.div
+                className="absolute inset-y-0.5 z-0 rounded-md bg-accent"
+                layout
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                style={{
+                  width: "50%",
+                  left: suggestionMode === "gradual" ? "0.125rem" : "calc(50% - 0.125rem)",
+                } as any}
+              />
+            </motion.div>
+
             <Popover>
               <PopoverTrigger asChild>
-                <button className="flex items-center justify-center h-4 w-4">
+                <motion.button
+                  className="flex items-center justify-center h-4 w-4"
+                  whileHover={{ rotate: 15, scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
+                >
                     <Info className="h-full w-full text-muted-foreground" />
-                </button>
+                </motion.button>
               </PopoverTrigger>
               <PopoverContent className="w-80">
                 <div className="grid gap-4">
@@ -622,40 +701,66 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         )}
 
         {suggestionMode === "final" && (
-          <div className="flex flex-col gap-2 pt-4">
+          <div className="flex flex-col gap-2 pt-4 preserve-3d perspective-near">
             <div className="flex justify-start">
               {onAcceptAllLowSeverity && (lowSeverityCount ?? 0) > 0 && (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={onAcceptAllLowSeverity}
-                  disabled={isLoading}
-                  className="flex items-center gap-1"
+                <motion.div
+                  initial={{ opacity: 0, x: -20, rotateY: -20 }}
+                  animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                  whileHover={{ z: 10, rotateX: -3 }}
+                  style={{ transformStyle: "preserve-3d" } as any}
                 >
-                  <CheckCheck className="h-4 w-4" />
-                  Aplicar {lowSeverityCount} correções simples
-                </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={onAcceptAllLowSeverity}
+                    disabled={isLoading}
+                    className="flex items-center gap-1"
+                  >
+                    <CheckCheck className="h-4 w-4" />
+                    Aplicar {lowSeverityCount} correções simples
+                  </Button>
+                </motion.div>
               )}
             </div>
-            <div className="flex justify-end gap-2">
-              <Button
-                variant="default"
-                onClick={onCheckSpelling}
-                disabled={isLoading || !hasText}
-                className="flex items-center gap-1.5"
+            <div className="flex justify-end gap-2 preserve-3d perspective-near">
+              <motion.div
+                initial={{ opacity: 0, x: 20, rotateY: 20 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 25 }}
+                whileHover={{ z: 10, rotateX: -3 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ transformStyle: "preserve-3d" } as any}
               >
-                <Wand2 className="h-4 w-4" />
-                {isLoading ? "Analisando..." : "Corrigir Ortografia"}
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={onSuggestTone}
-                disabled={isLoading || !hasText}
-                className="flex items-center gap-1.5"
+                <Button
+                  variant="default"
+                  onClick={onCheckSpelling}
+                  disabled={isLoading || !hasText}
+                  className="flex items-center gap-1.5"
+                >
+                  <Wand2 className="h-4 w-4" />
+                  {isLoading ? "Analisando..." : "Corrigir Ortografia"}
+                </Button>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20, rotateY: 20 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                transition={{ delay: 0.15, type: "spring", stiffness: 200, damping: 25 }}
+                whileHover={{ z: 10, rotateX: -3 }}
+                whileTap={{ scale: 0.97 }}
+                style={{ transformStyle: "preserve-3d" } as any}
               >
-                <Lightbulb className="h-4 w-4" />
-                Sugerir Tom
-              </Button>
+                <Button
+                  variant="secondary"
+                  onClick={onSuggestTone}
+                  disabled={isLoading || !hasText}
+                  className="flex items-center gap-1.5"
+                >
+                  <Lightbulb className="h-4 w-4" />
+                  Sugerir Tom
+                </Button>
+              </motion.div>
             </div>
           </div>
         )}

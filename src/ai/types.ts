@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const SuggestionSchema = z.object({
+  id: z.string().optional().describe('Identificador único da sugestão. Gerado automaticamente se não fornecido.'),
   originalText: z.string().describe('O trecho de texto original que contém o erro ou pode ser melhorado.'),
   correctedText: z.string().describe('O texto corrigido ou a versão alternativa sugerida.'),
   explanation: z.string().describe('Uma explicação clara e concisa do porquê a sugestão está sendo feita.'),

@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducedMotion } from "@/hooks/use-animation";
+import { motion, useReducedMotion } from "framer-motion";
 
 interface PencilStrikeProps {
   text: string;
@@ -17,9 +17,9 @@ export function PencilStrike({
   color = "hsl(var(--accent))",
   className,
 }: PencilStrikeProps) {
-  const reducedMotion = useReducedMotion();
+  const prefersReduced = useReducedMotion();
 
-  if (reducedMotion) {
+  if (prefersReduced) {
     return (
       <span className={`line-through text-muted-foreground ${className ?? ""}`}>
         {text}
@@ -28,14 +28,32 @@ export function PencilStrike({
   }
 
   return (
-    <span className={`relative inline-flex items-center ${className ?? ""}`}>
-      <span className="opacity-50 line-through">{text}</span>
-      <svg
+    <span className={`relative inline-flex items-center preserve-3d ${className ?? ""}`}>
+      <motion.span
+        className="opacity-50 line-through block"
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0.4 }}
+        transition={{ duration: 0.3 }}
+      >
+        {text}
+      </motion.span>
+      <motion.svg
         width={width}
         height={height}
         viewBox={`0 0 ${width} ${height}`}
         className="absolute inset-0 pointer-events-none"
         aria-hidden="true"
+        initial={{ rotateX: -15, rotateY: 10, opacity: 0 }}
+        animate={{
+          rotateX: 0,
+          rotateY: 0,
+          opacity: 1,
+          transition: {
+            rotateX: { type: "spring", stiffness: 150, damping: 20 },
+            rotateY: { type: "spring", stiffness: 150, damping: 20 },
+            opacity: { duration: 0.2 },
+          },
+        }}
       >
         <defs>
           <linearGradient id="pencil-grad" x1="0" y1="0" x2="1" y2="0">
@@ -46,28 +64,27 @@ export function PencilStrike({
           </linearGradient>
         </defs>
 
-        <line
+        <motion.line
           x1={0}
           y1={height / 2}
           x2={width}
           y2={height / 2 - 2}
           stroke="url(#pencil-grad)"
-          strokeWidth={2}
+          strokeWidth={2.5}
           strokeLinecap="round"
-          strokeDasharray={width}
-          strokeDashoffset={width}
-          className="motion-safe:animate-golden-spiral-draw"
-          style={{ animationDuration: "0.4s" } as React.CSSProperties}
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
         />
 
-        <polygon
+        <motion.polygon
           points={`${width},${height / 2 - 6} ${width + 8},${height / 2 - 2} ${width},${height / 2 + 2}`}
           fill={color}
-          opacity="0.8"
-          className="motion-safe:animate-quill-stroke"
-          style={{ animationDelay: "0.3s" } as React.CSSProperties}
+          initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+          animate={{ opacity: 0.8, scale: 1, rotate: 0 }}
+          transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
         />
-      </svg>
+      </motion.svg>
     </span>
   );
 }
