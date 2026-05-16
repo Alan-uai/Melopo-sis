@@ -27,6 +27,7 @@ export const SuggestionInputSchema = z.object({
   toneRules: z.string().optional().describe('Regras de tom poético carregadas do documento de tom.'),
   orthographyRules: z.string().optional().describe('Regras do Acordo Ortográfico (acordo-ortografico.txt).'),
   punctuationRules: z.string().optional().describe('Regras de pontuação poética (pontuacao-poetica.txt).'),
+  rhymeRules: z.string().optional().describe('Regras de rima poética (rima.txt).'),
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
 

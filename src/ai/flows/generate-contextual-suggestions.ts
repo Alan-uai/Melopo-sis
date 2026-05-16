@@ -2,7 +2,7 @@
 
 import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type SuggestionInput, type Suggestion } from '@/ai/types';
-import { loadNbrRules, loadToneRules, loadOrthographyRules, loadPunctuationRules } from '@/lib/nbr-loader';
+import { loadNbrRules, loadToneRules, loadOrthographyRules, loadPunctuationRules, loadRhymeRules } from '@/lib/nbr-loader';
 import type { TextStructure } from '@/lib/poetic-forms';
 import { validateAll } from '@/lib/local-validator';
 
@@ -33,12 +33,16 @@ REGRAS DE PONTUAÇÃO POÉTICA:
 REGRAS DO ACORDO ORTOGRÁFICO:
 {{{orthographyRules}}}
 
+REGRAS DE RIMA (obrigatórias quando rhyme=true):
+{{{rhymeRules}}}
+
 O texto a ser analisado é:
 \`\`\`
 {{{text}}}
 \`\`\`
 
-ETAPA 1: VERIFICAÇÃO GRAMATICAL E DE PONTUAÇÃO (LINHA POR LINHA).
+ETAPA 1: VERIFICAÇÃO GRAMATICAL, DE PONTUAÇÃO E DE RIMA (LINHA POR LINHA).
+- Rima: {{rhyme}}. Se "true", TODOS os versos devem rimar consistentemente, e suas correções DEVEM manter ou melhorar a rima.
 - Analise o texto, linha por linha, em busca de TODOS os erros gramaticais e de pontuação.
 - Preste atenção especial a estas confusões comuns em português:
   * "mas" (porém) vs "mais" (quantidade) — ERRADO: "Mais eu queria dizer" → CORRETO: "Mas eu queria dizer"
@@ -116,7 +120,7 @@ O texto a ser analisado é:
 - Forneça 2-3 alternativas quando possível (alternatives).
 - A justificativa deve ser estilística/literária, não gramatical.
 - Se nenhum aprimoramento de tom for necessário, retorne array vazio.
-- Mantenha a métrica e a rima se o poema as utilizar.
+- Mantenha a métrica e a rima se o poema as utilizar. Rima ativada: {{rhyme}}. Se "true", TODAS as suas sugestões DEVEM preservar ou incorporar rimas consistentes.
 - Considere o tipo de estrutura: "{{structure}}".
 
 REGRAS DE TOM — "{{tone}}":
@@ -124,6 +128,9 @@ REGRAS DE TOM — "{{tone}}":
 
 REGRAS ESTRUTURAIS (NBR):
 {{{nbrRules}}}
+
+REGRAS DE RIMA:
+{{{rhymeRules}}}
 
 EXEMPLO:
 {
@@ -154,7 +161,8 @@ const suggestionFlow = ai.defineFlow(
     const toneRules = input.toneRules || loadToneRules(input.tone);
     const orthographyRules = input.orthographyRules || loadOrthographyRules();
     const punctuationRules = input.punctuationRules || loadPunctuationRules();
-    const enrichedInput = { ...input, nbrRules, toneRules, orthographyRules, punctuationRules };
+    const rhymeRules = input.rhymeRules || loadRhymeRules();
+    const enrichedInput = { ...input, nbrRules, toneRules, orthographyRules, punctuationRules, rhymeRules };
 
     if (input.suggestionType === 'grammar' || input.suggestionType === 'all') {
       const localResult = await validateAll(
