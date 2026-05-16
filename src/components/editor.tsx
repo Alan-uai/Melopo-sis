@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { Copy, Feather, Info, Save, Trash2, CheckCheck, Image } from "lucide-react";
+import { motion } from "framer-motion";
+import { Feather, Info, CheckCheck } from "lucide-react";
 import { LightbulbIcon, type BulbState } from "@/components/animations/lightbulb-icon";
 import { WandIcon } from "@/components/animations/wand-icon";
-import { CheckFlip3D } from "@/components/animations/check-flip-3d";
-import { ProgressRing } from "@/components/animations/progress-ring";
-import { ParticleBurst } from "@/components/animations/particle-burst";
+import { BookSaveIcon } from "@/components/animations/book-save-icon";
+import { InkCopyIcon } from "@/components/animations/ink-copy-icon";
+import { BurnClearIcon } from "@/components/animations/burn-clear-icon";
 import { HaikuCounter } from "@/components/haiku-counter";
 import { SonnetVisualizer } from "@/components/sonnet-visualizer";
 import { MeterVisualizer } from "@/components/meter-visualizer";
@@ -174,12 +174,9 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   const [bulbState, setBulbState] = useState<BulbState>("off");
   const [wandActive, setWandActive] = useState(false);
-  const [showSaveCheck, setShowSaveCheck] = useState(false);
-  const [showCopyCheck, setShowCopyCheck] = useState(false);
-  const [showClearCheck, setShowClearCheck] = useState(false);
-  const [showSaveProgress, setShowSaveProgress] = useState(false);
-  const [showCopyParticles, setShowCopyParticles] = useState(false);
-  const [showClearParticles, setShowClearParticles] = useState(false);
+  const [savePhase, setSavePhase] = useState<"idle" | "saving" | "done">("idle");
+  const [copyPhase, setCopyPhase] = useState<"idle" | "copying" | "done">("idle");
+  const [clearPhase, setClearPhase] = useState<"idle" | "burning" | "done">("idle");
 
   useEffect(() => {
     if (isLoading) {
@@ -419,7 +416,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
               Melopoësis
             </CardTitle>
           </div>
-          <div className="flex items-center gap-1 preserve-3d perspective-near">
+          <div className="flex items-center gap-1 preserve-3d perspective-near p-1 rounded-lg bg-gradient-to-b from-accent/[0.03] to-transparent border border-accent/[0.04] shadow-inner-sm">
              <TooltipProvider>
                 <Popover>
                     <PopoverTrigger asChild>
@@ -433,44 +430,16 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                             size="icon"
                             disabled={isLoading}
                             onClick={() => {
-                              setShowSaveProgress(true);
-                              setShowSaveCheck(false);
+                              setSavePhase("saving");
                               setTimeout(() => {
                                 onSavePoem();
-                                setShowSaveProgress(false);
-                                setShowSaveCheck(true);
-                                setTimeout(() => setShowSaveCheck(false), 1500);
-                              }, 800);
+                                setSavePhase("done");
+                                setTimeout(() => setSavePhase("idle"), 2000);
+                              }, 1000);
                             }}
                             className="relative"
                           >
-                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
-                              <AnimatePresence mode="wait">
-                                {showSaveCheck ? (
-                                  <motion.div
-                                    key="save-check"
-                                    initial={{ rotateY: 180, scale: 0 }}
-                                    animate={{ rotateY: 0, scale: 1 }}
-                                    exit={{ rotateY: -180, scale: 0 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                    className="preserve-3d"
-                                    style={{ transformStyle: "preserve-3d" } as any}
-                                  >
-                                    <CheckFlip3D show={showSaveCheck} size={16} color="hsl(var(--accent))" />
-                                  </motion.div>
-                                ) : (
-                                  <motion.div
-                                    key="save-icon"
-                                    initial={{ rotateY: 0 }}
-                                    exit={{ rotateY: 180 }}
-                                    transition={{ duration: 0.2 }}
-                                  >
-                                    <Save className="h-4 w-4" />
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                            <ProgressRing isActive={showSaveProgress} size={28} />
+                            <BookSaveIcon phase={savePhase} size={16} />
                             <span className="sr-only">Salvar Poema</span>
                           </Button>
                         </motion.div>
@@ -492,44 +461,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                             disabled={!hasText && !title}
                             onClick={() => {
                               onCopy();
-                              setShowCopyCheck(true);
-                              setShowCopyParticles(true);
-                              setTimeout(() => {
-                                setShowCopyCheck(false);
-                                setShowCopyParticles(false);
-                              }, 1500);
+                              setCopyPhase("copying");
+                              setTimeout(() => setCopyPhase("done"), 1200);
+                              setTimeout(() => setCopyPhase("idle"), 2500);
                             }}
                             className="relative"
                           >
-                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
-                              <AnimatePresence mode="wait">
-                                {showCopyCheck ? (
-                                  <motion.div
-                                    key="copy-check"
-                                    initial={{ rotateX: 180, scale: 0 }}
-                                    animate={{ rotateX: 0, scale: 1 }}
-                                    exit={{ rotateX: -180, scale: 0 }}
-                                    transition={{ type: "spring", stiffness: 300, damping: 22 }}
-                                    className="preserve-3d"
-                                    style={{ transformStyle: "preserve-3d" } as any}
-                                  >
-                                    <CheckFlip3D show={showCopyCheck} size={16} color="hsl(var(--accent))" />
-                                  </motion.div>
-                                ) : (
-                                  <motion.div
-                                    key="copy-icon"
-                                    exit={{ rotateX: 180 }}
-                                  >
-                                    <Copy className="h-4 w-4" />
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                            <ParticleBurst
-                              isActive={showCopyParticles}
-                              count={6}
-                              color="hsl(var(--accent) / 0.6)"
-                            />
+                            <InkCopyIcon phase={copyPhase} size={16} />
                             <span className="sr-only">Copiar Texto</span>
                           </Button>
                         </motion.div>
@@ -557,50 +495,16 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                             size="icon"
                             disabled={!hasText}
                             onClick={() => {
-                              setShowClearCheck(true);
-                              setShowClearParticles(true);
+                              setClearPhase("burning");
                               setTimeout(() => {
                                 onClear();
-                                setShowClearCheck(false);
-                                setShowClearParticles(false);
-                              }, 400);
+                                setClearPhase("done");
+                                setTimeout(() => setClearPhase("idle"), 1200);
+                              }, 800);
                             }}
                             className="relative"
                           >
-                            <div className="preserve-3d" style={{ transformStyle: "preserve-3d" } as any}>
-                              <AnimatePresence mode="wait">
-                                {showClearCheck ? (
-                                  <motion.div
-                                    key="clear-shred"
-                                    initial={{ rotateX: 90, scale: 0.5, opacity: 0 }}
-                                    animate={{
-                                      rotateX: 0,
-                                      scale: [1, 1.2, 0.8, 0],
-                                      opacity: [1, 0.8, 0.4, 0],
-                                    }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="preserve-3d"
-                                    style={{ transformStyle: "preserve-3d" } as any}
-                                  >
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                      <path d="M3 6h18M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2M19 6v12a2 2 0 01-2 2H7a2 2 0 01-2-2V6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                      <motion.line x1="10" y1="11" x2="10" y2="17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.2 }} />
-                                      <motion.line x1="14" y1="11" x2="14" y2="17" stroke="currentColor" strokeWidth="1" strokeLinecap="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ delay: 0.25 }} />
-                                    </svg>
-                                  </motion.div>
-                                ) : (
-                                  <motion.div key="trash-icon">
-                                    <Trash2 className="h-4 w-4" />
-                                  </motion.div>
-                                )}
-                              </AnimatePresence>
-                            </div>
-                            <ParticleBurst
-                              isActive={showClearParticles}
-                              count={4}
-                              color="hsl(var(--destructive) / 0.5)"
-                            />
+                            <BurnClearIcon phase={clearPhase} size={16} />
                             <span className="sr-only">Limpar Editor</span>
                           </Button>
                         </motion.div>

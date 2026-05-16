@@ -1,7 +1,13 @@
 "use client";
 
 import { useRef, useCallback, type ReactNode, type CSSProperties } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 
 interface TiltCardProps {
   children: ReactNode;
@@ -11,6 +17,8 @@ interface TiltCardProps {
   scaleOnHover?: number;
   onClick?: () => void;
   style?: CSSProperties;
+  /** Extra depth layers: how much deeper the content appears (px) */
+  depth?: number;
 }
 
 export function TiltCard({
@@ -21,6 +29,7 @@ export function TiltCard({
   scaleOnHover = 1.02,
   onClick,
   style,
+  depth = 20,
 }: TiltCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
@@ -30,6 +39,12 @@ export function TiltCard({
 
   const rotateX = useSpring(y, { stiffness: 300, damping: 30 });
   const rotateY = useSpring(x, { stiffness: 300, damping: 30 });
+  const scale = useSpring(1, { stiffness: 300, damping: 30 });
+
+  // Parallax layers move at different speeds
+  const bgZ = useTransform(rotateX, [-tiltDegree, tiltDegree], [-depth * 0.3, depth * 0.3]);
+  const midZ = useTransform(rotateX, [-tiltDegree, tiltDegree], [-depth * 0.1, depth * 0.1]);
+  const fgZ = useTransform(rotateX, [-tiltDegree, tiltDegree], [depth * 0.2, -depth * 0.2]);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
@@ -41,14 +56,16 @@ export function TiltCard({
       const deltaY = (e.clientY - centerY) / rect.height;
       x.set(deltaX * tiltDegree);
       y.set(-deltaY * tiltDegree);
+      scale.set(scaleOnHover);
     },
-    [prefersReducedMotion, tiltDegree, x, y]
+    [prefersReducedMotion, tiltDegree, scaleOnHover, x, y, scale]
   );
 
   const handleMouseLeave = useCallback(() => {
     x.set(0);
     y.set(0);
-  }, [x, y]);
+    scale.set(1);
+  }, [x, y, scale]);
 
   const glareX = useMotionValue(50);
   const glareY = useMotionValue(50);
@@ -82,7 +99,7 @@ export function TiltCard({
   return (
     <motion.div
       ref={ref}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative ${className}`}
       onMouseMove={(e) => {
         handleMouseMove(e);
         handleGlareMove(e);
@@ -96,16 +113,58 @@ export function TiltCard({
         ...style,
         rotateX,
         rotateY,
+        scale,
         transformStyle: "preserve-3d" as any,
       }}
-      whileHover={{ scale: scaleOnHover }}
+      layout
     >
-      {children}
+      {/* Parallax background layer */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none rounded-[inherit]"
+        style={{
+          z: bgZ,
+          transformStyle: "preserve-3d" as any,
+          opacity: 0.5,
+        }}
+      >
+        <div className="absolute inset-0 rounded-[inherit] bg-gradient-to-br from-transparent via-transparent to-current opacity-[0.03]" />
+      </motion.div>
+
+      {/* Content (mid layer) */}
+      <motion.div
+        style={{
+          z: midZ,
+          transformStyle: "preserve-3d" as any,
+        }}
+      >
+        {children}
+      </motion.div>
+
+      {/* Foreground parallax edge */}
+      <motion.div
+        className="absolute inset-0 pointer-events-none rounded-[inherit]"
+        style={{
+          z: fgZ,
+          transformStyle: "preserve-3d" as any,
+        }}
+      >
+        {/* Edge shine */}
+        <div
+          className="absolute inset-0 rounded-[inherit]"
+          style={{
+            border: "1px solid hsl(var(--accent) / 0.06)",
+            boxShadow: "inset 0 1px 0 hsl(var(--accent) / 0.08)",
+          }}
+        />
+      </motion.div>
+
+      {/* Glare overlay */}
       <motion.div
         className="pointer-events-none absolute inset-0 rounded-[inherit]"
         style={{
-          background: `radial-gradient(circle at ${glareX}% ${glareY}%, ${glareColor} 0%, transparent 60%)`,
+          background: `radial-gradient(circle at ${glareX}% ${glareY}%, ${glareColor} 0%, transparent 70%)`,
           opacity: glareOpacity,
+          z: 10,
         }}
       />
     </motion.div>

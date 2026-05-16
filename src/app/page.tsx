@@ -751,9 +751,21 @@ export default function Home() {
                 whileTap={{ scale: 0.97 }}
                 style={{ transformStyle: "preserve-3d" } as any}
               >
-                <Button className="w-full" onClick={handleNewPoem}>
-                    <PlusCircle className="mr-2 h-4 w-4" />
-                    Novo Poema
+                <Button
+                  className="w-full relative overflow-hidden"
+                  onClick={handleNewPoem}
+                >
+                  <motion.span
+                    className="mr-2 inline-flex"
+                    whileHover={{
+                      rotate: [0, -15, 15, -5, 0],
+                      scale: [1, 1.2, 1.1, 1],
+                    }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <PlusCircle className="h-4 w-4" />
+                  </motion.span>
+                  Novo Poema
                 </Button>
               </motion.div>
               <motion.div
@@ -763,7 +775,16 @@ export default function Home() {
                 transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 25 }}
               >
                 <div className="relative">
-                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                  <motion.div
+                    className="absolute left-2.5 top-2.5 pointer-events-none"
+                    animate={poemSearchQuery ? {
+                      rotate: [0, -10, 10, -5, 0],
+                      scale: [1, 1.1, 0.9, 1],
+                    } : {}}
+                    transition={{ duration: 0.4 }}
+                  >
+                    <Search className="h-4 w-4 text-muted-foreground" />
+                  </motion.div>
                   <Input
                     placeholder="Buscar poemas..."
                     value={poemSearchQuery}
@@ -831,29 +852,61 @@ export default function Home() {
                   Carregando...
                 </motion.p>
               )}
-              {!isLoadingPoems && filteredPoems?.map((poem, idx) => (
+              {!isLoadingPoems && filteredPoems?.map((poem, idx) => {
+                // Stable random angle per poem id for shelf variety
+                const hashCode = poem.id.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0);
+                const shelfAngle = ((hashCode % 7) - 3) * 0.8; // -2.4 to +2.4 degrees
+                return (
                 <motion.div
                   key={poem.id}
                   layout
-                  initial={{ rotateX: -90, opacity: 0, x: -30 }}
+                  initial={{ rotateX: 80, rotateZ: shelfAngle * 2, opacity: 0, x: 40, y: 20 }}
                   animate={{
                     rotateX: 0,
+                    rotateZ: shelfAngle,
                     opacity: 1,
                     x: 0,
+                    y: 0,
                     transition: {
-                      rotateX: { type: "spring", stiffness: 200, damping: 25, delay: idx * 0.03 },
-                      opacity: { duration: 0.25, delay: idx * 0.03 },
-                      x: { type: "spring", stiffness: 200, damping: 25, delay: idx * 0.03 },
+                      rotateX: { type: "spring", stiffness: 180, damping: 22, delay: idx * 0.035 },
+                      rotateZ: { type: "spring", stiffness: 180, damping: 22, delay: idx * 0.035 },
+                      opacity: { duration: 0.2, delay: idx * 0.035 },
+                      x: { type: "spring", stiffness: 180, damping: 22, delay: idx * 0.035 },
+                      y: { type: "spring", stiffness: 180, damping: 22, delay: idx * 0.035 },
                     },
                   }}
-                  exit={{ rotateY: -90, opacity: 0, scale: 0.8, x: -20 }}
-                  transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                  whileHover={{ z: 15, rotateX: -3, rotateY: 3 }}
+                  exit={{
+                    rotateX: 60,
+                    rotateZ: 10,
+                    opacity: 0,
+                    scale: 0.7,
+                    y: 30,
+                    x: -10,
+                    transition: { duration: 0.3, ease: "easeIn" },
+                  }}
+                  whileHover={{
+                    z: 20,
+                    rotateX: -2,
+                    rotateY: 4,
+                    scale: 1.02,
+                    transition: { type: "spring", stiffness: 300, damping: 20 },
+                  }}
                   className="preserve-3d"
-                  style={{ transformStyle: "preserve-3d" } as any}
+                  style={{
+                    transformStyle: "preserve-3d" as any,
+                    transformOrigin: "left center",
+                  }}
                 >
                   <SidebarMenuItem>
-                    <div className="flex items-center w-full gap-1">
+                    <div className="flex items-center w-full gap-1 relative">
+                      {/* Book spine glow on hover */}
+                      <motion.div
+                        className="absolute left-0 top-0 bottom-0 w-0.5 rounded-r"
+                        style={{ backgroundColor: "hsl(var(--accent))" }}
+                        initial={{ opacity: 0 }}
+                        whileHover={{ opacity: 0.4, width: 2 }}
+                        transition={{ duration: 0.2 }}
+                      />
                       <SidebarMenuButton
                           className="flex-1 justify-start truncate"
                           onClick={() => loadPoem(poem)}
@@ -882,7 +935,7 @@ export default function Home() {
                             <AlertDialogTitle>Excluir poema</AlertDialogTitle>
                             <AlertDialogDescription>
                               Tem certeza que deseja excluir "{poem.title || 'Poema sem título'}"?
-                              Esta ação não pode ser desfeita.
+                              Esta ação não pode ser feita.
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
@@ -899,7 +952,8 @@ export default function Home() {
                     </div>
                   </SidebarMenuItem>
                 </motion.div>
-              ))}
+                );
+              })}
               {!isLoadingPoems && (!filteredPoems || filteredPoems.length === 0) && (
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
