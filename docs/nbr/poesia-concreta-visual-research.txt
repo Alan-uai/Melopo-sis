@@ -1,0 +1,78 @@
+# PESQUISA — Poesia Concreta e Visual
+# Fontes consultadas para a elaboração das regras NBR
+
+## Fontes primárias
+
+### Grupo Noigandres
+- Augusto de Campos, Décio Pignatari, Haroldo de Campos — fundadores do movimento de poesia concreta no Brasil (1952)
+- Revista Noigandres (1952-1962) — primeiras publicações do grupo
+- "Teoria da Poesia Concreta" (1965) — compilação dos manifestos e ensaios do grupo
+- "Plano-Piloto para Poesia Concreta" (1958) — manifesto fundador assinado por Augusto de Campos, Décio Pignatari e Haroldo de Campos
+
+### Poema-Processo
+- Wlademir Dias-Pino — criador do poema-processo (1967)
+- Álvaro de Sá, "Poema-processo" (1967) — manifesto do movimento
+- Poema-processo abole a palavra como suporte obrigatório — o poema pode ser diagrama, sequência fotográfica, objeto, cor pura
+
+### 1ª Exposição Nacional de Arte Concreta
+- MASP (Museu de Arte de São Paulo), 1956 — marco de divulgação do concretismo
+- Reuniu poetas e artistas plásticos (Lothar Charoux, Waldemar Cordeiro, Luiz Sacilotto, Maurício Nogueira Lima)
+
+### Verbivocovisualidade
+- Conceito central: integração de verbal + vocal + visual
+- A palavra é simultaneamente som, imagem visual e significado
+- O poema concreto é um "ideograma" — campo relacional de funções, não discurso linear
+
+### Tipografia como expressão
+- Augusto de Campos é designer gráfico além de poeta
+- Uso expressivo de fontes (Futura, Bodoni, tipos grotescos) como parte do poema
+- Tiago Santos (2020): "Design e tipografia como elementos da expressividade da poesia de Augusto de Campos" — ARS (São Paulo), v. 18, n. 40
+- A escolha tipográfica não é embalagem — é conteúdo
+
+### Poesia digital e clip-poemas
+- Augusto de Campos passou a criar clip-poemas (animações tipográficas) a partir dos anos 2000
+- "Sem Saída" — clip-poema que acompanha o livro "Não Poemas" (2003)
+- André Vallias — poeta digital brasileiro pioneiro
+- Alckmar Luiz dos Santos — pesquisa em poesia digital e ciberliteratura
+
+## Fontes secundárias
+
+### Academic sources
+- Aguilar, Gonzalo. "Poesia Concreta Brasileira". São Paulo: EdUSP, 2005
+- Watanabe, Edna Atsué. "Uma aproximação à Teoria da Poesia Concreta via Noigandres e Invenção". Tese (doutorado), IA/UNESP, 2022
+- Philadelpho Menezes — crítico dos desdobramentos da poesia concreta
+- Ferreira Gullar — participou do concretismo e rompeu em 1957 para fundar o Neoconcretismo (diverge sobre o papel da sintaxe verbal)
+
+### Conceitos-chave da pesquisa
+1. Poesia concreta ≠ todo poema visual: um poema concreto pode ser visual, mas nem todo poema visual é concreto. O poema concreto difere por ter um programa definido, racional, e buscar a concisão material e o fim da distinção entre forma e conteúdo.
+2. Mallarmé é precursor dos concretistas com "Un Coup de Dés" (1897) — o "método prismático" de explorar o espaço em branco para criar sintaxe espacial.
+3. A poesia concreta brasileira é considerada uma das mais inovadoras do mundo, ao lado da poesia concreta suíça (Eugen Gomringer) e escocesa (Ian Hamilton Finlay).
+4. O "campo" do poema concreto substitui o verso: a página é um espaço topológico, não uma sequência linear.
+
+### Artistas e poetas relacionados
+- Ronaldo Azeredo — poeta concreto, parte do núcleo Noigandres
+- José Lino Grünewald — poeta concreto
+- Edgard Braga — poeta concreto experimental
+- Lenora de Barros — poesia visual contemporânea
+- Arnaldo Antunes — poesia visual pós-concreta ("As Coisas", 1992)
+- Ricardo Aleixo — experimentação visual e sonora
+
+### Categorias de poesia visual
+1. Poesia Concreta (1956-) — palavra-objeto, campo visual, verbivocovisualidade
+2. Poema-Processo (1967-1972) — abolição da palavra, diagramas, sequências fotográficas
+3. Neoconcretismo (1959-1961) — Ferreira Gullar, Lygia Clark, Lygia Pape — ênfase no corpo e na participação do espectador
+4. Poesia Experimental — neovanguarda, incorpora tecnologia
+5. Poesia Digital — animação, hipertexto, interatividade, poesia generativa
+
+### NBR aplicável
+A poesia concreta/visual está fora do escopo de correção gramatical, métrica e rima. O sistema deve detectar pelo menos 3 critérios visuais (espaço branco intensivo, não-linearidade, palavras decompostas, uso expressivo de tipografia, ausência de verso como unidade) para classificar como visual e suspender correções.
+
+### Referências específicas da pesquisa (para citação nas regras)
+- Augusto de Campos, "Luxo" (1955): poema que alterna LUXO/LIXO/LUXO/LIXO em malha visual; demonstra que a disposição espacial é constitutiva do sentido
+- Augusto de Campos, "Poema Bomba" (1955): repetição de "bomba" como campo visual, não como verso
+- Augusto de Campos, "Mensagem" (Crisântemo, 1964): poema espacial onde a palavra MENSAGEM se expande no espaço da página
+- Augusto de Campos, "Viva Vaia" (1979): jogo tipográfico entre "viva" e "vaia" — a tipografia é oposição visual
+- Décio Pignatari, "beba coca cola" (1957): colagem verbal, decomposição, justaposição sem conectivos
+- Wlademir Dias-Pino, Poema-processo (1967): séries visuais sem texto, apenas diagramas
+- Arnaldo Antunes, "As Coisas" (1992): poemas-objeto onde a forma gráfica imita o conteúdo
+- Ferreira Gullar, "Poema Sujo" (1976): poema longo que mescla concreto e discursivo, referência de passagem

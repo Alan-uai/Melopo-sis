@@ -17,6 +17,10 @@ const STRUCTURE_FILE_MAP: Record<string, string> = {
   elegia: 'elegia.txt',
   ode: 'ode.txt',
   'verso-livre': 'verso-livre.txt',
+  'poesia-concreta-visual': 'poesia-concreta-visual.txt',
+  'poesia-marginal-slam': 'poesia-marginal-slam.txt',
+  'figuras-linguagem': 'figuras-linguagem.txt',
+  'revisao-poetica': 'revisao-poetica.txt',
 };
 
 const MAX_NBR_LENGTH = 50000;

@@ -1,0 +1,177 @@
+# POESIA MARGINAL E SLAM — NBR (Norma Brasileira para Revisão Poética)
+# Fonte: Poesia marginal brasileira (geração mimeógrafo, 1970-80); slam poetry (Brasil, 2008-); spoken word
+# Última atualização: 2026-05-16
+
+================================================================================
+POESIA MARGINAL — FUNDAMENTOS
+================================================================================
+
+## [PMS-01] O que é poesia marginal — contexto histórico
+Fonte: Heloísa Buarque de Hollanda, "26 Poetas Hoje" (1976); Ana Cristina Cesar; Cacaso; Chacal; Francisco Alvim; Torquato Neto; Waly Salomão
+Descrição: A poesia marginal (ou geração mimeógrafo) é um movimento poético brasileiro dos anos 1970. Surge em plena ditadura militar (1964-1985) como reação à: (1) poesia formalista e engajada dos anos 1960; (2) circuito editorial fechado e censurado; (3) erudição e hermetismo. Caracteriza-se por publicação independente (mimeógrafos, edições artesanais, distribuição em bares e faculdades), coloquialismo extremo, tom confessional e irônico, verso livre e fragmentação deliberada. Não é uma escola com manifesto — é uma constelação de poetas que compartilham procedimentos editoriais e estéticos.
+❌ Errado: tratar poesia marginal como "falta de técnica" — o coloquialismo é técnica, não desleixo
+✅ Correto: a poesia marginal tem procedimentos próprios — desvios são intencionais e constitutivos
+📖 Exemplo real: Cacaso, "Na Corda Bamba" (1978) — poemas curtos, coloquiais, irónicos; "a poesia é uma questão / de vida ou morte / de preferência morte"
+Severidade: informativa
+Categoria: teoria — marginal
+
+## [PMS-02] Desvios intencionais — marcas estilísticas da marginal
+Fonte: Ana Cristina Cesar, "A Teus Pés" (1982); Cacaso; Chacal; Francisco Alvim
+Descrição: A poesia marginal opera com desvios sistemáticos que são marcas de estilo, não erros: (1) ausência de pontuação — frases correm sem vírgulas ou pontos; (2) ausência de maiúsculas — inclusive em início de verso e nomes próprios; (3) fragmentação sintática — orações incompletas, frases nominais; (4) coloquialismo ortográfico — "pra", "tá", "cê", "num" (em vez de "não"); (5) enumeração caótica — listas de itens sem conexão aparente; (6) parênteses como murmúrio — incidência de parênteses para voz interior; (7) versos muito curtos (1-3 palavras).
+❌ Errado: "corrigir" qualquer um destes desvios — eles são a voz do gênero
+✅ Correto: preservar integralmente; classificar como "estilo marginal — baixa severidade"
+📖 Exemplo real: Ana Cristina Cesar, "Poema" (A Teus Pés): "não quero mais / o amor que não se assume / não quero mais / palavras que não dizem / o que querem dizer" — sem maiúsculas, sem pontuação, fragmentado
+Severidade: alta (não corrigir)
+Categoria: estilo — marginal
+
+## [PMS-03] Coloquialismo poético — dicção de conversa
+Fonte: Poesia marginal; Antologia "26 Poetas Hoje" (1976); Mário de Andrade (antepassado modernista)
+Descrição: A poesia marginal adota a dicção da conversa cotidiana — como se o poeta estivesse falando com um amigo no bar. O tom é baixo (não solene), o vocabulário é simples, a sintaxe é próxima da fala real: repetições, hesitações ("ah", "bom", "então"), gírias, palavrões, frases incompletas, perguntas retóricas sem resposta. O coloquialismo não é gratuito — é uma tomada de posição contra a poesia "séria" e acadêmica.
+❌ Errado: "elevar" o tom de um poema marginal (substituir gíria por termo "mais poético")
+✅ Correto: reconhecer o coloquialismo como regime estético deliberado
+📖 Exemplo real: Chacal, "Cabeçalho" (1977): "vou ali / volto já / se não voltar / é que não dava / pra ficar" — dicção de bilhete, poema mínimo
+Severidade: informativa
+Categoria: dicção
+
+## [PMS-04] Fragmentação e parataxe na poesia marginal
+Fonte: Ana Cristina Cesar; Cacaso; análise de Flora Süssekind
+Descrição: A poesia marginal opera por fragmentos — o poema é uma constelação de cenas, memórias, impressões que não se conectam por subordinação lógica. A relação entre as partes é paratática (justaposta), não hipotática (subordinada). Não há conclusão, desfecho ou síntese. O poema termina porque acaba, não porque concluiu algo. Esta fragmentação reflete a experiência urbana contemporânea e a censura (dizer por elipses).
+❌ Errado: pedir "coesão" ou "unidade temática" para poesia marginal (a fragmentação é o método)
+✅ Correto: a fragmentação marginal é procedimento, não defeito
+📖 Exemplo real: Ana Cristina Cesar, "Poema" (A Teus Pés): "teu poema / não cabe / no poema / que faço" — metalinguagem que reflete a impossibilidade de totalidade
+Severidade: baixa
+Categoria: sintaxe
+
+## [PMS-05] Ironia e autoderrisão — tom da marginal
+Fonte: Cacaso; Chacal; Paulo Leminski (fase marginal); Ana Cristina Cesar
+Descrição: A poesia marginal raramente é séria — opera com ironia, deboche, autoderrisão e paródia. O poeta ri de si mesmo, da poesia, do ato de escrever. O tom irônico suspende a "seriedade" da poesia tradicional e se aproxima do humor inteligente. Leminski é mestre: "não há pecado / do outro lado do muro / o muro é que é o pecado". A ironia não é superficial — é mecanismo de defesa em contexto autoritário.
+❌ Errado: "tornar o poema mais sério" ou corrigir tom irônico
+✅ Correto: preservar a ironia como estratégia poética
+📖 Exemplo real: Cacaso, "Poema": "A poesia é uma questão / de vida ou morte. / De preferência morte." — ironia que desdiz o que afirma
+Severidade: informativa
+Categoria: tom
+
+## [PMS-06] Ana Cristina Cesar — parênteses, murmúrio e a voz do entre
+Fonte: Ana Cristina Cesar, "A Teus Pés" (1982); análise de Heloísa Buarque de Hollanda; Viviana Bosi
+Descrição: Ana Cristina Cesar é a figura central da poesia marginal. Sua poesia tem marcas inconfundíveis: (1) uso intensivo de parênteses — funcionam como murmúrio, voz interior, correção do que foi dito, hesitação; (2) enumerações caóticas — listas de elementos disparatados; (3) coloquialismo de classe média — citações em inglês, referências literárias, fingimento de espontaneidade; (4) metalinguagem — o poema fala de si mesmo enquanto é escrito; (5) tom epistolar — poemas em forma de carta, bilhete, diário. Os parênteses de Ana Cristina não são pontuação — são câmaras de eco.
+❌ Errado: remover ou reorganizar parênteses (são marca registrada)
+✅ Correto: preservar a fragmentação parentética como voz interior
+📖 Exemplo real: Ana Cristina Cesar, "Poema" (A Teus Pés): "não quero mais / o amor que não se assume / (não quero mais)" — o parêntese repete mas desloca o sentido, cria murmúrio
+Severidade: alta (não alterar)
+Categoria: estilo — ACC
+
+================================================================================
+SLAM POETRY E SPOKEN WORD
+================================================================================
+
+## [PMS-07] O que é slam — definição e história
+Fonte: Marc Smith (Chicago, 1984); Roberta Estrela D'Alva (Brasil, 2008); Núcleo Bartolomeu de Depoimentos
+Descrição: Slam (poetry slam) é uma competição de poesia falada criada por Marc Smith em Chicago (1984) e trazida ao Brasil em 2008 pela poeta, atriz e apresentadora Roberta Estrela D'Alva. Regras básicas: (1) autoria própria — o poeta declama texto de sua autoria; (2) duração máxima de 3 minutos; (3) sem objetos cénicos, figurino ou acompanhamento musical; (4) apenas corpo e voz; (5) júri popular escolhido na hora. O slam prioriza o impacto ao vivo — a poesia é feita para ser ouvida, não lida. No Brasil, o slam se fundiu com a tradição marginal e com o hip-hop, criando uma cena autônoma e fortemente política.
+❌ Errado: analisar um poema de slam apenas pelo texto escrito (a performance é constitutiva)
+✅ Correto: o texto de slam é partitura — a performance completa a obra
+Severidade: informativa
+Categoria: teoria — slam
+
+## [PMS-08] Texto como partitura — oralidade e performance
+Fonte: Roberta Estrela D'Alva; Núcleo Bartolomeu; slammers brasileiros
+Descrição: No slam, o texto escrito é uma partitura para a performance. Características textuais: (1) pontuação expressiva — barras (/) marcam pausas rítmicas, letras maiúsculas indicam intensidade vocal, repetições marcam refrão; (2) versos curtos e respiráveis — o poeta precisa respirar enquanto declama; (3) estrutura refrão-verso — como música; (4) onomatopeias e interjeições marcadas; (5) grafia fonética — "tá", "pra", "num" — que indica pronúncia na performance; (6) palavras em maiúscula para gritos. O texto, isolado, parece "mal escrito" — na performance, é preciso e poderoso.
+❌ Errado: "corrigir" a grafia fonética ou a pontuação expressiva de um slam
+✅ Correto: preservar o texto como partitura — ele só se realiza plenamente na voz
+📖 Exemplo real: Bell Puã, "Mas é tudo a mesma merda esse tal de nordestino?" — o texto usa maiúsculas para ênfase, repetições para impacto oral, marcas de entonação
+Severidade: alta (não corrigir)
+Categoria: performance
+
+## [PMS-09] Temática e função social do slam
+Fonte: Roberta Estrela D'Alva; Mel Duarte; Luz Ribeiro; Bell Puã; Slam da Guilhermina; Slam do 13
+Descrição: O slam brasileiro é majoritariamente periférico, negro e feminista. A temática recorrente inclui: racismo estrutural, violência policial, machismo, LGBTfobia, desigualdade social, identidade periférica, resistência. O slam não é "arte pela arte" — é poesia de urgência, testemunho e denúncia. A qualidade estética está a serviço da mensagem política. O sistema de correção deve reconhecer que a "repetição" e a "intensidade" são recursos, não defeitos.
+❌ Errado: criticar o engajamento político como "panfletário" (o engajamento é constitutivo do gênero)
+✅ Correto: reconhecer a poesia de slam como testemunho — a urgência política informa a estética
+Severidade: informativa
+Categoria: temática
+
+## [PMS-10] Spoken word — dicção performática além da competição
+Fonte: Roberta Estrela D'Alva; Núcleo Bartolomeu; saraus periféricos; Cooperifa
+Descrição: Spoken word (poesia falada) é o gênero mais amplo do qual o slam é uma subcategoria competitiva. No Brasil, a cena de spoken word inclui: (1) saraus periféricos — Cooperifa (desde 2001), Sarau do Binho, Sarau da Brasa; (2) poesia de rua — declamação em espaços públicos, metrôs, feiras; (3) cenas de hip-hop e rap — poesia com base rítmica mas sem música; (4) performances de slammers que transcenderam a competição. Marcas textuais: texto preparado para voz alta, com pausas marcadas, ênfases, variação de velocidade. A vírgula é pausa de respiração, não marca gramatical.
+❌ Errado: aplicar regras de pontuação gramatical a texto de spoken word (a vírgula marca respiração)
+✅ Correto: analisar o texto como roteiro de performance — pausas, ênfases, ritmo
+📖 Exemplo real: Sérgio Vaz (Cooperifa) — poemas que funcionam como discursos poéticos, com repetições, insistentes, pausas dramáticas
+Severidade: media (não corrigir pontuação)
+Categoria: performance
+
+================================================================================
+REGRAS PRÁTICAS — CORREÇÃO
+================================================================================
+
+## [PMS-11] Poesia marginal — não corrigir ortografia coloquial
+Fonte: Poesia marginal; "26 Poetas Hoje"; Francisco Alvim, "Passatempo"
+Descrição: A ortografia coloquial na poesia marginal não é erro — é transcrição da fala. Formas recorrentes: "pra" (para), "tá" (está), "cê" (você), "num" (não), "tô" (estou), "vô" (vou), "dum" (de um), "duma" (de uma), "pro" (para o), "pra" (para a), "mesmo" como partícula de ênfase. Estas formas não devem ser "corrigidas" para a norma padrão. Exceção: se o poema alternar entre coloquial e formal sem critério aparente, sinalizar baixa severidade como "possível inconsistência".
+❌ Errado: corrigir "pra" para "para" ou "tá" para "está" em poesia marginal
+✅ Correto: preservar a grafia coloquial como escolha estilística
+📖 Exemplo real: Paulo Leminski, "Caprichos & Relaxos" — "tá na hora de ir pra casa / o corpo pede socorro" — preservar "tá" e "pra"
+Severidade: alta (não corrigir em contexto marginal)
+Categoria: ortografia
+
+## [PMS-12] Poesia marginal e slam — não corrigir ausência de pontuação
+Fonte: Ana Cristina Cesar; Cacaso; Chacal; slammers brasileiros
+Descrição: Tanto a poesia marginal quanto o slam operam frequentemente com ausência total ou seletiva de pontuação. A ausência de vírgula não é erro — é recurso para: (1) acelerar o ritmo de leitura/declamação; (2) sugerir fluxo de consciência; (3) criar ambiguidade sintática deliberada; (4) marcar oralidade (na fala não há vírgulas). Na poesia marginal, a ausência de ponto final no fim do poema sugere continuidade. No slam, a ausência de pontuação é preenchida pela entonação do performer.
+❌ Errado: adicionar pontuação ausente em poesia marginal ou slam
+✅ Correto: preservar a pontuação zero como recurso expressivo
+Severidade: alta (não corrigir)
+Categoria: pontuação
+
+## [PMS-13] Poesia marginal e slam — não corrigir maiúsculas/minúsculas
+Fonte: Ana Cristina Cesar; Paulo Leminski; slammers brasileiros
+Descrição: A poesia marginal frequentemente abole a maiúscula — inclusive no início de versos e em nomes próprios. Leminski escreve "noite sem sono / o cachorro late / um sonho sem dono" — tudo em minúscula. Ana Cristina Cesar alterna maiúsculas e minúsculas como marcador emocional. No slam, maiúsculas podem indicar intensidade vocal. Não padronizar.
+❌ Errado: colocar maiúscula no início de cada verso ou em nomes próprios
+✅ Correto: preservar o regime maiúscula/minúscula do poeta
+📖 Exemplo real: Ana Cristina Cesar, "A Teus Pés" — "não quero mais / o amor que não se assume" — sem maiúscula nem no início nem nome próprio "amor"
+Severidade: alta (não corrigir)
+Categoria: maiúsculas
+
+## [PMS-14] Detecção automática — como identificar poesia marginal/slam
+Fonte: análise empírica do corpus marginal e slack; critérios de Hollanda (1976)
+Descrição: O sistema deve detectar poesia marginal/slam por: (1) alta incidência de coloquialismo ortográfico (pra, tá, cê, num); (2) ausência de pontuação em mais de 50% dos versos; (3) versos com 1-3 palavras frequentes; (4) tom irônico ou confessional detectável por marcadores lexicais; (5) parênteses recorrentes; (6) estrutura de repetição/refrão (suspeita de slam); (7) temática de periferia, resistência, cotidiano urbano. Ao detectar 4+ critérios, classificar como "marginal/slam" e suspender correções gramaticais de ortografia e pontuação — manter apenas sugestões de tom (baixa severidade).
+❌ Errado: confundir falta de pontuação marginal com "erro gramatical"
+✅ Correto: ao detectar perfil marginal, aplicar apenas sugestões de tom (baixa severidade), nunca correções gramaticais
+Severidade: informativa (diretriz técnica)
+Categoria: detecção
+
+## [PMS-15] Limite da licença marginal — quando algo é erro, não estilo
+Fonte: análise comparativa de poesia marginal autêntica e imitação amadora
+Descrição: Nem todo desvio em poesia que parece marginal é estilo. Critérios para distinguir: (1) consistência — o coloquialismo é sistemático ou aparece em um único verso? Se apenas uma palavra está coloquial e o resto é formal, pode ser erro; (2) intencionalidade — o desvio serve ao efeito poético (tom, ritmo, sentido) ou parece esquecimento?; (3) inteligibilidade — o desvio compromete o sentido ou apenas desvia da norma?; (4) lastro — o recurso tem tradição na poesia marginal ou é invenção isolada sem função? Ex: "nós vai" em um poema coloquial consistente é estilo; "nós vai" em um poema formal é erro. Sinalizar amarelo no segundo caso.
+❌ Errado: aceitar qualquer desvio como "licença marginal" sem verificar consistência
+✅ Correto: verificar consistência do coloquialismo — se pontual e isolado, sinalizar como erro provável (amarelo)
+Severidade: media (diretriz de classificação)
+Categoria: detecção
+
+================================================================================
+REGRAS DE PERFORMANCE
+================================================================================
+
+## [PMS-16] Barra (/) como marcador de pausa em slam
+Fonte: slammers brasileiros; prática de competição
+Descrição: No slam e no spoken word, a barra (/) pode funcionar como marcador de pausa rítmica, substituindo vírgulas ou pontos finais. Cada barra indica uma pausa de respiração ou ênfase. A barra não é pontuação gramatical — é notação de performance. O sistema não deve corrigir barras para vírgulas.
+❌ Errado: substituir barras por vírgulas ou removê-las
+✅ Correto: preservar barras como notação de pausa performática
+Severidade: alta (não alterar)
+Categoria: pontuação
+
+## [PMS-17] Repetição como recurso — refrão e insistência
+Fonte: slam brasileiro; spoken word; poesia marginal
+Descrição: A repetição no slam e na poesia marginal não é defeito de estilo — é recurso rítmico e de ênfase. Tipos: (1) refrão — verso que retorna em intervalos regulares (como música); (2) anáfora insistente — mesma palavra começando versos consecutivos; (3) repetição com variação — palavra que retorna com sentido modificado; (4) eco — palavra repetida no mesmo verso. A repetição no slam tem função oral: o público decora o refrão e participa. Não "corrigir" repetições.
+❌ Errado: sugerir sinônimos para evitar repetição (a repetição é recurso)
+✅ Correto: preservar repetições como recurso rítmico e de ênfase
+Severidade: baixa (não sugerir substituição)
+Categoria: estilo
+
+================================================================================
+REGRAS DE TRANSIÇÃO — POESIA MARGINAL > SLAM
+================================================================================
+
+## [PMS-18] Diferenças entre poesia marginal e slam
+Fonte: Heloísa Buarque de Hollanda; Roberta Estrela D'Alva; análise comparativa
+Descrição: Poesia marginal (1970s) e slam (2008-) compartilham coloquialismo, oralidade e engajamento, mas diferem em: (1) suporte — marginal é livro artesanal, slam é performance ao vivo; (2) origem de classe — marginal é majoritariamente classe média intelectualizada (Ana Cristina Cesar, Cacaso), slam é periférico e negro; (3) política — marginal tem política indireta (censura), slam tem política explícita (denúncia); (4) autoria — marginal é individual, slam é coletivo (competição, sarau); (5) circulação — marginal em faculdades e bares, slam em espaços públicos e periferias; (6) texto — marginal é mais fragmentário, slam tem mais estrutura refrão-verso.
+❌ Errado: tratar poesia marginal e slam como idênticos (são linhagens diferentes)
+✅ Correto: reconhecer as especificidades de cada movimento — marginal é um movimento histórico, slam é prática viva
+Severidade: informativa
+Categoria: teoria — comparação

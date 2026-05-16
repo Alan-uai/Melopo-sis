@@ -1,0 +1,203 @@
+# FIGURAS DE LINGUAGEM E TROPOS POÉTICOS — NBR (Norma Brasileira para Revisão Poética)
+# Fonte: Aristóteles, "Retórica" e "Poética"; Quintiliano; Ezra Pound, "ABC da Literatura"; retórica clássica; Candido; Paulo Henriques Britto
+# Última atualização: 2026-05-16
+
+================================================================================
+FUNDAMENTOS
+================================================================================
+
+## [FIG-01] Função das figuras na poesia
+Fonte: Ezra Pound, "ABC da Literatura" (1934); Roman Jakobson; António Candido
+Descrição: As figuras de linguagem são o principal recurso de expressividade poética. Elas operam em três níveis: (1) figuras de som — a materialidade fónica da língua (aliteração, assonância, paronomásia); (2) figuras de palavra — deslocamento do sentido (metáfora, metonímia, sinestesia); (3) figuras de construção — manipulação da sintaxe (hipérbato, elipse, anáfora); (4) figuras de pensamento — efeitos sobre o significado (ironia, antítese, hipérbole). O poeta usa figuras para "carregar a linguagem ao máximo de sua intensidade" (Pound). O sistema de correção deve reconhecer figuras como recursos legítimos e não corrigi-las.
+❌ Errado: "corrigir" hipérbato como "ordem errada", ou metáfora como "sentido literal improvável"
+✅ Correto: reconhecer a figura como recurso expressivo
+Severidade: informativa
+Categoria: teoria
+
+================================================================================
+FIGURAS DE SOM
+================================================================================
+
+## [FIG-02] Aliteração — repetição de consoantes
+Fonte: tradição clássica; poesia simbolista; João Cabral de Melo Neto; Gregório de Matos
+Descrição: A aliteração é a repetição de sons consonantais no início ou interior de palavras próximas. Na poesia, a aliteração cria: (1) musicalidade — o verso "soa" como instrumento; (2) iconicidade sonora — o som imita o sentido (ex: /s/ repetido sugere sibilo, vento); (3) coesão sonora — os sons amarram o verso. Grandes aliteradores: João Cabral (consoantes oclusivas — /p/, /b/, /t/, /d/ — para efeito de dureza, aspereza), Gregório de Matos (aliterações satíricas). A aliteração não é erro — é recurso. O sistema não deve sugerir substituição de palavras para "evitar cacofonia" se a repetição for deliberada.
+❌ Errado: sugerir substituição de palavras aliterantes para "evitar repetição"
+✅ Correto: reconhecer aliteração como recurso expressivo
+📖 Exemplo real: João Cabral de Melo Neto, "O Cão Sem Plumas" — "A pele / do rio / de uma / cidade / de cão" — /k/ repetido cria aspereza, secura
+Severidade: baixa (recurso, não erro)
+Categoria: som
+
+## [FIG-03] Assonância — repetição de vogais
+Fonte: poesia simbolista; poesia medieval; poesia concreta
+Descrição: A assonância é a repetição de sons vocálicos em palavras próximas. A vogal repetida cria um campo sonoro que envolve o verso. Efeitos: /a/ — abertura, amplitude; /e/, /i/ — fineza, agudeza; /o/, /u/ — gravidade, melancolia. A assonância é a base da rima toante (especialmente na poesia contemporânea e concreta). Diferencia-se da aliteração por operar com vogais, não consoantes.
+❌ Errado: confundir assonância com "rima imperfeita" ou erro de rima
+✅ Correto: reconhecer assonância como recurso autônomo de sonoridade
+📖 Exemplo real: "O vento voa / o verso evapora" — repetição de /v/, /o/, /e/, /a/ — assonância + aliteração
+Severidade: baixa (recurso, não erro)
+Categoria: som
+
+## [FIG-04] Paronomásia — palavras de som semelhante e sentido diferente
+Fonte: Gregório de Matos; Paulo Leminski; poesia barroca
+Descrição: A paronomásia é a aproximação de palavras de som semelhante mas significado diferente (ex: "lente" / "dente", "tarde" / "carde", "brisa" / "prisa", "canto" / "quanto" — parónimos). A figura explora o equívoco sonoro para criar choque semântico. Gregório de Matos é mestre: joga com pares mínimos ("cantar" / "cantar" no sentido de "contar" e "cantar"). Leminski usa paronomásia como motor do poema. A paronomásia não é erro de grafia — é recurso.
+❌ Errado: sugerir que uma das palavras paronomásticas é "erro de ortografia"
+✅ Correto: reconhecer paronomásia como figura — a semelhança sonora é deliberada e produtiva
+📖 Exemplo real: Paulo Leminski, "Verdura" — "verde / verde / verde / tudo / verde / menos / o que / não se / vê" — o "vê" é paronomásia de "verde" (vê-de / verde), cria a tensão entre ver e não ver
+Severidade: baixa (recurso, não erro)
+Categoria: som
+
+## [FIG-05] Onomatopeia — palavra que imita som
+Fonte: poesia modernista; Mário de Andrade, "Pauliceia Desvairada"; poesia infantil; poesia concreta
+Descrição: A onomatopeia é a palavra que imita sons da natureza ou de objetos ("tique-taque", "zum-zum", "plash", "crash", "pum"). Na poesia, a onomatopeia pode ser: (1) palavra lexicalizada ("ping", "plash"); (2) criação nova para efeito específico; (3) série onomatopaica — sequência de sons sem palavra ("zum zum zum zum"). Mário de Andrade usou onomatopeias como ritmo urbano em "Pauliceia Desvairada". A onomatopeia não segue regras ortográficas — o som é primário, a grafia é secundária.
+❌ Errado: "corrigir" a grafia de uma onomatopeia para a forma ortográfica padrão
+✅ Correto: preservar a onomatopeia como grafada — o som dita a escrita
+Severidade: alta (não alterar)
+Categoria: som
+
+================================================================================
+FIGURAS DE PALAVRA (TROPOS)
+================================================================================
+
+## [FIG-06] Metáfora — transferência de sentido
+Fonte: Aristóteles, "Poética"; I. A. Richards; Paul Ricoeur; poesia brasileira
+Descrição: A metáfora é a figura central da linguagem poética. Opera por transferência de sentido: um termo é usado em lugar de outro com base em relação de semelhança. Estrutura: "A é B" (onde A é o tenor e B é o veículo). Tipos de metáfora: (1) implícita — sem conector ("a fogueira do amor"); (2) explícita — com conector ("o amor é fogueira"); (3) morta — lexicalizada ("a perna da mesa", "o céu da boca"); (4) viva — invenção poética única. A metáfora viva não deve ser "explicada" ou "corrigida" pelo sistema — ela é o poema. O sistema deve reconhecer metáfora como legítima, mesmo que semanticamente incomum.
+❌ Errado: corrigir metáforas como contradições lógicas (ex: "o silêncio é um animal")
+✅ Correto: reconhecer metáfora como operação poética central — não corrigir
+📖 Exemplo real: Manuel Bandeira, "O Bicho" — "o bicho era um homem" (metáfora que é o poema inteiro: um homem que come lixo é um bicho); Carlos Drummond de Andrade, "No Meio do Caminho" — "no meio do caminho tinha uma pedra" (a pedra é metáfora de tudo que obstrui)
+Severidade: alta (não alterar)
+Categoria: semântica
+
+## [FIG-07] Metonímia — substituição por contiguidade
+Fonte: retórica clássica; Roman Jakobson; poesia brasileira
+Descrição: A metonímia substitui um termo por outro com base em relação de contiguidade lógica, material ou conceitual. Relações comuns: (1) autor pela obra ("ler Drummond"); (2) continente pelo conteúdo ("beber um copo"); (3) instrumento pela ação ("viver da pena"); (4) abstrato pelo concreto ("a velhice" por "os velhos"); (5) efeito pela causa ("suor" por "trabalho"); (6) parte pelo todo (sinédoque — "velas" por "navios"). A metonímia não é erro semântico — é extensão legítima do sentido. Diferencia-se da metáfora (semelhança) pela relação de contiguidade (proximidade).
+❌ Errado: corrigir metonímia como "uso impreciso" da palavra
+✅ Correto: reconhecer metonímia como operação poética
+📖 Exemplo real: Ferreira Gullar, "Poema Sujo" — "a cidade / suja de mim / me sujo dela" — metonímia da contiguidade entre sujeito e espaço
+Severidade: informativa
+Categoria: semântica
+
+## [FIG-08] Sinestesia — fusão de sentidos
+Fonte: simbolismo; Cruz e Sousa; poesia modernista; sinestesia na neurociência
+Descrição: A sinestesia funde sensações de diferentes órgãos sensoriais: (1) audição + visão — "som azul", "grito amarelo"; (2) tato + audição — "voz áspera", "silêncio macio"; (3) olfato + visão — "cheiro azul"; (4) paladar + tato — "gosto aveludado". A sinestesia é central na poesia simbolista (Cruz e Sousa: "som claro", "luz que canta"). Na poesia contemporânea, é recurso corriqueiro. O sistema não deve corrigir sinestesias como "erro de concordância sensorial".
+❌ Errado: marcar "grito azul" como erro semântico
+✅ Correto: reconhecer sinestesia como figura
+📖 Exemplo real: Cruz e Sousa, "Antífona" — "Ó Formas alvas, brancas, Formas claras / De luares, de neves, de neblinas!" — visual (alvas, brancas) + tátil (neve) + atmosférico (neblinas) em fusão
+Severidade: alta (não alterar)
+Categoria: semântica
+
+## [FIG-09] Catacrese — metáfora morta lexicalizada
+Fonte: gramática tradicional; uso corrente
+Descrição: A catacrese é uma metáfora já incorporada ao léxico cotidiano, cujo sentido figurado já não é percebido como figura: "asa da xícara", "braço da cadeira", "dente do alho", "céu da boca", "cabeça do prego". A catacrese não é "erro" (quando lexicalizada) nem "criatividade" (quando cristalizada). O sistema deve distinguir catacrese lexicalizada (não marcar) de metáfora viva (preservar). Na dúvida, não corrigir.
+❌ Errado: marcar "asa da xícara" como erro de linguagem
+✅ Correto: reconhecer catacrese como metáfora já incorporada à língua
+Severidade: baixa
+Categoria: semântica
+
+================================================================================
+FIGURAS DE CONSTRUÇÃO (SINTAXE)
+================================================================================
+
+## [FIG-10] Hipérbato — inversão da ordem direta
+Fonte: poesia clássica; Camões; Gregório de Matos; poesia parnasiana; Olavo Bilac
+Descrição: O hipérbato é a inversão da ordem direta da frase (sujeito-verbo-objeto) por razões métricas, rítmicas ou de ênfase. Ex: "As armas e os barões assinalados / Que da ocidental praia lusitana" (Camões) — objeto antes do sujeito. Graus: (1) leve — adjunto deslocado ("Ontem, cheguei tarde"); (2) médio — objeto antes do sujeito; (3) extremo — oração intercalada, elementos distantes. O hipérbato é a figura mais clássica da licença poética. O sistema não deve "corrigir" a ordem das palavras para ordem direta.
+❌ Errado: reordenar versos para "corrigir" inversões poéticas
+✅ Correto: reconhecer hipérbato como figura clássica — a inversão serve à métrica, rima ou ênfase
+📖 Exemplo real: Olavo Bilac, "Via Láctea" — "Ora (direis) ouvir estrelas!" — hipérbato: verbo "ouvir" antes do sujeito implícito; a inversão cria a surpresa do verso
+Severidade: alta (recurso, não corrigir)
+Categoria: sintaxe
+
+## [FIG-11] Silepse — concordância por sentido, não por forma
+Fonte: gramática poética; linguística; poesia brasileira
+Descrição: A silepse é a concordância feita com a ideia, não com a forma gramatical. Tipos: (1) de gênero — "Vossa Excelência está cansado" (concorda com o sexo, não com o pronome feminino); (2) de número — "A multidão gritavam" (concorda com o sentido de "muitas pessoas"); (3) de pessoa — "Os brasileiros somos assim" (o sujeito gramatical é 3ª pessoa, mas o verbo concorda com 1ª pessoa do plural, incluindo o falante). Na poesia, a silepse é recurso de naturalidade e coloquialismo — não é erro de concordância.
+❌ Errado: "corrigir" silepse para concordância gramatical (ex: trocar "gritavam" por "gritava")
+✅ Correto: reconhecer silepse como figura de concordância ideológica
+📖 Exemplo real: "A gente vamos" em contexto coloquial — silepse de pessoa (o sentido é "nós vamos"); Carlos Drummond de Andrade — frequente uso de silepse em poemas
+Severidade: media (depende do contexto — se coloquial, preservar; se erudito, verificar)
+Categoria: sintaxe
+
+## [FIG-12] Elipse e zeugma — omissão de termos
+Fonte: gramática poética; retórica clássica; poesia brasileira
+Descrição: A elipse é a omissão de um termo facilmente subentendido: "Na sala, apenas o relógio" (elipse do verbo "havia"). O zeugma é um tipo específico de elipse — omissão de termo já expresso anteriormente: "Ele gosta de poesia; ela, de prosa" (omissão de "gosta"). Na poesia, a elipse acelera o ritmo e cria concisão. A omissão de verbo é particularmente comum. O sistema não deve "completar" as frases elípticas.
+❌ Errado: adicionar verbo onde o poeta omitiu deliberadamente
+✅ Correto: reconhecer elipse como figura de concisão poética
+📖 Exemplo real: Manuel Bandeira, "Poema Tirado de uma Notícia de Jornal" — "João Gostoso era carregador de feira e morava no morro da Babilônia / num barracão sem número" — sem verbo no segundo segmento (elipse)
+Severidade: media (não completar)
+Categoria: sintaxe
+
+## [FIG-13] Anáfora — repetição no início de versos
+Fonte: poesia lírica; Cecília Meireles; poesia bíblica; Drummond; Casimiro de Abreu
+Descrição: A anáfora é a repetição da mesma palavra ou expressão no início de versos consecutivos ou alternados. Funções: (1) ênfase — a palavra repetida ganha peso; (2) ritmo — a repetição cria pulsação; (3) coesão — os versos se amarram pela repetição; (4) obsessão — a repetição sugere fixação. A anáfora não é "redundância" — é um dos recursos rítmicos mais poderosos da poesia. Não substituir por sinônimos.
+❌ Errado: sugerir sinônimos para evitar a repetição anafórica
+✅ Correto: reconhecer anáfora como recurso rítmico e de ênfase
+📖 Exemplo real: Cecília Meireles, "Motivo" — "Eu canto porque o instante existe / e a minha vida está completa. / Não sou alegre nem sou triste: / sou poeta." — o "Eu" inicial e a repetição de "sou" são anafóricos
+Severidade: baixa (recurso, não corrigir)
+Categoria: sintaxe
+
+## [FIG-14] Polissíndeto e assíndeto — conjunções e sua ausência
+Fonte: retórica clássica; poesia modernista; João Cabral; Drummond
+Descrição: O polissíndeto é o uso repetido de conjunções coordenativas (geralmente "e") entre termos: "e andava e corria e voava". Efeito: sensação de acúmulo, fluxo sem fim, respiração ofegante. O assíndeto é a supressão de conjunções — termos separados apenas por vírgulas: "veio, viu, venceu". O assíndeto acelera o verso, cria concisão. João Cabral usa o assíndeto com frequência para efeito de objetividade. O sistema não deve "corrigir" nenhum dos dois.
+❌ Errado: substituir polissíndeto por vírgulas (perde o efeito de acúmulo)
+✅ Correto: reconhecer polissíndeto como recurso expressivo de fluxo e assíndeto como concisão
+📖 Exemplo real: João Cabral de Melo Neto, "Morte e Vida Severina" — "e não há meio / e não há meio / e não há meio" — polissíndeto que enfatiza a falta de saída
+Severidade: baixa (recurso, não corrigir)
+Categoria: sintaxe
+
+================================================================================
+FIGURAS DE PENSAMENTO
+================================================================================
+
+## [FIG-15] Antítese e paradoxo — oposição de ideias
+Fonte: poesia barroca; Gregório de Matos; Drummond; poesia conceitual
+Descrição: A antítese é a oposição entre duas ideias ou imagens: "céu/inferno", "amor/ódio", "vida/morte", "claro/escuro". O paradoxo é a antítese levada à contradição lógica aparente: "o amor é fogo que arde sem se ver" (Camões), "estou cego e vejo". Ambos criam tensão poética. O sistema não deve "resolver" o paradoxo ou "suavizar" a antítese.
+❌ Errado: apontar paradoxo como "contradição lógica" a ser corrigida
+✅ Correto: reconhecer antítese e paradoxo como figuras de tensão poética
+📖 Exemplo real: Camões, "Amor é fogo que arde sem se ver" — paradoxo da tradição petrarquista; cada verso contém uma contradição: "é ferida que dói e não se sente / é um contentamento descontente"
+Severidade: alta (recurso, não corrigir)
+Categoria: semântica
+
+## [FIG-16] Hipérbole — exagero expressivo
+Fonte: retórica clássica; Gregório de Matos; poesia satírica; Cordel
+Descrição: A hipérbole é o exagero deliberado para efeito expressivo: "já te esperei uma eternidade", "ri até chorar", "morri de rir". Na poesia, a hipérbole é frequente na sátira, no cordel, na poesia amorosa barroca. Difere do erro factual — é recurso de intensidade. O cordel é particularmente hipérbólico: "Era uma vez uma cobra / que media mil quilômetros / e engolia boi com chifre".
+❌ Errado: apontar hipérbole como exagero factual incorreto
+✅ Correto: reconhecer hipérbole como recurso de intensidade expressiva
+📖 Exemplo real: Leandro Gomes de Barros (cordel) — "A cobra grande do rio / media duzentas braças" — hipérbole típica do cordel, não erro
+Severidade: baixa (recurso, não corrigir)
+Categoria: semântica
+
+## [FIG-17] Prosopopeia (personificação) — atribuir vida ao inanimado
+Fonte: poesia romântica; poesia modernista; Manuel Bandeira; Vinícius de Moraes
+Descrição: A prosopopeia (ou personificação) atribui características humanas a seres inanimados, animais ou abstrações: "o sol acordou", "a tristeza caminha", "o vento sussurra", "a cidade chorou". A figura cria empatia e anima o mundo. É central na poesia romântica e modernista brasileira. Não é erro de linguagem — é projeção da subjetividade sobre o mundo.
+❌ Errado: apontar prosopopeia como "erro de atribuição"
+✅ Correto: reconhecer personificação como recurso lírico
+📖 Exemplo real: Manuel Bandeira, "O Rio" — "O rio / que vinha caindo / se espreguiça" — o rio personificado (espreguiçar é ação humana)
+Severidade: informativa
+Categoria: semântica
+
+## [FIG-18] Gradação (clímax)
+Fonte: retórica clássica; poesia brasileira
+Descrição: A gradação é a disposição de termos em ordem crescente (clímax) ou decrescente (anticlímax) de intensidade: "primeiro estranha-se, depois entranha-se" (Pessoa); "um coração, uma cabeça, um corpo, um caos". A gradação cria um arco de intensidade que conduz o leitor. Não é "redundância" — cada termo acrescenta intensidade.
+❌ Errado: apontar gradação como "repetição desnecessária"
+✅ Correto: reconhecer gradação como arco de intensidade
+📖 Exemplo real: Fernando Pessoa, "Autopsicografia" — "primeiro estranha-se, depois entranha-se" — gradação em dois tempos; o efeito está na progressão
+Severidade: baixa (recurso, não corrigir)
+Categoria: semântica
+
+## [FIG-19] Ironia — dizer o contrário do que se quer dizer
+Fonte: retórica clássica; poesia marginal; Gregório de Matos; Cacaso
+Descrição: A ironia consiste em dizer o oposto do que se quer significar, geralmente com intenção crítica ou humorística. Marcas textuais: tom deslocado, exagero que denuncia a falsidade, elogio que na verdade é crítica. A ironia na poesia brasileira é forte na tradição satírica (Gregório de Matos), modernista (Oswald de Andrade) e marginal (Cacaso). O sistema deve preservar a ironia — nunca "corrigir" o tom.
+❌ Errado: apontar ironia como "contradição" ou corrigi-la para tom direto
+✅ Correto: reconhecer ironia como figura — o sentido está no que não está dito
+📖 Exemplo real: Cacaso, "Poema" — "A poesia é uma questão / de vida ou morte. / De preferência morte." — ironia que desmente a afirmação anterior
+Severidade: informativa
+Categoria: semântica
+
+================================================================================
+REGRAS DE CLASSIFICAÇÃO E CORREÇÃO
+================================================================================
+
+## [FIG-20] Como o sistema deve tratar figuras de linguagem
+Fonte: análise do corpus poético brasileiro; diretrizes do sistema NBR
+Descrição: O sistema deve: (1) reconhecer figuras de linguagem como recursos legítimos — NUNCA corrigi-las; (2) distinguir figura de erro: se o desvio tem função expressiva (ênfase, ritmo, sonoridade, surpresa), é figura; se não tem função discernível, pode ser erro; (3) classificar figuras por categoria para registro: som, semântica, sintaxe, pensamento; (4) não sugerir substituição de palavras que fazem parte de figura; (5) exceção: se uma figura comprometer a inteligibilidade do poema sem ganho estético claro, sinalizar "baixa severidade" com sugestão opcional. Regra geral: em caso de dúvida entre figura e erro, classificar como figura.
+❌ Errado: "corrigir" figuras de linguagem como se fossem erros gramaticais ou semânticos
+✅ Correto: reconhecer a figura e preservar; registrar em log para análise humana
+Severidade: informativa (diretriz de classificação)
+Categoria: detecção

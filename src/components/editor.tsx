@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb } from "lucide-react";
+import { Copy, Feather, Info, Save, Trash2, Wand2, CheckCheck, Lightbulb, Image } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -27,7 +27,11 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/compon
 import { Checkbox } from "./ui/checkbox";
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
+import { PoemExportDialog } from "./poem-export-dialog";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { countPoeticSyllables } from "@/lib/poetic-forms";
+import { analyzeRhymeScheme } from "@/lib/rhyme-detector";
 
 interface EditorProps {
   text: string;
@@ -119,6 +123,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     { value: 'ode', label: 'Ode' },
     { value: 'verso-livre', label: 'Verso Livre' },
   ];
+  const isMobile = useIsMobile();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
 
@@ -199,43 +204,123 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   };
 
+  const fixedMetricStructures = new Set([
+    'soneto', 'haicai', 'cordel', 'redondilha', 'decassilabo', 'trova', 'oitava', 'decima'
+  ]);
+
   const editorContent = useMemo(() => {
+    const hasFixedMetric = fixedMetricStructures.has(textStructure);
+
+    const RHYME_COLORS = [
+      'hsl(var(--rhyme-color-0))', 'hsl(var(--rhyme-color-1))',
+      'hsl(var(--rhyme-color-2))', 'hsl(var(--rhyme-color-3))',
+      'hsl(var(--rhyme-color-4))', 'hsl(var(--rhyme-color-5))',
+    ];
+
+    let rhymeScheme: string | null = null;
+    if (rhyme) {
+      const analysis = analyzeRhymeScheme(text);
+      rhymeScheme = analysis.scheme || null;
+    }
+
+    const getRhymeColor = (lineIdx: number): string | null => {
+      if (!rhymeScheme || lineIdx >= rhymeScheme.length) return null;
+      const letter = rhymeScheme[lineIdx];
+      if (!letter || letter === ' ') return null;
+      const idx = letter.charCodeAt(0) - 'A'.charCodeAt(0);
+      return RHYME_COLORS[idx % RHYME_COLORS.length];
+    };
+
+    const renderSegment = (
+      segment: string, prefix: string, startLineIdx: number
+    ): { nodes: (string | React.ReactNode)[]; nextLine: number } => {
+      if (!segment) return { nodes: [], nextLine: startLineIdx };
+      const lines = segment.split('\n');
+      const nodes: (string | React.ReactNode)[] = [];
+      lines.forEach((line, j) => {
+        const lineIdx = startLineIdx + j;
+        if (j > 0) nodes.push('\n');
+
+        const rhymeColor = getRhymeColor(lineIdx);
+        if (rhymeColor && line.trim()) {
+          const rMatch = line.match(/^(.*\s)([\wáàâãéèêíïóôõöúçñü-]+)([^\w]*)$/u);
+          if (rMatch) {
+            nodes.push(rMatch[1]);
+            nodes.push(<span key={`rw-${prefix}-${j}`} style={{ color: rhymeColor }}>{rMatch[2]}</span>);
+            nodes.push(rMatch[3]);
+          } else {
+            nodes.push(line || '\u200B');
+          }
+        } else {
+          nodes.push(line || '\u200B');
+        }
+
+        if (hasFixedMetric && line.trim()) {
+          nodes.push(
+            <span key={`syl-${prefix}-${j}`} className="ml-2 text-muted-foreground/60 text-xs font-mono select-none">
+              [{countPoeticSyllables(line)}]
+            </span>
+          );
+        }
+      });
+      return { nodes, nextLine: startLineIdx + lines.length };
+    };
+
     if (!activeGrammarSuggestion) {
-      return text.replace(/\n/g, '\n\u200B') || '\u200B';
+      if (!text) return '\u200B';
+      return renderSegment(text, 'syl', 0).nodes;
     }
 
     const parts: (string | React.ReactNode)[] = [];
     const textToProcess = text;
-    let lastIndex = 0;
+    let currentLine = 0;
     const { originalText } = activeGrammarSuggestion;
 
-    const startIndex = textToProcess.indexOf(originalText, lastIndex);
+    const startIndex = textToProcess.indexOf(originalText);
 
     if (startIndex !== -1) {
-        if (startIndex > lastIndex) {
-            parts.push(textToProcess.substring(lastIndex, startIndex).replace(/\n/g, '\n\u200B'));
+      if (startIndex > 0) {
+        const before = textToProcess.substring(0, startIndex);
+        const r = renderSegment(before, 'bef', currentLine);
+        parts.push(...r.nodes);
+        currentLine = r.nextLine;
+      }
+
+      parts.push(
+        <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
+          <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
+            {originalText.replace(/\n/g, '\n\u200B')}
+          </span>
+        </PopoverAnchor>
+      );
+
+      const highlightLines = originalText.split('\n');
+      if (hasFixedMetric) {
+        const hlFirstLine = highlightLines[0];
+        if (hlFirstLine.trim()) {
+          parts.push(
+            <span key={`syl-h-${startIndex}`} className="ml-2 text-muted-foreground/60 text-xs font-mono select-none">
+              [{countPoeticSyllables(hlFirstLine)}]
+            </span>
+          );
         }
+      }
+      currentLine += highlightLines.length;
 
-        parts.push(
-            <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
-                <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
-                    {originalText.replace(/\n/g, '\n\u200B')}
-                </span>
-            </PopoverAnchor>
-        );
-        lastIndex = startIndex + originalText.length;
-    }
-
-    if (lastIndex < textToProcess.length) {
-        parts.push(textToProcess.substring(lastIndex).replace(/\n/g, '\n\u200B'));
+      const afterIndex = startIndex + originalText.length;
+      if (afterIndex < textToProcess.length) {
+        const after = textToProcess.substring(afterIndex);
+        const r = renderSegment(after, 'aft', currentLine);
+        parts.push(...r.nodes);
+      }
     }
 
     if (textToProcess === "") {
-        return '\u200B';
+      return '\u200B';
     }
 
     return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
-  }, [text, activeGrammarSuggestion]);
+  }, [text, activeGrammarSuggestion, textStructure, rhyme]);
 
   const isAnimationActive = animationState !== 'idle';
   const isFinishingBeam = animationState === 'finishing' && animationStage === 'beam';
@@ -279,6 +364,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                         <p className="text-sm">Copiar texto</p>
                     </PopoverContent>
                 </Popover>
+                <PoemExportDialog title={title} text={text} tone={tone} />
                 <Popover>
                     <PopoverTrigger asChild>
                         <Button variant="ghost" size="icon" onClick={onClear} disabled={!hasText}>
@@ -299,7 +385,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4 flex-1 flex flex-col">
-        <div className="grid grid-cols-2 gap-4">
+        <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-2"} gap-4`}>
            <div className="space-y-2">
             <Label htmlFor="structure-select">Estrutura do Texto</Label>
             <Select value={textStructure} onValueChange={(v) => onTextStructureChange(v as TextStructure)}>
@@ -419,7 +505,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                       onChange={handleTextareaChange}
                       onScroll={syncScroll}
                       placeholder="Escreva seu poema aqui..."
-                      className="col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0"
+                      className={`col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0 ${isMobile ? "min-h-[300px] pb-16" : ""}`}
                       aria-label="Editor de Poesia"
                   />
                   <div

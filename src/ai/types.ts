@@ -14,7 +14,7 @@ export type Suggestion = z.infer<typeof SuggestionSchema>;
 export const SuggestionInputSchema = z.object({
   text: z.string().describe('O texto completo do poema a ser analisado.'),
   tone: z.string().describe('O tom desejado para o poema (ex: Melancólico, Jubiloso).'),
-  structure: z.string().describe("A estrutura do texto: 'poema', 'poesia', 'soneto', 'haicai', 'cordel', 'redondilha', 'decassilabo', 'trova', 'oitava', 'decima', 'elegia', 'ode', 'verso-livre'."),
+  structure: z.string().describe("A estrutura do texto: 'poema', 'poesia', 'soneto', 'haicai', 'cordel', 'redondilha', 'decassilabo', 'trova', 'oitava', 'decima', 'elegia', 'ode', 'verso-livre', 'poesia-concreta-visual', 'poesia-marginal-slam', 'figuras-linguagem', 'revisao-poetica'."),
   rhyme: z.boolean().describe('Indica se o texto deve ter rima.'),
   suggestionType: z.enum(['all', 'grammar', 'tone']).describe("Define o tipo de sugestão a ser gerada."),
   excludedPhrases: z.array(z.string()).optional().describe('Uma lista de palavras ou frases que a IA deve ignorar e não tentar corrigir.'),
@@ -37,4 +37,4 @@ export const SuggestionOutputSchema = z.object({
 export type SuggestionOutput = z.infer<typeof SuggestionOutputSchema>;
 
 export type SuggestionMode = "gradual" | "final";
-export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo" | "trova" | "oitava" | "decima" | "elegia" | "ode" | "verso-livre";
+export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo" | "trova" | "oitava" | "decima" | "elegia" | "ode" | "verso-livre" | "poesia-concreta-visual" | "poesia-marginal-slam" | "figuras-linguagem" | "revisao-poetica";

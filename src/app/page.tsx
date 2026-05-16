@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
+import { useIsMobile } from "@/hooks/use-mobile";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
@@ -11,10 +12,13 @@ import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { collection, serverTimestamp, doc } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarItem, SidebarList, SidebarTrigger, SidebarMenu, SidebarMenuItem, SidebarMenuButton, SidebarProvider } from "@/components/ui/sidebar";
-import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2 } from "lucide-react";
+import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2, Search, ArrowUpDown, ArrowDownAZ } from "lucide-react";
 import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
 import {
   AlertDialog,
@@ -43,6 +47,22 @@ type Poem = {
 
 const GRADUAL_DEBOUNCE_MS = 800;
 
+const POEM_STRUCTURES: { value: string; label: string }[] = [
+  { value: 'poema', label: 'Poema' },
+  { value: 'poesia', label: 'Poesia' },
+  { value: 'soneto', label: 'Soneto' },
+  { value: 'haicai', label: 'Haicai' },
+  { value: 'cordel', label: 'Cordel' },
+  { value: 'redondilha', label: 'Redondilha' },
+  { value: 'decassilabo', label: 'Decassílabo' },
+  { value: 'trova', label: 'Trova / Quadra' },
+  { value: 'oitava', label: 'Oitava' },
+  { value: 'decima', label: 'Décima' },
+  { value: 'elegia', label: 'Elegia' },
+  { value: 'ode', label: 'Ode' },
+  { value: 'verso-livre', label: 'Verso Livre' },
+];
+
 export default function Home() {
   const [activePoem, setActivePoem] = useState<Poem | null>(null);
   const [text, setText] = useState<string>("");
@@ -59,6 +79,15 @@ export default function Home() {
 
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
+
+  const [pastStates, setPastStates] = useState<string[]>([]);
+  const [futureStates, setFutureStates] = useState<string[]>([]);
+  const MAX_UNDO = 50;
+
+  const [poemSearchQuery, setPoemSearchQuery] = useState("");
+  const [poemFilterStructure, setPoemFilterStructure] = useState("");
+  const [poemSortBy, setPoemSortBy] = useState<"updatedAt" | "title">("updatedAt");
+  const [poemSortOrder, setPoemSortOrder] = useState<"asc" | "desc">("desc");
 
   const { toast } = useToast();
   const editorRef = useRef<EditorRef>(null);
@@ -157,6 +186,8 @@ export default function Home() {
     setTone(poem.tone);
     setTextStructure(poem.structure);
     setRhyme(poem.rhyme);
+    setPastStates([]);
+    setFutureStates([]);
     resetSuggestions();
     toast({
       title: "Poema Carregado",
@@ -171,6 +202,8 @@ export default function Home() {
     setTone("Melancólico");
     setTextStructure("poema");
     setRhyme(false);
+    setPastStates([]);
+    setFutureStates([]);
     resetSuggestions();
     editorRef.current?.focus();
   };
@@ -280,6 +313,11 @@ export default function Home() {
   };
 
   const handleTextChange = (newText: string) => {
+    setPastStates(prev => {
+      const next = [...prev, text];
+      return next.length > MAX_UNDO ? next.slice(-MAX_UNDO) : next;
+    });
+    setFutureStates([]);
     setText(newText);
     resetSuggestions();
 
@@ -340,6 +378,24 @@ export default function Home() {
       description: "O conteúdo do editor foi apagado.",
     });
   };
+
+  const handleUndo = useCallback(() => {
+    if (pastStates.length === 0) return;
+    const prev = pastStates[pastStates.length - 1];
+    setPastStates(prev => prev.slice(0, -1));
+    setFutureStates(prev => [...prev, text]);
+    setText(prev);
+    resetSuggestions();
+  }, [pastStates, text]);
+
+  const handleRedo = useCallback(() => {
+    if (futureStates.length === 0) return;
+    const next = futureStates[futureStates.length - 1];
+    setFutureStates(prev => prev.slice(0, -1));
+    setPastStates(prev => [...prev, text]);
+    setText(next);
+    resetSuggestions();
+  }, [futureStates, text]);
 
   const handleSavePoem = async () => {
     if (!user || !poemsCollection) {
@@ -575,6 +631,78 @@ export default function Home() {
     setAppliedToneSuggestions(prev => prev.filter(s => s.originalText !== suggestionToUndo.originalText));
   }, []);
 
+  const keyHandlersRef = useRef({} as {
+    handleSavePoem: () => void;
+    handleUndo: () => void;
+    handleRedo: () => void;
+    handleCheckSpelling: () => void;
+    handleSuggestTone: () => void;
+    handleNewPoem: () => void;
+    handleCopy: () => void;
+  });
+  keyHandlersRef.current = {
+    handleSavePoem, handleUndo, handleRedo,
+    handleCheckSpelling, handleSuggestTone,
+    handleNewPoem, handleCopy,
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const h = keyHandlersRef.current;
+      const isMod = e.ctrlKey || e.metaKey;
+
+      if (isMod && e.key === 's') { e.preventDefault(); h.handleSavePoem(); return; }
+      if (isMod && !e.shiftKey && e.key === 'z') { e.preventDefault(); h.handleUndo(); return; }
+      if (isMod && e.shiftKey && e.key === 'z') { e.preventDefault(); h.handleRedo(); return; }
+      if (isMod && e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); h.handleCheckSpelling(); return; }
+      if (isMod && e.shiftKey && e.key === 'Enter') { e.preventDefault(); h.handleSuggestTone(); return; }
+      if (isMod && e.key === 'n') { e.preventDefault(); h.handleNewPoem(); return; }
+      if (isMod && e.shiftKey && (e.key === 'c' || e.key === 'C')) { e.preventDefault(); h.handleCopy(); return; }
+      if (e.key === 'Escape') {
+        resetSuggestions();
+        if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+        return;
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const isMobile = useIsMobile();
+  const totalSuggestionCount = grammarSuggestions.length + toneSuggestions.length;
+
+  const filteredPoems: Poem[] | undefined = useMemo(() => {
+    if (!poems) return undefined;
+    let result = [...poems];
+
+    if (poemSearchQuery.trim()) {
+      const q = poemSearchQuery.toLowerCase();
+      result = result.filter(p =>
+        (p.title || "").toLowerCase().includes(q) ||
+        (p.text || "").toLowerCase().includes(q)
+      );
+    }
+
+    if (poemFilterStructure) {
+      result = result.filter(p => p.structure === poemFilterStructure);
+    }
+
+    result.sort((a, b) => {
+      if (poemSortBy === "title") {
+        const cmp = (a.title || "").localeCompare(b.title || "");
+        return poemSortOrder === "asc" ? cmp : -cmp;
+      }
+      const dateA = a.updatedAt?.toDate?.() ?? new Date(0);
+      const dateB = b.updatedAt?.toDate?.() ?? new Date(0);
+      return poemSortOrder === "asc"
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    });
+
+    return result;
+  }, [poems, poemSearchQuery, poemFilterStructure, poemSortBy, poemSortOrder]);
+
   return (
     <SidebarProvider>
       <div className="flex h-full w-full">
@@ -587,9 +715,67 @@ export default function Home() {
                   <PlusCircle className="mr-2 h-4 w-4" />
                   Novo Poema
               </Button>
+              <div className="mt-3 space-y-2">
+                <div className="relative">
+                  <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                  <Input
+                    placeholder="Buscar poemas..."
+                    value={poemSearchQuery}
+                    onChange={(e) => setPoemSearchQuery(e.target.value)}
+                    className="pl-8 h-9 text-sm"
+                  />
+                </div>
+                <div className="flex gap-1.5">
+                  <Select value={poemFilterStructure} onValueChange={(v) => setPoemFilterStructure(v === "todas" ? "" : v)}>
+                    <SelectTrigger className="flex-1 h-8 text-xs">
+                      <SelectValue placeholder="Estrutura: Todas" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="todas">Todas</SelectItem>
+                      {POEM_STRUCTURES.map((s) => (
+                        <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <div className="flex gap-1">
+                    <Button
+                      variant={poemSortBy === "updatedAt" ? "secondary" : "ghost"}
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => {
+                        if (poemSortBy === "updatedAt") {
+                          setPoemSortOrder(prev => prev === "desc" ? "asc" : "desc");
+                        } else {
+                          setPoemSortBy("updatedAt");
+                          setPoemSortOrder("desc");
+                        }
+                      }}
+                      title="Ordenar por data"
+                    >
+                      <ArrowUpDown className="h-3.5 w-3.5" />
+                    </Button>
+                    <Button
+                      variant={poemSortBy === "title" ? "secondary" : "ghost"}
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => {
+                        if (poemSortBy === "title") {
+                          setPoemSortOrder(prev => prev === "asc" ? "desc" : "asc");
+                        } else {
+                          setPoemSortBy("title");
+                          setPoemSortOrder("asc");
+                        }
+                      }}
+                      title="Ordenar por nome"
+                    >
+                      <ArrowDownAZ className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
               <SidebarMenu className="mt-4">
               {isLoadingPoems && <p className="text-sm text-muted-foreground p-2">Carregando...</p>}
-              {!isLoadingPoems && poems?.map(poem => (
+              {!isLoadingPoems && filteredPoems?.map(poem => (
                   <SidebarMenuItem key={poem.id}>
                     <div className="flex items-center w-full gap-1">
                       <SidebarMenuButton
@@ -632,8 +818,10 @@ export default function Home() {
                     </div>
                   </SidebarMenuItem>
               ))}
-              {!isLoadingPoems && poems?.length === 0 && (
-                  <p className="text-sm text-muted-foreground p-2 text-center">Nenhum poema salvo.</p>
+              {!isLoadingPoems && (!filteredPoems || filteredPoems.length === 0) && (
+                  <p className="text-sm text-muted-foreground p-2 text-center">
+                    {poemSearchQuery || poemFilterStructure ? "Nenhum poema encontrado." : "Nenhum poema salvo."}
+                  </p>
               )}
               </SidebarMenu>
           </SidebarContent>
@@ -676,7 +864,7 @@ export default function Home() {
           </SidebarFooter>
         </Sidebar>
         <main className="flex-1 flex overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start w-full overflow-y-auto p-4">
+          <div className={`w-full overflow-y-auto p-4 ${isMobile ? "flex flex-col" : "grid grid-cols-1 lg:grid-cols-2 gap-4 items-start"}`}>
             <Editor
               ref={editorRef}
               text={text}
@@ -707,22 +895,52 @@ export default function Home() {
               onAcceptAllLowSeverity={handleAcceptAllLowSeverity}
               lowSeverityCount={lowSeverityCount}
             />
-            <SuggestionList
-              suggestions={
-                grammarSuggestions.length > 0
-                  ? grammarSuggestions
-                  : toneSuggestions
-              }
-              isLoading={isLoading}
-              onAccept={handleAccept}
-              onDismiss={handleDismiss}
-              onResuggest={handleResuggest}
-              onToggleExcludedPhrase={handleToggleExcludedPhrase}
-              excludedPhrasesMap={excludedPhrasesMap}
-              onSwapAlternative={handleSwapAlternative}
-              appliedToneSuggestions={appliedToneSuggestions}
-              onUndoAppliedTone={handleUndoAppliedTone}
-            />
+            {isMobile ? (
+              totalSuggestionCount > 0 && (
+                <Accordion type="single" collapsible className="mt-2">
+                  <AccordionItem value="suggestions">
+                    <AccordionTrigger className="text-sm font-medium py-3">
+                      Sugestões ({totalSuggestionCount})
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <SuggestionList
+                        suggestions={
+                          grammarSuggestions.length > 0
+                            ? grammarSuggestions
+                            : toneSuggestions
+                        }
+                        isLoading={isLoading}
+                        onAccept={handleAccept}
+                        onDismiss={handleDismiss}
+                        onResuggest={handleResuggest}
+                        onToggleExcludedPhrase={handleToggleExcludedPhrase}
+                        excludedPhrasesMap={excludedPhrasesMap}
+                        onSwapAlternative={handleSwapAlternative}
+                        appliedToneSuggestions={appliedToneSuggestions}
+                        onUndoAppliedTone={handleUndoAppliedTone}
+                      />
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              )
+            ) : (
+              <SuggestionList
+                suggestions={
+                  grammarSuggestions.length > 0
+                    ? grammarSuggestions
+                    : toneSuggestions
+                }
+                isLoading={isLoading}
+                onAccept={handleAccept}
+                onDismiss={handleDismiss}
+                onResuggest={handleResuggest}
+                onToggleExcludedPhrase={handleToggleExcludedPhrase}
+                excludedPhrasesMap={excludedPhrasesMap}
+                onSwapAlternative={handleSwapAlternative}
+                appliedToneSuggestions={appliedToneSuggestions}
+                onUndoAppliedTone={handleUndoAppliedTone}
+              />
+            )}
           </div>
         </main>
       </div>

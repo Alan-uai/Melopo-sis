@@ -1,0 +1,157 @@
+# PESQUISA — Poesia Marginal e Slam
+# Fontes consultadas para a elaboração das regras NBR
+
+## 1. POESIA MARGINAL — GERAÇÃO MIMEÓGRAFO
+
+### Contexto histórico
+- Década de 1970, Brasil em ditadura militar (1964-1985)
+- Censura generalizada — poetas desenvolvem linguagem indireta, elíptica
+- "Pós-utopia" — esgotamento dos projetos revolucionários (pós-1968)
+- Circuito editorial fechado e censurado → publicação independente (mimeógrafo)
+- Tiragens artesanais (100-300 exemplares), distribuição em bares, faculdades, portas de teatro
+- O termo "marginal" refere-se tanto à margem do circuito editorial quanto à margem do discurso
+
+### Heloísa Buarque de Hollanda e "26 Poetas Hoje"
+- Antologia fundamental publicada em 1976
+- Reúne 26 poetas da geração marginal
+- Hollanda define a poesia marginal como constelação de poetas que compartilham procedimentos editoriais e estéticos, não como escola com manifesto
+
+### Principais poetas
+- Ana Cristina Cesar (1952-1983) — figura central; poesia fragmentária, coloquial, intensiva em parênteses; "A Teus Pés" (1982) é obra canônica
+- Cacaso (Antonio Carlos de Brito, 1944-1987) — poeta, ensaísta; "Na Corda Bamba" (1978)
+- Chacal (Ricardo de Oliveira Duarte, 1951-) — "Muito Prazer" (1971), "Cabeçalho" (1977)
+- Francisco Alvim (1938-) — "Passatempo" (1978), "Elefante" (1979)
+- Paulo Leminski (1944-1989) — embora não exclusivamente marginal, transitou pela cena; "Caprichos & Relaxos" (1983)
+- Torquato Neto (1944-1972) — precursor, poeta e letrista
+- Waly Salomão (1943-2003) — precursor com "Me Segura Que Vou Dar um Troço" (1972)
+
+### Características formais documentadas
+1. Coloquialismo — dicção de conversa, tom baixo, ironia
+2. Verso livre — abandono de formas fixas, versos curtos (1-3 palavras frequentes)
+3. Fragmentação sintática — frases nominais, orações incompletas
+4. Ausência de pontuação — frases correm sem marcadores
+5. Ausência de maiúsculas — inclusive nomes próprios
+6. Enumeração caótica — listas de elementos disparatados
+7. Metalinguagem — o poema fala de si mesmo
+8. Parênteses como murmúrio — incidência alta de parênteses (especialmente em ACC)
+9. Citações em língua estrangeira — inglês principalmente (classe média carioca)
+10. Tom epistolar — poemas em forma de carta, bilhete, diário
+
+### Relação de parênteses em ACC
+- Os parênteses em Ana Cristina Cesar não são pontuação — são "câmaras de eco", voz interior, hesitação
+- Heloísa Buarque de Hollanda e Viviana Bosi analisam os parênteses como marca de gênero e de subjetividade
+- Exemplo: "(não quero mais)" em "Poema" — o parêntese repete mas desloca o sentido
+
+### Obras de referência
+- Ana Cristina Cesar, "A Teus Pés" (1982, edição póstuma ampliada: 1997)
+- Cacaso, "Lero-lero" (1981)
+- Chacal, "A Vida É Curta pra ser Pequena" (2001, antologia)
+- Francisco Alvim, "Passatempo" (1978)
+- Heloísa Buarque de Hollanda, "26 Poetas Hoje" (1976, reed. 2007)
+- Flora Süssekind, "Papéis Colados" (1993) — crítica sobre literatura marginal
+
+### Análise de Riaudel (2025)
+- Michel Riaudel, "Livro investiga as origens da poesia marginal de Ana Cristina Cesar" (Jornal da USP, 2025)
+- Traça panorama histórico de surgimento da poesia marginal
+- Torquato Neto e Waly Salomão identificados como precursores
+- Discute as principais características do estilo poético marginal
+
+## 2. SLAM POETRY
+
+### Origem internacional
+- Criado por Marc Kelly Smith em Chicago (1984)
+- Primeiro slam no Green Mill Jazz Club
+- Modelo de competição com júri popular
+- Expansão global nos anos 1990-2000
+
+### Slam no Brasil
+- 2008 — Roberta Estrela D'Alva traz o slam para o Brasil
+- Primeiro slam: ZAP! (Zona Autônoma da Palavra), em São Paulo
+- Núcleo Bartolomeu de Depoimentos — companhia que mistura teatro e hip hop
+- Expansão rápida: Slam do 13 (Santo Amaro), Slam da Guilhermina, Slam do Grito, Slam das Minas, etc.
+
+### Regras do slam
+- Autoria própria (o poeta declama texto próprio)
+- Máximo 3 minutos de apresentação
+- Sem objetos cénicos, figurino ou acompanhamento musical
+- Apenas corpo e voz como recursos
+- Júri popular escolhido na hora (5 jurados, notas de 0 a 10)
+- Competição em rodadas eliminatórias
+- Variação no Brasil: campeonatos regionais (Slam SP) e nacional (Slam BR)
+
+### Características textuais do slam
+- Partitura para performance — o texto escrito é guia para a voz
+- Pontuação expressiva: barras (/) para pausas, maiúsculas para intensidade
+- Versos curtos e respiráveis
+- Estrutura de refrão-verso (influência do hip-hop)
+- Repetição como recurso rítmico
+- Grafia fonética (tá, pra, num, cê)
+- Temática política e social (racismo, machismo, LGBTfobia, periferia)
+
+### Principais slammers brasileiros
+- Roberta Estrela D'Alva — fundadora do slam no Brasil
+- Mel Duarte — poeta e slammer, autora de "Negra Nua Crua" (2016)
+- Luz Ribeiro — slammer, temática LGBTQIA+
+- Bell Puã — slammer pernambucana, temática nordestina e racial
+- Luiza Romão — slammer, autora de "Também Guardamos Pedras Aqui" (2020)
+- Slam da Guilhermina — coletivo feminista de slam
+
+### Spoken word no Brasil
+- Saraus periféricos como base: Cooperifa (desde 2001, zona sul de SP)
+- Sarau do Binho (Campo Limpo, SP) — mais de 20 anos de atividade
+- Sarau da Brasa (Brasilândia, SP)
+- Sérgio Vaz — poeta e organizador da Cooperifa, autor de "Colecionador de Pedras" (2010)
+- Ferréz — escritor e poeta, ligado à literatura marginal periférica
+
+## 3. RELAÇÃO POESIA MARGINAL X SLAM
+
+### Semelhanças
+- Coloquialismo como regime estético
+- Oralidade e dicção de fala
+- Engajamento político (embora marginal seja mais indireto devido à censura)
+- Publicação/circulação alternativa (fora do circuito editorial tradicional)
+- Verso livre e fragmentação
+- Valorização da autenticidade sobre o formalismo
+
+### Diferenças
+| Aspecto | Poesia Marginal (1970s) | Slam (2008-) |
+|---------|------------------------|--------------|
+| Suporte | Livro artesanal (mimeógrafo) | Performance ao vivo |
+| Origem de classe | Média intelectualizada | Periférica, negra |
+| Política | Indireta (censura) | Explícita (denúncia) |
+| Autoria | Individual | Coletiva (competição) |
+| Circulação | Faculdades, bares | Espaços públicos, periferias |
+| Estrutura textual | Fragmentária, sem refrão | Refrão-verso, repetição |
+| Regras formais | Poema escrito | Performance + poema |
+
+## 4. IMPLICAÇÕES PARA CORREÇÃO
+
+### O que NÃO corrigir em poesia marginal e slam
+1. Grafia coloquial (pra, tá, cê, num, tô, vô, etc.)
+2. Ausência de pontuação (corre risco de minar a respiração do verso)
+3. Ausência de maiúsculas (inclusive nomes próprios)
+4. Fragmentação sintática (frases nominais, elipses)
+5. Repetição (anáfora, refrão, insistência)
+6. Parênteses recorrentes
+7. Barras como marcadores de pausa
+8. Onomatopeias e interjeições
+9. Citações em língua estrangeira
+10. Metalinguagem
+
+### O que sinalizar (baixa severidade)
+- Inconsistência de tom (se alterna coloquial/formal sem função aparente)
+- Clichês (se aparecerem mesmo em contexto marginal/slam)
+- Inconsistência de grafia coloquial (se um "pra" aparece isolado em poema formal)
+
+### Detecção automática
+Critérios para classificar como marginal/slam:
+1. ≥ 2 ocorrências de grafia coloquial (pra, tá, cê, num)
+2. Ausência de pontuação em > 50% dos versos
+3. Versos de 1-3 palavras frequentes (≥ 30% dos versos)
+4. Parênteses em ≥ 20% dos versos (suspeita de ACC/marginal)
+5. Estrutura de repetição/refrão (suspeita de slam)
+6. Presença de barras (/) como pausa
+7. Temática periférica/resistência (análise lexical)
+8. Tom irónico ou confessional detectável
+
+Se 4+ critérios: classificar como marginal/slam e suspender correções gramaticais de ortografia e pontuação. Manter apenas sugestões de tom com baixa severidade.

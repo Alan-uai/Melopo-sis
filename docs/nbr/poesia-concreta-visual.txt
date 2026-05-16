@@ -1,0 +1,150 @@
+# POESIA CONCRETA E VISUAL — NBR (Norma Brasileira para Revisão Poética)
+# Fonte: Concretismo brasileiro (Noigandres, 1952); poema-processo (Wlademir Dias-Pino, 1967); poesia visual contemporânea; neovanguarda
+# Última atualização: 2026-05-16
+
+================================================================================
+FUNDAMENTOS — POESIA CONCRETA
+================================================================================
+
+## [PCV-01] Verbivocovisualidade — a tríade concreta
+Fonte: Augusto de Campos; Décio Pignatari; Haroldo de Campos, "Teoria da Poesia Concreta" (1965)
+Descrição: A poesia concreta opera na integração indissociável de três dimensões: verbi (o sentido semântico da palavra), voco (a dimensão sonora) e visual (a dimensão gráfico-espacial). Nenhuma das três é acessória — são simultâneas e constitutivas. O poema concreto não tem verso nem discurso linear; é um campo relacional de funções. A leitura é não-linear, topológica: o olho percorre o espaço do poema em várias direções.
+❌ Errado: ler um poema concreto como se fosse prosa ou verso tradicional (ele não tem começo, meio e fim lineares)
+✅ Correto: o poema concreto é um campo — o leitor percorre o espaço visual em múltiplas direções, como quem olha um quadro
+📖 Exemplo real: Augusto de Campos, "Luxo" (1955) — as palavras LUXO e LIXO se repetem em malha visual; a leitura é simultânea, não sequencial; o sentido nasce do contraste gráfico entre as duas palavras
+Severidade: informativa
+Categoria: teoria — concreta
+
+## [PCV-02] Eliminação do verso como unidade
+Fonte: Noigandres; Mallarmé, "Un Coup de Dés" (1897); Ezra Pound
+Descrição: O poema concreto abole o verso como unidade rítmico-sintática. A palavra é o elemento mínimo — não o verso. Não há métrica, rima regular nem estrofação. A unidade do poema é o espaço visual total (a página como campo). O verso, quando aparece, é resíduo ou citação.
+❌ Errado: escandir sílabas poéticas em um poema concreto (métrica não se aplica)
+✅ Correto: analisar o poema concreto por sua estrutura espacial — densidade de palavras no espaço, direções de leitura, peso visual de cada elemento
+📖 Exemplo real: Augusto de Campos, "Poema Bomba" (1955) — a palavra "bomba" repetida; não há verso, há campo visual
+Severidade: alta (fora de escopo de métrica)
+Categoria: teoria — verso abolido
+
+## [PCV-03] Espaço branco como elemento constitutivo
+Fonte: Mallarmé, "Un Coup de Dés"; poesia concreta brasileira; design gráfico
+Descrição: Na poesia concreta, o espaço em branco da página não é fundo ou vazio — é elemento ativo da composição. O silêncio gráfico tem peso, direção e função. O branco pode: (1) isolar uma palavra para dar ênfase; (2) criar tensão entre palavras afastadas; (3) funcionar como pausa visual que substitui pontuação; (4) moldar a silhueta do poema. A distribuição do branco segue a lógica do design, não a da gramática.
+❌ Errado: preencher espaços brancos em um poema concreto (o branco é parte do poema)
+✅ Correto: preservar a distribuição espacial como elemento poético
+📖 Exemplo real: Augusto de Campos, "Mensagem" (Crisântemo, 1964) — a palavra MENSAGEM se desdobra no espaço da página; o branco entre as letras é constitutivo do sentido
+Severidade: alta (não alterar)
+Categoria: espaço
+
+## [PCV-04] Tipografia como conteúdo — a letra como imagem
+Fonte: Augusto de Campos; Décio Pignatari; design gráfico moderno; Futura, Helvetica
+Descrição: Na poesia concreta, a escolha tipográfica (fonte, corpo, peso, cor, kerning) é parte do conteúdo do poema — não é embalagem. A fonte comunica sentido: Futura (modernidade, geometria), Bodoni (elegância, contraste), tipos grotescos (aspereza, ruído). O tamanho da letra indica intensidade sonora ou importância visual. O itálico pode sugerir movimento. O negrito pode indicar choque ou ênfase estrutural. O design tipográfico é simultaneamente forma e mensagem.
+❌ Errado: padronizar a tipografia de um poema concreto (a fonte é escolha estética)
+✅ Correto: preservar a escolha tipográfica como elemento de sentido
+📖 Exemplo real: Augusto de Campos, "Viva Vaia" (1979) — uso de múltiplos corpos e pesos tipográficos para criar um campo de tensão entre "viva" e "vaia"; a tipografia é oposição visual
+Severidade: alta (não alterar)
+Categoria: tipografia
+
+## [PCV-05] Colagem e justaposição sem conectivos
+Fonte: Concretismo; Oswald de Andrade ("Memórias Sentimentais de João Miramar"); Ezra Pound
+Descrição: A poesia concreta opera por colagem — justaposição de palavras e fragmentos sem conectivos lógicos ou sintáticos. Não há artigos, preposições ou conjunções amarrando o discurso. Cada palavra ou sintagma é um bloco autônomo. A relação entre os blocos é espacial e visual, não gramatical. Isso aproxima o poema concreto da linguagem publicitária e do ideograma chinês (que os concretistas estudaram).
+❌ Errado: adicionar conectivos para "corrigir" a sintaxe (a ausência deles é estrutural)
+✅ Correto: reconhecer colagem como método compositivo da poesia concreta
+📖 Exemplo real: Décio Pignatari, "beba coca cola" (1957) — palavras justapostas sem conectivos; "beba coca cola / babe / cola / coca / cola caco / cola" — montagem por fragmentação sonora e visual
+Severidade: alta (não alterar)
+Categoria: sintaxe
+
+## [PCV-06] Neologismo, estrangeirismo e decomposição de palavras
+Fonte: Concretismo; Haroldo de Campos, "Galáxias"; Augusto de Campos, "Crisântemo"
+Descrição: O poema concreto cria neologismos por: (1) decomposição — "coca" + "cola" = "co-ca-co-la"; (2) aglutinação — "lixo" + "luxo" = "lixoluxo"; (3) justaposição — "bom" + "ba" = "bomba"; (4) hibridismo com estrangeirismos — "life" + "vida" (Augusto de Campos, "LIFE"). Palavras estrangeiras são incorporadas sem tradução. A decomposição revela camadas semânticas ocultas nas palavras.
+❌ Errado: corrigir "estrangeirismo" em poesia concreta (a incorporação de outras línguas é programática)
+✅ Correto: preservar neologismos e estrangeirismos como escolha estética
+📖 Exemplo real: Augusto de Campos, "Cidade" (1963) — "city / city / cidade / city / cité" — justaposição de línguas para mostrar a cidade global
+Severidade: alta (não alterar)
+Categoria: léxico
+
+================================================================================
+POEMA-PROCESSO
+================================================================================
+
+## [PCV-07] Poema-processo — abolição da palavra
+Fonte: Wlademir Dias-Pino; Grupo Processo (1967-1972); Álvaro de Sá, "Poema-processo"
+Descrição: O poema-processo (1967) radicaliza a poesia concreta: abole a palavra como suporte obrigatório. O poema pode ser diagrama, sequência fotográfica, gráfico, objeto, cor pura, signo não-verbal. O poema não é um objeto fechado — é um processo. O leitor não lê: opera, percorre, completa. O verso é abolido, a palavra é abolida. O que resta é pura visualidade e operação.
+❌ Errado: classificar poema-processo como "poema sem sentido" (o sentido está na operação, não na palavra)
+✅ Correto: reconhecer poema-processo como categoria autônoma — não aplicar regras de poesia verbal
+📖 Exemplo real: Wlademir Dias-Pino, "Poema-processo" (1967) — sequências de diagramas geométricos e fotográficos; não há uma palavra; o poema é o percurso visual
+Severidade: alta (fora de escopo)
+Categoria: teoria — processo
+
+## [PCV-08] Poema-processo — a página como suporte insuficiente
+Fonte: Wlademir Dias-Pino; Neovanguarda brasileira
+Descrição: O poema-processo frequentemente transborda da página: exige o espaço real (parede, chão, corpo, projeção) ou o tempo real (sequência fotográfica, animação). Livros de poeta-processo são objetos tridimensionais, não códices. O sistema de correção poética deve reconhecer que não se trata de um "poema para ser lido no papel" — é uma proposição espacial.
+❌ Errado: analisar métrica, rima ou gramática de um poema que existe fora da página
+✅ Correto: classificar como "arte visual proposicional" — fora de escopo de correção textual
+Severidade: alta (fora de escopo)
+Categoria: suporte
+
+================================================================================
+POESIA VISUAL CONTEMPORÂNEA
+================================================================================
+
+## [PCV-09] Poesia visual pós-concreta — anos 1980-2020
+Fonte: Arnaldo Antunes, "As Coisas" (1992); Paulo Leminski, "Caprichos & Relaxos" (1983); Lenora de Barros; Ricardo Aleixo
+Descrição: A poesia visual contemporânea incorpora a herança concreta mas a dilui em novas práticas: (1) poemas diagramáticos — o poema se organiza como gráfico, tabela ou mapa mental; (2) poemas-objeto — o texto é inscrito em objetos tridimensionais; (3) poemas-rua — intervenções urbanas com palavras no espaço público; (4) letrismo — a letra individual como motivo visual (Arnaldo Antunes). O verso pode reaparecer, mas subordinado à lógica visual.
+❌ Errado: aplicar métrica clássica a poema visual contemporâneo (a forma visual é primária)
+✅ Correto: analisar primeiro a estrutura visual, depois a verbal
+📖 Exemplo real: Arnaldo Antunes, "As Coisas" (1992) — poemas em que a disposição das palavras na página forma a imagem do objeto nomeado (ex: "lata" escrito em formato de lata)
+Severidade: media (fora de escopo de métrica/rima)
+Categoria: contemporânea
+
+## [PCV-10] Poesia digital — animação, hipertexto, interatividade
+Fonte: Augusto de Campos (clip-poemas); poesia cibernética; André Vallias; Alckmar Luiz dos Santos
+Descrição: A poesia digital acrescenta tempo e movimento à tríade verbivocovisual. Características: (1) animação tipográfica — letras que se movem, crescem, desaparecem; (2) hipertexto — leitura não-linear com links; (3) interatividade — o leitor clica, arrasta, digita para ativar camadas do poema; (4) poesia generativa — algoritmos que combinam palavras em tempo real. A "página" é a tela; o "espaço" é o tempo. Não há revisão gramatical possível — a palavra em movimento não é fixa.
+❌ Errado: corrigir ortografia em poema digital animado (a palavra pode se deformar intencionalmente)
+✅ Correto: reconhecer poesia digital como categoria à parte — fora de escopo de correção
+📖 Exemplo real: Augusto de Campos, "Sem Saída" (clip-poema, anos 2000) — palavras que se dissolvem na tela; o poema é animação, não texto fixo
+Severidade: alta (fora de escopo)
+Categoria: digital
+
+## [PCV-11] Poesia visual e pontuação icónica
+Fonte: Augusto de Campos; poesia concreta; Ferreira Gullar, "Poema Sujo"
+Descrição: Na poesia visual, a pontuação não tem função gramatical — tem função icónica (visual). Exemplos: (1) pontos são "olhos" num rosto desenhado com palavras; (2) travessões são linhas de separação espacial; (3) parênteses são molduras visuais; (4) dois-pontos são "portal" entre dois campos do poema; (5) reticências são rastros visuais de desaparecimento. A pontuação icónica não se corrige — desenha-se.
+❌ Errado: "corrigir" pontuação icónica para padrões gramaticais
+✅ Correto: preservar a função visual dos sinais de pontuação
+📖 Exemplo real: Augusto de Campos, "Olho por Olho" — o ponto final funciona como pupila de um olho desenhado com palavras
+Severidade: alta (não alterar)
+Categoria: pontuação
+
+## [PCV-12] Poesia visual — leitura não-linear e múltipla
+Fonte: Concretismo; teoria da poesia concreta; Ferreira Gullar, "Luta Corporal"
+Descrição: Um poema visual pode ser lido em múltiplas direções: da esquerda para a direita, de cima para baixo, do centro para a borda, em espiral, em zigue-zague. Não há uma única leitura correta. O sistema de correção não deve presumir que a leitura é linear (da primeira à última palavra). Não existe "fim do poema" no sentido tradicional.
+❌ Errado: presumir ordem linear de leitura em poema visual
+✅ Correto: reconhecer que o campo visual pode ser percorrido em múltiplas direções
+Severidade: informativa
+Categoria: leitura
+
+## [PCV-13] Poesia visual — maiúsculas como elemento gráfico
+Fonte: Augusto de Campos; E. E. Cummings; poesia concreta
+Descrição: Na poesia visual, maiúsculas e minúsculas não seguem regras ortográficas — são escolhas gráficas. A maiúscula pode indicar: (1) intensidade visual (a palavra "GRITA" em caixa alta); (2) hierarquia espacial (elementos em maiúscula no topo do campo visual como "título"); (3) tensão entre maiúscula e minúscula (contraste de peso). Cummings revolucionou o uso da minúscula inclusive em nomes próprios. Augusto de Campos usa a caixa alta como recurso de impacto.
+❌ Errado: "corrigir" para maiúscula inicial em nomes próprios em poesia visual
+✅ Correto: preservar o regime de maiúsculas/minúsculas como escolha gráfica
+📖 Exemplo real: Décio Pignatari, "beba coca cola" — tudo em minúscula, inclusive o nome próprio "coca cola"
+Severidade: alta (não alterar)
+Categoria: tipografia
+
+## [PCV-14] Poesia visual — antirregras fundamentais
+Fonte: Concretismo brasileiro; Neovanguarda
+Descrição: A poesia visual, por definição, opera fora das normas da poesia verbal tradicional. Não se aplicam: (1) métrica e escansão silábica; (2) rima (exceto como citação ou paródia); (3) estrofação regular; (4) sintaxe discursiva linear; (5) maiúscula no início de verso ou em nomes próprios; (6) pontuação gramatical; (7) ortografia normativa (a palavra pode ser decomposta, aglutinada, estrangeirizada); (8) coesão textual — o poema visual não precisa "fazer sentido" discursivo. O sistema deve detectar poesia visual automaticamente (disposição não-linear, uso intensivo de espaço branco, quebra de palavras, múltiplas direções de leitura) e aplicar severidade mínima ou zero para regras verbais.
+❌ Errado: aplicar qualquer regra de poesia verbal a poesia visual
+✅ Correto: reconhecer poesia visual como categoria autônoma — fora de escopo de correção gramatical, métrica e rima
+Severidade: informativa (diretriz de classificação)
+Categoria: antirregras
+
+================================================================================
+DETECÇÃO E CLASSIFICAÇÃO
+================================================================================
+
+## [PCV-15] Como detectar automaticamente poesia visual ou concreta
+Fonte: análise empírica do corpus da poesia brasileira; critérios formais do Concretismo
+Descrição: O sistema deve usar os seguintes critérios para detectar poesia visual: (1) uso intensivo de espaço branco — mais de 40% da linha vazia em múltiplos versos consecutivos; (2) palavras quebradas no meio sem hífen; (3) repetição da mesma palavra em posições variadas (campo, não verso); (4) ausência de pontuação associada a layout não-linear; (5) uso de tipografia variada no mesmo poema; (6) presença de símbolos gráficos não-textuais (setas, diagramas, molduras). Quando detectado, o sistema deve sinalizar "poesia visual detectada — regras de métrica e gramática suspensas".
+❌ Errado: classificar poesia visual como "verso livre com espaçamento estranho"
+✅ Correto: ao detectar 3+ critérios visuais, classificar como poesia visual e suspender correções verbais
+Severidade: informativa (diretriz técnica)
+Categoria: detecção

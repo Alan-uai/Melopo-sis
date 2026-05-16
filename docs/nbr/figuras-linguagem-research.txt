@@ -1,0 +1,176 @@
+# PESQUISA — Figuras de Linguagem e Tropos Poéticos
+# Fontes consultadas para a elaboração das regras NBR
+
+## 1. FUNDAMENTAÇÃO TEÓRICA
+
+### Fontes clássicas
+- Aristóteles, "Poética" (séc. IV a.C.) — definição de metáfora, tragédia, catarse; a poesia como mimese
+- Aristóteles, "Retórica" — classificação de figuras de pensamento e de palavra
+- Quintiliano, "Institutio Oratoria" (séc. I d.C.) — sistematização das figuras de retórica em 4 categorias: adição, omissão, ordem, substituição
+- Longino, "Do Sublime" (séc. I d.C.) — figuras como meio de alcançar o sublime
+
+### Fontes modernas
+- Ezra Pound, "ABC da Literatura" (1934) — divisão da poesia em fanopeia (imagem), logopeia (jogo de palavras), melopeia (música); "a poesia é a linguagem carregada ao máximo de sua intensidade"
+- Roman Jakobson, "Linguística e Poética" (1960) — a função poética da linguagem; metáfora (eixo paradigmático) e metonímia (eixo sintagmático)
+- I. A. Richards, "The Philosophy of Rhetoric" (1936) — teoria do tenor e veículo da metáfora
+- Paul Ricoeur, "A Metáfora Viva" (1975) — a metáfora como processo de invenção de sentido, não ornamento
+
+### Fontes brasileiras
+- António Candido, "O Estudo Analítico do Poema" — método de análise poética; figuras como procedimentos de expressividade
+- Olavo Bilac, "Poesia" (teoria da versificação) — figuras de construção (hipérbato, elipse)
+- Emílio Castilho, "Tratado de Versificação" — figuras de som e métrica
+- Said Ali, "Versificação Portuguesa" (1906) — sistema de escansão e figuras de linguagem na poesia portuguesa
+- Paulo Henriques Britto, ensaios sobre poesia e tradução — figuras na poesia contemporânea
+
+## 2. CLASSIFICAÇÃO DETALHADA
+
+### FIGURAS DE SOM
+Baseiam-se na materialidade fónica da língua (significante), não no significado.
+
+1. **Aliteração** — repetição de fonemas consonantais
+   - Efeito: iconicidade sonora (o som "imita" o sentido)
+   - Ex: João Cabral — consoantes oclusivas para efeito de dureza
+   - Ex: "O rato roeu a roupa do rei" — /r/ repetido sugere roer
+
+2. **Assonância** — repetição de fonemas vocálicos
+   - Efeito: campo sonoro contínuo, musicalidade difusa
+   - Subclassificação: vogais abertas (amplitude) vs fechadas (intimidade)
+
+3. **Paronomásia** — palavras de som semelhante e sentido diferente
+   - Efeito: choque semântico pela proximidade sonora
+   - Ex: "lenta" / "lenda", "canto" / "quanto"
+   - Gregório de Matos e Leminski são mestres
+
+4. **Onomatopeia** — palavra que imita som natural ou de objeto
+   - Distinção: lexicalizada (já no dicionário) vs criação poética nova
+   - Mário de Andrade em "Pauliceia Desvairada" — onomatopeias como ritmo urbano
+
+5. **Rima** (como figura de som) — repetição de sons no final do verso
+   - Rima consoante (todos os sons) vs rima toante (apenas vogais)
+   - Rima rica (classes diferentes) vs rima pobre (mesma classe)
+
+### FIGURAS DE PALAVRA (TROPOS)
+Operam por deslocamento de sentido (a palavra "vira" para outro significado).
+
+1. **Metáfora** — transferência por semelhança
+   - Estrutura: tenor (o que se diz) + veículo (com o que se compara)
+   - Metáfora morta (lexicalizada) vs metáfora viva (invenção poética)
+   - Ex: "o silêncio é um animal" — metáfora viva que associa incomunicabilidade à animalidade
+
+2. **Metonímia** — transferência por contiguidade
+   - Relações: autor/obra, continente/conteúdo, abstrato/concreto
+   - Ex: "ler Drummond" (autor pela obra), "beber um copo" (continente pelo conteúdo)
+
+3. **Sinédoque** — subtipo de metonímia: parte pelo todo (ou vice-versa)
+   - Ex: "velas" por "navios" (parte pelo todo)
+
+4. **Sinestesia** — fusão de sentidos sensoriais diferentes
+   - Ex: "som azul", "voz áspera", "grito amarelo"
+   - Central no Simbolismo (Cruz e Sousa)
+
+5. **Catacrese** — metáfora morta, já incorporada ao léxico
+   - Ex: "asa da xícara", "braço da cadeira", "dente do alho"
+   - Não é erro nem criatividade — é língua em uso
+
+6. **Comparação** — aproximação explícita (com "como", "qual", "tal", "feito")
+   - Difere da metáfora por usar conector explícito
+   - Ex: "seu olhar como dois passarinhos" (Leminski)
+
+### FIGURAS DE CONSTRUÇÃO (SINTAXE)
+Manipulam a ordem e a estrutura da frase.
+
+1. **Hipérbato** — inversão da ordem direta (SVO)
+   - Graus: leve, médio, extremo (sínquise)
+   - Blasón: "As armas e os barões assinalados" (Camões: objeto antes do verbo)
+   - Cuidado na revisão: inversão forçada sem justificativa métrica é vício, não figura
+
+2. **Silepse** — concordância por sentido, não por forma
+   - Gênero: "Vossa Excelência está cansado" (concorda com sexo)
+   - Número: "A multidão gritavam" (concorda com sentido plural)
+   - Pessoa: "Os brasileiros somos assim" (inclui o falante)
+
+3. **Elipse** — omissão de termo subentendido
+   - "Na sala, apenas o relógio" — elipse de verbo
+   - Efeito: concisão, aceleração do ritmo
+
+4. **Zeugma** — tipo específico de elipse (omissão de termo já expresso)
+   - "Ele gosta de poesia; ela, de prosa" — omissão de "gosta"
+
+5. **Anáfora** — repetição no início de versos
+   - Efeito: ênfase, ritmo, obsessão
+   - Cecília Meireles: "Eu canto porque o instante existe..."
+
+6. **Polissíndeto** — repetição de conjunções (geralmente "e")
+   - Efeito: fluxo, acúmulo, respiração ofegante
+   - João Cabral: "e não há meio / e não há meio / e não há meio"
+
+7. **Assíndeto** — supressão de conjunções (termos separados por vírgulas)
+   - Efeito: velocidade, concisão, impacto
+   - "veio, viu, venceu" (Júlio César, adaptado)
+
+8. **Pleonasmo** — repetição enfática de um termo
+   - Vicioso: "subir para cima" (redundância)
+   - Poético: "a mim me parece" (ênfase, recurso de coloquialidade)
+
+9. **Inversão** — qualquer alteração da ordem canônica
+
+### FIGURAS DE PENSAMENTO
+Operam sobre o significado global da frase ou do discurso.
+
+1. **Antítese** — oposição entre ideias ou imagens
+   - Ex: "céu/inferno", "amor/ódio", "vida/morte"
+   - Forte na poesia barroca (Gregório de Matos)
+
+2. **Paradoxo** — contradição lógica aparente
+   - Ex: "o amor é fogo que arde sem se ver" (Camões)
+   - Difere da antítese por ser uma contradição interna, não oposição externa
+
+3. **Ironia** — dizer o contrário do que se quer dizer
+   - Marcas: tom deslocado, exagero que denuncia falsidade
+   - Tradição satírica: Gregório de Matos, Oswald de Andrade, Cacaso
+
+4. **Hipérbole** — exagero expressivo
+   - Ex: "já te esperei uma eternidade", "morri de rir"
+   - Central no cordel e na sátira
+
+5. **Eufemismo** — suavização de termo desagradável
+   - Ex: "descansou" em vez de "morreu"
+   - Pode ser recurso de delicadeza ou eufemismo gasto
+
+6. **Gradação** — sequência em ordem crescente ou decrescente
+   - Ex: "primeiro estranha-se, depois entranha-se" (Pessoa)
+   - Efeito: arco de intensidade
+
+7. **Prosopopeia (personificação)** — atribuir ação humana a ser não humano
+   - Ex: "o sol acordou", "a cidade chorou"
+   - Cria empatia e anima o mundo
+
+8. **Apóstrofe** — invocação direta a alguém ou algo
+   - Ex: "Ó mar salgado, quanto do teu sal" (Pessoa)
+   - Forte na poesia épica e lírica
+
+9. **Retificação** — correção do que se acabou de dizer
+   - Ex: "não, não era bem isso" — figura de hesitação
+   - Comum em Ana Cristina Cesar e poesia moderna
+
+## 3. IMPLICAÇÕES PARA CORREÇÃO
+
+### Regras de ouro
+1. Metáforas e tropos não são "erros semânticos" — são o coração da poesia
+2. Hipérbatos não são "erros de ordem" — são figura clássica
+3. Anáforas e polissíndetos não são "redundâncias" — são recursos rítmicos
+4. Silepses não são "erros de concordância" — são concordância ideológica
+5. Onomatopeias não seguem ortografia padrão — seguem o som
+
+### Como distinguir figura de erro
+- Consistência: a figura é sistemática ou isolada?
+- Intencionalidade: serve ao efeito poético ou parece acidental?
+- Inteligibilidade: compromete o sentido ou desvia apenas da norma?
+- Lastro: tem tradição na poesia ou é invenção sem função?
+- Na dúvida entre figura e erro: classificar como figura
+
+### Categorias de severidade
+- Alta (nunca corrigir): metáfora viva, sinestesia, hipérbato clássico, prosopopeia, paradoxo
+- Média (verificar contexto): silepse, elipse, zeugma, hipérbole
+- Baixa (sugerir opcionalmente): anáfora, aliteração, assonância, paronomásia (se excessivas ou comprometendo legibilidade)
+- Informativa: apenas registrar a figura detectada para análise humana

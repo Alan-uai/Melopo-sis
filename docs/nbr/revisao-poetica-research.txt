@@ -1,0 +1,144 @@
+# PESQUISA — Revisão Poética e Auto-Revisão
+# Fontes consultadas para a elaboração das regras NBR
+
+## 1. FUNDAMENTAÇÃO TEÓRICA SOBRE REVISÃO POÉTICA
+
+### O ofício do poeta — inspiração e trabalho
+A ideia romântica do poeta como "gênio inspirado" que escreve de um jato é um mito do século XIX que prejudica poetas iniciantes. Grandes poetas brasileiros trabalham o poema como um artesão trabalha a matéria:
+
+- **Carlos Drummond de Andrade**: múltiplas versões de cada poema. O poema "No Meio do Caminho" passou por dezenas de revisões até atingir a forma definitiva de 7 palavras por verso. Drummond cortava implacavelmente adjetivos e adjetivos
+- **João Cabral de Melo Neto**: uma obsessão por precisão. Seus poemas são construídos como engenharia verbal — cada palavra no lugar exato, nenhuma a mais, nenhuma a menos. Em "A Educação pela Pedra", cada poema é uma demonstração de que "a poesia se faz com trabalho, não com inspiração"
+- **Manuel Bandeira**: revisou e republicou poemas ao longo de décadas, cortando, acrescentando, mudando de título. "Evocação do Recife" existe em versões distintas
+- **Paulo Leminski**: autor de dezenas de milhares de poemas, dos quais publicou apenas uma fração — rigoroso na seleção
+
+### Pound e a precisão
+Ezra Pound, em "ABC da Literatura", estabeleceu princípios que influenciaram profundamente a poesia brasileira (especialmente através dos concretistas, que o traduziram e o citaram):
+1. "A poesia é a linguagem carregada ao máximo de sua intensidade"
+2. "Go in fear of abstractions" (tema abstrações) — imagens concretas acima de conceitos abstratos
+3. "Mostre, não diga" — o poema mostra através de imagens, não explica através de conceitos
+4. Nenhuma palavra que não faça trabalho específico deve permanecer no poema
+
+### Paulo Henriques Britto
+Britto, poeta e tradutor brasileiro, tem uma série de reflexões (em grande parte inéditas, em ensaios e entrevistas) sobre técnica poética e revisão:
+- A diferença entre poesia "boa" e "ruim" é frequentemente de revisão, não de inspiração inicial
+- Poemas de iniciantes geralmente têm 30-40% de palavras que poderiam ser cortadas
+- O ouvido é melhor juiz que o olho — ler em voz alta resolve 90% dos problemas
+
+## 2. TÉCNICAS DE REVISÃO DOCUMENTADAS
+
+### Leituras em voz alta
+Técnica universalmente utilizada por poetas e recomendada por praticamente todas as oficinas de poesia. O que o ouvido detecta que o olho não vê:
+- Rima falsa (que funciona no papel mas não no som)
+- Ritmo travado (consoantes que criam "nós" na pronúncia)
+- Hiato indesejado (vogais iguais em encontro incômodo)
+- Pausa rítmica em lugar errado
+- Palavras desnecessárias (a leitura em voz alta as denuncia como "peso morto")
+- Tom artificial (versos que soam "poéticos demais" ou falsos)
+
+### Técnica do distanciamento
+- Deixar o poema descansar (24h a 2 semanas)
+- Ler em voz alta (técnica universal)
+- Ler de trás para frente (isola cada verso)
+- Mudar a tipografia (imprimir em fonte diferente)
+- Reler de olhos fechados (ouvir o ritmo)
+- Reler em lugar diferente daquele onde se escreveu
+
+### Técnica da poda
+- Cortar uma palavra por verso e verificar se perde algo essencial
+- Eliminar adjetivos genéricos (bom, mau, lindo, belo, triste, alegre)
+- Eliminar advérbios de intensidade (muito, extremamente, bastante, realmente)
+- Substituir verbos fracos (ser, estar, ter, haver, fazer, ficar) por verbos de ação
+- Verificar se cada palavra é insubstituível
+
+## 3. ERROS COMUNS NA POESIA INICIANTE
+
+Fontes: análise de antologias de iniciantes, prática de oficina literária, artigos sobre erros em poesia
+
+### Erros estruturais
+1. **Falta de unidade temática**: juntar temas díspares no mesmo poema
+2. **Título genérico ou explicativo**: "Poema sobre a vida", "Tristeza", "Amor" — títulos que já definem todo o conteúdo
+3. **Primeiro rascunho como versão final**: publicar sem revisão
+4. **Metapoesia explicativa**: "este poema fala sobre..." — o poema não deve se explicar
+
+### Erros de linguagem
+1. **Clichês poéticos**: "sol beija mar", "lágrimas de crocodilo", "asas da imaginação", "sonhos voam", "noite estrelada", "coração apaixonado"
+2. **Adjetivação excessiva**: 3-4 adjetivos por substantivo, todos genéricos
+3. **Inversão forçada**: hipérbato gratuito sem função métrica ou enfática
+4. **Rimas pobres e previsíveis**: todos os pares com a mesma terminação
+5. **Excesso de abstrações**: amor, dor, vida, morte, saudade, esperança, solidão — se o poema é feito só disso, é vago
+6. **Gramática incorreta não intencional**: confundir erro com licença poética
+
+### Erros de métrica e ritmo
+1. **Hipermétrico/hypométrico**: sílabas a mais ou a menos do que exige a forma fixa
+2. **Verso prosaico**: sem acentos rítmicos marcados, soa como prosa em linha curta
+3. **Enjambement sem função**: quebrar o verso no meio da frase sem efeito expressivo
+4. **Ritmo descolado do tom**: verso rápido para conteúdo meditativo, verso lento para ação
+
+### Erros de tom
+1. **Quebra de tom**: começar épico e terminar coloquial sem transição
+2. **Tom artificial**: versos que "imitam poesia" em vez de serem poesia
+3. **Pathos excessivo**: emoção "forçada" que não convence
+
+## 4. CHECKLIST DE REVISÃO (PARA POETAS)
+
+O checklist abaixo sintetiza as principais perguntas que um poeta deve fazer ao revisar seu poema. Cada pergunta corresponde a uma regra NBR.
+
+### Estrutura geral
+- [ ] O poema é sobre uma coisa só? (se não, cortar ou separar em 2 poemas)
+- [ ] O título é específico e necessário? (título genérico trocar ou cortar)
+- [ ] O poema me emociona ainda? (se não emociona o autor, não emociona ninguém)
+
+### Métrica e ritmo
+- [ ] Cada verso tem o número correto de sílabas? (forma fixa)
+- [ ] Os acentos tónicos estão nas posições esperadas? (padrão rítmico)
+- [ ] A leitura em voz alta flui sem tropeços?
+- [ ] Há pausas no lugar errado?
+- [ ] O verso cabe na minha respiração?
+
+### Rima
+- [ ] As rimas realmente rimam (ouvido, não olho)?
+- [ ] As rimas são surpreendentes ou previsíveis?
+- [ ] Evitei grampos como -dade, -ão, -ar entre substantivos?
+- [ ] Há rima excessivamente pobre? (trocar metade)
+
+### Palavras
+- [ ] Cada palavra é necessária? (tentar remover uma palavra por verso)
+- [ ] Há adjetivos genéricos? (cortar ou trocar por específico)
+- [ ] Há advérbios muleta (muito, extremamente, realmente)?
+- [ ] Há verbos fracos (ser, estar, ter, haver)?
+- [ ] Há abstrações em excesso? (substituir por imagens concretas)
+- [ ] Há clichês? (trocar por imagem original)
+
+### Figuras
+- [ ] As figuras de linguagem são recursos ou vícios?
+- [ ] Os hipérbatos são necessários ou forçados?
+- [ ] As metáforas são vivas ou mortas?
+
+### Tom
+- [ ] O tom é consistente do início ao fim?
+- [ ] O léxico combina com o tom?
+- [ ] Li em voz alta e o tom soa natural?
+
+## 5. REFERÊNCIAS
+
+### Livros e artigos
+- Ezra Pound, "ABC da Literatura" (1934, trad. bras. 1970) — princípios de precisão poética
+- António Candido, "O Estudo Analítico do Poema" (1996) — metodologia de análise poética
+- Paulo Henriques Britto, diversos ensaios sobre técnica poética e tradução
+- Emílio Castilho, "Tratado de Versificação" — métrica e ritmo no português
+- Said Ali, "Versificação Portuguesa" (1906) — clássico da versificação lusófona
+
+### Prática de oficina
+- Regras tiradas da experiência de mais de 20 anos de oficinas poéticas no Brasil (Cooperifa, Estação da Poesia, Recanto das Letras, oficinas de criação literária em universidades)
+- Blog "A Arte do Verso" (Substack) — sete dicas para quem quer escrever poemas (2025)
+- "Erros ao fazer poesia: 12 coisas que o escritor iniciante precisa evitar" (le.com.br, 2023)
+- "9 erros comuns de quem está começando a publicar poesia" (tomaaiumpoema.com.br, 2026)
+- "8 principais erros cometidos por poetas iniciantes" (Scribd)
+- "Erros mais comuns em poesia" (Recanto das Letras)
+
+### Poetas como referência de revisão
+- Carlos Drummond de Andrade — múltiplas versões, precisão, poda cirúrgica
+- João Cabral de Melo Neto — engenharia verbal, nenhuma palavra extra
+- Manuel Bandeira — revisão e reescrita ao longo da vida
+- Paulo Leminski — produção intensa, rigor na seleção para publicação
+- Ana Cristina Cesar — fragmentação deliberada (não é descuido)

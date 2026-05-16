@@ -1,0 +1,185 @@
+# REVISÃO POÉTICA — NBR (Norma Brasileira para Revisão Poética)
+# Fonte: Paulo Henriques Britto, "Para uma Teoria da Revisão Poética" (inédito); Ezra Pound, "ABC da Literatura"; prática de oficina literária brasileira; Candido, "O Estudo Analítico do Poema"
+# Última atualização: 2026-05-16
+
+================================================================================
+FUNDAMENTOS DA AUTO-REVISÃO
+================================================================================
+
+## [REV-01] Por que revisar o poema — a diferença entre inspiração e ofício
+Fonte: Paulo Henriques Britto; Ezra Pound, "ABC da Literatura"; João Cabral de Melo Neto, "A Educação pela Pedra"
+Descrição: A revisão poética é o que separa o poeta iniciante do poeta maduro. Nenhum grande poeta brasileiro publicou o primeiro rascunho. Drummond reescrevia obsessivamente. Cabral é conhecido por sua precisão cirúrgica — "o poema não é fruto da inspiração, é construção, edifício de palavras". A revisão não é "desmanchar" o poema — é levá-lo à sua forma mais precisa. O poeta iniciante frequentemente confunde "inspiração" com liberação de emoções em texto. A revisão ensina que a emoção poética não está na quantidade de palavras — está na precisão de cada palavra.
+❌ Errado: publicar o primeiro rascunho — a poesia é ofício, não desabafo; o primeiro impulso raramente é o melhor
+✅ Correto: revisar como parte do processo criativo; um poema nunca está "pronto" — está "pronto o suficiente para ser mostrado"
+📖 Exemplo real: Carlos Drummond de Andrade — poemas com 5-10 versões registradas; cada verso ganhou peso por eliminação de excessos
+Severidade: informativa
+Categoria: fundamentos
+
+## [REV-02] Distanciamento — como ler o próprio poema com olhos de estranho
+Fonte: prática de oficina literária; Paulo Henriques Britto; Ezra Pound
+Descrição: O poeta precisa de distanciamento (estranhamento) para revisar o próprio poema. Técnicas: (1) deixar o poema "descansar" por dias ou semanas antes de reler; (2) ler em voz alta — o ouvido percebe o que o olho não vê (rima forçada, ritmo quebrado, falta de respiração, palavra desnecessária); (3) ler o poema de trás para frente — isola cada verso de seu contexto; (4) mudar a tipografia — imprimir em fonte diferente ajuda a ver o poema como outro texto; (5) reler em ambiente diferente (na rua, no café, no quintal). O sistema de correção pode cumprir parte da função de "leitor estranho" — oferecer a visão de alguém que não está envolvido emocionalmente no texto.
+❌ Errado: revisar imediatamente após escrever (o poeta ainda está "dentro" do poema)
+✅ Correto: criar intervalo mínimo de 24 horas entre escrever e revisar; ler em voz alta antes de qualquer correção
+Severidade: informativa (diretriz)
+Categoria: técnica
+
+================================================================================
+CHECKLIST DE REVISÃO — LEITURA EM VOZ ALTA
+================================================================================
+
+## [REV-03] Leitura em voz alta — detector universal de problemas
+Fonte: Pound; Paulo Henriques Britto; prática de oficina literária
+Descrição: A leitura em voz alta é o instrumento mais poderoso de revisão poética. O ouvido detecta: (1) pausas no lugar errado — se o leitor "tropeça" ao ler, há problema de ritmo ou sintaxe; (2) respiração — se o verso é longo demais para ser dito em uma respiração, precisa ser cortado; (3) rima forçada — a rima que funciona no papel soa falsa em voz alta; (4) palavras que se chocam — consoantes que criam trava na boca; (5) tom artificial — se soa "poético demais", não é natural. Regra: se trava ao ler em voz alta, reescreva. O sistema deve sugerir leitura em voz alta como primeiro passo de revisão.
+❌ Errado: confiar apenas na revisão visual (o olho é mais tolerante que o ouvido)
+✅ Correto: ler em voz alta, pausadamente; marcar com lápis cada ponto de hesitação ou desconforto
+Severidade: informativa (diretriz prática)
+Categoria: técnica
+
+## [REV-04] Poda — eliminar palavras desnecessárias
+Fonte: Pound, "ABC da Literatura" — "a poesia é a linguagem carregada ao máximo de sua intensidade"; João Cabral; Drummond
+Descrição: A primeira regra da revisão poética é eliminar toda palavra que não faça trabalho específico. Cada palavra deve ser necessária — não decorativa. Regras de poda: (1) adjetivos — dois terços dos adjetivos em um primeiro rascunho podem ser cortados. Perguntar: o substantivo já carrega essa qualidade?; (2) advérbios — "muito", "extremamente", "totalmente" são geralmente muletas. O verbo deve bastar; (3) artigos — podem ser eliminados em muitos contextos poéticos para ganhar concisão; (4) preposições — "de", "em", "para" podem frequentemente ser substituídas por justaposição direta; (5) verbos de ligação — "ser", "estar", "parecer" são fracos — substituir por verbos de ação sempre que possível; (6) metapoesia explicativa — "este poema fala sobre..." — cortar; o poema não deve se explicar.
+❌ Errado: manter adjetivo porque "soa bonito" (o adjetivo precisa trazer informação nova, não embelezar)
+✅ Correto: tentar eliminar uma palavra por verso; se o sentido não mudar, a palavra era desnecessária
+📖 Exemplo real: Drummond, "No Meio do Caminho" — 7 palavras por verso; cada palavra é estrutural. Como seria com enchimentos: "No meio do meu longo caminho / tinha uma grande pedra muito dura" — perdeu toda a força
+Severidade: informativa (diretriz)
+Categoria: poda
+
+================================================================================
+CHECKLIST — MÉTRICA E RITMO
+================================================================================
+
+## [REV-05] Métrica — verificar contagem silábica na forma fixa
+Fonte: Castilho; Said Ali; Candido; teoria da versificação
+Descrição: Em formas métricas fixas (soneto, redondilha, decassílabo, etc.), a contagem silábica deve ser precisa. Cada verso deve ter o número correto de sílabas poéticas (contando até a última sílaba tónica). Erros comuns: (1) verso hipermétrico — sílabas a mais; (2) verso hipométrico — sílabas a menos; (3) sinérese mal aplicada — duas vogais que deveriam ser contadas como uma só não foram; (4) diérese forçada — separação de ditongo para ganhar sílaba. Corrigir com: (1) uso de sinérese ("poesia" = 2 sílabas em vez de 3); (2) uso de diérese; (3) substituição de palavra por sinónimo mais curto/longo; (4) inversão sintática. O sistema deve verificar métrica para formas fixas e sinalizar desvios.
+❌ Errado: ignorar métrica em forma fixa (soneto sem métrica é prosa quebrada em versos)
+✅ Correto: verificar verso a verso; sinalizar cada desvio com a sílaba problemática
+Severidade: depende da forma (alta para soneto, baixa para verso livre)
+Categoria: métrica
+
+## [REV-06] Ritmo — acentos e respiração do verso
+Fonte: Candido, "O Estudo Analítico do Poema"; teoria da versificação
+Descrição: O ritmo poético é o padrão de acentos tónicos no verso. Cada tipo de verso tem um padrão rítmico esperado: decassílabo heróico (acentos na 6ª e 10ª), decassílabo sáfico (4ª, 8ª, 10ª), alexandrino (6ª e 12ª). Na revisão: (1) verificar se os acentos principais estão nas posições esperadas; (2) verificar se o verso não cria "galope" — acentos que geram ritmo indesejado; (3) verificar se o ritmo do verso corresponde ao tom do poema — ritmo rápido para ação, lento para meditação; (4) verificar se o verso não é "prosaico" — sem acentos marcados, soa como prosa. Sugerir ajustes de posição das palavras tónicas.
+❌ Errado: ignorar acento tónico; métrica não é só número de sílabas
+✅ Correto: marcar as tónicas de cada verso; verificar se coincidem com o padrão esperado
+Severidade: media
+Categoria: ritmo
+
+================================================================================
+CHECKLIST — RIMA
+================================================================================
+
+## [REV-07] Rima — verificar qualidade das rimas em formas rimadas
+Fonte: Said Ali; Castilho; análise de rima na poesia brasileira
+Descrição: Em poemas rimados (soneto, trova, cordel), a rima deve ser verificada em três níveis: (1) sonora — as palavras realmente rimam? Olho não serve, ouvido decide. "Amor" e "clamor" (sim). "Amor" e "autor" (não — /or/ vs /or/ são iguais? Depende da pronúncia: no português brasileiro, "amor" é [a'moɾ], "autor" é [aw'toɾ] — a consoante final é a mesma, mas a vogal anterior difere); (2) rima rica vs pobre — rima pobre (mesma classe gramatical: "amor"/"dor" — ambos substantivos) é aceitável mas pouco inventiva; rima rica (classes diferentes: "amor"/"for" — substantivo + verbo) é mais valorizada; (3) rima toante — só vogais (coração/coração, vento/sentem). Verificar também rimas internas (rima entre palavras dentro do mesmo verso) e rimas eco (repetição da mesma palavra no final de versos — recurso, não erro, mas geralmente evitado).
+❌ Errado: considerar "olho"/"solo" como rima (as terminações são diferentes)
+✅ Correto: ler em voz alta para verificar rima; o ouvido é o juiz
+Severidade: media (depende da forma — alta para soneto, baixa para verso livre)
+Categoria: rima
+
+## [REV-08] Cuidado com rimas falsas e aproximações
+Fonte: Castilho; gramática poética; Said Ali
+Descrição: Rimas falsas são palavras que parecem rimar no papel mas não rimam na pronúncia real do português brasileiro: (1) "vela" / "canela" — o /a/ final é igual, mas o /e/ tónico é diferente (/ɛ/ vs /e/); (2) "corda" / "horda" — /o/ vs /ɔ/; (3) "caixa" / "baixa" — /aj/ vs /aj/ — ok, mas "caixa" / "faca" — não; (4) "canto" / "quanto" — ok (paronomásia). Rimas consonantais exigem que o som da consoante final seja o mesmo (ou muito próximo: /s/ pode rimar com /z/). Em formas populares (cordel, trova, repente), a rima é mais flexível (admite "cora"/"hora" com /a/ aberto e fechado). O sistema deve considerar a pronúncia do português brasileiro contemporâneo.
+❌ Errado: considerar rima de "cidade" com "falsidade" (sufixo -dade como rima é pobre e previsível)
+✅ Correto: verificar a qualidade fonética da rima; considerar grampo "dade" como rima pobre a evitar
+Severidade: media
+Categoria: rima
+
+================================================================================
+CHECKLIST — COESÃO E COERÊNCIA
+================================================================================
+
+## [REV-09] Unidade temática — o poema é sobre uma coisa só?
+Fonte: Candido; Pound; prática de oficina literária
+Descrição: Um poema precisa de unidade — não precisa ser sobre "um" tema (pode ser sobre uma sensação, um instante, uma imagem), mas não pode ser sobre três temas diferentes em três estrofes sem conexão. Na revisão: (1) extrair o "assunto" de cada estrofe; (2) verificar se todos os assuntos convergem; (3) cortar tudo que não convergir (guardar para outro poema); (4) verificar se há elementos contraditórios não intencionais (ex: manhã de luz / lua cheia — não podem coexistir); (5) verificar se o título corresponde ao conteúdo. Um desvio temático intencional (montagem, colagem) deve ser consistente, não acidental.
+❌ Errado: juntar dois poemas incompletos em um só porque ambos "não renderam"
+✅ Correto: cada poema defende uma imagem central; se a imagem se desvia, cortar ou fazer outro poema
+Severidade: media
+Categoria: coesão
+
+================================================================================
+CHECKLIST — TOM
+================================================================================
+
+## [REV-10] Consistência de tom — o poema não pode mudar de voz no meio
+Fonte: Pound; Candido; prática de oficina
+Descrição: O tom é a "voz" do poema — a atitude do poeta em relação ao assunto. Na revisão: (1) verificar se o tom é consistente do início ao fim — não pode começar épico e terminar coloquial, a menos que a mudança seja intencional e sinalizada; (2) identificar "quebras de tom" — uma palavra solene em meio a um tom coloquial (ou vice-versa); (3) verificar se o tom combina com o assunto — tragédia em tom de piada é possível (ironia trágica), mas deve ser deliberada; (4) conferir se adjetivos e advérbios estão no tom certo — "tristonho" vs "melancólico" (coloquial vs erudito); (5) ler em voz alta para ouvir o tom.
+❌ Errado: misturar "caralho" e "venturas" no mesmo poema sem justificativa de tom
+✅ Correto: manter coerência lexical — o vocabulário deve ser consistente com o tom
+Severidade: media
+Categoria: tom
+
+================================================================================
+CHECKLIST — PONTUAÇÃO
+================================================================================
+
+## [REV-11] Pontuação — cada pausa tem função
+Fonte: pontuacao-poetica.txt (NBR PON-01 a PON-25); prática de versificação
+Descrição: Na revisão da pontuação, verificar: (1) cada vírgula corresponde a uma pausa de leitura necessária? Se não, remover; (2) a pontuação está a serviço do ritmo, não da gramática? Vírgula antes de "e" pode ser mantida se a pausa for desejada; (3) o ponto final no fim de cada verso ou só no fim da estrofe? Ambos são possíveis, mas devem ser consistentes; (4) travessões e parênteses — usar com moderação; excesso fragmenta o poema; (5) o enjambement está sinalizado ou não? A ausência de pontuação no fim do verso enjambado acelera a leitura; a presença de vírgula no fim do verso enjambado cria hesitação. O sistema deve verificar se a pontuação segue um sistema coerente.
+❌ Errado: pontuar o poema como se fosse prosa (cada pausa gramatical não é necessariamente uma pausa poética)
+✅ Correto: ler em voz alta e marcar as pausas naturais; elas devem corresponder à pontuação
+Severidade: media
+Categoria: pontuação
+
+================================================================================
+VÍCIOS COMUNS NA POESIA INICIANTE
+================================================================================
+
+## [REV-12] Clichê poético — evitar imagens gastas
+Fonte: prática de oficina literária; Candido; Pound
+Descrição: Clichês poéticos são imagens que já perderam o poder expressivo de tão usadas. Exemplos comuns na poesia iniciante brasileira: (1) "o sol beija o mar" — aposentem esta imagem; (2) "coração apaixonado" — redundante; (3) "noite estrelada" — descrição genérica; (4) "lágrimas de crocodilo" — clichê lexicalizado; (5) "a vida é um sopro" — já foi metáfora, hoje é lugar-comum; (6) "sonhos voam" — previsível; (7) "asas da imaginação" — evitar; (8) "saudade aperta" — fraco. Substituir por imagem concreta, específica, observada. Pound: "mostre, não diga". Em vez de "a saudade aperta", mostrar a ação concreta da ausência.
+❌ Errado: "seu olhar era tão lindo como a lua cheia" (comparação gasta, imprecisa, previsível)
+✅ Correto: buscar a imagem específica — "seus olhos eram dois passarinhos acordados" (Leminski) — surpreendente, concreta
+Severidade: media
+Categoria: clichê
+
+## [REV-13] Adjetivação excessiva — o adjetivo que não acrescenta
+Fonte: Pound; Drummond; prática de oficina
+Descrição: O excesso de adjetivos é o vício mais comum na poesia iniciante. Cada adjetivo deve: (1) acrescentar informação que o substantivo não carrega sozinho; (2) ser específico, não genérico ("enferrujado" em vez de "velho", "rasgado" em vez de "estragado"); (3) surpreender, não confirmar ("céu alaranjado" em vez de "céu azul"). Na revisão: apontar todos os adjetivos do poema e perguntar qual sua função. Adjetivos que apenas "embelezam" — cortar. Adjetivos que tornam a imagem mais nítida — manter. Limite sugerido: no máximo um adjetivo por verso, em média.
+❌ Errado: "linda flor perfumada, doce e colorida" (4 adjetivos para flor — todos genéricos)
+✅ Correto: "flor" (sem adjetivo — a imagem fala por si) ou "flor de concreto" (adjetivo específico que choca)
+Severidade: media
+Categoria: adjetivação
+
+## [REV-14] Inversão forçada — hipérbato sem justificativa
+Fonte: análise de poesia amadora
+Descrição: A inversão sintática (hipérbato) é figura legítima, mas o poeta iniciante frequentemente inverte a ordem das palavras não por necessidade métrica ou de ênfase, mas para "soar poético": "dos campos as flores colhi" em vez de "colhi as flores dos campos". A inversão forçada soa artificial. Na revisão: (1) verificar se a inversão é necessária para a métrica — se o verso funciona em ordem direta com o mesmo número de sílabas, prefira a ordem direta; (2) verificar se a inversão cria ambiguidade indesejada; (3) verificar se a inversão soa natural em voz alta.
+❌ Errado: "das montanhas os ventos as nuvens levam" — inversão confusa, parece erro, não estilo
+✅ Correto: usar inversão com intenção clara — deslocar um elemento para ênfase no início ou no fim
+Severidade: media
+Categoria: sintaxe
+
+## [REV-15] Rima pobre e previsível — evitar grampos fáceis
+Fonte: análise de rima; Said Ali; prática de oficina
+Descrição: Rimas pobres são aquelas que usam a mesma terminação gramatical: "coração"/"emoção", "alma"/"calma", "vida"/"convidar". São aceitáveis, mas excesso delas torna o poema previsível. Rimas com sufixo -dade: "cidade"/"felicidade"/"humanidade" — fraco. O poeta deve buscar rimas inesperadas: classes gramaticais diferentes, palavras que não parecem rimar ("carne"/"cisne" — paronomásia, "casa"/"asa" — imagem). Na revisão: se todas as rimas são previsíveis, reescrever pelo menos metade delas.
+❌ Errado: "No meu coração / mora a paixão / que me traz solidão" — três rimas pobres em -ão
+✅ Correto: "No peito, não coração / arde o que não tem nome / e queima sem razão" — rima de "coração" com "razão" quebra a previsibilidade
+Severidade: media
+Categoria: rima
+
+================================================================================
+REVISÃO AVANÇADA
+================================================================================
+
+## [REV-16] Revisão de imagens — mostrar, não explicar
+Fonte: Pound, "ABC da Literatura" — "go in fear of abstractions" (tema abstrações); imagismo; poesia brasileira
+Descrição: "Mostre, não diga" é a regra mais importante da revisão poética. Um poema não deve dizer "estou triste" — deve mostrar a tristeza em imagens concretas: "a xícara fria na mesa vazia". Pound divide a poesia em três tipos: (1) fanopeia — imagem visual (projetar imagem na mente do leitor); (2) logopeia — jogo de palavras e associações; (3) melopeia — música (som). Na revisão: substituir abstrações ("amor", "dor", "vida", "morte", "saudade", "esperança") por imagens concretas. Uma abstração por poema é tolerável; duas ou três sugerem imprecisão.
+❌ Errado: poema que diz "a saudade é uma dor que não passa" (abstrato, explicativo)
+✅ Correto: "a xícara de ontem / ainda com café / frio" (concreto, mostra a ausência)
+Severidade: media
+Categoria: imagem
+
+## [REV-17] Voz passiva e verbos fracos — preferir ação
+Fonte: Pound; prática de oficina
+Descrição: A voz passiva enfraquece o verso: consome mais palavras, esconde o agente, amolece a ação. Na revisão: (1) preferir voz ativa sempre que possível; (2) substituir "ser" + particípio por verbo no ativo; (3) substituir "haver" (impessoal) por verbo mais preciso; (4) substituir "ter" + substantivo por verbo ("ter medo" → "temer"); (5) evitar "começar a" + verbo ("começou a chorar" → "chorou"); (6) usar verbos que descrevem ação física sempre que possível. "A lua foi vista" é mais fraco que "a lua apareceu" que é mais fraco que "a lua rasgou a noite".
+❌ Errado: "a tarde foi passada em silêncio por mim" (voz passiva, genérico)
+✅ Correto: "calei a tarde" (ativo, concreto, surpreendente)
+Severidade: baixa
+Categoria: estilo
+
+## [REV-18] Reverência — o direito de arquivar o poema
+Fonte: prática de oficina literária; Paulo Henriques Britto
+Descrição: Um dos maiores aprendizados do poeta é saber quando um poema não funciona. Nem todo rascunho merece ser terminado. Nem todo poema terminado merece ser publicado. Critérios para arquivar: (1) o poema está confuso mesmo após 3 revisões — arquivar, talvez reaproveitar um verso; (2) o poema não emociona nem o próprio poeta — difícil que emocione outrem; (3) o poema depende de notas explicativas — reescrever ou aceitar que falhou; (4) o poema parece "exercício" — ok, exercícios podem ser arquivados. O que NÃO arquivar: poemas que estão 80% bons mas têm um problema estrutural no meio — aí vale revisão, não arquivo. Um verso aproveitável de um poema fracassado vale mais que o poema inteiro.
+❌ Errado: publicar tudo que escreve (julgar a própria obra é parte do ofício)
+✅ Correto: manter uma pasta de "poemas em observação" — revisitar em 6 meses e decidir
+Severidade: informativa
+Categoria: ofício
