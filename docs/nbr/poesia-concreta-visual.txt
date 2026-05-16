@@ -148,3 +148,60 @@ Descrição: O sistema deve usar os seguintes critérios para detectar poesia vi
 ✅ Correto: ao detectar 3+ critérios visuais, classificar como poesia visual e suspender correções verbais
 Severidade: informativa (diretriz técnica)
 Categoria: detecção
+
+================================================================================
+NEOCONCRETISMO — A RUPTURA
+================================================================================
+
+## [PCV-16] Neoconcretismo — Ferreira Gullar e o corpo do poema
+Fonte: Ferreira Gullar, "Teoria do Não-Objeto" (1959); Lygia Clark; Lygia Pape; Hélio Oiticica
+Descrição: Em 1957, Ferreira Gullar rompe com o grupo Noigandres e funda o Neoconcretismo junto com artistas plásticos (Lygia Clark, Lygia Pape, Amílcar de Castro, Franz Weissmann). A divergência é filosófica: os concretistas paulistas (Noigandres) defendem um racionalismo objetivo, baseado na teoria da Gestalt e na comunicação visual; os neoconcretos cariocas rejeitam o "científicismo" e propõem uma arte que resgate a subjetividade, a intuição, a participação corporal do espectador. O poema neoconcreto não é objeto fechado — é "quase-corpo", organismo vivo que solicita a interação física de quem o lê. A sintaxe não é eliminada, mas ampliada para incluir o gesto.
+❌ Errado: tratar neoconcretismo e concretismo como sinônimos (são movimentos divergentes)
+✅ Correto: reconhecer o neoconcretismo como reação subjetivista ao racionalismo concreto — o poema neoconcreto é "corpo", não "objeto"
+📖 Exemplo real: Ferreira Gullar, "Poema Sujo" (1976) — poema longo que mescla concretismo (visualidade) com discursividade; o poema é corpo vivo que se metamorfoseia ao longo do texto; "o poema / é o corpo / que se escreve"
+Severidade: informativa
+Categoria: teoria — neoconcreto
+
+================================================================================
+OUTROS POETAS CONCRETOS E VISUAIS
+================================================================================
+
+## [PCV-17] Ronaldo Azeredo — o concreto mínimo
+Fonte: Ronaldo Azeredo, "Noigandres" (1952-1962); poesia concreta
+Descrição: Ronaldo Azeredo (1937-) foi membro fundador do grupo Noigandres, ao lado dos irmãos Campos e Décio Pignatari. Sua poesia concreta é caracterizada pelo minimalismo extremo — poemas de uma ou duas palavras, quase diagramas. O silêncio visual é tão importante quanto a palavra. Azeredo leva a concisão ao limite: o poema é quase não-dito, a palavra é quase imagem.
+❌ Errado: ignorar poemas de 1-2 palavras como "incompletos" (a concisão é o método)
+✅ Correto: reconhecer o minimalismo concreto como poesia — cada letra é pesada
+📖 Exemplo real: Ronaldo Azeredo, "Poema" (1957) — palavra única no centro da página, sem mais nada; o silêncio ao redor é tão significativo quanto a palavra
+Severidade: informativa
+Categoria: teoria — concreto
+
+## [PCV-18] José Lino Grünewald — o poema gráfico
+Fonte: José Lino Grünewald, "Noigandres"; poesia concreta
+Descrição: José Lino Grünewald (1931-2000) foi poeta concreto e crítico de cinema. Seus poemas exploram a tensão entre o visual e o verbal como jogo — "Cinco" (poema que brinca com o número 5 e a letra C) é exemplar: a forma do poema é o seu conteúdo, e o "assunto" é a própria materialidade gráfica. O poema não "fala sobre" — ele é o que mostra.
+❌ Errado: procurar "mensagem oculta" — o poema gráfico é superfície, não profundidade
+✅ Correto: o poema gráfico é o que se vê — não há camada oculta por trás da forma
+📖 Exemplo real: José Lino Grünewald, "Cinco" (1957) — a palavra "cinco" e o numeral "5" se alternam em composição visual que mostra a diferença entre representação numérica e verbal
+Severidade: informativa
+Categoria: teoria — concreto
+
+================================================================================
+POESIA VISUAL PÓS-CONCRETA — NOVAS GERAÇÕES
+================================================================================
+
+## [PCV-19] Arnaldo Antunes — a poesia das coisas
+Fonte: Arnaldo Antunes, "As Coisas" (1992); "2 ou + corpos no mesmo espaço" (1997)
+Descrição: Arnaldo Antunes (1960-), ex-Titãs, é o principal herdeiro da poesia visual na literatura brasileira contemporânea. Seus poemas-operam com objetos do cotidiano: a palavra "lata" escrita em formato de lata, a palavra "garfo" com dentes, a palavra "vidro" que se quebra visualmente. A poesia de Antunes não é "sobre" as coisas — ela é as coisas em sua materialidade sígnica. Dialoga com o concretismo mas o atualiza com humor e design contemporâneo.
+❌ Errado: reduzir Arnaldo Antunes a "poeta letrista dos Titãs" — sua poesia visual é obra autônoma
+✅ Correto: reconhecer a poesia de Antunes como desdobramento contemporâneo do concretismo — a palavra-coisa em contexto digital e pop
+📖 Exemplo real: Arnaldo Antunes, "Lata" (As Coisas, 1992) — a palavra "lata" é desenhada no formato de uma lata; o poema é a lata da palavra "lata"
+Severidade: informativa
+Categoria: contemporânea
+
+## [PCV-20] Lenora de Barros — poesia visual e corpo
+Fonte: Lenora de Barros, "O Livro das Semelhanças"; poesia visual contemporânea
+Descrição: Lenora de Barros (1953-), poeta visual, jornalista e artista, filha do poeta concreto Geraldo de Barros. Sua poesia opera na intersecção entre palavra, imagem e corpo — poemas visuais que incluem a fotografia do próprio corpo, a performance e a instalação. Diferencia-se dos concretistas históricos por incorporar o corpo da poeta como suporte do poema.
+❌ Errado: tratar poesia visual que usa o corpo como "performance", não poesia
+✅ Correto: poesia visual contemporânea pode usar o corpo como suporte e imagem — a palavra se inscreve na pele, no gesto, no espaço real
+📖 Exemplo real: Lenora de Barros, "Poema" — a palavra dita (ou não dita) inscrita no corpo fotografado; o corpo é a página
+Severidade: informativa
+Categoria: contemporânea

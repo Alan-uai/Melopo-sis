@@ -201,3 +201,61 @@ Descrição: O sistema deve: (1) reconhecer figuras de linguagem como recursos l
 ✅ Correto: reconhecer a figura e preservar; registrar em log para análise humana
 Severidade: informativa (diretriz de classificação)
 Categoria: detecção
+
+================================================================================
+FIGURAS ADICIONAIS
+================================================================================
+
+## [FIG-21] Apóstrofe — invocação direta
+Fonte: poesia épica; lírica; Fernando Pessoa; Castro Alves; Vinícius de Moraes
+Descrição: A apóstrofe é a invocação direta a uma pessoa, entidade, objeto ou abstração — o poeta "chama" por algo ou alguém: "Ó mar salgado, quanto do teu sal" (Pessoa), "Ó cobiça, ó avareza, ó torpe alheia" (Gregório). Na ode, a apóstrofe é quase obrigatória ("Ó musa, canta..."). O sistema não deve marcar "Ó" como erro de pontuação ou arcaísmo.
+❌ Errado: corrigir "Ó" para "Oh" ou remover a apóstrofe
+✅ Correto: reconhecer apóstrofe como figura clássica — o vocativo poético é recurso, não vício
+📖 Exemplo real: Castro Alves, "Navio Negreiro" — "Ó mar, por que não apagas / com a vaga os fogaréus?" — apóstrofe ao mar como testemunha e cúmplice da tragédia
+Severidade: alta (não alterar)
+Categoria: sintaxe
+
+## [FIG-22] Pleonasmo poético — repetição enfática
+Fonte: retórica clássica; poesia brasileira; linguagem coloquial
+Descrição: O pleonasmo é a repetição de um termo já expresso ou a redundância deliberada. Na poesia, o pleonasmo pode ser: (1) vício — "subir para cima", "sair para fora" (redundância sem função); (2) figura — "a mim me parece", "vi com meus próprios olhos" (ênfase, coloquialidade). A diferença: se a repetição acrescenta intensidade ou naturalidade, é figura; se é apenas ruído, é erro. Mas em poesia, o pleonasmo "errado" às vezes funciona como recurso de oralidade.
+❌ Errado: corrigir todo pleonasmo como redundância (em poesia, redundância pode ser ênfase)
+✅ Correto: distinguir pleonasmo vicioso (sem função) de pleonasmo enfático (recurso)
+📖 Exemplo real: Manuel Bandeira, "Vou-me Embora pra Pasárgada" — "vou-me embora pra Pasárgada" — o "me" e "embora" são pleonásticos (embora já contém o movimento de afastamento), mas funcionam como ênfase poética
+Severidade: baixa (depende do contexto)
+Categoria: sintaxe
+
+## [FIG-23] Eufemismo — suavização do desagradável
+Fonte: poesia lírica; poesia romântica; Casimiro de Abreu; tradição clássica
+Descrição: O eufemismo substitui um termo considerado pesado, agressivo ou tabu por uma expressão mais suave: "descansar" por "morrer", "partir" por "morrer", "estar com problemas financeiros" por "estar pobre". Na poesia, o eufemismo pode ser recurso de delicadeza (romantismo: "partiu deste mundo") ou de ironia (modernismo: "foi fazer um relatório para São Pedro"). Não corrigir.
+❌ Errado: apontar eufemismo como "falso" ou "impreciso" (a imprecisão é o recurso)
+✅ Correto: reconhecer eufemismo como figura de suavização
+📖 Exemplo real: Manuel Bandeira, "Consoada" — "O dia da consoada chega" — "consoada" (ceia de Natal) como eufemismo para a morte que se aproxima, suavizando o horror com a imagem da refeição final
+Severidade: baixa
+Categoria: semântica
+
+================================================================================
+FIGURAS NA POESIA BRASILEIRA — EXEMPLOS CRUZADOS
+================================================================================
+
+## [FIG-24] Uso múltiplo de figuras — como os grandes poetas combinam recursos
+Fonte: análise de sonetos e poemas modernos brasileiros
+Descrição: Os grandes poetas brasileiros raramente usam uma figura isolada — combinam várias no mesmo poema ou no mesmo verso. O sistema deve reconhecer que um mesmo trecho pode conter, simultaneamente, metáfora, aliteração e hipérbato — e não "resolver" nenhuma delas. Exemplos notáveis de concentração de figuras:
+📖 Exemplo real: Gregório de Matos, soneto "Anjo no nome, Anjo no gesto, Anjo na face" — antítese (anjo vs diabo), apóstrofe (invocação à mulher), gradação (nome → gesto → face), paronomásia ("anjo" vs "anjinho"), oxímoro ("anjo... que me há de levar"), silepse de gênero (anjo é masculino mas refere-se a mulher) — tudo no mesmo soneto.
+📖 Exemplo real: Carlos Drummond de Andrade, "No Meio do Caminho" — anáfora ("no meio do caminho" repetido), metáfora (a pedra como tudo que obstrui), assíndeto (versos separados sem conjunções), prosopopeia (a pedra "não se levanta"), elipse (verbos omitidos). Um poema de aparente simplicidade que concentra 5 figuras em 15 versos.
+📖 Exemplo real: Cecília Meireles, "Motivo" — anáfora ("Eu canto porque...", "Não sou..."), antítese ("alegre nem triste"), paradoxo ("não sou alegre nem sou triste: sou poeta"), metalinguagem, metáfora ("o instante existe"), personificação (o tempo).
+Severidade: informativa
+Categoria: análise
+
+## [FIG-25] Figuras de linguagem vs vícios de linguagem — como distinguir
+Fonte: gramática normativa; prática de correção; Castilho; Said Ali
+Descrição: A linha entre figura (recurso expressivo) e vício (erro) é tênue e dependente de contexto. Critérios para distinguir:
+(1) **Intencionalidade** — a figura parece deliberada ou acidental? Se o poeta inverte a ordem de um verso e isso cria surpresa e beleza, é hipérbato. Se inverte e fica confuso, é inversão desajeitada.
+(2) **Efeito estético** — a figura produz um efeito identificável (surpresa, ênfase, musicalidade, concisão) ou apenas estranheza?
+(3) **Tradição** — a figura tem lastro na poesia? Hipérbato tem tradição desde Camões. Silepse tem desde a poesia latina. Se o recurso aparece isolado sem tradição nem contexto, suspeitar.
+(4) **Proporção** — figuras em excesso podem tornar o poema ilegível. Um poema todo em hipérbato extremo é sínquise (nó cego). Um poema todo em silepse parece analfabeto. Moderação é critério: figuras devem servir ao poema, não dominá-lo.
+(5) **Consistência** — o regime de figuras é consistente? Se o poema alterna entre hipérbato e ordem direta sem critério, o hipérbato pode ser desajeitado.
+Regra de ouro do sistema: em caso de dúvida, classificar como figura com baixa severidade (sugestão opcional). A decisão final é humana.
+❌ Errado: marcar todo desvio como "figura de linguagem" (tampouco marcar todo desvio como "erro")
+✅ Correto: aplicar os 5 critérios — intencionalidade, efeito, tradição, proporção, consistência — para decidir entre figura e vício
+Severidade: informativa (diretriz de classificação)
+Categoria: detecção

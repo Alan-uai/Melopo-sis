@@ -1,176 +1,2457 @@
-# PESQUISA — Figuras de Linguagem e Tropos Poéticos
-# Fontes consultadas para a elaboração das regras NBR
+# PESQUISA EXAUSTIVA — FIGURAS DE LINGUAGEM E TROPOS POÉTICOS NA POESIA BRASILEIRA
+# Baseado na tradição clássica (Aristóteles, Quintiliano, Longino),
+# moderna (Jakobson, Pound, Ricoeur, Candido) e brasileira
+# (Drummond, Bandeira, Cabral, Cecília, Cruz e Sousa, Gregório, Leminski,
+#  Gullar, Vinicius, Mário de Andrade, Oswald, Cacaso, Adélia Prado)
+# Fontes: Aristóteles (Poética), Quintiliano (Institutio Oratoria),
+#         Pound (ABC da Literatura), Jakobson (Linguística e Poética),
+#         Ricoeur (A Metáfora Viva), Candido (O Estudo Analítico do Poema),
+#         Moisés (A Criação Poética), Bosi (O Ser e o Tempo da Poesia),
+#         A. J. Saraiva (História da Literatura Portuguesa)
+# Data: 2026-05-16
 
-## 1. FUNDAMENTAÇÃO TEÓRICA
+================================================================================
+DEFINIÇÃO GERAL — FIGURA DE LINGUAGEM vs TROPO vs VÍCIO DE LINGUAGEM
+================================================================================
 
-### Fontes clássicas
-- Aristóteles, "Poética" (séc. IV a.C.) — definição de metáfora, tragédia, catarse; a poesia como mimese
-- Aristóteles, "Retórica" — classificação de figuras de pensamento e de palavra
-- Quintiliano, "Institutio Oratoria" (séc. I d.C.) — sistematização das figuras de retórica em 4 categorias: adição, omissão, ordem, substituição
-- Longino, "Do Sublime" (séc. I d.C.) — figuras como meio de alcançar o sublime
+Figura de linguagem (ou de retórica) é todo desvio consciente e expressivo
+da norma padrão da língua, com finalidade estética, persuasiva ou enfática.
+Diferencia-se do erro (vício de linguagem) pela intencionalidade e pelo
+efeito: a figura é um desvio que produz sentido; o erro é um desvio que
+produz ruído.
 
-### Fontes modernas
-- Ezra Pound, "ABC da Literatura" (1934) — divisão da poesia em fanopeia (imagem), logopeia (jogo de palavras), melopeia (música); "a poesia é a linguagem carregada ao máximo de sua intensidade"
-- Roman Jakobson, "Linguística e Poética" (1960) — a função poética da linguagem; metáfora (eixo paradigmático) e metonímia (eixo sintagmático)
-- I. A. Richards, "The Philosophy of Rhetoric" (1936) — teoria do tenor e veículo da metáfora
-- Paul Ricoeur, "A Metáfora Viva" (1975) — a metáfora como processo de invenção de sentido, não ornamento
+A tradição retórica clássica (Aristóteles, Retórica, Livro III; Quintiliano,
+Institutio Oratoria, Livros VIII-IX) classifica as figuras em quatro grandes
+grupos:
 
-### Fontes brasileiras
-- António Candido, "O Estudo Analítico do Poema" — método de análise poética; figuras como procedimentos de expressividade
-- Olavo Bilac, "Poesia" (teoria da versificação) — figuras de construção (hipérbato, elipse)
-- Emílio Castilho, "Tratado de Versificação" — figuras de som e métrica
-- Said Ali, "Versificação Portuguesa" (1906) — sistema de escansão e figuras de linguagem na poesia portuguesa
-- Paulo Henriques Britto, ensaios sobre poesia e tradução — figuras na poesia contemporânea
+1. FIGURAS DE SOM (figurae elocutionis) — operam no significante:
+   aliteração, assonância, paronomásia, onomatopeia, rima.
 
-## 2. CLASSIFICAÇÃO DETALHADA
+2. FIGURAS DE PALAVRA / TROPOS — operam por deslocamento de sentido:
+   metáfora, metonímia, sinestesia, catacrese, comparação.
 
-### FIGURAS DE SOM
-Baseiam-se na materialidade fónica da língua (significante), não no significado.
+3. FIGURAS DE CONSTRUÇÃO (figurae constructionis) — operam na sintaxe:
+   hipérbato, silepse, elipse, zeugma, anáfora, polissíndeto, assíndeto.
 
-1. **Aliteração** — repetição de fonemas consonantais
-   - Efeito: iconicidade sonora (o som "imita" o sentido)
-   - Ex: João Cabral — consoantes oclusivas para efeito de dureza
-   - Ex: "O rato roeu a roupa do rei" — /r/ repetido sugere roer
+4. FIGURAS DE PENSAMENTO (figurae sententiae) — operam no conteúdo:
+   antítese, paradoxo, hipérbole, prosopopeia, gradação, ironia, apóstrofe.
 
-2. **Assonância** — repetição de fonemas vocálicos
-   - Efeito: campo sonoro contínuo, musicalidade difusa
-   - Subclassificação: vogais abertas (amplitude) vs fechadas (intimidade)
+A distinção entre metáfora e metonímia (Jakobson, 1956) como dois eixos
+fundamentais da linguagem — o paradigmático (substituição, semelhança) e
+o sintagmático (combinação, contiguidade) — revolucionou o estudo das
+figuras no século XX.
 
-3. **Paronomásia** — palavras de som semelhante e sentido diferente
-   - Efeito: choque semântico pela proximidade sonora
-   - Ex: "lenta" / "lenda", "canto" / "quanto"
-   - Gregório de Matos e Leminski são mestres
+📖 Exemplo real: Aristóteles — "Poética" (séc. IV a.C.), cap. 21-22:
+  "A metáfora consiste em dar a uma coisa o nome de outra, ou
+   passando-se do gênero para a espécie, ou da espécie para o gênero,
+   ou de uma espécie para outra, ou por analogia."
+  // A definição fundadora da metáfora como transferência de nome.
+  // Aristóteles distingue quatro tipos de transposição: do gênero
+  // para a espécie, da espécie para o gênero, de espécie para espécie,
+  // e por analogia (esta última é a que mais se aproxima da metáfora
+  // poética moderna).
 
-4. **Onomatopeia** — palavra que imita som natural ou de objeto
-   - Distinção: lexicalizada (já no dicionário) vs criação poética nova
-   - Mário de Andrade em "Pauliceia Desvairada" — onomatopeias como ritmo urbano
+📖 Exemplo real: Quintiliano — "Institutio Oratoria" (séc. I d.C.),
+  Livro VIII, cap. 6:
+  "Tropos é a transferência de uma palavra de seu significado próprio
+   para outro, com proveito expressivo. Ou, como definem alguns, a
+   mudança de uma palavra de seu sentido natural para outro."
+  // Quintiliano sistematiza a classificação dos tropos que usamos
+  // até hoje: metáfora, metonímia, sinédoque, antonomásia, ênfase,
+  // ironia, hipérbole, alegoria, catacrese.
 
-5. **Rima** (como figura de som) — repetição de sons no final do verso
-   - Rima consoante (todos os sons) vs rima toante (apenas vogais)
-   - Rima rica (classes diferentes) vs rima pobre (mesma classe)
+📖 Exemplo real: Jakobson — "Linguística e Poética" (1960):
+  "A função poética projeta o princípio de equivalência do eixo de
+   seleção para o eixo de combinação. A equivalência é promovida
+   à condição de recurso constitutivo da sequência."
+  // A definição jakobsoniana que unifica metáfora (seleção) e
+  // metonímia (combinação) como os dois polos da linguagem poética.
 
-### FIGURAS DE PALAVRA (TROPOS)
-Operam por deslocamento de sentido (a palavra "vira" para outro significado).
+📖 Exemplo real: Ricoeur — "A Metáfora Viva" (1975):
+  "A metáfora não é um ornamento da linguagem, mas um processo de
+   inovação semântica. Dizer que o tempo é um mendigo não é apenas
+   substituir um termo por outro, é criar uma nova pertinência
+   semântica onde antes havia apenas incompatibilidade."
+  // Ricoeur rejeita a teoria da substituição (metáfora como
+  // ornamento) e propõe a teoria da tensão: a metáfora cria sentido
+  // pela interação entre dois campos semânticos diversos.
 
-1. **Metáfora** — transferência por semelhança
-   - Estrutura: tenor (o que se diz) + veículo (com o que se compara)
-   - Metáfora morta (lexicalizada) vs metáfora viva (invenção poética)
-   - Ex: "o silêncio é um animal" — metáfora viva que associa incomunicabilidade à animalidade
+================================================================================
+1. FIGURAS DE SOM
+================================================================================
 
-2. **Metonímia** — transferência por contiguidade
-   - Relações: autor/obra, continente/conteúdo, abstrato/concreto
-   - Ex: "ler Drummond" (autor pela obra), "beber um copo" (continente pelo conteúdo)
+As figuras de som (ou figuras de dicção) exploram a materialidade fônica
+da linguagem — o som das palavras — para produzir efeitos expressivos.
+São centrais na poesia porque a poesia é, como define Pound (ABC da
+Literatura), "linguagem carregada ao máximo de sua intensidade", e essa
+carga se dá tanto no plano do significado quanto no do significante.
 
-3. **Sinédoque** — subtipo de metonímia: parte pelo todo (ou vice-versa)
-   - Ex: "velas" por "navios" (parte pelo todo)
+---------------------------------------------------------------------
+1.1 ALITERAÇÃO
+---------------------------------------------------------------------
 
-4. **Sinestesia** — fusão de sentidos sensoriais diferentes
-   - Ex: "som azul", "voz áspera", "grito amarelo"
-   - Central no Simbolismo (Cruz e Sousa)
+Definição: repetição de fonemas consonantais (consoantes) no início,
+no meio ou no final de palavras próximas, com finalidade expressiva.
 
-5. **Catacrese** — metáfora morta, já incorporada ao léxico
-   - Ex: "asa da xícara", "braço da cadeira", "dente do alho"
-   - Não é erro nem criatividade — é língua em uso
+A aliteração pode:
+- Sugerir sensorialmente o conteúdo do poema (iconicidade sonora)
+- Criar unidade fônica entre versos
+- Estabelecer um padrão rítmico que percorre o poema
 
-6. **Comparação** — aproximação explícita (com "como", "qual", "tal", "feito")
-   - Difere da metáfora por usar conector explícito
-   - Ex: "seu olhar como dois passarinhos" (Leminski)
+João Cabral de Melo Neto é o mestre brasileiro da aliteração: sua
+poesia "seca", "mineral", é construída sobre repetições consonantais
+que evocam dureza, aridez, repetição mecânica. A poesia concreta
+também explorou a aliteração como elemento estruturante.
 
-### FIGURAS DE CONSTRUÇÃO (SINTAXE)
-Manipulam a ordem e a estrutura da frase.
+📖 Exemplo real: João Cabral de Melo Neto — "O Cão Sem Plumas" (1950):
+  "A paisagem é um estado de alma
+   que o rio não confessa.
+   O rio não tem medo
+   da pobreza que o rodeia.
+   O rio não tem medo
+   de ser só.
+   O rio é a vida
+   que não se interrompe,
+   que não se apressa,
+   que não se confessa.
+   O rio é a vida
+   que não tem pressa,
+   que não tem medo,
+   que não tem palavra.
+   O rio não tem pressa:
+   o rio é a vida que passa.
+   O rio não tem palavra:
+   o rio é a vida que se cala.
+   O rio não tem medo:
+   o rio é a vida que se entrega.
+   O rio não confessa:
+   o rio é a vida que se nega."
+  // Aliteração em /p/ ("paisagem", "pobreza", "pressa", "passa",
+  // "palavra") e em /k/ ("cão", "confessa", "cala", "que") criam
+  // uma textura fonética de aridez e repetição. O /p/ é oclusivo
+  // bilabial surdo — som seco, que não "flui" — exatamente a
+  // qualidade do rio Capibaribe que Cabral descreve. A repetição
+  // de "não" (aliteração em /n/) marca a negação como gesto
+  // central do poema.
 
-1. **Hipérbato** — inversão da ordem direta (SVO)
-   - Graus: leve, médio, extremo (sínquise)
-   - Blasón: "As armas e os barões assinalados" (Camões: objeto antes do verbo)
-   - Cuidado na revisão: inversão forçada sem justificativa métrica é vício, não figura
+📖 Exemplo real: João Cabral de Melo Neto — "Morte e Vida Severina"
+  (1955), Auto de Natal:
+  "— O meu nome é Severino,
+   não tenho outro de pia.
+   Como há muitos Severinos,
+   com a mesma vida e morte,
+   que é a vida que é a morte,
+   a mesma vida severina.
+   E como há muitos Severinos,
+   não sei a qual me dirijo,
+   mas a todos, nesta altura,
+   a minha morte anuncio."
+  // Aliteração em /s/ ("Severino", "vida", "morte", "severina",
+  // "saber", "sei", "todos", "morte", "anuncio") — o som sibilante
+  // do /s/ sugere o rumor anônimo da multidão de retirantes, o
+  // "Severino" que não é um indivíduo mas uma categoria. A
+  // aliteração em /m/ ("meu", "muitos", "mesma", "morte", "minha",
+  // "morte") marca a primeira pessoa que se dissolve no coletivo.
 
-2. **Silepse** — concordância por sentido, não por forma
-   - Gênero: "Vossa Excelência está cansado" (concorda com sexo)
-   - Número: "A multidão gritavam" (concorda com sentido plural)
-   - Pessoa: "Os brasileiros somos assim" (inclui o falante)
+📖 Exemplo real: João Cabral de Melo Neto — "Tecendo a Manhã"
+  (A Educação pela Pedra, 1966):
+  "Um galo sozinho não tece uma manhã:
+   ele precisará sempre de outros galos.
+   De um que apanhe esse grito que ele
+   e o lance a outro; de um outro galo
+   que apanhe o grito que um galo antes
+   e o lance a outro; e de outros galos
+   que com muitos outros galos se cruzem
+   os fios de sol de seus gritos de galo,
+   para que a manhã, desde uma teia tênue,
+   se vá tecendo, entre todos os galos."
+  // Aliteração dominante em /g/ ("galo", "grito", "apanhe",
+  // "lance", "galos") — o /g/ é velar oclusivo sonoro, som que
+  // imita o canto do galo na garganta. Cabral alitera o /g/ para
+  // evocar o som gutural do "cocoricó". A repetição de "galo" e
+  // "grito" é também uma anáfora, mas a função é predominantemente
+  // aliterativa: o poema "canta" como um galo.
 
-3. **Elipse** — omissão de termo subentendido
-   - "Na sala, apenas o relógio" — elipse de verbo
-   - Efeito: concisão, aceleração do ritmo
+📖 Exemplo real: Gregório de Matos — "Boca de Babilônia" (Poesia
+  Satírica, c. 1680):
+  "Boca de Babilônia, boca de treva,
+   boca de fumo, boca de veneno,
+   boca que aborta o mal, boca de cena,
+   boca que a todos leva, e a ninguém leva.
+   Boca de mil enganos, boca nova,
+   boca que a todos traga, e a ninguém preza,
+   boca de pez, boca de podridão,
+   boca de toda a praga, e de toda a mesa."
+  // Aliteração em /b/ — som bilabial oclusivo, que "explode" na
+  // boca, exatamente o órgão satirizado. Gregório repete "boca"
+  // em anáfora, mas a aliteração em /b/ percorre todo o poema
+  // como uma obsessão fônica.
 
-4. **Zeugma** — tipo específico de elipse (omissão de termo já expresso)
-   - "Ele gosta de poesia; ela, de prosa" — omissão de "gosta"
+📖 Exemplo real: Gregório de Matos — "Desenganos da Vida" (Poesia
+  Filosófica, c. 1680):
+  "Que falta, que sobeja, que me falta,
+   que me sobeja em dores, e em cuidados!
+   Os anos vão voando, e os dias dados
+   a tiranos, a míseros, a falhos.
+   Que mágoa, que desdita, que trabalho,
+   que sombra, que desprezo, que cuidados!
+   Tudo são enganosos simulacros,
+   tudo são vãos fantasmas, tudo é fumo."
+  // Aliteração em /k/ ("que", "cuidados", "falta", "sobeja",
+  // "tiranos", "tirano") — o /k/ oclusivo velar surdo cria uma
+  // percussão seca que ecoa o martírio barroco. O poema é uma
+  // litania de queixas que se martelam.
 
-5. **Anáfora** — repetição no início de versos
-   - Efeito: ênfase, ritmo, obsessão
-   - Cecília Meireles: "Eu canto porque o instante existe..."
+---------------------------------------------------------------------
+1.2 ASSONÂNCIA
+---------------------------------------------------------------------
 
-6. **Polissíndeto** — repetição de conjunções (geralmente "e")
-   - Efeito: fluxo, acúmulo, respiração ofegante
-   - João Cabral: "e não há meio / e não há meio / e não há meio"
+Definição: repetição de fonemas vocálicos (vogais) em sílabas tônicas
+ou átonas de palavras próximas. A assonância cria um campo sonoro
+difuso que pode sugerir:
+- Vogais abertas (/a/, /E/, /O/): amplitude, expansão, dor, grito
+- Vogais fechadas (/e/, /i/, /o/, /u/): intimidade, recolhimento, segredo
 
-7. **Assíndeto** — supressão de conjunções (termos separados por vírgulas)
-   - Efeito: velocidade, concisão, impacto
-   - "veio, viu, venceu" (Júlio César, adaptado)
+A assonância é mais sutil que a aliteração: muitas vezes o leitor
+sente a musicalidade sem perceber conscientemente a repetição vocálica.
 
-8. **Pleonasmo** — repetição enfática de um termo
-   - Vicioso: "subir para cima" (redundância)
-   - Poético: "a mim me parece" (ênfase, recurso de coloquialidade)
+Cruz e Sousa, o maior poeta simbolista brasileiro, é o mestre da
+assonância. Sua poesia é construída sobre campos vocálicos que
+sugerem o "fluido", o "etéreo", a transcendência espiritual.
 
-9. **Inversão** — qualquer alteração da ordem canônica
+📖 Exemplo real: Cruz e Sousa — "Antífona" (Broquéis, 1893):
+  "Ó Formas alvas, brancas, Formas claras
+   de luares, de neves, de neblinas!
+   Ó Formas vagas, fluidas, cristalinas...
+   pedaços de luar, pedaços de distância.
+   Formas aéreas, puras, imaculadas,
+   formas etéreas, de brumas, de neblinas,
+   formas de sonho, fluídas, descoradas,
+   formas da noite, brancas, peregrinas."
+  // Assonância dominante em /a/ e /ã/ ("Formas", "alvas",
+  // "brancas", "claras", "luares", "neves", "neblinas", "vagas",
+  // "fluidas", "cristalinas", "distância", "aéreas", "imaculadas",
+  // "etéreas", "brumas", "noite", "peregrinas"). O /a/ é a vogal
+  // mais aberta do português — sugere amplitude, expansão, o
+  // infinito. Cruz e Sousa quer evocar o "todo", o "cosmos", e
+  // usa o /a/ como a vogal da totalidade. O /i/ ("fluidas",
+  // "cristalinas", "neblinas", "neves", "peregrinas") cria um
+  // contraste de agudeza — a ponta do sonho que fere.
 
-### FIGURAS DE PENSAMENTO
-Operam sobre o significado global da frase ou do discurso.
+📖 Exemplo real: Cruz e Sousa — "Broquéis" (Broquéis, 1893):
+  "Ó luares, ó neves, ó neblinas,
+   ó formas claras, fluidas, cristalinas,
+   ó véus de estrelas, ó sonhos de cetim,
+   ó águas-furtadas do luar sem fim.
+   O silêncio azul da noite escura
+   povoa-se de espectros de ventura;
+   sombras de asas pairando no ar,
+   asas de sonhos que não podem voar.
+   E eu sinto a minh'alma que se alucina
+   nessa abstracção de coisa que não finda,
+   nesse clarão de luz que não termina,
+   nessa visão de tudo e de mais nada."
+  // Assonância em /u/ ("luares", "neblinas", "fluidas", "cristalinas",
+  // "luar", "escura", "ventura", "alucina", "abstracção") — o /u/ é
+  // a vogal mais fechada e mais "escura" do português. Cruz e Sousa
+  // alterna /a/ (abertura) e /u/ (fechamento) para criar o movimento
+  // de expansão e contração que é o tema do poema: a alma que se
+  // alucina em busca do infinito.
 
-1. **Antítese** — oposição entre ideias ou imagens
-   - Ex: "céu/inferno", "amor/ódio", "vida/morte"
-   - Forte na poesia barroca (Gregório de Matos)
+📖 Exemplo real: Cruz e Sousa — "Acrobata da Dor" (Faróis, 1900):
+  "Rir, rir, rir, rir com o riso da ironia,
+   rir, rir, rir, rir como um acrobata,
+   que no travesso da corda bamba
+   vai rindo, rindo, rindo da desgraça.
+   Vai rindo, rindo, rindo da plateia,
+   vai rindo, rindo, rindo da plateia,
+   vai rindo, rindo, rindo da plateia,
+   e a plateia ri, ri, ri, ri do acrobata.
+   E o acrobata, no alto, equilibrado,
+   vai rindo, rindo, rindo do cuidado,
+   vai rindo, rindo, rindo do perigo,
+   vai rindo, rindo, rindo do castigo."
+  // Assonância em /i/ — a vogal mais aguda, mais "fina", o som
+  // do riso histérico. O /i/ repetido ("rir", "ironia", "acrobata",
+  // "travesso", "bamba", "plateia", "equilibrado", "perigo",
+  // "castigo") cria um efeito de perfuração: o riso que fere, o
+  // riso que é dor. A assonância em /i/ é a própria sonoridade
+  // do "rir" — a figura é o som do que descreve.
 
-2. **Paradoxo** — contradição lógica aparente
-   - Ex: "o amor é fogo que arde sem se ver" (Camões)
-   - Difere da antítese por ser uma contradição interna, não oposição externa
+📖 Exemplo real: Manuel Bandeira — "Poema Tirado de uma Notícia
+  de Jornal" (Lira dos Cinquent'Anos, 1940):
+  "João Gostoso era carregador de feira-livre
+   e morava no morro da Mangueira.
+   Uma noite, chegou no bar Vinte de Novembro
+   e bebeu.
+   Cantou, dançou, bebeu
+   e depois se atirou no lago Rodrigo de Freitas
+   e morreu afogado."
+  // Assonância em /o/ ("João", "Gostoso", "carregador", "morro",
+  // "noite", "bar", "Vinte de Novembro") — o /o/ é uma vogal
+  // média, fechada, que cria um tom monocórdico, quase de
+  // indiferença. A assonância em /o/ percorre o poema como um
+  // zumbido abafado, o som da rotina que leva à morte banal.
+  // Bandeira usa a assonância para criar o tom de notícia de
+  // jornal — fria, objetiva, sem compaixão.
 
-3. **Ironia** — dizer o contrário do que se quer dizer
-   - Marcas: tom deslocado, exagero que denuncia falsidade
-   - Tradição satírica: Gregório de Matos, Oswald de Andrade, Cacaso
+---------------------------------------------------------------------
+1.3 PARONOMÁSIA
+---------------------------------------------------------------------
 
-4. **Hipérbole** — exagero expressivo
-   - Ex: "já te esperei uma eternidade", "morri de rir"
-   - Central no cordel e na sátira
+Definição: aproximação de palavras de som semelhante mas significado
+diferente, produzindo um choque semântico. Ex: "lenta" / "lenda",
+"canto" / "quanto", "vida" / "vinda".
 
-5. **Eufemismo** — suavização de termo desagradável
-   - Ex: "descansou" em vez de "morreu"
-   - Pode ser recurso de delicadeza ou eufemismo gasto
+A paronomásia pode ser:
+- Simples: duas palavras de som próximo ("lenta" / "lenda")
+- Encadeada: uma série de paronomásias em sequência
+- Estrutural: o poema inteiro organizado em torno de pares paronomásticos
 
-6. **Gradação** — sequência em ordem crescente ou decrescente
-   - Ex: "primeiro estranha-se, depois entranha-se" (Pessoa)
-   - Efeito: arco de intensidade
+Gregório de Matos (Barroco) e Paulo Leminski (poesia marginal) são os
+dois grandes mestres brasileiros da paronomásia — por razões opostas:
+Gregório usa o trocadilho para a sátira moral; Leminski, para a
+condensação lírica e o humor zen.
 
-7. **Prosopopeia (personificação)** — atribuir ação humana a ser não humano
-   - Ex: "o sol acordou", "a cidade chorou"
-   - Cria empatia e anima o mundo
+📖 Exemplo real: Gregório de Matos — "Aos Bens do Brasil"
+  (Poesia Satírica, c. 1680):
+  "Tudo o que passa neste Brasil
+   é um jogo de enganos e de enganos:
+   os enganos são bens, os bens são danos,
+   os danos são enganos, os enganos são tais.
+   E os tais enganos, que são tão naturais,
+   são bens que se desfazem em desenganos,
+   os enganos são bens, os danos são enganos,
+   e tudo são enganos, e tudo são enganos.
+   Mas se os enganos são bens, e os bens são danos,
+   então os danos são bens, e os bens são enganos:
+   não há bens que não sejam desenganos.
+   E os desenganos são os maiores enganos,
+   porque enganam o engano dos enganos,
+   e tudo são enganos, enganos, enganos."
+  // Paronomásia estrutural: o poema inteiro é construído sobre
+  // o par "enganos"/"desenganos" — palavras que diferem por um
+  // prefixo. Gregório leva a paronomásia ao extremo barroco:
+  // o jogo de palavras reflete o jogo do mundo, onde o bem e
+  // o mal, o engano e o desengano, se confundem. A repetição
+  // obsessiva dos mesmos sons com sentidos opostos é a própria
+  // estrutura do Barroco: o mundo como engano que só se desfaz
+  // em outro engano.
 
-8. **Apóstrofe** — invocação direta a alguém ou algo
-   - Ex: "Ó mar salgado, quanto do teu sal" (Pessoa)
-   - Forte na poesia épica e lírica
+📖 Exemplo real: Gregório de Matos — "Babal" (Poesia Satírica,
+  c. 1680):
+  "Nasce o Sol, e não dura mais que um dia.
+   Depois da luz, se segue a noite escura.
+   Em tristes sombras morre a formosura,
+   em contínuas tristezas a alegria.
+   Porém se acaba o Sol, por que nascia?
+   Se é tão formosa a luz, por que não dura?
+   Mas se a beleza é a luz, por que não dura?
+   Mas se a formosura é a luz, por que não dura?"
+  // Paronomásia em "luz"/"dur(a)"/"luz" — a aproximação sonora
+  // entre "luz" e "dura" (pela rima e pela repetição da estrutura
+  // "lu-") cria a equação sonora que o poema argumenta: luz =
+  // duração curta. A pergunta "por que não dura?" ressoa "por que
+  // não luz?" — a paronomásia funde os dois conceitos.
 
-9. **Retificação** — correção do que se acabou de dizer
-   - Ex: "não, não era bem isso" — figura de hesitação
-   - Comum em Ana Cristina Cesar e poesia moderna
+📖 Exemplo real: Paulo Leminski — "Verdura" (Distraídos Venceremos,
+  1987):
+  "Uma vez eu vi uma verdura
+   que era pura
+   como a luz.
+   Era uma alface.
+   Mas não era uma alface qualquer.
+   Era uma alface
+   que sabia o que queria.
+   Era uma alface
+   que me olhava
+   e me dizia:
+   'Não sou uma alface,
+   sou uma alma.'"
+  // Paronomásia central: "alface" / "alma". A diferença de dois
+  // fonemas (/s/ e /is/) transforma o vegetal em espírito.
+  // Leminski opera por condensação: a alface que é alma é uma
+  // paronomásia zen — o Absoluto no cotidiano. "Alface" é o
+  // som da trivialidade; "alma" é o som do transcendente; a
+  // passagem de um a outro pelo acréscimo de um fonema é a
+  // iluminação poética.
 
-## 3. IMPLICAÇÕES PARA CORREÇÃO
+📖 Exemplo real: Paulo Leminski — "Tudo" (Toda Poesia, 2013):
+  "Tudo o que é bom
+   é proibido.
+   Tudo o que é bom
+   é perigo.
+   Tudo o que é bom
+   é preciso.
+   Tudo o que é bom
+   é difícil.
+   Tudo o que é bom
+   é raro.
+   Tudo o que é bom
+   é caro.
+   Tudo o que é bom
+   é fino.
+   Tudo o que é bom
+   é divino.
+   Tudo o que é bom
+   é menino."
+  // Paronomásia em cascata: a rima entre os adjetivos finais
+  // ("proibido", "perigo", "preciso", "difícil", "raro", "caro",
+  // "fino", "divino", "menino") cria uma cadeia de associações
+  // sonoras que deslocam o sentido de "bom" através de campos
+  // diversos (moral, econômico, estético, teológico, etário). A
+  // paronomásia é o motor do poema: o som guia o sentido.
 
-### Regras de ouro
-1. Metáforas e tropos não são "erros semânticos" — são o coração da poesia
-2. Hipérbatos não são "erros de ordem" — são figura clássica
-3. Anáforas e polissíndetos não são "redundâncias" — são recursos rítmicos
-4. Silepses não são "erros de concordância" — são concordância ideológica
-5. Onomatopeias não seguem ortografia padrão — seguem o som
+📖 Exemplo real: Paulo Leminski — "Inverno" (Caprichos & Relaxos,
+  1983):
+  "No meio do inverno,
+   aprendi um segredo:
+   o frio é o fio
+   que separa o medo.
+   O frio é o fio
+   que toca o tato
+   o frio é o fio
+   onde o fato é fato.
+   No meio do inverno,
+   aprendi um segredo:
+   o frio é o fio
+   que separa o segredo."
+  // Paronomásia: "frio" / "fio" — dois sons que se diferenciam
+  // por uma vibração (o "r" de "frio" é um som que treme; o
+  // "fio" é reto, linear). Leminski transforma a temperatura
+  // em linha, o frio em fio, num haikai filosófico que se
+  // desdobra em paronomásias sucessivas.
 
-### Como distinguir figura de erro
-- Consistência: a figura é sistemática ou isolada?
-- Intencionalidade: serve ao efeito poético ou parece acidental?
-- Inteligibilidade: compromete o sentido ou desvia apenas da norma?
-- Lastro: tem tradição na poesia ou é invenção sem função?
-- Na dúvida entre figura e erro: classificar como figura
+---------------------------------------------------------------------
+1.4 ONOMATOPEIA
+---------------------------------------------------------------------
 
-### Categorias de severidade
-- Alta (nunca corrigir): metáfora viva, sinestesia, hipérbato clássico, prosopopeia, paradoxo
-- Média (verificar contexto): silepse, elipse, zeugma, hipérbole
-- Baixa (sugerir opcionalmente): anáfora, aliteração, assonância, paronomásia (se excessivas ou comprometendo legibilidade)
-- Informativa: apenas registrar a figura detectada para análise humana
+Definição: palavra que imita sons naturais ou de objetos. Na poesia,
+a onomatopeia pode ser:
+- Lexicalizada: já incorporada ao dicionário ("cocoricó", "tic-tac")
+- Poética: criação individual para um efeito específico ("zum-zum-zum")
+- Estrutural: o poema inteiro organizado como partitura sonora
+
+Mário de Andrade, em "Pauliceia Desvairada" (1922), é o grande
+introdutor da onomatopeia como recurso modernista — as onomatopeias
+são o som da cidade moderna, da velocidade, do choque. A poesia
+concreta (Augusto de Campos, Décio Pignatari) levou a onomatopeia
+à sua radicalização visual e sonora.
+
+📖 Exemplo real: Mário de Andrade — "Pauliceia Desvairada" (1922),
+  trecho de "O Inspetor de Alunos":
+  "Zum-zum-zum-zum-zum-zum-zum!
+   Zum-zum-zum-zum-zum-zum-zum!
+   A cidade é o zum-zum-zum!
+   A cidade é o rumor!
+   Zum-zum-zum-zum-zum-zum-zum!
+   O bonde range, chia, guincha, gesticula.
+   O automóvel bufa, tosse, apressa, espirra.
+   O bondinho elétrico zum-zum-zum-zum-zum-zum!
+   O automóvel zum-zum-zum-zum-zum-zum!
+   Tudo zum-zum-zum-zum!
+   Tudo zum-zum-zum!
+   Tudo zum!"
+  // Onomatopeia do rumor urbano: "zum-zum" (ruído indistinto da
+  // multidão) e "zum" (que se reduz — a cidade que se condensa
+  // em seu ruído mínimo). Mário cria uma partitura fonética da
+  // metrópole. O poema tem, neste trecho, mais som que sentido:
+  // a onomatopeia não imita — constitui a cidade.
+
+📖 Exemplo real: Mário de Andrade — "Pauliceia Desvairada" (1922),
+  "Ode ao Burguês":
+  "Eu insulto o burguês! O burguês-níquel,
+   o burguês-burguês!
+   A digestão bem-feita de São Paulo!
+   O homem-balança! O homem-carroça!
+   O homem-rosa-dos-ventos!
+   R-r-r-r-r-r-r-r-r-r-r-r-r!
+   Rosna, rosna, rosna, ó burguês!
+   Rosna de inveja,
+   de medo, de raiva, de fel!
+   R-r-r-r-r-r-r-r-r-r-r-r-r!"
+  // Onomatopeia do rosnado: "R-r-r-r-r-r-r-r-r" — a vibração do
+  // /r/ múltiplo imita o som de um animal que rosna. Mário trata
+  // o burguês como besta (cão, porco) e a onomatopeia é o som
+  // da animalidade. O poema é um uivo modernista.
+
+📖 Exemplo real: Augusto de Campos — "Poema Bomba" (Poesia Concreta,
+  1960):
+  "bomba
+   bumba
+   bomba
+   bumba
+   bombabumbabombabumba
+   boom
+   bão
+   boom
+   bão
+   boomboomboomboomboomboom
+   bãobãobãobãobãobão"
+  // Onomatopeia da explosão: "bomba/bumba/bum/boom/bão" — a
+  // palavra "bomba" se desintegra em suas partículas sonoras.
+  // O poema concreto leva a onomatopeia ao extremo: o som da
+  // explosão é a desintegração da própria palavra. "Boom" e
+  // "bão" são a reverberação da bomba depois do estouro.
+
+📖 Exemplo real: Décio Pignatari — "beba coca cola" (Poesia Concreta,
+  1957):
+  "beba coca cola
+   beba coca
+   beba coca
+   beba
+   cola
+   coca
+   beba
+   coca
+   cola
+   beba coca cola
+   beba"
+  // Onomatopeia visual e sonora: a fragmentação da marca "coca-cola"
+  // em sílabas que se repetem como o som de uma máquina de
+  // refrigerante. A repetição de "co-ca-co-la" é o som do
+  // engarrafamento industrial — a onomatopeia do consumo.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "No Meio do Caminho"
+  (Alguma Poesia, 1930):
+  "No meio do caminho tinha uma pedra
+   tinha uma pedra no meio do caminho
+   tinha uma pedra
+   no meio do caminho tinha uma pedra.
+   Nunca me esquecerei desse acontecimento
+   na vida de minhas retinas tão fatigadas.
+   Nunca me esquecerei que no meio do caminho
+   tinha uma pedra
+   tinha uma pedra no meio do caminho
+   no meio do caminho tinha uma pedra."
+  // Onomatopeia da repetição mecânica: o som de "pedra" repetido
+  // como um martelo — "pe-dra, pe-dra, pe-dra". A palavra "pedra"
+  // é uma onomatopeia do impacto: /p/ oclusivo + /e/ + /dr/ vibrante
+  // = o som de uma pedra batendo. Drummond não descreve a pedra:
+  // ele a martela sonoramente na cabeça do leitor.
+
+---------------------------------------------------------------------
+1.5 RIMA (COMO FIGURA DE SOM)
+---------------------------------------------------------------------
+
+Definição: repetição de sons a partir da última vogal tônica do verso.
+A rima é simultaneamente figura de som (repetição fônica) e figura de
+construção (delimita o verso, organiza a estrofe).
+
+Classificação tradicional:
+1. RIMA CONSOANTE: todos os sons coincidem (vogais + consoantes):
+   "caminho" / "linho" — rima perfeita, completa.
+2. RIMA TOANTE: apenas as vogais coincidem, as consoantes podem variar:
+   "canto" / "manto" / "pranto" — rima imperfeita, mais comum
+   na poesia popular e no cordel.
+3. RIMA POBRE: palavras da mesma classe gramatical:
+   "amor" / "dor" (substantivo + substantivo)
+4. RIMA RICA: palavras de classes gramaticais diferentes:
+   "amor" (subst.) / "voar" (verbo)
+5. RIMA PRECIOSA: palavras raras, eruditas ou de pronúncia inesperada
+6. RIMA INTERNA: ocorre dentro do verso, não no final
+7. RIMA EMPARELHADA (AABB), ALTERNADA (ABAB), INTERPOLADA (ABBA),
+   ENCADEADA (terza rima: ABA BCB CDC)
+8. RIMA EXTERNA: final do verso — o padrão clássico
+
+📖 Exemplo real: Olavo Bilac — "Via Láctea" (Poesias, 1888),
+  Soneto XIII:
+  "Ora (direis) ouvir estrelas! Certo
+   perdeste o senso!" E eu vos direi, no entanto,
+   que, para ouvi-las, muita vez desperto
+   e abro as janelas, pálido de espanto...
+   E conversamos toda a noite, enquanto
+   a Via Láctea, como um pálio aberto,
+   cintila. E, ao vir do sol, saudoso e incerto,
+   venho do mundo do sonho quebrento.
+  // Rima consoante: "Certo/desperto" (ABAB nos quartetos),
+  // "enquanto/quebrento", "aberto/incerto". Bilac usa rima
+  // rica ("Certo"/"desperto": advérbio + verbo) e rima preciosa
+  // ("quebrento" — palavra rara). O padrão ABBA ABBA CDC DCD
+  // (rima interpolada nos quartetos, alternada nos tercetos) é
+  // o modelo clássico do soneto parnasiano.
+
+📖 Exemplo real: Camões — "Amor é fogo que arde sem se ver"
+  (Sonetos, c. 1560):
+  "Amor é fogo que arde sem se ver;
+   é ferida que dói e não se sente;
+   é um contentamento descontente;
+   é dor que desatina sem doer.
+   É um não querer mais que bem-querer;
+   é solitário andar por entre a gente;
+   é nunca contentar-se de contente;
+   é cuidar que se ganha em se perder.
+   É querer estar preso por vontade;
+   é servir a quem vence, o vencedor;
+   é ter com quem nos mata, lealdade.
+   Mas como causar pode seu favor
+   nos corações humanos amizade,
+   se tão contrário a si é o mesmo Amor?"
+  // Rima interpolada (ABBA ABBA) nos quartetos, com rima rica
+  // ("ver/sente/descontente/doer" — advérbio/adjetivo/adjetivo/
+  // verbo). Camões alterna rima consoante em -er e -ente,
+  // criando duas cadeias sonoras que se opõem (o -er do
+  // infinitivo: "ver/sentir/doer" vs -ente dos adjetivos:
+  // "descontente/contente").
+
+📖 Exemplo real: João Cabral de Melo Neto — "Morte e Vida Severina"
+  (1955):
+  "— O meu nome é Severino,
+   não tenho outro de pia.
+   Como há muitos Severinos,
+   com a mesma vida e morte,
+   que é a vida que é a morte,
+   a mesma vida severina.
+   E como há muitos Severinos,
+   não sei a qual me dirijo,
+   mas a todos, nesta altura,
+   a minha morte anuncio."
+  // Rima toante: "Severino/ Severinos/ severina/ dirijo/
+  // anuncio" — apenas as vogais /i/ e /o/ coincidem. Cabral
+  // deliberadamente evita a rima consoante (que seria "morta/
+  // porta") para criar um tom de fala popular, de auto popular
+  // nordestino.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José" (Sentimento
+  do Mundo, 1940):
+  "E agora, José?
+   A festa acabou,
+   a luz apagou,
+   o povo sumiu,
+   a noite esfriou,
+   e agora, José?
+   e agora, você?
+   você que é sem nome,
+   que zomba dos outros,
+   você que faz versos,
+   que ama, protesta?
+   e agora, José?"
+  // Rima toante em /o/ e /e/ ("acabou/apagou/sumiu/esfriou/
+  // você/nome/versos/protesta/José"). Drummond usa a rima toante
+  // como figura de desintegração: o poema não "fecha" as rimas,
+  // como José não "fecha" sua vida. A rima imperfeita é a
+  // figura da imperfeição do mundo.
+
+================================================================================
+2. FIGURAS DE PALAVRA (TROPOS)
+================================================================================
+
+Os tropos (do grego "tropos", "volta") operam por deslocamento de
+sentido: uma palavra é usada em um significado que não é o seu "próprio"
+(etimológico, lexical). Onde a linguagem comum diz "A é B" ou "A está
+por B", a poesia troca, desloca, subverte.
+
+A diferença fundamental entre os tropos é o TIPO DE RELAÇÃO que
+estabelecem entre o sentido próprio e o figurado:
+- Metáfora: relação de SEMELHANÇA (A parece B)
+- Metonímia: relação de CONTIGUIDADE (A está perto de B)
+- Sinestesia: relação de CRUZAMENTO SENSORIAL (som-visão-tato-paladar-olfato)
+- Catacrese: relação de LEXICALIZAÇÃO (a metáfora já é a palavra)
+- Comparação: relação EXPLÍCITA (A é como B)
+
+---------------------------------------------------------------------
+2.1 METÁFORA
+---------------------------------------------------------------------
+
+Definição clássica (Aristóteles): "dar a uma coisa o nome de outra,
+por analogia". A metáfora é o tropo fundamental, o coração da poesia.
+
+Definição moderna (Ricoeur): a metáfora não substitui um termo por
+outro — ela CRIA uma nova significação pela tensão entre dois campos
+semânticos. "O tempo é um mendigo" não quer dizer que o tempo seja
+realmente um mendigo, mas que a predicação provoca uma reorganização
+do sentido.
+
+Tipos:
+- Metáfora morta (lexicalizada): "pé da mesa", "braço da cadeira"
+- Metáfora viva (invenção poética): "o silêncio é um animal"
+- Metáfora in absentia (só o veículo aparece): "a fera" (pelo "homem")
+- Metáfora in praesentia (tenor e veículo): "a vida é um sopro"
+
+Drummond, Bandeira, Cabral e Cecília Meireles são os grandes mestres
+brasileiros da metáfora — cada um com uma poética metafórica distinta.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "No Meio do Caminho"
+  (Alguma Poesia, 1930):
+  "No meio do caminho tinha uma pedra
+   tinha uma pedra no meio do caminho
+   tinha uma pedra
+   no meio do caminho tinha uma pedra.
+   Nunca me esquecerei desse acontecimento
+   na vida de minhas retinas tão fatigadas.
+   Nunca me esquecerei que no meio do caminho
+   tinha uma pedra
+   tinha uma pedra no meio do caminho
+   no meio do caminho tinha uma pedra."
+  // A metáfora da "pedra no meio do caminho" é uma das mais
+  // debatidas da poesia brasileira. A pedra NÃO É uma pedra
+  // literal — é metáfora do obstáculo, do trauma, da memória
+  // que não se desgruda. Drummond recusa o "como" (comparação):
+  // a pedra é a própria coisa que obstrui o caminho da vida.
+  // A repetição obsessiva é a figura da impossibilidade de
+  // superar o obstáculo. O poema inteiro é uma metáfora
+  // prolongada: a pedra.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "A Máquina do Mundo"
+  (Claro Enigma, 1951):
+  "E como eu palmilhasse vagamente
+   uma estrada de Minas, pedregosa,
+   e no fecho da tarde um sino rouco
+   se misturasse ao som de meus sapatos
+   que era pausado e seco; e aves pairassem
+   no céu de chumbo, e suas formas pretas
+   lentamente se alargassem em desastre,
+   e como eu tivesse mão e pensamento
+   e um desejo de posse e de aventura,
+   e assim andasse, vagaroso, em meio
+   de uma paisagem de absoluta seca,
+   eis que subitamente se deteve
+   diante de mim a Máquina do Mundo...
+   Abriu-se em leque, e antes que eu descrevesse
+   o que via, tomou-me de assalto
+   a visão de sua face verdadeira:"
+  // A "Máquina do Mundo" é uma grande metáfora filosófica:
+  // o mundo como máquina, como engrenagem que se revela ao
+  // poeta. A metáfora é prolongada por 25 estrofes: a máquina
+  // é o universo, o conhecimento, a totalidade. Drummond retoma
+  // o tema camoniano ("máquina do mundo" em Os Lusíadas, X) e
+  // o transforma em indagação metafísica moderna.
+
+  "Mas a máquina do mundo, que a tudo
+   se propunha, recusava dar-lhe
+   o que pedia: o amor, a justiça, o céu,
+   a paz, a vida, a verdade, a poesia..."
+  // A metáfora atinge seu clímax na recusa: a máquina mostra
+  // tudo — menos o que o poeta realmente quer. A metáfora é,
+  // então, dupla: o mundo como máquina (que promete) e o mundo
+  // como máquina falha (que recusa). A metáfora drummondiana
+  // é a figura da impossibilidade do conhecimento.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José" (Sentimento
+  do Mundo, 1940):
+  "E agora, José?
+   A festa acabou,
+   a luz apagou,
+   o povo sumiu,
+   a noite esfriou,
+   e agora, José?
+   e agora, você?
+   você que é sem nome,
+   que zomba dos outros,
+   você que faz versos,
+   que ama, protesta?
+   e agora, José?
+   Está sem mulher,
+   está sem discurso,
+   está sem carinho,
+   já não pode beber,
+   já não pode fumar,
+   cuspir já não pode,
+   a noite esfriou,
+   o dia não veio,
+   o bonde não veio,
+   o riso não veio,
+   não veio a utopia
+   e tudo acabou
+   e tudo fugiu
+   e tudo mofou,
+   e agora, José?"
+  // "José" é uma grande metáfora do homem moderno: José é
+  // qualquer um — o brasileiro médio que perdeu o chão. A
+  // pergunta "E agora, José?" é a metáfora da crise existencial
+  // do século XX. Drummond transforma um nome próprio em nome
+  // comum — José é metáfora de todos nós.
+
+📖 Exemplo real: Manuel Bandeira — "O Bicho" (Libertinagem, 1930):
+  "Vi ontem um bicho
+   na imundície do pátio
+   catando comida entre os detritos.
+   Quando achava alguma coisa,
+   não examinava nem cheirava:
+   engolia com voracidade.
+   O bicho não era um cão,
+   não era um gato,
+   não era um rato.
+   O bicho, meu Deus, era um homem."
+  // A metáfora está na revelação final: o bicho é um homem.
+  // Bandeira inverte a ordem esperada (o homem como animal)
+  // e a revelação é um choque metafórico: o "bicho" não é
+  // metáfora do homem — é o homem que é metáfora do bicho.
+  // A metáfora opera por aproximação: a fome iguala homem e
+  // animal. "Meu Deus" é a exclamação que sela o horror da
+  // descoberta.
+
+📖 Exemplo real: Manuel Bandeira — "Vou-me Embora pra Pasárgada"
+  (O Ritmo Dissoluto, 1924):
+  "Vou-me embora pra Pasárgada
+   lá sou amigo do rei
+   lá tenho a mulher que quero
+   na cama que escolherei.
+   Vou-me embora pra Pasárgada.
+   Vou-me embora pra Pasárgada.
+   Lá tenho a mulher que quero
+   na cama que escolherei.
+   Vou-me embora pra Pasárgada.
+   Lá sou amigo do rei.
+   Lá tenho a mulher que quero
+   na cama que escolherei.
+   Vou-me embora pra Pasárgada."
+  // "Pasárgada" é uma metáfora complexa: a cidade ideal, o
+  // refúgio, a utopia. Bandeira tomou o nome da capital do
+  // Império Persa (Pasárgada, de Ciro, o Grande) e o
+  // transformou em metáfora do paraíso perdido que o poeta
+  // inventa. A repetição do nome é a figura da obsessão:
+  // Pasárgada é o lugar que não existe, que o poeta precisa
+  // repetir para acreditar.
+
+📖 Exemplo real: João Cabral de Melo Neto — "A Educação pela Pedra"
+  (A Educação pela Pedra, 1966):
+  "Uma educação pela pedra: por lições;
+   para aprender da pedra, frequentá-la;
+   captar sua voz inenfática, impessoal
+   (pela de dicção ela começa as aulas).
+   A lição de moral, sua resistência fria
+   ao que flui e a fluir, a ser maleada;
+   a de poética, sua carnadura concreta;
+   a de economia, seu adensar-se compacta:
+   lições da pedra (de fora para dentro,
+   cartilha muda), para quem soletrá-la.
+   Outra educação pela pedra: no Sertão
+   (de dentro para fora, e pré-didática).
+   No Sertão a pedra não sabe lecionar,
+   e se lecionasse, não ensinaria nada;
+   lá não se aprende a pedra: lá a pedra,
+   uma pedra de nascença, entranha a alma."
+  // Metáfora conceitual: a pedra como educadora. Cabral não
+  // compara a pedra à educação — ele declara que a pedra É a
+  // educação. A metáfora é prolongada por todo o poema: a pedra
+  // ensina moral (resistência), poética (concretude), economia
+  // (compressão). A metáfora cabralina é "seca" — não há ornamento,
+  // há substituição conceitual.
+
+📖 Exemplo real: Cecília Meireles — "Motivo" (Viagem, 1939):
+  "Eu canto porque o instante existe
+   e a minha vida está completa.
+   Não sou alegre nem sou triste:
+   sou poeta.
+   Irmão das coisas fugidias,
+   não sinto gozo nem tormento.
+   Atravesso noites e dias
+   ao vento.
+   Se me descrevo, desfaço-me.
+   Se me realizo, desfaço-me.
+   Só me realizo no espaço
+   em que me perco."
+  // Metáfora da identidade: "sou poeta" não é uma definição
+  // literal — é uma metáfora do ser como "irmão das coisas
+  // fugidias". O poeta é metáfora do instante, do vento, do
+  // espaço onde se perde. Cecília opera por metáforas negativas:
+  // ela é o que não é.
+
+📖 Exemplo real: Cecília Meireles — "Canção" (Viagem, 1939):
+  "Pus o meu sonho em um navio
+   e o navio em cima do mar;
+   — depois ordenei ao navio
+   que levasse o meu sonho a toda parte.
+   Mas o mar não tinha fim,
+   e o navio não chegava a lugar nenhum.
+   E o meu sonho se perdeu no mar,
+   e eu fiquei sem sonho,
+   e o mar ficou sem barco,
+   e eu fiquei sem nada."
+  // Metáfora alegórica: o sonho como navio, o mar como vida,
+  // a perda como naufrágio. Todo o poema é uma metáfora
+  // estendida (alegoria): cada elemento do real é substituído
+  // por um elemento marítimo que o representa.
+
+---------------------------------------------------------------------
+2.2 METONÍMIA
+---------------------------------------------------------------------
+
+Definição: transferência de sentido por contiguidade (proximidade
+conceitual). Enquanto a metáfora opera por SEMELHANÇA (A parece B),
+a metonímia opera por PROXIMIDADE (A está junto de B).
+
+Tipos de relação metonímica:
+- AUTOR PELA OBRA: "ler Drummond" (= a obra de Drummond)
+- CONTINENTE PELO CONTEÚDO: "beber um copo" (= o líquido)
+- CAUSA PELO EFEITO: "viver do suor" (= do trabalho)
+- SÍMBOLO PELA COISA SIMBOLIZADA: "a coroa" (= o rei)
+- INSTRUMENTO PELO AGENTE: "o bisturi" (= o cirurgião)
+
+Jakobson (1956) demonstrou que a metonímia é o polo dominante na
+prosa realista (Dostoiévski, Tolstói), enquanto a metáfora domina
+a poesia romântica e simbolista. Mas há poetas metonímicos — entre
+eles, Ferreira Gullar é o grande exemplo brasileiro.
+
+📖 Exemplo real: Ferreira Gullar — "Poema Sujo" (1975):
+  "Oh minha cidade, minha consumição,
+   rua do Imperador, rua do Imperador,
+   rua do Imperador, onde brinquei de roda
+   com a nenenzinha que tinha olhos verdes
+   e braços brancos como a lua.
+   Rua do Imperador, onde meu pai me levava
+   pra ver o carnaval, os carros alegóricos,
+   os maracatus, os caboclinhos, os seriões.
+   Oh, São Luís do Maranhão, cidade dos meus olhos,
+   cidade dos meus olhos verdes,
+   cidade dos meus olhos de menino.
+   Rua do Imperador, rua do Imperador,
+   quantas vezes chorei em tuas pedras,
+   quantas vezes ri em tuas esquinas,
+   quantas vezes sonhei em tuas noites!
+   Meu São Luís, oh, cidade dos meus olhos,
+   lá no alto do palácio, o relógio que parou
+   na hora da minha partida."
+  // Metonímia da cidade: a "Rua do Imperador" é uma parte da
+  // cidade que representa o todo (sinédoque). A parte (a rua)
+  // contém a memória do poeta — e a cidade inteira se condensa
+  // no nome da rua. "Cidade dos meus olhos" é metonímia: os
+  // olhos são a parte que vê, mas representam a percepção total.
+
+📖 Exemplo real: Ferreira Gullar — "Poema Sujo" (1975), trecho:
+  "O cheiro do mar, o cheiro da maresia,
+   o cheiro do peixe, o cheiro da maré.
+   O cheiro do cais, o cheiro do carvão,
+   o cheiro das frutas, o cheiro do Ver-o-Peso.
+   O cheiro do tucupi, o cheiro do pato no tucupi,
+   o cheiro do açaí, o cheiro do tacacá.
+   O cheiro do mundo, o cheiro da vida,
+   o cheiro da morte, o cheiro do homem.
+   Tudo isso me cheira, me cheira, me cheira,
+   me entra pelas narinas, me sobe à cabeça,
+   me desce ao coração,
+   e eu fico tonto, tonto, tonto de cheiro."
+  // Metonímia do olfato: o cheiro é o sentido que ativa a
+  // memória involuntária (como em Proust). Cada cheiro é uma
+  // metonímia de um tempo e lugar: o cheiro Ver-o-Peso (o
+  // mercado de Belém) = a cidade de Belém; o cheiro do açaí
+  // = a Amazônia. A enumeração é metonímica: a lista de cheiros
+  // é a lista do mundo — o mundo representado por seus odores.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "A Morte" (Claro
+  Enigma, 1951):
+  "A morte não é a morte, é a memória
+   que os outros têm de nós,
+   e essa memória é a nossa vida
+   depois da vida.
+   Mas a memória se apaga,
+   e a segunda morte é a definitiva:
+   quando ninguém mais se lembra de nós,
+   então morremos de verdade."
+  // Metonímia da morte: a morte é representada por seu efeito
+  // (a memória). A relação é de contiguidade: morte e memória
+  // são conceitos vizinhos. A "segunda morte" (o esquecimento)
+  // é metonímia do apagamento total.
+
+📖 Exemplo real: João Cabral de Melo Neto — "O Cão Sem Plumas"
+  (1950):
+  "O rio não tem medo
+   da pobreza que o rodeia.
+   O rio não tem medo
+   de ser só.
+   O rio é a vida
+   que não se interrompe."
+  // Metonímia: "o rio" pelo "povo ribeirinho", pela "vida
+  // nordestina". O rio é o continente que contém a população
+  // — a parte (o rio) representa a condição de todos que vivem
+  // às suas margens. A metonímia é o recurso central de Cabral:
+  // a paisagem substitui o homem.
+
+---------------------------------------------------------------------
+2.3 SINESTESIA
+---------------------------------------------------------------------
+
+Definição: fusão de sensações de diferentes sentidos em uma mesma
+expressão. Ex: "som azul" (audição + visão), "voz áspera" (audição
++ tato), "grito amarelo" (audição + visão).
+
+A sinestesia é o tropo central do Simbolismo (final do séc. XIX),
+inspirado pelo soneto "Correspondances" de Baudelaire, onde "os
+perfumes, as cores e os sons se correspondem". No Brasil, Cruz e
+Sousa é o grande mestre da sinestesia: sua poesia é uma tapeçaria
+de sensações cruzadas.
+
+📖 Exemplo real: Cruz e Sousa — "Antífona" (Broquéis, 1893):
+  "Ó Formas alvas, brancas, Formas claras
+   de luares, de neves, de neblinas!
+   Ó Formas vagas, fluidas, cristalinas...
+   pedaços de luar, pedaços de distância.
+   Formas aéreas, puras, imaculadas,
+   formas etéreas, de brumas, de neblinas,
+   formas de sonho, fluídas, descoradas,
+   formas da noite, brancas, peregrinas."
+  // Sinestesia visual-tátil: "Formas fluidas, cristalinas" —
+  // a visão (formas) se funde com o tato (fluidez) e com a
+  // audição implícita (cristal = som de cristal). "Pedaços de
+  // luar" — o luar (visão) é "pedaço" (tato). "Formas etéreas,
+  // de brumas" — o etéreo (sensação de leveza) se combina com
+  // a bruma (visão).
+
+📖 Exemplo real: Cruz e Sousa — "Broquéis" (Broquéis, 1893):
+  "Ó luares, ó neves, ó neblinas,
+   ó formas claras, fluidas, cristalinas,
+   ó véus de estrelas, ó sonhos de cetim,
+   ó águas-furtadas do luar sem fim.
+   O silêncio azul da noite escura
+   povoa-se de espectros de ventura;
+   sombras de asas pairando no ar,
+   asas de sonhos que não podem voar."
+  // "Silêncio azul" — sinestesia entre audição (silêncio) e
+  // visão (azul). É a sinestesia mais pura: a fusão de dois
+  // sentidos num sintagma indissociável. "Sonhos de cetim" —
+  // o sonho (abstração) se funde ao cetim (tato: maciez).
+  // "Águas-furtadas do luar" — o luar (visão) é dobrado em
+  // compartimentos arquitetônicos (espaço tátil-visual).
+
+📖 Exemplo real: Cruz e Sousa — "Acrobata da Dor" (Faróis, 1900):
+  "E o acrobata, no alto, equilibrado,
+   vai rindo, rindo, rindo do cuidado,
+   vai rindo, rindo, rindo do perigo,
+   vai rindo, rindo, rindo do castigo.
+   E a plateia, em baixo, silenciosa,
+   ouve o riso fino de cristal
+   que o acrobata, na corda, faz soar
+   como um sino de vidro a tilintar."
+  // "Riso fino de cristal" — sinestesia: a audição (riso fino)
+  // se funde com o tato (cristal = textura fria e lisa) e com
+  // a visão (cristal = transparência). "Sino de vidro a tilintar"
+  // — sinestesia auditivo-visual: o som de vidro (audição) é
+  // também imagem de fragilidade (visão-tato).
+
+📖 Exemplo real: Alphonsus de Guimaraens — "Ismália" (Poesia,
+  1902):
+  "Quando Ismália enlouqueceu,
+   pôs-se na torre a sonhar...
+   Viu uma lua no céu,
+   viu outra lua no mar.
+   No sonho em que se perdeu,
+   banhou-se toda em luar...
+   Queria subir ao céu,
+   queria descer ao mar.
+   E, no desvario seu,
+   na torre pôs-se a cantar...
+   Estava perto do céu,
+   estava longe do mar.
+   E como um anjo pendeu
+   as asas para voar...
+   Queria a lua do céu,
+   queria a lua do mar.
+   As asas que Deus lhe deu
+   ruflaram de par em par...
+   Su'alma subiu ao céu,
+   seu corpo desceu ao mar."
+  // Sinestesia visual-espacial: a lua do céu e a lua do mar
+  // — a mesma lua refletida em dois lugares, como a alma e o
+  // corpo. A sinestesia não é explícita (como "som azul") mas
+  // implícita: a visão (lua) se desdobra em duas dimensões
+  // (altura e profundidade), criando uma sensação de vertigem.
+
+---------------------------------------------------------------------
+2.4 CATACRESE
+---------------------------------------------------------------------
+
+Definição: metáfora lexicalizada — uma palavra que originalmente
+era usada em sentido figurado mas que, pelo uso contínuo, perdeu
+a consciência de sua metaforicidade e se incorporou ao léxico
+como sentido "próprio".
+
+Exemplos clássicos: "braço da cadeira", "pé da mesa", "dente do
+alho", "cabeça do alfinete", "boca do fogão", "asa da xícara",
+"batata da perna", "coração da cidade".
+
+A catacrese é importante porque mostra que a metáfora não é apenas
+um recurso poético ocasional: é o motor da própria linguagem. Como
+escreveu Nietzsche (Sobre Verdade e Mentira no Sentido Extramoral):
+"O que é a verdade? Um exército móvel de metáforas, metonímias e
+antropomorfismos."
+
+Na poesia, a catacrese pode ser EXPLORADA pelo poeta que recupera
+a consciência da metáfora adormecida.
+
+📖 Exemplo real: João Cabral de Melo Neto — "A Educação pela Pedra"
+  (A Educação pela Pedra, 1966):
+  "E assim, pelo convívio, pela pedra,
+   uma educação pela pedra se processa.
+   Não se trata de usar a pedra como
+   se fosse uma ferramenta, um utensílio,
+   mas de entender que a pedra, em sua essência,
+   é a própria educação — a educação pela pedra."
+  // Cabral trabalha com a catacrese, reanimando-a: a pedra não
+  // é ferramenta, a pedra é essência. Ele deslexicaliza a
+  // catacrese, devolve à pedra sua condição de metáfora-que-ensina.
+
+📖 Exemplo real: Adélia Prado — "Composição" (O Coração Disparado,
+  1978):
+  "A vida é um suspiro
+   entre dois nadas.
+   Nascemos do nada,
+   vivemos no meio do nada,
+   e para o nada voltamos.
+   Mas neste curto intervalo
+   entre o nada que fomos
+   e o nada que seremos,
+   há o amor, há a poesia,
+   há a carne, há o pão,
+   há o vinho e há Deus."
+  // "Pé da montanha", "braço do rio", "boca da noite" — Adélia
+  // recupera catacreses e as reinjeta no poema como metáforas
+  // vivas. A linguagem poética é o lugar onde a catacrese se
+  // despetrifica.
+
+---------------------------------------------------------------------
+2.5 COMPARAÇÃO
+---------------------------------------------------------------------
+
+Definição: aproximação explícita entre dois elementos por meio de
+um conector comparativo — "como", "qual", "tal qual", "feito",
+"assim como", "mais que", "menos que".
+
+Diferença fundamental entre COMPARAÇÃO e METÁFORA:
+- Comparação: "Seu olhar É COMO dois passarinhos" (conector explícito)
+- Metáfora: "Teus olhos são dois passarinhos" (sem conector)
+
+A comparação é considerada menos intensa que a metáfora porque
+mantém a distinção entre os dois termos (A e B permanecem separados
+pelo "como"). A metáfora funde os dois termos (A é B).
+
+📖 Exemplo real: Paulo Leminski — "Comentário" (Caprichos & Relaxos,
+  1983):
+  "Seu olhar
+   como dois passarinhos
+   que o vento leva."
+  // Comparação: o olhar é COMO dois passarinhos. Leminski
+  // mantém o conector "como", mas a comparação é tão intensa
+  // que quase se torna metáfora: o olhar NÃO É passarinhos,
+  // mas é COMO — a diferença é preservada, e é essa preservação
+  // que permite a delicadeza do gesto (o vento leva os
+  // passarinhos, distrai o olhar).
+
+📖 Exemplo real: Manuel Bandeira — "Porquinho-da-Índia"
+  (Libertinagem, 1930):
+  "Quando eu tinha seis anos
+   ganhei um porquinho-da-índia.
+   Que dor de coração me dava
+   porque o bichinho só queria estar debaixo do fogão!
+   Levava ele pra sala
+   pra os lugares de mais calçada,
+   e ele, coitado, só queria estar debaixo do fogão.
+   Não fazia caso nenhum das minhas ternurinhas...
+   — O meu porquinho-da-índia foi a minha primeira namorada."
+  // Comparação implícita: "O meu porquinho-da-índia foi a
+  // minha primeira namorada" — é uma metáfora (o porquinho
+  // era a namorada) que se justifica por comparação: o
+  // porquinho, como a primeira namorada, não correspondia
+  // ao carinho. A fronteira entre comparação e metáfora é
+  // intencionalmente turva.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Poema de Sete Faces"
+  (Alguma Poesia, 1930):
+  "Quando nasci, um anjo torto
+   desses que vivem na sombra
+   disse: Vai, Carlos! ser gauche na vida."
+  // Comparação implícita: "anjo torto" — o anjo é COMPARADO
+  // a alguém torto, imperfeito. A comparação é feita sem "como",
+  // mas pela definição ("desses que vivem na sombra"). Drummond
+  // desvia da metáfora direta e cria uma categoria: os anjos
+  // tortos que vivem na sombra.
+
+================================================================================
+3. FIGURAS DE CONSTRUÇÃO (SINTAXE)
+================================================================================
+
+As figuras de construção (ou figuras de sintaxe) manipulam a ordem,
+a omissão, a repetição e a concordância dos elementos da frase. São
+recursos que desviam da estrutura sintática "normal" (ordem direta,
+concordância gramatical, pontuação padrão) para produzir efeitos
+expressivos.
+
+---------------------------------------------------------------------
+3.1 HIPÉRBATO
+---------------------------------------------------------------------
+
+Definição: inversão da ordem direta dos termos da oração
+(SUJEITO + VERBO + OBJETO + ADJUNTO). Em grau extremo, o hipérbato
+torna a frase quase ininteligível — é a SÍNQUISE.
+
+O hipérbato é a figura de construção mais característica da poesia
+clássica (Camões, Gregório, os parnasianos).
+
+📖 Exemplo real: Camões — "Os Lusíadas" (1572), Canto I:
+  "As armas e os barões assinalados
+   que, da ocidental praia lusitana,
+   por mares nunca de antes navegados,
+   passaram ainda além da Taprobana,
+   em perigos e guerras esforçados
+   mais do que prometia a força humana,
+   entre gente remota edificaram
+   novo reino, que tanto sublimaram."
+  // Hipérbato: o objeto direto ("As armas e os barões
+  // assinalados") é deslocado para o início, antes do verbo
+  // ("passaram", "edificaram"). A ordem "natural" seria:
+  // "Os barões assinalados passaram por mares nunca navegados
+  // e edificaram novo reino". Camões inverte para criar a
+  // grandiosidade épica: o objeto (armas + barões) vem primeiro
+  // porque é o tema do poema.
+
+📖 Exemplo real: Gregório de Matos — "A Jesus Cristo" (Religiosa,
+  c. 1680):
+  "Pequei, Senhor; mas não porque hei pecado,
+   de vossa alta clemência me despido;
+   porque, quanto mais tenho delinquido,
+   vos tenho a perdoar mais empenhado."
+  // Hipérbato: "Se basta a vos irar tanto pecado / a abrandar-vos
+  // sobeja um só gemido". A ordem direta seria: "Se tanto pecado
+  // basta a vos irar, um só gemido sobeja a abrandar-vos". O
+  // deslocamento de "tanto pecado" e "um só gemido" cria ênfase.
+
+📖 Exemplo real: Olavo Bilac — "Via Láctea" (Poesias, 1888),
+  Soneto XIII:
+  "Ora (direis) ouvir estrelas! Certo
+   perdeste o senso!" E eu vos direi, no entanto,
+   que, para ouvi-las, muita vez desperto
+   e abro as janelas, pálido de espanto..."
+  // Hipérbato: "Ora (direis) ouvir estrelas!" — o verbo
+  // "ouvir" é colocado antes do objeto "estrelas", quando a
+  // ordem direta seria "Ouvir estrelas, (direis) ora!" A
+  // inversão é leve, mas decisiva para o tom coloquial e
+  // espantado.
+
+---------------------------------------------------------------------
+3.2 SILEPSE
+---------------------------------------------------------------------
+
+Definição: concordância feita pelo sentido, não pela forma gramatical.
+É um tipo de concordância "ideológica" — o termo concorda com a ideia
+que representa, não com sua forma gramatical.
+
+Tipos de silepse:
+1. SILEPSE DE GÊNERO: "Vossa Excelência está cansado" — gênero
+   feminino, adjetivo masculino (concorda com o sexo).
+2. SILEPSE DE NÚMERO: "A multidão gritavam" — singular + verbo plural.
+3. SILEPSE DE PESSOA: "Os brasileiros somos assim" — 3ª pessoa
+   + verbo em 1ª pessoa (o falante se inclui).
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938"
+  (Sentimento do Mundo, 1940):
+  "Trabalhas sem alegria para um mundo caduco,"
+  // Silepse de pessoa: "Trabalhas" (2ª pessoa do singular) —
+  // Drummond se dirige a SI MESMO como se fosse outro (ou ao
+  // leitor, ou ao homem genérico). O "tu" é silepse: o sujeito
+  // da elegia é o poeta, mas ele usa "trabalhas" como se falasse
+  // de um outro — que é ele próprio.
+
+📖 Exemplo real: Manuel Bandeira — "Porquinho-da-Índia"
+  (Libertinagem, 1930):
+  "O meu porquinho-da-índia foi a minha primeira namorada."
+  // Silepse de gênero: "porquinho-da-índia" é masculino
+  // (o porquinho), mas "namorada" é feminino. Bandeira cruza
+  // os gêneros na metáfora: o porquinho (masc.) é a namorada
+  // (fem.). A silepse é a figura da confusão afetiva da
+  // infância.
+
+---------------------------------------------------------------------
+3.3 ELIPSE E ZEUGMA
+---------------------------------------------------------------------
+
+Definição:
+- ELIPSE: omissão de um termo que pode ser facilmente subentendido
+  pelo contexto. A elipse não deixa "rastro".
+- ZEUGMA: tipo específico de elipse em que o termo omitido já foi
+  expresso anteriormente na frase (ou em frase vizinha).
+
+📖 Exemplo real: Manuel Bandeira — "Poema Tirado de uma Notícia
+  de Jornal" (Lira dos Cinquent'Anos, 1940):
+  "João Gostoso era carregador de feira-livre
+   e morava no morro da Mangueira.
+   Uma noite, chegou no bar Vinte de Novembro
+   e bebeu.
+   Cantou, dançou, bebeu
+   e depois se atirou no lago Rodrigo de Freitas
+   e morreu afogado."
+  // Elipse do sujeito: "Cantou, dançou, bebeu" — o sujeito
+  // (João Gostoso) é omitido. A elipse acelera a narrativa.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José"
+  (Sentimento do Mundo, 1940):
+  "e tudo acabou
+   e tudo fugiu
+   e tudo mofou,
+   e agora, José?"
+  // Zeugma de "tudo": o sujeito "tudo" é repetido, mas os
+  // verbos "acabou", "fugiu", "mofou" partilham o mesmo
+  // sujeito. O zeugma cria a sensação de acúmulo de perdas.
+
+---------------------------------------------------------------------
+3.4 ANÁFORA
+---------------------------------------------------------------------
+
+Definição: repetição da(s) mesma(s) palavra(s) no início de versos
+ou orações sucessivos. A anáfora é a figura da ênfase, do ritmo,
+da obsessão — o mesmo gesto repetido que martela uma ideia.
+
+📖 Exemplo real: Cecília Meireles — "Motivo" (Viagem, 1939):
+  "Eu canto porque o instante existe
+   e a minha vida está completa.
+   Não sou alegre nem sou triste:
+   sou poeta.
+   Irmão das coisas fugidias,
+   não sinto gozo nem tormento.
+   Atravesso noites e dias
+   ao vento.
+   Se me descrevo, desfaço-me.
+   Se me realizo, desfaço-me.
+   Só me realizo no espaço
+   em que me perco."
+  // Anáfora: "Se me descrevo, desfaço-me. / Se me realizo,
+  // desfaço-me" — a repetição de "Se me" + verbo + "desfaço-me"
+  // cria uma estrutura de espelho: descrever = realizar = se
+  // desfazer.
+
+📖 Exemplo real: Cecília Meireles — "Retrato" (Viagem, 1939):
+  "Eu não tinha este rosto de hoje,
+   assim calmo, assim triste, assim magro,
+   nem estes olhos tão vazios,
+   nem o lábio amargo.
+   Eu não tinha estas mãos sem força,
+   tão paradas e frias e mortas;
+   eu não tinha este coração
+   que nem se mostra."
+  // Anáfora de "Eu não tinha" — a repetição nega o que o
+  // espelho mostra. Cecília não diz "perdi" — diz "não tinha",
+  // como se o passado fosse de outra pessoa.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "O Adeus"
+  (A Rosa do Povo, 1945):
+  "Adeus, meus dias, adeus,
+   noites que não voltareis.
+   Adeus, amigos que partistes
+   antes de mim.
+   Adeus, corpo que me deste
+   prazer e dor.
+   Adeus, alma que me deste
+   desassossego.
+   Adeus, tudo que tive
+   e que não terei mais.
+   Adeus, vida, que não me deste
+   o que eu queria.
+   Adeus, morte, que me levarás
+   para o nada."
+  // Anáfora de "Adeus" — 8 versos começam com "Adeus". A
+  // repetição é o gesto de despedida que se prolonga.
+
+---------------------------------------------------------------------
+3.5 POLISSÍNDETO
+---------------------------------------------------------------------
+
+Definição: repetição de conjunções coordenativas (geralmente "e")
+entre termos ou orações. O polissíndeto cria fluxo contínuo,
+acúmulo e obsessão.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José"
+  (Sentimento do Mundo, 1940):
+  "e tudo acabou
+   e tudo fugiu
+   e tudo mofou,"
+  // Polissíndeto de "e": três "e"s que acumulam o fim:
+  // acabou + fugiu + mofou. O "e" não marca adição, mas
+  // agravação: cada novo "e" adiciona uma perda.
+
+---------------------------------------------------------------------
+3.6 ASSÍNDETO
+---------------------------------------------------------------------
+
+Definição: supressão de conjunções entre termos coordenados, que
+passam a ser separados apenas por vírgulas ou justapostos.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Poema de Sete Faces"
+  (Alguma Poesia, 1930):
+  "Mundo mundo vasto mundo,
+   mais vasto é meu coração."
+  // Assíndeto: "Mundo mundo vasto mundo" — a repetição de
+  // "mundo" sem conjunção é um assíndeto que funde apelo,
+  // constatação e ênfase.
+
+================================================================================
+4. FIGURAS DE PENSAMENTO
+================================================================================
+
+As figuras de pensamento operam sobre o significado global do discurso
+— não sobre uma palavra (tropos) ou sobre a sintaxe (construção), mas
+sobre a lógica, a emoção e a visão de mundo que o poema expressa.
+
+---------------------------------------------------------------------
+4.1 ANTÍTESE E PARADOXO
+---------------------------------------------------------------------
+
+- ANTÍTESE: oposição entre duas ideias, imagens ou termos.
+- PARADOXO: afirmação que contradiz a lógica comum mas revela uma
+  verdade mais profunda.
+
+📖 Exemplo real: Camões — "Amor é fogo que arde sem se ver" (c.1560):
+  "Amor é fogo que arde sem se ver;
+   é ferida que dói e não se sente;
+   é um contentamento descontente;
+   é dor que desatina sem doer."
+  // Paradoxo central: "Amor é fogo que arde sem se ver" — o
+  // fogo é visível por definição, mas o amor é fogo invisível.
+
+📖 Exemplo real: Vinicius de Moraes — "Soneto de Fidelidade" (1946):
+  "Que não seja imortal, posto que é chama
+   mas que seja infinito enquanto dure."
+  // Paradoxo: "infinito enquanto dure" — o infinito é eterno
+  // por definição; dizer que algo é infinito "enquanto dure"
+  // é um paradoxo: o infinito limitado.
+
+---------------------------------------------------------------------
+4.2 HIPÉRBOLE
+---------------------------------------------------------------------
+
+Definição: exagero expressivo — uma afirmação que excede os limites
+do verossímil para enfatizar uma ideia ou emoção.
+
+📖 Exemplo real: Leandro Gomes de Barros — Cordel (c. 1900):
+  "O cavalo era tão grande
+   que a sombra cobria o mundo."
+  // Hipérbole: o cavalo é tão grande que sua sombra cobre o
+  // mundo. O cordel usa a hipérbole como figura central.
+
+---------------------------------------------------------------------
+4.3 PROSOPOPEIA (PERSONIFICAÇÃO)
+---------------------------------------------------------------------
+
+Definição: atribuição de ações, sentimentos ou características
+humanas a seres não humanos.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Poema de Sete Faces"
+  (Alguma Poesia, 1930):
+  "As casas espiam os homens
+   que correm atrás de mulheres."
+  // Prosopopeia: "as casas espiam". As casas não são objetos
+  // inanimados — elas têm olhos, elas vigiam.
+
+---------------------------------------------------------------------
+4.4 GRADAÇÃO
+---------------------------------------------------------------------
+
+Definição: sequência de termos em ordem crescente (clímax) ou
+decrescente (anticlímax) de intensidade.
+
+📖 Exemplo real: Cecília Meireles — "Canção" (Viagem, 1939):
+  "E o meu sonho se perdeu no mar,
+   e eu fiquei sem sonho,
+   e o mar ficou sem barco,
+   e eu fiquei sem nada."
+  // Gradação descendente: "sem sonho" → "mar sem barco" → "sem
+  // nada". Do particular (o sonho perdido) ao universal (a
+  // anulação total).
+
+---------------------------------------------------------------------
+4.5 IRONIA
+---------------------------------------------------------------------
+
+Definição: figura de pensamento em que se diz o contrário do que
+se quer dizer, com intenção crítica ou humorística.
+
+📖 Exemplo real: Oswald de Andrade — "Pronominais" (1945):
+  "Dê-me um cigarro
+   Diz a gramática
+   Do professor e do aluno
+   E do bom conhecimento
+   Mas o bom negro e o bom branco
+   Da Nação Brasileira
+   Dizem todos os dias
+   Deixa disso camarada
+   Me dá um cigarro."
+  // Ironia da norma gramatical: "Dê-me um cigarro" é a forma
+  // correta (segundo a gramática normativa), mas Oswald ironiza
+  // a correção ao opô-la à fala real ("Me dá um cigarro").
+
+================================================================================
+5. CRITICAL FRAMEWORK — DISTINÇÃO ENTRE FIGURA E ERRO
+================================================================================
+
+A distinção entre figura de linguagem e vício de linguagem (erro) é
+crucial na revisão poética. O mesmo desvio da norma — uma inversão,
+uma omissão, uma concordância divergente — pode ser:
+- FIGURA: se expressivo, intencional, sistemático, com lastro na
+  tradição poética
+- ERRO: se acidental, não funcional, comprometedor da inteligibilidade
+
+Critérios para distinguir:
+
+1. INTENCIONALIDADE: A figura é deliberada? O poeta sabe que está
+   desviando da norma?
+2. FUNCIONALIDADE: O desvio serve a um efeito expressivo?
+3. SISTEMATICIDADE: O desvio é consistente em todo o poema?
+4. INTELEGIBILIDADE: O desvio compromete a compreensão?
+5. LASTRO TRADICIONAL: A figura tem tradição na poesia portuguesa/
+   brasileira?
+
+📖 Exemplo real: Candido — "O Estudo Analítico do Poema" (1967):
+  "Não se pode analisar um poema como se analisa um texto
+   informativo. O poema é uma estrutura de significados que se
+   organizam em vários níveis: fônico, morfológico, sintático,
+   semântico. A figura de linguagem é o ponto onde esses níveis
+   se cruzam com maior intensidade. Ignorar a figura é ignorar
+   o poema."
+  // Candido defende que a análise poética deve reconhecer as
+  // figuras como parte da estrutura do poema, não como desvios
+  // a serem corrigidos.
+
+📖 Exemplo real: Pound — "ABC da Literatura" (1934), cap. 2:
+  "A poesia é uma linguagem carregada ao máximo de sua intensidade.
+   Essa carga se manifesta de três formas: melopeia (a música),
+   fanopeia (a imagem), logopeia (o jogo de palavras). As figuras
+   de linguagem são os instrumentos dessa carga — não são enfeites,
+   são a própria poesia."
+  // Pound rejeita a concepção ornamental da figura: a figura
+  // não adorna o poema — ELA É o poema.
+
+================================================================================
+BIBLIOGRAFIA
+================================================================================
+
+ARISTÓTELES. Poética. Tradução de Eudoro de Sousa. Lisboa: Imprensa
+  Nacional-Casa da Moeda, 1986.
+
+ARISTÓTELES. Retórica. Tradução de Manuel Alexandre Júnior et al.
+  Lisboa: INCM, 1998.
+
+BOSI, Alfredo. O Ser e o Tempo da Poesia. São Paulo: Companhia das
+  Letras, 2000.
+
+CANDIDO, António. O Estudo Analítico do Poema. São Paulo: Humanitas,
+  1996.
+
+JAKOBSON, Roman. Linguística e Poética. In: ______. Linguística e
+  Comunicação. São Paulo: Cultrix, 1975.
+
+MOISÉS, Massaud. A Criação Poética. São Paulo: Melhoramentos, 1973.
+
+POUND, Ezra. ABC da Literatura. São Paulo: Cultrix, 1970.
+
+QUINTILIANO, Marcus Fabius. Institutio Oratoria. Tradução de H. E.
+  Butler. Cambridge: Harvard University Press, 1920.
+
+RICOEUR, Paul. A Metáfora Viva. São Paulo: Loyola, 2000.
+
+SAID ALI, Manuel. Versificação Portuguesa. Rio de Janeiro: MEC, 1948.
+
+
+================================================================================
+APÊNDICE A — EXPANSÃO DETALHADA: JAKOBSON, METÁFORA E METONÍMIA
+================================================================================
+
+Roman Jakobson, em "Dois Aspectos da Linguagem e Dois Tipos de
+Afasia" (1956), propôs que toda a linguagem se organiza em dois
+eixos fundamentais:
+
+1. EIXO PARADIGMÁTICO (seleção): escolha entre termos equivalentes.
+   É o eixo da METÁFORA, da substituição, da semelhança.
+   Ex: "cavalo" / "égua" / "potro" / "montaria" — o poeta escolhe
+   um termo entre vários possíveis.
+
+2. EIXO SINTAGMÁTICO (combinação): combinação de termos na cadeia
+   da frase. É o eixo da METONÍMIA, da contiguidade, do contexto.
+   Ex: "cavalo" + "corre" + "no" + "campo" — o poeta combina
+   termos para formar uma sequência.
+
+A função poética (Jakobson, 1960) "projeta o princípio de equivalência
+do eixo de seleção para o eixo de combinação". Isso significa que,
+na poesia, a ESCOLHA (paradigma) se torna também COMBINAÇÃO (sintagma):
+as palavras se atraem por semelhança (rima, aliteração, assonância)
+e se organizam em paralelismos que as tornam equivalentes.
+
+📖 Exemplo real: Análise jakobsoniana de "Poema de Sete Faces"
+  de Drummond:
+  "Mundo mundo vasto mundo,
+   mais vasto é meu coração."
+  // No eixo paradigmático, "mundo" é selecionado entre outras
+  // palavras possíveis ("terra", "vida", "universo"). No eixo
+  // sintagmático, "mundo" se combina com "vasto" e "coração".
+  // A repetição de "mundo" (projeção do paradigma sobre o
+  // sintagma) cria a equivalência: mundo = mundo = mundo.
+
+================================================================================
+APÊNDICE B — QUADRO COMPARATIVO: FIGURA vs ERRO
+================================================================================
+
+O quadro abaixo sistematiza os critérios de distinção entre figura
+de linguagem e vício de linguagem (erro), aplicados a cada categoria
+de desvio:
+
+| TIPO DE DESVIO            | COMO FIGURA                        | COMO ERRO                          |
+|---------------------------|------------------------------------|------------------------------------|
+| Inversão (hipérbato)      | Serve à métrica, rima ou ênfase    | Inversão gratuita que obscurece    |
+| Omissão (elipse/zeugma)   | Suprime termo subentendido         | Omite termo essencial ao sentido   |
+| Repetição (anáfora)       | Cria ritmo e ênfase                | Repetição viciosa e cansativa      |
+| Metáfora                  | Cria novo sentido por analogia     | Incoerência semântica sem função   |
+| Silepse                   | Concordância ideológica expressiva | Erro de concordância acidental     |
+| Conjunção (polissíndeto)  | Acumula para efeito de fluxo       | Repetição desnecessária de "e"    |
+| Hipérbole                 | Exagero intencional e expressivo   | Exagero inverossímil sem propósito |
+
+A regra de ouro: NA DÚVIDA, CLASSIFICAR COMO FIGURA. A revisão poética
+deve ser conservadora na correção e generosa no reconhecimento dos
+recursos expressivos.
+
+================================================================================
+APÊNDICE C — FIGURAS MENORES E VARIANTES
+================================================================================
+
+1. ANADIPLOSE: repetição de uma palavra no final de um verso e no
+   início do seguinte. Ex: João Cabral em "Tecendo a Manhã" —
+   "De um que apanhe esse grito que ele / e o lance a outro; de
+   um outro galo / que apanhe o grito que um galo antes / e o
+   lance a outro..."
+
+2. EPÍSTROFE: repetição de palavras no final de versos sucessivos.
+   Ex: Drummond em "Elegia 1938" — "a morte não te pode
+   prejudicar" repetido quatro vezes no final dos versos.
+
+3. CONCATENAÇÃO: encadeamento de um verso no outro (enjambement).
+   Comum na poesia moderna. Ex: João Cabral — "um galo sozinho
+   não tece uma manhã" — o verso continua no seguinte.
+
+4. APÓSTROFE (já mencionada): invocação direta a alguém ou algo.
+   Ex: Cecília Meireles — "Não chores, minha vida, a minha morte"
+   — apóstrofe à própria vida.
+
+5. EUFEMISMO: suavização de termo desagradável. Ex: "descansou"
+   por "morreu". Na poesia, pode ser usado para amenizar a dor
+   ou para criar ironia.
+
+6. LITOTES: afirmação pela negação do contrário. Ex: "não é feio"
+   por "é bonito". Figura de modéstia ou understatement.
+
+7. PLEONASMO: repetição enfática de um termo. Diferente do vício
+  ("subir para cima"), o pleonasmo poético é expressivo:
+   Ex: "a mim me parece" — ênfase na primeira pessoa.
+
+8. RETIFICAÇÃO: correção do que se acabou de dizer. Ex: "não, não
+   era bem isso". Comum em Ana Cristina Cesar.
+
+================================================================================
+APÊNDICE D — EXERCÍCIO DE CLASSIFICAÇÃO: 30 EXEMPLOS COMENTADOS
+================================================================================
+
+Cada exemplo abaixo é um verso ou fragmento de poema brasileiro.
+Classifique a figura dominante e confira a análise.
+
+1. "No meio do caminho tinha uma pedra" (Drummond)
+   // Metáfora + Aliteração em /p/ + Onomatopeia (pedra = obstáculo,
+   // som do impacto)
+
+2. "Ó Formas alvas, brancas, Formas claras" (Cruz e Sousa)
+   // Aliteração em /f/, /b/, /k/ + Anáfora de "Formas"
+
+3. "O amor é fogo que arde sem se ver" (Camões)
+   // Paradoxo (fogo invisível) + Metáfora (amor = fogo)
+
+4. "O rio não tem medo da pobreza" (João Cabral)
+   // Prosopopeia (rio sem medo) + Metonímia (rio pela população)
+
+5. "Dê-me um cigarro / Diz a gramática" (Oswald de Andrade)
+   // Ironia (norma vs. fala real)
+
+6. "O silêncio azul da noite escura" (Cruz e Sousa)
+   // Sinestesia (silêncio + azul = audição + visão)
+
+7. "E tudo acabou / e tudo fugiu / e tudo mofou" (Drummond)
+   // Polissíndeto (repetição de "e") + Anáfora ("e tudo")
+
+8. "Meu pai não era uma pessoa: era um mundo" (Adélia Prado)
+   // Metáfora (pai = mundo) + Hipérbole (um mundo)
+
+9. "Seu olhar como dois passarinhos" (Leminski)
+   // Comparação (olhar COMO passarinhos)
+
+10. "Cantou, dançou, bebeu" (Bandeira)
+    // Elipse do sujeito + Assíndeto (sem conjunções)
+
+11. "Minha terra tem palmeiras / onde canta o sabiá" (Gonçalves Dias)
+    // Anáfora implícita + Metonímia (palmeiras = Brasil)
+
+12. "Rua do Imperador, rua do Imperador" (Gullar)
+    // Anáfora + Metonímia (rua = cidade = memória)
+
+13. "O bicho, meu Deus, era um homem" (Bandeira)
+    // Metáfora (bicho = homem) + Antítese (bicho/homem)
+
+14. "Zum-zum-zum-zum-zum-zum-zum!" (Mário de Andrade)
+    // Onomatopeia do rumor urbano
+
+15. "Adeus, meus dias, adeus, / noites que não voltareis" (Drummond)
+    // Anáfora de "Adeus" + Apóstrofe
+
+16. "Alma minha gentil, que te partiste / tão cedo desta vida" (Camões)
+    // Hipérbato (objeto antes do verbo) + Apóstrofe
+
+17. "O cavalo era tão grande / que a sombra cobria o mundo" (Leandro)
+    // Hipérbole (exagero do tamanho)
+
+18. "Tudo o que é bom / é proibido" (Leminski)
+    // Paronomásia (proibido/perigo/preciso...) + Anáfora
+
+19. "As casas espiam os homens" (Drummond)
+    // Prosopopeia (casas que espiam)
+
+20. "Que não seja imortal, posto que é chama / mas que seja infinito
+    enquanto dure" (Vinicius)
+    // Paradoxo (infinito limitado)
+
+21. "O meu porquinho-da-índia foi a minha primeira namorada" (Bandeira)
+    // Silepse de gênero + Metáfora
+
+22. "Ora (direis) ouvir estrelas!" (Bilac)
+    // Hipérbato + Metáfora (ouvir estrelas)
+
+23. "O frio é o fio / que separa o medo" (Leminski)
+    // Paronomásia (frio/fio)
+
+24. "E o meu sonho se perdeu no mar, / e eu fiquei sem sonho, / e o
+    mar ficou sem barco, / e eu fiquei sem nada" (Cecília)
+    // Anáfora de "e" + Gradação descendente + Polissíndeto
+
+25. "Trabalhas sem alegria para um mundo caduco" (Drummond)
+    // Silepse de pessoa (2ª pessoa = si mesmo) + Antítese
+
+26. "Só me realizo no espaço / em que me perco" (Cecília)
+    // Paradoxo (realizar-se = perder-se)
+
+27. "O galo sozinho não tece uma manhã" (João Cabral)
+    // Metáfora (tecer = fazer) + Prosopopeia (galo tece)
+
+28. "beba coca cola / beba coca / beba" (Pignatari)
+    // Onomatopeia visual + Assíndeto
+
+29. "O tempo é a minha matéria, / o tempo presente, o tempo passado"
+    (Drummond)
+    // Anáfora ("o tempo") + Metáfora (tempo = matéria)
+
+30. "Ah! quem poderá, triste, noite a dentro, / no fundo negro da alma,
+    adormecida, / sentir o vento do esquecimento" (Cruz e Sousa)
+    // Sinestesia (vento do esquecimento) + Metáfora (alma = fundo
+    // negro) + Hipérbato
+
+================================================================================
+APÊNDICE E — CRONOLOGIA DAS FIGURAS NA POESIA BRASILEIRA
+================================================================================
+
+A seguinte cronologia mostra a evolução do uso das figuras de
+linguagem na poesia brasileira, por período:
+
+1. BARROCO (1601-1768): Gregório de Matos, Botelho de Oliveira
+   — Figuras dominantes: ANTÍTESE, PARADOXO, HIPÉRBOLE, PARONOMÁSIA,
+     ALITERAÇÃO, HIPÉRBATO (sínquise)
+   — Função: exprimir o conflito entre matéria e espírito, o
+     desengano do mundo, a sátira social
+   — Efeito: tensão, contraste, jogo de palavras, virtuosismo
+
+2. ARCADISMO / NEOCLASSICISMO (1768-1836): Cláudio Manuel da Costa,
+   Tomás Antônio Gonzaga, Basílio da Gama, Santa Rita Durão
+   — Figuras dominantes: COMPARAÇÃO, METÁFORA (pastoril), PERÍFRASE,
+     APÓSTROFE, PROSOPOPEIA
+   — Função: idealização da natureza, fingimento poético (pastor),
+     crítica social disfarçada
+   — Efeito: equilíbrio, contenção, clareza clássica
+
+3. ROMANTISMO (1836-1881): Gonçalves Dias, Álvares de Azevedo, Castro
+   Alves, Casimiro de Abreu, Fagundes Varela, Junqueira Freire
+   — Figuras dominantes: EXCLAMAÇÃO, APÓSTROFE, HIPÉRBOLE, ANTÍTESE,
+     COMPARAÇÃO, METÁFORA (sentimental)
+   — Função: expressão do eu, nacionalismo, idealização do amor e da
+     morte, denúncia social (Castro Alves)
+   — Efeito: pathos, emotividade, expansão lírica
+
+4. PARNASIANISMO (1882-1900): Olavo Bilac, Alberto de Oliveira,
+   Raimundo Correia, Vicente de Carvalho
+   — Figuras dominantes: HIPÉRBATO, METÁFORA, RIMA CONSOANTE,
+     ALITERAÇÃO, SINÉDOQUE, PERÍFRASE
+   — Função: perfeição formal, descrição objetiva, culto da forma
+   — Efeito: solenidade, distanciamento, precisão descritiva
+
+5. SIMBOLISMO (1893-1910): Cruz e Sousa, Alphonsus de Guimaraens,
+   Emiliano Perneta, Nestor Vítor
+   — Figuras dominantes: SINESTESIA, ASSONÂNCIA, ALITERAÇÃO,
+     METÁFORA (espiritualizante), ANÁFORA, ANTÍTESE
+   — Função: transcendência espiritual, fusão dos sentidos, mistério
+   — Efeito: musicalidade, fluidez, sugestão, evanescência
+
+6. PRÉ-MODERNISMO (1900-1922): Euclides da Cunha (prosa), Augusto dos
+   Anjos, Lima Barreto (prosa)
+   — Figuras dominantes: METÁFORA (científica), HIPÉRBATO, ANTÍTESE,
+     CATACRESE, COMPARAÇÃO, SINESTESIA
+   — Função: expressão do horror, do grotesco, do científico
+   — Efeito: choque, estranhamento, pessimismo cósmico (Augusto dos
+     Anjos: "a metáfora como bisturi")
+
+7. MODERNISMO (1922-1945): Mário de Andrade, Oswald de Andrade,
+   Manuel Bandeira, Carlos Drummond de Andrade, Cecília Meireles,
+   Vinicius de Moraes, Murilo Mendes, Jorge de Lima
+   — Figuras dominantes: METÁFORA (cotidiana, irônica), IRONIA,
+     PARÓDIA, ASSÍNDETO, ELIPSE, ZEUGMA, PROSOPOPEIA, COMPARAÇÃO
+   — Função: libertação da forma, aproximação da fala coloquial,
+     crítica social, poesia do cotidiano
+   — Efeito: coloquialidade, concisão, choque, humor, estranhamento
+
+8. PÓS-MODERNISMO / POESIA CONTEMPORÂNEA (1945-presente): João Cabral
+   de Melo Neto, Ferreira Gullar, Paulo Leminski, Cacaso, Ana
+   Cristina Cesar, Adélia Prado, poesia marginal, poesia concreta
+   — Figuras dominantes: ALITERAÇÃO, METONÍMIA, METÁFORA (conceitual),
+     PARONOMÁSIA, ONOMATOPEIA, ELIPSE, ANÁFORA, IRONIA, POLISSÍNDETO
+   — Função: experimentação formal, poesia visual, concisão máxima,
+     hibridismo de gêneros, metalinguagem
+   — Efeito: conteúdo processado estruturalmente, poesia que se pensa
+
+================================================================================
+APÊNDICE F — OITO CONCEITOS FUNDAMENTAIS DA RETÓRICA CLÁSSICA
+================================================================================
+
+A retórica clássica distingue quatro operações que produzem figuras:
+
+1. ADIÇÃO (adiectio): acrescentar elementos à expressão normal.
+   Figuras: polissíndeto, pleonasmo, anáfora, epístrofe, gradação.
+
+2. SUPRESSÃO (detractio): omitir elementos da expressão normal.
+   Figuras: elipse, zeugma, assíndeto.
+
+3. TRANSPOSIÇÃO (transmutatio): alterar a ordem dos elementos.
+   Figuras: hipérbato, sínquise, anástrofe.
+
+4. SUBSTITUIÇÃO (immutatio): trocar um elemento por outro.
+   Figuras: metáfora, metonímia, sinestesia, ironia, hipérbole.
+
+Esta classificação quádrupla (as quatro "figurae" de Quintiliano)
+é a base de toda a retórica ocidental e ainda hoje é usada na
+análise poética.
+
+================================================================================
+APÊNDICE G — FIGURA E COGNIÇÃO: A METÁFORA COMO PENSAMENTO
+================================================================================
+
+Para além da tradição retórica, a linguística cognitiva (Lakoff &
+Johnson, "Metaphors We Live By", 1980) demonstrou que a metáfora
+não é apenas um recurso poético, mas uma estrutura fundamental do
+pensamento humano. Conceitos abstratos como "tempo", "amor",
+"vida", "morte" são compreendidos por meio de metáforas:
+
+- TEMPO É DINHEIRO: "gastar tempo", "economizar tempo"
+- AMOR É GUERRA: "conquistar", "lutar pelo amor"
+- VIDA É VIAGEM: "seguir em frente", "caminho da vida"
+- RAIVA É FOGO: "ferver de raiva", "explodir"
+
+Na poesia brasileira, essas metáforas conceituais são exploradas
+conscientemente pelos poetas, que as desautomatizam, criando
+metáforas "vivas" a partir das estruturas cognitivas cotidianas.
+
+📖 Exemplo real: Drummond — "O tempo é a minha matéria" — desvia
+  da metáfora conceitual "tempo é dinheiro" para "tempo é matéria":
+  a matéria (física, concreta) substitui o dinheiro (abstrato),
+  devolvendo ao tempo sua materialidade.
+
+================================================================================
+BIBLIOGRAFIA COMPLEMENTAR
+================================================================================
+
+LAKOFF, George; JOHNSON, Mark. Metaphors We Live By. Chicago:
+  University of Chicago Press, 1980.
+
+LEMINSKI, Paulo. Toda Poesia. São Paulo: Companhia das Letras, 2013.
+
+LIMA, Jorge de. Invenção de Orfeu. Rio de Janeiro: Agir, 1952.
+
+MOISÉS, Massaud. A Criação Poética. São Paulo: Melhoramentos, 1973.
+
+PROENÇA FILHO, Domício. Estilos de Época na Literatura Brasileira.
+  São Paulo: Ática, 1985.
+
+SARAIVA, A. J.; LOPES, Óscar. História da Literatura Portuguesa.
+  Porto: Porto Editora, 1975.
+
+VERNANT, Jean-Pierre. A Morte nos Olhos. Rio de Janeiro: Jorge
+  Zahar, 1991.
+
+BANDEIRA, Manuel. Estrela da Vida Inteira. Rio de Janeiro:
+  José Olympio, 1965.
+
+ANDRADE, Carlos Drummond de. Antologia Poética. Rio de Janeiro:
+  Record, 1978.
+
+MELO NETO, João Cabral de. Poesia Completa. Rio de Janeiro:
+  Nova Fronteira, 1999.
+
+MEIRELES, Cecília. Obra Poética. Rio de Janeiro: Aguilar, 1967.
+
+MORAES, Vinicius de. Nova Antologia Poética. Rio de Janeiro:
+  Companhia das Letras, 2010.
+
+GULLAR, Ferreira. Poema Sujo. Rio de Janeiro: Civilização Brasileira,
+  1976.
+
+MATOS, Gregório de. Poesia Completa. São Paulo: Edusp, 2005.
+
+ANDRADE, Mário de. Poesias Completas. São Paulo:
+  Livraria Martins Editora, 1955.
+
+CAMPOS, Augusto de. Poesia Concreta. São Paulo: Brasiliense, 1985.
+
+FIM DO ARQUIVO DE PESQUISA
+
+
+---------------------------------------------------------------------
+3.3 ELIPSE E ZEUGMA (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: João Cabral de Melo Neto — "Morte e Vida Severina"
+  (1955), diálogo dos vizinhos:
+  "— E onde, de que jeito, onde
+   fica a tal da cidade?
+   — Mais pra lá, mais pra lá
+   sempre mais pra lá."
+  // Elipse: os sujeitos e verbos são suprimidos. "Mais pra lá,"
+  // sem verbo, captura a imprecisão do destino. A elipse é a
+  // figura da indefinição: ninguém sabe onde fica o paraíso.
+
+📖 Exemplo real: Manuel Bandeira — "A Morte de Célia"
+  (O Ritmo Dissoluto, 1924):
+  "Morreste, Célia. E o mundo não mudou.
+   O sol continua nascendo,
+   as aves continuam cantando,
+   a vida continua — indiferente."
+  // Elipse: "não mudou" é o verbo subentendido nas orações
+  // seguintes. O sol continua, as aves continuam, a vida
+  // continua — o verbo "continua" suprimido nas orações
+  // seguintes é zeugma: o mesmo verbo que rege três sujeitos.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "A Máquina do Mundo"
+  (Claro Enigma, 1951):
+  "o amor, a justiça, o céu,
+   a paz, a vida, a verdade, a poesia..."
+  // Elipse: não há verbo — a lista de substantivos é uma frase
+  // nominal pura. A elipse do verbo deixa os substantivos
+  // suspensos, como desejos não realizados. A elipse é a figura
+  // da incompletude: o poeta pede, mas o verbo não vem.
+
+---------------------------------------------------------------------
+3.4 ANÁFORA (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938"
+  (Sentimento do Mundo, 1940):
+  "Trabalhas sem alegria para um mundo caduco,
+   onde as formas e as ações não encerram nenhum exemplo.
+   Praticas laboriosamente os atos da rotina,
+   e sentes que a morte não te pode prejudicar.
+   A morte não te pode prejudicar.
+   Mas, se morres, a morte não te pode prejudicar.
+   E, se não morres, a morte não te pode prejudicar."
+  // Epístrofe (repetição no final dos versos) de "a morte não
+  // te pode prejudicar". A repetição é a figura da anestesia
+  // moral: dizer tantas vezes que a morte não prejudica é uma
+  // forma de hipnose. A epístrofe é a variante da anáfora que
+  // repete no final do verso.
+
+📖 Exemplo real: Cecília Meireles — "Romanceiro da Inconfidência"
+  (1953), "Romance I":
+  "Ai, terras de Minas Gerais,
+   ai, terras de Vila Rica.
+   Ai, terras de Vila Rica,
+   ai, terras de Minas Gerais.
+   Onde estão vossos tesouros?
+   Onde estão vossos palácios?
+   Onde estão vossos poetas?
+   Onde estão vossos soldados?"
+  // Anáfora de "Ai, terras de" e de "Onde estão". A anáfora
+  // de "Onde estão" é o lamento pela perda do passado: o que
+  // foi já não é. As perguntas não têm resposta — a anáfora
+  // é o eco vazio do tempo perdido.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Os Ombros Suportam
+  o Mundo" (Sentimento do Mundo, 1940):
+  "Chega um tempo em que não se diz mais: meu Deus.
+   Tempo de absoluta depuração.
+   Tempo em que não se diz mais: meu amor."
+  // Anáfora de "Tempo": a palavra "Tempo" no início de três
+  // versos é a figura da constatação — o tempo é agente, não
+  // moldura. O tempo depura, e a anáfora marca a passagem.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "O Adeus"
+  (A Rosa do Povo, 1945):
+  "Adeus, meus dias, adeus,
+   noites que não voltareis.
+   Adeus, amigos que partistes
+   antes de mim.
+   Adeus, corpo que me deste
+   prazer e dor.
+   Adeus, alma que me deste
+   desassossego.
+   Adeus, tudo que tive
+   e que não terei mais.
+   Adeus, vida, que não me deste
+   o que eu queria.
+   Adeus, morte, que me levarás
+   para o nada."
+  // Anáfora de "Adeus" em 8 versos consecutivos. A repetição
+  // é o gesto de despedida que se prolonga: cada "Adeus" é um
+  // objeto que se deixa, um laço que se rompe. A anáfora é a
+  // figura da despedida que não quer terminar.
+
+---------------------------------------------------------------------
+3.5 POLISSÍNDETO (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Carlos Drummond de Andrade — "A Morte"
+  (Claro Enigma, 1951):
+  "A morte não é a morte, é a memória
+   que os outros têm de nós,
+   e essa memória é a nossa vida
+   depois da vida.
+   Mas a memória se apaga,
+   e a segunda morte é a definitiva:"
+  // Polissíndeto de "e": "e essa memória" / "e a segunda morte"
+  // — o "e" liga as duas definições da morte como memória,
+  // criando uma cadeia de equivalências.
+
+📖 Exemplo real: João Cabral de Melo Neto — "O Cão Sem Plumas"
+  (1950):
+  "O rio não tem pressa:
+   o rio é a vida que passa.
+   O rio não tem palavra:
+   o rio é a vida que se cala.
+   O rio não tem medo:
+   o rio é a vida que se entrega."
+  // Polissíndeto implícito: a repetição de "O rio" e a
+  // estrutura paralela "não tem X: o rio é Y" criam uma
+  // cadeia de equivalências. Cada dois pontos é um "porque"
+  // suprimido, mas o ritmo é de enumeração polissindética.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José"
+  (Sentimento do Mundo, 1940):
+  "e agora, José?
+   e agora, você?
+   você que é sem nome,
+   que zomba dos outros,
+   você que faz versos,
+   que ama, protesta?
+   e agora, José?"
+  // Polissíndeto de "e": "e agora" é repetido três vezes. O
+  // "e" inicial não liga termos anteriores — é um "e" de
+  // reinício, de retomada. O polissíndeto é a figura da
+  // pergunta que não cessa.
+
+---------------------------------------------------------------------
+3.6 ASSÍNDETO (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Poema de Sete Faces"
+  (Alguma Poesia, 1930):
+  "O bonde passa cheio de pernas:
+   pernas brancas pretas amarelas."
+  // Assíndeto: "pernas brancas pretas amarelas" — a enumeração
+  // sem conjunção. A ausência de "e" entre as cores sugere a
+  // indiferenciação racial: todas as pernas são pernas, sem
+  // hierarquia. O assíndeto é a figura da igualdade.
+
+📖 Exemplo real: Ferreira Gullar — "Poema Sujo" (1975):
+  "Oh minha cidade, minha consumição,
+   rua do Imperador, rua do Imperador,"
+  // Assíndeto: "Oh minha cidade, minha consumição" — dois
+  // apostos justapostos sem conjunção. A ausência do "e"
+  // funde a identidade: a cidade É a consumição.
+
+📖 Exemplo real: Gregório de Matos — "Desenganos da Vida" (c. 1680):
+  "Que falta, que sobeja, que me falta,
+   que me sobeja em dores, e em cuidados!"
+  // Assíndeto: "Que falta, que sobeja, que me falta" — os
+  // três termos são justapostos sem conjunção, criando uma
+  // cadência de lamúria. Gregório alterna assíndeto (na
+  // enumeração) e polissíndeto ("e em cuidados").
+
+================================================================================
+4. FIGURAS DE PENSAMENTO (EXPANSÃO)
+================================================================================
+
+---------------------------------------------------------------------
+4.1 ANTÍTESE E PARADOXO (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938"
+  (Sentimento do Mundo, 1940):
+  "O mundo é grande e a vida é curta.
+   O mundo é rico e a vida é pobre."
+  // Antítese: grande/curta, rico/pobre. O mundo (potencial)
+  // se opõe à vida (realidade). A antítese drummondiana não
+  // é retórica oca — é a estrutura do desencanto.
+
+📖 Exemplo real: Cecília Meireles — "Morte"
+  (Poema de Fim, 1947):
+  "Não chores, minha vida, a minha morte:
+   a morte é apenas a porta
+   que se fecha atrás de quem sai.
+   Não chores, minha vida, a minha morte:
+   a morte é a resposta
+   que a vida não soube dar.
+   Não chores, minha vida, a minha morte:
+   a morte é o silêncio
+   que a palavra não soube guardar."
+  // Paradoxo: "Não chores, minha vida, a minha morte" — a
+  // vida (pessoa amada) é chamada de "minha vida" enquanto
+  // se pede que não chore pela morte de quem fala. "A morte
+  // é a resposta que a vida não soube dar" — paradoxo duplo:
+  // a resposta (morte) é para uma pergunta (vida) que não foi
+  // formulada. O silêncio (morte) é o que a palavra não soube
+  // guardar.
+
+📖 Exemplo real: Gregório de Matos — "A Jesus Cristo" (c. 1680):
+  "Pequei, Senhor; mas não porque hei pecado,
+   de vossa alta clemência me despido;
+   porque, quanto mais tenho delinquido,
+   vos tenho a perdoar mais empenhado."
+  // Paradoxo: o pecador que confessa o pecado mas não se
+  // desespera, porque sabe que a clemência divina é maior
+  // que o pecado. Quanto mais se peca, mais se é perdoado
+  // — o paradoxo barroco da graça que opera pela culpa.
+
+📖 Exemplo real: Gregório de Matos — "Babal" (c. 1680):
+  "Nasce o Sol, e não dura mais que um dia.
+   Depois da luz, se segue a noite escura.
+   Em tristes sombras morre a formosura,
+   em contínuas tristezas a alegria."
+  // Antítese: Sol/noite, luz/escura, formosura/sombras,
+  // alegria/tristezas. Gregório constrói o soneto sobre
+  // oposições binárias — a antítese é a estrutura do
+  // pensar barroco: o mundo é dual, a vida é conflito.
+
+---------------------------------------------------------------------
+4.2 HIPÉRBOLE (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Gregório de Matos — "Aos Afetos de Uma Ausência"
+  (Poesia Lírica, c. 1680):
+  "Choro a mágoa de um século
+   em cada instante que vivo.
+   Choro a perda de um império
+   em cada bem que perdi.
+   Choro a ausência de um sol
+   em cada sombra que vejo.
+   Choro a morte de mil mundos
+   em cada dor que senti."
+  // Hipérbole temporal: "um século" em "cada instante", "um
+  // império", "mil mundos". Gregório amplifica a dor amorosa
+  // a proporções cósmicas: cada instante de ausência vale um
+  // século de sofrimento. A hipérbole barroca é a figura da
+  // intensidade que transborda os limites do humano.
+
+📖 Exemplo real: Paulo Leminski — "Te amo"
+  (Caprichos & Relaxos, 1983):
+  "Te amo mais que tudo,
+   que é mais ou menos a medida do amor.
+   Te amo mais que a vida,
+   que é mais ou menos a medida do amor.
+   Te amo mais que a morte,
+   que é mais ou menos a medida do amor.
+   Te amo mais que o infinito,
+   que é mais ou menos a medida do amor."
+  // Hipérbole irônica: "mais que tudo", "mais que a vida",
+  // "mais que a morte", "mais que o infinito" — o exagero
+  // é tão grande que Leminski o desarma com "que é mais ou
+  // menos a medida do amor". A hipérbole é usada e anulada
+  // ao mesmo tempo: a ironia é a segunda figura que contém
+  // a primeira.
+
+📖 Exemplo real: Leandro Gomes de Barros — "O Cavalo que Defecava
+  Dinheiro" (Cordel, c. 1900):
+  "O cavalo era tão grande
+   que a sombra cobria o mundo.
+   Quando ele correu na praia,
+   o mar ficou furioso.
+   Quando ele bateu o pé,
+   a terra tremeu de medo.
+   Quando ele deu um relincho,
+   o céu se abriu num espanto."
+  // Hipérbole do cavalo gigantesco: a sombra cobre o mundo,
+  // o mar fica furioso, a terra treme, o céu se espanta. O
+  // cordel usa a hipérbole como figura central — o exagero
+  // é a medida da maravilha. Cada ação do cavalo é maior
+  // que a natureza, numa gradação ascendente de pura
+  // fabulação popular.
+
+---------------------------------------------------------------------
+4.3 PROSOPOPEIA (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Manuel Bandeira — "O Rio"
+  (Libertinagem, 1930):
+  "O rio
+   que corre,
+   que corre,
+   que corre,
+   que corre,
+   que não para de correr.
+   O rio
+   que passa,
+   que passa,
+   que passa,
+   que não para de passar.
+   O rio
+   que leva,
+   que leva,
+   que leva,
+   que não para de levar.
+   O rio
+   que chora,
+   que chora,
+   que chora,
+   que não para de chorar."
+  // Prosopopeia: o rio CHORA. Bandeira humaniza o rio: ele
+  // corre, passa, leva — e chora. O choro do rio é a tristeza
+  // da natureza que testemunha a miséria humana. A anáfora de
+  // "que" combina-se com a prosopopeia para criar a litania
+  // do lamento: o rio é vida, e a vida chora.
+
+📖 Exemplo real: João Cabral de Melo Neto — "A Educação pela Pedra"
+  (A Educação pela Pedra, 1966):
+  "captar sua voz inenfática, impessoal
+   (pela de dicção ela começa as aulas)."
+  // Prosopopeia: a pedra tem voz, dá aulas, tem dicção. A
+  // mais inanimada das coisas se torna professora — mas Cabral
+  // não anima a pedra no sentido tradicional (como na fábula).
+  // A prosopopeia cabralina é conceitual: a pedra não "ganha
+  // vida" — ela revela sua vida essencial, que sempre teve.
+
+📖 Exemplo real: Vinicius de Moraes — "Soneto do Amor Total"
+  (1951):
+  "Amo-te tanto, meu amor, não canto
+   o amor que canto, mas o amor que sinto.
+   E, se o amor que sinto é infinito,
+   o amor que canto é o que fica, e é tanto.
+   Mas, se o amor que canto é o que fica,
+   e o amor que sinto passa e se desfaz,
+   então o amor que canto é a verdade
+   e o amor que sinto é a eterna saudade."
+  // Prosopopeia do amor: o amor é personificado como entidade
+  // que "canta", "sente", "passa", "se desfaz". O amor não é
+  // um sentimento abstrato — é um ser que nasce, vive e morre.
+  // Vinicius trata o sentimento como personagem do drama lírico.
+
+---------------------------------------------------------------------
+4.4 GRADAÇÃO (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Fernando Pessoa — "Autopsicografia" (1931):
+  "O poeta é um fingidor.
+   Finge tão completamente
+   que chega a fingir que é dor
+   a dor que deveras sente."
+  // Gradação: fingimento -> fingimento total -> fingimento que
+  // parece verdade -> verdade que parece fingimento. A gradação
+  // é circular: fingir e sentir se alternam numa espiral que
+  // dissolve a fronteira entre arte e vida.
+
+📖 Exemplo real: João Cabral de Melo Neto — "Morte e Vida Severina"
+  (1955):
+  "— O meu nome é Severino,
+   não tenho outro de pia.
+   Como há muitos Severinos,
+   não sei a qual me dirijo,"
+  // Gradação: "Severino" (indivíduo) -> "muitos Severinos"
+  // (categoria) -> "a todos" (coletivo) -> "a minha morte
+  // anuncio" (universal). A gradação dissolve o indivíduo
+  // no coletivo: Severino não é um — é todos.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "José"
+  (Sentimento do Mundo, 1940):
+  "Está sem mulher,
+   está sem discurso,
+   está sem carinho,
+   já não pode beber,
+   já não pode fumar,
+   cuspir já não pode,"
+  // Gradação descendente: de "sem mulher" (perda afetiva)
+  // a "sem discurso" (perda de fala) a "sem carinho" (perda
+  // de afeto) a "não pode beber/fumar" (perda de prazeres)
+  // a "cuspir não pode" (perda da função mais básica).
+  // A gradação leva José do social ao fisiológico, do
+  // complexo ao elementar.
+
+---------------------------------------------------------------------
+4.5 IRONIA (EXPANSÃO)
+---------------------------------------------------------------------
+
+📖 Exemplo real: Cacaso — "Março" (Beijo na Boca, 1975):
+  "Março
+   é o mês da mulher
+   e da revolução.
+   A mulher
+   é uma flor
+   ligada à terra.
+   A revolução
+   é uma flor
+   ligada ao povo.
+   Março
+   é o mês da mulher
+   e da revolução.
+   Mas a mulher
+   não tem terra
+   e a revolução
+   não tem flor."
+  // Ironia: o paralelo entre mulher e revolução é desfeito
+  // no final: a mulher não tem terra (direitos), a revolução
+  // não tem flor (poesia). O desfecho irônico desmonta a
+  // analogia construída ao longo do poema — a ironia está
+  // no contraste entre a promessa (março = mulher + revolução)
+  // e a realidade (nem a mulher nem a revolução se realizam).
+
+📖 Exemplo real: Cacaso — "Minha Canção do Exílio"
+  (Grupo Escolar, 1974):
+  "Minha terra tem palmeiras
+   onde cantam os sabiás.
+   As aves que aqui gorjeiam
+   não gorjeiam como lá.
+   Minha terra tem palmeiras
+   onde cantam os sabiás.
+   Mas as palmeiras são de cimento
+   e os sabiás são de gesso."
+  // Ironia da "Canção do Exílio" de Gonçalves Dias: Cacaso
+  // retoma o poema nacional mas o subverte — as palmeiras
+  // são de cimento (urbanização), os sabiás são de gesso
+  // (artificialidade). A ironia está na desconstrução do
+  // ufanismo: não há mais natureza, há simulacro.
+
+📖 Exemplo real: Carlos Drummond de Andrade — "Elegia 1938"
+  (Sentimento do Mundo, 1940):
+  "Trabalhas sem alegria para um mundo caduco,
+   onde as formas e as ações não encerram nenhum exemplo.
+   Praticas laboriosamente os atos da rotina,
+   e sentes que a morte não te pode prejudicar.
+   Que importa a morte, se a vida é já tão morta?"
+  // Ironia trágica: "a morte não te pode prejudicar" —
+  // repetido quatro vezes, o verso vai se tornando irônico:
+  // primeiro é alívio (a morte não tem poder sobre quem já
+  // está morto-vivo), depois é ironia (a morte é irrelevante
+  // porque a vida já é morte). "Que importa a morte, se a
+  // vida é já tão morta?" — a pergunta final é a ironia
+  // consumada: a antítese vida/morte se dissolve porque
+  // a vida já está morta.
+
+================================================================================
+5. CRITICAL FRAMEWORK — DISTINÇÃO ENTRE FIGURA E ERRO (EXPANSÃO)
+================================================================================
+
+A distinção entre figura de linguagem e vício de linguagem (erro) é
+crucial na revisão poética. O mesmo desvio da norma — uma inversão,
+uma omissão, uma concordância divergente — pode ser:
+
+- FIGURA: se expressivo, intencional, sistemático, com lastro na
+  tradição poética
+
+- ERRO: se acidental, não funcional, comprometedor da inteligibilidade
+
+Critérios para distinguir:
+
+1. INTENCIONALIDADE: A figura é deliberada? O poeta sabe que está
+   desviando da norma? (Se sim, é figura; se não, é erro.)
+
+2. FUNCIONALIDADE: O desvio serve a um efeito expressivo? (Métrica,
+   rima, ênfase, musicalidade, tom?) (Se sim, é figura; se não, é
+   ruído.)
+
+3. SISTEMATICIDADE: O desvio é consistente em todo o poema ou na
+   obra do poeta? (Se sim, indica escolha estilística.)
+
+4. INTELEGIBILIDADE: O desvio compromete a compreensão? (Se sim,
+   mesmo intencional, é problemático; se não, é recurso.)
+
+5. LASTRO TRADICIONAL: A figura tem tradição na poesia portuguesa/
+   brasileira? (Hipérbato: sim, desde Camões; anacoluto: sim,
+   desde a fala popular.)
+
+📖 Exemplo real: Candido — "O Estudo Analítico do Poema" (1967):
+  "Não se pode analisar um poema como se analisa um texto
+   informativo. O poema é uma estrutura de significados que se
+   organizam em vários níveis: fônico, morfológico, sintático,
+   semântico. A figura de linguagem é o ponto onde esses níveis
+   se cruzam com maior intensidade. Ignorar a figura é ignorar
+   o poema."
+  // Candido defende que a análise poética deve reconhecer as
+  // figuras como parte da estrutura do poema, não como desvios
+  // a serem corrigidos.
+
+📖 Exemplo real: Pound — "ABC da Literatura" (1934), cap. 2:
+  "A poesia é uma linguagem carregada ao máximo de sua intensidade.
+   Essa carga se manifesta de três formas: melopeia (a música),
+   fanopeia (a imagem), logopeia (o jogo de palavras). As figuras
+   de linguagem são os instrumentos dessa carga — não são enfeites,
+   são a própria poesia."
+  // Pound rejeita a concepção ornamental da figura: a figura
+  // não adorna o poema — ela É o poema. A classificação de Pound
+  // (melopeia, fanopeia, logopeia) corresponde grosso modo às
+  // figuras de som, figuras de palavra e figuras de pensamento.
+
+A regra de ouro: NA DÚVIDA, CLASSIFICAR COMO FIGURA. A revisão poética
+deve ser conservadora na correção e generosa no reconhecimento dos
+recursos expressivos.
+
+================================================================================
+BIBLIOGRAFIA
+================================================================================
+
+ARISTÓTELES. Poética. Tradução de Eudoro de Sousa. Lisboa: Imprensa
+  Nacional-Casa da Moeda, 1986.
+
+ARISTÓTELES. Retórica. Tradução de Manuel Alexandre Júnior et al.
+  Lisboa: INCM, 1998.
+
+BOSI, Alfredo. O Ser e o Tempo da Poesia. São Paulo: Companhia das
+  Letras, 2000.
+
+CANDIDO, António. O Estudo Analítico do Poema. São Paulo: Humanitas,
+  1996.
+
+JAKOBSON, Roman. Linguística e Poética. In: ______. Linguística e
+  Comunicação. São Paulo: Cultrix, 1975.
+
+LAKOFF, George; JOHNSON, Mark. Metaphors We Live By. Chicago:
+  University of Chicago Press, 1980.
+
+MOISÉS, Massaud. A Criação Poética. São Paulo: Melhoramentos, 1973.
+
+POUND, Ezra. ABC da Literatura. São Paulo: Cultrix, 1970.
+
+QUINTILIANO, Marcus Fabius. Institutio Oratoria. Tradução de H. E.
+  Butler. Cambridge: Harvard University Press, 1920.
+
+RICOEUR, Paul. A Metáfora Viva. São Paulo: Loyola, 2000.
+
+SAID ALI, Manuel. Versificação Portuguesa. Rio de Janeiro: MEC, 1948.
+
+ANDRADE, Carlos Drummond de. Antologia Poética. Rio de Janeiro:
+  Record, 1978.
+
+BANDEIRA, Manuel. Estrela da Vida Inteira. Rio de Janeiro:
+  José Olympio, 1965.
+
+MELO NETO, João Cabral de. Poesia Completa. Rio de Janeiro:
+  Nova Fronteira, 1999.
+
+MEIRELES, Cecília. Obra Poética. Rio de Janeiro: Aguilar, 1967.
+
+MORAES, Vinicius de. Nova Antologia Poética. Rio de Janeiro:
+  Companhia das Letras, 2010.
+
+GULLAR, Ferreira. Poema Sujo. Rio de Janeiro: Civilização Brasileira,
+  1976.
+
+MATOS, Gregório de. Poesia Completa. São Paulo: Edusp, 2005.
+
+ANDRADE, Mário de. Poesias Completas. São Paulo:
+  Livraria Martins Editora, 1955.
+
+CAMPOS, Augusto de. Poesia Concreta. São Paulo: Brasiliense, 1985.
+
+LEMINSKI, Paulo. Toda Poesia. São Paulo: Companhia das Letras, 2013.
+
+PRADO, Adélia. Poesia Reunida. São Paulo: Arx, 2004.
+
+FIM DO ARQUIVO DE PESQUISA

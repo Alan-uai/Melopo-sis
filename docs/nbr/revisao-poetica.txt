@@ -183,3 +183,70 @@ Descrição: Um dos maiores aprendizados do poeta é saber quando um poema não 
 ✅ Correto: manter uma pasta de "poemas em observação" — revisitar em 6 meses e decidir
 Severidade: informativa
 Categoria: ofício
+
+================================================================================
+REVISÃO AVANÇADA — GRANDES POETAS E SEUS MÉTODOS
+================================================================================
+
+## [REV-19] Drummond — o poeta da poda implacável
+Fonte: Carlos Drummond de Andrade, obra poética completa; análise textual de versões
+Descrição: Carlos Drummond de Andrade (1902-1987) é o maior exemplo brasileiro de poeta-revisor. Seus poemas passavam por sucessivas versões — cortava implacavelmente adjetivos, advérbios, explicações. O conhecido "No Meio do Caminho" é exemplar: cada verso tem no máximo 7 palavras, nenhuma descartável. Drummond dizia que "o poema não é fruto da inspiração, é trabalho". Análise de manuscritos mostra que ele frequentemente cortava 30-40% de um primeiro rascunho. O método drummondiano de revisão: (1) escrever livremente; (2) deixar descansar dias ou semanas; (3) reler com olhos de estranho; (4) cortar toda palavra que não faça trabalho específico; (5) testar a ausência de palavras — se o poema não perde com a ausência, a palavra era desnecessária.
+❌ Errado: apegar-se à primeira versão por "pureza" ou "autenticidade"
+✅ Correto: aplicar o método drummondiano — escrever, descansar, reler, cortar, testar a ausência
+📖 Exemplo real: Drummond, "José" — "E agora, José? / A festa acabou, / a luz apagou, / o povo sumiu, / a noite esfriou" — cada verso de 1-4 palavras; é possível cortar "a" em muitos casos ("luz apagou" sem "a", "povo sumiu" sem "o") — Drummond manteve os artigos para o ritmo; cada escolha é consciente
+Severidade: informativa
+Categoria: método — Drummond
+
+## [REV-20] João Cabral — poesia como engenharia verbal
+Fonte: João Cabral de Melo Neto, "Psicologia da Composição" (1960); "A Educação pela Pedra" (1966)
+Descrição: João Cabral de Melo Neto (1920-1999) levou a revisão poética ao nível da rigorosidade matemática. Seu método: (1) o poema é um problema a ser resolvido — cada estrofe é um "edifício verbal" construído com blocos precisos; (2) rejeição do "lirismo fácil" — nenhuma palavra é decorativa, nenhuma imagem é gratuita; (3) estrutura é conteúdo — a forma do poema (número de versos, estrofes, rimas internas) é parte do sentido; (4) rigor métrico mesmo quando escreve verso livre — Cabral nunca é descuidado; (5) anti-emoção — a emoção no poema de Cabral está na precisão, não no pathos. O sistema de revisão pode usar Cabral como referência de "anti-pathos": se um poema é emocionalmente carregado mas vago, a revisão cabralina recomenda substituir emoção abstrata por imagem concreta.
+❌ Errado: achar que poesia "fria" ou "rigorosa" é menos poética que a emotiva (Cabral prova o contrário)
+✅ Correto: a emoção poética pode estar na precisão, não na confissão — revisar substituindo pathos vago por imagem precisa
+📖 Exemplo real: João Cabral, "Tecendo a Manhã" — "Um galo sozinho não tece uma manhã: / ele precisará sempre de outros galos" — a metáfora da construção coletiva da manhã (e da poesia) é precisa, visual, concreta; nenhuma palavra é abstrata ou decorativa
+Severidade: informativa
+Categoria: método — Cabral
+
+================================================================================
+ANTIPADRÕES — OS PIORES VÍCIOS
+================================================================================
+
+## [REV-21] Pathos grátis — emoção sem lastro
+Fonte: prática de oficina; análise de poesia amadora
+Descrição: Pathos grátis é o uso de palavras emocionais ("dor", "sofrimento", "lágrimas", "sangue", "tristeza") sem que o poema tenha construído a situação que justifique a emoção. O leitor não sente a dor — é informado dela. O poema diz "estou sofrendo" mas não mostra o sofrimento em imagens. O efeito é o contrário do pretendido: o leitor fica frio diante da emoção declarada. A revisão deve detectar pathos grátis e sugerir substituição por imagem concreta. Se o poema tem 3+ palavras emocionais abstratas, sinalizar.
+❌ Errado: "ah, que dor imensa que sinto no peito" — a emoção é dita, não mostrada; o leitor não sente nada
+✅ Correto: substituir a emoção dita pela imagem que a provoca — "a xícara vazia / o café frio / a cadeira onde / ninguém senta"
+Severidade: media
+Categoria: antipadrão
+
+## [REV-22] Título genérico — o nome que nada diz
+Fonte: prática de oficina; Candido
+Descrição: O título genérico é um dos sinais de poema não revisado: "Amor", "Vida", "Poema", "Tristeza", "Para Ela", "Sem Título". Um título não precisa nomear o poema (pode sugerir, provocar, deslocar). O título genérico revela que o poeta não descobriu qual é o foco do poema. Na revisão: se o título for genérico, sugerir substituir por: (1) um verso do poema que funcione como síntese; (2) uma palavra-chave inesperada; (3) uma imagem do poema. Exceção: "Poema" de Drummond ou "Canção" de Cecília são títulos genéricos que funcionam por tradição (são ciclos inteiros) — mas para um poema isolado, não.
+❌ Errado: "Amor" como título de um soneto sobre amor (já se sabe o assunto — não há surpresa)
+✅ Correto: "O Amor" de Drummond (título irônico, seguido de "o amor / não é / o prêmio / que se recebe / por ser bom" — o título genérico é subvertido pelo conteúdo); para iniciantes, preferir títulos específicos ("A Chave", "O Trem das Onze", "O Cacto da Varanda")
+Severidade: baixa
+Categoria: antipadrão
+
+## [REV-23] Explicação dentro do poema — metapoesia desnecessária
+Fonte: prática de oficina; Pound — "mostre, não diga"
+Descrição: Um dos vícios mais comuns é o poema que se explica enquanto se escreve: "este poema fala sobre...", "aqui quero dizer que...", "estes versos tentam mostrar...". A metapoesia (poesia que fala de si mesma) é recurso legítimo quando usada como tema, não como muleta. Ana Cristina Cesar usa metapoesia como tensão ("teu poema / não cabe / no poema / que faço"). O iniciante usa metapoesia para preencher o vazio de imagens: "tento encontrar as palavras / que expressem o que sinto" — cortar. A regra: se a metapoesia é sobre a dificuldade de escrever o poema que se está lendo, provavelmente é desnecessária.
+❌ Errado: "não sei como dizer / a saudade que me aperta / o peito" — cortar os 3 primeiros versos e começar com a imagem da saudade
+✅ Correto: se o poema fala sobre escrever, que seja sobre a escrita como experiência, não como desculpa pela falta de imagens
+Severidade: media
+Categoria: antipadrão
+
+## [REV-24] Verso de transição — o verso que só liga
+Fonte: prática de oficina; técnica de poda
+Descrição: O verso de transição é aquele que não diz nada além de conectar dois versos significativos: "e então", "assim", "dessa forma", "e foi então que", "mas de repente". Na poesia, a conexão entre imagens deve ser implícita — justaposição, não transição explicada. Se dois versos precisam de um verso de transição para fazer sentido, a ordem ou a escolha das imagens está errada. Na revisão: circular todos os versos que começam com conectivos ("e", "mas", "então", "assim", "porque", "portanto") e verificar se podem ser cortados.
+❌ Errado: "e então ele olhou para mim / e disse que me amava" — o "e então" é transição desnecessária
+✅ Correto: "ele olhou para mim / 'eu te amo'" — justaposição direta; a transição está implícita no gesto e na fala
+Severidade: baixa
+Categoria: antipadrão
+
+## [REV-25] Primeiro verso como título — quando o poema ainda não começou
+Fonte: prática de oficina; técnica de revisão
+Descrição: Muitos poemas iniciantes têm o primeiro verso funcionando como "preparação" para o verdadeiro início do poema: "este poema é sobre uma lembrança que tenho / ... / era uma vez no mês de maio / ... / você chegou na estação". O poema real começa no terceiro ou quarto verso — os primeiros são preparação, não poesia. Na revisão: cortar os primeiros 2-3 versos e verificar se o poema ganha força. Frequentemente, o poema começa onde o poeta achou que deveria cortar.
+❌ Errado: manter versos de preparação "para dar contexto" (o contexto deve estar na imagem, não na explicação)
+✅ Correto: eliminar os primeiros 2-3 versos e verificar se o poema funciona sem eles — é provável que sim
+📖 Exemplo real: muitos poemas de Drummond começam in media res — "No meio do caminho tinha uma pedra" — não há preparação, o poema já começa no evento; "E agora, José?" — pergunta direta, sem contexto prévio
+Severidade: media
+Categoria: antipadrão

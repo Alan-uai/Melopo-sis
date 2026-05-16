@@ -175,3 +175,81 @@ Descrição: Poesia marginal (1970s) e slam (2008-) compartilham coloquialismo, 
 ✅ Correto: reconhecer as especificidades de cada movimento — marginal é um movimento histórico, slam é prática viva
 Severidade: informativa
 Categoria: teoria — comparação
+
+================================================================================
+PRECURSORES: TORQUATO NETO E WALY SALOMÃO
+================================================================================
+
+## [PMS-19] Torquato Neto — precursor da poesia marginal
+Fonte: Torquato Neto, "Os Últimos Dias de Paupéria" (1973); "Torquato Neto: Poesia" (antologia); Heloísa Buarque de Hollanda
+Descrição: Torquato Neto (1944-1972) é figura essencial para entender a poesia marginal — embora sua obra seja anterior ao movimento, ele antecipa quase todas as suas marcas: coloquialismo extremo, fragmentação, incorporação da cultura pop (cinema, música, TV), bilhete como forma poética, tom de diário e confissão. Sua poesia é feita de restos do cotidiano — ingressos de cinema, letras de música, frases de jornal. Torquato levou a fragmentação ao extremo: poemas-pastagem, colagem, a palavra como (quase) ruído. Sua relação com a poesia marginal é de antecipação e influência póstuma.
+❌ Errado: tratar Torquato Neto apenas como "letrista" ou "compositor" (sua poesia autônoma é central)
+✅ Correto: reconhecer Torquato como precursor radical da poesia marginal — seus procedimentos de colagem e fragmentação são fundadores
+📖 Exemplo real: Torquato Neto, "Roda Mundo" (1972): "minha alegria / é uma pedra / no fundo / do mar" — fragmento, minimalismo, coloquialismo que antecipa a marginal
+Severidade: informativa
+Categoria: teoria — precursor
+
+## [PMS-20] Waly Salomão — a invenção marginal
+Fonte: Waly Salomão, "Me Segura Que Vou Dar um Troço" (1972); "Gigolô de Palavras" (1983)
+Descrição: Waly Salomão (1943-2003), poeta, letrista, artista visual e performer, é junto com Torquato Neto o grande precursor da poesia marginal. Seu primeiro livro, "Me Segura Que Vou Dar um Troço" (1972), é uma explosão de linguagem: poemas longos em prosa poética, colagem de referências eruditas e populares, fluxo de consciência, erotismo explícito, humor e dor. Waly é o lado "barroco" da marginal — enquanto Ana Cristina Cesar é contida e fragmentária, Waly é exuberante e caudaloso.
+❌ Errado: classificar Waly como "poeta difícil" ou hermético (sua dificuldade é performática, não erudita)
+✅ Correto: Waly opera por excesso — sua poesia não pede decifração, pede entrega ao fluxo verbal
+📖 Exemplo real: Waly Salomão, "Me Segura Que Vou Dar um Troço" (1972) — "me segura que vou dar um troço / vou enlouquecer / vou dizer tudo o que não se deve" — a poesia como transbordamento, risco, performance antes do slam
+Severidade: informativa
+Categoria: teoria — precursor
+
+================================================================================
+LITERATURA PERIFÉRICA — SARAUS E COOPERIFA
+================================================================================
+
+## [PMS-21] Cooperifa — a poesia como prática comunitária
+Fonte: Sérgio Vaz, "Colecionador de Pedras" (2010); Cooperifa (desde 2001, zona sul de SP); Ferréz
+Descrição: A Cooperifa (Cooperativa Cultural da Periferia) é um sarau fundado em 2001 no bairro do Jardim Luanda, zona sul de São Paulo, pelo poeta Sérgio Vaz. É o marco inicial da literatura periférica brasileira contemporânea. Com poesia lida em voz alta, em espaço público, a Cooperifa criou um modelo de circulação poética que dialoga diretamente com o slam (anterior, na verdade). Características: (1) poesia de testemunho — a periferia fala de si mesma; (2) oralidade como método — poesia feita para ser lida em voz alta no sarau; (3) temática social — racismo, violência, trabalho, desigualdade, mas também afeto e beleza; (4) antiacademicismo — a poesia é do povo, não da universidade. A Cooperifa e os saraus periféricos (Sarau do Binho, Sarau da Brasa) são a ponte entre a poesia marginal dos anos 1970 e o slam dos anos 2010.
+❌ Errado: tratar literatura periférica como "sociologia" ou "menor" — é literatura com critérios estéticos próprios
+✅ Correto: reconhecer a literatura periférica como movimento estético autônomo, com poesia de alta qualidade e procedimentos formais específicos
+📖 Exemplo real: Sérgio Vaz, "Colecionador de Pedras" — "a poesia é um direito / e não um privilégio / de quem sabe escrever" — poesia que afirma a democratização da palavra; típica do sarau periférico
+Severidade: informativa
+Categoria: teoria — periférica
+
+## [PMS-22] Ferréz — literatura marginal (termo, reivindicação)
+Fonte: Ferréz, "Capão Pecado" (2000); "Literatura Marginal: Talentos da Escrita Periférica" (2005)
+Descrição: Ferréz (Reginaldo Ferreira da Silva, 1975-) é escritor e poeta, criador do termo "Literatura Marginal" para se referir à produção cultural das periferias brasileiras. Diferentemente da poesia marginal dos anos 1970 (termo dado pela crítica), Ferréz reivindica o termo "marginal" como identidade política: marginal é quem está à margem da sociedade. Sua poesia é explícita, direta, sem concessões estéticas — a sobrevivência, a violência policial, o tráfico, o amor na periferia são temas tratados sem mediação erudita.
+❌ Errado: confundir "literatura marginal" (Ferréz) com "poesia marginal" (ACC/Cacaso) — o mesmo termo designa movimentos diferentes
+✅ Correto: a literatura marginal periférica (2000-) é herdeira da poesia marginal dos anos 1970 mas radicaliza o engajamento político e a origem de classe
+📖 Exemplo real: Ferréz, "Capão Pecado" (2000, excerto poético) — ritmo de rap, vocabulário da periferia, denúncia direta: "aqui quem fala é o Capão / Redondo / a poesia / que nasce no asfalto / esburacado"
+Severidade: informativa
+Categoria: teoria — periférica
+
+================================================================================
+SLAMMERS BRASILEIROS — NOVAS REFERÊNCIAS
+================================================================================
+
+## [PMS-23] Mel Duarte — a palavra como arma
+Fonte: Mel Duarte, "Negra Nua Crua" (2016); "O Lugar do Afeto" (2019)
+Descrição: Mel Duarte é poeta, slammer e ativista. Sua poesia aborda racismo, feminismo negro, identidade e afeto. No slam, destaca-se pela dicção forte e presença de palco. Em seus livros, o texto mantém a força da oralidade mas ganha elaboração formal — poemas curtos, precisos, com rimas internas e repetições medidas. Mel representa a transição do slam para o livro: a poesia que nasce na boca e vai para a página.
+❌ Errado: tratar poesia de slammer como "apenas performática" (quando vai para o livro, ganha outra camada de elaboração)
+✅ Correto: reconhecer que slammers como Mel Duarte são poetas completos — performance e texto escrito dialogam
+📖 Exemplo real: Mel Duarte, "Negra Nua Crua" (2016) — "meu corpo é minha fala / meu cabelo é minha fala / minha pele é minha fala" — anáfora poderosa que funciona tanto na página quanto na voz
+Severidade: informativa
+Categoria: slam — poetas
+
+## [PMS-24] Bell Puã — a voz nordestina no slam
+Fonte: Bell Puã, Performance no Slam BR; análise acadêmica (Scielo, 2024)
+Descrição: Bell Puã, slammer pernambucana, é uma das vozes mais fortes do slam nordestino. Seu poema "Mas é tudo a mesma merda esse tal de nordestino?" é um dos mais conhecidos do slam brasileiro — uma resposta contundente ao preconceito regional. A poesia de Bell Puã usa a variedade linguística nordestina como recurso estético e político: as escolhas lexicais e fonéticas são parte da afirmação identitária. O sistema de correção não deve "padronizar" a língua de um slam nordestino — a variação linguística é constitutiva.
+❌ Errado: corrigir a variedade linguística nordestina como "erro de português"
+✅ Correto: preservar a variedade linguística como marca identitária
+📖 Exemplo real: Bell Puã, trecho de slam: "mas é tudo a mesma merda / esse tal de nordestino / pra eles tudo é farinha / tudo é bode / tudo é cacto / e o povo / o povo é seco" — a variedade linguística nordestina é o tema e o método
+Severidade: alta (não corrigir variação linguística)
+Categoria: slam — poetas
+
+================================================================================
+ANTIPADRÕES — O QUE EVITAR
+================================================================================
+
+## [PMS-25] Antipadrão: marginalismo de fachada — coloquialismo sem lastro
+Fonte: análise da poesia amadora contemporânea
+Descrição: Com a popularização da poesia marginal e do slam, surgiu um antipadrão: poemas que usam coloquialismo ("pra", "tá", "cê") e fragmentação mas sem lastro estético — coloquialismo gratuito, sem tensão poética. A diferença entre um poema marginal genuíno e uma imitação: (1) o marginal genuíno é coloquial com precisão — cada "pra" é escolhido, não descuido; (2) o marginal genuíno tem tensão entre coloquial e poético — não é "conversa"; (3) o marginal genuíno sabe a regra para quebrá-la — a imitação quebra sem saber. O sistema deve sinalizar como baixa severidade quando o coloquialismo parecer gratuito.
+❌ Errado: achar que poesia marginal é "falar qualquer coisa em versos curtos" (exigência poética é a mesma de qualquer poesia)
+✅ Correto: poesia marginal é tão exigente quanto qualquer forma — o coloquialismo não é desculpa para imprecisão ou obviedade
+Severidade: media (diretriz de classificação)
+Categoria: antipadrão
