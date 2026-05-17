@@ -907,4 +907,62 @@
   .share-item:hover {
     filter: brightness(1.2);
   }
+
+  .wand-active .stick {
+    transform-origin: 12px 12px;
+    animation: stick 2s ease infinite;
+  }
+
+  .wand-active .star-1 {
+    animation: sparkles 2s ease infinite, scaleStars 2s ease infinite,
+      colorChange 2s ease infinite;
+    animation-delay: 150ms;
+  }
+
+  .wand-active .star-2 {
+    animation: sparkles 2s ease infinite, scaleStars 2s ease infinite,
+      colorChange 2s ease infinite;
+  }
+
+  .wand-active .board {
+    animation: bounce 2s ease infinite;
+  }
+
+  @keyframes sparkles {
+    0% { opacity: 1; }
+    35% { opacity: 1; }
+    55% { opacity: 0; }
+    75% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes stick {
+    0% { transform: translate3d(0, 0, 0) rotate(0); }
+    25% { transform: translate3d(0, 0, 0) rotate(0); }
+    50% { transform: translate3d(3px, -2px, 0) rotate(8deg); }
+    75% { transform: translate3d(0, 0, 0) rotate(0); }
+    100% { transform: translate3d(0, 0, 0) rotate(0); }
+  }
+
+  @keyframes scaleStars {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    25% { transform: translateY(0); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-1px); }
+    100% { transform: translateY(0); }
+  }
+
+  @keyframes colorChange {
+    0% { fill: #ff4500; }
+    25% { fill: #ffd700; }
+    50% { fill: #00ff00; }
+    75% { fill: #1e90ff; }
+    100% { fill: #ff4500; }
+  }
 }

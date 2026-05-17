@@ -7,13 +7,10 @@ import {
   Loader2,
   Settings,
   X,
-  Activity,
-  MessageSquare,
-  Trash2,
-  BellRing,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ChatMessage, VoiceActionHandlers } from "./types";
+import "./voice-chat-animations.css";
 
 const pcmToBase64 = (f32Array: Float32Array) => {
   const i16Array = new Int16Array(f32Array.length);
@@ -44,6 +41,7 @@ export default function VoiceChatPanel({
   const [showSettings, setShowSettings] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [isAiSpeaking, setIsAiSpeaking] = useState(false);
 
   const [voiceName, setVoiceName] = useState("Aoede");
   const [personality, setPersonality] = useState(
@@ -409,6 +407,7 @@ export default function VoiceChatPanel({
       audioCtxRef.current.close();
       audioCtxRef.current = null;
     }
+    setIsAiSpeaking(false);
     setIsActive(false);
     setIsConnecting(false);
   }, []);
@@ -565,10 +564,19 @@ export default function VoiceChatPanel({
           source.buffer = audioBuffer;
           source.connect(audioCtx.destination);
 
+          const wasEmpty = playingSourcesRef.current.size === 0;
+
           source.onended = () => {
             playingSourcesRef.current.delete(source);
+            if (playingSourcesRef.current.size === 0) {
+              setIsAiSpeaking(false);
+            }
           };
           playingSourcesRef.current.add(source);
+
+          if (wasEmpty) {
+            setIsAiSpeaking(true);
+          }
 
           const t = audioCtx.currentTime;
           if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
@@ -583,6 +591,7 @@ export default function VoiceChatPanel({
           });
           playingSourcesRef.current.clear();
           nextStartTimeRef.current = audioCtxRef.current?.currentTime || 0;
+          setIsAiSpeaking(false);
         }
         if (
           msg.textResponse &&
@@ -779,158 +788,147 @@ export default function VoiceChatPanel({
     <>
       <video ref={videoRef} autoPlay playsInline className="hidden" muted />
       <canvas ref={canvasRef} className="hidden" />
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col items-center gap-3">
-        {isActive && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="bg-card/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-border flex items-center gap-2"
-          >
-            <Activity className="h-4 w-4 text-accent animate-pulse" />
-            <span className="text-sm font-medium text-foreground animate-pulse">
-              Ouvindo...
-            </span>
-          </motion.div>
-        )}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setShowHistory(true)}
-            className="p-2.5 bg-card rounded-full shadow-md text-muted-foreground hover:text-accent transition-colors border border-border"
-            title="Histórico de Conversação"
-          >
-            <MessageSquare className="w-4 h-4" />
-          </button>
+      {/* Settings button - floating right */}
+      <div className="fixed bottom-6 right-6 z-50">
+        <button
+          onClick={() => setShowSettings(true)}
+          className="p-2.5 bg-card rounded-full shadow-md text-muted-foreground hover:text-accent transition-colors border border-border disabled:opacity-50"
+          disabled={isActive || isConnecting}
+          title="Configurações do Assistente"
+        >
+          <Settings className="h-4 w-4" />
+        </button>
+      </div>
 
-          <button
-            onClick={() => setShowSettings(true)}
-            className="p-2.5 bg-card rounded-full shadow-md text-muted-foreground hover:text-accent transition-colors border border-border disabled:opacity-50"
-            disabled={isActive || isConnecting}
-            title="Configurações do Assistente"
-          >
-            <Settings className="h-4 w-4" />
-          </button>
+      {/* Orb + Chat - fixed bottom center */}
+      <div
+        className="container-vao"
+        data-active={isActive}
+        data-state={
+          isActive
+            ? isAiSpeaking
+              ? "speaking"
+              : "listening"
+            : "idle"
+        }
+      >
+        {/* SVG gooey filter */}
+        <svg
+          style={{ position: "absolute", width: 0, height: 0 }}
+          aria-hidden="true"
+        >
+          <filter id="gooey">
+            <feGaussianBlur
+              in="SourceGraphic"
+              stdDeviation="8"
+              result="blur"
+            />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+              result="gooey"
+            />
+          </filter>
+        </svg>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={toggleVoice}
-            disabled={isConnecting}
-            className={`relative flex items-center justify-center p-3.5 rounded-full shadow-lg text-white transition-colors duration-300 ${
-              isActive
-                ? "bg-destructive hover:bg-destructive/90 shadow-destructive/30"
-                : "bg-accent hover:bg-accent/90 shadow-accent/30"
-            }`}
-          >
-            {isActive && (
-              <motion.div
-                layoutId="vc-ripple"
-                className="absolute inset-0 rounded-full border-2 border-destructive/60"
-                animate={{ scale: [1, 1.5, 2], opacity: [1, 0.5, 0] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "linear",
+        {/* Chat container */}
+        <div className="container-chat-ia">
+          <div className="container-title">
+            <span>Poeta</span>
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => {
+                  setChatHistory([]);
                 }}
-              />
-            )}
+                title="Limpar conversa"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M3 6h18" />
+                  <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                  <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                </svg>
+              </button>
+              {isActive && (
+                <button
+                  onClick={stopVoice}
+                  title="Encerrar conversa"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="container-chat">
+            <div className="container-chat-limit">
+              {chatHistory.length === 0 ? (
+                <div className="chats-empty">
+                  {isConnecting
+                    ? "Conectando..."
+                    : "Toque no microfone para começar"}
+                </div>
+              ) : (
+                chatHistory.map((msg, idx) => (
+                  <div
+                    key={msg.id || idx}
+                    className={
+                      msg.role === "assistant" ? "chat-ia" : "chat-user"
+                    }
+                  >
+                    <p>{msg.text}</p>
+                    <span className="chat-time">
+                      {new Date(msg.timestamp).toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                      })}
+                    </span>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Orb button */}
+        <button
+          className="orb"
+          onClick={toggleVoice}
+          disabled={isConnecting}
+          aria-label={isActive ? "Desativar microfone" : "Ativar microfone"}
+        >
+          <div className="icons">
             {isConnecting ? (
               <Loader2 className="h-5 w-5 animate-spin" />
             ) : isActive ? (
-              <MicOff className="h-5 w-5 relative z-10" />
+              <MicOff className="h-5 w-5" />
             ) : (
               <Mic className="h-5 w-5" />
             )}
-          </motion.button>
-        </div>
-      </div>
-
-      <AnimatePresence>
-        {showHistory && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setShowHistory(false)}
-              className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative bg-card rounded-2xl shadow-xl w-full max-w-lg max-h-[85vh] flex flex-col overflow-hidden border border-border"
-            >
-              <div className="p-4 border-b border-border flex items-center justify-between bg-card flex-shrink-0">
-                <div className="flex items-center gap-2">
-                  <MessageSquare className="w-5 h-5 text-accent" />
-                  <h2 className="text-lg font-bold text-foreground">
-                    Histórico
-                  </h2>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => {
-                      if (confirm("Apagar todo o histórico?")) {
-                        setChatHistory([]);
-                      }
-                    }}
-                    className="p-2 text-muted-foreground hover:text-destructive hover:bg-destructive/10 rounded-full transition-colors"
-                    title="Limpar Histórico"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                  <button
-                    onClick={() => setShowHistory(false)}
-                    className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-full transition-colors"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-
-              <div className="p-4 overflow-y-auto flex-1 space-y-4 bg-muted/30">
-                {chatHistory.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center h-full text-muted-foreground gap-2">
-                    <MessageSquare className="w-10 h-10 opacity-20" />
-                    <p className="text-sm">Nenhuma conversa recente.</p>
-                  </div>
-                ) : (
-                  chatHistory.map((msg, index) => {
-                    const isAssistant = msg.role === "assistant";
-                    return (
-                      <div
-                        key={msg.id || index}
-                        className={`flex ${isAssistant ? "justify-start" : "justify-end"}`}
-                      >
-                        <div
-                          className={`max-w-[85%] rounded-2xl px-4 py-2 ${
-                            isAssistant
-                              ? "bg-card border border-border text-card-foreground shadow-sm rounded-tl-none"
-                              : "bg-accent text-accent-foreground shadow-md rounded-tr-none"
-                          }`}
-                        >
-                          <p className="text-sm whitespace-pre-wrap leading-relaxed">
-                            {msg.text}
-                          </p>
-                          <span
-                            className={`text-[10px] mt-1 block ${isAssistant ? "text-muted-foreground" : "text-accent-foreground/70"}`}
-                          >
-                            {new Date(msg.timestamp).toLocaleTimeString([], {
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })
-                )}
-              </div>
-            </motion.div>
           </div>
-        )}
-      </AnimatePresence>
+          <div className="ball">
+            <div className="container-lines">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="container-rings">
+              <span />
+              <span />
+              <span />
+            </div>
+          </div>
+        </button>
+      </div>
 
       <AnimatePresence>
         {showSettings && (
@@ -1231,7 +1229,7 @@ export default function VoiceChatPanel({
                         onClick={() => setIsTrainingWakeWord(false)}
                         className="w-full flex items-center justify-center gap-2 py-2.5 bg-destructive/10 text-destructive rounded-xl text-sm font-medium border border-destructive/20 transition-colors"
                       >
-                        <Activity className="h-4 w-4 animate-pulse" />{" "}
+                        <Loader2 className="h-4 w-4 animate-spin" />{" "}
                         Ouvindo... Diga &quot;{assistantName}&quot;
                       </button>
                     ) : (

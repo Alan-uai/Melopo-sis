@@ -782,7 +782,7 @@ export default function Home() {
     <>
     <SidebarProvider>
       <div className="flex h-full w-full">
-        <Sidebar>
+        <Sidebar collapsible="offcanvas">
           <SidebarHeader>
             <h2 className="text-xl font-semibold">Meus Poemas</h2>
           </SidebarHeader>

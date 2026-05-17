@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, useAnimation, type Variants } from "framer-motion";
 import { useEffect, useMemo } from "react";
+import { cn } from "@/lib/utils";
 
 interface WandIconProps {
   isActive: boolean;
@@ -54,7 +55,7 @@ export function WandIcon({ isActive, size = 16, className = "" }: WandIconProps)
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={cn(className, isActive && "wand-active")}
       variants={wandVariants}
       initial="idle"
       animate={controls}
@@ -176,8 +177,13 @@ export function WandIcon({ isActive, size = 16, className = "" }: WandIconProps)
         </linearGradient>
       </defs>
 
+      {/* Star sparkles */}
+      <path className="star-1" d="M20 1l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="currentColor" opacity="0" />
+      <path className="star-2" d="M13 0l1 2 2 1-2 1-1 2-1-2-2-1 2-1z" fill="currentColor" opacity="0" />
+
       {/* Wand stick */}
       <motion.path
+        className="stick"
         d="M7 17L17 7"
         stroke="currentColor"
         strokeWidth="1.5"
@@ -186,6 +192,9 @@ export function WandIcon({ isActive, size = 16, className = "" }: WandIconProps)
         animate={isActive ? { strokeWidth: [1.5, 2.5, 1.5] } : {}}
         transition={{ duration: 0.6, repeat: isActive ? Infinity : 0, repeatDelay: 1.5 }}
       />
+
+      {/* Board */}
+      <path className="board" d="M4 21h16v1.5H4z" fill="currentColor" opacity="0.15" />
 
       {/* Wand tip glow */}
       <motion.circle
