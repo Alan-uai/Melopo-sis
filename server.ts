@@ -3,7 +3,7 @@ import { createServer } from "http";
 import next from "next";
 import { parse } from "url";
 import { WebSocketServer } from "ws";
-import { GoogleGenAI, Type, type LiveServerMessage } from "@google/genai";
+import { GoogleGenAI, Modality, Type, type LiveServerMessage } from "@google/genai";
 import { evaluate } from "mathjs";
 
 const dev = process.env.NODE_ENV !== "production";
@@ -287,7 +287,7 @@ SILENCE AND WAKE WORD BEHAVIOR:
           }
 
           session = await aiInstance.live.connect({
-            model: "gemini-2.0-flash-live-preview",
+            model: "gemini-3.1-flash-live-preview",
             callbacks: {
               onmessage: (message: LiveServerMessage) => {
                 const parts =
@@ -363,9 +363,25 @@ SILENCE AND WAKE WORD BEHAVIOR:
                   }
                 }
               },
+              onerror: (e: any) => {
+                console.error("Live API error:", e);
+                try {
+                  if (clientWs.readyState === clientWs.OPEN) {
+                    clientWs.send(JSON.stringify({ type: "error", message: "Live API error" }));
+                  }
+                } catch (_) {}
+              },
+              onclose: (e: any) => {
+                console.log("Live API closed:", e?.code, e?.reason);
+                try {
+                  if (clientWs.readyState === clientWs.OPEN) {
+                    clientWs.send(JSON.stringify({ type: "error", message: "Live API closed" }));
+                  }
+                } catch (_) {}
+              },
             },
             config: {
-              responseModalities: ["AUDIO" as any, "TEXT" as any],
+              responseModalities: [Modality.AUDIO, Modality.TEXT],
               speechConfig: {
                 voiceConfig: {
                   prebuiltVoiceConfig: {
@@ -456,4 +472,7 @@ SILENCE AND WAKE WORD BEHAVIOR:
   server.listen(port, () => {
     console.log(`> Ready on http://${hostname}:${port}`);
   });
+}).catch((err) => {
+  console.error("Error starting server:", err);
+  process.exit(1);
 });

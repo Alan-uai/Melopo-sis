@@ -433,9 +433,9 @@ export default function VoiceChatPanel({
       wsRef.current = ws;
 
       ws.onopen = async () => {
-        let latLng = null;
-        if (locationEnabled && "geolocation" in navigator) {
-          try {
+        try {
+          let latLng = null;
+          if (locationEnabled && "geolocation" in navigator) {
             const getLoc = () =>
               new Promise<GeolocationPosition>((resolve, reject) => {
                 navigator.geolocation.getCurrentPosition(resolve, reject, {
@@ -447,89 +447,90 @@ export default function VoiceChatPanel({
               latitude: pos.coords.latitude,
               longitude: pos.coords.longitude,
             };
-          } catch (e) {
-            console.warn("Could not retrieve location.");
           }
-        }
 
-        const ctx = actionsRef.current.getPoemContext();
+          const ctx = actionsRef.current.getPoemContext();
 
-        ws.send(
-          JSON.stringify({
-            type: "init",
-            config: {
-              voiceName,
-              personality,
-              initialPrompt,
-              userName,
-              assistantName,
-              verbosity,
-              speechSpeed,
-              onlineSearchEnabled,
-              latLng,
-              poemContext: {
-                title: ctx.title,
-                tone: ctx.tone,
-                structure: ctx.structure,
-                rhyme: ctx.rhyme,
-                poemList: ctx.poemList.map((p) => p.title),
+          ws.send(
+            JSON.stringify({
+              type: "init",
+              config: {
+                voiceName,
+                personality,
+                initialPrompt,
+                userName,
+                assistantName,
+                verbosity,
+                speechSpeed,
+                onlineSearchEnabled,
+                latLng,
+                poemContext: {
+                  title: ctx.title,
+                  tone: ctx.tone,
+                  structure: ctx.structure,
+                  rhyme: ctx.rhyme,
+                  poemList: ctx.poemList.map((p) => p.title),
+                },
               },
-            },
-          }),
-        );
+            }),
+          );
 
-        const audioCtx = new AudioContext({ sampleRate: 16000 });
-        audioCtxRef.current = audioCtx;
-        nextStartTimeRef.current = 0;
+          const audioCtx = new AudioContext({ sampleRate: 16000 });
+          audioCtxRef.current = audioCtx;
+          nextStartTimeRef.current = 0;
 
-        const stream = await navigator.mediaDevices.getUserMedia({
-          audio: true,
-          video: cameraEnabled,
-        });
-        streamRef.current = stream;
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: cameraEnabled,
+          });
+          streamRef.current = stream;
 
-        if (cameraEnabled && videoRef.current) {
-          videoRef.current.srcObject = stream;
-          videoRef.current.play();
+          if (cameraEnabled && videoRef.current) {
+            videoRef.current.srcObject = stream;
+            videoRef.current.play();
 
-          videoIntervalRef.current = setInterval(() => {
-            if (
-              ws.readyState === WebSocket.OPEN &&
-              videoRef.current &&
-              canvasRef.current
-            ) {
-              const video = videoRef.current;
-              const canvas = canvasRef.current;
-              if (video.videoWidth > 0 && video.videoHeight > 0) {
-                canvas.width = video.videoWidth;
-                canvas.height = video.videoHeight;
-                const ctx = canvas.getContext("2d");
-                if (ctx) {
-                  ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                  const base64 = canvas
-                    .toDataURL("image/jpeg", 0.5)
-                    .split(",")[1];
-                  ws.send(JSON.stringify({ image: base64 }));
+            videoIntervalRef.current = setInterval(() => {
+              if (
+                ws.readyState === WebSocket.OPEN &&
+                videoRef.current &&
+                canvasRef.current
+              ) {
+                const video = videoRef.current;
+                const canvas = canvasRef.current;
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                  canvas.width = video.videoWidth;
+                  canvas.height = video.videoHeight;
+                  const ctx = canvas.getContext("2d");
+                  if (ctx) {
+                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                    const base64 = canvas
+                      .toDataURL("image/jpeg", 0.5)
+                      .split(",")[1];
+                    ws.send(JSON.stringify({ image: base64 }));
+                  }
                 }
               }
-            }
-          }, 1000);
-        }
-
-        const source = audioCtx.createMediaStreamSource(stream);
-        sourceRef.current = source;
-        const processor = audioCtx.createScriptProcessor(4096, 1, 1);
-        processorRef.current = processor;
-
-        source.connect(processor);
-        processor.connect(audioCtx.destination);
-
-        processor.onaudioprocess = (e) => {
-          if (ws.readyState === WebSocket.OPEN) {
-            const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
-            ws.send(JSON.stringify({ audio: base64 }));
+            }, 1000);
           }
-        };
+
+          const source = audioCtx.createMediaStreamSource(stream);
+          sourceRef.current = source;
+          const processor = audioCtx.createScriptProcessor(4096, 1, 1);
+          processorRef.current = processor;
+
+          source.connect(processor);
+          processor.connect(audioCtx.destination);
+
+          processor.onaudioprocess = (e) => {
+            if (ws.readyState === WebSocket.OPEN) {
+              const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
+              ws.send(JSON.stringify({ audio: base64 }));
+            }
+          };
+        } catch (err) {
+          console.error("Error in voice chat setup:", err);
+          stopVoice();
+        }
       };
 
       ws.onmessage = (event) => {
@@ -539,6 +540,20 @@ export default function VoiceChatPanel({
           setIsConnecting(false);
           setIsActive(true);
           playSoundEffect(660, 0.15);
+        }
+
+        if (msg.type === "error") {
+          console.error("Server error:", msg.message);
+          setChatHistory((prev) => [
+            ...prev,
+            {
+              id: crypto.randomUUID(),
+              role: "assistant",
+              text: `Erro: ${msg.message || "Falha na conexão com o servidor de voz."}`,
+              timestamp: Date.now(),
+            },
+          ]);
+          setIsConnecting(false);
         }
 
         if (msg.audio && audioCtxRef.current) {
@@ -624,6 +639,10 @@ export default function VoiceChatPanel({
         if (msg.toolCall) {
           handleToolCall(msg.toolCall);
         }
+      };
+
+      ws.onerror = (err) => {
+        console.error("WebSocket error:", err);
       };
 
       ws.onclose = () => {

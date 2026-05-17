@@ -238,7 +238,7 @@ const Sidebar = React.forwardRef<
         data-variant={variant}
         data-side={side}
         className={cn(
-            "hidden md:flex flex-col h-svh bg-sidebar text-sidebar-foreground transition-[width] ease-in-out",
+            "hidden md:flex flex-col h-svh bg-sidebar text-sidebar-foreground transition-[width] ease-in-out overflow-hidden",
             open ? "w-[--sidebar-width] border-r" : "w-[--sidebar-width-icon]",
             className
           )}
