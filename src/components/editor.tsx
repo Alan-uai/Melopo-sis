@@ -409,9 +409,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <SidebarTrigger className="p-0 h-8 w-8">
-              <Feather className="scale-[2.5]" />
-            </SidebarTrigger>
+            <SidebarTrigger />
             <CardTitle className="font-headline text-3xl">
               Melopoësis
             </CardTitle>
