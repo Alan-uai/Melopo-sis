@@ -715,23 +715,19 @@
   }
 
   .search-container:focus-within > .darkBorderBg::before {
-    transform: translate(-50%, -50%) rotate(442deg);
-    transition: all 4s;
+    animation: rotate 4s linear infinite;
   }
 
   .search-container:focus-within > .glow::before {
-    transform: translate(-50%, -50%) rotate(420deg);
-    transition: all 4s;
+    animation: rotate 4s linear infinite;
   }
 
   .search-container:focus-within > .white::before {
-    transform: translate(-50%, -50%) rotate(443deg);
-    transition: all 4s;
+    animation: rotate 4s linear infinite;
   }
 
   .search-container:focus-within > .border::before {
-    transform: translate(-50%, -50%) rotate(430deg);
-    transition: all 4s;
+    animation: rotate 4s linear infinite;
   }
 
   .search-container .glow {

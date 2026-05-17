@@ -126,7 +126,7 @@ export function ShareButton({ title, text }: ShareButtonProps) {
       <AnimatePresence>
         {isOpen &&
           platforms.map((p, i) => {
-            const angle = (i / (total - 1)) * Math.PI - Math.PI / 2
+            const angle = (i / (total - 1)) * Math.PI
             const x = Math.cos(angle) * RADIUS
             const y = Math.sin(angle) * RADIUS
 

@@ -23,7 +23,7 @@ const SIDEBAR_COOKIE_NAME = "sidebar_state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
 const SIDEBAR_WIDTH = "16rem"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
-const SIDEBAR_WIDTH_ICON = "3rem"
+const SIDEBAR_WIDTH_ICON = "0px"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 type SidebarContext = {
@@ -238,8 +238,8 @@ const Sidebar = React.forwardRef<
         data-variant={variant}
         data-side={side}
         className={cn(
-            "hidden md:flex flex-col h-svh bg-sidebar text-sidebar-foreground transition-[width] ease-in-out border-r",
-            open ? "w-[--sidebar-width]" : "w-[--sidebar-width-icon]",
+            "hidden md:flex flex-col h-svh bg-sidebar text-sidebar-foreground transition-[width] ease-in-out",
+            open ? "w-[--sidebar-width] border-r" : "w-[--sidebar-width-icon]",
             className
           )}
         {...props}
