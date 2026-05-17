@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ChatMessage, VoiceActionHandlers } from "./types";
+import { buildSystemInstruction, toolDeclarations } from "@/lib/live-setup";
 import "./voice-chat-animations.css";
 
 const pcmToBase64 = (f32Array: Float32Array) => {
@@ -403,125 +404,204 @@ export default function VoiceChatPanel({
 
     try {
       setIsConnecting(true);
-      const host = window.location.host;
-      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-      const ws = new WebSocket(`${protocol}//${host}/live`);
+
+      // 1. Set up audio capture first (before fetching token / connecting)
+      const audioCtx = new AudioContext({ sampleRate: 16000 });
+      audioCtxRef.current = audioCtx;
+      nextStartTimeRef.current = 0;
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      streamRef.current = stream;
+
+      const source = audioCtx.createMediaStreamSource(stream);
+      sourceRef.current = source;
+      const processor = audioCtx.createScriptProcessor(4096, 1, 1);
+      processorRef.current = processor;
+      source.connect(processor);
+      // Do NOT connect processor to destination — avoids audio feedback
+
+      let audioReady = false;
+      processor.onaudioprocess = (e) => {
+        if (wsRef.current?.readyState === WebSocket.OPEN && audioReady) {
+          const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
+          wsRef.current.send(
+            JSON.stringify({
+              realtimeInput: {
+                audio: { mimeType: "audio/pcm", data: base64 },
+              },
+            }),
+          );
+        }
+      };
+
+      // 2. Fetch ephemeral token
+      const res = await fetch("/api/token", { method: "POST" });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.error || `Token fetch failed: ${res.status}`);
+      }
+      const { token } = await res.json();
+      if (!token) throw new Error("No token received");
+
+      // 3. Connect WebSocket directly to Gemini Live API
+      const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${token}`;
+      const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
 
-      ws.onopen = async () => {
+      ws.onopen = () => {
         const ctx = actionsRef.current.getPoemContext();
+        const instruction = buildSystemInstruction({
+          assistantName,
+          userName,
+          personality,
+          verbosity,
+          speechSpeed,
+          poemContext: {
+            title: ctx.title,
+            tone: ctx.tone,
+            structure: ctx.structure,
+            rhyme: ctx.rhyme,
+            poemList: ctx.poemList.map((p) => p.title),
+          },
+        });
 
         ws.send(
           JSON.stringify({
-            type: "init",
-            config: {
-              voiceName,
-              personality,
-              initialPrompt,
-              userName,
-              assistantName,
-              verbosity,
-              speechSpeed,
-              poemContext: {
-                title: ctx.title,
-                tone: ctx.tone,
-                structure: ctx.structure,
-                rhyme: ctx.rhyme,
-                poemList: ctx.poemList.map((p) => p.title),
+            setup: {
+              model: "models/gemini-3.1-flash-live-preview",
+              generationConfig: {
+                responseModalities: ["AUDIO"],
+                speechConfig: {
+                  voiceConfig: {
+                    prebuiltVoiceConfig: {
+                      voiceName: voiceName || "Aoede",
+                    },
+                  },
+                },
               },
+              systemInstruction: {
+                parts: [{ text: instruction }],
+              },
+              tools: [{ functionDeclarations: toolDeclarations }],
             },
           }),
         );
-
-        const audioCtx = new AudioContext({ sampleRate: 16000 });
-        audioCtxRef.current = audioCtx;
-        nextStartTimeRef.current = 0;
-
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        streamRef.current = stream;
-
-        const source = audioCtx.createMediaStreamSource(stream);
-        sourceRef.current = source;
-        const processor = audioCtx.createScriptProcessor(4096, 1, 1);
-        processorRef.current = processor;
-
-        source.connect(processor);
-        processor.connect(audioCtx.destination);
-
-        processor.onaudioprocess = (e) => {
-          if (ws.readyState === WebSocket.OPEN) {
-            const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
-            ws.send(JSON.stringify({ audio: base64 }));
-          }
-        };
       };
 
       ws.onmessage = (event) => {
         const msg = JSON.parse(event.data);
 
-        if (msg.type === "ready") {
+        // Setup complete — enable audio capture
+        if (msg.setupComplete) {
+          audioReady = true;
           setIsConnecting(false);
           setIsActive(true);
           playSoundEffect(660, 0.15);
+
+          if (initialPrompt?.trim()) {
+            ws.send(
+              JSON.stringify({
+                realtimeInput: { text: initialPrompt.trim() },
+              }),
+            );
+          }
+          return;
         }
 
-        if (msg.type === "error") {
-          console.error("Server error:", msg.message);
+        // Error message from server
+        if (msg.error) {
+          const text = typeof msg.error === "string" ? msg.error : "Erro na conexão com a Live API";
           setChatHistory((prev) => [
             ...prev,
             {
               id: crypto.randomUUID(),
               role: "assistant",
-              text: `Erro: ${msg.message || "Falha na conexão com o servidor de voz."}`,
+              text: `Erro: ${text}`,
               timestamp: Date.now(),
             },
           ]);
           setIsConnecting(false);
+          ws.close();
+          return;
         }
 
-        if (msg.audio && audioCtxRef.current) {
-          const audioCtx = audioCtxRef.current;
-          const binaryArray = Uint8Array.from(atob(msg.audio), (c) =>
-            c.charCodeAt(0),
-          );
-          const i16Array = new Int16Array(binaryArray.buffer);
-          const f32Array = new Float32Array(i16Array.length);
-          for (let i = 0; i < i16Array.length; i++) {
-            f32Array[i] = i16Array[i] / 32768.0;
-          }
+        const parts = msg.serverContent?.modelTurn?.parts;
 
-          const bufSampleRate = 24000;
-          const audioBuffer = audioCtx.createBuffer(
-            1,
-            f32Array.length,
-            bufSampleRate,
-          );
-          audioBuffer.getChannelData(0).set(f32Array);
+        // Audio / text response parts
+        if (parts && audioCtxRef.current) {
+          for (const part of parts) {
+            if (part.inlineData?.data) {
+              const audioCtx = audioCtxRef.current;
+              const binaryArray = Uint8Array.from(
+                atob(part.inlineData.data),
+                (c) => c.charCodeAt(0),
+              );
+              const i16Array = new Int16Array(binaryArray.buffer);
+              const f32Array = new Float32Array(i16Array.length);
+              for (let i = 0; i < i16Array.length; i++) {
+                f32Array[i] = i16Array[i] / 32768.0;
+              }
 
-          const source = audioCtx.createBufferSource();
-          source.buffer = audioBuffer;
-          source.connect(audioCtx.destination);
+              const bufSampleRate = 24000;
+              const audioBuffer = audioCtx.createBuffer(
+                1,
+                f32Array.length,
+                bufSampleRate,
+              );
+              audioBuffer.getChannelData(0).set(f32Array);
 
-          const wasEmpty = playingSourcesRef.current.size === 0;
+              const source = audioCtx.createBufferSource();
+              source.buffer = audioBuffer;
+              source.connect(audioCtx.destination);
 
-          source.onended = () => {
-            playingSourcesRef.current.delete(source);
-            if (playingSourcesRef.current.size === 0) {
-              setIsAiSpeaking(false);
+              const wasEmpty = playingSourcesRef.current.size === 0;
+
+              source.onended = () => {
+                playingSourcesRef.current.delete(source);
+                if (playingSourcesRef.current.size === 0) {
+                  setIsAiSpeaking(false);
+                }
+              };
+              playingSourcesRef.current.add(source);
+
+              if (wasEmpty) {
+                setIsAiSpeaking(true);
+              }
+
+              const t = audioCtx.currentTime;
+              if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
+              source.start(nextStartTimeRef.current);
+              nextStartTimeRef.current += audioBuffer.duration;
             }
-          };
-          playingSourcesRef.current.add(source);
 
-          if (wasEmpty) {
-            setIsAiSpeaking(true);
+            if (part.text && part.text.trim()) {
+              setChatHistory((prev) => {
+                const last = prev[prev.length - 1];
+                if (last && last.role === "assistant") {
+                  const updated = [...prev];
+                  updated[updated.length - 1] = {
+                    ...last,
+                    text: last.text + part.text,
+                  };
+                  return updated;
+                } else {
+                  return [
+                    ...prev,
+                    {
+                      id: crypto.randomUUID(),
+                      role: "assistant",
+                      text: part.text,
+                      timestamp: Date.now(),
+                    },
+                  ];
+                }
+              });
+            }
           }
-
-          const t = audioCtx.currentTime;
-          if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
-          source.start(nextStartTimeRef.current);
-          nextStartTimeRef.current += audioBuffer.duration;
         }
-        if (msg.interrupted) {
+
+        // Interrupted
+        if (msg.serverContent?.interrupted) {
           playingSourcesRef.current.forEach((source) => {
             try {
               source.stop();
@@ -531,36 +611,37 @@ export default function VoiceChatPanel({
           nextStartTimeRef.current = audioCtxRef.current?.currentTime || 0;
           setIsAiSpeaking(false);
         }
-        if (
-          msg.textResponse &&
-          typeof msg.textResponse === "string" &&
-          msg.textResponse.trim()
-        ) {
+
+        // Tool call from the model
+        if (msg.toolCall) {
+          handleToolCall(msg.toolCall);
+        }
+
+        // Input transcription (user speech → text for chat history)
+        if (msg.serverContent?.inputTranscription?.text?.trim()) {
+          const text = msg.serverContent.inputTranscription.text.trim();
+          const finished =
+            msg.serverContent.inputTranscription.finished === true;
           setChatHistory((prev) => {
             const last = prev[prev.length - 1];
-            if (last && last.role === "assistant") {
+            if (last && last.role === "user" && !finished) {
               const updated = [...prev];
-              updated[updated.length - 1] = {
-                ...last,
-                text: last.text + msg.textResponse,
-              };
+              updated[updated.length - 1] = { ...last, text };
               return updated;
-            } else {
+            }
+            if (finished) {
               return [
                 ...prev,
                 {
                   id: crypto.randomUUID(),
-                  role: "assistant",
-                  text: msg.textResponse,
+                  role: "user",
+                  text,
                   timestamp: Date.now(),
                 },
               ];
             }
+            return prev;
           });
-        }
-
-        if (msg.toolCall) {
-          handleToolCall(msg.toolCall);
         }
       };
 
@@ -722,7 +803,11 @@ export default function VoiceChatPanel({
     }
 
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(JSON.stringify({ toolResponse: responses }));
+      wsRef.current.send(
+        JSON.stringify({
+          toolResponse: { functionResponses: responses },
+        }),
+      );
     }
   };
 
