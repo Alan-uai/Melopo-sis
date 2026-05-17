@@ -56,9 +56,6 @@ export default function VoiceChatPanel({
   const [verbosity, setVerbosity] = useState("concise");
   const [speechSpeed, setSpeechSpeed] = useState("normal");
   const [soundEffectsEnabled, setSoundEffectsEnabled] = useState(true);
-  const [onlineSearchEnabled, setOnlineSearchEnabled] = useState(false);
-  const [locationEnabled, setLocationEnabled] = useState(false);
-  const [cameraEnabled, setCameraEnabled] = useState(false);
 
   const wsRef = useRef<WebSocket | null>(null);
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -67,9 +64,6 @@ export default function VoiceChatPanel({
   const processorRef = useRef<ScriptProcessorNode | null>(null);
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const playingSourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const videoIntervalRef = useRef<any>(null);
   const startVoiceRef = useRef<((p?: string) => Promise<void>) | null>(null);
   const actionsRef = useRef(actions);
   useEffect(() => {
@@ -85,9 +79,6 @@ export default function VoiceChatPanel({
     const savedVerbosity = localStorage.getItem("vc_verbosity");
     const savedSpeechSpeed = localStorage.getItem("vc_speechSpeed");
     const savedSoundEffects = localStorage.getItem("vc_soundEffects");
-    const savedOnlineSearch = localStorage.getItem("vc_onlineSearch");
-    const savedLocation = localStorage.getItem("vc_location");
-    const savedCamera = localStorage.getItem("vc_cameraEnabled");
     const savedChatHistory = localStorage.getItem("vc_chatHistory");
 
     setTimeout(() => {
@@ -100,11 +91,6 @@ export default function VoiceChatPanel({
       if (savedSpeechSpeed) setSpeechSpeed(savedSpeechSpeed);
       if (savedSoundEffects !== null)
         setSoundEffectsEnabled(savedSoundEffects === "true");
-      if (savedOnlineSearch !== null)
-        setOnlineSearchEnabled(savedOnlineSearch === "true");
-      if (savedLocation !== null)
-        setLocationEnabled(savedLocation === "true");
-      if (savedCamera !== null) setCameraEnabled(savedCamera === "true");
       if (savedChatHistory !== null) {
         try {
           setChatHistory(JSON.parse(savedChatHistory));
@@ -126,9 +112,6 @@ export default function VoiceChatPanel({
     localStorage.setItem("vc_verbosity", verbosity);
     localStorage.setItem("vc_speechSpeed", speechSpeed);
     localStorage.setItem("vc_soundEffects", soundEffectsEnabled.toString());
-    localStorage.setItem("vc_onlineSearch", onlineSearchEnabled.toString());
-    localStorage.setItem("vc_location", locationEnabled.toString());
-    localStorage.setItem("vc_cameraEnabled", cameraEnabled.toString());
   }, [
     voiceName,
     personality,
@@ -138,9 +121,6 @@ export default function VoiceChatPanel({
     verbosity,
     speechSpeed,
     soundEffectsEnabled,
-    onlineSearchEnabled,
-    locationEnabled,
-    cameraEnabled,
   ]);
 
   useEffect(() => {
@@ -377,10 +357,6 @@ export default function VoiceChatPanel({
   };
 
   const stopVoice = useCallback(() => {
-    if (videoIntervalRef.current) {
-      clearInterval(videoIntervalRef.current);
-      videoIntervalRef.current = null;
-    }
     if (wsRef.current) {
       wsRef.current.close();
       wsRef.current = null;
@@ -412,7 +388,29 @@ export default function VoiceChatPanel({
     setIsConnecting(false);
   }, []);
 
+  const requestMicPermission = async (): Promise<boolean> => {
+    try {
+      const testStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      testStream.getTracks().forEach((t) => t.stop());
+      return true;
+    } catch (err: any) {
+      if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
+        alert(
+          "Permissão do microfone é necessária para usar o chat de voz.\n" +
+            "Por favor, permita o acesso ao microfone nas configurações do navegador e tente novamente.",
+        );
+      } else {
+        alert(
+          "Não foi possível acessar o microfone. Verifique se ele está conectado e tente novamente.",
+        );
+      }
+      return false;
+    }
+  };
+
   const startVoice = async (initialPrompt?: string) => {
+    if (!(await requestMicPermission())) return;
+
     if (initialPrompt && initialPrompt.trim()) {
       setChatHistory((prev) => [
         ...prev,
@@ -425,6 +423,10 @@ export default function VoiceChatPanel({
       ]);
     }
 
+    const audioCtx = new AudioContext({ sampleRate: 16000 });
+    audioCtxRef.current = audioCtx;
+    nextStartTimeRef.current = 0;
+
     try {
       setIsConnecting(true);
       const host = window.location.host;
@@ -433,104 +435,47 @@ export default function VoiceChatPanel({
       wsRef.current = ws;
 
       ws.onopen = async () => {
-        try {
-          let latLng = null;
-          if (locationEnabled && "geolocation" in navigator) {
-            const getLoc = () =>
-              new Promise<GeolocationPosition>((resolve, reject) => {
-                navigator.geolocation.getCurrentPosition(resolve, reject, {
-                  timeout: 3000,
-                });
-              });
-            const pos = await getLoc();
-            latLng = {
-              latitude: pos.coords.latitude,
-              longitude: pos.coords.longitude,
-            };
-          }
+        const ctx = actionsRef.current.getPoemContext();
 
-          const ctx = actionsRef.current.getPoemContext();
-
-          ws.send(
-            JSON.stringify({
-              type: "init",
-              config: {
-                voiceName,
-                personality,
-                initialPrompt,
-                userName,
-                assistantName,
-                verbosity,
-                speechSpeed,
-                onlineSearchEnabled,
-                latLng,
-                poemContext: {
-                  title: ctx.title,
-                  tone: ctx.tone,
-                  structure: ctx.structure,
-                  rhyme: ctx.rhyme,
-                  poemList: ctx.poemList.map((p) => p.title),
-                },
+        ws.send(
+          JSON.stringify({
+            type: "init",
+            config: {
+              voiceName,
+              personality,
+              initialPrompt,
+              userName,
+              assistantName,
+              verbosity,
+              speechSpeed,
+              poemContext: {
+                title: ctx.title,
+                tone: ctx.tone,
+                structure: ctx.structure,
+                rhyme: ctx.rhyme,
+                poemList: ctx.poemList.map((p) => p.title),
               },
-            }),
-          );
+            },
+          }),
+        );
 
-          const audioCtx = new AudioContext({ sampleRate: 16000 });
-          audioCtxRef.current = audioCtx;
-          nextStartTimeRef.current = 0;
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        streamRef.current = stream;
 
-          const stream = await navigator.mediaDevices.getUserMedia({
-            audio: true,
-            video: cameraEnabled,
-          });
-          streamRef.current = stream;
+        const source = audioCtx.createMediaStreamSource(stream);
+        sourceRef.current = source;
+        const processor = audioCtx.createScriptProcessor(4096, 1, 1);
+        processorRef.current = processor;
 
-          if (cameraEnabled && videoRef.current) {
-            videoRef.current.srcObject = stream;
-            videoRef.current.play();
+        source.connect(processor);
+        processor.connect(audioCtx.destination);
 
-            videoIntervalRef.current = setInterval(() => {
-              if (
-                ws.readyState === WebSocket.OPEN &&
-                videoRef.current &&
-                canvasRef.current
-              ) {
-                const video = videoRef.current;
-                const canvas = canvasRef.current;
-                if (video.videoWidth > 0 && video.videoHeight > 0) {
-                  canvas.width = video.videoWidth;
-                  canvas.height = video.videoHeight;
-                  const ctx = canvas.getContext("2d");
-                  if (ctx) {
-                    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-                    const base64 = canvas
-                      .toDataURL("image/jpeg", 0.5)
-                      .split(",")[1];
-                    ws.send(JSON.stringify({ image: base64 }));
-                  }
-                }
-              }
-            }, 1000);
+        processor.onaudioprocess = (e) => {
+          if (ws.readyState === WebSocket.OPEN) {
+            const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
+            ws.send(JSON.stringify({ audio: base64 }));
           }
-
-          const source = audioCtx.createMediaStreamSource(stream);
-          sourceRef.current = source;
-          const processor = audioCtx.createScriptProcessor(4096, 1, 1);
-          processorRef.current = processor;
-
-          source.connect(processor);
-          processor.connect(audioCtx.destination);
-
-          processor.onaudioprocess = (e) => {
-            if (ws.readyState === WebSocket.OPEN) {
-              const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
-              ws.send(JSON.stringify({ audio: base64 }));
-            }
-          };
-        } catch (err) {
-          console.error("Error in voice chat setup:", err);
-          stopVoice();
-        }
+        };
       };
 
       ws.onmessage = (event) => {
@@ -805,8 +750,6 @@ export default function VoiceChatPanel({
 
   return (
     <>
-      <video ref={videoRef} autoPlay playsInline className="hidden" muted />
-      <canvas ref={canvasRef} className="hidden" />
       {/* Settings button - floating right */}
       <div className="fixed bottom-6 right-6 z-50">
         <button
@@ -1105,103 +1048,6 @@ export default function VoiceChatPanel({
                           onChange={(e) =>
                             setSoundEffectsEnabled(e.target.checked)
                           }
-                        />
-                        <div className="w-11 h-6 bg-muted peer-focus:ring-4 peer-focus:ring-accent/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
-                      </label>
-                    </div>
-
-                    <div className="flex items-center justify-between border-t border-border pt-3">
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-0.5">
-                          Pesquisa na Web
-                        </label>
-                        <p className="text-[10px] text-muted-foreground">
-                          Buscar informações online
-                        </p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="sr-only peer"
-                          checked={onlineSearchEnabled}
-                          onChange={(e) =>
-                            setOnlineSearchEnabled(e.target.checked)
-                          }
-                        />
-                        <div className="w-11 h-6 bg-muted peer-focus:ring-4 peer-focus:ring-accent/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
-                      </label>
-                    </div>
-
-                    <div className="flex items-center justify-between border-t border-border pt-3">
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-0.5">
-                          Localização
-                        </label>
-                        <p className="text-[10px] text-muted-foreground">
-                          Usar geolocalização
-                        </p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="sr-only peer"
-                          checked={locationEnabled}
-                          onChange={(e) => {
-                            setLocationEnabled(e.target.checked);
-                            if (
-                              e.target.checked &&
-                              "geolocation" in navigator
-                            ) {
-                              navigator.geolocation.getCurrentPosition(
-                                () => {},
-                                () => {
-                                  alert(
-                                    "Permissão de localização negada.",
-                                  );
-                                  setLocationEnabled(false);
-                                },
-                              );
-                            }
-                          }}
-                        />
-                        <div className="w-11 h-6 bg-muted peer-focus:ring-4 peer-focus:ring-accent/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
-                      </label>
-                    </div>
-
-                    <div className="flex items-center justify-between border-t border-border pt-3">
-                      <div>
-                        <label className="block text-sm font-semibold text-foreground mb-0.5">
-                          Câmera
-                        </label>
-                        <p className="text-[10px] text-muted-foreground">
-                          Assistente "enxergar" você
-                        </p>
-                      </div>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="sr-only peer"
-                          checked={cameraEnabled}
-                          onChange={async (e) => {
-                            const checked = e.target.checked;
-                            setCameraEnabled(checked);
-                            if (checked && navigator.mediaDevices) {
-                              try {
-                                const stream =
-                                  await navigator.mediaDevices.getUserMedia(
-                                    { video: true },
-                                  );
-                                stream
-                                  .getTracks()
-                                  .forEach((t) => t.stop());
-                              } catch (err) {
-                                alert(
-                                  "Permissão de câmera negada.",
-                                );
-                                setCameraEnabled(false);
-                              }
-                            }
-                          }}
                         />
                         <div className="w-11 h-6 bg-muted peer-focus:ring-4 peer-focus:ring-accent/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
                       </label>

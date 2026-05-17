@@ -35,7 +35,6 @@ app.prepare().then(() => {
             assistantName,
             verbosity,
             speechSpeed,
-            onlineSearchEnabled,
             poemContext,
           } = msg.config || {};
 
@@ -282,9 +281,6 @@ SILENCE AND WAKE WORD BEHAVIOR:
           };
 
           const activeTools: any[] = [poemTools];
-          if (onlineSearchEnabled) {
-            activeTools.push({ googleSearch: {} });
-          }
 
           session = await aiInstance.live.connect({
             model: "gemini-3.1-flash-live-preview",
@@ -391,10 +387,6 @@ SILENCE AND WAKE WORD BEHAVIOR:
               },
               systemInstruction: baseInstruction,
               tools: activeTools,
-              // @ts-ignore
-              toolConfig: onlineSearchEnabled
-                ? { includeServerSideToolInvocations: true }
-                : undefined,
             },
           });
           clientWs.send(JSON.stringify({ type: "ready" }));
@@ -436,11 +428,6 @@ SILENCE AND WAKE WORD BEHAVIOR:
               data: msg.audio,
               mimeType: "audio/pcm;rate=16000",
             },
-          });
-        }
-        if (msg.image && session) {
-          session.sendRealtimeInput({
-            video: { data: msg.image, mimeType: "image/jpeg" },
           });
         }
         if (msg.toolResponse && session) {
