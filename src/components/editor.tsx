@@ -36,6 +36,7 @@ import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/compon
 import { TooltipProvider } from "./ui/tooltip";
 import { SidebarTrigger } from "./ui/sidebar";
 import { PoemExportDialog } from "./poem-export-dialog";
+import { ShareButton } from "./share-button";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { countPoeticSyllables } from "@/lib/poetic-forms";
@@ -480,6 +481,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                   style={{ transformStyle: "preserve-3d" } as any}
                 >
                   <PoemExportDialog title={title} text={text} tone={tone} />
+                </motion.div>
+                <motion.div
+                  whileHover={{ rotateX: -10, z: 10 }}
+                  whileTap={{ scale: 0.9, rotateX: 5 }}
+                  style={{ transformStyle: "preserve-3d" } as any}
+                >
+                  <ShareButton title={title} text={text} />
                 </motion.div>
                 <Popover>
                     <PopoverTrigger asChild>
