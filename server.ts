@@ -377,7 +377,7 @@ SILENCE AND WAKE WORD BEHAVIOR:
               },
             },
             config: {
-              responseModalities: [Modality.AUDIO, Modality.TEXT],
+              responseModalities: [Modality.AUDIO, "TEXT" as any],
               speechConfig: {
                 voiceConfig: {
                   prebuiltVoiceConfig: {

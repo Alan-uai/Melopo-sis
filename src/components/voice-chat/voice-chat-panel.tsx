@@ -388,29 +388,7 @@ export default function VoiceChatPanel({
     setIsConnecting(false);
   }, []);
 
-  const requestMicPermission = async (): Promise<boolean> => {
-    try {
-      const testStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      testStream.getTracks().forEach((t) => t.stop());
-      return true;
-    } catch (err: any) {
-      if (err.name === "NotAllowedError" || err.name === "PermissionDeniedError") {
-        alert(
-          "Permissão do microfone é necessária para usar o chat de voz.\n" +
-            "Por favor, permita o acesso ao microfone nas configurações do navegador e tente novamente.",
-        );
-      } else {
-        alert(
-          "Não foi possível acessar o microfone. Verifique se ele está conectado e tente novamente.",
-        );
-      }
-      return false;
-    }
-  };
-
   const startVoice = async (initialPrompt?: string) => {
-    if (!(await requestMicPermission())) return;
-
     if (initialPrompt && initialPrompt.trim()) {
       setChatHistory((prev) => [
         ...prev,
@@ -422,10 +400,6 @@ export default function VoiceChatPanel({
         },
       ]);
     }
-
-    const audioCtx = new AudioContext({ sampleRate: 16000 });
-    audioCtxRef.current = audioCtx;
-    nextStartTimeRef.current = 0;
 
     try {
       setIsConnecting(true);
@@ -458,6 +432,10 @@ export default function VoiceChatPanel({
             },
           }),
         );
+
+        const audioCtx = new AudioContext({ sampleRate: 16000 });
+        audioCtxRef.current = audioCtx;
+        nextStartTimeRef.current = 0;
 
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         streamRef.current = stream;
