@@ -38,9 +38,17 @@ app.prepare().then(() => {
             poemContext,
           } = msg.config || {};
 
+          if (!process.env.GEMINI_API_KEY) {
+            clientWs.send(JSON.stringify({ type: "error", message: "GEMINI_API_KEY não configurada" }));
+            return;
+          }
+
           const aiInstance = new GoogleGenAI({
             apiKey: process.env.GEMINI_API_KEY,
-            httpOptions: { headers: { "User-Agent": "melopoesis" } },
+            httpOptions: {
+              apiVersion: "v1beta",
+              headers: { "User-Agent": "melopoesis" },
+            },
           });
 
           const baseInstruction = `You are a specialized poetry assistant for Melopoësis, a Brazilian Portuguese poetry writing platform.
@@ -282,144 +290,130 @@ SILENCE AND WAKE WORD BEHAVIOR:
 
           const activeTools: any[] = [poemTools];
 
-          session = await aiInstance.live.connect({
-            model: "gemini-3.1-flash-live-preview",
-            callbacks: {
-              onmessage: (message: LiveServerMessage) => {
-                const parts =
-                  message.serverContent?.modelTurn?.parts;
-                if (parts) {
-                  for (const part of parts) {
-                    if (part.text) {
-                      if (clientWs.readyState === clientWs.OPEN) {
-                        clientWs.send(
-                          JSON.stringify({
-                            textResponse: part.text,
-                          }),
-                        );
+          try {
+            session = await aiInstance.live.connect({
+              model: "gemini-3.1-flash-live-preview",
+              callbacks: {
+                onmessage: (message: LiveServerMessage) => {
+                  const parts =
+                    message.serverContent?.modelTurn?.parts;
+                  if (parts) {
+                    for (const part of parts) {
+                      if (part.text) {
+                        if (clientWs.readyState === clientWs.OPEN) {
+                          clientWs.send(
+                            JSON.stringify({
+                              textResponse: part.text,
+                            }),
+                          );
+                        }
+                      }
+                      if (part.inlineData?.data) {
+                        if (clientWs.readyState === clientWs.OPEN) {
+                          clientWs.send(
+                            JSON.stringify({
+                              audio: part.inlineData.data,
+                            }),
+                          );
+                        }
                       }
                     }
-                    if (part.inlineData?.data) {
-                      if (clientWs.readyState === clientWs.OPEN) {
-                        clientWs.send(
-                          JSON.stringify({
-                            audio: part.inlineData.data,
-                          }),
-                        );
-                      }
-                    }
                   }
-                }
-                if (message.serverContent?.interrupted) {
-                  if (clientWs.readyState === clientWs.OPEN) {
-                    clientWs.send(
-                      JSON.stringify({ interrupted: true }),
-                    );
-                  }
-                }
-                if (message.toolCall) {
-                  const clientTools: any = { functionCalls: [] };
-                  const serverResponses: any = {
-                    functionResponses: [],
-                  };
-
-                  for (const call of message.toolCall
-                    .functionCalls || []) {
-                    if (call.name === "calculate") {
-                      try {
-                        const result = evaluate(
-                          (call.args as any).expression,
-                        );
-                        serverResponses.functionResponses.push({
-                          name: "calculate",
-                          id: call.id,
-                          response: { result },
-                        });
-                      } catch (err: any) {
-                        serverResponses.functionResponses.push({
-                          name: "calculate",
-                          id: call.id,
-                          response: { error: err.message },
-                        });
-                      }
-                    } else {
-                      clientTools.functionCalls.push(call);
-                    }
-                  }
-
-                  if (serverResponses.functionResponses.length > 0) {
-                    session?.sendToolResponse(serverResponses);
-                  }
-                  if (clientTools.functionCalls.length > 0) {
+                  if (message.serverContent?.interrupted) {
                     if (clientWs.readyState === clientWs.OPEN) {
                       clientWs.send(
-                        JSON.stringify({ toolCall: clientTools }),
+                        JSON.stringify({ interrupted: true }),
                       );
                     }
                   }
-                }
-              },
-              onerror: (e: any) => {
-                console.error("Live API error:", e);
-                try {
-                  if (clientWs.readyState === clientWs.OPEN) {
-                    clientWs.send(JSON.stringify({ type: "error", message: "Live API error" }));
+                  if (message.toolCall) {
+                    const clientTools: any = { functionCalls: [] };
+                    const serverResponses: any = {
+                      functionResponses: [],
+                    };
+
+                    for (const call of message.toolCall
+                      .functionCalls || []) {
+                      if (call.name === "calculate") {
+                        try {
+                          const result = evaluate(
+                            (call.args as any).expression,
+                          );
+                          serverResponses.functionResponses.push({
+                            name: "calculate",
+                            id: call.id,
+                            response: { result },
+                          });
+                        } catch (err: any) {
+                          serverResponses.functionResponses.push({
+                            name: "calculate",
+                            id: call.id,
+                            response: { error: err.message },
+                          });
+                        }
+                      } else {
+                        clientTools.functionCalls.push(call);
+                      }
+                    }
+
+                    if (serverResponses.functionResponses.length > 0) {
+                      session?.sendToolResponse(serverResponses);
+                    }
+                    if (clientTools.functionCalls.length > 0) {
+                      if (clientWs.readyState === clientWs.OPEN) {
+                        clientWs.send(
+                          JSON.stringify({ toolCall: clientTools }),
+                        );
+                      }
+                    }
                   }
-                } catch (_) {}
+                },
+                onerror: (e: any) => {
+                  console.error("Live API error:", e);
+                  try {
+                    if (clientWs.readyState === clientWs.OPEN) {
+                      clientWs.send(JSON.stringify({ type: "error", message: "Live API error" }));
+                    }
+                  } catch (_) {}
+                },
+                onclose: (e: any) => {
+                  console.log("Live API closed:", e?.code, e?.reason);
+                  try {
+                    if (clientWs.readyState === clientWs.OPEN) {
+                      clientWs.send(JSON.stringify({ type: "error", message: "Live API closed" }));
+                    }
+                  } catch (_) {}
+                },
               },
-              onclose: (e: any) => {
-                console.log("Live API closed:", e?.code, e?.reason);
-                try {
-                  if (clientWs.readyState === clientWs.OPEN) {
-                    clientWs.send(JSON.stringify({ type: "error", message: "Live API closed" }));
-                  }
-                } catch (_) {}
-              },
-            },
-            config: {
-              responseModalities: [Modality.AUDIO, "TEXT" as any],
-              speechConfig: {
-                voiceConfig: {
-                  prebuiltVoiceConfig: {
-                    voiceName: voiceName || "Aoede",
+              config: {
+                responseModalities: [Modality.AUDIO],
+                speechConfig: {
+                  voiceConfig: {
+                    prebuiltVoiceConfig: {
+                      voiceName: voiceName || "Aoede",
+                    },
                   },
                 },
+                systemInstruction: baseInstruction,
+                tools: activeTools,
               },
-              systemInstruction: baseInstruction,
-              tools: activeTools,
-            },
-          });
+            });
+          } catch (connectErr: any) {
+            console.error("Live API connection failed:", connectErr);
+            clientWs.send(JSON.stringify({
+              type: "error",
+              message: `Falha ao conectar na Live API: ${connectErr.message || "Erro desconhecido"}`,
+            }));
+            return;
+          }
+
           clientWs.send(JSON.stringify({ type: "ready" }));
 
-          if (initialPrompt && initialPrompt.length > 0) {
-            session.sendClientContent({
-              turns: [
-                {
-                  role: "user",
-                  parts: [
-                    {
-                      text: `Comando inicial detectado junto com a palavra de ativação: "${initialPrompt}". Por favor, execute isso agora e responda.`,
-                    },
-                  ],
-                },
-              ],
-              turnComplete: true,
-            });
-          } else {
-            session.sendClientContent({
-              turns: [
-                {
-                  role: "user",
-                  parts: [
-                    {
-                      text: "Ativação detectada. Estou em silêncio por enquanto. Se eu não falar nada em 2 segundos, pergunte 'Sim?' ou algo similar. Se após mais 5 segundos não houver resposta, execute a ferramenta endConversation.",
-                    },
-                  ],
-                },
-              ],
-              turnComplete: true,
-            });
-          }
+          const initialText = initialPrompt && initialPrompt.length > 0
+            ? `Comando inicial detectado junto com a palavra de ativação: "${initialPrompt}". Por favor, execute isso agora e responda.`
+            : "Ativação detectada. Estou em silêncio por enquanto. Se eu não falar nada em 2 segundos, pergunte 'Sim?' ou algo similar. Se após mais 5 segundos não houver resposta, execute a ferramenta endConversation.";
+
+          session.sendRealtimeInput({ text: initialText });
         }
 
         if (msg.audio && session) {
