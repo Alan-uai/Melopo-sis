@@ -435,18 +435,12 @@ export default function VoiceChatPanel({
       };
 
       // 2. Fetch ephemeral token
-      const res = await fetch("/api/token", { method: "POST" });
-      if (!res.ok) {
-        const errBody = await res.json().catch(() => ({}));
-        throw new Error(errBody.error || `Token fetch failed: ${res.status}`);
-      }
-      const { token } = await res.json();
-      if (!token) throw new Error("No token received");
+      const tokenRes = await fetch("/api/live-token");
+      const token = await tokenRes.json();
 
-      // 3. Connect WebSocket directly to Gemini Live API
-      const wsUrl = `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${token}`;
-      const ws = new WebSocket(wsUrl);
-      wsRef.current = ws;
+      const ws = new WebSocket(
+        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?access_token=${token.token}`
+      );
 
       ws.onopen = () => {
         const ctx = actionsRef.current.getPoemContext();
