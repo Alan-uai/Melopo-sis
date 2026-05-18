@@ -466,13 +466,6 @@ export default function VoiceChatPanel({
               model: "models/gemini-2.5-flash-native-audio-preview-12-2025",
               generationConfig: {
                 responseModalities: ["AUDIO"],
-                speechConfig: {
-                  voiceConfig: {
-                    prebuiltVoiceConfig: {
-                      voiceName: voiceName || "Aoede",
-                    },
-                  },
-                },
               },
               systemInstruction: {
                 parts: [{ text: instruction }],
@@ -500,12 +493,16 @@ export default function VoiceChatPanel({
             }
           }
           if (event.data.byteLength > 100 && audioCtxRef.current) {
+            console.log("▶️ audio binário:", event.data.byteLength, "ctx:", audioCtxRef.current.state);
             const i16Array = new Int16Array(event.data);
             const f32Array = new Float32Array(i16Array.length);
             for (let i = 0; i < i16Array.length; i++) {
               f32Array[i] = i16Array[i] / 32768.0;
             }
             const audioCtx = audioCtxRef.current;
+            if (audioCtx.state === "suspended") {
+              audioCtx.resume();
+            }
             const audioBuffer = audioCtx.createBuffer(
               1,
               f32Array.length,
@@ -535,6 +532,7 @@ export default function VoiceChatPanel({
         }
 
         // Text message — parse JSON
+        console.log("📨 texto:", event.data.substring(0, 200));
         let msg;
         try {
           msg = JSON.parse(event.data);
@@ -1002,9 +1000,9 @@ export default function VoiceChatPanel({
             {isConnecting ? (
               <Loader2 className="h-5 w-5 animate-spin" />
             ) : isActive ? (
-              <MicOff className="h-5 w-5" />
-            ) : (
               <Mic className="h-5 w-5" />
+            ) : (
+              <MicOff className="h-5 w-5" />
             )}
           </div>
           <div className="ball">
