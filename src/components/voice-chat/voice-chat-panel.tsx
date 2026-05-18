@@ -435,7 +435,7 @@ export default function VoiceChatPanel({
       };
 
       // 2. Fetch ephemeral token
-      const tokenRes = await fetch("/api/live-token");
+      const tokenRes = await fetch("/api/live");
       const token = await tokenRes.json();
 
       const ws = new WebSocket(
