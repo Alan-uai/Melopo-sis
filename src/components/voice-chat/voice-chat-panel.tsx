@@ -435,12 +435,13 @@ export default function VoiceChatPanel({
       };
 
       // 2. Fetch ephemeral token
-      const tokenRes = await fetch("/api/live");
+      const tokenRes = await fetch("/api/token");
       const token = await tokenRes.json();
 
       const ws = new WebSocket(
-        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?access_token=${token.token}`
+        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(token.token)}`
       );
+      ws.binaryType = "arraybuffer";
 
       ws.onopen = () => {
         const ctx = actionsRef.current.getPoemContext();
@@ -462,7 +463,7 @@ export default function VoiceChatPanel({
         ws.send(
           JSON.stringify({
             setup: {
-              model: "models/gemini-3.1-flash-live-preview",
+              model: "models/gemini-2.5-flash-native-audio-preview-12-2025",
               generationConfig: {
                 responseModalities: ["AUDIO"],
                 speechConfig: {
@@ -483,7 +484,63 @@ export default function VoiceChatPanel({
       };
 
       ws.onmessage = (event) => {
-        const msg = JSON.parse(event.data);
+        // Binary message — native audio PCM16 data
+        if (event.data instanceof ArrayBuffer) {
+          if (!audioReady) {
+            audioReady = true;
+            setIsConnecting(false);
+            setIsActive(true);
+            playSoundEffect(660, 0.15);
+            if (initialPrompt?.trim()) {
+              ws.send(
+                JSON.stringify({
+                  realtimeInput: { text: initialPrompt.trim() },
+                }),
+              );
+            }
+          }
+          if (event.data.byteLength > 100 && audioCtxRef.current) {
+            const i16Array = new Int16Array(event.data);
+            const f32Array = new Float32Array(i16Array.length);
+            for (let i = 0; i < i16Array.length; i++) {
+              f32Array[i] = i16Array[i] / 32768.0;
+            }
+            const audioCtx = audioCtxRef.current;
+            const audioBuffer = audioCtx.createBuffer(
+              1,
+              f32Array.length,
+              24000,
+            );
+            audioBuffer.getChannelData(0).set(f32Array);
+            const source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(audioCtx.destination);
+            const wasEmpty = playingSourcesRef.current.size === 0;
+            source.onended = () => {
+              playingSourcesRef.current.delete(source);
+              if (playingSourcesRef.current.size === 0) {
+                setIsAiSpeaking(false);
+              }
+            };
+            playingSourcesRef.current.add(source);
+            if (wasEmpty) {
+              setIsAiSpeaking(true);
+            }
+            const t = audioCtx.currentTime;
+            if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
+            source.start(nextStartTimeRef.current);
+            nextStartTimeRef.current += audioBuffer.duration;
+          }
+          return;
+        }
+
+        // Text message — parse JSON
+        let msg;
+        try {
+          msg = JSON.parse(event.data);
+        } catch {
+          return;
+        }
 
         // Setup complete — enable audio capture
         if (msg.setupComplete) {
@@ -491,7 +548,6 @@ export default function VoiceChatPanel({
           setIsConnecting(false);
           setIsActive(true);
           playSoundEffect(660, 0.15);
-
           if (initialPrompt?.trim()) {
             ws.send(
               JSON.stringify({
@@ -646,6 +702,23 @@ export default function VoiceChatPanel({
       ws.onclose = () => {
         stopVoice();
       };
+
+      // Safety net: consider ready after 4s even if no confirmation
+      const readyTimer = setTimeout(() => {
+        if (!audioReady && ws.readyState === WebSocket.OPEN) {
+          audioReady = true;
+          setIsConnecting(false);
+          setIsActive(true);
+          playSoundEffect(660, 0.15);
+          if (initialPrompt?.trim()) {
+            ws.send(
+              JSON.stringify({
+                realtimeInput: { text: initialPrompt.trim() },
+              }),
+            );
+          }
+        }
+      }, 4000);
     } catch (e) {
       console.error(e);
       stopVoice();
