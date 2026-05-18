@@ -189,9 +189,9 @@ export default function VoiceChatPanel({
 
   const playSoundEffect = (freq = 880, duration = 0.1) => {
     if (!soundEffectsEnabled) return;
+    const ctx = audioCtxRef.current;
+    if (!ctx || ctx.state === "closed") return;
     try {
-      const ctx = new (window.AudioContext ||
-        (window as any).webkitAudioContext)();
       const osc = ctx.createOscillator();
       osc.frequency.value = freq;
       osc.connect(ctx.destination);
@@ -412,6 +412,9 @@ export default function VoiceChatPanel({
 
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       streamRef.current = stream;
+      if (audioCtx.state === "suspended") {
+        await audioCtx.resume();
+      }
 
       const source = audioCtx.createMediaStreamSource(stream);
       sourceRef.current = source;
