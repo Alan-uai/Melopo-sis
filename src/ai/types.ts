@@ -30,8 +30,20 @@ export const SuggestionInputSchema = z.object({
   orthographyRules: z.string().optional().describe('Regras do Acordo Ortográfico (acordo-ortografico.txt).'),
   punctuationRules: z.string().optional().describe('Regras de pontuação poética (pontuacao-poetica.txt).'),
   rhymeRules: z.string().optional().describe('Regras de rima poética (rima.txt).'),
+  preferredModel: z.string().optional().describe('Modelo de IA preferido para usar primeiro no fallback. Se omitido, usa a ordem do MODELS.'),
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
+
+export const SuggestionOutputSchema = z.object({
+  suggestions: z.array(SuggestionSchema).describe('Uma lista de sugestões de correção ou melhoria.'),
+  modelUsed: z.string().optional().describe('Modelo de IA que foi utilizado para gerar as sugestões.'),
+});
+export type ToneSuggestion = z.infer<typeof ToneSuggestionSchema>;
+
+export const ToneSuggestionOutputSchema = z.object({
+  suggestions: z.array(ToneSuggestionSchema).describe('Uma lista de sugestões de tom e estilo.'),
+});
+export type ToneSuggestionOutput = z.infer<typeof ToneSuggestionOutputSchema>;
 
 export const SuggestionOutputSchema = z.object({
   suggestions: z.array(SuggestionSchema).describe('Uma lista de sugestões de correção ou melhoria.'),

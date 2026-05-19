@@ -1,12 +1,12 @@
 'use server';
 
 import { ai, withFallback } from '@/ai/genkit';
-import { SuggestionInputSchema, SuggestionOutputSchema } from '@/ai/types';
+import { SuggestionInputSchema, ToneSuggestionOutputSchema } from '@/ai/types';
 
 export const toneAgent = ai.definePrompt({
   name: 'toneAgent',
   input: { schema: SuggestionInputSchema },
-  output: { schema: SuggestionOutputSchema },
+  output: { schema: ToneSuggestionOutputSchema },
   prompt: `
 Você é um especialista em estilo e tom poético para o português do Brasil. O texto a seguir já foi corrigido gramaticalmente.
 
@@ -19,7 +19,7 @@ O texto a ser analisado é:
 
  REGRAS:
 - Para cada sugestão, forneça o trecho original, uma alternativa estilística, e explique o motivo da mudança.
-- Forneça 2-3 alternativas quando possível (alternatives).
+- Forneça EXATAMENTE 2-3 alternativas no campo "alternatives" para CADA sugestão. Este campo é obrigatório.
 - A justificativa deve ser estilística/literária, não gramatical.
 - Se nenhum aprimoramento de tom for necessário, retorne array vazio.
 - Mantenha a métrica e a rima se o poema as utilizar. Rima ativada: {{rhyme}}. Se "true", TODAS as suas sugestões DEVEM preservar ou incorporar rimas consistentes.
@@ -55,5 +55,13 @@ export async function runToneAgent(text: string, input: Record<string, unknown>)
   const { output } = await withFallback((model: string) =>
     toneAgent({ ...input, text } as never, { model })
   );
-  return output?.suggestions || [];
+  const suggestions = output?.suggestions || [];
+  return suggestions.map(s => ({
+    ...s,
+    alternatives: s.alternatives.length >= 2
+      ? s.alternatives
+      : s.alternatives.length === 1
+        ? [s.correctedText, s.alternatives[0]]
+        : [s.correctedText, s.originalText],
+  }));
 }
