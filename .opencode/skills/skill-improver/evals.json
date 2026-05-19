@@ -1,0 +1,69 @@
+{
+  "skill_name": "skill-improver",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Melhora as skills. Logs existem com 3 observacoes de ambiguous_instruction em data-access-api e 2 gaps de i18n no orchestration-log.",
+      "expected_output": "Full report presented with IMPROVE section for data-access-api and CREATE section for i18n stub. User can respond with batch like '1A 2D'. Positive-only skills appear in NO ACTION NEEDED section.",
+      "assertions": [
+        "all log files are read before building the report",
+        "suggestions-history.jsonl is read to filter previously decided suggestions",
+        "report is presented in the exact format with IMPROVEMENTS, NEW SKILLS, NO ACTION NEEDED sections",
+        "data-access-api appears in IMPROVEMENTS section with exact current and proposed text",
+        "i18n appears in NEW SKILLS TO CREATE section with tasks that triggered it",
+        "user can respond with batch notation like 1A 2D",
+        "report shows total observation count and deferred count from last session"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Melhora as skills. Uma sugestao foi rejeitada anteriormente. observations_since_rejection atual eh 7 — abaixo do threshold de 10.",
+      "expected_output": "Skill reads suggestions-history.jsonl, finds rejected suggestion with observations_since_rejection 7 which is below threshold 10, suppresses it completely. It does not appear anywhere in the report.",
+      "assertions": [
+        "suggestions-history.jsonl is read before building report",
+        "rejected suggestion with observations_since_rejection below 10 does not appear in main report",
+        "rejected suggestion does not appear in any section including PREVIOUSLY REJECTED",
+        "other valid suggestions are presented normally",
+        "no mention of the suppressed suggestion anywhere in the output"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Melhora as skills. Usuario responde 1A para aprovar o IMPROVE de data-access-api.",
+      "expected_output": "Skill opens data-access-api SKILL.md, applies exactly the proposed change, shows before/after diff, deletes contributing observations from log, writes approved status to suggestions-history.jsonl. Reports summary.",
+      "assertions": [
+        "exact proposed change text is applied to data-access-api SKILL.md — no additional modifications",
+        "before and after diff is shown to user",
+        "contributing observations are deleted from skill-observations.jsonl",
+        "suggestions-history.jsonl entry written with status approved",
+        "summary reports how many improvements applied stubs created rejected deferred",
+        "log cleanup runs after all decisions — entries older than 30 days removed from stack-detector-log"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Melhora as skills. Usuario responde 2A para aprovar o CREATE de i18n-patterns.",
+      "expected_output": "Skill creates stub SKILL.md at .opencode/skills/i18n-patterns/SKILL.md with suggested coverage, deletes contributing gap entries from log, confirms stub creation with next step instruction.",
+      "assertions": [
+        "stub file is created at .opencode/skills/i18n-patterns/SKILL.md",
+        "stub contains name frontmatter, status stub, and suggested coverage list from the CREATE suggestion",
+        "stub instructs user to develop fully using skill-creator",
+        "gap entries that triggered this CREATE are deleted from orchestration-log.jsonl",
+        "confirmation message tells user to use skill-creator to develop the stub",
+        "summary reflects Y stubs created"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Melhora as skills. Diretorio de logs nao existe ainda.",
+      "expected_output": "Skill detects missing logs directory, reports clearly that there is nothing to review yet and more usage is needed. Exits cleanly without error or empty report.",
+      "assertions": [
+        "skill checks for logs directory before attempting to read files",
+        "missing logs are reported as expected state not as an error",
+        "user is told the system needs more usage before improvements can be suggested",
+        "skill exits cleanly with no empty report sections shown",
+        "no suggestions-history.jsonl modification occurs"
+      ]
+    }
+  ]
+}

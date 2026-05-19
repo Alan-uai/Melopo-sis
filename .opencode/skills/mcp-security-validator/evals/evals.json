@@ -1,0 +1,23 @@
+{
+  "skill_name": "mcp-security-validator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Analise o seguinte código Python de um MCP server e verifique vulnerabilidades de segurança. Identifique: 1) SQL injection risks, 2) Path traversal, 3) Hardcoded credentials, 4) Missing input validation, 5) Rate limiting. Retorne um JSON com os issues encontrados classificados por severidade.\n\nCódigo para analisar:\n```python\nimport os\nimport sqlite3\n\ndef get_user(user_id):\n    # SQL Injection vulnerability\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    conn = sqlite3.connect('app.db')\n    cursor = conn.cursor()\n    cursor.execute(query)\n    return cursor.fetchone()\n\nAPI_KEY = \"sk-1234567890abcdef\"  # Hardcoded\n\ndef read_file(filename):\n    # Path traversal\n    path = f\"/data/{filename}\"\n    return open(path).read()\n```",
+      "expected_output": "JSON com: critical issues (SQL injection via f-string, hardcoded API_KEY), high issues (path traversal vulnerability), medium issues (missing input validation), low issues (missing rate limiting). Cada issue com line number e remediation suggestion.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Valide a segurança de um código MCP que processa entradas de usuário para uma ferramenta de busca. Verifique: XSS prevention, input sanitization, command injection, e audit logging. O código deve aceitar query strings e retornar resultados de busca.",
+      "expected_output": "Relatório de segurança com: issues encontrados, classificação OWASP (A1:2021-Injection, A7:2021-Cross-Site-Scripting), remediation steps, e checklist de conformidade.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Crie um checklist de segurança para deployment de um MCP server em produção. Inclua: configuração de rate limiting, authentication, audit logging, TLS, CORS, error handling, e secrets management.",
+      "expected_output": "Checklist completo em formato markdown com: 15+ itens de verificação, categorizados por área (network, application, data), status obrigatório/opcional, e instruções de implementação.",
+      "files": []
+    }
+  ]
+}

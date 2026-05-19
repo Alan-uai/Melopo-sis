@@ -31,6 +31,7 @@ export const SuggestionInputSchema = z.object({
   punctuationRules: z.string().optional().describe('Regras de pontuação poética (pontuacao-poetica.txt).'),
   rhymeRules: z.string().optional().describe('Regras de rima poética (rima.txt).'),
   preferredModel: z.string().optional().describe('Modelo de IA preferido para usar primeiro no fallback. Se omitido, usa a ordem do MODELS.'),
+  localToneAnalysis: z.string().optional().describe('Análise local de tom serializada em JSON, para contexto do agente IA.'),
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
 

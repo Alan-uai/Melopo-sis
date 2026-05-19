@@ -10,27 +10,14 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ChatMessage, VoiceActionHandlers } from "./types";
-import { buildSystemInstruction, toolDeclarations } from "@/lib/live-setup";
 import "./voice-chat-animations.css";
 
-const pcmToBase64 = (f32Array: Float32Array) => {
-  const i16Array = new Int16Array(f32Array.length);
-  for (let i = 0; i < f32Array.length; i++) {
-    const s = Math.max(-1, Math.min(1, f32Array[i]));
-    i16Array[i] = s < 0 ? s * 0x8000 : s * 0x7fff;
-  }
-  const buffer = new ArrayBuffer(i16Array.length * 2);
-  const view = new DataView(buffer);
-  for (let i = 0; i < i16Array.length; i++) {
-    view.setInt16(i * 2, i16Array[i], true);
-  }
-  let binary = "";
-  const bytes = new Uint8Array(buffer);
-  for (let i = 0; i < bytes.length; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-  return btoa(binary);
-};
+import { useGeminiLiveToken } from "@/hooks/use-gemini-live-token";
+import { useAudioCapture } from "@/hooks/use-audio-capture";
+import { useAudioPlayback } from "@/hooks/use-audio-playback";
+import { useLiveWebSocket } from "@/hooks/use-live-websocket";
+import { useLiveToolCalls } from "@/hooks/use-live-tool-calls";
+import { useWakeWord } from "@/hooks/use-wake-word";
 
 export default function VoiceChatPanel({
   actions,
@@ -40,9 +27,7 @@ export default function VoiceChatPanel({
   const [isActive, setIsActive] = useState(false);
   const [isConnecting, setIsConnecting] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
-  const [showHistory, setShowHistory] = useState(false);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-  const [isAiSpeaking, setIsAiSpeaking] = useState(false);
 
   const [voiceName, setVoiceName] = useState("Aoede");
   const [personality, setPersonality] = useState(
@@ -58,18 +43,152 @@ export default function VoiceChatPanel({
   const [speechSpeed, setSpeechSpeed] = useState("normal");
   const [soundEffectsEnabled, setSoundEffectsEnabled] = useState(true);
 
-  const wsRef = useRef<WebSocket | null>(null);
-  const audioCtxRef = useRef<AudioContext | null>(null);
-  const nextStartTimeRef = useRef(0);
-  const streamRef = useRef<MediaStream | null>(null);
-  const processorRef = useRef<ScriptProcessorNode | null>(null);
-  const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
-  const playingSourcesRef = useRef<Set<AudioBufferSourceNode>>(new Set());
-  const startVoiceRef = useRef<((p?: string) => Promise<void>) | null>(null);
+  const pendingInitialPromptRef = useRef<string | null>(null);
+  const audioReadyTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const actionsRef = useRef(actions);
   useEffect(() => {
     actionsRef.current = actions;
   }, [actions]);
+
+  const {
+    token,
+    refreshToken,
+    startAutoRefresh,
+    stopAutoRefresh,
+  } = useGeminiLiveToken();
+
+  const {
+    playArrayBuffer,
+    playBase64Audio,
+    stopPlayback,
+    isPlaying,
+  } = useAudioPlayback();
+
+  const {
+    startCapture,
+    stopCapture,
+    isCapturing,
+  } = useAudioCapture({
+    onAudioData: (pcmBuffer) => wsSendAudio(pcmBuffer),
+  });
+
+  const { handleToolCall } = useLiveToolCalls(actions);
+
+  const {
+    wsRef,
+    connect: wsConnect,
+    disconnect: wsDisconnect,
+    sendMessage: wsSendMessage,
+    sendAudio: wsSendAudio,
+    isConnected,
+    isConnecting: wsConnecting,
+  } = useLiveWebSocket({
+    token,
+    systemParams: {
+      assistantName,
+      userName,
+      personality,
+      verbosity,
+      speechSpeed,
+      poemContext: actions.getPoemContext(),
+    },
+    onSetupComplete: () => {
+      if (audioReadyTimeoutRef.current) {
+        clearTimeout(audioReadyTimeoutRef.current);
+        audioReadyTimeoutRef.current = null;
+      }
+      setIsConnecting(false);
+      setIsActive(true);
+      playSoundEffect(660, 0.15);
+      const pp = pendingInitialPromptRef.current;
+      if (pp) {
+        wsSendMessage({ realtimeInput: { text: pp } });
+        pendingInitialPromptRef.current = null;
+      }
+    },
+    onAudioResponse: (buffer) => {
+      playArrayBuffer(buffer);
+    },
+    onAudioResponseBase64: (base64) => {
+      playBase64Audio(base64);
+    },
+    onToolCall: (tc, ws) => {
+      handleToolCall(tc, ws);
+    },
+    onTranscription: (text, isFinal) => {
+      setChatHistory((prev) => {
+        const last = prev[prev.length - 1];
+        if (last && last.role === "user" && !isFinal) {
+          const updated = [...prev];
+          updated[updated.length - 1] = { ...last, text };
+          return updated;
+        }
+        if (isFinal) {
+          return [
+            ...prev,
+            {
+              id: crypto.randomUUID(),
+              role: "user" as const,
+              text,
+              timestamp: Date.now(),
+            },
+          ];
+        }
+        return prev;
+      });
+    },
+    onAssistantText: (text) => {
+      setChatHistory((prev) => {
+        const last = prev[prev.length - 1];
+        if (last && last.role === "assistant") {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            ...last,
+            text: last.text + text,
+          };
+          return updated;
+        }
+        return [
+          ...prev,
+          {
+            id: crypto.randomUUID(),
+            role: "assistant" as const,
+            text,
+            timestamp: Date.now(),
+          },
+        ];
+      });
+    },
+    onInterrupted: () => {
+      stopPlayback();
+    },
+    onError: (err) => {
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "assistant",
+          text: `Erro: ${err}`,
+          timestamp: Date.now(),
+        },
+      ]);
+    },
+    onEndConversation: () => {
+      stopVoice();
+    },
+  });
+
+  useWakeWord({
+    assistantName,
+    customWakeWords,
+    isActive,
+    isTrainingWakeWord,
+    onWake: (remaining) => {
+      pendingInitialPromptRef.current = remaining || null;
+      startVoice();
+    },
+  });
 
   useEffect(() => {
     const savedVoice = localStorage.getItem("vc_voiceName");
@@ -136,10 +255,7 @@ export default function VoiceChatPanel({
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "vc_customWakeWords",
-      JSON.stringify(customWakeWords),
-    );
+    localStorage.setItem("vc_customWakeWords", JSON.stringify(customWakeWords));
   }, [customWakeWords]);
 
   useEffect(() => {
@@ -150,6 +266,82 @@ export default function VoiceChatPanel({
         .catch(() => console.error("Microphone permission denied"));
     }
   }, [wakeWordEnabled]);
+
+  const playSoundEffect = (freq = 880, duration = 0.1) => {
+    if (!soundEffectsEnabled) return;
+    try {
+      const ctx = new AudioContext();
+      const osc = ctx.createOscillator();
+      osc.frequency.value = freq;
+      osc.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + duration);
+      osc.onended = () => ctx.close();
+    } catch (e) {}
+  };
+
+  const stopVoice = useCallback(() => {
+    if (audioReadyTimeoutRef.current) {
+      clearTimeout(audioReadyTimeoutRef.current);
+      audioReadyTimeoutRef.current = null;
+    }
+    wsDisconnect();
+    stopCapture();
+    stopPlayback();
+    stopAutoRefresh();
+    setIsActive(false);
+    setIsConnecting(false);
+    pendingInitialPromptRef.current = null;
+  }, [wsDisconnect, stopCapture, stopPlayback, stopAutoRefresh]);
+
+  const startVoice = useCallback(async (initialPrompt?: string) => {
+    if (initialPrompt?.trim()) {
+      setChatHistory((prev) => [
+        ...prev,
+        {
+          id: crypto.randomUUID(),
+          role: "user",
+          text: initialPrompt.trim(),
+          timestamp: Date.now(),
+        },
+      ]);
+    }
+
+    try {
+      setIsConnecting(true);
+
+      const newToken = await refreshToken();
+      if (!newToken) throw new Error("Falha ao obter token de autenticação");
+
+      startAutoRefresh();
+
+      await startCapture();
+
+      audioReadyTimeoutRef.current = setTimeout(() => {
+        setIsConnecting(false);
+        setIsActive(true);
+        playSoundEffect(660, 0.15);
+        const pp = pendingInitialPromptRef.current;
+        if (pp) {
+          wsSendMessage({ realtimeInput: { text: pp } });
+          pendingInitialPromptRef.current = null;
+        }
+      }, 4000);
+
+      wsConnect(newToken);
+    } catch (err) {
+      console.error(err);
+      stopVoice();
+    }
+  }, [refreshToken, startCapture, wsConnect, stopVoice, wsSendMessage]);
+
+  const toggleVoice = async () => {
+    if (isActive || isConnecting) {
+      stopVoice();
+    } else {
+      await startVoice();
+    }
+  };
 
   const trainWakeWord = () => {
     if (customWakeWords.length >= 5) {
@@ -187,701 +379,8 @@ export default function VoiceChatPanel({
     }
   };
 
-  const playSoundEffect = (freq = 880, duration = 0.1) => {
-    if (!soundEffectsEnabled) return;
-    const ctx = audioCtxRef.current;
-    if (!ctx || ctx.state === "closed") return;
-    try {
-      const osc = ctx.createOscillator();
-      osc.frequency.value = freq;
-      osc.connect(ctx.destination);
-      osc.start();
-      osc.stop(ctx.currentTime + duration);
-    } catch (e) {}
-  };
-
-  useEffect(() => {
-    let recognition: any;
-    if (isActive && typeof window !== "undefined") {
-      const SpeechRecognition =
-        (window as any).SpeechRecognition ||
-        (window as any).webkitSpeechRecognition;
-
-      if (SpeechRecognition) {
-        recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = false;
-        recognition.lang = "pt-BR";
-
-        recognition.onresult = (event: any) => {
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            if (event.results[i].isFinal) {
-              const text = event.results[i][0].transcript.trim();
-              if (text) {
-                setChatHistory((prev) => [
-                  ...prev,
-                  {
-                    id: crypto.randomUUID(),
-                    role: "user",
-                    text,
-                    timestamp: Date.now(),
-                  },
-                ]);
-              }
-            }
-          }
-        };
-
-        recognition.onend = () => {
-          if (isActive) {
-            try {
-              recognition.start();
-            } catch (e) {}
-          }
-        };
-
-        try {
-          recognition.start();
-        } catch (e) {}
-      }
-    }
-
-    return () => {
-      if (recognition) {
-        recognition.onend = null;
-        try {
-          recognition.stop();
-        } catch (e) {}
-      }
-    };
-  }, [isActive]);
-
-  useEffect(() => {
-    let recognition: any;
-    if (
-      wakeWordEnabled &&
-      !isActive &&
-      !isTrainingWakeWord &&
-      typeof window !== "undefined"
-    ) {
-      const SpeechRecognition =
-        (window as any).SpeechRecognition ||
-        (window as any).webkitSpeechRecognition;
-      if (SpeechRecognition) {
-        recognition = new SpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
-        recognition.lang = "pt-BR";
-
-        let wakeWordMatchedInCurrentSentence = false;
-
-        recognition.onresult = (event: any) => {
-          for (let i = event.resultIndex; i < event.results.length; ++i) {
-            const transcript = event.results[i][0].transcript.toLowerCase();
-            const isFinal = event.results[i].isFinal;
-
-            const baseMatches = transcript.match(/poeta|p(o|ó)eta/);
-            const aliasMatch =
-              assistantName &&
-              transcript.includes(assistantName.toLowerCase())
-                ? assistantName.toLowerCase()
-                : null;
-            const customMatch = customWakeWords.find((w) =>
-              transcript.includes(w),
-            );
-            const matchStr = baseMatches
-              ? baseMatches[0]
-              : aliasMatch || customMatch || null;
-
-            if (matchStr) {
-              if (!wakeWordMatchedInCurrentSentence) {
-                wakeWordMatchedInCurrentSentence = true;
-                try {
-                  const ctx = new window.AudioContext();
-                  const osc = ctx.createOscillator();
-                  osc.frequency.value = 880;
-                  osc.connect(ctx.destination);
-                  osc.start();
-                  osc.stop(ctx.currentTime + 0.1);
-                } catch (e) {}
-              }
-
-              if (isFinal) {
-                recognition.stop();
-                wakeWordMatchedInCurrentSentence = false;
-
-                const idx = transcript.indexOf(matchStr);
-                const remaining = transcript
-                  .substring(idx + matchStr.length)
-                  .trim();
-
-                startVoiceRef.current?.(remaining);
-                break;
-              }
-            }
-          }
-        };
-
-        recognition.onerror = (e: any) => {
-          console.log("Speech recognition error", e.error);
-        };
-
-        try {
-          recognition.start();
-        } catch (e) {
-          console.log("Could not start recognition", e);
-        }
-      }
-    }
-
-    return () => {
-      if (recognition) {
-        try {
-          recognition.stop();
-        } catch (e) {}
-      }
-    };
-  }, [
-    wakeWordEnabled,
-    isActive,
-    isTrainingWakeWord,
-    customWakeWords,
-    assistantName,
-  ]);
-
-  const toggleVoice = async () => {
-    if (isActive) {
-      stopVoice();
-    } else {
-      await startVoice();
-    }
-  };
-
-  const stopVoice = useCallback(() => {
-    if (wsRef.current) {
-      wsRef.current.close();
-      wsRef.current = null;
-    }
-    if (processorRef.current) {
-      processorRef.current.disconnect();
-      processorRef.current = null;
-    }
-    if (sourceRef.current) {
-      sourceRef.current.disconnect();
-      sourceRef.current = null;
-    }
-    if (streamRef.current) {
-      streamRef.current.getTracks().forEach((t) => t.stop());
-      streamRef.current = null;
-    }
-    playingSourcesRef.current.forEach((source) => {
-      try {
-        source.stop();
-      } catch (e) {}
-    });
-    playingSourcesRef.current.clear();
-    if (audioCtxRef.current) {
-      audioCtxRef.current.close();
-      audioCtxRef.current = null;
-    }
-    setIsAiSpeaking(false);
-    setIsActive(false);
-    setIsConnecting(false);
-  }, []);
-
-  const startVoice = async (initialPrompt?: string) => {
-    if (initialPrompt && initialPrompt.trim()) {
-      setChatHistory((prev) => [
-        ...prev,
-        {
-          id: crypto.randomUUID(),
-          role: "user",
-          text: initialPrompt.trim(),
-          timestamp: Date.now(),
-        },
-      ]);
-    }
-
-    try {
-      setIsConnecting(true);
-
-      // 1. Set up audio capture first (before fetching token / connecting)
-      const audioCtx = new AudioContext({ sampleRate: 16000 });
-      audioCtxRef.current = audioCtx;
-      nextStartTimeRef.current = 0;
-
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      streamRef.current = stream;
-      if (audioCtx.state === "suspended") {
-        await audioCtx.resume();
-      }
-
-      const source = audioCtx.createMediaStreamSource(stream);
-      sourceRef.current = source;
-      const processor = audioCtx.createScriptProcessor(4096, 1, 1);
-      processorRef.current = processor;
-      source.connect(processor);
-      // Do NOT connect processor to destination — avoids audio feedback
-
-      let audioReady = false;
-      processor.onaudioprocess = (e) => {
-        if (wsRef.current?.readyState === WebSocket.OPEN && audioReady) {
-          const base64 = pcmToBase64(e.inputBuffer.getChannelData(0));
-          wsRef.current.send(
-            JSON.stringify({
-              realtimeInput: {
-                audio: { mimeType: "audio/pcm", data: base64 },
-              },
-            }),
-          );
-        }
-      };
-
-      // 2. Fetch ephemeral token
-      const tokenRes = await fetch("/api/token");
-      const token = await tokenRes.json();
-
-      const ws = new WebSocket(
-        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(token.token)}`
-      );
-      ws.binaryType = "arraybuffer";
-
-      ws.onopen = () => {
-        const ctx = actionsRef.current.getPoemContext();
-        const instruction = buildSystemInstruction({
-          assistantName,
-          userName,
-          personality,
-          verbosity,
-          speechSpeed,
-          poemContext: {
-            title: ctx.title,
-            tone: ctx.tone,
-            structure: ctx.structure,
-            rhyme: ctx.rhyme,
-            poemList: ctx.poemList.map((p) => p.title),
-          },
-        });
-
-        ws.send(
-          JSON.stringify({
-            setup: {
-              model: "models/gemini-2.5-flash-native-audio-preview-12-2025",
-              generationConfig: {
-                responseModalities: ["AUDIO"],
-              },
-              systemInstruction: {
-                parts: [{ text: instruction }],
-              },
-              tools: [{ functionDeclarations: toolDeclarations }],
-            },
-          }),
-        );
-      };
-
-      ws.onmessage = (event) => {
-        // Binary message — native audio PCM16 data
-        if (event.data instanceof ArrayBuffer) {
-          if (!audioReady) {
-            audioReady = true;
-            setIsConnecting(false);
-            setIsActive(true);
-            playSoundEffect(660, 0.15);
-            if (initialPrompt?.trim()) {
-              ws.send(
-                JSON.stringify({
-                  realtimeInput: { text: initialPrompt.trim() },
-                }),
-              );
-            }
-          }
-          if (event.data.byteLength > 100 && audioCtxRef.current) {
-            console.log("▶️ audio binário:", event.data.byteLength, "ctx:", audioCtxRef.current.state);
-            const i16Array = new Int16Array(event.data);
-            const f32Array = new Float32Array(i16Array.length);
-            for (let i = 0; i < i16Array.length; i++) {
-              f32Array[i] = i16Array[i] / 32768.0;
-            }
-            const audioCtx = audioCtxRef.current;
-            if (audioCtx.state === "suspended") {
-              audioCtx.resume();
-            }
-            const audioBuffer = audioCtx.createBuffer(
-              1,
-              f32Array.length,
-              24000,
-            );
-            audioBuffer.getChannelData(0).set(f32Array);
-            const source = audioCtx.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioCtx.destination);
-            const wasEmpty = playingSourcesRef.current.size === 0;
-            source.onended = () => {
-              playingSourcesRef.current.delete(source);
-              if (playingSourcesRef.current.size === 0) {
-                setIsAiSpeaking(false);
-              }
-            };
-            playingSourcesRef.current.add(source);
-            if (wasEmpty) {
-              setIsAiSpeaking(true);
-            }
-            const t = audioCtx.currentTime;
-            if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
-            source.start(nextStartTimeRef.current);
-            nextStartTimeRef.current += audioBuffer.duration;
-          }
-          return;
-        }
-
-        // Text message — parse JSON
-        console.log("📨 texto:", event.data.substring(0, 200));
-        let msg;
-        try {
-          msg = JSON.parse(event.data);
-        } catch {
-          return;
-        }
-
-        // Setup complete — enable audio capture
-        if (msg.setupComplete) {
-          audioReady = true;
-          setIsConnecting(false);
-          setIsActive(true);
-          playSoundEffect(660, 0.15);
-          if (initialPrompt?.trim()) {
-            ws.send(
-              JSON.stringify({
-                realtimeInput: { text: initialPrompt.trim() },
-              }),
-            );
-          }
-          return;
-        }
-
-        // Error message from server
-        if (msg.error) {
-          const text = typeof msg.error === "string" ? msg.error : "Erro na conexão com a Live API";
-          setChatHistory((prev) => [
-            ...prev,
-            {
-              id: crypto.randomUUID(),
-              role: "assistant",
-              text: `Erro: ${text}`,
-              timestamp: Date.now(),
-            },
-          ]);
-          setIsConnecting(false);
-          ws.close();
-          return;
-        }
-
-        const parts = msg.serverContent?.modelTurn?.parts;
-
-        // Audio / text response parts
-        if (parts && audioCtxRef.current) {
-          for (const part of parts) {
-            if (part.inlineData?.data) {
-              const audioCtx = audioCtxRef.current;
-              const binaryArray = Uint8Array.from(
-                atob(part.inlineData.data),
-                (c) => c.charCodeAt(0),
-              );
-              const i16Array = new Int16Array(binaryArray.buffer);
-              const f32Array = new Float32Array(i16Array.length);
-              for (let i = 0; i < i16Array.length; i++) {
-                f32Array[i] = i16Array[i] / 32768.0;
-              }
-
-              const bufSampleRate = 24000;
-              const audioBuffer = audioCtx.createBuffer(
-                1,
-                f32Array.length,
-                bufSampleRate,
-              );
-              audioBuffer.getChannelData(0).set(f32Array);
-
-              const source = audioCtx.createBufferSource();
-              source.buffer = audioBuffer;
-              source.connect(audioCtx.destination);
-
-              const wasEmpty = playingSourcesRef.current.size === 0;
-
-              source.onended = () => {
-                playingSourcesRef.current.delete(source);
-                if (playingSourcesRef.current.size === 0) {
-                  setIsAiSpeaking(false);
-                }
-              };
-              playingSourcesRef.current.add(source);
-
-              if (wasEmpty) {
-                setIsAiSpeaking(true);
-              }
-
-              const t = audioCtx.currentTime;
-              if (nextStartTimeRef.current < t) nextStartTimeRef.current = t;
-              source.start(nextStartTimeRef.current);
-              nextStartTimeRef.current += audioBuffer.duration;
-            }
-
-            if (part.text && part.text.trim()) {
-              setChatHistory((prev) => {
-                const last = prev[prev.length - 1];
-                if (last && last.role === "assistant") {
-                  const updated = [...prev];
-                  updated[updated.length - 1] = {
-                    ...last,
-                    text: last.text + part.text,
-                  };
-                  return updated;
-                } else {
-                  return [
-                    ...prev,
-                    {
-                      id: crypto.randomUUID(),
-                      role: "assistant",
-                      text: part.text,
-                      timestamp: Date.now(),
-                    },
-                  ];
-                }
-              });
-            }
-          }
-        }
-
-        // Interrupted
-        if (msg.serverContent?.interrupted) {
-          playingSourcesRef.current.forEach((source) => {
-            try {
-              source.stop();
-            } catch (e) {}
-          });
-          playingSourcesRef.current.clear();
-          nextStartTimeRef.current = audioCtxRef.current?.currentTime || 0;
-          setIsAiSpeaking(false);
-        }
-
-        // Tool call from the model
-        if (msg.toolCall) {
-          handleToolCall(msg.toolCall);
-        }
-
-        // Input transcription (user speech → text for chat history)
-        if (msg.serverContent?.inputTranscription?.text?.trim()) {
-          const text = msg.serverContent.inputTranscription.text.trim();
-          const finished =
-            msg.serverContent.inputTranscription.finished === true;
-          setChatHistory((prev) => {
-            const last = prev[prev.length - 1];
-            if (last && last.role === "user" && !finished) {
-              const updated = [...prev];
-              updated[updated.length - 1] = { ...last, text };
-              return updated;
-            }
-            if (finished) {
-              return [
-                ...prev,
-                {
-                  id: crypto.randomUUID(),
-                  role: "user",
-                  text,
-                  timestamp: Date.now(),
-                },
-              ];
-            }
-            return prev;
-          });
-        }
-      };
-
-      ws.onerror = (err) => {
-        console.error("WebSocket error:", err);
-      };
-
-      ws.onclose = () => {
-        stopVoice();
-      };
-
-      // Safety net: consider ready after 4s even if no confirmation
-      const readyTimer = setTimeout(() => {
-        if (!audioReady && ws.readyState === WebSocket.OPEN) {
-          audioReady = true;
-          setIsConnecting(false);
-          setIsActive(true);
-          playSoundEffect(660, 0.15);
-          if (initialPrompt?.trim()) {
-            ws.send(
-              JSON.stringify({
-                realtimeInput: { text: initialPrompt.trim() },
-              }),
-            );
-          }
-        }
-      }, 4000);
-    } catch (e) {
-      console.error(e);
-      stopVoice();
-    }
-  };
-
-  useEffect(() => {
-    startVoiceRef.current = startVoice;
-  });
-
-  const handleToolCall = (toolCallMsg: any) => {
-    const calls = toolCallMsg.functionCalls || [];
-    const responses: any[] = [];
-    const a = actionsRef.current;
-
-    for (const call of calls) {
-      const args = call.args || {};
-      let result: any;
-      try {
-        switch (call.name) {
-          case "setPoemTitle":
-            a.setTitle(args.title);
-            result = {
-              success: true,
-              message: `Título alterado para: ${args.title}`,
-            };
-            break;
-          case "setPoemTone":
-            a.setTone(args.tone);
-            result = {
-              success: true,
-              message: `Tom alterado para: ${args.tone}`,
-            };
-            break;
-          case "setPoemStructure":
-            a.setStructure(args.structure as any);
-            result = {
-              success: true,
-              message: `Estrutura alterada para: ${args.structure}`,
-            };
-            break;
-          case "setRhyme":
-            a.setRhyme(args.enabled);
-            result = {
-              success: true,
-              message: args.enabled
-                ? "Rima ativada"
-                : "Rima desativada",
-            };
-            break;
-          case "appendPoemText":
-            a.appendText(args.text);
-            result = { success: true, message: "Texto adicionado" };
-            break;
-          case "replacePoemText":
-            a.replaceText(args.text);
-            result = { success: true, message: "Texto substituído" };
-            break;
-          case "setSuggestionMode":
-            a.setSuggestionMode(args.mode);
-            result = {
-              success: true,
-              message: `Modo alterado para: ${args.mode}`,
-            };
-            break;
-          case "checkGrammar":
-            a.checkSpelling();
-            result = {
-              success: true,
-              message: "Verificação ortográfica iniciada",
-            };
-            break;
-          case "suggestToneImprovements":
-            a.suggestTone();
-            result = {
-              success: true,
-              message: "Sugestões de tom sendo geradas",
-            };
-            break;
-          case "newPoem":
-            a.newPoem();
-            result = { success: true, message: "Novo poema criado" };
-            break;
-          case "savePoem":
-            a.savePoem();
-            result = { success: true, message: "Salvando poema..." };
-            break;
-          case "copyPoemText":
-            a.copyPoem();
-            result = { success: true, message: "Texto copiado" };
-            break;
-          case "undoLastChange":
-            a.undo();
-            result = { success: true, message: "Desfeito" };
-            break;
-          case "getPoemContext": {
-            const poemCtx = a.getPoemContext();
-            result = {
-              text: poemCtx.text,
-              title: poemCtx.title,
-              tone: poemCtx.tone,
-              structure: poemCtx.structure,
-              rhyme: poemCtx.rhyme,
-              hasGrammarSuggestions: poemCtx.hasGrammarSuggestions,
-              hasToneSuggestions: poemCtx.hasToneSuggestions,
-              grammarSuggestionCount: poemCtx.grammarSuggestionCount,
-              toneSuggestionCount: poemCtx.toneSuggestionCount,
-              poemList: poemCtx.poemList.map((p) => p.title),
-            };
-            break;
-          }
-          case "acceptSuggestion":
-            a.acceptSuggestion();
-            result = { success: true, message: "Sugestão aceita" };
-            break;
-          case "dismissSuggestion":
-            a.dismissSuggestion();
-            result = { success: true, message: "Sugestão dispensada" };
-            break;
-          case "loadPoem": {
-            const found = a.loadPoemByTitle(args.title);
-            result = found
-              ? {
-                  success: true,
-                  message: `Poema carregado: ${args.title}`,
-                }
-              : {
-                  success: false,
-                  message: `Poema não encontrado: ${args.title}`,
-                };
-            break;
-          }
-          case "endConversation":
-            result = { success: true, message: "Encerrando..." };
-            stopVoice();
-            break;
-          default:
-            result = { error: `Unknown function: ${call.name}` };
-        }
-      } catch (err: any) {
-        result = { error: err.message };
-      }
-
-      responses.push({
-        name: call.name,
-        id: call.id,
-        response: result,
-      });
-    }
-
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(
-        JSON.stringify({
-          toolResponse: { functionResponses: responses },
-        }),
-      );
-    }
-  };
-
   return (
     <>
-      {/* Settings button - floating right */}
       <div className="fixed bottom-6 right-6 z-50">
         <button
           onClick={() => setShowSettings(true)}
@@ -893,19 +392,17 @@ export default function VoiceChatPanel({
         </button>
       </div>
 
-      {/* Orb + Chat - fixed bottom center */}
       <div
         className="container-vao"
         data-active={isActive}
         data-state={
           isActive
-            ? isAiSpeaking
+            ? isPlaying
               ? "speaking"
               : "listening"
             : "idle"
         }
       >
-        {/* SVG gooey filter */}
         <svg
           style={{ position: "absolute", width: 0, height: 0 }}
           aria-hidden="true"
@@ -925,15 +422,12 @@ export default function VoiceChatPanel({
           </filter>
         </svg>
 
-        {/* Chat container */}
         <div className="container-chat-ia">
           <div className="container-title">
             <span>Poeta</span>
             <div className="flex items-center gap-1">
               <button
-                onClick={() => {
-                  setChatHistory([]);
-                }}
+                onClick={() => setChatHistory([])}
                 title="Limpar conversa"
               >
                 <svg
@@ -953,10 +447,7 @@ export default function VoiceChatPanel({
                 </svg>
               </button>
               {isActive && (
-                <button
-                  onClick={stopVoice}
-                  title="Encerrar conversa"
-                >
+                <button onClick={stopVoice} title="Encerrar conversa">
                   <X className="h-4 w-4" />
                 </button>
               )}
@@ -992,7 +483,6 @@ export default function VoiceChatPanel({
           </div>
         </div>
 
-        {/* Orb button */}
         <button
           className="orb"
           onClick={toggleVoice}
@@ -1057,21 +547,11 @@ export default function VoiceChatPanel({
                         onChange={(e) => setVoiceName(e.target.value)}
                         className="w-full bg-muted border border-border rounded-xl px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
                       >
-                        <option value="Aoede">
-                          Feminina Calma (Aoede)
-                        </option>
-                        <option value="Kore">
-                          Feminina Enérgica (Kore)
-                        </option>
-                        <option value="Puck">
-                          Masculina Jovem (Puck)
-                        </option>
-                        <option value="Charon">
-                          Masculina Grave (Charon)
-                        </option>
-                        <option value="Fenrir">
-                          Andrógina (Fenrir)
-                        </option>
+                        <option value="Aoede">Feminina Calma (Aoede)</option>
+                        <option value="Kore">Feminina Enérgica (Kore)</option>
+                        <option value="Puck">Masculina Jovem (Puck)</option>
+                        <option value="Charon">Masculina Grave (Charon)</option>
+                        <option value="Fenrir">Andrógina (Fenrir)</option>
                       </select>
                     </div>
 
@@ -1137,9 +617,7 @@ export default function VoiceChatPanel({
                         className="w-full bg-muted border border-border rounded-xl px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-accent"
                       >
                         <option value="concise">Curtas e Diretas</option>
-                        <option value="detailed">
-                          Longas e Detalhadas
-                        </option>
+                        <option value="detailed">Longas e Detalhadas</option>
                       </select>
                     </div>
                   </div>
@@ -1202,9 +680,7 @@ export default function VoiceChatPanel({
                         type="checkbox"
                         className="sr-only peer"
                         checked={wakeWordEnabled}
-                        onChange={(e) =>
-                          setWakeWordEnabled(e.target.checked)
-                        }
+                        onChange={(e) => setWakeWordEnabled(e.target.checked)}
                       />
                       <div className="w-11 h-6 bg-muted peer-focus:ring-4 peer-focus:ring-accent/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent"></div>
                     </label>
@@ -1216,8 +692,7 @@ export default function VoiceChatPanel({
                     </label>
                     <p className="text-[11px] text-muted-foreground mb-3 mt-1">
                       Grave até 5 formas que você diz &quot;
-                      {assistantName}&quot; para reconhecimento
-                      preciso.
+                      {assistantName}&quot; para reconhecimento preciso.
                     </p>
 
                     {isTrainingWakeWord ? (
@@ -1225,8 +700,8 @@ export default function VoiceChatPanel({
                         onClick={() => setIsTrainingWakeWord(false)}
                         className="w-full flex items-center justify-center gap-2 py-2.5 bg-destructive/10 text-destructive rounded-xl text-sm font-medium border border-destructive/20 transition-colors"
                       >
-                        <Loader2 className="h-4 w-4 animate-spin" />{" "}
-                        Ouvindo... Diga &quot;{assistantName}&quot;
+                        <Loader2 className="h-4 w-4 animate-spin" /> Ouvindo...
+                        Diga &quot;{assistantName}&quot;
                       </button>
                     ) : (
                       <button
@@ -1234,8 +709,8 @@ export default function VoiceChatPanel({
                         disabled={customWakeWords.length >= 5}
                         className="w-full flex items-center justify-center gap-2 py-2.5 bg-card text-accent hover:bg-accent/10 rounded-xl text-sm font-medium border border-accent/30 shadow-sm transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        <Mic className="h-4 w-4" /> Gravar nova
-                        pronúncia ({customWakeWords.length}/5)
+                        <Mic className="h-4 w-4" /> Gravar nova pronúncia (
+                        {customWakeWords.length}/5)
                       </button>
                     )}
 

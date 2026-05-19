@@ -1,0 +1,59 @@
+{
+  "skill_name": "stack-detector",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Detecta o stack do projeto e salva o contexto.",
+      "expected_output": "Full 9-step detection runs. STACK CONTEXT block produced and saved to .opencode/stack-context.md with frontmatter containing generated_at and package_json_mtime. Self-log written.",
+      "assertions": [
+        "package.json is read before any conclusions are made",
+        "folder structure is analyzed with ls commands",
+        "STACK CONTEXT block is saved to .opencode/stack-context.md",
+        "frontmatter in the saved file contains generated_at timestamp",
+        "frontmatter contains package_json_mtime for staleness checks",
+        "SKILL ADAPTATIONS REQUIRED section contains concrete stack-specific overrides",
+        "IMPORTANT NOTES flags any uncertainty with confidence levels",
+        "self-log is appended to stack-detector-log.jsonl with trigger field set"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Skill-orchestrator task: large complexity, cache exists at .opencode/stack-context.md and package.json has not changed since cache was generated.",
+      "expected_output": "Stack-detector is NOT called. Orchestrator reads the cache directly. Pipeline is built using the cached STACK CONTEXT.",
+      "assertions": [
+        "stack-detector detection protocol does NOT run",
+        "cache file is read directly from .opencode/stack-context.md",
+        "cache staleness check is performed by comparing timestamps",
+        "package.json is NOT re-read for dependency analysis",
+        "STACK CONTEXT from cache is injected into agent prompts",
+        "no new entry is written to stack-detector-log.jsonl"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Skill-orchestrator task: gigantic complexity — migrating from Pages Router to App Router across the entire codebase.",
+      "expected_output": "Stack-detector runs fresh regardless of cache existence. Fresh detection overwrites the cache. Trigger logged as gigantic_task.",
+      "assertions": [
+        "stack-detector full detection protocol runs even if cache exists",
+        "cache file is overwritten with fresh detection results",
+        "new generated_at and package_json_mtime are written to frontmatter",
+        "self-log entry trigger field is set to gigantic_task",
+        "SKILL ADAPTATIONS REQUIRED reflects any changes detected from previous cache",
+        "orchestrator pipeline is built from fresh detection not old cache"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Cache exists but package.json was modified after the cache was generated. Task is large complexity.",
+      "expected_output": "Staleness check detects the cache is stale. Stack-detector runs fresh. Cache is updated. Trigger logged as stale_cache.",
+      "assertions": [
+        "generated_at from cache frontmatter is compared against package.json mtime",
+        "stale cache is detected correctly",
+        "stack-detector full detection protocol runs to refresh",
+        "new cache overwrites stale cache",
+        "self-log trigger field is set to stale_cache",
+        "agent prompts receive freshly detected stack not the stale version"
+      ]
+    }
+  ]
+}

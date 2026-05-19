@@ -1,0 +1,23 @@
+{
+  "skill_name": "tool-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie uma tool MCP para integração com PostgreSQL que permite executar queries SELECT com rate limiting e audit logging. Inclua validação de input com Pydantic, proteção contra SQL injection, e estrutura de código seguindo práticas de segurança máxima.",
+      "expected_output": "Arquivo Python com: 1) classe de input validation Pydantic, 2) rate limiter implementado, 3) audit logger configurado, 4) proteção contra SQL injection (apenas SELECT), 5) tool function decorada com @mcp.tool(), 6) type hints completos",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Crie uma tool MCP para enviar mensagens ao Slack via API. A tool deve validar o token de API via environment variable, sanitizar a mensagem para prevenir XSS, implementar rate limiting de 60 chamadas por minuto, e retornar formato JSON padronizado com success/error.",
+      "expected_output": "Código Python com: 1) validação de API key via os.environ, 2) sanitização de input, 3) rate limiter com 60 calls/min, 4) resposta JSON com {success, data/error}, 5) tratamento de erros graceful",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Crie uma tool MCP para ler arquivos do sistema de arquivos com proteção contra path traversal. A tool deve validar que o path está dentro de um diretório base permitido, sanitizar o path, e implementar rate limiting.",
+      "expected_output": "Código com: 1) validação de path com Path.relative_to(), 2) sanitização de caracteres especiais, 3) rate limiter, 4) audit logging sem expor paths sensíveis, 5) tratamento de erros para arquivos não encontrados",
+      "files": []
+    }
+  ]
+}

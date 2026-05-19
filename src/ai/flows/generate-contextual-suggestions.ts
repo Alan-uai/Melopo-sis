@@ -8,6 +8,7 @@ import type { TextStructure } from '@/lib/poetic-forms';
 import { validateAll } from '@/lib/local-validator';
 import { globalCache } from '@/lib/suggestion-cache';
 import { runGrammarAgent, runToneAgent } from '@/ai/agents';
+import { analyzeToneLocally, mergeSuggestions } from '@/lib/tone/tone-suggestion-engine';
 
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
@@ -67,6 +68,17 @@ const suggestionFlow = ai.defineFlow(
     };
 
     if (input.suggestionType === 'tone') {
+      const localResult = await analyzeToneLocally(
+        input.text,
+        input.tone,
+        input.structure,
+      );
+
+      if (localResult.action === 'local') {
+        globalCache.store(changed, cacheParams, localResult.suggestions);
+        return { suggestions: localResult.suggestions };
+      }
+
       const researchRules = input.researchRules || await buildResearchContext({
         structure: input.structure,
         text: input.text,
@@ -75,9 +87,18 @@ const suggestionFlow = ai.defineFlow(
         rhyme: input.rhyme,
       });
 
-      const { suggestions, modelUsed } = await runToneAgent(input.text, {
+      const toneInput = {
         ...baseInput, researchRules,
-      }, preferredModel);
+        ...(localResult.analysis ? { localToneAnalysis: JSON.stringify(localResult.analysis) } : {}),
+      };
+
+      const { suggestions, modelUsed } = await runToneAgent(input.text, toneInput, preferredModel);
+
+      if (localResult.action === 'hybrid') {
+        const merged = mergeSuggestions(localResult.suggestions, suggestions);
+        globalCache.store(changed, cacheParams, merged);
+        return { suggestions: merged, modelUsed };
+      }
 
       const newSuggestions = filterSuggestionsForSegments(
         suggestions,

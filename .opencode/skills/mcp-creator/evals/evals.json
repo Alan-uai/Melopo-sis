@@ -1,0 +1,29 @@
+{
+  "skill_name": "mcp-creator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie um MCP server completo para integração com a API do Notion. O MCP deve permitir: 1) Listar databases, 2) Criar páginas, 3) Buscar páginas por título, 4) Atualizar propriedades. Use Python com FastMCP, inclua todas as validações de segurança (input validation com Pydantic, rate limiting, audit logging), e gere a estrutura completa do projeto com config.yaml, README.md, e Dockerfile.",
+      "expected_output": "Projeto completo com: estrutura de diretórios (src/, tests/, config/, docs/), arquivos principais (main.py, server.py), tools (list_databases, create_page, search_pages, update_page), models (requests.py, responses.py), security (validators.py, rate_limiter.py), config.yaml, Dockerfile, docker-compose.yml, README.md, pyproject.toml, testes",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Crie um MCP server para monitoramento de métricas via Datadog. O servidor deve expor tools para: 1) Consultar métricas, 2) Listar dashboards, 3) Buscar eventos, 4) Criar alerts. Inclua segurança máxima com autenticação via API key, rate limiting, e logging de auditoria. Gere a estrutura completa do projeto.",
+      "expected_output": "Projeto completo com: todas as tools implementadas, models com validação Pydantic, rate limiter, audit logger, config.yaml com settings de segurança, Dockerfile, README.md com instructions de configuração para Datadog",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Crie um MCP server para automação de mensagens no Slack. Inclua tools para: 1) Enviar mensagem para canal, 2) Listar canais, 3) Buscar mensagens, 4) Criar thread. Implemente: input validation rigorosa, rate limiting (60 calls/min), sanitização de XSS, audit logging, e error handling graceful. Estrutura completa do projeto.",
+      "expected_output": "Projeto Python com: tools para Slack API, Pydantic models com sanitização, RateLimiter class, AuditLogger configurado, ErrorHandler com mensagens amigáveis, config.yaml, Dockerfile, README.md com configuração de OAuth",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Crie um MCP server completo para um e-commerce com Stripe. Ferramentas necessárias: 1) Listar produtos, 2) Criar sessão de checkout, 3) Consultar pagamentos, 4) Listar clientes, 5) Criar cliente. Inclua: autenticação via API key, rate limiting, validação de webhook signature, e estrutura completa de projeto.",
+      "expected_output": "Projeto completo Python com: todas as tools de Stripe, StripeAPI client com error handling, webhook signature validation, rate limiter, models Pydantic, config.yaml com settings, Dockerfile, README.md com setup de chaves",
+      "files": []
+    }
+  ]
+}

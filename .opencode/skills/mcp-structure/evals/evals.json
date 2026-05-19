@@ -1,0 +1,29 @@
+{
+  "skill_name": "mcp-structure",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Crie a estrutura de diretórios completa para um novo MCP server Python chamado 'github-mcp' que integra com a API do GitHub. A estrutura deve seguir as melhores práticas incluindo: src/, tests/, config/, docs/, scripts/, com todos os arquivos necessários e organização de camadas (tools, models, services, security).",
+      "expected_output": "Estrutura de diretórios com: main.py, server.py, tools/__init__.py, tools/repos.py, tools/issues.py, models/requests.py, models/responses.py, services/api_client.py, security/rate_limiter.py, security/validators.py, tests/test_tools.py, config/settings.yaml, Dockerfile, pyproject.toml, README.md",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Gere um template completo de Dockerfile para um MCP server Python em produção. O Dockerfile deve: usar python:3.11-slim, instalar dependências via pyproject.toml, criar usuário não-root, configurar healthcheck, e expor a porta correta.",
+      "expected_output": "Dockerfile completo com: FROM python:3.11-slim, WORKDIR, COPY pyproject.toml, RUN pip install, COPY src/, RUN useradd, USER, CMD, HEALTHCHECK, EXPOSE",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Crie um arquivo pyproject.toml completo para um MCP server Python chamado 'notion-mcp'. Inclua: metadata (name, version, description, authors), dependências (mcp, fastmcp, pydantic, httpx, pyyaml), scripts, e configurações de desenvolvimento (black, isort, mypy, pytest).",
+      "expected_output": "pyproject.toml com: [project] com name, version, description, dependencies, [project.scripts], [tool.black], [tool.isort], [tool.mypy], [tool.pytest]",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Crie um README.md completo para um MCP server que integra com Stripe. O README deve incluir: descrição, features, instalação, configuração (com example de config.yaml), usage (para Claude Desktop e remote), lista de tools disponíveis, segurança, e license.",
+      "expected_output": "README.md com: badge de versão, descrição, Features ( bullets), Installation, Configuration (código yaml), Usage (Clauded Desktop JSON, remote HTTP), Tools table, Security section, License",
+      "files": []
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "skill_name": "skill-orchestrator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Preciso criar um sistema de autenticação completo com login, registro, recuperação de senha e rotas protegidas. O projeto usa Next.js 15 App Router com TypeScript e Supabase.",
+      "expected_output": "Pipeline declarado antes de executar qualquer coisa. stack-detector rodado primeiro. Pelo menos 3 agentes (UI, API/service, types). Skills explicitamente atribuídas a cada agente. code-reviewer presente em todos os agentes. skill-improver incluído. Self-log gerado ao final.",
+      "assertions": [
+        "stack-detector is invoked before pipeline is built",
+        "pipeline is explicitly declared with phases before any code is written",
+        "at least 3 agents are assigned with distinct concerns",
+        "code-reviewer is assigned to every agent",
+        "skill-improver is included in every agent prompt",
+        "self-log is written to orchestration-log.jsonl after completion",
+        "parallel and sequential phases are correctly identified",
+        "security skill is assigned to the API/auth agent"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Refatora o componente UserDashboard que está com 400 linhas. Ele tem lógica de fetch, formatação de dados e renderização tudo misturado no mesmo arquivo.",
+      "expected_output": "stack-detector primeiro. Análise do componente com code-archaeologist. Agentes separados para extração de lógica (hook), service layer e componente puro. Skills anti-patterns, maintainability, isolated-logic, reusability atribuídas. code-reviewer como gate final. Log registrado.",
+      "assertions": [
+        "stack-detector runs first",
+        "code-archaeologist is used to analyze the existing component before refactoring",
+        "anti-patterns skill is assigned",
+        "isolated-logic skill is assigned",
+        "maintainability skill is assigned",
+        "code-reviewer is the final gate",
+        "self-log records which skill combinations were used",
+        "pipeline is sequential since refactoring phases depend on analysis"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Quero implementar internacionalização (i18n) no projeto com suporte a português e inglês, incluindo detecção automática do idioma do browser e persistência da preferência do usuário.",
+      "expected_output": "stack-detector primeiro. Orquestrador detecta que não há skill específica para i18n e registra como gap no log. Trabalha com as skills mais próximas disponíveis (modularization, scalable-architecture, anti-patterns). Sugere criação de skill i18n-patterns. Entrega o trabalho mesmo assim com as skills disponíveis.",
+      "assertions": [
+        "stack-detector runs first",
+        "orchestrator identifies i18n as a concern with no dedicated skill",
+        "gap is logged in skill_gaps with suggested_skill_name",
+        "orchestrator proceeds with closest available skills rather than stopping",
+        "code-reviewer is still applied as final gate",
+        "self-log records the gap and workaround used",
+        "suggested_skill_name field is populated in the gap log"
+      ]
+    }
+  ]
+}

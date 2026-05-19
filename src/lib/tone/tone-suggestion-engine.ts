@@ -1,5 +1,6 @@
 import type { LexicalScore, Diagnostic, ToneAction, ToneSuggestionResult, AnalysisResult } from './tone-types';
 import { diagnosticToSuggestion } from './tone-explanations';
+import { analyzeTone } from './tone-analyzer';
 import type { Suggestion } from '@/ai/types';
 
 export function computeConfidence(lexical: LexicalScore, diagnostics: Diagnostic[]): number {
@@ -58,4 +59,13 @@ export function mergeSuggestions(local: Suggestion[], ai: Suggestion[]): Suggest
     }
     return s;
   });
+}
+
+export async function analyzeToneLocally(
+  text: string,
+  tone: string,
+  structure: string,
+): Promise<ToneSuggestionResult> {
+  const analysis = await analyzeTone(text, tone, structure);
+  return buildToneSuggestions(analysis, text, tone);
 }

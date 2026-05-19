@@ -72,4 +72,27 @@ describe('tone-diagnostics', () => {
     const diagnostics = computeDiagnostics(result);
     expect(diagnostics.some(d => d.id === 'ANTIPATTERN_HIT')).toBe(true);
   });
+
+  it('detects RHYTHM_MISMATCH', () => {
+    const result = makeResult({
+      rhythm: { avgSyllables: 12, variance: 8, hasEnjambement: true, isConsistent: false },
+    });
+    const diagnostics = computeDiagnostics(result);
+    expect(diagnostics.some(d => d.id === 'RHYTHM_MISMATCH')).toBe(true);
+  });
+
+  it('detects CANONICAL_MISMATCH', () => {
+    const result = makeResult({
+      lexical: { selectedToneScore: 0.05 },
+      image: { score: 0, total: 10, ratio: 0.05 },
+    });
+    const diagnostics = computeDiagnostics(result);
+    expect(diagnostics.some(d => d.id === 'CANONICAL_MISMATCH')).toBe(true);
+  });
+
+  it('returns no diagnostics for well-formed text', () => {
+    const result = makeResult();
+    const diagnostics = computeDiagnostics(result);
+    expect(diagnostics.length).toBe(0);
+  });
 });

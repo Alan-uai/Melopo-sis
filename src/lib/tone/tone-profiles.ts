@@ -151,6 +151,7 @@ function parseTomFile(): ToneSection[] {
   const sections: ToneSection[] = [];
   let currentSection: ToneSection | null = null;
   let currentProfile: Partial<ToneProfile> | null = null;
+  let justOpenedSection = false;
 
   for (let i = 0; i < lines.length; i++) {
     const trimmed = lines[i].trimEnd();
@@ -161,6 +162,12 @@ function parseTomFile(): ToneSection[] {
         currentSection.profiles.push(currentProfile as ToneProfile);
         currentProfile = null;
       }
+
+      if (justOpenedSection) {
+        justOpenedSection = false;
+        continue;
+      }
+
       let j = i + 1;
       while (j < lines.length && !lines[j].trimEnd()) j++;
       if (j < lines.length) {
@@ -168,6 +175,7 @@ function parseTomFile(): ToneSection[] {
         currentSection = { name: normalizeToneName(rawName), profiles: [] };
         sections.push(currentSection);
         i = j;
+        justOpenedSection = true;
       }
       continue;
     }
