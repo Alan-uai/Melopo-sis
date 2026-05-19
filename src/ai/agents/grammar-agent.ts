@@ -2,12 +2,9 @@
 
 import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type Suggestion } from '@/ai/types';
+import { tryOpenRouterFallback } from '@/ai/openrouter';
 
-export const grammarAgent = ai.definePrompt({
-  name: 'grammarAgent',
-  input: { schema: SuggestionInputSchema },
-  output: { schema: SuggestionOutputSchema },
-  prompt: `
+export const GRAMMAR_AGENT_PROMPT = `
 Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar o texto poético fornecido e retornar uma lista de correções gramaticais e estruturais.
 
 REGRAS DE LICENÇA POÉTICA:
@@ -94,7 +91,13 @@ EXEMPLOS DE RESPOSTA CORRETA:
 IMPORTANTE:
 - FOCO EXCLUSIVO: Sua resposta DEVE conter apenas sugestões do tipo 'grammar'. NÃO forneça sugestões de 'tone'.
 - Retorne a lista completa de TODOS os erros encontrados.
-  `,
+`;
+
+export const grammarAgent = ai.definePrompt({
+  name: 'grammarAgent',
+  input: { schema: SuggestionInputSchema },
+  output: { schema: SuggestionOutputSchema },
+  prompt: GRAMMAR_AGENT_PROMPT,
 });
 
 export async function runGrammarAgent(
@@ -102,11 +105,20 @@ export async function runGrammarAgent(
   input: Record<string, unknown>,
   preferredModel?: string
 ): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
-  const { result: genkitResponse, modelUsed } = await withFallback(
-    (model: string) => grammarAgent({ ...input, text } as never, { model }),
-    undefined,
-    preferredModel
-  );
-  const output = genkitResponse?.output;
-  return { suggestions: output?.suggestions || [], modelUsed };
+  try {
+    const { result: genkitResponse, modelUsed } = await withFallback(
+      (model: string) => grammarAgent({ ...input, text } as never, { model }),
+      undefined,
+      preferredModel
+    );
+    const output = genkitResponse?.output;
+    return { suggestions: output?.suggestions || [], modelUsed };
+  } catch {
+    const { result, modelUsed } = await tryOpenRouterFallback(
+      GRAMMAR_AGENT_PROMPT,
+      { ...input, text },
+      SuggestionOutputSchema,
+    );
+    return { suggestions: result.suggestions || [], modelUsed };
+  }
 }

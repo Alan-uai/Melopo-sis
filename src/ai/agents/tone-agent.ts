@@ -2,12 +2,9 @@
 
 import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, ToneSuggestionOutputSchema, type Suggestion } from '@/ai/types';
+import { tryOpenRouterFallback } from '@/ai/openrouter';
 
-export const toneAgent = ai.definePrompt({
-  name: 'toneAgent',
-  input: { schema: SuggestionInputSchema },
-  output: { schema: ToneSuggestionOutputSchema },
-  prompt: `
+export const TONE_AGENT_PROMPT = `
 Você é um especialista em estilo e tom poético para o português do Brasil. O texto a seguir já foi corrigido gramaticalmente.
 
 Sua tarefa é fornecer sugestões de 'tone' (tom e estilo) para tornar o poema mais impactante, alinhado com o tom desejado: "{{tone}}".
@@ -48,7 +45,13 @@ EXEMPLO:
     "Caiu a noite, escura e overta"
   ]
 }
-  `,
+`;
+
+export const toneAgent = ai.definePrompt({
+  name: 'toneAgent',
+  input: { schema: SuggestionInputSchema },
+  output: { schema: ToneSuggestionOutputSchema },
+  prompt: TONE_AGENT_PROMPT,
 });
 
 export async function runToneAgent(
@@ -56,11 +59,20 @@ export async function runToneAgent(
   input: Record<string, unknown>,
   preferredModel?: string
 ): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
-  const { result: genkitResponse, modelUsed } = await withFallback(
-    (model: string) => toneAgent({ ...input, text } as never, { model }),
-    undefined,
-    preferredModel
-  );
-  const output = genkitResponse?.output;
-  return { suggestions: output?.suggestions || [], modelUsed };
+  try {
+    const { result: genkitResponse, modelUsed } = await withFallback(
+      (model: string) => toneAgent({ ...input, text } as never, { model }),
+      undefined,
+      preferredModel
+    );
+    const output = genkitResponse?.output;
+    return { suggestions: output?.suggestions || [], modelUsed };
+  } catch {
+    const { result, modelUsed } = await tryOpenRouterFallback(
+      TONE_AGENT_PROMPT,
+      { ...input, text },
+      ToneSuggestionOutputSchema,
+    );
+    return { suggestions: result.suggestions || [], modelUsed };
+  }
 }
