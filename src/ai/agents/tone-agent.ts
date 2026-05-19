@@ -1,7 +1,7 @@
 'use server';
 
 import { ai, withFallback } from '@/ai/genkit';
-import { SuggestionInputSchema, ToneSuggestionOutputSchema } from '@/ai/types';
+import { SuggestionInputSchema, ToneSuggestionOutputSchema, type Suggestion } from '@/ai/types';
 
 export const toneAgent = ai.definePrompt({
   name: 'toneAgent',
@@ -51,17 +51,16 @@ EXEMPLO:
   `,
 });
 
-export async function runToneAgent(text: string, input: Record<string, unknown>) {
-  const { output } = await withFallback((model: string) =>
-    toneAgent({ ...input, text } as never, { model })
+export async function runToneAgent(
+  text: string,
+  input: Record<string, unknown>,
+  preferredModel?: string
+): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
+  const { result: genkitResponse, modelUsed } = await withFallback(
+    (model: string) => toneAgent({ ...input, text } as never, { model }),
+    undefined,
+    preferredModel
   );
-  const suggestions = output?.suggestions || [];
-  return suggestions.map(s => ({
-    ...s,
-    alternatives: s.alternatives.length >= 2
-      ? s.alternatives
-      : s.alternatives.length === 1
-        ? [s.correctedText, s.alternatives[0]]
-        : [s.correctedText, s.originalText],
-  }));
+  const output = genkitResponse?.output;
+  return { suggestions: output?.suggestions || [], modelUsed };
 }

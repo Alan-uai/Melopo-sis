@@ -36,6 +36,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const LOCAL_STORAGE_KEY = "melopoeisis_data_v2";
+const MODEL_STORAGE_KEY = "melopoeisis_preferred_ai_model";
 
 type Poem = {
   id: string;
@@ -84,6 +85,8 @@ export default function Home() {
   const [appliedToneSuggestions, setAppliedToneSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
+
+  const [preferredModel, setPreferredModel] = useState<string | null>(null);
 
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
@@ -185,6 +188,11 @@ export default function Home() {
   }, [activePoem]);
 
   useEffect(() => {
+    const stored = localStorage.getItem(MODEL_STORAGE_KEY);
+    if (stored) setPreferredModel(stored);
+  }, []);
+
+  useEffect(() => {
     if (isMounted && !activePoem) {
       try {
         const dataToSave = JSON.stringify({
@@ -258,6 +266,7 @@ export default function Home() {
         rhyme: rhyme,
         suggestionType: suggestionType,
         excludedPhrases: [],
+        preferredModel: preferredModel || undefined,
       };
       const result = await generateContextualSuggestions(input);
 
@@ -268,6 +277,11 @@ export default function Home() {
         });
         setIsLoading(false);
         return;
+      }
+
+      if (result.modelUsed && result.modelUsed !== preferredModel) {
+        setPreferredModel(result.modelUsed);
+        localStorage.setItem(MODEL_STORAGE_KEY, result.modelUsed);
       }
 
       const withIds = result.suggestions.map((s, i) => ({
@@ -316,7 +330,7 @@ export default function Home() {
     } finally {
         setIsLoading(false);
     }
-  }, [text, tone, textStructure, rhyme, toast]);
+  }, [text, tone, textStructure, rhyme, toast, preferredModel]);
 
   const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
@@ -362,7 +376,12 @@ export default function Home() {
           rhyme: rhyme,
           suggestionType: 'grammar',
           excludedPhrases: [],
+          preferredModel: preferredModel || undefined,
         }).then(result => {
+          if (result.modelUsed && result.modelUsed !== preferredModel) {
+            setPreferredModel(result.modelUsed);
+            localStorage.setItem(MODEL_STORAGE_KEY, result.modelUsed);
+          }
           const withIds = result.suggestions.map((s, i) => ({
             ...s,
             id: s.id || `sug-${Date.now()}-${i}`,
@@ -607,8 +626,15 @@ export default function Home() {
             rhyme: rhyme,
             suggestionType: suggestionToResuggest.type,
             excludedPhrases: excludedPhrases,
+            preferredModel: preferredModel || undefined,
         };
         const result = await generateContextualSuggestions(input);
+
+        if (result.modelUsed && result.modelUsed !== preferredModel) {
+          setPreferredModel(result.modelUsed);
+          localStorage.setItem(MODEL_STORAGE_KEY, result.modelUsed);
+        }
+
         const newSuggestion = result.suggestions[0];
 
         if (newSuggestion) {

@@ -60,8 +60,9 @@ const suggestionFlow = ai.defineFlow(
     const punctuationRules = input.punctuationRules || loadPunctuationRules();
     const rhymeRules = input.rhymeRules || loadRhymeRules();
 
+    const { preferredModel, ...inputForBase } = input;
     const baseInput = {
-      ...input, nbrRules, toneRules,
+      ...inputForBase, nbrRules, toneRules,
       orthographyRules, punctuationRules, rhymeRules,
     };
 
@@ -74,9 +75,9 @@ const suggestionFlow = ai.defineFlow(
         rhyme: input.rhyme,
       });
 
-      const suggestions = await runToneAgent(input.text, {
+      const { suggestions, modelUsed } = await runToneAgent(input.text, {
         ...baseInput, researchRules,
-      });
+      }, preferredModel);
 
       const newSuggestions = filterSuggestionsForSegments(
         suggestions,
@@ -84,7 +85,7 @@ const suggestionFlow = ai.defineFlow(
       );
 
       globalCache.store(changed, cacheParams, newSuggestions);
-      return { suggestions: newSuggestions };
+      return { suggestions: newSuggestions, modelUsed };
     }
 
     const localResult = await validateAll(
@@ -110,9 +111,9 @@ const suggestionFlow = ai.defineFlow(
       rhyme: input.rhyme,
     });
 
-    const suggestions = await runGrammarAgent(input.text, {
+    const { suggestions, modelUsed } = await runGrammarAgent(input.text, {
       ...baseInput, researchRules,
-    });
+    }, preferredModel);
 
     const newSuggestions = filterSuggestionsForSegments(
       suggestions,
@@ -120,6 +121,6 @@ const suggestionFlow = ai.defineFlow(
     );
 
     globalCache.store(changed, cacheParams, newSuggestions);
-    return { suggestions: newSuggestions };
+    return { suggestions: newSuggestions, modelUsed };
   }
 );

@@ -34,19 +34,18 @@ export const SuggestionInputSchema = z.object({
 });
 export type SuggestionInput = z.infer<typeof SuggestionInputSchema>;
 
-export const SuggestionOutputSchema = z.object({
-  suggestions: z.array(SuggestionSchema).describe('Uma lista de sugestões de correção ou melhoria.'),
-  modelUsed: z.string().optional().describe('Modelo de IA que foi utilizado para gerar as sugestões.'),
-});
+export const ToneSuggestionSchema = SuggestionSchema;
 export type ToneSuggestion = z.infer<typeof ToneSuggestionSchema>;
 
 export const ToneSuggestionOutputSchema = z.object({
   suggestions: z.array(ToneSuggestionSchema).describe('Uma lista de sugestões de tom e estilo.'),
+  modelUsed: z.string().optional().describe('Modelo de IA que foi utilizado para gerar as sugestões.'),
 });
 export type ToneSuggestionOutput = z.infer<typeof ToneSuggestionOutputSchema>;
 
 export const SuggestionOutputSchema = z.object({
   suggestions: z.array(SuggestionSchema).describe('Uma lista de sugestões de correção ou melhoria.'),
+  modelUsed: z.string().optional().describe('Modelo de IA que foi utilizado para gerar as sugestões.'),
 });
 export type SuggestionOutput = z.infer<typeof SuggestionOutputSchema>;
 

@@ -1,7 +1,7 @@
 'use server';
 
 import { ai, withFallback } from '@/ai/genkit';
-import { SuggestionInputSchema, SuggestionOutputSchema } from '@/ai/types';
+import { SuggestionInputSchema, SuggestionOutputSchema, type Suggestion } from '@/ai/types';
 
 export const grammarAgent = ai.definePrompt({
   name: 'grammarAgent',
@@ -97,9 +97,16 @@ IMPORTANTE:
   `,
 });
 
-export async function runGrammarAgent(text: string, input: Record<string, unknown>) {
-  const { output } = await withFallback((model: string) =>
-    grammarAgent({ ...input, text } as never, { model })
+export async function runGrammarAgent(
+  text: string,
+  input: Record<string, unknown>,
+  preferredModel?: string
+): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
+  const { result: genkitResponse, modelUsed } = await withFallback(
+    (model: string) => grammarAgent({ ...input, text } as never, { model }),
+    undefined,
+    preferredModel
   );
-  return output?.suggestions || [];
+  const output = genkitResponse?.output;
+  return { suggestions: output?.suggestions || [], modelUsed };
 }
