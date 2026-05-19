@@ -1,3 +1,4 @@
+import { tokenize } from './tokenize';
 import { isWordCorrect, getWordSuggestions } from './dictionary';
 
 export interface SpellingError {
@@ -14,21 +15,9 @@ function isPunctuationOrNumber(word: string): boolean {
   return /^[\d.,!?;:()\[\]{}\"'«»\-—…\s]+$/.test(word);
 }
 
-function tokenizeText(text: string): { word: string; position: number }[] {
-  const tokens: { word: string; position: number }[] = [];
-  const wordRegex = /[a-zA-ZáàâãéèêíïóôõöúçñüÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑÜ]+/g;
-  let match: RegExpExecArray | null;
-
-  while ((match = wordRegex.exec(text)) !== null) {
-    tokens.push({ word: match[0], position: match.index });
-  }
-
-  return tokens;
-}
-
 export async function checkText(text: string): Promise<SpellCheckResult> {
   const errors: SpellingError[] = [];
-  const tokens = tokenizeText(text);
+  const tokens = tokenize(text);
 
   for (let i = 0; i < tokens.length; i++) {
     const { word, position } = tokens[i];

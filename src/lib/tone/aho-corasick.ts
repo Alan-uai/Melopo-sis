@@ -51,12 +51,18 @@ export class AhoCorasick {
   search(text: string): string[] {
     if (!text) return [];
     const results: string[] = [];
+    const seen = new Set<string>();
     let node = this.root;
     for (const ch of text) {
       while (node !== this.root && !node.children.has(ch)) node = node.fail;
       const next = node.children.get(ch);
       node = next ?? this.root;
-      results.push(...node.output);
+      for (const pattern of node.output) {
+        if (!seen.has(pattern)) {
+          seen.add(pattern);
+          results.push(pattern);
+        }
+      }
     }
     return results;
   }

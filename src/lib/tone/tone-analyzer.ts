@@ -127,9 +127,9 @@ function analyzeEmotion(stems: string[]): EmotionScore {
   return analyzeSentiment(stems);
 }
 
-const SYLLABLE_RULES: Record<string, number> = {
+const SYLLABLE_RULES: Record<string, number | null> = {
   soneto: 10, decassilabo: 10, oitava: 10, decima: 10,
-  haicai: 0, cordel: 7, trova: 7, redondilha: 0,
+  haicai: null, cordel: 7, trova: 7, redondilha: null,
 };
 
 function analyzeRhythm(text: string, structure?: string): RhythmScore {

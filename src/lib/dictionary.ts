@@ -41,28 +41,314 @@ export async function getWordSet(): Promise<Set<string>> {
   return knownWordsPromise;
 }
 
-const VERB_SUFFIXES = [
-  'o', 'as', 'a', 'amos', 'ais', 'am',
-  'ei', 'aste', 'ou', 'amos', 'astes', 'aram',
-  'ava', 'avas', 'ava', 'ávamos', 'áveis', 'avam',
-  'ei', 'aste', 'ou', 'amos', 'astes', 'aram',
-  'erei', 'erás', 'erá', 'eremos', 'ereis', 'erão',
-  'ia', 'ias', 'ia', 'íamos', 'íeis', 'iam',
-  'iria', 'irias', 'iria', 'iríamos', 'iríeis', 'iriam',
-  'isse', 'isses', 'isse', 'íssemos', 'ísseis', 'issem',
-  'indo', 'ido', 'indo', 'ida', 'idas', 'idos',
-  'ndo', 'mos',
-];
+type ConjugationClass = 'ar' | 'er' | 'ir';
 
-const PLURAL_SUFFIXES = ['s', 'es', 'ões', 'ães', 'ais', 'eis', 'ois', 'ns'];
+const VERB_CONJUGATIONS: Record<ConjugationClass, string[]> = {
+  ar: [
+    'o', 'as', 'a', 'amos', 'ais', 'am',
+    'ei', 'aste', 'ou', 'astes', 'aram',
+    'ava', 'avas', 'ávamos', 'áveis', 'avam',
+    'ara', 'aras', 'áramos', 'áreis',
+    'arei', 'arás', 'ará', 'aremos', 'areis', 'arão',
+    'aria', 'arias', 'aríamos', 'aríeis', 'ariam',
+    'e', 'es', 'emos', 'eis', 'em',
+    'asse', 'asses', 'ássemos', 'ásseis', 'assem',
+    'ar', 'ares', 'armos', 'ardes', 'arem',
+    'ai', 'ando', 'ado',
+  ],
+  er: [
+    'o', 'es', 'e', 'emos', 'eis', 'em',
+    'i', 'este', 'eu', 'estes', 'eram',
+    'ia', 'ias', 'íamos', 'íeis', 'iam',
+    'era', 'eras', 'êramos', 'êreis',
+    'erei', 'erás', 'erá', 'eremos', 'ereis', 'erão',
+    'eria', 'erias', 'eríamos', 'eríeis', 'eriam',
+    'a', 'as', 'amos', 'ais', 'am',
+    'esse', 'esses', 'êssemos', 'êsseis', 'essem',
+    'er', 'eres', 'ermos', 'erdes', 'erem',
+    'ei', 'endo', 'ido',
+  ],
+  ir: [
+    'o', 'es', 'e', 'imos', 'is', 'em',
+    'i', 'iste', 'iu', 'istes', 'iram',
+    'ia', 'ias', 'íamos', 'íeis', 'iam',
+    'ira', 'iras', 'íramos', 'íreis',
+    'irei', 'irás', 'irá', 'iremos', 'ireis', 'irão',
+    'iria', 'irias', 'iríamos', 'iríeis', 'iriam',
+    'a', 'as', 'amos', 'ais', 'am',
+    'isse', 'isses', 'íssemos', 'ísseis', 'issem',
+    'ir', 'ires', 'irmos', 'irdes', 'irem',
+    'ei', 'indo', 'ido',
+  ],
+};
+
+const IRREGULAR_FORMS: Record<string, string[]> = {
+  'sou': ['ser'], 'és': ['ser'], 'é': ['ser', 'estar'],
+  'somos': ['ser'], 'sois': ['ser'], 'são': ['ser', 'estar', 'ir'],
+  'era': ['ser'], 'eras': ['ser'], 'éramos': ['ser'], 'éreis': ['ser'],
+  'eram': ['ser'], 'fui': ['ser', 'ir'], 'foste': ['ser', 'ir'],
+  'foi': ['ser', 'ir'], 'fomos': ['ser', 'ir'], 'fostes': ['ser', 'ir'],
+  'foram': ['ser', 'ir'], 'fora': ['ser', 'ir'], 'foras': ['ser', 'ir'],
+  'fôramos': ['ser', 'ir'], 'fôreis': ['ser', 'ir'],
+  'serei': ['ser'], 'serás': ['ser'], 'será': ['ser'],
+  'seremos': ['ser'], 'sereis': ['ser'], 'serão': ['ser'],
+  'seria': ['ser'], 'serias': ['ser'], 'seríamos': ['ser'],
+  'seríeis': ['ser'], 'seriam': ['ser'],
+  'seja': ['ser'], 'sejas': ['ser'], 'sejamos': ['ser'],
+  'sejais': ['ser'], 'sejam': ['ser'],
+  'fosse': ['ser', 'ir'], 'fosses': ['ser', 'ir'],
+  'fôssemos': ['ser', 'ir'], 'fôsseis': ['ser', 'ir'],
+  'fossem': ['ser', 'ir'], 'sendo': ['ser'], 'sido': ['ser'],
+  'estou': ['estar'], 'estás': ['estar'], 'está': ['estar'],
+  'estais': ['estar'], 'estão': ['estar'],
+  'estava': ['estar'], 'estavas': ['estar'], 'estávamos': ['estar'],
+  'estáveis': ['estar'], 'estavam': ['estar'],
+  'estive': ['estar'], 'estiveste': ['estar'], 'esteve': ['estar'],
+  'estivemos': ['estar'], 'estivestes': ['estar'], 'estiveram': ['estar'],
+  'estivera': ['estar'], 'estiveras': ['estar'],
+  'esteja': ['estar'], 'estejas': ['estar'], 'estejamos': ['estar'],
+  'estejais': ['estar'], 'estejam': ['estar'],
+  'estivesse': ['estar'], 'estivesses': ['estar'],
+  'estivéssemos': ['estar'], 'estivésseis': ['estar'],
+  'estivessem': ['estar'], 'estando': ['estar'], 'estado': ['estar'],
+  'tenho': ['ter'], 'tens': ['ter'], 'tem': ['ter'],
+  'tendes': ['ter'], 'têm': ['ter'],
+  'tinha': ['ter'], 'tinhas': ['ter'], 'tínhamos': ['ter'],
+  'tínheis': ['ter'], 'tinham': ['ter'],
+  'tive': ['ter'], 'tiveste': ['ter'], 'teve': ['ter'],
+  'tivemos': ['ter'], 'tivestes': ['ter'], 'tiveram': ['ter'],
+  'tivera': ['ter'], 'tiveras': ['ter'],
+  'tenha': ['ter'], 'tenhas': ['ter'], 'tenhamos': ['ter'],
+  'tenhais': ['ter'], 'tenham': ['ter'],
+  'tivesse': ['ter'], 'tivesses': ['ter'], 'tivéssemos': ['ter'],
+  'tivésseis': ['ter'], 'tivessem': ['ter'],
+  'tiver': ['ter'], 'tiveres': ['ter'], 'tivermos': ['ter'],
+  'tiverdes': ['ter'], 'tiverem': ['ter'],
+  'tendo': ['ter'], 'tido': ['ter'],
+  'hei': ['haver'], 'hás': ['haver'], 'há': ['haver'],
+  'hão': ['haver'], 'houve': ['haver'], 'houveste': ['haver'],
+  'houveram': ['haver'], 'houvera': ['haver'],
+  'haja': ['haver'], 'hajam': ['haver'], 'houvesse': ['haver'],
+  'houver': ['haver'], 'havendo': ['haver'], 'havido': ['haver'],
+  'vou': ['ir'], 'vais': ['ir'], 'vai': ['ir'],
+  'ides': ['ir'], 'vão': ['ir'],
+  'ia': ['ir'], 'ias': ['ir'], 'íamos': ['ir'], 'íeis': ['ir'], 'iam': ['ir'],
+  'vá': ['ir'], 'vás': ['ir'], 'vamos': ['ir'], 'vades': ['ir'],
+  'venho': ['vir'], 'vens': ['vir'], 'vem': ['vir'],
+  'vimos': ['vir', 'ver'], 'vindes': ['vir'], 'vêm': ['vir'],
+  'vinha': ['vir'], 'vinhas': ['vir'], 'vínhamos': ['vir'],
+  'vinham': ['vir'],
+  'vim': ['vir'], 'vieste': ['vir'], 'veio': ['vir'],
+  'viemos': ['vir'], 'viestes': ['vir'], 'vieram': ['vir'],
+  'viera': ['vir'], 'vieras': ['vir'],
+  'venha': ['vir'], 'venhas': ['vir'], 'venhamos': ['vir'],
+  'venhais': ['vir'], 'venham': ['vir'],
+  'viesse': ['vir'], 'viesses': ['vir'], 'viéssemos': ['vir'],
+  'viésseis': ['vir'], 'viessem': ['vir'],
+  'vier': ['vir'], 'vieres': ['vir'], 'viermos': ['vir'],
+  'vierdes': ['vir'], 'vierem': ['vir'],
+  'vindo': ['vir'],
+  'ponho': ['pôr'], 'pões': ['pôr'], 'põe': ['pôr'],
+  'pomos': ['pôr'], 'pondes': ['pôr'], 'põem': ['pôr'],
+  'punha': ['pôr'], 'punhas': ['pôr'], 'púnhamos': ['pôr'],
+  'púnheis': ['pôr'], 'punham': ['pôr'],
+  'pus': ['pôr'], 'puseste': ['pôr'], 'pôs': ['pôr'],
+  'pusemos': ['pôr'], 'pusestes': ['pôr'], 'puseram': ['pôr'],
+  'pusera': ['pôr'], 'puseras': ['pôr'],
+  'ponha': ['pôr'], 'ponhas': ['pôr'], 'ponhamos': ['pôr'],
+  'ponhais': ['pôr'], 'ponham': ['pôr'],
+  'pusesse': ['pôr'], 'pusesses': ['pôr'], 'puséssemos': ['pôr'],
+  'pusésseis': ['pôr'], 'pusessem': ['pôr'],
+  'puser': ['pôr'], 'puseres': ['pôr'], 'pusermos': ['pôr'],
+  'puserdes': ['pôr'], 'puserem': ['pôr'],
+  'pondo': ['pôr'], 'posto': ['pôr'],
+  'digo': ['dizer'], 'dizes': ['dizer'], 'diz': ['dizer'],
+  'dizemos': ['dizer'], 'dizeis': ['dizer'], 'dizem': ['dizer'],
+  'dizia': ['dizer'], 'dizias': ['dizer'], 'dizíamos': ['dizer'],
+  'dizíeis': ['dizer'], 'diziam': ['dizer'],
+  'disse': ['dizer'], 'disseste': ['dizer'],
+  'dissemos': ['dizer'], 'dissestes': ['dizer'], 'disseram': ['dizer'],
+  'dissera': ['dizer'], 'disseras': ['dizer'],
+  'diga': ['dizer'], 'digas': ['dizer'], 'digamos': ['dizer'],
+  'digais': ['dizer'], 'digam': ['dizer'],
+  'dissesse': ['dizer'], 'dissesses': ['dizer'], 'disséssemos': ['dizer'],
+  'dissésseis': ['dizer'], 'dissessem': ['dizer'],
+  'disser': ['dizer'], 'disseres': ['dizer'], 'dissermos': ['dizer'],
+  'disserdes': ['dizer'], 'disserem': ['dizer'],
+  'dizendo': ['dizer'], 'dito': ['dizer'],
+  'faço': ['fazer'], 'fazes': ['fazer'], 'faz': ['fazer'],
+  'fazemos': ['fazer'], 'fazeis': ['fazer'], 'fazem': ['fazer'],
+  'fazia': ['fazer'], 'fazias': ['fazer'], 'fazíamos': ['fazer'],
+  'fazíeis': ['fazer'], 'faziam': ['fazer'],
+  'fiz': ['fazer'], 'fizeste': ['fazer'], 'fez': ['fazer'],
+  'fizemos': ['fazer'], 'fizestes': ['fazer'], 'fizeram': ['fazer'],
+  'fizera': ['fazer'], 'fizeras': ['fazer'],
+  'faça': ['fazer'], 'faças': ['fazer'], 'façamos': ['fazer'],
+  'façais': ['fazer'], 'façam': ['fazer'],
+  'fizesse': ['fazer'], 'fizesses': ['fazer'], 'fizéssemos': ['fazer'],
+  'fizésseis': ['fazer'], 'fizessem': ['fazer'],
+  'fizer': ['fazer'], 'fizeres': ['fazer'], 'fizermos': ['fazer'],
+  'fizerdes': ['fazer'], 'fizerem': ['fazer'],
+  'fazendo': ['fazer'], 'feito': ['fazer'],
+  'sei': ['saber'], 'sabe': ['saber'], 'sabemos': ['saber'],
+  'sabeis': ['saber'], 'sabem': ['saber'],
+  'sabia': ['saber'], 'sabias': ['saber'], 'sabíamos': ['saber'],
+  'sabíeis': ['saber'], 'sabiam': ['saber'],
+  'soube': ['saber'], 'soubeste': ['saber'],
+  'soubemos': ['saber'], 'soubestes': ['saber'], 'souberam': ['saber'],
+  'soubera': ['saber'], 'souberas': ['saber'],
+  'saiba': ['saber'], 'saibas': ['saber'], 'saibamos': ['saber'],
+  'saibais': ['saber'], 'saibam': ['saber'],
+  'soubesse': ['saber'], 'soubesses': ['saber'], 'soubéssemos': ['saber'],
+  'soubésseis': ['saber'], 'soubessem': ['saber'],
+  'souber': ['saber'], 'souberes': ['saber'], 'soubermos': ['saber'],
+  'souberdes': ['saber'], 'souberem': ['saber'],
+  'sabendo': ['saber'], 'sabido': ['saber'],
+  'trago': ['trazer'], 'trazes': ['trazer'], 'traz': ['trazer'],
+  'trazemos': ['trazer'], 'trazeis': ['trazer'], 'trazem': ['trazer'],
+  'trazia': ['trazer'], 'trazias': ['trazer'], 'trazíamos': ['trazer'],
+  'trazíeis': ['trazer'], 'traziam': ['trazer'],
+  'trouxe': ['trazer'], 'trouxeste': ['trazer'],
+  'trouxemos': ['trazer'], 'trouxestes': ['trazer'], 'trouxeram': ['trazer'],
+  'trouxera': ['trazer'], 'trouxeras': ['trazer'],
+  'traga': ['trazer'], 'tragas': ['trazer'], 'tragamos': ['trazer'],
+  'tragais': ['trazer'], 'tragam': ['trazer'],
+  'trouxesse': ['trazer'], 'trouxesses': ['trazer'], 'trouxéssemos': ['trazer'],
+  'trouxésseis': ['trazer'], 'trouxessem': ['trazer'],
+  'trouxer': ['trazer'], 'trouxeres': ['trazer'], 'trouxermos': ['trazer'],
+  'trouxerdes': ['trazer'], 'trouxerem': ['trazer'],
+  'trazendo': ['trazer'], 'trazido': ['trazer'],
+  'quero': ['querer'], 'queres': ['querer'], 'quer': ['querer'],
+  'queremos': ['querer'], 'quereis': ['querer'], 'querem': ['querer'],
+  'queria': ['querer'], 'querias': ['querer'], 'queríamos': ['querer'],
+  'queríeis': ['querer'], 'queriam': ['querer'],
+  'quis': ['querer'], 'quiseste': ['querer'],
+  'quisemos': ['querer'], 'quisestes': ['querer'], 'quiseram': ['querer'],
+  'quisera': ['querer'], 'quiseras': ['querer'],
+  'queira': ['querer'], 'queiras': ['querer'], 'queiramos': ['querer'],
+  'queirais': ['querer'], 'queiram': ['querer'],
+  'quisesse': ['querer'], 'quisesses': ['querer'], 'quiséssemos': ['querer'],
+  'quisésseis': ['querer'], 'quisessem': ['querer'],
+  'quiser': ['querer'], 'quiseres': ['querer'], 'quisermos': ['querer'],
+  'quiserdes': ['querer'], 'quiserem': ['querer'],
+  'querendo': ['querer'], 'querido': ['querer'],
+  'posso': ['poder'], 'podes': ['poder'], 'pode': ['poder'],
+  'podemos': ['poder'], 'podeis': ['poder'], 'podem': ['poder'],
+  'podia': ['poder'], 'podias': ['poder'], 'podíamos': ['poder'],
+  'podíeis': ['poder'], 'podiam': ['poder'],
+  'pude': ['poder'], 'pudeste': ['poder'], 'pôde': ['poder'],
+  'pudemos': ['poder'], 'pudestes': ['poder'], 'puderam': ['poder'],
+  'pudera': ['poder'], 'puderas': ['poder'],
+  'possa': ['poder'], 'possas': ['poder'], 'possamos': ['poder'],
+  'possais': ['poder'], 'possam': ['poder'],
+  'pudesse': ['poder'], 'pudesses': ['poder'], 'pudéssemos': ['poder'],
+  'pudésseis': ['poder'], 'pudessem': ['poder'],
+  'puder': ['poder'], 'puderes': ['poder'], 'pudermos': ['poder'],
+  'puderdes': ['poder'], 'puderem': ['poder'],
+  'podendo': ['poder'], 'podido': ['poder'],
+  'vejo': ['ver'], 'vês': ['ver'], 'vê': ['ver'],
+  'vemos': ['ver'], 'vedes': ['ver'], 'veem': ['ver'],
+  'via': ['ver'], 'vias': ['ver'], 'víamos': ['ver'],
+  'viam': ['ver'],
+  'vi': ['ver'], 'viste': ['ver'], 'viu': ['ver'],
+  'vistes': ['ver'], 'viram': ['ver'],
+  'vira': ['ver'], 'viras': ['ver'], 'víramos': ['ver'],
+  'víreis': ['ver'],
+  'veja': ['ver'], 'vejas': ['ver'], 'vejamos': ['ver'],
+  'vejais': ['ver'], 'vejam': ['ver'],
+  'visse': ['ver'], 'visses': ['ver'], 'víssemos': ['ver'],
+  'vísseis': ['ver'], 'vissem': ['ver'],
+  'vir': ['ver'], 'vires': ['ver'], 'virmos': ['ver'],
+  'virdes': ['ver'], 'virem': ['ver'],
+  'vendo': ['ver'], 'visto': ['ver'],
+  'dou': ['dar'], 'dás': ['dar'], 'dá': ['dar'],
+  'damos': ['dar'], 'dais': ['dar'], 'dão': ['dar'],
+  'dava': ['dar'], 'davas': ['dar'], 'dávamos': ['dar'],
+  'dáveis': ['dar'], 'davam': ['dar'],
+  'dei': ['dar'], 'deste': ['dar'], 'deu': ['dar'],
+  'demos': ['dar'], 'destes': ['dar'], 'deram': ['dar'],
+  'dera': ['dar'], 'deras': ['dar'],
+  'dê': ['dar'], 'dês': ['dar'],
+  'deis': ['dar'], 'deem': ['dar'], 'dêem': ['dar'],
+  'desse': ['dar'], 'desses': ['dar'], 'déssemos': ['dar'],
+  'désseis': ['dar'], 'dessem': ['dar'],
+  'der': ['dar'], 'deres': ['dar'], 'dermos': ['dar'],
+  'derdes': ['dar'], 'derem': ['dar'],
+  'dando': ['dar'], 'dado': ['dar'],
+  'leio': ['ler'], 'lês': ['ler'], 'lê': ['ler'],
+  'lemos': ['ler'], 'ledes': ['ler'], 'leem': ['ler'],
+  'lia': ['ler'], 'lias': ['ler'], 'líamos': ['ler'],
+  'líeis': ['ler'], 'liam': ['ler'],
+  'li': ['ler'],   'leste': ['ler'], 'leu': ['ler'],
+  'lestes': ['ler'], 'leram': ['ler'],
+  'lera': ['ler'], 'leras': ['ler'],
+  'leia': ['ler'], 'leias': ['ler'], 'leiamos': ['ler'],
+  'leiais': ['ler'], 'leiam': ['ler'],
+  'lesse': ['ler'], 'lesses': ['ler'], 'léssemos': ['ler'],
+  'lésseis': ['ler'], 'lessem': ['ler'],
+  'ler': ['ler'], 'leres': ['ler'], 'lermos': ['ler'],
+  'lerdes': ['ler'], 'lerem': ['ler'],
+  'lendo': ['ler'], 'lido': ['ler'],
+  'creio': ['crer'], 'crês': ['crer'], 'crê': ['crer'],
+  'cremos': ['crer'], 'credes': ['crer'], 'creem': ['crer'],
+  'cria': ['crer'], 'crias': ['crer'], 'críamos': ['crer'],
+  'críeis': ['crer'], 'criam': ['crer'],
+  'cri': ['crer'], 'creste': ['crer'], 'creu': ['crer'],
+  'crestes': ['crer'], 'creram': ['crer'],
+  'crera': ['crer'], 'creras': ['crer'],
+  'creia': ['crer'], 'creias': ['crer'], 'creiamos': ['crer'],
+  'creiais': ['crer'], 'creiam': ['crer'],
+  'cresse': ['crer'], 'cresses': ['crer'], 'créssemos': ['crer'],
+  'crésseis': ['crer'], 'cressem': ['crer'],
+  'crer': ['crer'], 'creres': ['crer'], 'crermos': ['crer'],
+  'crerdes': ['crer'], 'crerem': ['crer'],
+  'crendo': ['crer'], 'crido': ['crer'],
+  'provejo': ['prover'], 'provês': ['prover'], 'provê': ['prover'],
+  'provemos': ['prover'], 'provedes': ['prover'], 'proveem': ['prover'],
+  'provia': ['prover'], 'provias': ['prover'], 'províamos': ['prover'],
+  'províeis': ['prover'], 'proviam': ['prover'],
+  'provi': ['prover'], 'proveste': ['prover'], 'proveu': ['prover'],
+  'provestes': ['prover'], 'proveram': ['prover'],
+  'provera': ['prover'], 'proveras': ['prover'],
+  'proveja': ['prover'], 'provejas': ['prover'], 'provejamos': ['prover'],
+  'provejais': ['prover'], 'provejam': ['prover'],
+  'provesse': ['prover'], 'provesses': ['prover'], 'provéssemos': ['prover'],
+  'provésseis': ['prover'], 'provessem': ['prover'],
+  'prover': ['prover'], 'proveres': ['prover'], 'provermos': ['prover'],
+  'proverdes': ['prover'], 'proverem': ['prover'],
+  'provendo': ['prover'], 'provido': ['prover'],
+};
+
+const PLURAL_SUFFIXES = ['s', 'es', 'is', 'óis', 'éis', 'aes', 'ães', 'ões', 'ns', 'ais', 'eis', 'ois', 'us'];
 const ADVERB_SUFFIX = 'mente';
-const AUGMENTATIVE_SUFFIXES = ['ão', 'ona', 'zão', 'zona', 'aço', 'aça'];
+const AUGMENTATIVE_SUFFIXES = [
+  'ão', 'ona', 'zão', 'zona', 'aço', 'aça',
+  'alhão', 'alhana', 'anzil', 'anzila', 'aréu', 'aréua',
+  'arra', 'astro', 'astra', 'az', 'aça',
+  'eirão', 'eirona', 'orra',
+];
 const DIMINUTIVE_SUFFIXES = [
   'inho', 'inha', 'inhos', 'inhas',
   'zinho', 'zinha', 'zinhos', 'zinhas',
+  'ito', 'ita', 'itos', 'itas',
+  'ico', 'ica', 'icos', 'icas',
+  'ulo', 'ula', 'ulos', 'ulas',
+  'acho', 'acha', 'achos', 'achas',
+  'ebre', 'ebres',
+  'ote', 'ota', 'otes', 'otas',
+  'elho', 'elha', 'elhos', 'elhas',
+  'ilho', 'ilha', 'ilhos', 'ilhas',
+  'oto', 'ota', 'otos', 'otas',
 ];
 
-const PREFIXES = ['des', 'in', 'i', 'im', 'ir', 'il', 're', 'pre', 'sub', 'anti', 'super'];
+const PREFIXES = [
+  'des', 'in', 'i', 'im', 'ir', 'il', 're', 'pre',
+  'sub', 'anti', 'super',
+  'ab', 'ad', 'ob', 'sub', 'hiper', 'hipo', 'extra',
+  'intra', 'infra', 'ultra', 'macro', 'micro', 'mini',
+  'maxi', 'semi', 'pseudo', 'proto', 'neo', 'pan',
+  'vice', 'ex', 'pré', 'pró', 'pós',
+];
 
 function tryStemmer(words: Set<string>, word: string): boolean {
   const stem = stemmer.stem(word);
@@ -159,17 +445,29 @@ function stripSuffix(word: string, suffix: string): string | null {
 }
 
 function tryVerbConjugation(words: Set<string>, word: string): boolean {
-  if (word.length < 3) return false;
-  for (const suffix of VERB_SUFFIXES) {
-    const base = stripSuffix(word, suffix);
-    if (base && words.has(base)) return true;
+  const lower = word.toLowerCase();
+  const irregular = IRREGULAR_FORMS[lower];
+  if (irregular) {
+    return irregular.some(infinitive => words.has(infinitive));
   }
-  for (const baseEnding of ['ar', 'er', 'ir']) {
-    if (word.endsWith(baseEnding)) {
+  if (word.length < 3) return false;
+  for (const [ending, suffixes] of Object.entries(VERB_CONJUGATIONS) as [ConjugationClass, string[]][]) {
+    for (const suffix of suffixes) {
+      const base = stripSuffix(word, suffix);
+      if (base && base.length > 1) {
+        const infinitive = base + ending;
+        if (words.has(infinitive)) return true;
+        const infinitiveAccented = base + (ending === 'ar' ? 'ar' : ending === 'er' ? 'er' : 'ir');
+        if (words.has(infinitiveAccented)) return true;
+      }
+    }
+  }
+  for (const baseEnding of ['ar', 'er', 'ir'] as const) {
+    if (word.endsWith(baseEnding) && word.length > 3) {
       const root = word.slice(0, -2);
-      if (root.length > 1 && words.has(root + 'ar')) return true;
-      if (root.length > 1 && words.has(root + 'er')) return true;
-      if (root.length > 1 && words.has(root + 'ir')) return true;
+      for (const ending of ['ar', 'er', 'ir'] as const) {
+        if (words.has(root + ending)) return true;
+      }
     }
   }
   return false;
@@ -213,6 +511,31 @@ function tryFeminine(words: Set<string>, word: string): boolean {
   if (word.endsWith('triz')) {
     const base = word.slice(0, -4) + 'tor';
     if (base.length > 1 && words.has(base)) return true;
+  }
+  if (word.endsWith('esa') && word.length > 4) {
+    const base = word.slice(0, -3) + 'ês';
+    if (base.length > 1 && words.has(base)) return true;
+  }
+  if (word.endsWith('isa') && word.length > 4) {
+    const base = word.slice(0, -3);
+    if (base.length > 1 && words.has(base + 'o')) return true;
+    if (base.length > 1 && words.has(base + 'a')) return true;
+    const base2 = word.slice(0, -1);
+    if (base2.length > 1 && words.has(base2)) return true;
+  }
+  if (word.endsWith('oa') && word.length > 3) {
+    const base = word.slice(0, -2) + 'ão';
+    if (base.length > 1 && words.has(base)) return true;
+  }
+  if (word.endsWith('ina') && word.length > 4) {
+    const base = word.slice(0, -3);
+    if (base.length > 1 && words.has(base + 'o')) return true;
+  }
+  if (word.endsWith('essa') && word.length > 5) {
+    const base = word.slice(0, -2);
+    if (base.length > 1 && words.has(base)) return true;
+    const base2 = word.slice(0, -4) + 'êsse';
+    if (base2.length > 1 && words.has(base2)) return true;
   }
   return false;
 }
