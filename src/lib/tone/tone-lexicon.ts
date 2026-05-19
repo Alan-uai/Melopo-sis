@@ -20,10 +20,7 @@ let cachedRegister: AhoCorasick | null = null;
 function buildToneAutomatons(): ToneAutomaton[] {
   const sections = getToneProfiles();
   return sections.map(section => {
-    const relevant = section.profiles.filter(
-      p => p.category === 'vocabulario' || p.category === 'imagens'
-    );
-    const allKeywords = relevant.flatMap(p => p.keywords);
+    const allKeywords = section.profiles.flatMap(p => p.keywords);
     const stemmed = [...new Set(allKeywords.map(k => {
       try { return stemmer.stem(k.toLowerCase()); }
       catch { return k.toLowerCase(); }

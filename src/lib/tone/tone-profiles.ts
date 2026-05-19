@@ -106,7 +106,6 @@ function extractKeywords(text: string): string[] {
       return clean;
     }).filter(s => {
       if (s.length < 2) return false;
-      if (s.includes(' ')) return false;
       const lower = s.toLowerCase();
       if (STOP_WORDS.has(lower)) return false;
       if (COMMON_LISTS.has(lower)) return false;

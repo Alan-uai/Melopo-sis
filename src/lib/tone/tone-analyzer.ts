@@ -67,24 +67,35 @@ function analyzeImages(text: string, selectedTone: string): ImageScore {
   const allKeywords = [...new Set(imageProfiles.flatMap(p => p.keywords))];
   if (allKeywords.length === 0) return { score: 0, total: 0, ratio: 0 };
 
-  const lowerText = text.toLowerCase();
+  const stemmedKeywords = new Set(allKeywords.map(k => {
+    try { return stemmer.stem(k.toLowerCase()); }
+    catch { return k.toLowerCase(); }
+  }));
+
+  const tokens = tokenizer.tokenize(text, true) as string[];
+  const textStems = new Set(tokens.map(t => {
+    try { return stemmer.stem(t.toLowerCase()); }
+    catch { return t.toLowerCase(); }
+  }));
+
   let matches = 0;
-  for (const kw of allKeywords) {
-    if (lowerText.includes(kw)) matches++;
+  for (const stem of stemmedKeywords) {
+    if (textStems.has(stem)) matches++;
   }
 
   return {
     score: matches,
     total: allKeywords.length,
-    ratio: matches / allKeywords.length,
+    ratio: matches / (allKeywords.length || 1),
   };
 }
 
-function analyzeRegister(stems: string[]): RegisterScore {
+function analyzeRegister(tokens: string[]): RegisterScore {
   let formal = 0, informal = 0;
-  for (const s of stems) {
-    if (FORMAL_MARKERS.has(s)) formal++;
-    if (INFORMAL_MARKERS.has(s)) informal++;
+  for (const t of tokens) {
+    const lower = t.toLowerCase();
+    if (FORMAL_MARKERS.has(lower)) formal++;
+    if (INFORMAL_MARKERS.has(lower)) informal++;
   }
   const total = formal + informal || 1;
   return {
@@ -159,13 +170,13 @@ export async function analyzeTone(
 
   const lexical = analyzeLexical(stems, lines, selectedTone);
   const image = analyzeImages(text, selectedTone);
-  const register = analyzeRegister(stems);
+  const register = analyzeRegister(rawTokens);
   const figure = analyzeFigures(lines);
   const emotion = analyzeEmotion(rawTokens);
   const rhythm = analyzeRhythm(text);
 
-  const diagnostics = computeDiagnostics({ lexical, image, register, figure, emotion, rhythm });
-  const confidence = computeConfidence(lexical, diagnostics);
+  const diagnostics = computeDiagnostics({ lexical, image, register, figure, emotion, rhythm }, text);
+  const confidence = computeConfidence(lexical, diagnostics, image, register, figure, emotion, rhythm);
 
   return {
     lexical, image, register, figure, emotion, rhythm,

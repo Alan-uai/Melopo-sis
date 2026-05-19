@@ -1,7 +1,13 @@
 import { describe, it, expect } from 'vitest';
 import { computeConfidence, decideToneAction, mergeSuggestions } from '../tone-suggestion-engine';
-import type { LexicalScore, Diagnostic, AnalysisResult } from '../tone-types';
+import type { LexicalScore, Diagnostic, AnalysisResult, ImageScore, RegisterScore, FigureScore, EmotionScore, RhythmScore } from '../tone-types';
 import type { Suggestion } from '@/ai/types';
+
+const mockImage: ImageScore = { score: 5, total: 10, ratio: 0.5 };
+const mockRegister: RegisterScore = { formalScore: 0.8, informalScore: 0.2, isConsistent: true, dominantRegister: 'formal' };
+const mockFigure: FigureScore = { detected: [], density: 0.2 };
+const mockEmotion: EmotionScore = { positiveRatio: 0.3, negativeRatio: 0.1, neutralRatio: 0.6, compoundScore: 0.2, dominantEmotion: 'positivo' };
+const mockRhythm: RhythmScore = { avgSyllables: 7, variance: 2.5, hasEnjambement: false, isConsistent: true };
 
 describe('tone-suggestion-engine', () => {
   it('computeConfidence returns high for strong lexical match + diagnostics', () => {
@@ -9,13 +15,14 @@ describe('tone-suggestion-engine', () => {
       selectedToneScore: 0.8,
       highestConflicting: null,
       highestConflictingScore: 0,
-      antiPatternHits: 2,
+      antiPatternHits: 0,
       perLine: [0, 0],
     };
     const diagnostics: Diagnostic[] = [
-      { id: 'ANTIPATTERN_HIT', severity: 'alta', dimensions: ['lexical'], details: {}, toneRef: 'TOM-005', toneRefQuote: '', canonicalExample: undefined },
+      { id: 'REGISTER_LEAK', severity: 'media', dimensions: ['register'], details: {}, toneRef: 'TOM-001', toneRefQuote: '', canonicalExample: undefined },
+      { id: 'RHYTHM_MISMATCH', severity: 'baixa', dimensions: ['rhythm'], details: {}, toneRef: 'TOM-004', toneRefQuote: '', canonicalExample: undefined },
     ];
-    const confidence = computeConfidence(lexical, diagnostics);
+    const confidence = computeConfidence(lexical, diagnostics, mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
     expect(confidence).toBeGreaterThan(0.5);
   });
 
@@ -27,7 +34,7 @@ describe('tone-suggestion-engine', () => {
       antiPatternHits: 0,
       perLine: [0, 0],
     };
-    const confidence = computeConfidence(lexical, []);
+    const confidence = computeConfidence(lexical, [], mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
     expect(confidence).toBeLessThan(0.5);
   });
 
