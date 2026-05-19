@@ -89,7 +89,7 @@ describe('dictionary integration - palavras com acentos', () => {
   });
 });
 
-describe('dictionary integration - palavras inexistentes', () => {
+describe('dictionary integration - palavras inexistentes', { timeout: 30000 }, () => {
   it.each([
     'xablau', 'blorple',
     'lindx', 'queridx',

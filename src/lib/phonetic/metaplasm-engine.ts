@@ -87,15 +87,8 @@ function detectSynaeresis(words: string[], metaplasms: Metaplasm[]): void {
   }
 }
 
+import { countPoeticSyllables as countProsody } from '@/lib/prosody/metaplasm-engine';
+
 export function countPoeticSyllablesLine(line: string): number {
-  const words = line
-    .toLowerCase()
-    .replace(/[^a-záàâãéèêíïóôõöúüçñ\s-]/g, '')
-    .trim()
-    .split(/[\s-]+/);
-
-  if (words.length === 0) return 0;
-
-  const result = applyMetaplasms(words);
-  return result.poeticSyllables;
+  return countProsody(line);
 }

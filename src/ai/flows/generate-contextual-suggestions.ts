@@ -29,12 +29,16 @@ function filterSuggestionsForSegments(
   suggestions: Suggestion[],
   segments: string[],
 ): Suggestion[] {
-  return suggestions.filter(s =>
-    segments.some(seg =>
-      (s.context && s.context.includes(seg.trim()))
-      || seg.includes(s.originalText)
-    )
-  );
+  const segSet = new Set(segments.map(s => s.trim().toLowerCase()));
+  return suggestions.filter(s => {
+    if (!s.originalText) return false;
+    const orig = s.originalText.toLowerCase();
+    if (segSet.has(orig)) return true;
+    for (const seg of segSet) {
+      if (seg.includes(orig) || (s.context && s.context.toLowerCase().includes(seg))) return true;
+    }
+    return false;
+  });
 }
 
 const suggestionFlow = ai.defineFlow(

@@ -329,6 +329,57 @@ function splitIntoStanzas(text: string): string[][] {
     .filter(s => s.length > 0);
 }
 
+export function detectPoeticForm(text: string): string {
+  const lines = text.split('\n').filter(l => l.trim());
+  const totalLines = lines.length;
+  const stanzas = splitIntoStanzas(text);
+  const stanzaSizes = stanzas.map(s => s.length);
+
+  if (totalLines === 14 && stanzaSizes.length === 4) {
+    const [q1, q2, t1, t2] = stanzaSizes;
+    if (q1 === 4 && q2 === 4 && t1 === 3 && t2 === 3) return 'soneto';
+  }
+
+  if (totalLines === 3) return 'haicai';
+  if (stanzaSizes.every(s => s === 4)) return 'trova';
+  if (stanzaSizes.every(s => s === 8)) return 'oitava';
+  if (stanzaSizes.every(s => s === 10)) return 'decima';
+  if (stanzaSizes.length === 1) {
+    if (totalLines <= 8) return 'redondilha';
+    return 'poema';
+  }
+
+  return 'poema';
+}
+
+export function detectRhymeScheme(lines: string[]): string {
+  const lastWords = lines.map(l => {
+    const words = l.trim().split(/\s+/);
+    return words[words.length - 1]?.replace(/[^a-záàâãéèêíïóôõöúçñü]/gi, '') || '';
+  });
+
+  if (lastWords.length === 0) return '';
+
+  const groups: string[] = [];
+  const seen = new Map<string, string>();
+  let nextLabel = 'A';
+
+  for (const w of lastWords) {
+    if (w.length < 2) { groups.push('?'); continue; }
+    const ending = w.toLowerCase().slice(-3);
+    if (seen.has(ending)) {
+      groups.push(seen.get(ending)!);
+    } else {
+      const label = nextLabel;
+      seen.set(ending, label);
+      groups.push(label);
+      nextLabel = String.fromCharCode(nextLabel.charCodeAt(0) + 1);
+    }
+  }
+
+  return groups.join(' ');
+}
+
 export function countPoeticSyllables(line: string): number {
   return countMetaplasmic(line);
 }
@@ -381,24 +432,27 @@ function getAccentPositions(line: string): number[] {
 }
 
 function findStressInWord(word: string): number {
+  const allGroups = word.match(/[aeiouáàâãéèêíïóôõöú]+/gi);
+  if (!allGroups || allGroups.length === 0) return -1;
+
   const acutePattern = /[áàâãéèêíïóôõöú]/;
   const match = word.match(acutePattern);
   if (match) {
-    const vowelGroupBefore = word.slice(0, match.index).match(/[aeiou]+/gi);
-    const vowelGroupsBefore = vowelGroupBefore ? vowelGroupBefore.join('').length : 0;
-    return vowelGroupsBefore;
+    let pos = 0;
+    for (let i = 0; i < allGroups.length; i++) {
+      pos += allGroups[i].length;
+      if (match.index! < pos) return i;
+    }
+    return allGroups.length - 1;
   }
 
-  const vowelGroups = word.match(/[aeiou]+/gi);
-  if (!vowelGroups || vowelGroups.length === 0) return -1;
-
   if (word.endsWith('r') || word.endsWith('s') || word.endsWith('l') || word.endsWith('z')) {
-    return vowelGroups.slice(0, -1).join('').length;
+    return allGroups.length - 1;
   }
 
   if (word.endsWith('am') || word.endsWith('em')) {
-    return vowelGroups.slice(0, -1).join('').length;
+    return allGroups.length - 1;
   }
 
-  return vowelGroups.slice(0, -1).join('').length;
+  return Math.max(allGroups.length - 2, 0);
 }

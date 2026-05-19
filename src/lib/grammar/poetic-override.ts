@@ -1,4 +1,4 @@
-import type { TextStructure } from './poetic-forms';
+import type { TextStructure } from '../poetic-forms';
 
 const POETIC_EXCEPTIONS = new Set([
   'ai', 'ei', 'oi', 'ui',

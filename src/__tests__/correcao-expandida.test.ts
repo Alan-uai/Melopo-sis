@@ -70,9 +70,9 @@ describe('confusão de pares', () => {
 
 describe('prosódia - métrica', () => {
   it('counts haicai syllables', () => {
-    const l1 = countPoeticSyllables('O vento sopra');
-    const l2 = countPoeticSyllables('Folhas secas pelo chão');
-    const l3 = countPoeticSyllables('O outono vem');
+    const l1 = countPoeticSyllables('O vento sopra', { countToLastTonic: true });
+    const l2 = countPoeticSyllables('Folhas secas pelo chão', { countToLastTonic: true });
+    const l3 = countPoeticSyllables('O outono vem', { countToLastTonic: true });
     expect(l1).toBe(4);
     expect(l2).toBe(7);
     expect(l3).toBe(5);

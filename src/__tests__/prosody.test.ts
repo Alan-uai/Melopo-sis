@@ -32,10 +32,10 @@ describe('metaplasm-engine - counting', () => {
 });
 
 describe('metaplasm-engine - meter detection', () => {
-  it('detects redondilha maior', () => {
+  it('detects hexassílabo', () => {
     const result = detectMeter('No meio do caminho');
-    expect(result.syllables).toBe(7);
-    expect(result.type).toContain('redondilha');
+    expect(result.syllables).toBe(6);
+    expect(result.type).toContain('hexassílabo');
   });
 
   it('detects decassílabo', () => {

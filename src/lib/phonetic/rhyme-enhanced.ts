@@ -27,7 +27,7 @@ export interface RhymeQuality {
   syllableMatch: boolean;
 }
 
-const CLICHE_RHYME_PAIRS = new Set([
+export const CLICHE_RHYME_PAIRS = new Set([
   'amor,dor', 'dor,amor', 'coração,ilusão', 'ilusão,coração',
   'paixão,coração', 'coração,paixão', 'flor,amor', 'amor,flor',
   'pranto,canto', 'canto,pranto', 'mar,cantar', 'cantar,mar',

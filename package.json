@@ -70,6 +70,7 @@
     "react-dom": "^19.2.6",
     "react-hook-form": "^7.75.0",
     "recharts": "^3.8.1",
+    "singularity-tagger": "^1.0.3",
     "symspell-ts": "^0.0.2",
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7",

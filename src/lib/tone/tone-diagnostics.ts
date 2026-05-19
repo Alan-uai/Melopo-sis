@@ -2,6 +2,7 @@ import type { AnalysisResult, Diagnostic } from './tone-types';
 import { getToneProfiles } from './tone-profiles';
 import { stemmer, tokenizer } from './tone-lexicon';
 import { analyzeSentiment } from './lexicons/sentilex-pt';
+import { CLICHE_RHYME_PAIRS, extractLastWord } from '@/lib/phonetic/rhyme-enhanced';
 
 function getToneRefQuote(code: string): { toneRef: string; toneRefQuote: string; canonicalExample?: string } {
   const sections = getToneProfiles();
@@ -142,6 +143,30 @@ const DIAGNOSTICS: DiagnosticFactory[] = [
         ...getToneRefQuote('TOM-004'),
       }
     : null,
+
+  (_, text) => {
+    if (!text) return null;
+    const lines = text.split('\n').filter(l => l.trim());
+    const clicheFound: string[] = [];
+    for (let i = 0; i < lines.length - 1; i++) {
+      for (let j = i + 1; j < lines.length; j++) {
+        const a = extractLastWord(lines[i]).toLowerCase();
+        const b = extractLastWord(lines[j]).toLowerCase();
+        const pair = `${a},${b}`;
+        if (CLICHE_RHYME_PAIRS.has(pair)) clicheFound.push(pair);
+      }
+    }
+    if (clicheFound.length > 0) {
+      return {
+        id: 'CLICHE_RHYME',
+        severity: 'media',
+        dimensions: ['rhyme'],
+        details: { pairs: clicheFound, count: clicheFound.length },
+        ...getToneRefQuote('TOM-004'),
+      };
+    }
+    return null;
+  },
 
 ];
 

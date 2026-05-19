@@ -28,35 +28,14 @@ export function computeConfidence(
   const nonCircularCount = diagnostics.filter(d => nonCircularIds.has(d.id)).length;
   score += Math.min(nonCircularCount * 0.05, 0.15);
 
-  if (diagnostics.length === 0) score *= 0.5;
-
   return Math.min(score, 1);
 }
 
 export function decideToneAction(analysis: AnalysisResult): ToneAction {
   const highSeverityCount = analysis.diagnostics.filter(d => d.severity === 'alta').length;
-  const analysisAny = analysis as unknown as Record<string, unknown>;
-  const hasTransformerBoost = analysisAny.transformerConfidence
-    ? (analysisAny.transformerConfidence as number) > 0.5
-    : false;
 
-  if (hasTransformerBoost && analysis.confidence >= 0.4) {
+  if (analysis.confidence >= 0.65 && highSeverityCount <= 1) {
     return 'local';
-  }
-
-  if (
-    (analysis.confidence >= 0.75 && highSeverityCount === 0) ||
-    (analysis.confidence >= 0.65 && analysis.diagnostics.length >= 1 && highSeverityCount <= 1)
-  ) {
-    return 'local';
-  }
-
-  if (analysis.confidence >= 0.5 && highSeverityCount <= 1) {
-    return 'hybrid';
-  }
-
-  if (analysis.confidence >= 0.3 && highSeverityCount <= 2) {
-    return 'hybrid';
   }
 
   return 'ai';

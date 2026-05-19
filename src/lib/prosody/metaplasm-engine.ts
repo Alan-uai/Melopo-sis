@@ -23,6 +23,19 @@ function isVowel(ch: string): boolean {
   return VOWELS.test(ch);
 }
 
+function isWeak(ch: string): boolean {
+  return /[iíuú]/.test(ch);
+}
+
+function isStrong(ch: string): boolean {
+  return /[aeoáàâãéèêóòôõ]/.test(ch);
+}
+
+function isKnownDiphthong(a: string, b: string): boolean {
+  const pair = (a + b).toLowerCase();
+  return pair === 'ão' || pair === 'ãe' || pair === 'õe' || pair === 'âe';
+}
+
 function splitVowelGroups(word: string): string[] {
   const raw = word.toLowerCase().match(/[aeiouáàâãéèêíïóôõöú]+/gi);
   if (!raw) return [];
@@ -38,15 +51,15 @@ function splitVowelGroups(word: string): string[] {
     for (let i = 1; i < g.length; i++) {
       const prev = current.slice(-1);
       const ch = g[i]!;
+      const pStrong = isStrong(prev);
+      const cStrong = isStrong(ch);
+      const pWeak = isWeak(prev);
 
-      const pStrong = /[aeoáàâãéèêóòôõ]/.test(prev);
-      const pWeak = /[iíuú]/.test(prev);
-      const cStrong = /[aeoáàâãéèêóòôõ]/.test(ch);
-      const cWeak = /[iíuú]/.test(ch);
-
-      if (pStrong && cStrong) {
+      if (pStrong && cStrong && !isKnownDiphthong(prev, ch)) {
         groups.push(current);
         current = ch;
+      } else if (pWeak && cStrong && current.length === 1) {
+        current += ch;
       } else if (pWeak && cStrong) {
         groups.push(current);
         current = ch;
@@ -103,8 +116,8 @@ function isHiaticPair(a: string, b: string): boolean {
   if (!isVowel(lastA) || !isVowel(firstB)) return false;
 
   const bothStrong = STRONG_VOWELS.test(lastA) && STRONG_VOWELS.test(firstB);
-  if (bothStrong) return false;
-  return true;
+  if (bothStrong) return true;
+  return false;
 }
 
 export function countPoeticSyllables(line: string, options?: Partial<MetaplasmOptions>): number {
@@ -141,9 +154,12 @@ export function countPoeticSyllables(line: string, options?: Partial<MetaplasmOp
       }
 
       if (opts.elisao && lv && fv && isUnstressed(lv) && isVowel(firstCh)) {
-        merged.push(current.replace(/[aeiouáàâãéèêíïóôõöú]+$/, '') + next);
-        i += 2;
-        continue;
+        const elided = current.replace(/[aeiouáàâãéèêíïóôõöú]+$/, '');
+        if (elided !== '') {
+          merged.push(elided + next);
+          i += 2;
+          continue;
+        }
       }
     }
     merged.push(current);
@@ -155,10 +171,11 @@ export function countPoeticSyllables(line: string, options?: Partial<MetaplasmOp
   if (opts.countToLastTonic && count > 0) {
     const lastWord = words[words.length - 1] || '';
     const lastGroups = lastWord.match(/[aeiouáàâãéèêíïóôõöúç]+/gi);
-    const lastGroup = lastGroups?.[lastGroups.length - 1] || '';
-    const isParoxytone = !ACCENTED.test(lastGroup);
-    if (isParoxytone) {
-      count--;
+    if (lastGroups && lastGroups.length > 1) {
+      const lastGroup = lastGroups[lastGroups.length - 1] || '';
+      if (!ACCENTED.test(lastGroup)) {
+        count--;
+      }
     }
   }
 
@@ -183,7 +200,7 @@ const METER_NAMES: Record<number, string> = {
 };
 
 export function detectMeter(line: string): MeterResult {
-  const syllables = countPoeticSyllables(line);
+  const syllables = countPoeticSyllables(line, { countToLastTonic: true });
   const type = METER_NAMES[syllables] || `verso de ${syllables} sílabas`;
 
   let hasCesura = false;

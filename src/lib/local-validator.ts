@@ -21,7 +21,7 @@ export async function validateAll(
   const syllableErrors = validateSyllableCount(text, structure);
   const accentErrors = validateAccentPositions(text, structure);
   const punctuationErrors = validatePunctuation(text);
-  const grammarResult = validateGrammar(text);
+  const grammarResult = await validateGrammar(text);
 
   const lines = text.split('\n');
 

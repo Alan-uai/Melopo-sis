@@ -17,7 +17,7 @@ function splitIntoStanzas(text: string): string[][] {
 
 function analyzeLexical(
   stems: string[],
-  lines: string[],
+  lineStemsArray: string[][],
   selectedTone: string,
 ): LexicalScore {
   const selectedLower = selectedTone.toLowerCase();
@@ -40,14 +40,9 @@ function analyzeLexical(
   const antiPatternHits = antiAc.search(text).length;
 
   const selectedAutomaton = automatons.find(a => a.name === selectedLower);
-  const perLine = lines.map(line => {
-    const lineTokens = tokenizer.tokenize(line, true) as string[];
-    const lineStems = lineTokens.map(t => {
-      try { return stemmer.stem(t.toLowerCase()); }
-      catch { return t.toLowerCase(); }
-    });
-    return selectedAutomaton?.ac.search(lineStems.join(' ')).length ?? 0;
-  });
+  const perLine = lineStemsArray.map(
+    lineStems => selectedAutomaton?.ac.search(lineStems.join(' ')).length ?? 0
+  );
 
   return {
     selectedToneScore: selectedScore,
@@ -58,7 +53,7 @@ function analyzeLexical(
   };
 }
 
-function analyzeImages(text: string, selectedTone: string): ImageScore {
+function analyzeImages(stems: string[], selectedTone: string): ImageScore {
   const sections = getToneProfiles();
   const section = sections.find(s => s.name === selectedTone.toLowerCase());
   if (!section) return { score: 0, total: 0, ratio: 0 };
@@ -72,11 +67,7 @@ function analyzeImages(text: string, selectedTone: string): ImageScore {
     catch { return k.toLowerCase(); }
   }));
 
-  const tokens = tokenizer.tokenize(text, true) as string[];
-  const textStems = new Set(tokens.map(t => {
-    try { return stemmer.stem(t.toLowerCase()); }
-    catch { return t.toLowerCase(); }
-  }));
+  const textStems = new Set(stems);
 
   let matches = 0;
   for (const stem of stemmedKeywords) {
@@ -92,11 +83,18 @@ function analyzeImages(text: string, selectedTone: string): ImageScore {
 
 function analyzeRegister(tokens: string[]): RegisterScore {
   let formal = 0, informal = 0;
-  for (const t of tokens) {
-    const lower = t.toLowerCase();
-    if (FORMAL_MARKERS.has(lower)) formal++;
-    if (INFORMAL_MARKERS.has(lower)) informal++;
+  let i = 0;
+
+  while (i < tokens.length) {
+    let matched = false;
+    for (let n = Math.min(5, tokens.length - i); n >= 1; n--) {
+      const phrase = tokens.slice(i, i + n).join(' ').toLowerCase();
+      if (FORMAL_MARKERS.has(phrase)) { formal++; i += n; matched = true; break; }
+      if (INFORMAL_MARKERS.has(phrase)) { informal++; i += n; matched = true; break; }
+    }
+    if (!matched) i++;
   }
+
   const total = formal + informal || 1;
   return {
     formalScore: formal / total,
@@ -109,7 +107,10 @@ function analyzeRegister(tokens: string[]): RegisterScore {
 function analyzeFigures(lines: string[]): FigureScore {
   const detected: FigureScore['detected'] = [];
   for (let i = 0; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
+    const trimmed = lines[i].trim();
+    if (!trimmed) continue;
+    const wordCount = trimmed.split(/\s+/).length;
+    if (wordCount < 4) continue;
     for (const detector of FIGURE_DETECTORS) {
       const match = detector(lines, i);
       if (match) detected.push(match);
@@ -122,15 +123,16 @@ function analyzeFigures(lines: string[]): FigureScore {
   };
 }
 
-function analyzeEmotion(tokens: string[]): EmotionScore {
-  const stems = tokens.map(t => {
-    try { return stemmer.stem(t.toLowerCase()); }
-    catch { return t.toLowerCase(); }
-  });
+function analyzeEmotion(stems: string[]): EmotionScore {
   return analyzeSentiment(stems);
 }
 
-function analyzeRhythm(text: string): RhythmScore {
+const SYLLABLE_RULES: Record<string, number> = {
+  soneto: 10, decassilabo: 10, oitava: 10, decima: 10,
+  haicai: 0, cordel: 7, trova: 7, redondilha: 0,
+};
+
+function analyzeRhythm(text: string, structure?: string): RhythmScore {
   const lines = text.split('\n').filter(l => l.trim());
   if (lines.length === 0) return { avgSyllables: 0, variance: 0, hasEnjambement: false, isConsistent: false };
 
@@ -151,9 +153,18 @@ function analyzeRhythm(text: string): RhythmScore {
     }
   }
 
-  const isConsistent = variance < 4;
+  const expected = structure ? SYLLABLE_RULES[structure] : undefined;
+  const structureVariance = expected
+    ? counts.reduce((acc, c) => acc + (c - expected) ** 2, 0) / counts.length
+    : variance;
+  const isConsistent = expected ? structureVariance < 2 : variance < 4;
 
-  return { avgSyllables, variance, hasEnjambement, isConsistent };
+  return { avgSyllables, variance: structureVariance, hasEnjambement, isConsistent };
+}
+
+function stemToken(t: string): string {
+  try { return stemmer.stem(t.toLowerCase()); }
+  catch { return t.toLowerCase(); }
 }
 
 export async function analyzeTone(
@@ -163,17 +174,19 @@ export async function analyzeTone(
 ): Promise<AnalysisResult> {
   const lines = text.split('\n');
   const rawTokens = tokenizer.tokenize(text, true) as string[];
-  const stems = rawTokens.map(t => {
-    try { return stemmer.stem(t.toLowerCase()); }
-    catch { return t.toLowerCase(); }
+  const stems = rawTokens.map(stemToken);
+
+  const lineStemsArray = lines.map(line => {
+    const lineTokens = tokenizer.tokenize(line, true) as string[];
+    return lineTokens.map(stemToken);
   });
 
-  const lexical = analyzeLexical(stems, lines, selectedTone);
-  const image = analyzeImages(text, selectedTone);
+  const lexical = analyzeLexical(stems, lineStemsArray, selectedTone);
+  const image = analyzeImages(stems, selectedTone);
   const register = analyzeRegister(rawTokens);
   const figure = analyzeFigures(lines);
-  const emotion = analyzeEmotion(rawTokens);
-  const rhythm = analyzeRhythm(text);
+  const emotion = analyzeEmotion(stems);
+  const rhythm = analyzeRhythm(text, _structure);
 
   const diagnostics = computeDiagnostics({ lexical, image, register, figure, emotion, rhythm }, text);
   const confidence = computeConfidence(lexical, diagnostics, image, register, figure, emotion, rhythm);

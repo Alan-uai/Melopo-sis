@@ -1,0 +1,17 @@
+services:
+  languagetool:
+    image: erikvl87/languagetool:latest
+    container_name: melopoesis-languagetool
+    ports:
+      - "8010:8010"
+    environment:
+      - langtool_languageModel=/ngrams
+      - langtool_fasttextModel=/fasttext/lid.176.bin
+      - Java_Xms=256m
+      - Java_Xmx=512m
+    volumes:
+      - languagetool-ngrams:/ngrams
+    restart: unless-stopped
+
+volumes:
+  languagetool-ngrams:

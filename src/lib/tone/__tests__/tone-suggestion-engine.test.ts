@@ -43,12 +43,20 @@ describe('tone-suggestion-engine', () => {
     expect(decideToneAction(analysis)).toBe('local');
   });
 
-  it('decideToneAction returns hybrid for medium confidence with diagnostics', () => {
+  it('decideToneAction returns ai for medium confidence with high severity', () => {
     const analysis = {
       confidence: 0.5,
       diagnostics: [{ id: 'TEST', severity: 'alta' as const }],
     } as unknown as AnalysisResult;
-    expect(decideToneAction(analysis)).toBe('hybrid');
+    expect(decideToneAction(analysis)).toBe('ai');
+  });
+
+  it('decideToneAction returns local for high confidence with no high severity', () => {
+    const analysis = {
+      confidence: 0.7,
+      diagnostics: [{ id: 'TEST', severity: 'baixa' as const }],
+    } as unknown as AnalysisResult;
+    expect(decideToneAction(analysis)).toBe('local');
   });
 
   it('decideToneAction returns ai for low confidence', () => {
