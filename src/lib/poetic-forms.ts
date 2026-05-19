@@ -1,3 +1,5 @@
+import { countPoeticSyllables as countMetaplasmic } from './prosody/metaplasm-engine';
+
 export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo" | "trova" | "oitava" | "decima" | "elegia" | "ode" | "verso-livre";
 
 export interface StructureValidation {
@@ -328,39 +330,7 @@ function splitIntoStanzas(text: string): string[][] {
 }
 
 export function countPoeticSyllables(line: string): number {
-  const cleaned = line
-    .toLowerCase()
-    .replace(/[^a-záàâãéèêíïóôõöúçñü\s]/g, '')
-    .trim();
-
-  if (!cleaned) return 0;
-
-  const words = cleaned.split(/\s+/);
-
-  const poeticWords: string[] = [];
-  let i = 0;
-  while (i < words.length) {
-    const current = words[i];
-    if (i < words.length - 1) {
-      const next = words[i + 1];
-      if (
-        (current.endsWith('a') || current.endsWith('e') || current.endsWith('i') || current.endsWith('o') || current.endsWith('u') ||
-         current.endsWith('á') || current.endsWith('é') || current.endsWith('í') || current.endsWith('ó') || current.endsWith('ú') ||
-         current.endsWith('ã') || current.endsWith('õ') || current.endsWith('à') || current.endsWith('ê')) &&
-        (next.startsWith('a') || next.startsWith('e') || next.startsWith('i') || next.startsWith('o') || next.startsWith('u') ||
-         next.startsWith('á') || next.startsWith('é') || next.startsWith('í') || next.startsWith('ó') || next.startsWith('ú') ||
-         next.startsWith('ã') || next.startsWith('õ') || next.startsWith('à') || next.startsWith('ê') || next.startsWith('h'))
-      ) {
-        poeticWords.push(current + next);
-        i += 2;
-        continue;
-      }
-    }
-    poeticWords.push(current);
-    i++;
-  }
-
-  return poeticWords.reduce((sum, word) => sum + countVowelGroups(word), 0);
+  return countMetaplasmic(line);
 }
 
 function countVowelGroups(word: string): number {

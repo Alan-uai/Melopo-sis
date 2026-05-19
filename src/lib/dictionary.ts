@@ -1,5 +1,28 @@
 import fs from 'fs';
 import path from 'path';
+import { StemmerPt } from '@nlpjs/lang-pt';
+import { getSymSpellSuggestions } from './symspell-engine';
+import { isWordCorrectHunspell, getHunspellSuggestions } from './spelling/espells-engine';
+import { NgramLM } from './spelling/ngram-lm';
+
+let ngramLM: NgramLM | null = null;
+
+function getNgramLM(): NgramLM {
+  if (!ngramLM) {
+    ngramLM = new NgramLM();
+  }
+  return ngramLM;
+}
+
+export function seedNgramLM(texts: string[]): void {
+  getNgramLM().train(texts);
+}
+
+export function resetNgramLM(): void {
+  ngramLM = null;
+}
+
+const stemmer = new StemmerPt();
 
 let knownWords: Set<string> | null = null;
 let knownWordsPromise: Promise<Set<string>> | null = null;
@@ -38,6 +61,96 @@ const DIMINUTIVE_SUFFIXES = [
   'inho', 'inha', 'inhos', 'inhas',
   'zinho', 'zinha', 'zinhos', 'zinhas',
 ];
+
+const PREFIXES = ['des', 'in', 'i', 'im', 'ir', 'il', 're', 'pre', 'sub', 'anti', 'super'];
+
+function tryStemmer(words: Set<string>, word: string): boolean {
+  const stem = stemmer.stem(word);
+  if (stem.length > 2 && words.has(stem)) return true;
+  return false;
+}
+
+function tryPrefix(words: Set<string>, word: string): boolean {
+  for (const prefix of PREFIXES) {
+    if (word.startsWith(prefix) && word.length > prefix.length + 2) {
+      const base = word.slice(prefix.length);
+      if (words.has(base)) return true;
+      if (stemmer.stem(base).length > 2 && words.has(stemmer.stem(base))) return true;
+    }
+  }
+  if (word.startsWith('in') && word.length > 5) {
+    const base = word.slice(2);
+    if (words.has(base)) return true;
+  }
+  return false;
+}
+
+function tryEnclitic(words: Set<string>, word: string): boolean {
+  const enclitics = [
+    { suffix: 'lo', pattern: /[aeê]r$/ },
+    { suffix: 'la', pattern: /[aeê]r$/ },
+    { suffix: 'lhe', pattern: /[aeê]r$/ },
+    { suffix: 'los', pattern: /[aeê]r$/ },
+    { suffix: 'las', pattern: /[aeê]r$/ },
+    { suffix: 'lhes', pattern: /[aeê]r$/ },
+    { suffix: 'no', pattern: /[mãõ]$/ },
+    { suffix: 'na', pattern: /[mãõ]$/ },
+    { suffix: 'nos', pattern: /[mãõ]$/ },
+    { suffix: 'nas', pattern: /[mãõ]$/ },
+  ];
+
+  for (const { suffix, pattern } of enclitics) {
+    if (word.endsWith(suffix) && word.length > suffix.length + 2) {
+      const base = word.slice(0, -suffix.length);
+      if (pattern.test(base)) {
+        const restored = base.replace(/[aeê]r$/, 'r');
+        if (words.has(restored)) return true;
+        if (words.has(base)) return true;
+      }
+      if (words.has(base)) return true;
+    }
+  }
+
+  const mesocliticMatch = word.match(/^(.+?)([áéó])(lo|la|los|las|no|na|nos|nas|lhe|lhes)$/);
+  if (mesocliticMatch) {
+    const base = mesocliticMatch[1] + 'r';
+    if (words.has(base)) return true;
+  }
+
+  return false;
+}
+
+function tryCompound(words: Set<string>, word: string): boolean {
+  if (!word.includes('-')) return false;
+  const parts = word.split('-');
+  if (parts.length === 2 && parts.every(p => p.length > 1)) {
+    if (words.has(parts[0]) && words.has(parts[1])) return true;
+  }
+  return false;
+}
+
+function tryIrregularSuperlative(words: Set<string>, word: string): boolean {
+  const irregular: Record<string, string> = {
+    'facílimo': 'fácil', 'facílima': 'fácil',
+    'paupérrimo': 'pobre', 'paupérrima': 'pobre',
+    'pulquérrimo': 'pulcro', 'pulquérrima': 'pulcra',
+    'célebre': 'célebre', 'celebérrimo': 'célebre', 'celebérrima': 'célebre',
+    'integérrimo': 'íntegro', 'integérrima': 'íntegra',
+    'misericordiosíssimo': 'misericordioso',
+    'nobilíssimo': 'nobre', 'nobilíssima': 'nobre',
+    'sapientíssimo': 'sábio', 'sapientíssima': 'sábia',
+    'libérrimo': 'livre', 'libérrima': 'livre',
+    'acérrimo': 'acre', 'acérrima': 'acre',
+  };
+
+  const lower = word.toLowerCase();
+  if (irregular[lower]) {
+    if (words.has(irregular[lower])) return true;
+    const stem = stemmer.stem(irregular[lower]);
+    if (stem.length > 2 && words.has(stem)) return true;
+  }
+  return false;
+}
 
 function stripSuffix(word: string, suffix: string): string | null {
   if (word.length <= suffix.length + 1) return null;
@@ -129,12 +242,17 @@ function trySuperlative(words: Set<string>, word: string): boolean {
 function isWordKnown(words: Set<string>, word: string): boolean {
   const lower = word.toLowerCase();
   if (words.has(lower)) return true;
+  if (tryStemmer(words, lower)) return true;
   if (tryVerbConjugation(words, lower)) return true;
   if (tryPlural(words, lower)) return true;
   if (tryAdverb(words, lower)) return true;
   if (tryFeminine(words, lower)) return true;
   if (tryDiminutiveAugmentative(words, lower)) return true;
   if (trySuperlative(words, lower)) return true;
+  if (tryPrefix(words, lower)) return true;
+  if (tryEnclitic(words, lower)) return true;
+  if (tryCompound(words, lower)) return true;
+  if (tryIrregularSuperlative(words, lower)) return true;
   if (lower.endsWith('mente')) {
     const base = lower.slice(0, -5);
     if (base.endsWith('a')) {
@@ -148,18 +266,30 @@ function isWordKnown(words: Set<string>, word: string): boolean {
 export async function isWordCorrect(word: string): Promise<boolean> {
   const words = await getWordSet();
   if (word.includes(' ')) {
-    return word.split(/\s+/).every(w => isWordKnown(words, w));
+    return word.split(/\s+/).every(w => isWordCorrect(w));
   }
   if (isWordKnown(words, word)) return true;
   if (/^[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ][a-záàâãéèêíïóôõöúçñ]+$/.test(word)) {
     return true;
   }
+  const hunspellOk = await isWordCorrectHunspell(word).catch(() => false);
+  if (hunspellOk) return true;
   return false;
 }
 
-export async function getWordSuggestions(word: string): Promise<string[]> {
-  const words = await getWordSet();
+export async function getWordSuggestions(
+  word: string,
+  leftContext?: string[],
+  rightContext?: string[]
+): Promise<string[]> {
   const lower = word.toLowerCase();
+
+  const symSpellResults = await getSymSpellSuggestions(lower);
+  if (symSpellResults.length >= 3) return symSpellResults.slice(0, 5);
+
+  const hunspellSuggestions = await getHunspellSuggestions(lower).catch(() => [] as string[]);
+
+  const words = await getWordSet();
   const candidates: { word: string; dist: number }[] = [];
 
   const generated = generateAccentVariants(word);
@@ -179,8 +309,13 @@ export async function getWordSuggestions(word: string): Promise<string[]> {
     }
   }
 
-  candidates.sort((a, b) => a.dist - b.dist);
-  return [...new Set(candidates.map(c => c.word))].slice(0, 5);
+  let ranked = [...new Set([...symSpellResults, ...hunspellSuggestions, ...candidates.map(c => c.word)])];
+
+  if (leftContext || rightContext) {
+    ranked = getNgramLM().rankSuggestions(ranked, leftContext ?? [], rightContext ?? []);
+  }
+
+  return ranked.slice(0, 5);
 }
 
 function generateAccentVariants(word: string): string[] {

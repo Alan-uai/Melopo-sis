@@ -7,6 +7,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  ssr: {
+    noExternal: ['espells'],
+  },
   test: {
     include: ['src/**/*.test.ts'],
     environment: 'node',

@@ -2,6 +2,7 @@ import { checkText } from './spell-checker';
 import { validateStructure, validateSyllableCount, validateAccentPositions, validatePunctuation } from './poetic-forms';
 import type { TextStructure, StructureError } from './poetic-forms';
 import { analyzeRhymeScheme, extractLastWord } from './rhyme-detector';
+import { validateGrammar } from './grammar/index';
 import type { Suggestion } from '@/ai/types';
 
 export interface LocalValidationResult {
@@ -20,6 +21,7 @@ export async function validateAll(
   const syllableErrors = validateSyllableCount(text, structure);
   const accentErrors = validateAccentPositions(text, structure);
   const punctuationErrors = validatePunctuation(text);
+  const grammarResult = validateGrammar(text);
 
   const lines = text.split('\n');
 
@@ -176,6 +178,10 @@ export async function validateAll(
       context: text,
       alternatives: [],
     });
+  }
+
+  for (const s of grammarResult.suggestions) {
+    suggestions.push(s);
   }
 
   return { suggestions };

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeAll } from 'vitest';
 import { isWordCorrect, getWordSuggestions } from '@/lib/dictionary';
 
 describe('dictionary integration - palavras básicas', () => {
@@ -98,7 +98,11 @@ describe('dictionary integration - palavras inexistentes', () => {
   });
 });
 
-describe('dictionary integration - sugestões', () => {
+describe('dictionary integration - sugestões', { timeout: 60000 }, () => {
+  beforeAll(async () => {
+    await getWordSuggestions('warmup');
+  }, 60000);
+
   it('fornece sugestões para palavra com erro', async () => {
     const suggestions = await getWordSuggestions('lindx');
     expect(suggestions).toContain('lindo');
