@@ -48,9 +48,10 @@ export async function validateAll(
   }
 
   for (const err of structureValidation.errors) {
+    const originalText = err.line ? lines[err.line - 1] || text.slice(0, 60) : text.slice(0, 60);
     suggestions.push({
-      originalText: err.line ? lines[err.line - 1] || text.slice(0, 60) : text.slice(0, 60),
-      correctedText: '',
+      originalText,
+      correctedText: originalText,
       explanation: err.message,
       type: 'grammar',
       severity: err.severity,
@@ -60,9 +61,10 @@ export async function validateAll(
   }
 
   for (const err of syllableErrors) {
+    const originalText = err.line ? lines[err.line - 1] || '' : text.slice(0, 60);
     suggestions.push({
-      originalText: err.line ? lines[err.line - 1] || '' : text.slice(0, 60),
-      correctedText: '',
+      originalText,
+      correctedText: originalText,
       explanation: err.message,
       type: 'grammar',
       severity: err.severity,
@@ -72,9 +74,10 @@ export async function validateAll(
   }
 
   for (const err of accentErrors) {
+    const originalText = err.line ? lines[err.line - 1] || '' : text.slice(0, 60);
     suggestions.push({
-      originalText: err.line ? lines[err.line - 1] || '' : text.slice(0, 60),
-      correctedText: '',
+      originalText,
+      correctedText: originalText,
       explanation: err.message,
       type: 'grammar',
       severity: err.severity,
@@ -87,10 +90,11 @@ export async function validateAll(
     const analysis = analyzeRhymeScheme(text);
     const cleanLines = text.split('\n').filter(l => l.trim());
 
+    const originalSnippet = text.slice(0, 60);
     if (analysis.hasEcho) {
       suggestions.push({
-        originalText: text.slice(0, 60),
-        correctedText: '',
+        originalText: originalSnippet,
+        correctedText: originalSnippet,
         explanation: '[RIM-14] O poema contém rima-eco: a mesma palavra repetida no fim de versos diferentes. Isso não constitui rima verdadeira.',
         type: 'grammar',
         severity: 'media',
@@ -101,8 +105,8 @@ export async function validateAll(
 
     if (analysis.clichePairs > 0) {
       suggestions.push({
-        originalText: text.slice(0, 60),
-        correctedText: '',
+        originalText: originalSnippet,
+        correctedText: originalSnippet,
         explanation: `[RIM-18] O poema contém ${analysis.clichePairs} par(es) de rima previsível/desgastada (ex: amor/dor, coração/ilusão). Tente substituir por rimas mais originais e adequadas ao tom.`,
         type: 'grammar',
         severity: 'baixa',
@@ -114,8 +118,8 @@ export async function validateAll(
     if (analysis.dominantScheme !== 'free') {
       if (analysis.consistency < 0.5 && analysis.stanzaSchemes.length > 1) {
         suggestions.push({
-          originalText: text.slice(0, 60),
-          correctedText: '',
+          originalText: originalSnippet,
+          correctedText: originalSnippet,
           explanation: `[RIM-15] O esquema de rimas não é consistente. Detectado: ${analysis.schemeName}, mas apenas ${Math.round(analysis.consistency * 100)}% das estrofes seguem o mesmo padrão. Considere uniformizar ou marcar claramente a transição de esquema.`,
           type: 'grammar',
           severity: 'media',
@@ -126,8 +130,8 @@ export async function validateAll(
 
       if (analysis.rhymeRatio < 0.4 && cleanLines.length >= 4) {
         suggestions.push({
-          originalText: text.slice(0, 60),
-          correctedText: '',
+          originalText: originalSnippet,
+          correctedText: originalSnippet,
           explanation: `[RIM-07~10] Apenas ${Math.round(analysis.rhymeRatio * 100)}% dos versos participam de rimas (esquema detectado: ${analysis.schemeName}). Com rima obrigatória, espera-se que pelo menos 50% dos versos rimem. Considere revisar os versos sem rima.`,
           type: 'grammar',
           severity: 'media',
@@ -139,8 +143,8 @@ export async function validateAll(
       const stanzaType = structure === 'soneto' ? 'soneto' : structure === 'cordel' ? 'cordel' : null;
       if (stanzaType === 'soneto' && analysis.rhymeRatio < 0.8) {
         suggestions.push({
-          originalText: text.slice(0, 60),
-          correctedText: '',
+          originalText: originalSnippet,
+          correctedText: originalSnippet,
           explanation: '[RIM-24] Soneto com rima obrigatória: todos os versos devem rimar (exceto possíveis exceções estruturais mínimas). Muitos versos estão sem par de rima.',
           type: 'grammar',
           severity: 'alta',
@@ -150,8 +154,8 @@ export async function validateAll(
       }
     } else if (cleanLines.length >= 4 && analysis.rhymeRatio < 0.2) {
       suggestions.push({
-        originalText: text.slice(0, 60),
-        correctedText: '',
+        originalText: originalSnippet,
+        correctedText: originalSnippet,
         explanation: '[RIM-07~10] O poema está marcado como "com rima", mas quase nenhum verso rima. Por favor, adicione rimas consistentes ao poema.',
         type: 'grammar',
         severity: 'alta',
@@ -162,9 +166,10 @@ export async function validateAll(
   }
 
   for (const err of punctuationErrors) {
+    const originalText = text.slice(0, 60);
     suggestions.push({
-      originalText: text.slice(0, 60),
-      correctedText: '',
+      originalText,
+      correctedText: originalText,
       explanation: err.message,
       type: 'grammar',
       severity: err.severity,

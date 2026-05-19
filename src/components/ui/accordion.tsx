@@ -72,14 +72,39 @@ const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => {
-  const isOpen = props["data-state" as keyof typeof props] === "open";
+  const [isOpen, setIsOpen] = React.useState(false);
+  const internalRef = React.useRef<React.ElementRef<typeof AccordionPrimitive.Content>>(null);
+
+  const mergedRef = React.useCallback((node: React.ElementRef<typeof AccordionPrimitive.Content> | null) => {
+    internalRef.current = node;
+    if (typeof ref === 'function') ref(node);
+    else if (ref) ref.current = node;
+
+    if (node) {
+      setIsOpen(node.getAttribute('data-state') === 'open');
+    }
+  }, [ref]);
+
+  React.useEffect(() => {
+    const el = internalRef.current;
+    if (!el) return;
+
+    const updateOpenState = () => {
+      setIsOpen(el.getAttribute('data-state') === 'open');
+    };
+
+    const observer = new MutationObserver(updateOpenState);
+    observer.observe(el, { attributes: true, attributeFilter: ['data-state'] });
+
+    return () => observer.disconnect();
+  }, []);
 
   // Fan-fold children
   const childrenArray = React.Children.toArray(children);
 
   return (
     <AccordionPrimitive.Content
-      ref={ref}
+      ref={mergedRef}
       className="overflow-hidden"
       {...props}
     >

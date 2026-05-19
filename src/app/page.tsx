@@ -363,8 +363,12 @@ export default function Home() {
           suggestionType: 'grammar',
           excludedPhrases: [],
         }).then(result => {
-          setGrammarSuggestions(result.suggestions);
-          if (result.suggestions.length > 0) {
+          const withIds = result.suggestions.map((s, i) => ({
+            ...s,
+            id: s.id || `sug-${Date.now()}-${i}`,
+          }));
+          setGrammarSuggestions(withIds);
+          if (withIds.length > 0) {
             setCurrentSuggestionIndex(0);
           }
         }).catch(() => {}).finally(() => {
