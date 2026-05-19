@@ -299,15 +299,34 @@ export function loadResearchFallback(structure: string): string {
 // Build research context string for the prompt
 // ---------------------------------------------------------------------------
 
+const ragCache = new Map<string, { promise: Promise<string>; timestamp: number }>();
+const RAG_CACHE_TTL = 5 * 60 * 1000;
+
+function buildRagCacheKey(opts: RetrievalOptions): string {
+  return `${opts.focus}:${opts.structure}:${opts.tone || ''}:${opts.rhyme || ''}`;
+}
+
 export async function buildResearchContext(
   opts: RetrievalOptions,
 ): Promise<string> {
-  const chunks = await retrieveRelevantChunks(opts);
-
-  if (chunks.length === 0) {
-    if (opts.focus === 'grammar') return '';
-    return loadResearchFallback(opts.structure);
+  const key = buildRagCacheKey(opts);
+  const now = Date.now();
+  const existing = ragCache.get(key);
+  if (existing && (now - existing.timestamp) < RAG_CACHE_TTL) {
+    return existing.promise;
   }
 
-  return extractRelevantContent(chunks, opts.text);
+  const promise = (async () => {
+    const chunks = await retrieveRelevantChunks(opts);
+
+    if (chunks.length === 0) {
+      if (opts.focus === 'grammar') return '';
+      return loadResearchFallback(opts.structure);
+    }
+
+    return extractRelevantContent(chunks, opts.text);
+  })();
+
+  ragCache.set(key, { promise, timestamp: now });
+  return promise;
 }

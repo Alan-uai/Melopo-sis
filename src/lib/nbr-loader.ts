@@ -3,6 +3,8 @@ import { join } from 'node:path';
 
 const NBR_DIR = join(process.cwd(), 'docs', 'nbr');
 
+const memoCache = new Map<string, string>();
+
 const STRUCTURE_FILE_MAP: Record<string, string> = {
   soneto: 'soneto.txt',
   haicai: 'haicai.txt',
@@ -38,21 +40,31 @@ export function loadRhymeRules(): string {
 }
 
 export function loadRawDoc(filename: string): string {
+  const cached = memoCache.get(filename);
+  if (cached !== undefined) return cached;
+
   const filePath = join(NBR_DIR, filename);
   try {
     const content = readFileSync(filePath, 'utf-8');
-    if (content.length > MAX_NBR_LENGTH) {
-      return content.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)';
-    }
-    return content;
+    const result = content.length > MAX_NBR_LENGTH
+      ? content.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)'
+      : content;
+    memoCache.set(filename, result);
+    return result;
   } catch {
+    memoCache.set(filename, '');
     return '';
   }
 }
 
 export function loadNbrRules(structure: string): string {
+  const cacheKey = `nbr:${structure}`;
+  const cached = memoCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+
   const filename = STRUCTURE_FILE_MAP[structure];
   if (!filename) {
+    memoCache.set(cacheKey, '');
     return '';
   }
 
@@ -63,17 +75,23 @@ export function loadNbrRules(structure: string): string {
 
     const relevant = extractRelevantSections(lines);
 
-    if (relevant.length > MAX_NBR_LENGTH) {
-      return relevant.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)';
-    }
+    const result = relevant.length > MAX_NBR_LENGTH
+      ? relevant.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)'
+      : relevant;
 
-    return relevant;
+    memoCache.set(cacheKey, result);
+    return result;
   } catch {
+    memoCache.set(cacheKey, '');
     return '';
   }
 }
 
 export function loadToneRules(tone: string): string {
+  const cacheKey = `tone:${tone}`;
+  const cached = memoCache.get(cacheKey);
+  if (cached !== undefined) return cached;
+
   const filePath = join(NBR_DIR, 'tom.txt');
 
   try {
@@ -108,16 +126,21 @@ export function loadToneRules(tone: string): string {
       }
     }
 
-    if (sectionLines.length === 0) return '';
+    if (sectionLines.length === 0) {
+      memoCache.set(cacheKey, '');
+      return '';
+    }
 
     const result = sectionLines.join('\n').trim();
 
-    if (result.length > MAX_NBR_LENGTH) {
-      return result.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)';
-    }
+    const final = result.length > MAX_NBR_LENGTH
+      ? result.slice(0, MAX_NBR_LENGTH) + '\n# ... (truncado por tamanho)'
+      : result;
 
-    return result;
+    memoCache.set(cacheKey, final);
+    return final;
   } catch {
+    memoCache.set(cacheKey, '');
     return '';
   }
 }

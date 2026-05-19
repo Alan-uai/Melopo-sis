@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useIsMobile } from "@/hooks/use-mobile";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
+import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -54,7 +55,8 @@ type Poem = {
   currentSuggestionIndex?: number | null;
 };
 
-const GRADUAL_DEBOUNCE_MS = 800;
+const LOCAL_DEBOUNCE_MS = 300;
+const AI_DEBOUNCE_MS = 800;
 
 const POEM_STRUCTURES: { value: string; label: string }[] = [
   { value: 'poema', label: 'Poema' },
@@ -106,7 +108,9 @@ export default function Home() {
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
-  const gradualTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const localTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const aiTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const requestIdRef = useRef(0);
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -254,9 +258,11 @@ export default function Home() {
   };
 
   const generateSuggestions = useCallback(async (
-    suggestionType: 'grammar' | 'tone'
+    suggestionType: 'grammar' | 'tone',
+    suppressLoading?: boolean,
   ) => {
-    setIsLoading(true);
+    const requestId = ++requestIdRef.current;
+    if (!suppressLoading) setIsLoading(true);
     try {
       const currentText = text;
       const input: SuggestionInput = {
@@ -270,12 +276,15 @@ export default function Home() {
       };
       const result = await generateContextualSuggestions(input);
 
+      if (requestId !== requestIdRef.current) return;
       if (text !== currentText) {
-        toast({
-          title: "Texto alterado",
-          description: "Você continuou a escrever. As sugestões foram descartadas.",
-        });
-        setIsLoading(false);
+        if (!suppressLoading) {
+          toast({
+            title: "Texto alterado",
+            description: "Você continuou a escrever. As sugestões foram descartadas.",
+          });
+        }
+        if (!suppressLoading) setIsLoading(false);
         return;
       }
 
@@ -294,15 +303,19 @@ export default function Home() {
         setCurrentSuggestionIndex(null);
         if (withIds.length > 0) {
           setCurrentSuggestionIndex(0);
-          toast({
-            title: "Correções Ortográficas Encontradas",
-            description: `Encontramos ${withIds.length} correções.`,
-          });
+          if (!suppressLoading) {
+            toast({
+              title: "Correções Ortográficas Encontradas",
+              description: `Encontramos ${withIds.length} correções.`,
+            });
+          }
         } else {
-          toast({
-            title: "Nenhum Erro Ortográfico",
-            description: "Seu texto parece correto.",
-          });
+          if (!suppressLoading) {
+            toast({
+              title: "Nenhum Erro Ortográfico",
+              description: "Seu texto parece correto.",
+            });
+          }
         }
       } else {
         setToneSuggestions(withIds);
@@ -321,6 +334,7 @@ export default function Home() {
         }
       }
     } catch (error: any) {
+      if (requestId !== requestIdRef.current) return;
       console.error("Failed to generate suggestions:", error);
       toast({
         variant: "destructive",
@@ -328,7 +342,7 @@ export default function Home() {
         description: error.message || "Não foi possível obter sugestões da IA. Verifique sua conexão ou tente novamente mais tarde.",
       });
     } finally {
-        setIsLoading(false);
+      if (!suppressLoading) setIsLoading(false);
     }
   }, [text, tone, textStructure, rhyme, toast, preferredModel]);
 
@@ -364,10 +378,25 @@ export default function Home() {
     resetSuggestions();
 
     if (suggestionMode === 'gradual' && newText.trim().length > 3) {
-      if (gradualTimerRef.current) {
-        clearTimeout(gradualTimerRef.current);
-      }
-      gradualTimerRef.current = setTimeout(() => {
+      if (localTimerRef.current) clearTimeout(localTimerRef.current);
+      if (aiTimerRef.current) clearTimeout(aiTimerRef.current);
+
+      localTimerRef.current = setTimeout(() => {
+        const reqId = ++requestIdRef.current;
+        checkGrammarLocal(newText, textStructure, rhyme).then(localResult => {
+          if (reqId !== requestIdRef.current) return;
+          if (localResult.suggestions.length > 0) {
+            const withIds = localResult.suggestions.map((s, i) => ({
+              ...s,
+              id: s.id || `sug-${Date.now()}-${i}`,
+            }));
+            setGrammarSuggestions(withIds);
+            setCurrentSuggestionIndex(0);
+          }
+        }).catch(() => {});
+      }, LOCAL_DEBOUNCE_MS);
+
+      aiTimerRef.current = setTimeout(() => {
         setIsLoading(true);
         generateContextualSuggestions({
           text: newText,
@@ -393,7 +422,7 @@ export default function Home() {
         }).catch(() => {}).finally(() => {
           setIsLoading(false);
         });
-      }, GRADUAL_DEBOUNCE_MS);
+      }, AI_DEBOUNCE_MS);
     }
   };
 
