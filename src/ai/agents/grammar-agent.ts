@@ -4,7 +4,7 @@ import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, SuggestionOutputSchema, type Suggestion } from '@/ai/types';
 import { tryOpenRouterFallback } from '@/ai/openrouter';
 
-export const GRAMMAR_AGENT_PROMPT = `
+const GRAMMAR_AGENT_PROMPT = `
 Você é um assistente de escrita poética altamente preciso, especializado em português do Brasil e nas normas da ABNT aplicáveis a textos literários. Sua tarefa é analisar o texto poético fornecido e retornar uma lista de correções gramaticais e estruturais.
 
 REGRAS DE LICENÇA POÉTICA:
@@ -93,7 +93,7 @@ IMPORTANTE:
 - Retorne a lista completa de TODOS os erros encontrados.
 `;
 
-export const grammarAgent = ai.definePrompt({
+const grammarAgent = ai.definePrompt({
   name: 'grammarAgent',
   input: { schema: SuggestionInputSchema },
   output: { schema: SuggestionOutputSchema },

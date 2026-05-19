@@ -4,7 +4,7 @@ import { ai, withFallback } from '@/ai/genkit';
 import { SuggestionInputSchema, ToneSuggestionOutputSchema, type Suggestion } from '@/ai/types';
 import { tryOpenRouterFallback } from '@/ai/openrouter';
 
-export const TONE_AGENT_PROMPT = `
+const TONE_AGENT_PROMPT = `
 Você é um especialista em estilo e tom poético para o português do Brasil. O texto a seguir já foi corrigido gramaticalmente.
 
 Sua tarefa é fornecer sugestões de 'tone' (tom e estilo) para tornar o poema mais impactante, alinhado com o tom desejado: "{{tone}}".
@@ -50,7 +50,7 @@ EXEMPLO:
 }
 `;
 
-export const toneAgent = ai.definePrompt({
+const toneAgent = ai.definePrompt({
   name: 'toneAgent',
   input: { schema: SuggestionInputSchema },
   output: { schema: ToneSuggestionOutputSchema },
