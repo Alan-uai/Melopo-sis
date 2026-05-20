@@ -69,6 +69,8 @@ interface EditorProps {
   onAcceptAllLowSeverity?: () => void;
   lowSeverityCount?: number;
   lastAcceptedOrigin?: string | null;
+  isSpellingAnalyzed?: boolean;
+  onToggleSpellingAnalyzed?: () => void;
 }
 
 export interface EditorRef {
@@ -116,6 +118,8 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   onAcceptAllLowSeverity,
   lowSeverityCount,
   lastAcceptedOrigin,
+  isSpellingAnalyzed = false,
+  onToggleSpellingAnalyzed,
 }, ref) => {
   const structures: { value: TextStructure, label: string }[] = [
     { value: 'poema', label: 'Poema' },
@@ -799,6 +803,18 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 animationState === 'correcting' && "[--beam-color:hsl(var(--anim-correct))] [animation-iteration-count:infinite]",
                 isFinishingBeam && "[--beam-color:hsl(var(--anim-finish))]"
             )}/>
+          </div>
+
+          <div className="absolute right-3 top-3 z-20">
+            <button
+              type="button"
+              onDoubleClick={onToggleSpellingAnalyzed}
+              className="h-6 w-6 rounded-full border text-xs font-semibold flex items-center justify-center bg-background/80 text-foreground border-border"
+              title={isSpellingAnalyzed ? "Análise ortográfica concluída (duplo clique para marcar como pendente)" : "Análise ortográfica pendente (duplo clique para marcar como concluída)"}
+              aria-label={isSpellingAnalyzed ? "Análise ortográfica concluída" : "Análise ortográfica pendente"}
+            >
+              {isSpellingAnalyzed ? '✓' : 'x'}
+            </button>
           </div>
 
           <div className="flex flex-col flex-1">

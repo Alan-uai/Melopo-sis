@@ -137,6 +137,15 @@ function checkMonosyllables(tokens: { word: string; position: number }[]): Accen
   return errors;
 }
 
+
+const KNOWN_PROPAROXYTONES_NEEDING_ACCENT: Record<string, string> = {
+  medico: 'médico',
+  musica: 'música',
+  lampada: 'lâmpada',
+  arvore: 'árvore',
+  publico: 'público',
+};
+
 const KNOWN_OXYTONES_NEEDING_ACCENT: Record<string, string> = {
   'voce': 'você',
   'cafe': 'café',
@@ -270,11 +279,13 @@ function checkProparoxytone(tokens: { word: string; position: number }[]): Accen
     if (lower.length <= 3) continue;
     if (hasAccent(word)) continue;
     if (WORDS_WITH_WRONG_ACCENT_COMMON[lower]) continue;
-    if (isProparoxytone(lower)) {
+
+    const expected = KNOWN_PROPAROXYTONES_NEEDING_ACCENT[lower];
+    if (expected) {
       errors.push({
         word,
         position,
-        expected: addAccentProparoxytone(word),
+        expected,
         message: `Toda proparoxítona leva acento: "${word}"`,
       });
     }

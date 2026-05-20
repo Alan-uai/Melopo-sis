@@ -23,6 +23,19 @@ describe('accent-validator', () => {
     const result = validateAccents('saude');
     expect(result.errors.length).toBeGreaterThanOrEqual(0);
   });
+
+  it('does not split enclitic verb forms with hyphen', () => {
+    const result = validateAccents('Quero provocá-la agora.');
+    const hasWrongSuggestion = result.errors.some(e => e.expected.toLowerCase() === 'provocá-lá' || e.word.toLowerCase() === 'la');
+    expect(hasWrongSuggestion).toBe(false);
+  });
+
+  it('does not classify "provoca" as proparoxytone', () => {
+    const result = validateAccents('Ele provoca confusão.');
+    const hasWrongSuggestion = result.errors.some(e => e.expected.toLowerCase() === 'próvoca');
+    expect(hasWrongSuggestion).toBe(false);
+  });
+
 });
 
 describe('crase validator', () => {
