@@ -1,7 +1,7 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['singularity-tagger', 'espells', 'dictionary-pt'],
+  serverExternalPackages: ['espells', 'dictionary-pt'],
   typescript: {
     ignoreBuildErrors: true,
   },
@@ -32,15 +32,6 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: [
     'https://*.cluster-fsmcisrvfbb5cr5mvra3hr3qyg.cloudworkstations.dev',
   ],
-  outputFileTracingIncludes: {
-    '/*': [
-      './node_modules/singularity-tagger/model/corpus_data/original_corpus/**',
-      './node_modules/singularity-tagger/model/corpus_data/normalized_corpus/**',
-      './node_modules/singularity-tagger/model/corpus_data/tagset/**',
-      './node_modules/singularity-tagger/model/corpus_data/word_dictionary/**',
-      './node_modules/singularity-tagger/model/corpus_data/matrix/**',
-    ],
-  },
 };
 
 export default nextConfig;
