@@ -6,8 +6,6 @@
     "dev": "next dev --turbopack -p 9002",
     "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
     "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
-    "build:worker": "tsx scripts/build-worker.ts",
-    "prebuild": "tsx scripts/build-bloom.ts && npm run build:worker",
     "build": "NODE_ENV=production next build",
     "start": "next start -p 9002",
     "lint": "echo 'Linting: install eslint and configure it. next lint was removed in v16.'",
