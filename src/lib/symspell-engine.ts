@@ -1,5 +1,5 @@
 import { SymSpell, Verbosity, DistanceAlgorithm } from 'symspell-ts';
-import { getWordSet } from './dictionary';
+import { getAllWords } from './dictionary';
 import { keyboardWeightedDistance } from './keyboard-layout';
 
 let engine: SymSpell | null = null;
@@ -11,7 +11,7 @@ function initEngine(): Promise<SymSpell> {
 
   engineInitPromise = (async () => {
     const s = new SymSpell(DistanceAlgorithm.DamerauOSA, 3, 7, 0);
-    const words = await getWordSet();
+    const words = await getAllWords();
 
     for (const w of words) {
       s.createDictionaryEntry(w, 1);
