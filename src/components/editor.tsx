@@ -28,8 +28,7 @@ import {
 import { Label } from "./ui/label";
 import { SuggestionPopover } from "./suggestion-popover";
 import type { Suggestion, SuggestionMode, TextStructure } from "@/ai/types";
-import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, useState, useEffect } from "react";
-import { Textarea } from "./ui/textarea";
+import React, { useMemo, useRef, useImperativeHandle, forwardRef, useCallback, useState, useEffect, useLayoutEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -133,17 +132,19 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     { value: 'ode', label: 'Ode' },
     { value: 'verso-livre', label: 'Verso Livre' },
   ];
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const highlightsRef = useRef<HTMLDivElement>(null);
-  const quillContainerRef = useRef<HTMLDivElement>(null);
+  const contentEditableRef = useRef<HTMLDivElement>(null);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
+  const isUpdatingRef = useRef(false);
+  const isComposingRef = useRef(false);
+  const [highlightAnchorStyle, setHighlightAnchorStyle] = useState<{ top: number; left: number; width: number; height: number } | null>(null);
 
   const [quillPos, setQuillPos] = useState<{ top: number; left: number } | null>(null);
   const [quillText, setQuillText] = useState<string | null>(null);
   const prevAcceptedOriginRef = useRef<string | null>(null);
 
   useEffect(() => {
-    if (lastAcceptedOrigin && lastAcceptedOrigin !== prevAcceptedOriginRef.current && textareaRef.current) {
-      const ta = textareaRef.current;
+    if (lastAcceptedOrigin && lastAcceptedOrigin !== prevAcceptedOriginRef.current && contentEditableRef.current) {
+      const ta = contentEditableRef.current;
       const idx = text.indexOf(lastAcceptedOrigin);
       if (idx !== -1) {
         const textBefore = text.substring(0, idx);
@@ -225,10 +226,19 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
 
   useImperativeHandle(ref, () => ({
     focus: () => {
-      textareaRef.current?.focus();
+      contentEditableRef.current?.focus();
     },
     getCursorPosition: () => {
-      return textareaRef.current?.selectionStart ?? null;
+      const div = contentEditableRef.current;
+      if (!div) return null;
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return null;
+      const range = sel.getRangeAt(0);
+      if (!div.contains(range.commonAncestorContainer)) return null;
+      const preRange = document.createRange();
+      preRange.selectNodeContents(div);
+      preRange.setEnd(range.startContainer, range.startOffset);
+      return preRange.toString().length;
     },
     getCurrentLine: (text: string, cursorPosition: number | null) => {
       if (cursorPosition === null) return "";
@@ -243,28 +253,127 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   }));
 
-  const syncScroll = useCallback(() => {
-    if (textareaRef.current && highlightsRef.current) {
-      highlightsRef.current.scrollTop = textareaRef.current.scrollTop;
-      highlightsRef.current.scrollLeft = textareaRef.current.scrollLeft;
+  const extractPlainText = useCallback((div: HTMLDivElement): string => {
+    const lines: string[] = [];
+    for (const child of div.childNodes) {
+      if (child.nodeType === Node.ELEMENT_NODE) {
+        const el = child as HTMLElement;
+        if (el.tagName === 'DIV') {
+          lines.push(getEditableText(el));
+        } else if (el.tagName === 'BR') {
+          lines.push('');
+        }
+      } else if (child.nodeType === Node.TEXT_NODE) {
+        const t = (child.textContent || '').trim();
+        if (t) lines.push(t);
+      }
     }
+    return lines.join('\n');
   }, []);
 
-  useEffect(() => {
-    syncScroll();
-  }, [text, syncScroll]);
+  const getEditableText = (el: HTMLElement): string => {
+    let result = '';
+    for (const child of el.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        result += child.textContent;
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        const childEl = child as HTMLElement;
+        if (childEl.getAttribute('contenteditable') !== 'false') {
+          result += getEditableText(childEl);
+        }
+      }
+    }
+    return result;
+  };
 
-  const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    onTextChange(e.target.value);
-    if(animationState !== 'idle') {
+  const saveCursorPosition = (root: Node): number | null => {
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return null;
+    const range = sel.getRangeAt(0);
+    if (!root.contains(range.commonAncestorContainer)) return null;
+    const preRange = document.createRange();
+    preRange.selectNodeContents(root);
+    preRange.setEnd(range.startContainer, range.startOffset);
+    return preRange.toString().length;
+  };
+
+  const restoreCursorPosition = (root: Node, offset: number): void => {
+    const sel = window.getSelection();
+    if (!sel) return;
+    let charCount = 0;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+    while (walker.nextNode()) {
+      const node = walker.currentNode as Text;
+      const nodeLen = node.textContent?.length || 0;
+      if (charCount + nodeLen >= offset) {
+        const range = document.createRange();
+        range.setStart(node, Math.min(offset - charCount, nodeLen));
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        return;
+      }
+      charCount += nodeLen;
+    }
+  };
+
+  const handleEditorInput = (e: React.FormEvent<HTMLDivElement>) => {
+    if (isUpdatingRef.current) return;
+    if (isComposingRef.current) return;
+    const div = e.currentTarget;
+    const plainText = extractPlainText(div);
+    if (plainText !== text) {
+      onTextChange(plainText);
+    }
+    if (animationState !== 'idle') {
       setAnimationState('idle');
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleEditorKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      const sel = window.getSelection();
+      if (!sel || !sel.rangeCount) return;
+      const range = sel.getRangeAt(0);
+      range.deleteContents();
+      const br = document.createElement('br');
+      range.insertNode(br);
+      range.setStartAfter(br);
+      range.collapse(true);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData('text/plain');
+    const sel = window.getSelection();
+    if (!sel || !sel.rangeCount) return;
+    const range = sel.getRangeAt(0);
+    range.deleteContents();
+    const textNode = document.createTextNode(text);
+    range.insertNode(textNode);
+    range.setStartAfter(textNode);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  };
+
+  const handleCompositionStart = () => {
+    isComposingRef.current = true;
+  };
+
+  const handleCompositionEnd = (e: React.CompositionEvent<HTMLDivElement>) => {
+    isComposingRef.current = false;
+    handleEditorInput(e as unknown as React.FormEvent<HTMLDivElement>);
+  };
+
+  const handleTitleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      textareaRef.current?.focus();
+      contentEditableRef.current?.focus();
     }
   };
 
@@ -272,7 +381,10 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     'soneto', 'haicai', 'cordel', 'redondilha', 'decassilabo', 'trova', 'oitava', 'decima'
   ]);
 
-  const editorContent = useMemo(() => {
+  const htmlEscape = (s: string): string =>
+    s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+  const styledHtml = useMemo(() => {
     const hasFixedMetric = fixedMetricStructures.has(textStructure);
 
     const RHYME_COLORS = [
@@ -295,106 +407,81 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
       return RHYME_COLORS[idx % RHYME_COLORS.length];
     };
 
-    const renderSegment = (
-      segment: string, prefix: string, startLineIdx: number
-    ): { nodes: (string | React.ReactNode)[]; nextLine: number } => {
-      if (!segment) return { nodes: [], nextLine: startLineIdx };
-      const lines = segment.split('\n');
-      const nodes: (string | React.ReactNode)[] = [];
-      lines.forEach((line, j) => {
-        const lineIdx = startLineIdx + j;
-        if (j > 0) nodes.push('\n');
+    const renderLine = (line: string, lineIdx: number): string => {
+      const escaped = htmlEscape(line);
+      const rhymeColor = getRhymeColor(lineIdx);
 
-        const lineContent: React.ReactNode[] = [];
-
-        const rhymeColor = getRhymeColor(lineIdx);
-        if (rhymeColor && line.trim()) {
-          const rMatch = line.match(/^(.*\s)([\wáàâãéèêíïóôõöúçñü-]+)([^\w]*)$/u);
-          if (rMatch) {
-            lineContent.push(rMatch[1]);
-            lineContent.push(<span key={`rw-${prefix}-${j}`} style={{ color: rhymeColor }}>{rMatch[2]}</span>);
-            lineContent.push(rMatch[3]);
-          } else {
-            lineContent.push(line || '\u200B');
-          }
-        } else {
-          lineContent.push(line || '\u200B');
+      let inner = escaped || '\u200B';
+      if (rhymeColor && line.trim()) {
+        const rMatch = line.match(/^(.*\s)([\wáàâãéèêíïóôõöúçñü-]+)([^\w]*)$/u);
+        if (rMatch) {
+          inner = htmlEscape(rMatch[1]) +
+            `<span style="color:${rhymeColor}">${htmlEscape(rMatch[2])}</span>` +
+            htmlEscape(rMatch[3]);
         }
+      }
 
-        if (hasFixedMetric && line.trim()) {
-          nodes.push(
-            <span key={`wrapper-${prefix}-${j}`} className="relative">
-              <span>{lineContent}</span>
-              <span key={`syl-${prefix}-${j}`} className="absolute right-1 top-0 text-muted-foreground/60 text-xs font-mono select-none">
-                [{countPoeticSyllables(line)}]
-              </span>
-            </span>
-          );
-        } else {
-          nodes.push(
-            <span key={`wrapper-${prefix}-${j}`}>
-              {lineContent}
-            </span>
-          );
-        }
-      });
-      return { nodes, nextLine: startLineIdx + lines.length };
+      if (hasFixedMetric && line.trim()) {
+        const sylCount = countPoeticSyllables(line);
+        return `<div style="position:relative;"><span>${inner}</span><span contenteditable="false" style="position:absolute;right:4px;top:0;color:hsl(var(--muted-foreground)/0.6);font-size:0.75rem;font-family:monospace;pointer-events:none;-webkit-user-select:none;user-select:none;">[${sylCount}]</span></div>`;
+      }
+
+      return `<div><span>${inner}</span></div>`;
     };
 
+    if (!text) {
+      return '<div><span>\u200B</span></div>';
+    }
+
     if (!activeGrammarSuggestion) {
-      if (!text) return '\u200B';
-      return renderSegment(text, 'syl', 0).nodes;
+      const lines = text.split('\n');
+      return lines.map((line, i) => renderLine(line, i)).join('');
     }
 
-    const parts: (string | React.ReactNode)[] = [];
-    const textToProcess = text;
-    let currentLine = 0;
-    const { originalText } = activeGrammarSuggestion;
-
-    const startIndex = textToProcess.indexOf(originalText);
-
-    if (startIndex !== -1) {
-      if (startIndex > 0) {
-        const before = textToProcess.substring(0, startIndex);
-        const r = renderSegment(before, 'bef', currentLine);
-        parts.push(...r.nodes);
-        currentLine = r.nextLine;
-      }
-
-      parts.push(
-        <PopoverAnchor key={`anchor-${startIndex}`} className="relative">
-          <span className="bg-destructive/30 ring-2 ring-destructive/50 rounded-sm underline decoration-destructive decoration-wavy underline-offset-2 cursor-pointer">
-            {originalText.replace(/\n/g, '\n\u200B')}
-          </span>
-        </PopoverAnchor>
-      );
-
-      const highlightLines = originalText.split('\n');
-      if (hasFixedMetric) {
-        const hlFirstLine = highlightLines[0];
-        if (hlFirstLine.trim()) {
-          parts.push(
-            <span key={`syl-h-${startIndex}`} className="ml-2 text-muted-foreground/60 text-xs font-mono select-none">
-              [{countPoeticSyllables(hlFirstLine)}]
-            </span>
-          );
-        }
-      }
-      currentLine += highlightLines.length;
-
-      const afterIndex = startIndex + originalText.length;
-      if (afterIndex < textToProcess.length) {
-        const after = textToProcess.substring(afterIndex);
-        const r = renderSegment(after, 'aft', currentLine);
-        parts.push(...r.nodes);
-      }
+    const startIndex = text.indexOf(activeGrammarSuggestion.originalText);
+    if (startIndex === -1) {
+      const lines = text.split('\n');
+      return lines.map((line, i) => renderLine(line, i)).join('');
     }
 
-    if (textToProcess === "") {
-      return '\u200B';
+    const before = text.substring(0, startIndex);
+    const highlighted = activeGrammarSuggestion.originalText;
+    const after = text.substring(startIndex + highlighted.length);
+
+    const beforeLines = before ? before.split('\n') : [];
+    const highlightLines = highlighted.split('\n');
+    const afterLines = after ? after.split('\n') : [];
+
+    let html = '';
+    let lineIdx = 0;
+
+    for (const line of beforeLines) {
+      html += (line === '' && beforeLines.length === 1)
+        ? `<div><span>\u200B</span></div>`
+        : renderLine(line, lineIdx);
+      if (line !== '') lineIdx++;
     }
 
-    return parts.map((part, i) => <React.Fragment key={i}>{part}</React.Fragment>);
+    const firstHighlightLine = highlightLines[0] || '';
+    html += `<div><span class="grammar-highlight" style="background:hsl(var(--destructive)/0.3);box-shadow:0 0 0 2px hsl(var(--destructive)/0.5);border-radius:0.125rem;text-decoration:underline;text-decoration-color:hsl(var(--destructive));text-decoration-style:wavy;text-underline-offset:2px;">${htmlEscape(firstHighlightLine)}</span></div>`;
+    lineIdx++;
+
+    if (hasFixedMetric && firstHighlightLine.trim()) {
+      const sylCount = countPoeticSyllables(firstHighlightLine);
+      html += `<span contenteditable="false" style="margin-left:0.5rem;color:hsl(var(--muted-foreground)/0.6);font-size:0.75rem;font-family:monospace;-webkit-user-select:none;user-select:none;">[${sylCount}]</span>`;
+    }
+
+    for (let i = 1; i < highlightLines.length; i++) {
+      const hlLine = highlightLines[i] || '\u200B';
+      html += `<div><span class="grammar-highlight" style="background:hsl(var(--destructive)/0.3);box-shadow:0 0 0 2px hsl(var(--destructive)/0.5);border-radius:0.125rem;text-decoration:underline;text-decoration-color:hsl(var(--destructive));text-decoration-style:wavy;text-underline-offset:2px;">${htmlEscape(hlLine)}</span></div>`;
+    }
+
+    for (const line of afterLines) {
+      html += renderLine(line, lineIdx);
+      if (line !== '') lineIdx++;
+    }
+
+    return html;
   }, [text, activeGrammarSuggestion, textStructure, rhyme]);
 
   const isAnimationActive = animationState !== 'idle';
@@ -402,6 +489,38 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   const isFinishingPulse = animationState === 'finishing' && animationStage === 'pulse';
 
   const hasText = text.trim().length > 0;
+
+  useLayoutEffect(() => {
+    const div = contentEditableRef.current;
+    if (!div) return;
+
+    const currentHtml = styledHtml;
+    if (div.innerHTML !== currentHtml) {
+      isUpdatingRef.current = true;
+      const cursorOffset = saveCursorPosition(div);
+      div.innerHTML = currentHtml;
+      if (cursorOffset !== null) {
+        restoreCursorPosition(div, cursorOffset);
+      }
+      isUpdatingRef.current = false;
+    }
+
+    if (activeGrammarSuggestion) {
+      const highlighted = div.querySelector('.grammar-highlight') as HTMLElement | null;
+      if (highlighted && editorContainerRef.current) {
+        const rect = highlighted.getBoundingClientRect();
+        const containerRect = editorContainerRef.current.getBoundingClientRect();
+        setHighlightAnchorStyle({
+          top: rect.top - containerRect.top,
+          left: rect.left - containerRect.left,
+          width: rect.width,
+          height: rect.height,
+        });
+      }
+    } else {
+      setHighlightAnchorStyle(null);
+    }
+  }, [styledHtml, activeGrammarSuggestion]);
 
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
@@ -688,14 +807,14 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                 type="text"
                 value={title}
                 onChange={(e) => onTitleChange(e.target.value)}
-                onKeyDown={handleKeyDown}
+                onKeyDown={handleTitleKeyDown}
                 placeholder="Título do poema..."
                 className="w-full bg-transparent font-headline text-xl font-semibold leading-tight text-foreground placeholder:text-muted-foreground/50 outline-none border-none"
               />
             </div>
 
             <Popover open={!!activeGrammarSuggestion} onOpenChange={() => {}}>
-              <div className="relative grid flex-1" ref={quillContainerRef}>
+              <div className="relative flex-1 min-h-[200px] sm:min-h-[300px]" ref={editorContainerRef}>
                   {quillPos && quillText && (
                     <div
                       className="absolute pointer-events-none z-40"
@@ -704,32 +823,43 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                       <QuillPen width={80} height={24} color="hsl(var(--accent))" />
                     </div>
                   )}
-                  <Textarea
-                      ref={textareaRef}
-                      value={text}
-                      onChange={handleTextareaChange}
-                      onScroll={syncScroll}
-                      placeholder="Escreva seu poema aqui..."
-                      className="col-start-1 row-start-1 w-full resize-none overflow-auto scrollbar-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0 min-h-[200px] sm:min-h-[300px] sm:pb-16"
-                      aria-label="Editor de Poesia"
-                  />
-                  <div
-                      ref={highlightsRef}
-                      className="pointer-events-none col-start-1 row-start-1 w-full overflow-hidden whitespace-pre-wrap rounded-md bg-transparent p-4 font-body text-base leading-relaxed text-foreground h-full"
-                      aria-hidden="true"
-                  >
-                      {editorContent}
-                  </div>
-              </div>
 
-              {activeGrammarSuggestion && (
-                <SuggestionPopover
-                  suggestion={activeGrammarSuggestion}
-                  onAccept={() => onAccept(activeGrammarSuggestion)}
-                  onDismiss={() => onDismiss(activeGrammarSuggestion)}
-                  onResuggest={() => onResuggest(activeGrammarSuggestion)}
-                />
-              )}
+                  <div
+                    ref={contentEditableRef}
+                    contentEditable
+                    suppressContentEditableWarning
+                    role="textbox"
+                    aria-multiline="true"
+                    aria-label="Editor de Poesia"
+                    className="w-full h-full p-4 font-body text-base leading-relaxed text-foreground caret-foreground selection:bg-primary/20 focus-visible:outline-none whitespace-pre-wrap overflow-auto scrollbar-none"
+                    onInput={handleEditorInput}
+                    onKeyDown={handleEditorKeyDown}
+                    onPaste={handlePaste}
+                    onCompositionStart={handleCompositionStart}
+                    onCompositionEnd={handleCompositionEnd}
+                  />
+
+                  {activeGrammarSuggestion && highlightAnchorStyle && (
+                    <PopoverAnchor asChild>
+                      <span
+                        style={{
+                          position: 'absolute',
+                          pointerEvents: 'none',
+                          ...highlightAnchorStyle,
+                        }}
+                      />
+                    </PopoverAnchor>
+                  )}
+
+                  {activeGrammarSuggestion && (
+                    <SuggestionPopover
+                      suggestion={activeGrammarSuggestion}
+                      onAccept={() => onAccept(activeGrammarSuggestion)}
+                      onDismiss={() => onDismiss(activeGrammarSuggestion)}
+                      onResuggest={() => onResuggest(activeGrammarSuggestion)}
+                    />
+                  )}
+              </div>
             </Popover>
           </div>
         </div>
