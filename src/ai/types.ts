@@ -8,7 +8,10 @@ export const SuggestionSchema = z.object({
   type: z.enum(['grammar', 'tone']).describe("O tipo de sugestão: 'grammar' para erros e 'tone' para melhorias de estilo."),
   severity: z.enum(['alta', 'media', 'baixa']).optional().describe("Nível de severidade: 'alta' para erros graves, 'media' para correções recomendadas, 'baixa' para sugestões opcionais."),
   context: z.string().optional().describe('O verso completo ou contexto onde o erro foi encontrado.'),
-  alternatives: z.array(z.string()).optional().describe('Múltiplas alternativas de correção, quando aplicável.'),
+  alternatives: z.array(z.object({
+    text: z.string().describe('Texto da alternativa.'),
+    explanation: z.string().describe('Explicação específica para esta alternativa.'),
+  })).optional().describe('Múltiplas alternativas de correção com suas respectivas explicações.'),
 });
 export type Suggestion = z.infer<typeof SuggestionSchema>;
 

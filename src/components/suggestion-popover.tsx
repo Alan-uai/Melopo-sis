@@ -63,7 +63,7 @@ export function SuggestionPopover({
               <ul className="text-xs space-y-0.5">
                 {suggestion.alternatives.slice(1).map((alt, i) => (
                   <li key={i} className="border-l-2 border-muted-foreground/20 pl-2 italic">
-                    {alt}
+                    {alt.text}
                   </li>
                 ))}
               </ul>

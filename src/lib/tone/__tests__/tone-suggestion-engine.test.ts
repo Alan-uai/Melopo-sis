@@ -69,10 +69,10 @@ describe('tone-suggestion-engine', () => {
       { originalText: 'verso um', correctedText: 'verso um', explanation: 'x', type: 'tone', severity: 'media' },
     ];
     const ai: Suggestion[] = [
-      { originalText: 'verso um', correctedText: 'verso corrigido', explanation: 'y', type: 'tone', alternatives: ['alt1', 'alt2'] },
+      { originalText: 'verso um', correctedText: 'verso corrigido', explanation: 'y', type: 'tone', alternatives: [{ text: 'alt1', explanation: 'exp1' }, { text: 'alt2', explanation: 'exp2' }] },
     ];
     const merged = mergeSuggestions(local, ai);
     expect(merged[0].correctedText).toBe('verso corrigido');
-    expect(merged[0].alternatives).toEqual(['alt1', 'alt2']);
+    expect(merged[0].alternatives).toEqual([{ text: 'alt1', explanation: 'exp1' }, { text: 'alt2', explanation: 'exp2' }]);
   });
 });

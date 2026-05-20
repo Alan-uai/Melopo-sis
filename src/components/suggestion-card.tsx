@@ -211,7 +211,7 @@ export function SuggestionCard({
                 <p className="text-xs text-muted-foreground">Alternativas:</p>
                 <ul className="text-xs space-y-0.5">
                   {suggestion.alternatives.map((alt, i) => {
-                    const wasSwapped = isSwapActive && lastCorrectedRef.current === alt;
+                    const wasSwapped = isSwapActive && lastCorrectedRef.current === alt.text;
                     return (
                       <li key={`alt-${i}`}>
                         <motion.button
@@ -220,7 +220,7 @@ export function SuggestionCard({
                           whileTap={{ scale: 0.97 }}
                           className="w-full text-left border-l-2 border-muted-foreground/20 pl-2 italic text-xs transition-all hover:border-accent hover:bg-accent/10 rounded-sm py-0.5"
                         >
-                          {alt}
+                          {alt.text}
                         </motion.button>
                       </li>
                     );

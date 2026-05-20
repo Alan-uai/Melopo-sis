@@ -711,14 +711,22 @@ export default function Home() {
     if (!swapId) return;
 
     const oldCorrectedText = suggestionToSwap.correctedText;
-    const newCorrectedText = alternatives[alternativeIndex];
+    const newCorrectedText = alternatives[alternativeIndex].text;
+    const oldExplanation = suggestionToSwap.explanation;
+    const newExplanation = alternatives[alternativeIndex].explanation;
 
-    setToneSuggestions(current => current.map(s => {
+    const updater = (s: Suggestion) => {
       if (s.id !== swapId) return s;
       const newAlternatives = [...(s.alternatives || [])];
-      newAlternatives[alternativeIndex] = oldCorrectedText;
-      return { ...s, correctedText: newCorrectedText, alternatives: newAlternatives };
-    }));
+      newAlternatives[alternativeIndex] = { text: oldCorrectedText, explanation: oldExplanation };
+      return { ...s, correctedText: newCorrectedText, explanation: newExplanation, alternatives: newAlternatives };
+    };
+
+    if (suggestionToSwap.type === 'grammar') {
+      setGrammarSuggestions(prev => prev.map(updater));
+    } else {
+      setToneSuggestions(prev => prev.map(updater));
+    }
   }, []);
 
   const handleUndoAppliedTone = useCallback((suggestionToUndo: Suggestion) => {

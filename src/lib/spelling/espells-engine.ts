@@ -35,3 +35,19 @@ export async function getHunspellSuggestions(word: string, max = 8): Promise<str
   const e = await initEngine();
   return e.suggest(word, max);
 }
+
+export async function getHunspellStems(word: string): Promise<string[]> {
+  const e = await initEngine();
+  return Array.from(e.stems(word, false));
+}
+
+export async function getHunspellData(word: string): Promise<Map<string, Set<string>>> {
+  const e = await initEngine();
+  const merged = new Map<string, Set<string>>();
+  const results = Array.from(e.data(word, false));
+  for (const [key, vals] of results) {
+    if (!merged.has(key)) merged.set(key, new Set());
+    for (const v of vals) merged.get(key)!.add(v);
+  }
+  return merged;
+}

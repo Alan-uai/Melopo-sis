@@ -63,7 +63,7 @@ ETAPA 3: COMPILAÇÃO DA LISTA DE ERROS.
   * explanation: explicação clara referenciando a regra (ex: "Erro de acentuação: 'poesia' não leva acento"; "Confusão entre 'mas' e 'mais': 'mas' é conjunção adversativa")
   * context: o verso completo onde o erro aparece
   * severity: 'alta' para erros graves (ortografia, concordância), 'media' para correções recomendadas (pontuação, crase), 'baixa' para sugestões opcionais (estilo, ênfase)
-  * alternatives: lista de alternativas de correção quando houver mais de uma opção válida
+   * alternatives: lista de objetos { text, explanation } com alternativas de correção, cada uma com sua própria explicação. Obrigatório quando houver mais de uma opção válida.
 - Se 'rhyme' for verdadeiro, certifique-se de que suas correções mantenham ou melhorem a rima.
 - Se houver palavras em excludedPhrases, ignore-as completamente.
 - Se NENHUM erro for encontrado, retorne array vazio.
@@ -76,7 +76,9 @@ EXEMPLOS DE RESPOSTA CORRETA:
     "explanation": "Confusão entre 'mas' e 'mais'. 'Mas' é conjunção adversativa (porém). 'Mais' indica quantidade. Como há oposição de ideias, o correto é 'mas'.",
     "severity": "alta",
     "context": "Mais eu queria dizer o que sentia",
-    "alternatives": []
+    "alternatives": [
+      { "text": "Eu, mas, queria", "explanation": "Inversão enfática com vírgulas mantendo a correção gramatical." }
+    ]
   },
   {
     "originalText": "A muito tempo",

@@ -20,7 +20,7 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
       type: 'grammar',
       severity: 'alta',
       context: text.slice(Math.max(0, err.position - 30), err.position + 30),
-      alternatives: [err.expected],
+      alternatives: [{ text: err.expected, explanation: err.message }],
     });
   }
 
@@ -33,7 +33,7 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
       type: 'grammar',
       severity: 'alta',
       context: text.slice(Math.max(0, err.position - 30), err.position + 30),
-      alternatives: [err.expected],
+      alternatives: [{ text: err.expected, explanation: err.message }],
     });
   }
 
@@ -46,7 +46,7 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
       type: 'grammar',
       severity: 'media',
       context: text.slice(Math.max(0, err.position - 30), err.position + 30),
-      alternatives: [err.expected],
+      alternatives: [{ text: err.expected, explanation: err.message }],
     });
   }
 
@@ -59,7 +59,7 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
       type: 'grammar',
       severity: 'alta',
       context: text.slice(Math.max(0, err.position - 30), err.position + 30),
-      alternatives: [err.expected],
+      alternatives: [{ text: err.expected, explanation: err.message }],
     });
   }
 

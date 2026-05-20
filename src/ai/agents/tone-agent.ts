@@ -16,7 +16,7 @@ O texto a ser analisado é:
 
  REGRAS:
 - Para cada sugestão, forneça o trecho original, uma alternativa estilística, e explique o motivo da mudança.
-- Forneça EXATAMENTE 2-3 alternativas no campo "alternatives" para CADA sugestão. Este campo é obrigatório.
+- Forneça EXATAMENTE 2-3 alternativas no campo "alternatives" para CADA sugestão. Cada alternativa deve ser um objeto com "text" (texto alternativo) e "explanation" (explicação específica para aquela alternativa). Este campo é obrigatório.
 - A justificativa deve ser estilística/literária, não gramatical.
 - Se nenhum aprimoramento de tom for necessário, retorne array vazio.
 - Mantenha a métrica e a rima se o poema as utilizar. Rima ativada: {{rhyme}}. Se "true", TODAS as suas sugestões DEVEM preservar ou incorporar rimas consistentes.
@@ -44,8 +44,8 @@ EXEMPLO:
   "explanation": "Substituir 'caiu' por 'despencou' e 'escura' por 'oberta' (forma poética de 'aberta') intensifica a imagem visual e o tom melancólico. A inversão sintática ('Despencou a noite...') confere maior poeticidade.",
   "severity": "baixa",
   "alternatives": [
-    "A noite overta desabou silente",
-    "Caiu a noite, escura e overta"
+    { "text": "A noite overta desabou silente", "explanation": "Esta versão enfatiza o silêncio e a queda abrupta, intensificando a solidão do cenário." },
+    { "text": "Caiu a noite, escura e overta", "explanation": "Mantém a estrutura original mas substitui os adjetivos por formas mais poéticas ('escura' → 'oberta'), preservando a métrica." }
   ]
 }
 `;

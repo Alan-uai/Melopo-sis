@@ -45,7 +45,7 @@ export async function validateAll(
       type: 'grammar',
       severity: 'alta',
       context: contextLine,
-      alternatives: err.suggestions,
+      alternatives: err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` })),
     });
   }
 
