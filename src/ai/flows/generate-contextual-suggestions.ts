@@ -10,6 +10,10 @@ import { globalCache } from '@/lib/suggestion-cache';
 import { runGrammarAgent, runToneAgent } from '@/ai/agents';
 import { analyzeToneLocally, mergeSuggestions } from '@/lib/tone/tone-suggestion-engine';
 
+export async function isAiMode(): Promise<boolean> {
+  return !!process.env.AI;
+}
+
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
 }
@@ -78,15 +82,15 @@ const suggestionFlow = ai.defineFlow(
     };
 
     if (input.suggestionType === 'tone') {
-      const localResult = await analyzeToneLocally(
-        input.text,
-        input.tone,
-        input.structure,
-      );
+      let localResult: Awaited<ReturnType<typeof analyzeToneLocally>> | null = null;
 
-      if (localResult.action === 'local') {
-        globalCache.store(changed, cacheParams, localResult.suggestions);
-        return { suggestions: localResult.suggestions };
+      if (!process.env.AI) {
+        localResult = await analyzeToneLocally(input.text, input.tone, input.structure);
+
+        if (localResult.action === 'local') {
+          globalCache.store(changed, cacheParams, localResult.suggestions);
+          return { suggestions: localResult.suggestions };
+        }
       }
 
       const researchRules = input.researchRules || await buildResearchContext({
@@ -99,12 +103,12 @@ const suggestionFlow = ai.defineFlow(
 
       const toneInput = {
         ...baseInput, researchRules,
-        ...(localResult.analysis ? { localToneAnalysis: JSON.stringify(localResult.analysis) } : {}),
+        ...(localResult?.analysis ? { localToneAnalysis: JSON.stringify(localResult.analysis) } : {}),
       };
 
       const { suggestions, modelUsed } = await runToneAgent(input.text, toneInput, preferredModel);
 
-      if (localResult.action === 'hybrid') {
+      if (localResult?.action === 'hybrid') {
         const merged = mergeSuggestions(localResult.suggestions, suggestions);
         globalCache.store(changed, cacheParams, merged);
         return { suggestions: merged, modelUsed };
@@ -119,20 +123,24 @@ const suggestionFlow = ai.defineFlow(
       return { suggestions: newSuggestions, modelUsed };
     }
 
-    const localResult = await validateAll(
-      input.text,
-      input.structure as TextStructure,
-      input.rhyme,
-    );
+    let localNew: Suggestion[] = [];
 
-    const localNew = filterSuggestionsForSegments(
-      localResult.suggestions,
-      changed.map(s => s.text),
-    );
+    if (!process.env.AI) {
+      const localResult = await validateAll(
+        input.text,
+        input.structure as TextStructure,
+        input.rhyme,
+      );
 
-    if (localNew.length > 0) {
-      globalCache.store(changed, cacheParams, localNew);
-      return { suggestions: localNew };
+      localNew = filterSuggestionsForSegments(
+        localResult.suggestions,
+        changed.map(s => s.text),
+      );
+
+      if (localNew.length > 0) {
+        globalCache.store(changed, cacheParams, localNew);
+        return { suggestions: localNew };
+      }
     }
 
     const researchRules = input.researchRules || await buildResearchContext({

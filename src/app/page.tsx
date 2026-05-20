@@ -5,7 +5,7 @@ import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
-import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
+import { generateContextualSuggestions, isAiMode } from "@/ai/flows/generate-contextual-suggestions";
 import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
 import { useSpellCheck } from "@/hooks/use-spell-check";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
@@ -129,6 +129,11 @@ export default function Home() {
     localCacheMiss: 0,
     localCheckTotalMs: 0,
   });
+  const aiModeRef = useRef(false);
+
+  useEffect(() => {
+    isAiMode().then(enabled => { aiModeRef.current = enabled; });
+  }, []);
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -469,6 +474,11 @@ const handleCheckSpelling = async () => {
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
+    if (aiModeRef.current) {
+      await generateSuggestions('grammar');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -557,20 +567,22 @@ const handleCheckSpelling = async () => {
       if (localTimerRef.current) clearTimeout(localTimerRef.current);
       if (aiTimerRef.current) clearTimeout(aiTimerRef.current);
 
-      localTimerRef.current = setTimeout(() => {
-        const reqId = ++requestIdRef.current;
-        runLocalCheckCached(newText).then(localSuggestions => {
-          if (reqId !== requestIdRef.current) return;
-          if (localSuggestions.length > 0) {
-            const withIds = localSuggestions.map((s, i) => ({
-              ...s,
-              id: s.id || `sug-${Date.now()}-${i}`,
-            }));
-            setGrammarSuggestions(withIds);
-            setCurrentSuggestionIndex(0);
-          }
-        }).catch(() => {});
-      }, LOCAL_DEBOUNCE_MS);
+      if (!aiModeRef.current) {
+        localTimerRef.current = setTimeout(() => {
+          const reqId = ++requestIdRef.current;
+          runLocalCheckCached(newText).then(localSuggestions => {
+            if (reqId !== requestIdRef.current) return;
+            if (localSuggestions.length > 0) {
+              const withIds = localSuggestions.map((s, i) => ({
+                ...s,
+                id: s.id || `sug-${Date.now()}-${i}`,
+              }));
+              setGrammarSuggestions(withIds);
+              setCurrentSuggestionIndex(0);
+            }
+          }).catch(() => {});
+        }, LOCAL_DEBOUNCE_MS);
+      }
 
       aiTimerRef.current = setTimeout(() => {
         setIsLoading(true);
@@ -604,7 +616,7 @@ const handleCheckSpelling = async () => {
   };
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (!isMounted || aiModeRef.current) return;
     const warmupText = text.trim();
     if (warmupText.length < 4) return;
     runLocalCheckCached(warmupText).catch(() => {});
