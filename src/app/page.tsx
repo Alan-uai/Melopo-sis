@@ -5,9 +5,8 @@ import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
-import { generateContextualSuggestions, isAiMode } from "@/ai/flows/generate-contextual-suggestions";
+import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
-import { useSpellCheck } from "@/hooks/use-spell-check";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -115,7 +114,6 @@ export default function Home() {
   const [poemSortOrder, setPoemSortOrder] = useState<"asc" | "desc">("desc");
 
   const { toast } = useToast();
-  const spellCheck = useSpellCheck();
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
@@ -129,11 +127,6 @@ export default function Home() {
     localCacheMiss: 0,
     localCheckTotalMs: 0,
   });
-  const aiModeRef = useRef(false);
-
-  useEffect(() => {
-    isAiMode().then(enabled => { aiModeRef.current = enabled; });
-  }, []);
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -460,74 +453,9 @@ export default function Home() {
     }
   }, [text, tone, textStructure, rhyme, toast, preferredModel]);
 
-const withTimeout = <T,>(promise: Promise<T>, ms: number): Promise<T> => {
-  let timer: ReturnType<typeof setTimeout>;
-  const timeout = new Promise<never>((_, reject) => {
-    timer = setTimeout(() => reject(new Error(`Servidor não respondeu em ${ms / 1000}s`)), ms);
-  });
-  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer!));
-};
-
-const handleCheckSpelling = async () => {
+  const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
-    setGrammarSuggestions([]);
-    setToneSuggestions([]);
-    setCurrentSuggestionIndex(null);
-
-    if (aiModeRef.current) {
-      await generateSuggestions('grammar');
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      const result = await withTimeout(
-        spellCheck.checkSpelling(text),
-        30000
-      );
-
-      const suggestions: Suggestion[] = result.errors.map((err, i) => ({
-        originalText: err.word,
-        correctedText: err.suggestions[0] || err.word,
-        explanation: err.suggestions.length > 0
-          ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
-          : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`,
-        type: 'grammar',
-        severity: 'alta',
-        context: text.slice(Math.max(0, err.position - 20), err.position + err.word.length + 20),
-        id: `sug-local-${Date.now()}-${i}`,
-        alternatives: err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` })),
-      }));
-
-      setIsSpellingAnalyzed(true);
-      setForceSpellingRefresh(false);
-      setAppliedGrammarSuggestions([]);
-      setGrammarSuggestions(suggestions);
-      setCurrentSuggestionIndex(suggestions.length > 0 ? 0 : null);
-
-      if (suggestions.length > 0) {
-        toast({
-          title: "Correções Ortográficas Encontradas",
-          description: `Encontramos ${suggestions.length} correções locais.`,
-        });
-      } else {
-        toast({
-          title: "Nenhum Erro Ortográfico",
-          description: "Seu texto parece correto (checagem local).",
-        });
-      }
-    } catch (error) {
-      console.error("Falha na checagem local de ortografia:", error);
-      toast({
-        variant: "default",
-        title: "Checagem local indisponível",
-        description: "Usando IA como fallback...",
-      });
-      await generateSuggestions('grammar', true);
-    } finally {
-      setIsLoading(false);
-    }
+    await generateSuggestions('grammar');
   };
 
   const handleSuggestTone = async () => {
@@ -567,22 +495,20 @@ const handleCheckSpelling = async () => {
       if (localTimerRef.current) clearTimeout(localTimerRef.current);
       if (aiTimerRef.current) clearTimeout(aiTimerRef.current);
 
-      if (!aiModeRef.current) {
-        localTimerRef.current = setTimeout(() => {
-          const reqId = ++requestIdRef.current;
-          runLocalCheckCached(newText).then(localSuggestions => {
-            if (reqId !== requestIdRef.current) return;
-            if (localSuggestions.length > 0) {
-              const withIds = localSuggestions.map((s, i) => ({
-                ...s,
-                id: s.id || `sug-${Date.now()}-${i}`,
-              }));
-              setGrammarSuggestions(withIds);
-              setCurrentSuggestionIndex(0);
-            }
-          }).catch(() => {});
-        }, LOCAL_DEBOUNCE_MS);
-      }
+      localTimerRef.current = setTimeout(() => {
+        const reqId = ++requestIdRef.current;
+        runLocalCheckCached(newText).then(localSuggestions => {
+          if (reqId !== requestIdRef.current) return;
+          if (localSuggestions.length > 0) {
+            const withIds = localSuggestions.map((s, i) => ({
+              ...s,
+              id: s.id || `sug-${Date.now()}-${i}`,
+            }));
+            setGrammarSuggestions(withIds);
+            setCurrentSuggestionIndex(0);
+          }
+        }).catch(() => {});
+      }, LOCAL_DEBOUNCE_MS);
 
       aiTimerRef.current = setTimeout(() => {
         setIsLoading(true);
@@ -616,7 +542,7 @@ const handleCheckSpelling = async () => {
   };
 
   useEffect(() => {
-    if (!isMounted || aiModeRef.current) return;
+    if (!isMounted) return;
     const warmupText = text.trim();
     if (warmupText.length < 4) return;
     runLocalCheckCached(warmupText).catch(() => {});

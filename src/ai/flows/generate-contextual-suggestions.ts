@@ -10,10 +10,6 @@ import { globalCache } from '@/lib/suggestion-cache';
 import { runGrammarAgent, runToneAgent } from '@/ai/agents';
 import { analyzeToneLocally, mergeSuggestions } from '@/lib/tone/tone-suggestion-engine';
 
-export async function isAiMode(): Promise<boolean> {
-  return !!process.env.AI;
-}
-
 export async function generateContextualSuggestions(input: SuggestionInput) {
   return suggestionFlow(input);
 }
