@@ -2,9 +2,6 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ['espells', 'dictionary-pt'],
-  outputFileTracingIncludes: {
-    '/**': ['./src/lib/words-pt-list.txt', './public/bloom.json'],
-  },
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -6,10 +6,8 @@ import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import { checkGrammarLocal, checkSpellingOnly } from "@/app/actions/check-grammar-local";
-import { warmupSpellEngines } from "@/lib/spell-warmup";
-import { loadBloomFilter, getSuspiciousTokens, isBloomLoaded } from "@/lib/client-spell";
-import { tokenize } from "@/lib/tokenize";
+import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
+import { useSpellCheck } from "@/hooks/use-spell-check";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -117,6 +115,7 @@ export default function Home() {
   const [poemSortOrder, setPoemSortOrder] = useState<"asc" | "desc">("desc");
 
   const { toast } = useToast();
+  const spellCheck = useSpellCheck();
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
@@ -470,67 +469,54 @@ const handleCheckSpelling = async () => {
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
-    const suspiciousTokens = getSuspiciousTokens(text);
-    const bloomReady = typeof isBloomLoaded !== 'undefined' && isBloomLoaded();
+    setIsLoading(true);
 
-    const wordsToCheck = bloomReady
-      ? suspiciousTokens.map(t => t.word)
-      : tokenize(text).map(t => t.word);
-    const searchTokens = bloomReady ? suspiciousTokens : tokenize(text);
+    try {
+      const result = await withTimeout(
+        spellCheck.checkSpelling(text),
+        30000
+      );
 
-    const result: Suggestion[] = [];
+      const suggestions: Suggestion[] = result.errors.map((err, i) => ({
+        originalText: err.word,
+        correctedText: err.suggestions[0] || err.word,
+        explanation: err.suggestions.length > 0
+          ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
+          : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`,
+        type: 'grammar',
+        severity: 'alta',
+        context: text.slice(Math.max(0, err.position - 20), err.position + err.word.length + 20),
+        id: `sug-local-${Date.now()}-${i}`,
+        alternatives: err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` })),
+      }));
 
-    if (wordsToCheck.length > 0 || !bloomReady) {
-      setIsLoading(true);
+      setIsSpellingAnalyzed(true);
+      setForceSpellingRefresh(false);
+      setAppliedGrammarSuggestions([]);
+      setGrammarSuggestions(suggestions);
+      setCurrentSuggestionIndex(suggestions.length > 0 ? 0 : null);
 
-      try {
-        const serverResult = await withTimeout(
-          checkSpellingOnly(wordsToCheck, textStructure),
-          30000
-        );
-
-        for (let i = 0; i < serverResult.suggestions.length; i++) {
-          const s = serverResult.suggestions[i];
-          const originalToken = searchTokens.find(t => t.word === s.originalText)
-            ?? { word: s.originalText, position: 0 };
-
-          result.push({
-            ...s,
-            id: `sug-local-${Date.now()}-${i}`,
-            originalText: originalToken.word,
-            context: text.slice(Math.max(0, originalToken.position - 20), originalToken.position + s.originalText.length + 20),
-          });
-        }
-      } catch (error) {
-        console.error("Falha na checagem local de ortografia:", error);
+      if (suggestions.length > 0) {
         toast({
-          variant: "default",
-          title: "Checagem local indisponível",
-          description: "Usando IA como fallback...",
+          title: "Correções Ortográficas Encontradas",
+          description: `Encontramos ${suggestions.length} correções locais.`,
         });
-        await generateSuggestions('grammar', true);
-        return;
-      } finally {
-        setIsLoading(false);
+      } else {
+        toast({
+          title: "Nenhum Erro Ortográfico",
+          description: "Seu texto parece correto (checagem local).",
+        });
       }
-    }
-
-    setIsSpellingAnalyzed(true);
-    setForceSpellingRefresh(false);
-    setAppliedGrammarSuggestions([]);
-    setGrammarSuggestions(result);
-    setCurrentSuggestionIndex(result.length > 0 ? 0 : null);
-
-    if (result.length > 0) {
+    } catch (error) {
+      console.error("Falha na checagem local de ortografia:", error);
       toast({
-        title: "Correções Ortográficas Encontradas",
-        description: `Encontramos ${result.length} correções locais.`,
+        variant: "default",
+        title: "Checagem local indisponível",
+        description: "Usando IA como fallback...",
       });
-    } else {
-      toast({
-        title: "Nenhum Erro Ortográfico",
-        description: "Seu texto parece correto (checagem local).",
-      });
+      await generateSuggestions('grammar', true);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -623,13 +609,6 @@ const handleCheckSpelling = async () => {
     if (warmupText.length < 4) return;
     runLocalCheckCached(warmupText).catch(() => {});
   }, [isMounted, text, runLocalCheckCached]);
-
-  useEffect(() => {
-    if (!isMounted) return;
-    warmupSpellEngines().catch(() => {});
-    loadBloomFilter().catch(() => {});
-    checkSpellingOnly(['teste'], undefined).catch(() => {});
-  }, [isMounted]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
 

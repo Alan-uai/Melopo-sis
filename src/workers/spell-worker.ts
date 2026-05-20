@@ -1,3 +1,7 @@
+import { ensureInit, isWordCorrect, getAllWords } from '../lib/dictionary-client';
+import { SymSpell, Verbosity, DistanceAlgorithm } from 'symspell-ts';
+import { keyboardWeightedDistance } from '../lib/keyboard-layout';
+
 interface SpellCheckMessage {
   id: string;
   type: 'check' | 'warmup';
@@ -17,15 +21,8 @@ interface MisspelledToken {
 }
 
 let isWarm = false;
-
-async function checkWordCorrect(word: string): Promise<boolean> {
-  if (typeof word !== 'string') return false;
-  if (word.length === 0) return false;
-  if (/\s/.test(word)) {
-    return word.split(/\s+/).every(w => w.length === 0 || /^[a-zA-ZáàâãéèêíïóôõöúçñüÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑÜ]+$/.test(w));
-  }
-  return /^[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ][a-záàâãéèêíïóôõöúçñ]+$/.test(word);
-}
+let suggestEngine: SymSpell | null = null;
+let suggestInitPromise: Promise<void> | null = null;
 
 const WORD_REGEX = /[a-zA-ZáàâãéèêíïóôõöúçñüÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑÜ]+(?:-[a-zA-ZáàâãéèêíïóôõöúçñüÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑÜ]+)*/g;
 
@@ -42,26 +39,72 @@ function isPunctuationOrNumber(word: string): boolean {
   return /^[\d.,!?;:()\[\]{}\"'«»\-—…\s]+$/.test(word);
 }
 
+async function initSuggestEngine(): Promise<void> {
+  if (suggestEngine) return;
+  if (suggestInitPromise) return suggestInitPromise;
+
+  suggestInitPromise = (async () => {
+    const words = await getAllWords();
+    const s = new SymSpell(DistanceAlgorithm.DamerauOSA, 3, 7, 0);
+    for (const w of words) {
+      s.createDictionaryEntry(w, 1);
+    }
+    suggestEngine = s;
+  })();
+
+  return suggestInitPromise;
+}
+
+async function getSuggestions(word: string): Promise<string[]> {
+  const lower = word.toLowerCase();
+  if (!suggestEngine) return [];
+
+  const results = suggestEngine.lookup(lower, Verbosity.All, 3);
+  const scored = results.map(item => ({
+    word: item.term,
+    dist: item.distance,
+    keyboardPenalty: keyboardWeightedDistance(lower, item.term.toLowerCase()),
+  }));
+
+  scored.sort((a, b) => {
+    const dDiff = a.dist - b.dist;
+    if (dDiff !== 0) return dDiff;
+    return a.keyboardPenalty - b.keyboardPenalty;
+  });
+
+  return [...new Set(scored.map(s => s.word))].slice(0, 8);
+}
+
 async function performSpellCheck(text: string): Promise<SpellCheckResponse['errors']> {
   const tokens = tokenize(text);
   const checkableTokens = tokens.filter(t => !isPunctuationOrNumber(t.word));
 
   if (checkableTokens.length === 0) return [];
 
+  await ensureInit();
+
   const misspelledTokens: MisspelledToken[] = [];
 
   for (const { word, position } of checkableTokens) {
-    const correct = await checkWordCorrect(word);
+    const correct = await isWordCorrect(word);
     if (!correct) {
       misspelledTokens.push({ word, position });
     }
   }
 
-  return misspelledTokens.map(t => ({
-    word: t.word,
-    position: t.position,
-    suggestions: [],
-  }));
+  if (misspelledTokens.length === 0) return [];
+
+  await initSuggestEngine();
+
+  const result = await Promise.all(
+    misspelledTokens.map(async (t) => ({
+      word: t.word,
+      position: t.position,
+      suggestions: await getSuggestions(t.word),
+    }))
+  );
+
+  return result;
 }
 
 self.onmessage = async (e: MessageEvent<SpellCheckMessage>) => {
@@ -69,7 +112,8 @@ self.onmessage = async (e: MessageEvent<SpellCheckMessage>) => {
 
   try {
     if (type === 'warmup') {
-      await performSpellCheck('teste');
+      await ensureInit();
+      initSuggestEngine().catch(() => {});
       isWarm = true;
       const response: SpellCheckResponse = { id, type: 'warmup-complete' };
       self.postMessage(response);
