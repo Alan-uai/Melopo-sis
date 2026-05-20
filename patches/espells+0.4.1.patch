@@ -1,0 +1,384 @@
+diff --git a/node_modules/espells/lib/aff/affix.js b/node_modules/espells/lib/aff/affix.js
+index 6591a5e..f138559 100644
+--- a/node_modules/espells/lib/aff/affix.js
++++ b/node_modules/espells/lib/aff/affix.js
+@@ -2,8 +2,8 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CONSTANTS as C } from "../constants";
+-import { re } from "../util";
++import { CONSTANTS as C } from "../constants.js";
++import { re } from "../util.js";
+ /** Base class for the {@link Prefix}/{@link Suffix} classes. Won't work by itself. */
+ export class Affix {
+     /**
+diff --git a/node_modules/espells/lib/aff/casing.js b/node_modules/espells/lib/aff/casing.js
+index 1cc968e..edebe56 100644
+--- a/node_modules/espells/lib/aff/casing.js
++++ b/node_modules/espells/lib/aff/casing.js
+@@ -1,8 +1,8 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CapType } from "../constants";
+-import { isLowercased, isTitlecased, isUppercased, lowercase, replaceRange, titlecase, uppercase } from "../util";
++import { CapType } from "../constants.js";
++import { isLowercased, isTitlecased, isUppercased, lowercase, replaceRange, titlecase, uppercase } from "../util.js";
+ /**
+  * A class containing casing-related algorithms for a language. This is a
+  * class so that it may be extended by subclasses, e.g. German which has
+diff --git a/node_modules/espells/lib/aff/compound-rule.js b/node_modules/espells/lib/aff/compound-rule.js
+index 69f7cea..ad809f8 100644
+--- a/node_modules/espells/lib/aff/compound-rule.js
++++ b/node_modules/espells/lib/aff/compound-rule.js
+@@ -2,7 +2,7 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { intersect, product, re } from "../util";
++import { intersect, product, re } from "../util.js";
+ // TODO: make this not use a weird regex matching system
+ // I couldn't exactly wrap my brain around how to avoid using regex here
+ // I'm sure it's not hard. but right now this system is very slow because
+diff --git a/node_modules/espells/lib/aff/conv-table.js b/node_modules/espells/lib/aff/conv-table.js
+index 179a4a5..e474974 100644
+--- a/node_modules/espells/lib/aff/conv-table.js
++++ b/node_modules/espells/lib/aff/conv-table.js
+@@ -1,7 +1,7 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { re } from "../util";
++import { re } from "../util.js";
+ /**
+  * A table of conversions (either input to output, or output to input) for
+  * a word. Uses the following syntax:
+diff --git a/node_modules/espells/lib/aff/index.js b/node_modules/espells/lib/aff/index.js
+index 29d1a14..d426ba9 100644
+--- a/node_modules/espells/lib/aff/index.js
++++ b/node_modules/espells/lib/aff/index.js
+@@ -2,16 +2,16 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CONSTANTS as C } from "../constants";
+-import { Trie } from "../trie";
+-import { escapeRegExp, re, reverse, split } from "../util";
+-import { Prefix, Suffix } from "./affix";
+-import { Casing, GermanCasing, TurkicCasing } from "./casing";
+-import { CompoundPattern } from "./compound-pattern";
+-import { CompoundRule } from "./compound-rule";
+-import { ConvTable } from "./conv-table";
+-import { PhonetTable } from "./phonet-table";
+-import { RepPattern } from "./rep-pattern";
++import { CONSTANTS as C } from "../constants.js";
++import { Trie } from "../trie.js";
++import { escapeRegExp, re, reverse, split } from "../util.js";
++import { Prefix, Suffix } from "./affix.js";
++import { Casing, GermanCasing, TurkicCasing } from "./casing.js";
++import { CompoundPattern } from "./compound-pattern.js";
++import { CompoundRule } from "./compound-rule.js";
++import { ConvTable } from "./conv-table.js";
++import { PhonetTable } from "./phonet-table.js";
++import { RepPattern } from "./rep-pattern.js";
+ /** A resolved and parsed representation of the data found in a Hunspell `.aff` file. */
+ export class Aff {
+     // check AffData for descriptions of these properties
+diff --git a/node_modules/espells/lib/aff/phonet-table.js b/node_modules/espells/lib/aff/phonet-table.js
+index 50f6b59..b2c86ca 100644
+--- a/node_modules/espells/lib/aff/phonet-table.js
++++ b/node_modules/espells/lib/aff/phonet-table.js
+@@ -1,8 +1,8 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CONSTANTS as C } from "../constants";
+-import { re, uppercase } from "../util";
++import { CONSTANTS as C } from "../constants.js";
++import { re, uppercase } from "../util.js";
+ // TODO: use homegrown metaphone implementation (maybe)
+ /**
+  * A table for metaphone transformations. These transformations may provide
+diff --git a/node_modules/espells/lib/aff/rep-pattern.js b/node_modules/espells/lib/aff/rep-pattern.js
+index f84e09f..9117c0b 100644
+--- a/node_modules/espells/lib/aff/rep-pattern.js
++++ b/node_modules/espells/lib/aff/rep-pattern.js
+@@ -1,7 +1,7 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { re, replaceRange } from "../util";
++import { re, replaceRange } from "../util.js";
+ /**
+  * A replacement pattern describes a pattern and its replacement, with the
+  * pattern matching a common typo in a word, and the replacement being the
+diff --git a/node_modules/espells/lib/dic/index.js b/node_modules/espells/lib/dic/index.js
+index aafdc47..43c65fb 100644
+--- a/node_modules/espells/lib/dic/index.js
++++ b/node_modules/espells/lib/dic/index.js
+@@ -2,8 +2,8 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CapType, CONSTANTS as C } from "../constants";
+-import { Word } from "./word";
++import { CapType, CONSTANTS as C } from "../constants.js";
++import { Word } from "./word.js";
+ export { Word };
+ /** Hunspell dictionary data. */
+ export class Dic {
+diff --git a/node_modules/espells/lib/dic/word.js b/node_modules/espells/lib/dic/word.js
+index b5c5be3..1f659d7 100644
+--- a/node_modules/espells/lib/dic/word.js
++++ b/node_modules/espells/lib/dic/word.js
+@@ -2,9 +2,9 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { RepPattern } from "../aff/rep-pattern";
+-import { CONSTANTS as C } from "../constants";
+-import { split } from "../util";
++import { RepPattern } from "../aff/rep-pattern.js";
++import { CONSTANTS as C } from "../constants.js";
++import { split } from "../util.js";
+ /** A word as found in a {@link Dic} instance's index. */
+ export class Word {
+     /**
+diff --git a/node_modules/espells/lib/index.js b/node_modules/espells/lib/index.js
+index 59396d8..2b87072 100644
+--- a/node_modules/espells/lib/index.js
++++ b/node_modules/espells/lib/index.js
+@@ -2,13 +2,13 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { Aff } from "./aff/index";
+-import { decoder } from "./constants";
+-import { Dic, Word } from "./dic/index";
+-import { Lookup } from "./lookup";
+-import { Reader } from "./reader";
+-import { Suggest } from "./suggest";
+-import { concat } from "./util";
++import { Aff } from "./aff/index.js";
++import { decoder } from "./constants.js";
++import { Dic, Word } from "./dic/index.js";
++import { Lookup } from "./lookup/index.js";
++import { Reader } from "./reader.js";
++import { Suggest } from "./suggest/index.js";
++import { concat } from "./util.js";
+ /**
+  * Espells spellchecker. Instances of this class are fully instantiated
+  * when created and do not need any special init functions called.
+diff --git a/node_modules/espells/lib/lookup/affixes.js b/node_modules/espells/lib/lookup/affixes.js
+index 3d75b56..8a209da 100644
+--- a/node_modules/espells/lib/lookup/affixes.js
++++ b/node_modules/espells/lib/lookup/affixes.js
+@@ -1,10 +1,10 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CapType, CompoundPos } from "../constants";
+-import { includes, lowercase } from "../util";
+-import { decompose } from "./decompose";
+-import { LKFlags } from "./lk-flags";
++import { CapType, CompoundPos } from "../constants.js";
++import { includes, lowercase } from "../util.js";
++import { decompose } from "./decompose.js";
++import { LKFlags } from "./lk-flags.js";
+ /**
+  * Yields the allowed {@link AffixForm}s for this word, as in all ways the
+  * word can be split into stems and affixes, with all stems and affixes
+diff --git a/node_modules/espells/lib/lookup/compounds.js b/node_modules/espells/lib/lookup/compounds.js
+index a256a15..3cfe31e 100644
+--- a/node_modules/espells/lib/lookup/compounds.js
++++ b/node_modules/espells/lib/lookup/compounds.js
+@@ -1,13 +1,13 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CapType, CompoundPos } from "../constants";
+-import { Word } from "../dic";
+-import { replchars } from "../permutations";
+-import { any, isTriplet, isUppercased } from "../util";
+-import { affixForms } from "./affixes";
+-import { AffixForm } from "./forms";
+-import { LKFlags } from "./lk-flags";
++import { CapType, CompoundPos } from "../constants.js";
++import { Word } from "../dic/index.js";
++import { replchars } from "../permutations.js";
++import { any, isTriplet, isUppercased } from "../util.js";
++import { affixForms } from "./affixes.js";
++import { AffixForm } from "./forms.js";
++import { LKFlags } from "./lk-flags.js";
+ /** Produces all valid {@link CompoundForm}s for a word. */
+ export function* compoundForms(word, allowNoSuggest = true) {
+     const aff = word.aff;
+diff --git a/node_modules/espells/lib/lookup/decompose.js b/node_modules/espells/lib/lookup/decompose.js
+index 8441227..a5a8878 100644
+--- a/node_modules/espells/lib/lookup/decompose.js
++++ b/node_modules/espells/lib/lookup/decompose.js
+@@ -1,9 +1,9 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CompoundPos } from "../constants";
+-import { concat, reverse } from "../util";
+-import { AffixForm } from "./forms";
++import { CompoundPos } from "../constants.js";
++import { concat, reverse } from "../util.js";
++import { AffixForm } from "./forms.js";
+ export var AffixType;
+ (function (AffixType) {
+     AffixType[AffixType["PREFIX"] = 0] = "PREFIX";
+diff --git a/node_modules/espells/lib/lookup/forms.js b/node_modules/espells/lib/lookup/forms.js
+index dc6f88d..b8194f8 100644
+--- a/node_modules/espells/lib/lookup/forms.js
++++ b/node_modules/espells/lib/lookup/forms.js
+@@ -1,8 +1,8 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { concat } from "../util";
+-import { LKWord } from "./lk-word";
++import { concat } from "../util.js";
++import { LKWord } from "./lk-word.js";
+ /**
+  * Represents a hypothesis of how a word may be represented as a
+  * {@link Prefix}, stem, and {@link Suffix}. A word always has a full text
+diff --git a/node_modules/espells/lib/lookup/index.js b/node_modules/espells/lib/lookup/index.js
+index 1a715e0..18bdb8b 100644
+--- a/node_modules/espells/lib/lookup/index.js
++++ b/node_modules/espells/lib/lookup/index.js
+@@ -2,12 +2,12 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CapType, CONSTANTS as C } from "../constants";
+-import { any, includes } from "../util";
+-import { affixForms as affixes } from "./affixes";
+-import { compoundForms as compounds } from "./compounds";
+-import { breakWord } from "./decompose";
+-import { LKWord } from "./lk-word";
++import { CapType, CONSTANTS as C } from "../constants.js";
++import { any, includes } from "../util.js";
++import { affixForms as affixes } from "./affixes.js";
++import { compoundForms as compounds } from "./compounds.js";
++import { breakWord } from "./decompose.js";
++import { LKWord } from "./lk-word.js";
+ /** Class that facilitaties lookups for a spellchecker. */
+ export class Lookup {
+     /**
+diff --git a/node_modules/espells/lib/permutations.js b/node_modules/espells/lib/permutations.js
+index 959abf9..baa828e 100644
+--- a/node_modules/espells/lib/permutations.js
++++ b/node_modules/espells/lib/permutations.js
+@@ -1,8 +1,8 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CONSTANTS as C } from "./constants";
+-import { replaceRange, uppercase } from "./util";
++import { CONSTANTS as C } from "./constants.js";
++import { replaceRange, uppercase } from "./util.js";
+ /**
+  * Uses a {@link Aff}'s {@link RepPattern} table to yield replaced
+  * permutations of a word.
+diff --git a/node_modules/espells/lib/reader.js b/node_modules/espells/lib/reader.js
+index b69b89b..fc8e7c0 100644
+--- a/node_modules/espells/lib/reader.js
++++ b/node_modules/espells/lib/reader.js
+@@ -1,7 +1,7 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { decoder } from "./constants";
++import { decoder } from "./constants.js";
+ /** Wrapper for manipulating a document separated by lines. */
+ export class Reader {
+     /** @param input - Document to read. */
+diff --git a/node_modules/espells/lib/suggest/index.js b/node_modules/espells/lib/suggest/index.js
+index 0db7b97..9a4bf11 100644
+--- a/node_modules/espells/lib/suggest/index.js
++++ b/node_modules/espells/lib/suggest/index.js
+@@ -2,12 +2,12 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CapType, CONSTANTS as C, GOOD_EDITS, SuggestionKind } from "../constants";
+-import { badchar, badcharkey, doubletwochars, extrachar, forgotchar, longswapchar, mapchars, movechar, replchars, swapchar, twowords } from "../permutations";
+-import { intersect, limit, lowercase, uppercase } from "../util";
+-import { NgramSuggestionBuilder } from "./ngram";
+-import { PhonetSuggestionBuilder } from "./phonet";
+-import { MultiWordSuggestion, Suggestion } from "./suggestion";
++import { CapType, CONSTANTS as C, GOOD_EDITS, SuggestionKind } from "../constants.js";
++import { badchar, badcharkey, doubletwochars, extrachar, forgotchar, longswapchar, mapchars, movechar, replchars, swapchar, twowords } from "../permutations.js";
++import { intersect, limit, lowercase, uppercase } from "../util.js";
++import { NgramSuggestionBuilder } from "./ngram.js";
++import { PhonetSuggestionBuilder } from "./phonet.js";
++import { MultiWordSuggestion, Suggestion } from "./suggestion.js";
+ export class Suggest {
+     /**
+      * @param aff - {@link Aff} data to use.
+diff --git a/node_modules/espells/lib/suggest/ngram.js b/node_modules/espells/lib/suggest/ngram.js
+index 173dc9b..ba4d289 100644
+--- a/node_modules/espells/lib/suggest/ngram.js
++++ b/node_modules/espells/lib/suggest/ngram.js
+@@ -2,9 +2,9 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CONSTANTS as C } from "../constants";
+-import { lowercase } from "../util";
+-import { preciseAffixScore, rootScore, roughAffixScore, ScoresList, scoreThreshold } from "./scores";
++import { CONSTANTS as C } from "../constants.js";
++import { lowercase } from "../util.js";
++import { preciseAffixScore, rootScore, roughAffixScore, ScoresList, scoreThreshold } from "./scores.js";
+ export class NgramSuggestionBuilder {
+     misspelling;
+     known;
+diff --git a/node_modules/espells/lib/suggest/phonet.js b/node_modules/espells/lib/suggest/phonet.js
+index a44b946..e2d60a6 100644
+--- a/node_modules/espells/lib/suggest/phonet.js
++++ b/node_modules/espells/lib/suggest/phonet.js
+@@ -1,9 +1,9 @@
+ /* This Source Code Form is subject to the terms of the Mozilla Public
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+-import { CONSTANTS as C } from "../constants";
+-import { lowercase, ngram } from "../util";
+-import { finalScore, rootScore, ScoresList } from "./scores";
++import { CONSTANTS as C } from "../constants.js";
++import { lowercase, ngram } from "../util.js";
++import { finalScore, rootScore, ScoresList } from "./scores.js";
+ /**
+  * Builder for phonetic suggestions.
+  *
+diff --git a/node_modules/espells/lib/suggest/scores.js b/node_modules/espells/lib/suggest/scores.js
+index 73cc81f..3c80531 100644
+--- a/node_modules/espells/lib/suggest/scores.js
++++ b/node_modules/espells/lib/suggest/scores.js
+@@ -2,8 +2,8 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { PriorityList } from "../plist";
+-import { commonCharacters, lcslen, leftCommonSubstring, lowercase, ngram } from "../util";
++import { PriorityList } from "../plist.js";
++import { commonCharacters, lcslen, leftCommonSubstring, lowercase, ngram } from "../util.js";
+ /**
+  * Special type of {@link PriorityList} that is intended to handle
+  * suggestion scores. Stores arrays of values with a score number, and
+diff --git a/node_modules/espells/lib/util.js b/node_modules/espells/lib/util.js
+index f5b9e71..732218c 100644
+--- a/node_modules/espells/lib/util.js
++++ b/node_modules/espells/lib/util.js
+@@ -2,7 +2,7 @@
+  * License, v. 2.0. If a copy of the MPL was not distributed with this
+  * file, You can obtain one at https://mozilla.org/MPL/2.0/. */
+ import { iterate } from "iterare";
+-import { CONSTANTS as C } from "./constants";
++import { CONSTANTS as C } from "./constants.js";
+ /**
+  * Creates a `RegExp` using a string template. Supports flags.
+  *

@@ -11,7 +11,8 @@
     "lint": "echo 'Linting: install eslint and configure it. next lint was removed in v16.'",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@genkit-ai/dev-local-vectorstore": "^1.34.0",
