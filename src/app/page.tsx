@@ -12,7 +12,6 @@ import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { collection, serverTimestamp, doc } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -50,8 +49,11 @@ type Poem = {
   grammarSuggestions?: Suggestion[];
   toneSuggestions?: Suggestion[];
   appliedToneSuggestions?: Suggestion[];
+  appliedGrammarSuggestions?: Suggestion[];
   excludedPhrasesMap?: Record<string, string[]>;
   currentSuggestionIndex?: number | null;
+  isSpellingAnalyzed?: boolean;
+  forceSpellingRefresh?: boolean;
 };
 
 const LOCAL_DEBOUNCE_MS = 300;
@@ -84,12 +86,15 @@ export default function Home() {
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [appliedToneSuggestions, setAppliedToneSuggestions] = useState<Suggestion[]>([]);
+  const [appliedGrammarSuggestions, setAppliedGrammarSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
 
   const [preferredModel, setPreferredModel] = useState<string | null>(null);
 
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
+  const [isSpellingAnalyzed, setIsSpellingAnalyzed] = useState(false);
+  const [forceSpellingRefresh, setForceSpellingRefresh] = useState(false);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
 
   const [pastStates, setPastStates] = useState<string[]>([]);
@@ -110,6 +115,13 @@ export default function Home() {
   const localTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const aiTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const requestIdRef = useRef(0);
+  const localCheckCacheRef = useRef<Map<string, Suggestion[]>>(new Map());
+  const perfRef = useRef({
+    localCheckCount: 0,
+    localCacheHit: 0,
+    localCacheMiss: 0,
+    localCheckTotalMs: 0,
+  });
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -120,6 +132,42 @@ export default function Home() {
     [firestore, user]
   );
   const { data: poems, isLoading: isLoadingPoems } = useCollection<Poem>(poemsCollection);
+
+  const getLocalCheckCacheKey = useCallback((inputText: string) => {
+    return `${textStructure}|${rhyme}|${inputText}`;
+  }, [textStructure, rhyme]);
+
+  const runLocalCheckCached = useCallback(async (inputText: string) => {
+    const cacheKey = getLocalCheckCacheKey(inputText);
+    const cached = localCheckCacheRef.current.get(cacheKey);
+    if (cached) {
+      perfRef.current.localCheckCount += 1;
+      perfRef.current.localCacheHit += 1;
+      return cached;
+    }
+
+    const start = performance.now();
+    const localResult = await checkGrammarLocal(inputText, textStructure, rhyme);
+    const duration = performance.now() - start;
+    perfRef.current.localCheckCount += 1;
+    perfRef.current.localCacheMiss += 1;
+    perfRef.current.localCheckTotalMs += duration;
+    localCheckCacheRef.current.set(cacheKey, localResult.suggestions);
+    if (localCheckCacheRef.current.size > 200) {
+      const firstKey = localCheckCacheRef.current.keys().next().value;
+      if (firstKey) localCheckCacheRef.current.delete(firstKey);
+    }
+    return localResult.suggestions;
+  }, [getLocalCheckCacheKey, rhyme, textStructure]);
+
+  const resetLocalCacheForCurrentConfig = useCallback(() => {
+    const prefix = `${textStructure}|${rhyme}|`;
+    for (const key of localCheckCacheRef.current.keys()) {
+      if (key.startsWith(prefix)) {
+        localCheckCacheRef.current.delete(key);
+      }
+    }
+  }, [rhyme, textStructure]);
 
   const handleLogin = async () => {
     if (!auth) return;
@@ -171,7 +219,7 @@ export default function Home() {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
           const parsed = JSON.parse(savedData);
-          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex } = parsed;
+          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh } = parsed;
           if (text) setText(text);
           if (title !== undefined) setPoemTitle(title);
           if (savedTone) setTone(savedTone);
@@ -180,8 +228,11 @@ export default function Home() {
           if (grammarSuggestions) setGrammarSuggestions(grammarSuggestions);
           if (toneSuggestions) setToneSuggestions(toneSuggestions);
           if (appliedToneSuggestions) setAppliedToneSuggestions(appliedToneSuggestions);
+          if (parsed.appliedGrammarSuggestions) setAppliedGrammarSuggestions(parsed.appliedGrammarSuggestions);
           if (excludedPhrasesMap) setExcludedPhrasesMap(excludedPhrasesMap);
           if (currentSuggestionIndex !== undefined) setCurrentSuggestionIndex(currentSuggestionIndex);
+          if (isSpellingAnalyzed !== undefined) setIsSpellingAnalyzed(isSpellingAnalyzed);
+          if (forceSpellingRefresh !== undefined) setForceSpellingRefresh(forceSpellingRefresh);
         }
       } catch (error) {
         console.error("Falha ao ler do localStorage", error);
@@ -200,15 +251,15 @@ export default function Home() {
       try {
         const dataToSave = JSON.stringify({
           text, title: poemTitle, tone, textStructure, rhyme,
-          grammarSuggestions, toneSuggestions, appliedToneSuggestions,
-          excludedPhrasesMap, currentSuggestionIndex,
+          grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions,
+          excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh,
         });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
       }
     }
-  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem]);
+  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem, grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh]);
 
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
@@ -222,8 +273,11 @@ export default function Home() {
     setGrammarSuggestions(poem.grammarSuggestions ?? []);
     setToneSuggestions(poem.toneSuggestions ?? []);
     setAppliedToneSuggestions(poem.appliedToneSuggestions ?? []);
+    setAppliedGrammarSuggestions(poem.appliedGrammarSuggestions ?? []);
     setExcludedPhrasesMap(poem.excludedPhrasesMap ?? {});
     setCurrentSuggestionIndex(poem.currentSuggestionIndex ?? null);
+    setIsSpellingAnalyzed(poem.isSpellingAnalyzed ?? false);
+    setForceSpellingRefresh(poem.forceSpellingRefresh ?? false);
     toast({
       title: "Poema Carregado",
       description: `"${poem.title || 'Poema sem título'}" carregado no editor.`,
@@ -240,6 +294,10 @@ export default function Home() {
     setPastStates([]);
     setFutureStates([]);
     resetSuggestions();
+    setAppliedToneSuggestions([]);
+    setAppliedGrammarSuggestions([]);
+    setIsSpellingAnalyzed(false);
+    setForceSpellingRefresh(false);
     editorRef.current?.focus();
   };
 
@@ -272,6 +330,7 @@ export default function Home() {
         suggestionType: suggestionType,
         excludedPhrases: [],
         preferredModel: preferredModel || undefined,
+        forceRefresh: suggestionType === 'grammar' ? forceSpellingRefresh : undefined,
       };
       const result = await generateContextualSuggestions(input);
 
@@ -297,6 +356,9 @@ export default function Home() {
         id: s.id || `sug-${Date.now()}-${i}`,
       }));
       if (suggestionType === 'grammar') {
+        setIsSpellingAnalyzed(true);
+        setForceSpellingRefresh(false);
+        setAppliedGrammarSuggestions([]);
         setGrammarSuggestions(withIds);
         setToneSuggestions([]);
         setCurrentSuggestionIndex(null);
@@ -347,10 +409,46 @@ export default function Home() {
 
   const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
+    setIsLoading(true);
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
-    await generateSuggestions('grammar');
+
+    try {
+      const localSuggestions = await runLocalCheckCached(text);
+      const withIds = localSuggestions.map((s, i) => ({
+        ...s,
+        id: s.id || `sug-local-${Date.now()}-${i}`,
+      }));
+
+      setIsSpellingAnalyzed(true);
+      setForceSpellingRefresh(false);
+      setAppliedGrammarSuggestions([]);
+      setGrammarSuggestions(withIds);
+
+      if (withIds.length > 0) {
+        setCurrentSuggestionIndex(0);
+        toast({
+          title: "Correções Ortográficas Encontradas",
+          description: `Encontramos ${withIds.length} correções locais.`,
+        });
+      } else {
+        toast({
+          title: "Nenhum Erro Ortográfico",
+          description: "Seu texto parece correto (checagem local).",
+        });
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        const { localCheckCount, localCacheHit, localCacheMiss, localCheckTotalMs } = perfRef.current;
+        const avgMs = localCheckCount > 0 ? (localCheckTotalMs / localCheckCount).toFixed(1) : "0";
+        console.debug('[orthography-perf]', { localCheckCount, localCacheHit, localCacheMiss, avgMs });
+      }
+    } catch (error) {
+      await generateSuggestions('grammar');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSuggestTone = async () => {
@@ -382,10 +480,10 @@ export default function Home() {
 
       localTimerRef.current = setTimeout(() => {
         const reqId = ++requestIdRef.current;
-        checkGrammarLocal(newText, textStructure, rhyme).then(localResult => {
+        runLocalCheckCached(newText).then(localSuggestions => {
           if (reqId !== requestIdRef.current) return;
-          if (localResult.suggestions.length > 0) {
-            const withIds = localResult.suggestions.map((s, i) => ({
+          if (localSuggestions.length > 0) {
+            const withIds = localSuggestions.map((s, i) => ({
               ...s,
               id: s.id || `sug-${Date.now()}-${i}`,
             }));
@@ -424,6 +522,13 @@ export default function Home() {
       }, AI_DEBOUNCE_MS);
     }
   };
+
+  useEffect(() => {
+    if (!isMounted) return;
+    const warmupText = text.trim();
+    if (warmupText.length < 4) return;
+    runLocalCheckCached(warmupText).catch(() => {});
+  }, [isMounted, text, runLocalCheckCached]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
 
@@ -510,6 +615,9 @@ export default function Home() {
       appliedToneSuggestions: appliedToneSuggestions,
       excludedPhrasesMap: excludedPhrasesMap,
       currentSuggestionIndex: currentSuggestionIndex,
+      appliedGrammarSuggestions: appliedGrammarSuggestions,
+      isSpellingAnalyzed: isSpellingAnalyzed,
+      forceSpellingRefresh: forceSpellingRefresh,
     };
 
     setIsLoading(true);
@@ -579,16 +687,19 @@ export default function Home() {
 
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
@@ -615,6 +726,7 @@ export default function Home() {
     setLastAcceptedOrigin(suggestionToAccept.originalText);
 
     if (suggestionToAccept.type === 'grammar') {
+      setAppliedGrammarSuggestions(prev => [...prev, suggestionToAccept]);
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
       setText(prevText => {
@@ -773,6 +885,7 @@ export default function Home() {
   }, []);
 
   const totalSuggestionCount = grammarSuggestions.length + toneSuggestions.length;
+const hasAppliedSuggestions = appliedToneSuggestions.length > 0 || appliedGrammarSuggestions.length > 0;
 
   const filteredPoems: Poem[] | undefined = useMemo(() => {
     if (!poems) return undefined;
@@ -1165,35 +1278,13 @@ export default function Home() {
               onAcceptAllLowSeverity={handleAcceptAllLowSeverity}
               lowSeverityCount={lowSeverityCount}
               lastAcceptedOrigin={lastAcceptedOrigin}
+              isSpellingAnalyzed={isSpellingAnalyzed}
+              onToggleSpellingAnalyzed={() => {
+                setIsSpellingAnalyzed(prev => !prev);
+                setForceSpellingRefresh(prev => !prev);
+              }}
             />
-            {totalSuggestionCount > 0 && (
-              <Accordion type="single" collapsible className="mt-2 lg:hidden">
-                <AccordionItem value="suggestions">
-                  <AccordionTrigger className="text-sm font-medium py-3">
-                    Sugestões ({totalSuggestionCount})
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <SuggestionList
-                      suggestions={
-                        grammarSuggestions.length > 0
-                          ? grammarSuggestions
-                          : toneSuggestions
-                      }
-                      isLoading={isLoading}
-                      onAccept={handleAccept}
-                      onDismiss={handleDismiss}
-                      onResuggest={handleResuggest}
-                      onToggleExcludedPhrase={handleToggleExcludedPhrase}
-                      excludedPhrasesMap={excludedPhrasesMap}
-                      onSwapAlternative={handleSwapAlternative}
-                      appliedToneSuggestions={appliedToneSuggestions}
-                      onUndoAppliedTone={handleUndoAppliedTone}
-                    />
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            )}
-            <div className="hidden lg:block">
+            <div className="w-full">
               <SuggestionList
                 suggestions={
                   grammarSuggestions.length > 0
@@ -1207,8 +1298,10 @@ export default function Home() {
                 onToggleExcludedPhrase={handleToggleExcludedPhrase}
                 excludedPhrasesMap={excludedPhrasesMap}
                 onSwapAlternative={handleSwapAlternative}
-                appliedToneSuggestions={appliedToneSuggestions}
+                appliedToneSuggestions={[...appliedGrammarSuggestions, ...appliedToneSuggestions]}
                 onUndoAppliedTone={handleUndoAppliedTone}
+                totalSuggestionCount={totalSuggestionCount}
+                hasAppliedSuggestions={hasAppliedSuggestions}
               />
             </div>
           </div>

@@ -106,6 +106,15 @@ export class SuggestionCache {
   clear(): void {
     this.cache.clear();
   }
+
+  clearByParams(params: CacheParams): void {
+    const prefix = `${params.suggestionType}:${params.structure}:${params.tone}:${params.rhyme}:`;
+    for (const key of this.cache.keys()) {
+      if (key.startsWith(prefix)) {
+        this.cache.delete(key);
+      }
+    }
+  }
 }
 
 export const globalCache = new SuggestionCache();
