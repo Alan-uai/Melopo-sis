@@ -31,9 +31,6 @@ REGRAS ESTRUTURAIS (NBR):
 MATERIAL DE PESQUISA (consulte para fundamentar sugestões com exemplos da tradição poética brasileira):
 {{{researchRules}}}
 
-ANÁLISE LOCAL DE TOM (use como referência — pontos que o analisador local identificou):
-{{{localToneAnalysis}}}
-
 REGRAS DE RIMA:
 {{{rhymeRules}}}
 

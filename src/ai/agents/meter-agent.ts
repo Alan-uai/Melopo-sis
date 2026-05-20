@@ -1,87 +1,67 @@
-import { validateSyllableCount, validateAccentPositions } from '@/lib/poetic-forms';
-import type { TextStructure } from '@/lib/poetic-forms';
-import type { Suggestion } from '@/ai/types';
-import { scanPoem, getCadenceQuality, getRhythmicProfile } from '@/lib/phonetic/meter-scanner';
-import { detectAllEnjambements } from '@/lib/phonetic/enjambement';
-import { detectDevicesInText } from '@/lib/phonetic/sound-devices';
+'use server';
+
+import { ai, withFallback } from '@/ai/genkit';
+import { SuggestionInputSchema, SuggestionOutputSchema, type Suggestion } from '@/ai/types';
+import { tryOpenRouterFallback } from '@/ai/openrouter';
+
+const METER_AGENT_PROMPT = `
+Você é um especialista em métrica e ritmo poético do português brasileiro.
+
+Analise o texto poético abaixo e forneça sugestões para melhorar sua métrica e cadência rítmica.
+
+ESTRUTURA: {{structure}}
+RIMA ATIVADA: {{rhyme}}
+
+REGRAS ESTRUTURAIS (NBR):
+{{{nbrRules}}}
+
+REGRAS DE RIMA:
+{{{rhymeRules}}}
+
+MATERIAL DE PESQUISA:
+{{{researchRules}}}
+
+TEXTO:
+\`\`\`
+{{{text}}}
+\`\`\`
+
+INSTRUÇÕES:
+- Verifique se cada verso tem o número correto de sílabas poéticas para a estrutura.
+- Identifique padrões rítmicos (iambo, troqueu, anapesto, datilo, espondeu) e sugira melhorias.
+- Detecte e sugira correções para enjambements fortes que quebrem o fluxo.
+- Aponte cadências pobres ou monótonas e sugira variações.
+- Considere metaplasmos poéticos (elisão, sínérese, diérese, ectlipse) na contagem silábica.
+
+Retorne sugestões com tipo 'grammar' e severity adequada. Se a métrica estiver correta, retorne array vazio.
+`;
+
+const meterAgent = ai.definePrompt({
+  name: 'meterAgent',
+  input: { schema: SuggestionInputSchema },
+  output: { schema: SuggestionOutputSchema },
+  prompt: METER_AGENT_PROMPT,
+});
 
 export async function runMeterAgent(
   text: string,
-  structure: TextStructure,
-): Promise<Suggestion[]> {
-  const lines = text.split('\n');
-  const suggestions: Suggestion[] = [];
-
-  const syllableErrors = validateSyllableCount(text, structure);
-  for (const err of syllableErrors) {
-    suggestions.push({
-      originalText: err.line ? lines[err.line - 1] || '' : text.slice(0, 60),
-      correctedText: '',
-      explanation: err.message,
-      type: 'grammar',
-      severity: err.severity,
-      context: err.line ? lines[err.line - 1] || '' : text,
-      alternatives: [],
-    });
+  input: Record<string, unknown>,
+  preferredModel?: string
+): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
+  try {
+    const { result: genkitResponse, modelUsed } = await withFallback(
+      (model: string) => meterAgent({ ...input, text } as never, { model }),
+      undefined,
+      preferredModel
+    );
+    const output = genkitResponse?.output;
+    return { suggestions: output?.suggestions || [], modelUsed };
+  } catch {
+    const { result, modelUsed } = await tryOpenRouterFallback(
+      METER_AGENT_PROMPT,
+      { ...input, text },
+      SuggestionOutputSchema,
+    );
+    return { suggestions: result.suggestions || [], modelUsed };
   }
-
-  const accentErrors = validateAccentPositions(text, structure);
-  for (const err of accentErrors) {
-    suggestions.push({
-      originalText: err.line ? lines[err.line - 1] || '' : text.slice(0, 60),
-      correctedText: '',
-      explanation: err.message,
-      type: 'grammar',
-      severity: err.severity,
-      context: err.line ? lines[err.line - 1] || '' : text,
-      alternatives: [],
-    });
-  }
-
-  const poemScan = scanPoem(text);
-  const profile = getRhythmicProfile(poemScan);
-
-  if (poemScan.lines.length > 0) {
-    const badCadence = poemScan.lines.filter(l => !l.hasProperCadence);
-    for (const line of badCadence.slice(0, 3)) {
-      suggestions.push({
-        originalText: lines[line.lineNumber - 1] || '',
-        correctedText: '',
-        explanation: `Cadência incorreta: verso ${line.lineNumber} (${line.poeticSyllables} sílabas, ${profile.description}). Padrão de acentos esperado não encontrado.`,
-        type: 'grammar',
-        severity: 'media',
-        context: lines[line.lineNumber - 1] || '',
-        alternatives: [],
-      });
-    }
-  }
-
-  const enjambements = detectAllEnjambements(text);
-  const strongEnjambements = enjambements.filter(e => e.type === 'enjambement_forte');
-  for (const ej of strongEnjambements.slice(0, 3)) {
-    suggestions.push({
-      originalText: lines[ej.lineA - 1] ? `${lines[ej.lineA - 1]}\n${lines[ej.lineB - 1] || ''}` : '',
-      correctedText: '',
-      explanation: `Enjambement forte entre versos ${ej.lineA} e ${ej.lineB}: ${ej.evidence}. Pode quebrar o fluxo rítmico.`,
-      type: 'grammar',
-      severity: 'baixa',
-      context: `${lines[ej.lineA - 1] || ''}\n${lines[ej.lineB - 1] || ''}`,
-      alternatives: [],
-    });
-  }
-
-  const devices = detectDevicesInText(text);
-  for (const device of devices.slice(0, 3)) {
-    suggestions.push({
-      originalText: lines[device.line - 1] || '',
-      correctedText: '',
-      explanation: `Dispositivo sonoro detectado: ${device.evidence}`,
-      type: 'grammar',
-      severity: 'baixa',
-      context: lines[device.line - 1] || '',
-      alternatives: [],
-    });
-  }
-
-  return suggestions;
 }
