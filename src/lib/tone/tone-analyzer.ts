@@ -188,8 +188,9 @@ export async function analyzeTone(
   const emotion = analyzeEmotion(stems);
   const rhythm = analyzeRhythm(text, _structure);
 
+  const wordCount = stems.length;
   const diagnostics = computeDiagnostics({ lexical, image, register, figure, emotion, rhythm }, text);
-  const confidence = computeConfidence(lexical, diagnostics, image, register, figure, emotion, rhythm);
+  const confidence = computeConfidence(lexical, diagnostics, wordCount, image, register, figure, emotion, rhythm);
 
   return {
     lexical, image, register, figure, emotion, rhythm,

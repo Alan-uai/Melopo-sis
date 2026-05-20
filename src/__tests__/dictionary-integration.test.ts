@@ -1,6 +1,10 @@
 import { describe, it, expect, beforeAll } from 'vitest';
 import { isWordCorrect, getWordSuggestions } from '@/lib/dictionary';
 
+beforeAll(async () => {
+  await isWordCorrect('xablau');
+}, 30000);
+
 describe('dictionary integration - palavras básicas', () => {
   it.each([
     'lindo', 'linda', 'lindos', 'lindas',

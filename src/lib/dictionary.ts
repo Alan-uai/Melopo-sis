@@ -4,7 +4,7 @@ import { getSymSpellSuggestions } from './symspell-engine';
 
 const WORDS_FILE = path.join(process.cwd(), 'src', 'lib', 'words-pt-list.txt');
 
-const COMMON_MISSING: string[] = ['é'];
+const COMMON_MISSING: string[] = ['é', 'quilômetro', 'ônibus'];
 
 let wordSet: Set<string> | null = null;
 let wordArray: string[] | null = null;

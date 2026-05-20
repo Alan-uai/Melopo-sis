@@ -22,33 +22,33 @@ describe('tone-suggestion-engine', () => {
       { id: 'REGISTER_LEAK', severity: 'media', dimensions: ['register'], details: {}, toneRef: 'TOM-001', toneRefQuote: '', canonicalExample: undefined },
       { id: 'RHYTHM_MISMATCH', severity: 'baixa', dimensions: ['rhythm'], details: {}, toneRef: 'TOM-004', toneRefQuote: '', canonicalExample: undefined },
     ];
-    const confidence = computeConfidence(lexical, diagnostics, mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
+    const confidence = computeConfidence(lexical, diagnostics, 100, mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
     expect(confidence).toBeGreaterThan(0.5);
   });
 
-  it('computeConfidence penalizes when no diagnostics', () => {
+  it('computeConfidence penalizes weak lexical even with good other signals', () => {
     const lexical: LexicalScore = {
-      selectedToneScore: 0.5,
+      selectedToneScore: 0.1,
       highestConflicting: null,
       highestConflictingScore: 0,
       antiPatternHits: 0,
       perLine: [0, 0],
     };
-    const confidence = computeConfidence(lexical, [], mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
+    const confidence = computeConfidence(lexical, [], 100, mockImage, mockRegister, mockFigure, mockEmotion, mockRhythm);
     expect(confidence).toBeLessThan(0.5);
   });
 
   it('decideToneAction returns local for high confidence', () => {
     const analysis = { confidence: 0.85, diagnostics: [] } as unknown as AnalysisResult;
-    expect(decideToneAction(analysis)).toBe('local');
+    expect(decideToneAction(analysis, 100)).toBe('local');
   });
 
-  it('decideToneAction returns ai for medium confidence with high severity', () => {
+  it('decideToneAction returns ai for medium confidence with high severity at long text', () => {
     const analysis = {
       confidence: 0.5,
       diagnostics: [{ id: 'TEST', severity: 'alta' as const }],
     } as unknown as AnalysisResult;
-    expect(decideToneAction(analysis)).toBe('ai');
+    expect(decideToneAction(analysis, 500)).toBe('ai');
   });
 
   it('decideToneAction returns local for high confidence with no high severity', () => {
@@ -56,12 +56,12 @@ describe('tone-suggestion-engine', () => {
       confidence: 0.7,
       diagnostics: [{ id: 'TEST', severity: 'baixa' as const }],
     } as unknown as AnalysisResult;
-    expect(decideToneAction(analysis)).toBe('local');
+    expect(decideToneAction(analysis, 100)).toBe('local');
   });
 
   it('decideToneAction returns ai for low confidence', () => {
     const analysis = { confidence: 0.2, diagnostics: [] } as unknown as AnalysisResult;
-    expect(decideToneAction(analysis)).toBe('ai');
+    expect(decideToneAction(analysis, 100)).toBe('ai');
   });
 
   it('mergeSuggestions merges AI alternatives into local suggestions', () => {
