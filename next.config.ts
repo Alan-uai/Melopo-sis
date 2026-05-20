@@ -34,6 +34,7 @@ const nextConfig: NextConfig = {
   ],
   outputFileTracingIncludes: {
     '/*': [
+      './node_modules/singularity-tagger/model/corpus_data/original_corpus/**',
       './node_modules/singularity-tagger/model/corpus_data/normalized_corpus/**',
       './node_modules/singularity-tagger/model/corpus_data/tagset/**',
       './node_modules/singularity-tagger/model/corpus_data/word_dictionary/**',

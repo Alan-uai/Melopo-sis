@@ -1,0 +1,27 @@
+diff --git a/node_modules/singularity-tagger/index.js b/node_modules/singularity-tagger/index.js
+index b376212..a6a3fd6 100644
+--- a/node_modules/singularity-tagger/index.js
++++ b/node_modules/singularity-tagger/index.js
+@@ -4,8 +4,17 @@ const generateBaseFiles = require("./model/generateBaseFiles")
+ const viterbi = require("./viterbi/index")
+ const normalizeText = require("./normalize_text/normalizeAPI")
+ const BaseFolder = require("./baseFolder")
++const fs = require("fs")
+ 
+ async function generateModel(){
++    if (
++        fs.existsSync(BaseFolder + "/model/corpus_data/matrix/transition_matrix.json") &&
++        fs.existsSync(BaseFolder + "/model/corpus_data/matrix/emission_matrix.json") &&
++        fs.existsSync(BaseFolder + "/model/corpus_data/word_dictionary/corpusDictionary.json") &&
++        fs.existsSync(BaseFolder + "/model/corpus_data/tagset/tagset.txt")
++    ) {
++        return true
++    }
+     const a = await generateBaseFiles().catch(err=>console.log(err))
+     const b = await createTransitionProbabilityMatrix(BaseFolder)
+     const c = await createEmissionProbabilityMatrix(BaseFolder)
+@@ -46,4 +55,3 @@ async function PosTagger(){
+ }
+ 
+ module.exports = PosTagger;
+-
