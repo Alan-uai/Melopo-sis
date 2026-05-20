@@ -8,6 +8,7 @@ import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import { checkGrammarLocal, checkSpellingOnly } from "@/app/actions/check-grammar-local";
 import { warmupSpellEngines } from "@/lib/spell-warmup";
+import { loadBloomFilter, getSuspiciousTokens } from "@/lib/client-spell";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -23,6 +24,7 @@ import { LogIn, LogOut, PlusCircle, LoaderCircle, Trash2, ArrowUpDown, ArrowDown
 import { setDocumentNonBlocking, addDocumentNonBlocking, updateDocumentNonBlocking, deleteDocumentNonBlocking } from '@/firebase';
 import VoiceChatPanel from '@/components/voice-chat/voice-chat-panel';
 import type { VoiceActionHandlers } from '@/components/voice-chat/types';
+import { saveJobToLocal, generateJobId, hashText } from '@/lib/background-verification';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -55,6 +57,8 @@ type Poem = {
   currentSuggestionIndex?: number | null;
   isSpellingAnalyzed?: boolean;
   forceSpellingRefresh?: boolean;
+  activeJobId?: string;
+  activeJobType?: 'grammar' | 'tone';
 };
 
 const LOCAL_DEBOUNCE_MS = 300;
@@ -96,6 +100,8 @@ export default function Home() {
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
   const [isSpellingAnalyzed, setIsSpellingAnalyzed] = useState(false);
   const [forceSpellingRefresh, setForceSpellingRefresh] = useState(false);
+  const [activeJobId, setActiveJobId] = useState<string | undefined>(undefined);
+  const [activeJobType, setActiveJobType] = useState<'grammar' | 'tone' | undefined>(undefined);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
 
   const [pastStates, setPastStates] = useState<string[]>([]);
@@ -167,25 +173,6 @@ export default function Home() {
     return localResult.suggestions;
   }, [getLocalCheckCacheKey, rhyme, textStructure]);
 
-  const runSpellOnlyCached = useCallback(async (inputText: string) => {
-    const cacheKey = `spell:${inputText.slice(0, 100)}:${inputText.length}`;
-    const cached = localCheckCacheRef.current.get(cacheKey);
-    if (cached) {
-      return cached;
-    }
-
-    const start = performance.now();
-    const localResult = await checkSpellingOnly(inputText, textStructure);
-    const duration = performance.now() - start;
-
-    localCheckCacheRef.current.set(cacheKey, localResult.suggestions);
-    if (localCheckCacheRef.current.size > 300) {
-      const firstKey = localCheckCacheRef.current.keys().next().value;
-      if (firstKey) localCheckCacheRef.current.delete(firstKey);
-    }
-    return localResult.suggestions;
-  }, []);
-
   const resetLocalCacheForCurrentConfig = useCallback(() => {
     const prefix = `${textStructure}|${rhyme}|`;
     for (const key of localCheckCacheRef.current.keys()) {
@@ -245,7 +232,7 @@ export default function Home() {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
           const parsed = JSON.parse(savedData);
-          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh } = parsed;
+          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh, activeJobId, activeJobType } = parsed;
           if (text) setText(text);
           if (title !== undefined) setPoemTitle(title);
           if (savedTone) setTone(savedTone);
@@ -259,6 +246,8 @@ export default function Home() {
           if (currentSuggestionIndex !== undefined) setCurrentSuggestionIndex(currentSuggestionIndex);
           if (isSpellingAnalyzed !== undefined) setIsSpellingAnalyzed(isSpellingAnalyzed);
           if (forceSpellingRefresh !== undefined) setForceSpellingRefresh(forceSpellingRefresh);
+          if (activeJobId !== undefined) setActiveJobId(activeJobId);
+          if (activeJobType !== undefined) setActiveJobType(activeJobType);
         }
       } catch (error) {
         console.error("Falha ao ler do localStorage", error);
@@ -279,13 +268,29 @@ export default function Home() {
           text, title: poemTitle, tone, textStructure, rhyme,
           grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions,
           excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh,
+          activeJobId, activeJobType,
         });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
         console.error("Falha ao escrever no localStorage", error);
       }
     }
-  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem, grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh]);
+  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem, grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh, activeJobId, activeJobType]);
+
+  useEffect(() => {
+    if (!isMounted) return;
+    if (activeJobType === 'grammar' && activeJobId && grammarSuggestions.length === 0) {
+      toast({
+        title: "Verificação anterior não concluída",
+        description: "A correção ortográfica não foi finalizada. Clique em 'Corrigir Ortografia' para tentar novamente.",
+      });
+    } else if (activeJobType === 'tone' && activeJobId && toneSuggestions.length === 0) {
+      toast({
+        title: "Análise de tom não concluída",
+        description: "A análise de tom anterior não foi finalizada. Clique em 'Sugerir Tom' para tentar novamente.",
+      });
+    }
+  }, [isMounted, activeJobType, activeJobId, grammarSuggestions.length, toneSuggestions.length, toast]);
 
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
@@ -304,6 +309,8 @@ export default function Home() {
     setCurrentSuggestionIndex(poem.currentSuggestionIndex ?? null);
     setIsSpellingAnalyzed(poem.isSpellingAnalyzed ?? false);
     setForceSpellingRefresh(poem.forceSpellingRefresh ?? false);
+    setActiveJobId(poem.activeJobId ?? undefined);
+    setActiveJobType(poem.activeJobType ?? undefined);
     toast({
       title: "Poema Carregado",
       description: `"${poem.title || 'Poema sem título'}" carregado no editor.`,
@@ -324,6 +331,8 @@ export default function Home() {
     setAppliedGrammarSuggestions([]);
     setIsSpellingAnalyzed(false);
     setForceSpellingRefresh(false);
+    setActiveJobId(undefined);
+    setActiveJobType(undefined);
     editorRef.current?.focus();
   };
 
@@ -381,6 +390,19 @@ export default function Home() {
         ...s,
         id: s.id || `sug-${Date.now()}-${i}`,
       }));
+
+      const poemId = activePoem?.id;
+      saveJobToLocal({
+        jobId: `ai_${Date.now()}`,
+        poemId,
+        type: suggestionType,
+        status: 'completed',
+        textHash: hashText(currentText),
+        createdAt: Date.now(),
+        completedAt: Date.now(),
+        result: { suggestions: result.suggestions, modelUsed: result.modelUsed },
+      });
+
       if (suggestionType === 'grammar') {
         setIsSpellingAnalyzed(true);
         setForceSpellingRefresh(false);
@@ -433,52 +455,66 @@ export default function Home() {
     }
   }, [text, tone, textStructure, rhyme, toast, preferredModel]);
 
-  const handleCheckSpelling = async () => {
+const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
-    setIsLoading(true);
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
 
-    try {
-      const localSuggestions = await runSpellOnlyCached(text);
-      const withIds = localSuggestions.map((s, i) => ({
-        ...s,
-        id: s.id || `sug-local-${Date.now()}-${i}`,
-      }));
+    const suspiciousTokens = getSuspiciousTokens(text);
 
-      setIsSpellingAnalyzed(true);
-      setForceSpellingRefresh(false);
-      setAppliedGrammarSuggestions([]);
-      setGrammarSuggestions(withIds);
+    const result: Suggestion[] = [];
 
-      if (withIds.length > 0) {
-        setCurrentSuggestionIndex(0);
+    if (suspiciousTokens.length > 0) {
+      setIsLoading(true);
+
+      try {
+        const serverResult = await checkSpellingOnly(
+          suspiciousTokens.map(t => t.word),
+          textStructure
+        );
+
+        for (let i = 0; i < serverResult.suggestions.length; i++) {
+          const s = serverResult.suggestions[i];
+          const originalToken = suspiciousTokens.find(t => t.word === s.originalText)
+            ?? { word: s.originalText, position: 0 };
+
+          result.push({
+            ...s,
+            id: `sug-local-${Date.now()}-${i}`,
+            originalText: originalToken.word,
+            context: text.slice(Math.max(0, originalToken.position - 20), originalToken.position + s.originalText.length + 20),
+          });
+        }
+      } catch (error) {
+        console.error("Falha na checagem local de ortografia:", error);
         toast({
-          title: "Correções Ortográficas Encontradas",
-          description: `Encontramos ${withIds.length} correções locais.`,
+          variant: "destructive",
+          title: "Erro na checagem local",
+          description: "Não foi possível concluir a correção ortográfica local agora. Tente novamente.",
         });
-      } else {
-        toast({
-          title: "Nenhum Erro Ortográfico",
-          description: "Seu texto parece correto (checagem local).",
-        });
+        return;
+      } finally {
+        setIsLoading(false);
       }
+    }
 
-      if (process.env.NODE_ENV !== 'production') {
-        const { localCheckCount, localCacheHit, localCacheMiss, localCheckTotalMs } = perfRef.current;
-        const avgMs = localCheckCount > 0 ? (localCheckTotalMs / localCheckCount).toFixed(1) : "0";
-        console.debug('[orthography-perf]', { localCheckCount, localCacheHit, localCacheMiss, avgMs });
-      }
-    } catch (error) {
-      console.error("Falha na checagem local de ortografia:", error);
+    setIsSpellingAnalyzed(true);
+    setForceSpellingRefresh(false);
+    setAppliedGrammarSuggestions([]);
+    setGrammarSuggestions(result);
+    setCurrentSuggestionIndex(result.length > 0 ? 0 : null);
+
+    if (result.length > 0) {
       toast({
-        variant: "destructive",
-        title: "Erro na checagem local",
-        description: "Não foi possível concluir a correção ortográfica local agora. Tente novamente.",
+        title: "Correções Ortográficas Encontradas",
+        description: `Encontramos ${result.length} correções locais.`,
       });
-    } finally {
-      setIsLoading(false);
+    } else {
+      toast({
+        title: "Nenhum Erro Ortográfico",
+        description: "Seu texto parece correto (checagem local).",
+      });
     }
   };
 
@@ -487,7 +523,17 @@ export default function Home() {
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
-    await generateSuggestions('tone');
+
+    const jobId = `tone_${Date.now()}`;
+    setActiveJobId(jobId);
+    setActiveJobType('tone');
+
+    try {
+      await generateSuggestions('tone');
+    } finally {
+      setActiveJobId(undefined);
+      setActiveJobType(undefined);
+    }
   };
 
   const resetSuggestions = () => {
@@ -564,6 +610,7 @@ export default function Home() {
   useEffect(() => {
     if (!isMounted) return;
     warmupSpellEngines().catch(() => {});
+    loadBloomFilter().catch(() => {});
   }, [isMounted]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
@@ -654,6 +701,8 @@ export default function Home() {
       appliedGrammarSuggestions: appliedGrammarSuggestions,
       isSpellingAnalyzed: isSpellingAnalyzed,
       forceSpellingRefresh: forceSpellingRefresh,
+      activeJobId: activeJobId,
+      activeJobType: activeJobType,
     };
 
     setIsLoading(true);

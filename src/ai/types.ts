@@ -56,3 +56,37 @@ export type SuggestionOutput = z.infer<typeof SuggestionOutputSchema>;
 
 export type SuggestionMode = "gradual" | "final";
 export type TextStructure = "poesia" | "poema" | "soneto" | "haicai" | "cordel" | "redondilha" | "decassilabo" | "trova" | "oitava" | "decima" | "elegia" | "ode" | "verso-livre" | "poesia-concreta-visual" | "poesia-marginal-slam" | "figuras-linguagem" | "revisao-poetica";
+
+export const VerificationJobStatusSchema = z.enum(['pending', 'processing', 'completed', 'failed']);
+export type VerificationJobStatus = z.infer<typeof VerificationJobStatusSchema>;
+
+export const VerificationJobInputSchema = z.object({
+  text: z.string(),
+  tone: z.string(),
+  structure: z.string(),
+  rhyme: z.boolean(),
+});
+export type VerificationJobInput = z.infer<typeof VerificationJobInputSchema>;
+
+export const VerificationJobResultSchema = z.object({
+  suggestions: z.array(SuggestionSchema),
+  modelUsed: z.string().optional(),
+});
+export type VerificationJobResult = z.infer<typeof VerificationJobResultSchema>;
+
+export const VerificationJobSchema = z.object({
+  id: z.string(),
+  poemId: z.string().optional(),
+  userId: z.string().optional(),
+  type: z.enum(['grammar', 'tone']),
+  status: VerificationJobStatusSchema,
+  textHash: z.string(),
+  input: VerificationJobInputSchema,
+  result: VerificationJobResultSchema.optional(),
+  error: z.string().optional(),
+  createdAt: z.number(),
+  updatedAt: z.number(),
+  startedAt: z.number().optional(),
+  completedAt: z.number().optional(),
+});
+export type VerificationJob = z.infer<typeof VerificationJobSchema>;

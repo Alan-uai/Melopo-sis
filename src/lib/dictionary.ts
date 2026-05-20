@@ -1,57 +1,16 @@
 import fs from 'fs';
 import path from 'path';
 import { getSymSpellSuggestions } from './symspell-engine';
+import { BloomFilter, type BloomFilterConfig } from './bloom-filter';
 
 const WORDS_FILE = path.join(process.cwd(), 'src', 'lib', 'words-pt-list.txt');
 
 const COMMON_MISSING: string[] = ['é', 'quilômetro', 'ônibus'];
 
-interface BloomFilterConfig {
-  size: number;
-  hashCount: number;
-}
-
 const BLOOM_CONFIG: BloomFilterConfig = {
-  size: 1_000_000,
+  size: 6_000_000,
   hashCount: 7,
 };
-
-class BloomFilter {
-  private bits: Uint8Array;
-  private size: number;
-  private hashCount: number;
-
-  constructor(config: BloomFilterConfig) {
-    this.size = config.size;
-    this.hashCount = config.hashCount;
-    this.bits = new Uint8Array(Math.ceil(this.size / 8));
-  }
-
-  private hash(str: string, seed: number): number {
-    let h1 = seed;
-    for (let i = 0; i < str.length; i++) {
-      h1 = Math.imul(31, h1) + str.charCodeAt(i) | 0;
-    }
-    return Math.abs(h1 % this.size);
-  }
-
-  add(item: string): void {
-    for (let i = 0; i < this.hashCount; i++) {
-      const idx = this.hash(item, i * 31337);
-      this.bits[Math.floor(idx / 8)] |= 1 << (idx % 8);
-    }
-  }
-
-  mayContain(item: string): boolean {
-    for (let i = 0; i < this.hashCount; i++) {
-      const idx = this.hash(item, i * 31337);
-      if ((this.bits[Math.floor(idx / 8)] & (1 << (idx % 8))) === 0) {
-        return false;
-      }
-    }
-    return true;
-  }
-}
 
 interface SpellCache {
   correct: Map<string, boolean>;

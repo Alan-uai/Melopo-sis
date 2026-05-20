@@ -1,43 +1,77 @@
 'use server';
 
-import { validateSpellOnly, validateAll } from '@/lib/local-validator';
+import { validateAll } from '@/lib/local-validator';
 import type { Suggestion } from '@/ai/types';
 
-const SPELL_ONLY_CACHE = new Map<string, Suggestion[]>();
-const MAX_CACHE_SIZE = 500;
-
-function hashText(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash;
-  }
-  return hash.toString(36);
-}
+const CORRECT_CACHE = new Map<string, boolean>();
+const SUGGESTION_CACHE = new Map<string, Suggestion[]>();
+const MAX_CACHE_SIZE = 2000;
 
 export async function checkSpellingOnly(
-  text: string,
+  words: string[],
   _structure?: string
 ): Promise<{ suggestions: Suggestion[] }> {
-  if (!text.trim()) return { suggestions: [] };
+  if (!words.length) return { suggestions: [] };
 
-  const cacheKey = `spell:${hashText(text)}`;
+  const results: Suggestion[] = [];
+  const toCheck: string[] = [];
 
-  const cached = SPELL_ONLY_CACHE.get(cacheKey);
-  if (cached) {
-    return { suggestions: cached };
+  for (const word of words) {
+    const lower = word.toLowerCase();
+    const cachedCorrect = CORRECT_CACHE.get(lower);
+    if (cachedCorrect === true) continue;
+    if (cachedCorrect === false) {
+      const cachedSugs = SUGGESTION_CACHE.get(lower);
+      if (cachedSugs) {
+        results.push(...cachedSugs);
+        continue;
+      }
+    }
+    toCheck.push(word);
   }
 
-  const result = await validateSpellOnly(text);
+  if (toCheck.length === 0) return { suggestions: results };
 
-  if (SPELL_ONLY_CACHE.size >= MAX_CACHE_SIZE) {
-    const firstKey = SPELL_ONLY_CACHE.keys().next().value;
-    if (firstKey) SPELL_ONLY_CACHE.delete(firstKey);
+  const { isWordCorrect, getWordSuggestions } = await import('@/lib/dictionary');
+
+  for (const word of toCheck) {
+    const correct = await isWordCorrect(word);
+    const lower = word.toLowerCase();
+
+    if (correct) {
+      CORRECT_CACHE.set(lower, true);
+      if (CORRECT_CACHE.size > MAX_CACHE_SIZE) {
+        const first = CORRECT_CACHE.keys().next().value;
+        if (first) CORRECT_CACHE.delete(first);
+      }
+      continue;
+    }
+
+    CORRECT_CACHE.set(lower, false);
+    const suggestions = await getWordSuggestions(word);
+
+    const sug: Suggestion = {
+      originalText: word,
+      correctedText: suggestions[0] || word,
+      explanation: suggestions.length > 0
+        ? `Erro ortográfico: "${word}" não encontrado no dicionário. Sugestões: ${suggestions.join(', ')}.`
+        : `Erro ortográfico: "${word}" não encontrado no dicionário.`,
+      type: 'grammar',
+      severity: 'alta',
+      context: word,
+      alternatives: suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${word}".` })),
+    };
+
+    results.push(sug);
+    SUGGESTION_CACHE.set(lower, [sug]);
+
+    if (SUGGESTION_CACHE.size > MAX_CACHE_SIZE) {
+      const first = SUGGESTION_CACHE.keys().next().value;
+      if (first) SUGGESTION_CACHE.delete(first);
+    }
   }
-  SPELL_ONLY_CACHE.set(cacheKey, result.suggestions);
 
-  return { suggestions: result.suggestions };
+  return { suggestions: results };
 }
 
 export async function checkGrammarLocal(

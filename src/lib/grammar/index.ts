@@ -11,7 +11,13 @@ export interface GrammarValidationResult {
 export async function validateGrammar(text: string): Promise<GrammarValidationResult> {
   const suggestions: Suggestion[] = [];
 
-  const accentResult = validateAccents(text);
+  const [accentResult, craseResult, pairResult, concordanciaResult] = await Promise.all([
+    Promise.resolve(validateAccents(text)),
+    Promise.resolve(validateCrase(text)),
+    Promise.resolve(validatePairs(text)),
+    validateConcordancia(text),
+  ]);
+
   for (const err of accentResult.errors) {
     suggestions.push({
       originalText: err.word,
@@ -24,7 +30,6 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
     });
   }
 
-  const craseResult = validateCrase(text);
   for (const err of craseResult.errors) {
     suggestions.push({
       originalText: err.word,
@@ -37,7 +42,6 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
     });
   }
 
-  const pairResult = validatePairs(text);
   for (const err of pairResult.errors) {
     suggestions.push({
       originalText: err.word,
@@ -50,7 +54,6 @@ export async function validateGrammar(text: string): Promise<GrammarValidationRe
     });
   }
 
-  const concordanciaResult = await validateConcordancia(text);
   for (const err of concordanciaResult.errors) {
     suggestions.push({
       originalText: err.word,
