@@ -486,7 +486,7 @@ const handleCheckSpelling = async () => {
       try {
         const serverResult = await withTimeout(
           checkSpellingOnly(wordsToCheck, textStructure),
-          15000
+          30000
         );
 
         for (let i = 0; i < serverResult.suggestions.length; i++) {
@@ -504,10 +504,11 @@ const handleCheckSpelling = async () => {
       } catch (error) {
         console.error("Falha na checagem local de ortografia:", error);
         toast({
-          variant: "destructive",
-          title: "Erro na checagem local",
-          description: "Não foi possível concluir a correção ortográfica local agora. Tente novamente.",
+          variant: "default",
+          title: "Checagem local indisponível",
+          description: "Usando IA como fallback...",
         });
+        await generateSuggestions('grammar', true);
         return;
       } finally {
         setIsLoading(false);
