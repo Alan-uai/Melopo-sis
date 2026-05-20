@@ -13,7 +13,7 @@ const MONOSYLLABLE_MAP: Record<string, string> = {
   'pos': 'pós', 'pois': 'pois',
   'doi': 'dói', 'ceu': 'céu', 'reu': 'réu', 'leu': 'léu', 'veu': 'véu',
   'ca': 'cá', 'la': 'lá', 'da': 'dá', 'das': 'dás', 'dao': 'dão',
-  'te': 'té', 'se': 'sé', 'gas': 'gás', 'cha': 'chá', 'tras': 'trás',
+  'te': 'té', 'gas': 'gás', 'cha': 'chá', 'tras': 'trás',
   'nos': 'nós', 'vos': 'vós',
   'le': 'lê', 've': 'vê', 'de': 'dê', 'cre': 'crê', 'poe': 'põe',
   'nao': 'não', 'cao': 'cão', 'pao': 'pão', 'mao': 'mão',

@@ -115,6 +115,13 @@ export default function Home() {
   const localTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const aiTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const requestIdRef = useRef(0);
+  const localCheckCacheRef = useRef<Map<string, Suggestion[]>>(new Map());
+  const perfRef = useRef({
+    localCheckCount: 0,
+    localCacheHit: 0,
+    localCacheMiss: 0,
+    localCheckTotalMs: 0,
+  });
 
   const auth = useAuth();
   const firestore = useFirestore();
@@ -125,6 +132,42 @@ export default function Home() {
     [firestore, user]
   );
   const { data: poems, isLoading: isLoadingPoems } = useCollection<Poem>(poemsCollection);
+
+  const getLocalCheckCacheKey = useCallback((inputText: string) => {
+    return `${textStructure}|${rhyme}|${inputText}`;
+  }, [textStructure, rhyme]);
+
+  const runLocalCheckCached = useCallback(async (inputText: string) => {
+    const cacheKey = getLocalCheckCacheKey(inputText);
+    const cached = localCheckCacheRef.current.get(cacheKey);
+    if (cached) {
+      perfRef.current.localCheckCount += 1;
+      perfRef.current.localCacheHit += 1;
+      return cached;
+    }
+
+    const start = performance.now();
+    const localResult = await checkGrammarLocal(inputText, textStructure, rhyme);
+    const duration = performance.now() - start;
+    perfRef.current.localCheckCount += 1;
+    perfRef.current.localCacheMiss += 1;
+    perfRef.current.localCheckTotalMs += duration;
+    localCheckCacheRef.current.set(cacheKey, localResult.suggestions);
+    if (localCheckCacheRef.current.size > 200) {
+      const firstKey = localCheckCacheRef.current.keys().next().value;
+      if (firstKey) localCheckCacheRef.current.delete(firstKey);
+    }
+    return localResult.suggestions;
+  }, [getLocalCheckCacheKey, rhyme, textStructure]);
+
+  const resetLocalCacheForCurrentConfig = useCallback(() => {
+    const prefix = `${textStructure}|${rhyme}|`;
+    for (const key of localCheckCacheRef.current.keys()) {
+      if (key.startsWith(prefix)) {
+        localCheckCacheRef.current.delete(key);
+      }
+    }
+  }, [rhyme, textStructure]);
 
   const handleLogin = async () => {
     if (!auth) return;
@@ -372,8 +415,8 @@ export default function Home() {
     setCurrentSuggestionIndex(null);
 
     try {
-      const localResult = await checkGrammarLocal(text, textStructure, rhyme);
-      const withIds = localResult.suggestions.map((s, i) => ({
+      const localSuggestions = await runLocalCheckCached(text);
+      const withIds = localSuggestions.map((s, i) => ({
         ...s,
         id: s.id || `sug-local-${Date.now()}-${i}`,
       }));
@@ -394,6 +437,12 @@ export default function Home() {
           title: "Nenhum Erro Ortográfico",
           description: "Seu texto parece correto (checagem local).",
         });
+      }
+
+      if (process.env.NODE_ENV !== 'production') {
+        const { localCheckCount, localCacheHit, localCacheMiss, localCheckTotalMs } = perfRef.current;
+        const avgMs = localCheckCount > 0 ? (localCheckTotalMs / localCheckCount).toFixed(1) : "0";
+        console.debug('[orthography-perf]', { localCheckCount, localCacheHit, localCacheMiss, avgMs });
       }
     } catch (error) {
       await generateSuggestions('grammar');
@@ -431,10 +480,10 @@ export default function Home() {
 
       localTimerRef.current = setTimeout(() => {
         const reqId = ++requestIdRef.current;
-        checkGrammarLocal(newText, textStructure, rhyme).then(localResult => {
+        runLocalCheckCached(newText).then(localSuggestions => {
           if (reqId !== requestIdRef.current) return;
-          if (localResult.suggestions.length > 0) {
-            const withIds = localResult.suggestions.map((s, i) => ({
+          if (localSuggestions.length > 0) {
+            const withIds = localSuggestions.map((s, i) => ({
               ...s,
               id: s.id || `sug-${Date.now()}-${i}`,
             }));
@@ -473,6 +522,13 @@ export default function Home() {
       }, AI_DEBOUNCE_MS);
     }
   };
+
+  useEffect(() => {
+    if (!isMounted) return;
+    const warmupText = text.trim();
+    if (warmupText.length < 4) return;
+    runLocalCheckCached(warmupText).catch(() => {});
+  }, [isMounted, text, runLocalCheckCached]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
 
@@ -631,16 +687,19 @@ export default function Home() {
 
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
+    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 

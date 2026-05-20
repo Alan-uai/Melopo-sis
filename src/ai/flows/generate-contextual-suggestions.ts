@@ -54,7 +54,7 @@ const suggestionFlow = ai.defineFlow(
 
     const cacheParams = getParams(input);
     if (input.forceRefresh) {
-      globalCache.clear();
+      globalCache.clearByParams(cacheParams);
     }
     const { changed: changedByDiff } = globalCache.diff(input.text, cacheParams);
     const changed = input.forceRefresh
