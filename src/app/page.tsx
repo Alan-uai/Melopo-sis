@@ -445,7 +445,12 @@ export default function Home() {
         console.debug('[orthography-perf]', { localCheckCount, localCacheHit, localCacheMiss, avgMs });
       }
     } catch (error) {
-      await generateSuggestions('grammar');
+      console.error("Falha na checagem local de ortografia:", error);
+      toast({
+        variant: "destructive",
+        title: "Erro na checagem local",
+        description: "Não foi possível concluir a correção ortográfica local agora. Tente novamente.",
+      });
     } finally {
       setIsLoading(false);
     }
