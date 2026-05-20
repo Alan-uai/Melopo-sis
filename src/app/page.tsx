@@ -50,6 +50,7 @@ type Poem = {
   grammarSuggestions?: Suggestion[];
   toneSuggestions?: Suggestion[];
   appliedToneSuggestions?: Suggestion[];
+  appliedGrammarSuggestions?: Suggestion[];
   excludedPhrasesMap?: Record<string, string[]>;
   currentSuggestionIndex?: number | null;
   isSpellingAnalyzed?: boolean;
@@ -86,6 +87,7 @@ export default function Home() {
   const [grammarSuggestions, setGrammarSuggestions] = useState<Suggestion[]>([]);
   const [toneSuggestions, setToneSuggestions] = useState<Suggestion[]>([]);
   const [appliedToneSuggestions, setAppliedToneSuggestions] = useState<Suggestion[]>([]);
+  const [appliedGrammarSuggestions, setAppliedGrammarSuggestions] = useState<Suggestion[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [suggestionMode, setSuggestionMode] = useState<SuggestionMode>("final");
 
@@ -184,6 +186,7 @@ export default function Home() {
           if (grammarSuggestions) setGrammarSuggestions(grammarSuggestions);
           if (toneSuggestions) setToneSuggestions(toneSuggestions);
           if (appliedToneSuggestions) setAppliedToneSuggestions(appliedToneSuggestions);
+          if (parsed.appliedGrammarSuggestions) setAppliedGrammarSuggestions(parsed.appliedGrammarSuggestions);
           if (excludedPhrasesMap) setExcludedPhrasesMap(excludedPhrasesMap);
           if (currentSuggestionIndex !== undefined) setCurrentSuggestionIndex(currentSuggestionIndex);
           if (isSpellingAnalyzed !== undefined) setIsSpellingAnalyzed(isSpellingAnalyzed);
@@ -206,7 +209,7 @@ export default function Home() {
       try {
         const dataToSave = JSON.stringify({
           text, title: poemTitle, tone, textStructure, rhyme,
-          grammarSuggestions, toneSuggestions, appliedToneSuggestions,
+          grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions,
           excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh,
         });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
@@ -214,7 +217,7 @@ export default function Home() {
         console.error("Falha ao escrever no localStorage", error);
       }
     }
-  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem]);
+  }, [text, poemTitle, tone, textStructure, rhyme, isMounted, activePoem, grammarSuggestions, toneSuggestions, appliedToneSuggestions, appliedGrammarSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh]);
 
   const loadPoem = (poem: Poem) => {
     setActivePoem(poem);
@@ -228,6 +231,7 @@ export default function Home() {
     setGrammarSuggestions(poem.grammarSuggestions ?? []);
     setToneSuggestions(poem.toneSuggestions ?? []);
     setAppliedToneSuggestions(poem.appliedToneSuggestions ?? []);
+    setAppliedGrammarSuggestions(poem.appliedGrammarSuggestions ?? []);
     setExcludedPhrasesMap(poem.excludedPhrasesMap ?? {});
     setCurrentSuggestionIndex(poem.currentSuggestionIndex ?? null);
     setIsSpellingAnalyzed(poem.isSpellingAnalyzed ?? false);
@@ -248,6 +252,8 @@ export default function Home() {
     setPastStates([]);
     setFutureStates([]);
     resetSuggestions();
+    setAppliedToneSuggestions([]);
+    setAppliedGrammarSuggestions([]);
     setIsSpellingAnalyzed(false);
     setForceSpellingRefresh(false);
     editorRef.current?.focus();
@@ -310,6 +316,7 @@ export default function Home() {
       if (suggestionType === 'grammar') {
         setIsSpellingAnalyzed(true);
         setForceSpellingRefresh(false);
+        setAppliedGrammarSuggestions([]);
         setGrammarSuggestions(withIds);
         setToneSuggestions([]);
         setCurrentSuggestionIndex(null);
@@ -523,6 +530,7 @@ export default function Home() {
       appliedToneSuggestions: appliedToneSuggestions,
       excludedPhrasesMap: excludedPhrasesMap,
       currentSuggestionIndex: currentSuggestionIndex,
+      appliedGrammarSuggestions: appliedGrammarSuggestions,
       isSpellingAnalyzed: isSpellingAnalyzed,
       forceSpellingRefresh: forceSpellingRefresh,
     };
@@ -630,6 +638,7 @@ export default function Home() {
     setLastAcceptedOrigin(suggestionToAccept.originalText);
 
     if (suggestionToAccept.type === 'grammar') {
+      setAppliedGrammarSuggestions(prev => [...prev, suggestionToAccept]);
       applyCorrection(suggestionToAccept.originalText, suggestionToAccept.correctedText);
     } else {
       setText(prevText => {
@@ -788,6 +797,7 @@ export default function Home() {
   }, []);
 
   const totalSuggestionCount = grammarSuggestions.length + toneSuggestions.length;
+const hasAppliedSuggestions = appliedToneSuggestions.length > 0 || appliedGrammarSuggestions.length > 0;
 
   const filteredPoems: Poem[] | undefined = useMemo(() => {
     if (!poems) return undefined;
@@ -1186,7 +1196,7 @@ export default function Home() {
                 setForceSpellingRefresh(prev => !prev);
               }}
             />
-            {totalSuggestionCount > 0 && (
+            {(totalSuggestionCount > 0 || hasAppliedSuggestions) && (
               <Accordion type="single" collapsible className="mt-2 lg:hidden">
                 <AccordionItem value="suggestions">
                   <AccordionTrigger className="text-sm font-medium py-3">
@@ -1206,7 +1216,7 @@ export default function Home() {
                       onToggleExcludedPhrase={handleToggleExcludedPhrase}
                       excludedPhrasesMap={excludedPhrasesMap}
                       onSwapAlternative={handleSwapAlternative}
-                      appliedToneSuggestions={appliedToneSuggestions}
+                      appliedToneSuggestions={[...appliedGrammarSuggestions, ...appliedToneSuggestions]}
                       onUndoAppliedTone={handleUndoAppliedTone}
                     />
                   </AccordionContent>
@@ -1227,7 +1237,7 @@ export default function Home() {
                 onToggleExcludedPhrase={handleToggleExcludedPhrase}
                 excludedPhrasesMap={excludedPhrasesMap}
                 onSwapAlternative={handleSwapAlternative}
-                appliedToneSuggestions={appliedToneSuggestions}
+                appliedToneSuggestions={[...appliedGrammarSuggestions, ...appliedToneSuggestions]}
                 onUndoAppliedTone={handleUndoAppliedTone}
               />
             </div>
