@@ -52,7 +52,6 @@ export default function VoiceChatPanel({
   }, [actions]);
 
   const {
-    token,
     refreshToken,
     startAutoRefresh,
     stopAutoRefresh,
@@ -68,6 +67,8 @@ export default function VoiceChatPanel({
   const {
     startCapture,
     stopCapture,
+    pauseCapture,
+    resumeCapture,
     isCapturing,
   } = useAudioCapture({
     onAudioData: (pcmBuffer) => wsSendAudio(pcmBuffer),
@@ -84,7 +85,7 @@ export default function VoiceChatPanel({
     isConnected,
     isConnecting: wsConnecting,
   } = useLiveWebSocket({
-    token,
+    onRefreshToken: refreshToken,
     systemParams: {
       assistantName,
       userName,
@@ -176,6 +177,13 @@ export default function VoiceChatPanel({
     },
     onEndConversation: () => {
       stopVoice();
+    },
+    onQueueStateChange: (queueLength) => {
+      if (queueLength > 160) {
+        pauseCapture();
+      } else if (queueLength < 40) {
+        resumeCapture();
+      }
     },
   });
 
@@ -285,10 +293,10 @@ export default function VoiceChatPanel({
       clearTimeout(audioReadyTimeoutRef.current);
       audioReadyTimeoutRef.current = null;
     }
-    wsDisconnect();
-    stopCapture();
-    stopPlayback();
-    stopAutoRefresh();
+    try { wsDisconnect(); } catch (e) { console.error(e); }
+    try { stopCapture(); } catch (e) { console.error(e); }
+    try { stopPlayback(); } catch (e) { console.error(e); }
+    try { stopAutoRefresh(); } catch (e) { console.error(e); }
     setIsActive(false);
     setIsConnecting(false);
     pendingInitialPromptRef.current = null;

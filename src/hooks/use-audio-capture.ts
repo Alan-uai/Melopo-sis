@@ -19,6 +19,7 @@ export function useAudioCapture(options: UseAudioCaptureOptions) {
   const workletNodeRef = useRef<AudioWorkletNode | null>(null);
   const sourceRef = useRef<MediaStreamAudioSourceNode | null>(null);
   const isCapturingRef = useRef(false);
+  const isPausedRef = useRef(false);
   const onAudioDataRef = useRef(onAudioData);
   onAudioDataRef.current = onAudioData;
 
@@ -73,7 +74,7 @@ export function useAudioCapture(options: UseAudioCaptureOptions) {
       const header = BINARY_HEADER;
 
       workletNode.port.onmessage = (event) => {
-        if (!isCapturingRef.current) return;
+        if (!isCapturingRef.current || isPausedRef.current) return;
 
         const pcmData = event.data as ArrayBuffer;
 
@@ -101,9 +102,19 @@ export function useAudioCapture(options: UseAudioCaptureOptions) {
     cleanup();
   }, [cleanup]);
 
+  const pauseCapture = useCallback(() => {
+    isPausedRef.current = true;
+  }, []);
+
+  const resumeCapture = useCallback(() => {
+    isPausedRef.current = false;
+  }, []);
+
   return {
     startCapture,
     stopCapture,
+    pauseCapture,
+    resumeCapture,
     isCapturing,
     audioCtxRef,
   };

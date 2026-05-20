@@ -5,7 +5,7 @@ import { buildSystemInstruction, toolDeclarations } from "@/lib/live-setup";
 import type { VoiceActionHandlers } from "@/components/voice-chat/types";
 
 export interface UseLiveWebSocketOptions {
-  token: string | null;
+  onRefreshToken: () => Promise<string>;
   systemParams: {
     assistantName: string;
     userName: string;
@@ -23,11 +23,16 @@ export interface UseLiveWebSocketOptions {
   onInterrupted: () => void;
   onError: (error: string) => void;
   onEndConversation: () => void;
+  onQueueStateChange?: (queueLength: number) => void;
 }
 
-const MAX_RECONNECT_DELAY = 30000;
 const INITIAL_RECONNECT_DELAY = 1000;
+const MAX_RECONNECT_DELAY = 30000;
+const MAX_RECONNECT_ATTEMPTS = 10;
 const CONNECTION_TIMEOUT = 10000;
+const HEARTBEAT_INTERVAL = 15000;
+const MAX_AUDIO_QUEUE = 200;
+const AUDIO_DRAIN_INTERVAL = 100;
 
 function getReconnectDelay(attempt: number): number {
   const delay = Math.min(
@@ -40,7 +45,7 @@ function getReconnectDelay(attempt: number): number {
 
 export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
   const {
-    token,
+    onRefreshToken,
     systemParams,
     onSetupComplete,
     onAudioResponse,
@@ -51,6 +56,7 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
     onInterrupted,
     onError,
     onEndConversation,
+    onQueueStateChange,
   } = options;
 
   const [isConnected, setIsConnected] = useState(false);
@@ -61,8 +67,10 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const disconnectIntentRef = useRef(false);
   const setupSentRef = useRef(false);
-  const tokenRef = useRef(token);
-  tokenRef.current = token;
+  const heartbeatTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const audioQueueRef = useRef<ArrayBuffer[]>([]);
+  const drainTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const callbacksRef = useRef({
     onSetupComplete,
@@ -74,6 +82,8 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
     onInterrupted,
     onError,
     onEndConversation,
+    onRefreshToken,
+    onQueueStateChange,
   });
   callbacksRef.current = {
     onSetupComplete,
@@ -85,20 +95,44 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
     onInterrupted,
     onError,
     onEndConversation,
+    onRefreshToken,
+    onQueueStateChange,
   };
 
   const systemParamsRef = useRef(systemParams);
   systemParamsRef.current = systemParams;
 
+  const drainQueue = useCallback(() => {
+    const ws = wsRef.current;
+    if (!ws || ws.readyState !== WebSocket.OPEN) return;
+    if (audioQueueRef.current.length === 0) return;
+
+    const chunk = audioQueueRef.current.shift()!;
+    ws.send(chunk);
+
+    callbacksRef.current.onQueueStateChange?.(audioQueueRef.current.length);
+
+    if (audioQueueRef.current.length > 0) {
+      drainTimerRef.current = setTimeout(drainQueue, AUDIO_DRAIN_INTERVAL);
+    }
+  }, []);
+
+  const stopHeartbeat = useCallback(() => {
+    if (heartbeatTimerRef.current) {
+      clearInterval(heartbeatTimerRef.current);
+      heartbeatTimerRef.current = null;
+    }
+  }, []);
+
   const connect = useCallback(async (overrideToken?: string) => {
-    const currentToken = overrideToken || tokenRef.current;
+    disconnectIntentRef.current = false;
+    setupSentRef.current = false;
+
+    const currentToken = overrideToken;
     if (!currentToken) {
       onError("Token não disponível");
       return;
     }
-
-    disconnectIntentRef.current = false;
-    setupSentRef.current = false;
 
     setIsConnecting(true);
 
@@ -111,7 +145,6 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
       const connectionTimeout = setTimeout(() => {
         if (ws.readyState === WebSocket.CONNECTING) {
           ws.close();
-          handleReconnect();
         }
       }, CONNECTION_TIMEOUT);
 
@@ -152,6 +185,17 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
 
         setupSentRef.current = true;
         reconnectAttemptRef.current = 0;
+
+        drainQueue();
+
+        stopHeartbeat();
+        heartbeatTimerRef.current = setInterval(() => {
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ realtimeInput: { text: "" } }));
+          } else {
+            stopHeartbeat();
+          }
+        }, HEARTBEAT_INTERVAL);
       };
 
       ws.onmessage = (event) => {
@@ -221,10 +265,13 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
         }
       };
 
-      ws.onerror = () => {};
+      ws.onerror = () => {
+        ws.close();
+      };
 
       ws.onclose = () => {
         clearTimeout(connectionTimeout);
+        stopHeartbeat();
         setIsConnected(false);
         setIsConnecting(false);
         wsRef.current = null;
@@ -241,16 +288,34 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
         handleReconnect();
       }
     }
-  }, [onError]);
+  }, [onError, drainQueue, stopHeartbeat]);
 
   const handleReconnect = useCallback(() => {
     if (disconnectIntentRef.current) return;
 
+    if (reconnectTimerRef.current) {
+      clearTimeout(reconnectTimerRef.current);
+      reconnectTimerRef.current = null;
+    }
+
     reconnectAttemptRef.current += 1;
+
+    if (reconnectAttemptRef.current > MAX_RECONNECT_ATTEMPTS) {
+      callbacksRef.current.onError(
+        "Conexão perdida. Máximo de tentativas excedido.",
+      );
+      return;
+    }
+
     const delay = getReconnectDelay(reconnectAttemptRef.current);
 
-    reconnectTimerRef.current = setTimeout(() => {
-      connect();
+    reconnectTimerRef.current = setTimeout(async () => {
+      try {
+        const freshToken = await callbacksRef.current.onRefreshToken();
+        connect(freshToken);
+      } catch {
+        handleReconnect();
+      }
     }, delay);
   }, [connect]);
 
@@ -262,15 +327,25 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
       reconnectTimerRef.current = null;
     }
 
+    if (drainTimerRef.current) {
+      clearTimeout(drainTimerRef.current);
+      drainTimerRef.current = null;
+    }
+
+    stopHeartbeat();
+
     if (wsRef.current) {
       wsRef.current.close();
       wsRef.current = null;
     }
 
+    audioQueueRef.current = [];
+    callbacksRef.current.onQueueStateChange?.(0);
+
     setIsConnected(false);
     setIsConnecting(false);
     reconnectAttemptRef.current = 0;
-  }, []);
+  }, [stopHeartbeat]);
 
   const sendMessage = useCallback((msg: any) => {
     if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
@@ -279,8 +354,11 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
   }, []);
 
   const sendAudio = useCallback((pcmBuffer: ArrayBuffer) => {
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+    if (wsRef.current?.readyState === WebSocket.OPEN) {
       wsRef.current.send(pcmBuffer);
+    } else if (audioQueueRef.current.length < MAX_AUDIO_QUEUE) {
+      audioQueueRef.current.push(pcmBuffer.slice(0));
+      callbacksRef.current.onQueueStateChange?.(audioQueueRef.current.length);
     }
   }, []);
 
