@@ -110,6 +110,12 @@ function hasStrongVerbSuffix(word: string): boolean {
   return VERB_SUFFIXES_STRONG.some(p => p.test(lower));
 }
 
+const NOUN_SUFFIXES = /[ãça]$/;
+
+function hasNounSuffix(word: string): boolean {
+  return NOUN_SUFFIXES.test(word);
+}
+
 function classifyWord(word: string): string {
   const lower = word.toLowerCase().trim();
   if (!lower) return 'N';

@@ -1,7 +1,7 @@
 import { checkText } from './spell-checker';
 import { validateStructure, validateSyllableCount, validateAccentPositions, validatePunctuation } from './poetic-forms';
 import type { TextStructure, StructureError } from './poetic-forms';
-import { analyzeRhymeScheme, extractLastWord } from './rhyme-detector';
+import { analyzeRhymeScheme } from './rhyme-detector';
 import { validateGrammar } from './grammar/index';
 import type { Suggestion } from '@/ai/types';
 
@@ -9,44 +9,70 @@ export interface LocalValidationResult {
   suggestions: Suggestion[];
 }
 
+export interface SpellOnlyResult {
+  suggestions: Suggestion[];
+}
+
+function textToLines(text: string): string[] {
+  return text.split('\n');
+}
+
+function buildSpellSuggestion(
+  word: string,
+  position: number,
+  text: string,
+  lines: string[]
+): Suggestion {
+  let charCount = 0;
+  let contextLine = text.slice(0, 60);
+  for (const line of lines) {
+    if (charCount + line.length >= position) {
+      contextLine = line;
+      break;
+    }
+    charCount += line.length + 1;
+  }
+
+  return {
+    originalText: word,
+    correctedText: word,
+    explanation: '',
+    type: 'grammar',
+    severity: 'alta',
+    context: contextLine,
+    alternatives: [],
+  };
+}
+
 export async function validateAll(
   text: string,
   structure: TextStructure,
   rhyme: boolean
 ): Promise<LocalValidationResult> {
+  const lines = textToLines(text);
+
+  const [spellResult, grammarResult] = await Promise.all([
+    checkText(text),
+    validateGrammar(text),
+  ]);
+
+  const [structureValidation, syllableErrors, accentErrors, punctuationErrors] = await Promise.all([
+    Promise.resolve(validateStructure(text, structure)),
+    Promise.resolve(validateSyllableCount(text, structure)),
+    Promise.resolve(validateAccentPositions(text, structure)),
+    Promise.resolve(validatePunctuation(text)),
+  ]);
+
   const suggestions: Suggestion[] = [];
 
-  const spellResult = await checkText(text);
-  const structureValidation = validateStructure(text, structure);
-  const syllableErrors = validateSyllableCount(text, structure);
-  const accentErrors = validateAccentPositions(text, structure);
-  const punctuationErrors = validatePunctuation(text);
-  const grammarResult = await validateGrammar(text);
-
-  const lines = text.split('\n');
-
   for (const err of spellResult.errors) {
-    let contextLine = '';
-    let charCount = 0;
-    for (const line of lines) {
-      if (charCount + line.length >= err.position) {
-        contextLine = line;
-        break;
-      }
-      charCount += line.length + 1;
-    }
-
-    suggestions.push({
-      originalText: err.word,
-      correctedText: err.suggestions[0] || err.word,
-      explanation: err.suggestions.length > 0
-        ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
-        : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`,
-      type: 'grammar',
-      severity: 'alta',
-      context: contextLine,
-      alternatives: err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` })),
-    });
+    const sugg = buildSpellSuggestion(err.word, err.position, text, lines);
+    sugg.explanation = err.suggestions.length > 0
+      ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
+      : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`;
+    sugg.correctedText = err.suggestions[0] || err.word;
+    sugg.alternatives = err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` }));
+    suggestions.push(sugg);
   }
 
   for (const err of structureValidation.errors) {
@@ -168,10 +194,9 @@ export async function validateAll(
   }
 
   for (const err of punctuationErrors) {
-    const originalText = text.slice(0, 60);
     suggestions.push({
-      originalText,
-      correctedText: originalText,
+      originalText: text.slice(0, 60),
+      correctedText: text.slice(0, 60),
       explanation: err.message,
       type: 'grammar',
       severity: err.severity,
@@ -186,3 +211,26 @@ export async function validateAll(
 
   return { suggestions };
 }
+
+export async function validateSpellOnly(text: string): Promise<SpellOnlyResult> {
+  if (!text.trim()) return { suggestions: [] };
+
+  const spellResult = await checkText(text);
+  const lines = textToLines(text);
+
+  const suggestions: Suggestion[] = [];
+
+  for (const err of spellResult.errors) {
+    const sugg = buildSpellSuggestion(err.word, err.position, text, lines);
+    sugg.explanation = err.suggestions.length > 0
+      ? `Erro ortográfico: "${err.word}" não encontrado no dicionário. Sugestões: ${err.suggestions.join(', ')}.`
+      : `Erro ortográfico: "${err.word}" não encontrado no dicionário.`;
+    sugg.correctedText = err.suggestions[0] || err.word;
+    sugg.alternatives = err.suggestions.map(s => ({ text: s, explanation: `Alternativa ortográfica para "${err.word}".` }));
+    suggestions.push(sugg);
+  }
+
+  return { suggestions };
+}
+
+export type { TextStructure };

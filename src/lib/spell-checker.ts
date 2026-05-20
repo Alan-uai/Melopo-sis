@@ -16,21 +16,42 @@ function isPunctuationOrNumber(word: string): boolean {
 }
 
 export async function checkText(text: string): Promise<SpellCheckResult> {
-  const errors: SpellingError[] = [];
   const tokens = tokenize(text);
+  const checkableTokens = tokens.filter(t => !isPunctuationOrNumber(t.word));
 
-  for (let i = 0; i < tokens.length; i++) {
-    const { word, position } = tokens[i];
-
-    if (isPunctuationOrNumber(word)) continue;
-    if (await isWordCorrect(word)) continue;
-
-    const leftCtx = i > 0 ? tokens.slice(Math.max(0, i - 2), i).map(t => t.word) : [];
-    const rightCtx = i < tokens.length - 1 ? tokens.slice(i + 1, Math.min(tokens.length, i + 3)).map(t => t.word) : [];
-
-    const suggestions = await getWordSuggestions(word, leftCtx, rightCtx);
-    errors.push({ word, position, suggestions });
+  if (checkableTokens.length === 0) {
+    return { errors: [] };
   }
 
-  return { errors };
+  const checkResults = await Promise.all(
+    checkableTokens.map(async ({ word, position }) => {
+      const correct = await isWordCorrect(word);
+      if (correct) return null;
+      return { word, position };
+    })
+  );
+
+  const misspelledTokens = checkResults.filter((r): r is { word: string; position: number } => r !== null);
+
+  if (misspelledTokens.length === 0) {
+    return { errors: [] };
+  }
+
+  const errorsWithSuggestions = await Promise.all(
+    misspelledTokens.map(async ({ word, position }) => {
+      const suggestions = await getWordSuggestions(word);
+      return { word, position, suggestions };
+    })
+  );
+
+  return { errors: errorsWithSuggestions };
+}
+
+export function checkTextSync(text: string): { tokens: Array<{ word: string; position: number }>; misspelled: number[] } {
+  const tokens = tokenize(text);
+  const checkableTokens = tokens.filter(t => !isPunctuationOrNumber(t.word));
+  return {
+    tokens: checkableTokens.map(t => ({ word: t.word, position: t.position })),
+    misspelled: checkableTokens.map((t, i) => i),
+  };
 }

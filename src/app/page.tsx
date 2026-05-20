@@ -6,7 +6,8 @@ import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
+import { checkGrammarLocal, checkSpellingOnly } from "@/app/actions/check-grammar-local";
+import { warmupSpellEngines } from "@/lib/spell-warmup";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -134,7 +135,13 @@ export default function Home() {
   const { data: poems, isLoading: isLoadingPoems } = useCollection<Poem>(poemsCollection);
 
   const getLocalCheckCacheKey = useCallback((inputText: string) => {
-    return `${textStructure}|${rhyme}|${inputText}`;
+    let hash = 0;
+    for (let i = 0; i < inputText.length; i++) {
+      const char = inputText.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return `${textStructure}|${rhyme}|${hash.toString(36)}`;
   }, [textStructure, rhyme]);
 
   const runLocalCheckCached = useCallback(async (inputText: string) => {
@@ -159,6 +166,25 @@ export default function Home() {
     }
     return localResult.suggestions;
   }, [getLocalCheckCacheKey, rhyme, textStructure]);
+
+  const runSpellOnlyCached = useCallback(async (inputText: string) => {
+    const cacheKey = `spell:${inputText.slice(0, 100)}:${inputText.length}`;
+    const cached = localCheckCacheRef.current.get(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const start = performance.now();
+    const localResult = await checkSpellingOnly(inputText, textStructure);
+    const duration = performance.now() - start;
+
+    localCheckCacheRef.current.set(cacheKey, localResult.suggestions);
+    if (localCheckCacheRef.current.size > 300) {
+      const firstKey = localCheckCacheRef.current.keys().next().value;
+      if (firstKey) localCheckCacheRef.current.delete(firstKey);
+    }
+    return localResult.suggestions;
+  }, []);
 
   const resetLocalCacheForCurrentConfig = useCallback(() => {
     const prefix = `${textStructure}|${rhyme}|`;
@@ -415,7 +441,7 @@ export default function Home() {
     setCurrentSuggestionIndex(null);
 
     try {
-      const localSuggestions = await runLocalCheckCached(text);
+      const localSuggestions = await runSpellOnlyCached(text);
       const withIds = localSuggestions.map((s, i) => ({
         ...s,
         id: s.id || `sug-local-${Date.now()}-${i}`,
@@ -534,6 +560,11 @@ export default function Home() {
     if (warmupText.length < 4) return;
     runLocalCheckCached(warmupText).catch(() => {});
   }, [isMounted, text, runLocalCheckCached]);
+
+  useEffect(() => {
+    if (!isMounted) return;
+    warmupSpellEngines().catch(() => {});
+  }, [isMounted]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
 
