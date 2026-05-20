@@ -24,6 +24,8 @@ interface SuggestionListProps {
   onSwapAlternative?: (suggestion: Suggestion, alternativeIndex: number) => void;
   appliedToneSuggestions?: Suggestion[];
   onUndoAppliedTone?: (suggestion: Suggestion) => void;
+  totalSuggestionCount?: number;
+  hasAppliedSuggestions?: boolean;
 }
 
 export function SuggestionList({
@@ -37,6 +39,8 @@ export function SuggestionList({
   onSwapAlternative,
   appliedToneSuggestions = [],
   onUndoAppliedTone,
+  totalSuggestionCount = 0,
+  hasAppliedSuggestions = false,
 }: SuggestionListProps) {
   const hasGrammar = suggestions.some(s => s.type === 'grammar');
   const toneSuggestions = suggestions.filter(s => s.type === 'tone');
@@ -49,7 +53,7 @@ export function SuggestionList({
   return (
     <Card className="w-full shadow-lg parchment-bg">
       <CardHeader>
-        <CardTitle className="font-headline text-3xl">
+        <CardTitle className="font-headline text-2xl sm:text-3xl">
           {hasGrammar ? "Sugestões de Correção" : "Sugestões de Tom"}
         </CardTitle>
         <CardDescription>
@@ -57,6 +61,7 @@ export function SuggestionList({
             ? "Correções gramaticais e ortográficas encontradas."
             : "Sugestões para aprimorar o tom e estilo do seu poema."
           }
+          <span className="ml-1">({totalSuggestionCount} pendentes)</span>
         </CardDescription>
         {Object.keys(severityCount).length > 0 && (
           <div className="flex gap-2 mt-1">
@@ -72,7 +77,7 @@ export function SuggestionList({
           </div>
         )}
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-3 sm:px-6">
         <div className="space-y-4">
           {isLoading && (
             <div className="space-y-2">
@@ -81,7 +86,7 @@ export function SuggestionList({
               <Skeleton className="h-12 w-full rounded-lg" />
             </div>
           )}
-          {!isLoading && suggestions.length === 0 && appliedToneSuggestions.length === 0 && (
+          {!isLoading && suggestions.length === 0 && appliedToneSuggestions.length === 0 && !hasAppliedSuggestions && (
             <p className="py-8 text-center text-muted-foreground">
               Nenhuma sugestão por enquanto. Comece a escrever para ver a mágica
               acontecer.
@@ -116,7 +121,7 @@ export function SuggestionList({
                   key={`applied-${i}-${s.originalText}`}
                   className="flex items-center justify-between gap-3 rounded-md border border-border/50 bg-secondary/20 px-3 py-2 text-sm"
                 >
-                  <span className="min-w-0 truncate text-muted-foreground">
+                  <span className="min-w-0 break-words text-muted-foreground">
                     "<em className="text-foreground not-italic">{s.originalText}</em>" → "<em className="text-foreground not-italic">{s.correctedText}</em>"
                   </span>
                   <Button

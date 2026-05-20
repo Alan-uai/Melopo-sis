@@ -12,7 +12,6 @@ import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { collection, serverTimestamp, doc } from "firebase/firestore";
 import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -367,10 +366,40 @@ export default function Home() {
 
   const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
+    setIsLoading(true);
     setGrammarSuggestions([]);
     setToneSuggestions([]);
     setCurrentSuggestionIndex(null);
-    await generateSuggestions('grammar');
+
+    try {
+      const localResult = await checkGrammarLocal(text, textStructure, rhyme);
+      const withIds = localResult.suggestions.map((s, i) => ({
+        ...s,
+        id: s.id || `sug-local-${Date.now()}-${i}`,
+      }));
+
+      setIsSpellingAnalyzed(true);
+      setForceSpellingRefresh(false);
+      setAppliedGrammarSuggestions([]);
+      setGrammarSuggestions(withIds);
+
+      if (withIds.length > 0) {
+        setCurrentSuggestionIndex(0);
+        toast({
+          title: "Correções Ortográficas Encontradas",
+          description: `Encontramos ${withIds.length} correções locais.`,
+        });
+      } else {
+        toast({
+          title: "Nenhum Erro Ortográfico",
+          description: "Seu texto parece correto (checagem local).",
+        });
+      }
+    } catch (error) {
+      await generateSuggestions('grammar');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSuggestTone = async () => {
@@ -1196,34 +1225,7 @@ const hasAppliedSuggestions = appliedToneSuggestions.length > 0 || appliedGramma
                 setForceSpellingRefresh(prev => !prev);
               }}
             />
-            {(totalSuggestionCount > 0 || hasAppliedSuggestions) && (
-              <Accordion type="single" collapsible className="mt-2 lg:hidden">
-                <AccordionItem value="suggestions">
-                  <AccordionTrigger className="text-sm font-medium py-3">
-                    Sugestões ({totalSuggestionCount})
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <SuggestionList
-                      suggestions={
-                        grammarSuggestions.length > 0
-                          ? grammarSuggestions
-                          : toneSuggestions
-                      }
-                      isLoading={isLoading}
-                      onAccept={handleAccept}
-                      onDismiss={handleDismiss}
-                      onResuggest={handleResuggest}
-                      onToggleExcludedPhrase={handleToggleExcludedPhrase}
-                      excludedPhrasesMap={excludedPhrasesMap}
-                      onSwapAlternative={handleSwapAlternative}
-                      appliedToneSuggestions={[...appliedGrammarSuggestions, ...appliedToneSuggestions]}
-                      onUndoAppliedTone={handleUndoAppliedTone}
-                    />
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            )}
-            <div className="hidden lg:block">
+            <div className="w-full">
               <SuggestionList
                 suggestions={
                   grammarSuggestions.length > 0
@@ -1239,6 +1241,8 @@ const hasAppliedSuggestions = appliedToneSuggestions.length > 0 || appliedGramma
                 onSwapAlternative={handleSwapAlternative}
                 appliedToneSuggestions={[...appliedGrammarSuggestions, ...appliedToneSuggestions]}
                 onUndoAppliedTone={handleUndoAppliedTone}
+                totalSuggestionCount={totalSuggestionCount}
+                hasAppliedSuggestions={hasAppliedSuggestions}
               />
             </div>
           </div>
