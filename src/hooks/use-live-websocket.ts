@@ -138,7 +138,7 @@ export function useLiveWebSocket(options: UseLiveWebSocketOptions) {
 
     try {
       const ws = new WebSocket(
-        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContentConstrained?access_token=${encodeURIComponent(currentToken)}`,
+        `wss://generativelanguage.googleapis.com/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent?access_token=${encodeURIComponent(currentToken)}`,
       );
       ws.binaryType = "arraybuffer";
 
