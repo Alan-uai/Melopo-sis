@@ -87,10 +87,11 @@ describe('dictionary integration - palavras inexistentes', () => {
   });
 });
 
-describe('dictionary integration - sugestões', () => {
+describe('dictionary integration - sugestões', { timeout: 180000 }, () => {
   beforeAll(async () => {
-    await getWordSuggestions('warmup');
-  });
+    const { getAllWords } = await import('@/lib/dictionary');
+    await getAllWords();
+  }, 60000);
 
   it('fornece sugestões para palavra com erro', async () => {
     const suggestions = await getWordSuggestions('lindx');

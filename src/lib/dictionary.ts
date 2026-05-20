@@ -1,17 +1,24 @@
-import wordsPt from 'words-pt';
+import fs from 'fs';
+import path from 'path';
 import { getSymSpellSuggestions } from './symspell-engine';
 import { isWordCorrectHunspell, getHunspellSuggestions } from './spelling/espells-engine';
 
+const WORDS_FILE = path.join(process.cwd(), 'src', 'lib', 'words-pt-list.txt');
+
+let wordSet: Set<string> | null = null;
+let wordArray: string[] | null = null;
 let initPromise: Promise<void> | null = null;
 
 async function ensureInit(): Promise<void> {
+  if (wordSet) return;
   if (initPromise) return initPromise;
-  initPromise = new Promise((resolve, reject) => {
-    wordsPt.init({ removeNames: false }, (err) => {
-      if (err) reject(err);
-      else resolve();
-    });
-  });
+
+  initPromise = (async () => {
+    const content = fs.readFileSync(WORDS_FILE, 'latin1');
+    wordArray = content.split('\n').filter(Boolean);
+    wordSet = new Set(wordArray);
+  })();
+
   return initPromise;
 }
 
@@ -20,7 +27,7 @@ export async function isWordCorrect(word: string): Promise<boolean> {
   if (word.includes(' ')) {
     return word.split(/\s+/).every(w => isWordCorrect(w));
   }
-  if (wordsPt.isWord(word)) return true;
+  if (wordSet!.has(word)) return true;
   if (/^[A-ZÁÀÂÃÉÈÊÍÏÓÔÕÖÚÇÑ][a-záàâãéèêíïóôõöúçñ]+$/.test(word)) {
     return true;
   }
@@ -44,5 +51,5 @@ export async function getWordSuggestions(
 
 export async function getAllWords(): Promise<string[]> {
   await ensureInit();
-  return wordsPt.getArray();
+  return wordArray!;
 }

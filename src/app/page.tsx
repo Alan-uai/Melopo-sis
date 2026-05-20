@@ -4,7 +4,6 @@ import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { Editor, EditorRef } from "@/components/editor";
 import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
-import { useIsMobile } from "@/hooks/use-mobile";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
@@ -773,7 +772,6 @@ export default function Home() {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const isMobile = useIsMobile();
   const totalSuggestionCount = grammarSuggestions.length + toneSuggestions.length;
 
   const filteredPoems: Poem[] | undefined = useMemo(() => {
@@ -1136,7 +1134,7 @@ export default function Home() {
           </SidebarFooter>
         </Sidebar>
         <main className="flex-1 flex overflow-hidden">
-          <div className={`w-full overflow-y-auto p-4 ${isMobile ? "flex flex-col" : "grid grid-cols-1 lg:grid-cols-2 gap-4 items-start"}`}>
+          <div className="w-full overflow-y-auto p-2 sm:p-4 flex flex-col lg:grid lg:grid-cols-2 gap-4 items-start mx-auto max-w-6xl">
             <Editor
               ref={editorRef}
               text={text}
@@ -1168,35 +1166,34 @@ export default function Home() {
               lowSeverityCount={lowSeverityCount}
               lastAcceptedOrigin={lastAcceptedOrigin}
             />
-            {isMobile ? (
-              totalSuggestionCount > 0 && (
-                <Accordion type="single" collapsible className="mt-2">
-                  <AccordionItem value="suggestions">
-                    <AccordionTrigger className="text-sm font-medium py-3">
-                      Sugestões ({totalSuggestionCount})
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <SuggestionList
-                        suggestions={
-                          grammarSuggestions.length > 0
-                            ? grammarSuggestions
-                            : toneSuggestions
-                        }
-                        isLoading={isLoading}
-                        onAccept={handleAccept}
-                        onDismiss={handleDismiss}
-                        onResuggest={handleResuggest}
-                        onToggleExcludedPhrase={handleToggleExcludedPhrase}
-                        excludedPhrasesMap={excludedPhrasesMap}
-                        onSwapAlternative={handleSwapAlternative}
-                        appliedToneSuggestions={appliedToneSuggestions}
-                        onUndoAppliedTone={handleUndoAppliedTone}
-                      />
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              )
-            ) : (
+            {totalSuggestionCount > 0 && (
+              <Accordion type="single" collapsible className="mt-2 lg:hidden">
+                <AccordionItem value="suggestions">
+                  <AccordionTrigger className="text-sm font-medium py-3">
+                    Sugestões ({totalSuggestionCount})
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <SuggestionList
+                      suggestions={
+                        grammarSuggestions.length > 0
+                          ? grammarSuggestions
+                          : toneSuggestions
+                      }
+                      isLoading={isLoading}
+                      onAccept={handleAccept}
+                      onDismiss={handleDismiss}
+                      onResuggest={handleResuggest}
+                      onToggleExcludedPhrase={handleToggleExcludedPhrase}
+                      excludedPhrasesMap={excludedPhrasesMap}
+                      onSwapAlternative={handleSwapAlternative}
+                      appliedToneSuggestions={appliedToneSuggestions}
+                      onUndoAppliedTone={handleUndoAppliedTone}
+                    />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
+            <div className="hidden lg:block">
               <SuggestionList
                 suggestions={
                   grammarSuggestions.length > 0
@@ -1213,7 +1210,7 @@ export default function Home() {
                 appliedToneSuggestions={appliedToneSuggestions}
                 onUndoAppliedTone={handleUndoAppliedTone}
               />
-            )}
+            </div>
           </div>
         </main>
       </div>

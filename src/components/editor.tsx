@@ -38,7 +38,6 @@ import { SidebarTrigger } from "./ui/sidebar";
 import { PoemExportDialog } from "./poem-export-dialog";
 import { ShareButton } from "./share-button";
 import { cn } from "@/lib/utils";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { countPoeticSyllables } from "@/lib/poetic-forms";
 import { analyzeRhymeScheme } from "@/lib/rhyme-detector";
 
@@ -134,7 +133,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     { value: 'ode', label: 'Ode' },
     { value: 'verso-livre', label: 'Verso Livre' },
   ];
-  const isMobile = useIsMobile();
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const highlightsRef = useRef<HTMLDivElement>(null);
   const quillContainerRef = useRef<HTMLDivElement>(null);
@@ -408,14 +406,14 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
   return (
     <Card className="w-full shadow-lg h-full flex flex-col overflow-hidden">
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex items-center gap-3 min-w-0">
             <SidebarTrigger />
-            <CardTitle className="font-headline text-3xl">
+            <CardTitle className="font-headline text-xl sm:text-3xl truncate">
               Melopoësis
             </CardTitle>
           </div>
-          <div className="flex items-center gap-1 preserve-3d perspective-near p-1 rounded-lg bg-gradient-to-b from-accent/[0.03] to-transparent border border-accent/[0.04] shadow-inner-sm">
+          <div className="flex items-center gap-1 preserve-3d perspective-near p-1 rounded-lg bg-gradient-to-b from-accent/[0.03] to-transparent border border-accent/[0.04] shadow-inner-sm shrink-0 flex-wrap">
              <TooltipProvider>
                 <Popover>
                     <PopoverTrigger asChild>
@@ -522,13 +520,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
             </TooltipProvider>
           </div>
         </div>
-        <CardDescription className="pt-2">
+        <CardDescription className="pt-2 hidden sm:block">
           Seu assistente de poesia para o português brasileiro, compatível com as
           normas da ABNT.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4 flex-1 flex flex-col">
-        <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-2"} gap-4`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
            <div className="space-y-2">
             <Label htmlFor="structure-select">Estrutura do Texto</Label>
             <Select value={textStructure} onValueChange={(v) => onTextStructureChange(v as TextStructure)}>
@@ -561,7 +559,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         </div>
 
-        <div className="flex items-center justify-between preserve-3d perspective-near">
+        <div className="flex flex-wrap items-center justify-between gap-2 preserve-3d perspective-near">
           <motion.div
             className="flex items-center gap-2"
             whileHover={{ z: 5 }}
@@ -712,7 +710,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
                       onChange={handleTextareaChange}
                       onScroll={syncScroll}
                       placeholder="Escreva seu poema aqui..."
-                      className={`col-start-1 row-start-1 w-full resize-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0 ${isMobile ? "min-h-[300px] pb-16" : ""}`}
+                      className="col-start-1 row-start-1 w-full resize-none overflow-auto scrollbar-none bg-transparent p-4 font-body text-base leading-relaxed text-transparent caret-foreground selection:bg-primary/20 h-full border-0 focus-visible:ring-0 min-h-[200px] sm:min-h-[300px] sm:pb-16"
                       aria-label="Editor de Poesia"
                   />
                   <div
