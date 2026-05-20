@@ -53,7 +53,10 @@ const suggestionFlow = ai.defineFlow(
     }
 
     const cacheParams = getParams(input);
-    const { changed } = globalCache.diff(input.text, cacheParams);
+    const { changed: changedByDiff } = globalCache.diff(input.text, cacheParams);
+    const changed = input.forceRefresh
+      ? input.text.split('\n').map((line, index) => ({ index, text: line }))
+      : changedByDiff;
 
     if (changed.length === 0) {
       return { suggestions: [] };

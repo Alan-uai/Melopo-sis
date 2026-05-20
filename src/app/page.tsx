@@ -52,6 +52,8 @@ type Poem = {
   appliedToneSuggestions?: Suggestion[];
   excludedPhrasesMap?: Record<string, string[]>;
   currentSuggestionIndex?: number | null;
+  isSpellingAnalyzed?: boolean;
+  forceSpellingRefresh?: boolean;
 };
 
 const LOCAL_DEBOUNCE_MS = 300;
@@ -90,6 +92,8 @@ export default function Home() {
   const [preferredModel, setPreferredModel] = useState<string | null>(null);
 
   const [currentSuggestionIndex, setCurrentSuggestionIndex] = useState<number | null>(null);
+  const [isSpellingAnalyzed, setIsSpellingAnalyzed] = useState(false);
+  const [forceSpellingRefresh, setForceSpellingRefresh] = useState(false);
   const activeGrammarSuggestion = currentSuggestionIndex !== null ? grammarSuggestions[currentSuggestionIndex] : null;
 
   const [pastStates, setPastStates] = useState<string[]>([]);
@@ -171,7 +175,7 @@ export default function Home() {
         const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (savedData) {
           const parsed = JSON.parse(savedData);
-          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex } = parsed;
+          const { text, title, tone: savedTone, textStructure: savedStructure, rhyme: savedRhyme, grammarSuggestions, toneSuggestions, appliedToneSuggestions, excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh } = parsed;
           if (text) setText(text);
           if (title !== undefined) setPoemTitle(title);
           if (savedTone) setTone(savedTone);
@@ -182,6 +186,8 @@ export default function Home() {
           if (appliedToneSuggestions) setAppliedToneSuggestions(appliedToneSuggestions);
           if (excludedPhrasesMap) setExcludedPhrasesMap(excludedPhrasesMap);
           if (currentSuggestionIndex !== undefined) setCurrentSuggestionIndex(currentSuggestionIndex);
+          if (isSpellingAnalyzed !== undefined) setIsSpellingAnalyzed(isSpellingAnalyzed);
+          if (forceSpellingRefresh !== undefined) setForceSpellingRefresh(forceSpellingRefresh);
         }
       } catch (error) {
         console.error("Falha ao ler do localStorage", error);
@@ -201,7 +207,7 @@ export default function Home() {
         const dataToSave = JSON.stringify({
           text, title: poemTitle, tone, textStructure, rhyme,
           grammarSuggestions, toneSuggestions, appliedToneSuggestions,
-          excludedPhrasesMap, currentSuggestionIndex,
+          excludedPhrasesMap, currentSuggestionIndex, isSpellingAnalyzed, forceSpellingRefresh,
         });
         localStorage.setItem(LOCAL_STORAGE_KEY, dataToSave);
       } catch (error) {
@@ -224,6 +230,8 @@ export default function Home() {
     setAppliedToneSuggestions(poem.appliedToneSuggestions ?? []);
     setExcludedPhrasesMap(poem.excludedPhrasesMap ?? {});
     setCurrentSuggestionIndex(poem.currentSuggestionIndex ?? null);
+    setIsSpellingAnalyzed(poem.isSpellingAnalyzed ?? false);
+    setForceSpellingRefresh(poem.forceSpellingRefresh ?? false);
     toast({
       title: "Poema Carregado",
       description: `"${poem.title || 'Poema sem título'}" carregado no editor.`,
@@ -240,6 +248,8 @@ export default function Home() {
     setPastStates([]);
     setFutureStates([]);
     resetSuggestions();
+    setIsSpellingAnalyzed(false);
+    setForceSpellingRefresh(false);
     editorRef.current?.focus();
   };
 
@@ -272,6 +282,7 @@ export default function Home() {
         suggestionType: suggestionType,
         excludedPhrases: [],
         preferredModel: preferredModel || undefined,
+        forceRefresh: suggestionType === 'grammar' ? forceSpellingRefresh : undefined,
       };
       const result = await generateContextualSuggestions(input);
 
@@ -297,6 +308,8 @@ export default function Home() {
         id: s.id || `sug-${Date.now()}-${i}`,
       }));
       if (suggestionType === 'grammar') {
+        setIsSpellingAnalyzed(true);
+        setForceSpellingRefresh(false);
         setGrammarSuggestions(withIds);
         setToneSuggestions([]);
         setCurrentSuggestionIndex(null);
@@ -510,6 +523,8 @@ export default function Home() {
       appliedToneSuggestions: appliedToneSuggestions,
       excludedPhrasesMap: excludedPhrasesMap,
       currentSuggestionIndex: currentSuggestionIndex,
+      isSpellingAnalyzed: isSpellingAnalyzed,
+      forceSpellingRefresh: forceSpellingRefresh,
     };
 
     setIsLoading(true);
@@ -1165,6 +1180,11 @@ export default function Home() {
               onAcceptAllLowSeverity={handleAcceptAllLowSeverity}
               lowSeverityCount={lowSeverityCount}
               lastAcceptedOrigin={lastAcceptedOrigin}
+              isSpellingAnalyzed={isSpellingAnalyzed}
+              onToggleSpellingAnalyzed={() => {
+                setIsSpellingAnalyzed(prev => !prev);
+                setForceSpellingRefresh(prev => !prev);
+              }}
             />
             {totalSuggestionCount > 0 && (
               <Accordion type="single" collapsible className="mt-2 lg:hidden">
