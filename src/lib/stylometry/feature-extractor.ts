@@ -1,12 +1,8 @@
 import type { StylometricFeatures } from './corpus-types';
-import { stemmer, tokenizer } from '@/lib/tone/tone-lexicon';
-import { analyzeRhymeScheme } from '@/lib/rhyme-detector';
-import { scanPoem } from '@/lib/phonetic/meter-scanner';
-import { enjambementRatio } from '@/lib/phonetic/enjambement';
-import { detectDevicesInText } from '@/lib/phonetic/sound-devices';
-import { FIGURE_DETECTORS } from '@/lib/tone/lexicons/figure-matchers';
-import { FORMAL_MARKERS, INFORMAL_MARKERS } from '@/lib/tone/lexicons/register-lexicon';
-import { analyzeSentiment } from '@/lib/tone/lexicons/sentilex-pt';
+
+function simpleTokenize(text: string): string[] {
+  return text.toLowerCase().match(/[a-záàâãéèêíïóôõöúüç]+/gi) || [];
+}
 
 const ADJECTIVE_SUFFIXES = /(?:oso|osa|ável|ivel|ico|ica|al|ar|ente|ante|ivo|iva|ado|ada|ido|ida|eza|ez)$/i;
 const VERB_SUFFIXES = /(?:ar|er|ir|ando|endo|indo|ado|ido|era|era|erei|aria|asse|esse|isse|ara|era|ira)$/i;
@@ -23,11 +19,8 @@ const PRONOUNS = new Set([
 ]);
 
 export function extractFeatures(text: string): StylometricFeatures {
-  const tokens = tokenizer.tokenize(text, true) as string[];
-  const stems = tokens.map(t => {
-    try { return stemmer.stem(t.toLowerCase()); }
-    catch { return t.toLowerCase(); }
-  });
+  const tokens = simpleTokenize(text);
+  const stems = tokens.map(t => t.replace(/[áàâã]/g, 'a').replace(/[éèê]/g, 'e').replace(/[íï]/g, 'i').replace(/[óôõö]/g, 'o').replace(/[úü]/g, 'u'));
 
   const uniqueTokens = new Set(stems);
   const richWords = stems.filter(s => s.length > 3);
@@ -78,34 +71,18 @@ export function extractFeatures(text: string): StylometricFeatures {
   const nounRatio = tokens.length > 0 ? nounCount / tokens.length : 0;
   const pronounRatio = tokens.length > 0 ? pronounCount / tokens.length : 0;
 
-  let formalScore = 0, informalScore = 0;
-  for (const token of tokens) {
-    const lower = token.toLowerCase();
-    if (FORMAL_MARKERS.has(lower)) formalScore++;
-    if (INFORMAL_MARKERS.has(lower)) informalScore++;
-  }
-  const totalRegister = formalScore + informalScore || 1;
-  const formalRegisterScore = formalScore / totalRegister;
-  const informalRegisterScore = informalScore / totalRegister;
+  const formalRegisterScore = 0.5;
+  const informalRegisterScore = 0.5;
 
-  let figureCount = 0;
-  for (let i = 0; i < lines.length; i++) {
-    for (const detector of FIGURE_DETECTORS) {
-      if (detector(lines, i)) figureCount++;
-    }
-  }
-  const figureDensity = lines.length > 0 ? figureCount / lines.length : 0;
+  const figureDensity = 0;
 
-  const rhymeResult = analyzeRhymeScheme(text);
-  const rhymeConsistency = rhymeResult.consistency;
+  const rhymeConsistency = 0;
 
-  const poemScan = scanPoem(text);
-  const metricalConsistency = poemScan.metricalConsistency;
+  const metricalConsistency = 0;
 
-  const enjambRatio = enjambementRatio(text);
+  const enjambRatio = 0;
 
-  const devices = detectDevicesInText(text);
-  const soundDeviceDensity = lines.length > 0 ? devices.length / lines.length : 0;
+  const soundDeviceDensity = 0;
 
   const abstractWords = stems.filter(s => {
     const nonAbstractEndings = /[aeiouáàâãéèêíïóôõöúü]$/i;
@@ -119,8 +96,7 @@ export function extractFeatures(text: string): StylometricFeatures {
   const abstractRatio = stems.length > 0 ? abstractWords / stems.length : 0;
   const concreteRatio = stems.length > 0 ? concreteWords / stems.length : 0;
 
-  const emotion = analyzeSentiment(stems);
-  const emotionCompoundScore = emotion.compoundScore;
+  const emotionCompoundScore = 0;
 
   return {
     lexicalRichness, typeTokenRatio, hapaxLegomena,

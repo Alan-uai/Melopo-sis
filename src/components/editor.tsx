@@ -9,7 +9,7 @@ import { InkCopyIcon } from "@/components/animations/ink-copy-icon";
 import { BurnClearIcon } from "@/components/animations/burn-clear-icon";
 import { HaikuCounter } from "@/components/haiku-counter";
 import { SonnetVisualizer } from "@/components/sonnet-visualizer";
-import { MeterVisualizer } from "@/components/meter-visualizer";
+
 import { QuillPen } from "@/components/quill-pen";
 import {
   Card,
@@ -37,8 +37,7 @@ import { SidebarTrigger } from "./ui/sidebar";
 import { PoemExportDialog } from "./poem-export-dialog";
 import { ShareButton } from "./share-button";
 import { cn } from "@/lib/utils";
-import { countPoeticSyllables } from "@/lib/poetic-forms";
-import { analyzeRhymeScheme } from "@/lib/rhyme-detector";
+
 
 interface EditorProps {
   text: string;
@@ -381,55 +380,13 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     }
   };
 
-  const fixedMetricStructures = new Set([
-    'soneto', 'haicai', 'cordel', 'redondilha', 'decassilabo', 'trova', 'oitava', 'decima'
-  ]);
-
   const htmlEscape = (s: string): string =>
     s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   const styledHtml = useMemo(() => {
-    const hasFixedMetric = fixedMetricStructures.has(textStructure);
-
-    const RHYME_COLORS = [
-      'hsl(var(--rhyme-color-0))', 'hsl(var(--rhyme-color-1))',
-      'hsl(var(--rhyme-color-2))', 'hsl(var(--rhyme-color-3))',
-      'hsl(var(--rhyme-color-4))', 'hsl(var(--rhyme-color-5))',
-    ];
-
-    let rhymeScheme: string | null = null;
-    if (rhyme) {
-      const analysis = analyzeRhymeScheme(text);
-      rhymeScheme = analysis.scheme || null;
-    }
-
-    const getRhymeColor = (lineIdx: number): string | null => {
-      if (!rhymeScheme || lineIdx >= rhymeScheme.length) return null;
-      const letter = rhymeScheme[lineIdx];
-      if (!letter || letter === ' ') return null;
-      const idx = letter.charCodeAt(0) - 'A'.charCodeAt(0);
-      return RHYME_COLORS[idx % RHYME_COLORS.length];
-    };
-
-    const renderLine = (line: string, lineIdx: number): string => {
+    const renderLine = (line: string, _lineIdx: number): string => {
       const escaped = htmlEscape(line);
-      const rhymeColor = getRhymeColor(lineIdx);
-
-      let inner = escaped || '\u200B';
-      if (rhymeColor && line.trim()) {
-        const rMatch = line.match(/^(.*\s)([\wáàâãéèêíïóôõöúçñü-]+)([^\w]*)$/u);
-        if (rMatch) {
-          inner = htmlEscape(rMatch[1]) +
-            `<span style="color:${rhymeColor}">${htmlEscape(rMatch[2])}</span>` +
-            htmlEscape(rMatch[3]);
-        }
-      }
-
-      if (hasFixedMetric && line.trim()) {
-        const sylCount = countPoeticSyllables(line);
-        return `<div style="position:relative;"><span>${inner}</span><span contenteditable="false" style="position:absolute;right:4px;top:0;color:hsl(var(--muted-foreground)/0.6);font-size:0.75rem;font-family:monospace;pointer-events:none;-webkit-user-select:none;user-select:none;">[${sylCount}]</span></div>`;
-      }
-
+      const inner = escaped || '\u200B';
       return `<div><span>${inner}</span></div>`;
     };
 
@@ -469,11 +426,6 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
     const firstHighlightLine = highlightLines[0] || '';
     html += `<div><span class="grammar-highlight" style="background:hsl(var(--destructive)/0.3);box-shadow:0 0 0 2px hsl(var(--destructive)/0.5);border-radius:0.125rem;text-decoration:underline;text-decoration-color:hsl(var(--destructive));text-decoration-style:wavy;text-underline-offset:2px;">${htmlEscape(firstHighlightLine)}</span></div>`;
     lineIdx++;
-
-    if (hasFixedMetric && firstHighlightLine.trim()) {
-      const sylCount = countPoeticSyllables(firstHighlightLine);
-      html += `<span contenteditable="false" style="margin-left:0.5rem;color:hsl(var(--muted-foreground)/0.6);font-size:0.75rem;font-family:monospace;-webkit-user-select:none;user-select:none;">[${sylCount}]</span>`;
-    }
 
     for (let i = 1; i < highlightLines.length; i++) {
       const hlLine = highlightLines[i] || '\u200B';
@@ -901,16 +853,7 @@ export const Editor = forwardRef<EditorRef, EditorProps>(({
           </div>
         )}
 
-        {text.trim() && (textStructure === "decassilabo" || textStructure === "verso-livre") && (
-          <div className="pt-4">
-            <MeterVisualizer
-              text={text}
-              width={300}
-              height={48}
-              className="py-1"
-            />
-          </div>
-        )}
+
 
         {suggestionMode === "final" && (
           <div className="flex flex-col gap-2 pt-4 preserve-3d perspective-near">

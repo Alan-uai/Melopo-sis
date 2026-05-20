@@ -1,77 +1,66 @@
-import { analyzeRhymeScheme } from '@/lib/rhyme-detector';
-import type { TextStructure } from '@/lib/poetic-forms';
-import type { Suggestion } from '@/ai/types';
+'use server';
+
+import { ai, withFallback } from '@/ai/genkit';
+import { SuggestionInputSchema, SuggestionOutputSchema, type Suggestion } from '@/ai/types';
+import { tryOpenRouterFallback } from '@/ai/openrouter';
+
+const RHYME_AGENT_PROMPT = `
+Você é um especialista em rima e sonoridade poética do português brasileiro.
+
+Analise o texto poético abaixo e forneça sugestões para melhorar suas rimas.
+
+ESTRUTURA: {{structure}}
+RIMA ATIVADA: {{rhyme}}
+
+REGRAS DE RIMA:
+{{{rhymeRules}}}
+
+MATERIAL DE PESQUISA:
+{{{researchRules}}}
+
+TEXTO:
+\`\`\`
+{{{text}}}
+\`\`\`
+
+INSTRUÇÕES:
+- Se "rhyme" for false, não retorne sugestões de rima.
+- Verifique a consistência do esquema de rimas (ABAB, AABB, ABBA, etc.).
+- Detecte rimas-eco (mesma palavra repetida no fim de versos) e sugira substituições.
+- Detecte rimas clichê/desgastadas (amor/dor, coração/ilusão) e sugira alternativas originais.
+- Detecte versos que não rimam quando deveriam rimar.
+- Sugira palavras finais alternativas que melhorem a sonoridade preservando o sentido.
+- Considere rimas ricas (classes gramaticais diferentes) sobre rimas pobres (mesma classe).
+
+Retorne sugestões com tipo 'grammar' e severity adequada. Se a rima estiver correta, retorne array vazio.
+`;
+
+const rhymeAgent = ai.definePrompt({
+  name: 'rhymeAgent',
+  input: { schema: SuggestionInputSchema },
+  output: { schema: SuggestionOutputSchema },
+  prompt: RHYME_AGENT_PROMPT,
+});
 
 export async function runRhymeAgent(
   text: string,
-  structure: TextStructure,
-  rhyme: boolean,
-): Promise<Suggestion[]> {
-  if (!rhyme) return [];
-
-  const suggestions: Suggestion[] = [];
-  const analysis = analyzeRhymeScheme(text);
-  const cleanLines = text.split('\n').filter(l => l.trim());
-
-  if (analysis.hasEcho) {
-    suggestions.push({
-      originalText: text.slice(0, 60),
-      correctedText: '',
-      explanation: '[RIM-14] O poema contém rima-eco: a mesma palavra repetida no fim de versos diferentes. Isso não constitui rima verdadeira.',
-      type: 'grammar',
-      severity: 'media',
-      context: text,
-      alternatives: [],
-    });
+  input: Record<string, unknown>,
+  preferredModel?: string
+): Promise<{ suggestions: Suggestion[]; modelUsed: string }> {
+  try {
+    const { result: genkitResponse, modelUsed } = await withFallback(
+      (model: string) => rhymeAgent({ ...input, text } as never, { model }),
+      undefined,
+      preferredModel
+    );
+    const output = genkitResponse?.output;
+    return { suggestions: output?.suggestions || [], modelUsed };
+  } catch {
+    const { result, modelUsed } = await tryOpenRouterFallback(
+      RHYME_AGENT_PROMPT,
+      { ...input, text },
+      SuggestionOutputSchema,
+    );
+    return { suggestions: result.suggestions || [], modelUsed };
   }
-
-  if (analysis.clichePairs > 0) {
-    suggestions.push({
-      originalText: text.slice(0, 60),
-      correctedText: '',
-      explanation: `[RIM-18] O poema contém ${analysis.clichePairs} par(es) de rima previsível/desgastada (ex: amor/dor, coração/ilusão). Tente substituir por rimas mais originais.`,
-      type: 'grammar',
-      severity: 'baixa',
-      context: text,
-      alternatives: [],
-    });
-  }
-
-  if (analysis.dominantScheme !== 'free') {
-    if (analysis.consistency < 0.5 && analysis.stanzaSchemes.length > 1) {
-      suggestions.push({
-        originalText: text.slice(0, 60),
-        correctedText: '',
-        explanation: `[RIM-15] Esquema de rimas inconsistente. Detectado: ${analysis.schemeName}, apenas ${Math.round(analysis.consistency * 100)}% das estrofes seguem o padrão.`,
-        type: 'grammar',
-        severity: 'media',
-        context: text,
-        alternatives: [],
-      });
-    }
-
-    if (analysis.rhymeRatio < 0.4 && cleanLines.length >= 4) {
-      suggestions.push({
-        originalText: text.slice(0, 60),
-        correctedText: '',
-        explanation: `[RIM-07~10] Apenas ${Math.round(analysis.rhymeRatio * 100)}% dos versos participam de rimas (esquema: ${analysis.schemeName}). Com rima obrigatória, espera-se ≥50%.`,
-        type: 'grammar',
-        severity: 'media',
-        context: text,
-        alternatives: [],
-      });
-    }
-  } else if (cleanLines.length >= 4 && analysis.rhymeRatio < 0.2) {
-    suggestions.push({
-      originalText: text.slice(0, 60),
-      correctedText: '',
-      explanation: '[RIM-07~10] O poema está marcado como "com rima", mas quase nenhum verso rima.',
-      type: 'grammar',
-      severity: 'alta',
-      context: text,
-      alternatives: [],
-    });
-  }
-
-  return suggestions;
 }

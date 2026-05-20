@@ -95,95 +95,39 @@ export function useBackgroundVerification(): UseBackgroundVerificationReturn {
 
     callbacks.onStart();
 
-    const serverActionPromise =
-      type === 'grammar'
-        ? import('@/app/actions/check-grammar-local')
-          .then(m => m.checkGrammarLocal(params.text, params.structure, params.rhyme))
-          .then(localResult => {
-            if (localResult.suggestions.length > 0) {
-              saveJobToLocal({
-                jobId,
-                poemId: params.poemId,
-                type,
-                status: 'completed',
-                textHash,
-                createdAt: Date.now(),
-                completedAt: Date.now(),
-                result: { suggestions: localResult.suggestions },
-              });
-              activeJobRef.current = { jobId, status: 'completed', type };
-              callbacks.onGrammarResults(localResult.suggestions.map((s, i) => ({
-                ...s,
-                id: s.id || `sug-${Date.now()}-${i}`,
-              })));
-              callbacks.onFinish();
-              return;
-            }
-            return import('@/ai/flows/generate-contextual-suggestions')
-              .then(m => m.generateContextualSuggestions({
-                text: params.text,
-                tone: params.tone,
-                structure: params.structure,
-                rhyme: params.rhyme,
-                suggestionType: 'grammar',
-                excludedPhrases: [],
-                preferredModel: params.preferredModel || undefined,
-                forceRefresh: params.forceRefresh,
-              }));
-          })
-          .then(aiResult => {
-            if (!aiResult) return;
-            saveJobToLocal({
-              jobId,
-              poemId: params.poemId,
-              type,
-              status: 'completed',
-              textHash,
-              createdAt: Date.now(),
-              completedAt: Date.now(),
-              result: { suggestions: aiResult.suggestions, modelUsed: aiResult.modelUsed },
-            });
-            activeJobRef.current = { jobId, status: 'completed', type };
-            if (aiResult.modelUsed && aiResult.modelUsed !== params.preferredModel) {
-              callbacks.onModelChange(aiResult.modelUsed);
-            }
-            callbacks.onGrammarResults(aiResult.suggestions.map((s: any, i: number) => ({
-              ...s,
-              id: s.id || `sug-${Date.now()}-${i}`,
-            })));
-            callbacks.onFinish();
-          })
-        : import('@/ai/flows/generate-contextual-suggestions')
-            .then(m => m.generateContextualSuggestions({
-              text: params.text,
-              tone: params.tone,
-              structure: params.structure,
-              rhyme: params.rhyme,
-              suggestionType: 'tone',
-              excludedPhrases: [],
-              preferredModel: params.preferredModel || undefined,
-            }))
-            .then(result => {
-              saveJobToLocal({
-                jobId,
-                poemId: params.poemId,
-                type,
-                status: 'completed',
-                textHash,
-                createdAt: Date.now(),
-                completedAt: Date.now(),
-                result: { suggestions: result.suggestions, modelUsed: result.modelUsed },
-              });
-              activeJobRef.current = { jobId, status: 'completed', type };
-              if (result.modelUsed && result.modelUsed !== params.preferredModel) {
-                callbacks.onModelChange(result.modelUsed);
-              }
-              callbacks.onToneResults(result.suggestions.map((s: any, i: number) => ({
-                ...s,
-                id: s.id || `sug-${Date.now()}-${i}`,
-              })));
-              callbacks.onFinish();
-            });
+    const serverActionPromise = import('@/ai/flows/generate-contextual-suggestions')
+      .then(m => m.generateContextualSuggestions({
+        text: params.text,
+        tone: params.tone,
+        structure: params.structure,
+        rhyme: params.rhyme,
+        suggestionType: type,
+        excludedPhrases: [],
+        preferredModel: params.preferredModel || undefined,
+        forceRefresh: params.forceRefresh,
+      }))
+      .then(result => {
+        saveJobToLocal({
+          jobId,
+          poemId: params.poemId,
+          type,
+          status: 'completed',
+          textHash,
+          createdAt: Date.now(),
+          completedAt: Date.now(),
+          result: { suggestions: result.suggestions, modelUsed: result.modelUsed },
+        });
+        activeJobRef.current = { jobId, status: 'completed', type };
+        if (result.modelUsed && result.modelUsed !== params.preferredModel) {
+          callbacks.onModelChange(result.modelUsed);
+        }
+        const handler = type === 'grammar' ? callbacks.onGrammarResults : callbacks.onToneResults;
+        handler(result.suggestions.map((s: any, i: number) => ({
+          ...s,
+          id: s.id || `sug-${Date.now()}-${i}`,
+        })));
+        callbacks.onFinish();
+      });
 
     serverActionPromise.catch((error: any) => {
       saveJobToLocal({

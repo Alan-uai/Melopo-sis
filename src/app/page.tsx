@@ -6,7 +6,6 @@ import { SuggestionList } from "@/components/suggestion-list";
 import { useToast } from "@/hooks/use-toast";
 import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
-import { checkGrammarLocal } from "@/app/actions/check-grammar-local";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -117,17 +116,8 @@ export default function Home() {
   const editorRef = useRef<EditorRef>(null);
   const [excludedPhrasesMap, setExcludedPhrasesMap] = useState<Record<string, string[]>>({});
 
-  const localTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const aiTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const requestIdRef = useRef(0);
-  const localCheckCacheRef = useRef<Map<string, Suggestion[]>>(new Map());
-  const perfRef = useRef({
-    localCheckCount: 0,
-    localCacheHit: 0,
-    localCacheMiss: 0,
-    localCheckTotalMs: 0,
-  });
-
   const auth = useAuth();
   const firestore = useFirestore();
   const { user, isUserLoading } = useUser();
@@ -137,48 +127,6 @@ export default function Home() {
     [firestore, user]
   );
   const { data: poems, isLoading: isLoadingPoems } = useCollection<Poem>(poemsCollection);
-
-  const getLocalCheckCacheKey = useCallback((inputText: string) => {
-    let hash = 0;
-    for (let i = 0; i < inputText.length; i++) {
-      const char = inputText.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return `${textStructure}|${rhyme}|${hash.toString(36)}`;
-  }, [textStructure, rhyme]);
-
-  const runLocalCheckCached = useCallback(async (inputText: string) => {
-    const cacheKey = getLocalCheckCacheKey(inputText);
-    const cached = localCheckCacheRef.current.get(cacheKey);
-    if (cached) {
-      perfRef.current.localCheckCount += 1;
-      perfRef.current.localCacheHit += 1;
-      return cached;
-    }
-
-    const start = performance.now();
-    const localResult = await checkGrammarLocal(inputText, textStructure, rhyme);
-    const duration = performance.now() - start;
-    perfRef.current.localCheckCount += 1;
-    perfRef.current.localCacheMiss += 1;
-    perfRef.current.localCheckTotalMs += duration;
-    localCheckCacheRef.current.set(cacheKey, localResult.suggestions);
-    if (localCheckCacheRef.current.size > 200) {
-      const firstKey = localCheckCacheRef.current.keys().next().value;
-      if (firstKey) localCheckCacheRef.current.delete(firstKey);
-    }
-    return localResult.suggestions;
-  }, [getLocalCheckCacheKey, rhyme, textStructure]);
-
-  const resetLocalCacheForCurrentConfig = useCallback(() => {
-    const prefix = `${textStructure}|${rhyme}|`;
-    for (const key of localCheckCacheRef.current.keys()) {
-      if (key.startsWith(prefix)) {
-        localCheckCacheRef.current.delete(key);
-      }
-    }
-  }, [rhyme, textStructure]);
 
   const handleLogin = async () => {
     if (!auth) return;
@@ -492,23 +440,7 @@ export default function Home() {
     resetSuggestions();
 
     if (suggestionMode === 'gradual' && newText.trim().length > 3) {
-      if (localTimerRef.current) clearTimeout(localTimerRef.current);
       if (aiTimerRef.current) clearTimeout(aiTimerRef.current);
-
-      localTimerRef.current = setTimeout(() => {
-        const reqId = ++requestIdRef.current;
-        runLocalCheckCached(newText).then(localSuggestions => {
-          if (reqId !== requestIdRef.current) return;
-          if (localSuggestions.length > 0) {
-            const withIds = localSuggestions.map((s, i) => ({
-              ...s,
-              id: s.id || `sug-${Date.now()}-${i}`,
-            }));
-            setGrammarSuggestions(withIds);
-            setCurrentSuggestionIndex(0);
-          }
-        }).catch(() => {});
-      }, LOCAL_DEBOUNCE_MS);
 
       aiTimerRef.current = setTimeout(() => {
         setIsLoading(true);
@@ -540,13 +472,6 @@ export default function Home() {
       }, AI_DEBOUNCE_MS);
     }
   };
-
-  useEffect(() => {
-    if (!isMounted) return;
-    const warmupText = text.trim();
-    if (warmupText.length < 4) return;
-    runLocalCheckCached(warmupText).catch(() => {});
-  }, [isMounted, text, runLocalCheckCached]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
 
@@ -707,19 +632,16 @@ export default function Home() {
 
   const handleToneChange = (newTone: string) => {
     setTone(newTone);
-    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleTextStructureChange = (newStructure: TextStructure) => {
     setTextStructure(newStructure);
-    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
   const handleRhymeChange = (newRhyme: boolean) => {
     setRhyme(newRhyme);
-    resetLocalCacheForCurrentConfig();
     handleConfigChange();
   };
 
