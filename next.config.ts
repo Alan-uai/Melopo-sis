@@ -1,7 +1,7 @@
 import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: ['singularity-tagger'],
+  serverExternalPackages: ['singularity-tagger', 'espells', 'dictionary-pt'],
   typescript: {
     ignoreBuildErrors: true,
   },
