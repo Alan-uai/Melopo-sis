@@ -26,6 +26,8 @@ export async function checkSpellingOnly(
         results.push(...cachedSugs);
         continue;
       }
+      toCheck.push(word);
+      continue;
     }
     toCheck.push(word);
   }

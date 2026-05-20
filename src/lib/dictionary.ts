@@ -4,6 +4,7 @@ import { getSymSpellSuggestions } from './symspell-engine';
 import { BloomFilter, type BloomFilterConfig } from './bloom-filter';
 
 const WORDS_FILE = path.join(process.cwd(), 'src', 'lib', 'words-pt-list.txt');
+const BLOOM_FILE = path.join(process.cwd(), 'public', 'bloom.json');
 
 const COMMON_MISSING: string[] = ['é', 'quilômetro', 'ônibus'];
 
@@ -38,14 +39,12 @@ async function ensureInit(): Promise<void> {
       INIT_STATE.wordArray = [...words, ...COMMON_MISSING];
       INIT_STATE.wordSet = new Set(INIT_STATE.wordArray);
 
-      const bloom = new BloomFilter(BLOOM_CONFIG);
-      for (const w of words) {
-        bloom.add(w.toLowerCase());
-      }
-      for (const w of COMMON_MISSING) {
-        bloom.add(w.toLowerCase());
-      }
-      INIT_STATE.bloomFilter = bloom;
+      const bloomRaw = JSON.parse(fs.readFileSync(BLOOM_FILE, 'utf-8'));
+      const bits = new Uint8Array(Buffer.from(bloomRaw.bits_b64, 'base64'));
+      INIT_STATE.bloomFilter = new BloomFilter(
+        { size: bloomRaw.size, hashCount: bloomRaw.hashCount },
+        bits
+      );
 
       INIT_STATE.spellCache = {
         correct: new Map<string, boolean>(),

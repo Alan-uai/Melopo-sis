@@ -3,7 +3,7 @@ import path from 'path';
 import { BloomFilter } from '../src/lib/bloom-filter';
 
 const WORDS_FILE = path.join(process.cwd(), 'src', 'lib', 'words-pt-list.txt');
-const OUTPUT_FILE = path.join(process.cwd(), 'public', 'bloom.json');
+const BLOOM_OUTPUT = path.join(process.cwd(), 'public', 'bloom.json');
 
 const COMMON_MISSING: string[] = ['é', 'quilômetro', 'ônibus'];
 
@@ -23,22 +23,21 @@ const content = fs.readFileSync(WORDS_FILE, 'latin1');
 const words = content.split('\n').filter(Boolean);
 console.log(`[build-bloom] Loaded ${words.length} words`);
 
+const allWords = [...words, ...COMMON_MISSING];
+
 const bloom = new BloomFilter(BLOOM_CONFIG);
 
 console.log('[build-bloom] Populating bloom filter...');
 let count = 0;
-for (const w of words) {
+for (const w of allWords) {
   bloom.add(w.toLowerCase());
   count++;
   if (count % 100_000 === 0) {
-    console.log(`[build-bloom] ${count}/${words.length} words added`);
+    console.log(`[build-bloom] ${count}/${allWords.length} words added`);
   }
 }
-for (const w of COMMON_MISSING) {
-  bloom.add(w.toLowerCase());
-}
 
-console.log('[build-bloom] Serializing as base64...');
+console.log('[build-bloom] Serializing bloom filter as base64...');
 
 function toBase64(data: Uint8Array): string {
   let binary = '';
@@ -56,12 +55,11 @@ const output = JSON.stringify({
   size,
   hashCount,
 });
-fs.writeFileSync(OUTPUT_FILE, output, 'utf-8');
+fs.writeFileSync(BLOOM_OUTPUT, output, 'utf-8');
 
-const fileSizeKb = (Buffer.byteLength(output) / 1024).toFixed(1);
-const compressedKb = (Buffer.byteLength(output, 'utf-8') / 1024).toFixed(1);
-console.log(`[build-bloom] Written to ${OUTPUT_FILE}`);
-console.log(`[build-bloom] Size: ${fileSizeKb} KB (raw), ~${Math.floor(Number(fileSizeKb) * 0.25)} KB gzip`);
-console.log(`[build-bloom] Done!`);
+const bloomSizeKb = (Buffer.byteLength(output) / 1024).toFixed(1);
+console.log(`[build-bloom] Written to ${BLOOM_OUTPUT}`);
+console.log(`[build-bloom] Size: ${bloomSizeKb} KB (raw), ~${Math.floor(Number(bloomSizeKb) * 0.25)} KB gzip`);
+console.log('[build-bloom] Done!');
 
 export {};

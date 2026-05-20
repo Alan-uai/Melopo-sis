@@ -8,7 +8,8 @@ import React from 'react';
 import { generateContextualSuggestions } from "@/ai/flows/generate-contextual-suggestions";
 import { checkGrammarLocal, checkSpellingOnly } from "@/app/actions/check-grammar-local";
 import { warmupSpellEngines } from "@/lib/spell-warmup";
-import { loadBloomFilter, getSuspiciousTokens } from "@/lib/client-spell";
+import { loadBloomFilter, getSuspiciousTokens, isBloomLoaded } from "@/lib/client-spell";
+import { tokenize } from "@/lib/tokenize";
 import type { Suggestion, SuggestionInput, SuggestionMode, TextStructure } from "@/ai/types";
 import { useAuth, useFirestore, useUser, useCollection, useMemoFirebase } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
@@ -455,6 +456,14 @@ export default function Home() {
     }
   }, [text, tone, textStructure, rhyme, toast, preferredModel]);
 
+const withTimeout = <T,>(promise: Promise<T>, ms: number): Promise<T> => {
+  let timer: ReturnType<typeof setTimeout>;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error(`Servidor não respondeu em ${ms / 1000}s`)), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => clearTimeout(timer!));
+};
+
 const handleCheckSpelling = async () => {
     if (!text.trim() || isLoading) return;
     setGrammarSuggestions([]);
@@ -462,21 +471,27 @@ const handleCheckSpelling = async () => {
     setCurrentSuggestionIndex(null);
 
     const suspiciousTokens = getSuspiciousTokens(text);
+    const bloomReady = typeof isBloomLoaded !== 'undefined' && isBloomLoaded();
+
+    const wordsToCheck = bloomReady
+      ? suspiciousTokens.map(t => t.word)
+      : tokenize(text).map(t => t.word);
+    const searchTokens = bloomReady ? suspiciousTokens : tokenize(text);
 
     const result: Suggestion[] = [];
 
-    if (suspiciousTokens.length > 0) {
+    if (wordsToCheck.length > 0 || !bloomReady) {
       setIsLoading(true);
 
       try {
-        const serverResult = await checkSpellingOnly(
-          suspiciousTokens.map(t => t.word),
-          textStructure
+        const serverResult = await withTimeout(
+          checkSpellingOnly(wordsToCheck, textStructure),
+          15000
         );
 
         for (let i = 0; i < serverResult.suggestions.length; i++) {
           const s = serverResult.suggestions[i];
-          const originalToken = suspiciousTokens.find(t => t.word === s.originalText)
+          const originalToken = searchTokens.find(t => t.word === s.originalText)
             ?? { word: s.originalText, position: 0 };
 
           result.push({
@@ -580,6 +595,7 @@ const handleCheckSpelling = async () => {
           suggestionType: 'grammar',
           excludedPhrases: [],
           preferredModel: preferredModel || undefined,
+          forceRefresh: forceSpellingRefresh,
         }).then(result => {
           if (result.modelUsed && result.modelUsed !== preferredModel) {
             setPreferredModel(result.modelUsed);
@@ -611,6 +627,7 @@ const handleCheckSpelling = async () => {
     if (!isMounted) return;
     warmupSpellEngines().catch(() => {});
     loadBloomFilter().catch(() => {});
+    checkSpellingOnly(['teste'], undefined).catch(() => {});
   }, [isMounted]);
 
   const lowSeverityCount = grammarSuggestions.filter(s => s.severity === 'baixa').length;
@@ -794,6 +811,7 @@ const handleCheckSpelling = async () => {
     } else {
       setCurrentSuggestionIndex(null);
       setGrammarSuggestions([]);
+      setIsSpellingAnalyzed(false);
     }
   }, [currentSuggestionIndex, grammarSuggestions]);
 
@@ -852,6 +870,7 @@ const handleCheckSpelling = async () => {
             suggestionType: suggestionToResuggest.type,
             excludedPhrases: excludedPhrases,
             preferredModel: preferredModel || undefined,
+            forceRefresh: true,
         };
         const result = await generateContextualSuggestions(input);
 
